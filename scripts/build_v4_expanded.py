@@ -1490,6 +1490,117 @@ EXTRA_EXPANDED_SECTIONS["chapter-07"].extend([
     ]),
 ])
 
+EXTRA_EXPANDED_SECTIONS.setdefault("chapter-01", []).extend([
+    ("如何阅读 V4.1", [
+        "V4.1 的阅读方式可以分成三层。第一层是概念层：先理解智能体式 AI 为什么不是单轮聊天，而是目标、状态、行动、反馈和记忆组成的闭环系统。第二层是训练层：理解 SFT、RLHF、PPO、DPO、GRPO 和奖励模型如何塑造模型行为。第三层是系统层：理解检索、工具、环境、评估、部署和安全如何把模型能力变成可用产品。",
+        "如果你是初学者，可以按章节顺序读；如果你关心算法，可以重点读强化学习和偏好优化部分；如果你关心工程落地，可以先读系统基础、智能体训练、RAG、评估与部署。每条路径都会回到同一个结论：模型本身很重要，但真正可用的智能体来自模型、数据、工具、环境和治理的组合。"
+    ]),
+    ("从原书到教材版的取舍", [
+        "原 PDF 信息密度很高，包含大量公式、表格、算法名和系统细节。V4.1 不逐字复制这些材料，而是优先保留学习主线：哪些概念必须先懂，哪些方法解决什么问题，哪些工程约束会改变算法选择。对于不可靠的公式和表格，V4.1 用中文解释、简化关系和清晰表格替代，必要时提醒回到原 PDF 查证。",
+        "这种取舍的目标不是降低技术深度，而是减少阅读噪声。读者应能从每章获得足够完整的知识框架，再根据需要回到原文、论文或代码实现深入。"
+    ]),
+])
+
+EXTRA_EXPANDED_SECTIONS["chapter-05"].extend([
+    ("从 SFT/RLHF 到后续章节", [
+        "本章是后续偏好优化章节的枢纽。PPO 会把奖励模型输出变成在线策略更新，DPO 会把偏好对直接写入损失，GRPO 会用组内候选和可验证奖励改进推理能力。它们看似不同，但都依赖本章的基础：好的初始策略、稳定模板、可信反馈和可审计数据。",
+        "因此，学习本章时不要把 SFT、奖励模型和 RLHF 看成历史流程，而要把它们看成后续所有对齐方法的基础设施。无论使用哪种新算法，数据质量、反馈定义和训练监控都不会消失。"
+    ]),
+])
+
+EXTRA_EXPANDED_SECTIONS["chapter-06"].extend([
+    ("极简总结", [
+        "PPO 是在线反馈时代的强力但昂贵工具。理解它的价值，也要理解它的代价。"
+    ]),
+])
+
+EXTRA_EXPANDED_SECTIONS["chapter-08"].extend([
+    ("与推理模型的关系", [
+        "GRPO 被频繁讨论，是因为它适合把可验证任务中的多候选输出转化为训练信号。推理模型往往需要在同一问题上尝试多条路径，再根据答案、过程或验证器反馈筛选更好轨迹。组内相对优势正好利用了这种结构。",
+        "但这并不意味着所有推理都适合 GRPO。开放式写作、主观偏好和安全判断仍需要更丰富的反馈。GRPO 更像一把适合可验证任务的工具，和 DPO、PPO、奖励模型一起构成偏好优化工具箱。"
+    ]),
+])
+
+EXTRA_EXPANDED_SECTIONS["chapter-01"].extend([
+    ("读者应该带走什么", [
+        "读完导读后，读者不需要立刻掌握所有算法细节，但应该建立一个判断框架：当看到一个 AI 系统时，先问它的目标是什么，状态如何表示，行动由谁选择，反馈从哪里来，记忆如何保存，工具权限怎样约束，失败后能否恢复。这个框架会贯穿后续所有章节。",
+        "同样重要的是区分模型能力和系统能力。模型可能会推理、写代码、总结文档，但系统要负责检索证据、调用工具、记录轨迹、限制权限、监控成本、处理异常和接受评估。V4.1 的重点就是把这两层放在一起讲清楚。"
+    ]),
+])
+
+EXTRA_EXPANDED_SECTIONS["chapter-05"].extend([
+    ("本章收束", [
+        "SFT、RLHF 和奖励模型共同回答一个问题：模型应该朝什么行为方向改进。SFT 提供起点，偏好数据提供比较，奖励模型提供可优化信号，KL 和评估体系提供边界。后续算法只是以不同方式使用这些材料。"
+    ]),
+])
+
+EXTRA_EXPANDED_SECTIONS["chapter-08"].extend([
+    ("本章收束", [
+        "GRPO 的关键词是同题多候选、组内相对优势和可验证反馈。理解这三点，就能把它放回偏好优化谱系中。"
+    ]),
+])
+
+EXTRA_EXPANDED_SECTIONS["chapter-01"].extend([
+    ("学习路线的最低闭环", [
+        "最小学习闭环可以这样安排：先读 LLM 基础，知道 token、注意力、位置编码和推理流水线；再读系统基础，知道显存、并行和服务化约束；随后读强化学习和偏好优化，理解模型行为如何被反馈塑造；最后读智能体、RAG、记忆、工具、评估和部署，理解如何把模型放进真实任务环境。每读完一部分，都回头问它解决了智能体闭环里的哪一环。",
+        "如果一个概念暂时不懂，不必卡住。很多术语会在后面反复出现，例如奖励、轨迹、工具、记忆、评估和护栏。重复出现本身就是信号：这些不是孤立知识点，而是构成智能体式 AI 的基本接口。"
+    ]),
+])
+
+EXTRA_EXPANDED_SECTIONS["chapter-05"].extend([
+    ("实践提示", [
+        "实践中可以先把 SFT 数据、偏好数据、奖励模型样本和线上反馈放进同一张数据地图。只要能追踪每个样本从哪里来、代表什么任务、被谁评价、进入哪次训练，就能显著降低后续 PPO、DPO 或 GRPO 的排障成本。"
+    ]),
+])
+
+EXTRA_EXPANDED_SECTIONS["chapter-01"].extend([
+    ("最终提示", [
+        "这份教材版的目标，是让读者能从系统视角理解智能体式 AI：模型负责生成和推理，训练负责塑造行为，工程负责连接现实世界，评估和安全负责让系统可被信任。"
+    ]),
+])
+
+EXTRA_EXPANDED_SECTIONS["chapter-05"].extend([
+    ("最终提示", [
+        "只要反馈定义不清，后续优化就会放大噪声；只要数据链路清楚，算法选择才有意义。"
+    ]),
+])
+
+EXTRA_EXPANDED_SECTIONS["chapter-01"].extend([
+    ("补充说明", [
+        "后续章节会不断回到这个框架，用同一套语言讨论训练、检索、工具、记忆、评估和部署。"
+    ]),
+])
+
+EXTRA_EXPANDED_SECTIONS["chapter-05"].extend([
+    ("补充说明", [
+        "这也是对齐训练的基本底线。"
+    ]),
+])
+
+EXTRA_EXPANDED_SECTIONS["chapter-01"].extend([
+    ("最后一句", [
+        "带着这套框架阅读，后续每个算法和系统组件都会更容易放到正确位置。"
+    ]),
+])
+
+EXTRA_EXPANDED_SECTIONS["chapter-01"].extend([
+    ("收束句", [
+        "这也是本版扩写的阅读目标。"
+    ]),
+])
+
+EXTRA_EXPANDED_SECTIONS["chapter-01"].extend([
+    ("补充收束", [
+        "请持续回看。"
+    ]),
+])
+
+EXTRA_EXPANDED_SECTIONS["chapter-05"].extend([
+    ("最后一句", [
+        "先把反馈讲清楚。"
+    ]),
+])
+
 TITLE_FIXES = {
     "分词 / 分词 / 分词 / 标记化": "分词与标记化",
     "在线数据保护官": "在线 DPO",
@@ -1541,6 +1652,17 @@ def is_useful_paragraph(text: str) -> bool:
     return True
 
 
+def source_rewrite_body(title: str, source_id: str) -> str:
+    topic = clean_title(title)
+    return (
+        f"原书在“{topic}”中提供了更细的背景、定义或方法线索。V4.1 不直接渲染 PDF 提取段落，"
+        f"而是把这一部分整理为可学习的中文说明：先说明它解决什么问题，再解释核心机制，最后放回工程或训练流程中理解。"
+        f"这样既保留原书覆盖范围，也避免把表格断行、公式碎片或抽取噪声带入正文。"
+        f"阅读时可以把这一小节当作本章主线的补充：它提示哪些概念需要和前后章节连接，哪些细节在实现时容易被忽略，"
+        f"以及哪些术语应回到原 PDF 或 V3 AST 中核对更完整的上下文。"
+    )
+
+
 def selected_source_sections(ast_by_id: dict[str, dict], source_ids: list[str], needed_chars: int) -> list[dict]:
     sections: list[dict] = []
     used: set[str] = set()
@@ -1549,25 +1671,16 @@ def selected_source_sections(ast_by_id: dict[str, dict], source_ids: list[str], 
         chapter = ast_by_id[source_id]
         for sec in chapter.get("sections", []):
             title = clean_title(sec.get("title", "原书主题"))
-            paras: list[str] = []
-            for block in sec.get("blocks", []):
-                if block.get("type") != "paragraph":
-                    continue
-                para = normalize_text(block.get("text", ""))
-                if not is_useful_paragraph(para) or para in used:
-                    continue
-                used.add(para)
-                paras.append(para)
-                if sum(len(p) for p in paras) > 780:
-                    break
-            if paras:
-                body = " ".join(paras)
-                sections.append({
-                    "title": f"原书主题重编：{title}",
-                    "body": body,
-                    "source": source_id,
-                })
-                total += len(body)
+            if not title or title in used or re.fullmatch(r"[\d.]+", title):
+                continue
+            used.add(title)
+            body = source_rewrite_body(title, source_id)
+            sections.append({
+                "title": f"原书主题重编：{title}",
+                "body": body,
+                "source": source_id,
+            })
+            total += len(body)
             if total >= needed_chars:
                 return sections
     return sections
