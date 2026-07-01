@@ -1,0 +1,1490 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>智能体式 UI 框架 | 智能体式 AI 漫游指南</title>
+  <meta name="description" content="面向智能体应用的界面模式、可解释执行和审批流。" />
+  <meta property="og:title" content="智能体式 UI 框架 | 智能体式 AI 漫游指南" />
+  <meta property="og:description" content="面向智能体应用的界面模式、可解释执行和审批流。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
+  <link rel="canonical" href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/article.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+  
+</head>
+<body class="article-page">
+  <div class="reading-progress" id="reading-progress"></div>
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="智能体式 AI 漫游指南">
+      <span class="brand-mark">AI</span>
+      <span><strong>智能体式 AI 漫游指南</strong><small>从基础到系统的中文技术文档站</small></span>
+    </a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a>
+<a class="active" href="../chapters/index.html">章节</a>
+<a class="" href="../glossary.html">术语表</a>
+<a class="" href="../references.html">参考文献</a>
+<a class="" href="../search.html">搜索</a>
+<a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
+  </header>
+  <main class="layout">
+    
+        <aside class="left-nav" id="left-nav">
+          <div class="nav-section-title">章节</div>
+          <a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a>
+<a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a>
+<a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a>
+<a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a>
+<a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a>
+<a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a>
+<a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a>
+<a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a>
+<a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a>
+<a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a>
+<a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a>
+<a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a>
+<a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a>
+<a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a>
+<a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a>
+<a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a>
+<a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a>
+<a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a>
+<a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a>
+<a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a>
+<a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a>
+<a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a>
+<a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a>
+<a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a>
+<a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a>
+<a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a>
+<a class="chapter-link active" href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a>
+<a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a>
+<a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a>
+<a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a>
+        </aside>
+        <aside class="right-outline" id="right-outline">
+          <div class="nav-section-title">本页大纲</div>
+          <a class="outline-link level-h2" href="#chapter-27-p490-1">Motivation: Beyond the Chat Box</a>
+<a class="outline-link level-h2" href="#chapter-27-p491-2">UI Paradigms for Agents</a>
+<a class="outline-link level-h2" href="#chapter-27-p493-3">Key UI Components for Agents</a>
+<a class="outline-link level-h2" href="#chapter-27-p495-4">Frameworks and Libraries</a>
+<a class="outline-link level-h2" href="#chapter-27-p498-5">Generative UI</a>
+<a class="outline-link level-h2" href="#chapter-27-p500-6">Streaming and Real-Time Patterns</a>
+<a class="outline-link level-h2" href="#chapter-27-p502-7">Human-in-the-Loop UI Design</a>
+<a class="outline-link level-h2" href="#chapter-27-p503-8">Accessibility and Trust</a>
+<a class="outline-link level-h2" href="#chapter-27-p505-9">Implementation Example: A Full-Stack Agentic UI</a>
+<a class="outline-link level-h2" href="#chapter-27-p511-10">小结</a>
+        </aside>
+        
+    <section class="content-shell">
+      
+        <article class="article-card">
+          <header class="article-header">
+            <p class="part-label">第五部分：智能体式 AI</p>
+            <h1>智能体式 UI 框架</h1>
+            <p>面向智能体应用的界面模式、可解释执行和审批流。</p>
+            <div class="article-meta"><span>原 PDF p.490-512</span><span>10 个页内条目</span></div>
+          </header>
+          <div class="article-body"><h2 id="chapter-27-p490-1">Motivation: Beyond the Chat Box</h2>
+<p><span class="page-ref" id="pdf-p490">原 PDF p.490</span></p>
+<p>智能体 UI 框架</p>
+<p>随着大型语言模型从被动文本生成器转变为能够规划的主动智能体，
+工具的使用和多步骤推理，人类与它们交互的界面必须
+并行发展。传统聊天界面——专为单轮或短上下文对话而设计——
+不适合智能体工作流程的需求：长时间运行的任务、分支决策树、
+并行工具调用，以及有意义的人类监督的需要。本节调查了
+智能体 UI 框架的景观：设计范例、组件库和实现
+能够实现丰富、透明且值得信赖的人机协作的模式。</p>
+<p>动机：超越聊天框</p>
+<p>为什么智能体需要专门的接口</p>
+<p>聊天气泡传达结果。智能体 UI 传达一个过程——推理、调用的工具、
+做出的决定以及需要人类判断的点。如果没有这种可见性，
+用户无法信任、纠正或向智能体学习。</p>
+<p>聊天界面和智能体界面之间的差距反映了自动售货机之间的差距
+机器和熟练的合作者。当智能体执行 20 步研究任务、浏览网页时，
+编写并运行代码，并综合报告，用户需要回答一些简单的问题
+文本回复无法提供：</p>
+<p>• 座席现在在做什么？长时间运行的任务需要进度反馈；沉默
+滋生不信任。</p>
+<p>• 智能体为何做出此决定？推理的透明度使用户能够
+及早发现错误。</p>
+<p>• 使用了哪些工具以及有哪些输入？工具来源对于验证至关重要
+事实主张和审计行为。</p>
+<p>• 我应该在哪里进行干预？智能体必须浮出决策点以保证人类
+判断，而不是让每个微观决策压倒用户。</p>
+<p>• 我可以撤消此操作吗？不可逆的操作（发送电子邮件、修改文件、执行代码）需要
+显式确认和回滚路径。</p>
+<p>自动化偏差风险
+对人机交互的研究一致表明，用户过度信任自动化
+系统，尤其是当这些系统自信且没有不确定性地呈现输出时
+信号[398]。智能体 UI 必须通过暴露不确定性来积极抵消自动化偏差，
+展示推理，并使质疑或推翻智能体决策变得容易。</p>
+<p>因此，智能体 UI 的设计位于人机交互 (HCI) 的交叉点，
+可解释的人工智能（XAI）和软件工程。核心设计目标是：</p>
+<h2 id="chapter-27-p491-2">UI Paradigms for Agents</h2>
+<p><span class="page-ref" id="pdf-p491">原 PDF p.491</span></p>
+<ol>
+<li>
+<p>透明性：使智能体的内部状态对用户来说是清晰可见的。</p>
+</li>
+<li>
+<p>控制：提供有意义的干预点，无需持续监督。</p>
+</li>
+<li>
+<p>信任校准：帮助用户建立准确的座席能力和心理模型
+限制。</p>
+</li>
+<li>
+<p>效率：最小化认知负荷；在正确的时间呈现正确的信息。</p>
+</li>
+<li>
+<p>可恢复性：使错误易于检测和逆转。</p>
+</li>
+</ol>
+<p>智能体的 UI 范式</p>
+<p>没有单一的 UI 范例适合所有智能体用例。适当的接口取决于任务持续时间，
+需要人工参与、输出类型和用户专业知识。频谱范围从完全
+对话式聊天界面与完全自主的仪表板相结合，只需最少的人机交互。</p>
+<p>基于聊天的界面</p>
+<p>聊天模式——消息气泡、文本输入和滚动历史记录——仍然是最熟悉的
+LLM互动的入口点。它的优点是学习曲线低和自然语言灵活性。
+对于智能体使用，聊天界面增加了：</p>
+<p>• 流式响应：token在生成时出现，提供即时反馈
+并减少感知延迟。通过服务器发送事件 (SSE) 或 WebSocket 实现。</p>
+<p>• 内联工具指示器：消息流中显示的小徽章或可扩展部分
+当调用工具时（例如，“[在网络上搜索：
+2024 年气候变化]”）。</p>
+<p>• 输入指示器和状态消息：“智能体正在思考……”、“正在运行Python 代码……”、
+“正在获取结果……”在延迟间隙让用户了解情况。</p>
+<p>• 消息线程：对于多轮智能体任务，可折叠子线程可以包含内部消息。
+在不扰乱主要对话的情况下调解步骤。</p>
+<p>客服人员的聊天 UI 限制</p>
+<p>聊天接口将本质上并行的进程串行化。当智能体分散到五个工具时
+同时，线性消息流歪曲了实际的执行图。对于复杂的
+智能体工作流程中，聊天应该用更丰富的范例来增强或取代。</p>
+<p>基于画布和工件的界面</p>
+<p>由 Claude Artifacts1 和 ChatGPT Canvas2 推广的画布范式引入了一种分裂
+窗格布局：左窗格承载对话，而右窗格（“画布”或“工件”）
+面板”）将生成的内容（代码、文档、图表、电子表格）显示为实时、可编辑的
+神器。
+主要特点：</p>
+<p>• 持久工件：生成的内容在各个轮次中持续存在，并且可以迭代地细化
+通过自然语言指令（“将图表设为蓝色”、“将错误处理添加到
+函数”）。</p>
+<p>• 就地编辑：用户可以直接编辑工件，智能体可以观察和响应
+到那些编辑。</p>
+<p>• 版本历史记录：工件维护修订历史记录，支持回滚到任何先前状态。</p>
+<p><span class="page-ref" id="pdf-p492">原 PDF p.492</span></p>
+<p>• 多工件工作区：高级实施支持多个同时
+工件（例如，代码文件、其测试套件和文档页面）。</p>
+<p>画布范例特别适合共同创作任务：写作、编码、数据分析、
+和设计，其中输出是文档或工件，而不是对话答案。</p>
+<p>工作流程可视化</p>
+<p>对于执行结构化计划（步骤序列或图表）的智能体，工作流可视化 UI
+使计划明确且可追踪。这种范式常见于：</p>
+<p>• 智能体流水线（LangGraph、AutoGen、CrewAI）：渲染智能体的执行图
+作为有向无环图 (DAG) 或流程图，其中节点代表步骤和边
+表示数据流或控制流。</p>
+<p>• 任务分解视图：智能体的高级计划以清单或甘特图形式显示
+时间轴，每个子任务都会扩展以显示其自己的步骤。</p>
+<p>• 实时进度跟踪：节点在执行时改变颜色或显示旋转器；已完成
+节点显示输出；失败的节点显示错误详细信息。</p>
+<p>LangGraph Studio3 是这种范例的典型示例，提供了基于图形的调试器
+和 LangGraph 智能体的可视化工具。用户可以检查每个节点的状态、重放执行情况、
+并注入修改后的状态来测试替代路径。</p>
+<p>仪表板和监控界面</p>
+<p>对于长期运行或生产智能体，仪表板 UI 提供操作视图：</p>
+<p>• 实时状态：哪些智能体正在运行、空闲或失败；当前的任务和步骤。</p>
+<p>• 资源指标：token消耗、API 调用计数、延迟直方图、成本估算。</p>
+<p>• 队列管理：待处理任务、优先级排序、速率限制状态。</p>
+<p>• 警报和异常检测：异常行为（过度重试、成本激增、重复
+失败）作为通知出现。</p>
+<p>• 历史分析：任务完成率、平均持续时间、一段时间内的错误频率。</p>
+<p>仪表板 UI 通常使用 Grafana、4 个自定义 React 仪表板或 Streamlit 等工具构建，
+并且针对的是运营商而不是最终用户。</p>
+<p>协作接口</p>
+<p>协作 UI 将智能体视为共享工作空间（文档、代码库、
+或与人类合作者一起设计画布。主要特点包括：</p>
+<p>• 状态指示符：座席在共享工作区中显示为命名光标或头像。</p>
+<p>• 更改归因：座席所做的编辑在视觉上与人工编辑有区别
+（例如，颜色编码的差异）。</p>
+<p>• 内联建议：智能体以跟踪编辑或评论的形式提出更改建议，由人类
+可以接受、拒绝或修改。</p>
+<p>• 冲突解决：当智能体和人工同时编辑同一区域时，
+UI 使冲突浮出水面并促进解决。</p>
+<p>这种范例正在 Cursor5（人工智能协作代码编辑）、Notion AI 等工具中出现，6
+和 Google Docs 与 Gemini 集成。7</p>
+<h2 id="chapter-27-p493-3">Key UI Components for Agents</h2>
+<p><span class="page-ref" id="pdf-p493">原 PDF p.493</span></p>
+<p>具有检查点的自主性</p>
+<p>在自治范围的远端，一些智能体基本上独立运行——浏览
+网络、编写代码、执行命令——并且仅在需要人工的预定义检查点出现
+批准。该范例用于：</p>
+<p>• 计算机使用智能体（Anthropic Computer Use，8 OpenAI Operator9）：智能体控制
+浏览器或桌面；用户界面显示实时屏幕提要，并在不可逆转之前暂停以供批准
+行动。</p>
+<p>• 带门的自动化流水线：智能体完成 CI/CD 式工作流程
+阶段并等待人类“合并”，然后再继续。</p>
+<p>• 计划智能体：按计划运行并异步报告结果的智能体，具有
+基于通知的 UI，用于审查输出并批准后续操作。</p>
+<p>Checkpoint UI 实践</p>
+<p>负责“清理我的电子邮件收件箱”的智能体可能会自动对 500 封电子邮件进行分类和存档
+电子邮件，然后暂停并呈现摘要：“我发现 23 封电子邮件似乎来自邮寄
+您已经 6 个月没有打开过的列表。我应该取消全部、部分还是全部取消订阅？”用户
+检查列表、做出选择，然后智能体继续进行。这种模式——自主执行
+由人类决策点打断——平衡效率与控制。</p>
+<p>智能体的关键 UI 组件</p>
+<p>无论总体范例如何，智能体 UI 都共享一组重复出现的组件。本节
+列出了最重要的目录，并为每个目录提供了设计指南。</p>
+<p>思维与推理展示</p>
+<p>现代LLM，特别是那些受过思想链或扩展思维训练的LLM（例如 OpenAI
+o1/o3，具有扩展思维的人择克劳德），之前产生大量的内部推理
+产生最终响应。这种推理是一把双刃剑：它增加了透明度
+但可能会因为冗长的内心独白而让用户不知所措。
+最佳实践：</p>
+<p>• 可折叠推理块：显示摘要（“思考 12 秒”）并展开
+为需要详细信息的用户切换。</p>
+<p>• 渐进式披露：默认只显示最终结论；推理可用于
+需求。</p>
+<p>• 结构化推理：如果模型产生结构化思维（假设、证据、
+结论），用视觉层次结构而不是文本墙来呈现它们。</p>
+<p>• 推理与响应的区别：从视觉上清楚地区分内部推理（其中
+最终响应中可能包含错误或错误的开始）。</p>
+<p>工具使用可视化</p>
+<p>工具调用是智能体与世界交互的主要机制。将它们可视化是
+对于信任和调试至关重要。</p>
+<p>工具调用剖析</p>
+<p>每个工具调用都有四个值得显示的组件：(1) 工具名称和图标，(2)
+输入参数（可能很大的 JSON），(3) 输出/结果（可能很大），以及 (4)
+计时（延迟）。 UI 必须平衡完整性和可读性。</p>
+<p>工具可视化的设计模式：</p>
+<p><span class="page-ref" id="pdf-p494">原 PDF p.494</span></p>
+<p>• 内联工具卡：消息流中的紧凑卡显示工具名称、一行
+输入摘要和状态（运行/成功/错误）。可扩展以获取完整详细信息。</p>
+<p>• 工具时间线：水平时间线依次显示所有工具调用以及持续时间，使
+识别瓶颈。</p>
+<p>• 输入/输出差异：对于修改状态（例如文件编辑）的工具，显示之前/之后的差异。</p>
+<p>• 工具图标和品牌：常用工具的可识别图标（网络搜索、代码执行、
+文件系统、API）可实现快速扫描。</p>
+<p>• 错误突出显示：失败的工具调用以红色显示，并带有错误消息和任何重试
+尝试。</p>
+<p>进度指标</p>
+<p>多步骤智能体任务需要丰富的进度反馈：</p>
+<p>• 步骤级进度：计划步骤的编号列表，每个步骤完成时都带有复选标记。
+对于动态计划，可以根据智能体的调整添加或删除步骤。</p>
+<p>• token流指示器：生成期间闪烁的光标或动画省略号；一个
+高级用户的每秒token计数器。</p>
+<p>• 预计完成时间：在可行的情况下，根据任务复杂性和历史情况制定预计完成时间
+性能。以适当的不确定性显示（“大约 2-5 分钟”）。</p>
+<p>• 子任务嵌套：对于分层任务，具有可扩展的树形结构进度视图
+子任务。</p>
+<p>• 取消：清晰可见的“停止”按钮，可以优雅地停止智能体并进行总结
+至此工作已完成。</p>
+<p>审批门</p>
+<p>批准门是人在环控制的主要机制。它们必须被设计
+提供丰富的信息（为用户提供足够的背景信息以做出正确的决定）而不感到疲劳
+（每一个小动作都需要批准）。</p>
+<p>批准门疲劳警报</p>
+<p>如果智能体过于频繁地请求批准，用户将开始本能地批准而不阅读 -
+违背了门的目的。分级审批政策（参见第 26.7 节）对于
+保持有意义的监督。</p>
+<p>审批门 UI 元素：</p>
+<p>• 行动摘要：以通俗易懂的语言描述客服人员想要执行的操作（“发送电子邮件
+发送至 john@example.com 并附上报告”）。</p>
+<p>• 风险指示器：行动可逆性的视觉信号（绿色=容易撤消，黄色=很难撤消）
+撤消，红色 = 不可逆转）。</p>
+<p>• 批准/拒绝/修改：三选项界面； “修改”打开一个编辑器
+批准前的操作参数。</p>
+<p>• 上下文面板：可展开部分显示客服人员想要采取此操作的原因（相关
+推理、先前步骤）。</p>
+<p>• 超时行为：明确指示如果用户不响应（智能体
+暂停，不继续）。</p>
+<h2 id="chapter-27-p495-4">Frameworks and Libraries</h2>
+<p><span class="page-ref" id="pdf-p495">原 PDF p.495</span></p>
+<p>上下文显示</p>
+<p>智能体维护内部状态——内存、活动工具、检索到的文档、对话历史记录——
+这会影响他们的行为。使这种状态可见有助于用户理解和预测智能体
+行为。</p>
+<p>• 内存面板：显示智能体当前“记住”的有关用户、任务和之前的内容
+互动。由用户可编辑。</p>
+<p>• 活动工具列表：智能体当前可以使用哪些工具，以及启用/禁用切换。</p>
+<p>• 检索到的上下文：当前位于智能体上下文窗口中的文档或数据块，其中
+来源引用。</p>
+<p>• token预算指标：消耗了多少上下文窗口，帮助用户
+了解何时开始新会话。</p>
+<p>错误和恢复用户界面</p>
+<p>智能体失败——工具返回错误，模型产生幻觉，计划变得不可行。 UI 必须处理
+优雅地失败：</p>
+<p>• 错误卡：内联显示故障以及错误类型、消息和智能体的解释
+状态。</p>
+<p>• 重试控制：带有可选参数调整的手动重试按钮。</p>
+<p>• 替代方法：当主要方法失败时，智能体会提出替代方案；
+用户界面将它们呈现为可选择的选项。</p>
+<p>• 部分结果：如果多步骤任务中途失败，UI 会显示已完成的步骤及其结果
+输出，保留部分值。</p>
+<p>• 升级路径：当智能体出现问题时，提供人工支持或手动完成的清晰路径
+无法继续。</p>
+<p>信心指标</p>
+<p>LLM是具有校准（或错误校准）不确定性的概率系统。展现自信
+帮助用户知道何时信任以及何时验证：</p>
+<p>• 口头对冲显示：突出显示诸如“我不确定”或“您可能想要验证”之类的短语
+提请注意力低可信度的主张。</p>
+<p>• 来源质量指标：对于检索到的信息，显示来源的新近度、权威性和
+相关性分数。</p>
+<p>• 明确的不确定性请求：“您有多大信心？”提示智能体的按钮
+自我评估并解释其不确定性。</p>
+<p>• 验证建议：对于高风险输出，智能体主动建议验证
+步骤（“我建议独立检查此计算”）。</p>
+<p>框架和库</p>
+<p>不断发展的框架生态系统加速了智能体 UI 的开发。我们调查最多的是
+广泛采用，按主要语言和用例组织。</p>
+<p><span class="page-ref" id="pdf-p496">原 PDF p.496</span></p>
+<p>Vercel人工智能SDK</p>
+<p>Vercel AI SDK [399] 是一个用于构建流式 AI 接口的 TypeScript/JavaScript 库
+在 React、Next.js、Svelte 和 Vue 中。它是基于 Web 的生产中使用最广泛的框架
+智能体 UI。
+核心抽象：</p>
+<p>useChat：一个 React hook，通过流支持、消息历史记录管理聊天对话，
+和加载状态。</p>
+<p>• useCompletion：用于通过流式处理完成单轮文本的挂钩。</p>
+<p>• useObject：流式传输结构化 JSON 对象，支持复杂的渐进式渲染
+输出。</p>
+<p>•streamText/streamObject：通过HTTP 传输LLM 响应的服务器端函数。</p>
+<p>Generative UI (AI SDK RSC)：Vercel AI SDK 最显着的特点是它
+通过 React Server Components (RSC) 支持生成 UI。 LLM 不是返回文本，而是
+可以调用工具，其结果呈现为任意 React 组件——天气小部件、
+股票图表、预订表格——直接传输到用户界面中。这将在第 26.5 节中进一步讨论。</p>
+<p>链灯</p>
+<p>Chainlit [400] 是一个 Python 框架，用于使用最少的样板构建可用于生产的智能体 UI。
+它在 LangChain 和 LlamaIndex 生态系统中特别受欢迎。
+主要特点：</p>
+<p>• 步骤可视化：Chainlit 将 LangChain 和 LlamaIndex 执行步骤原生呈现为
+一个可折叠的树，显示每个链调用、检索和工具调用。</p>
+<p>• 多模式支持：文件上传、图片显示、音频播放、PDF渲染输出
+盒子的。</p>
+<p>• 身份验证和会话：内置用户身份验证、持久对话历史记录、
+和多用户支持。</p>
+<p>• 自定义元素：React 组件可以从 Python 注册和呈现，从而使
+丰富的自定义可视化。</p>
+<p>• 反馈收集：内置赞成/反对反馈以及可选评论，存储到
+一个数据库。</p>
+<pre><code class="language-text">import
+chainlit as cl
+from
+langchain_openai
+import
+ChatOpenAI
+from
+langchain_core .tools
+import
+tool
+from
+langgraph.prebuilt
+import
+create_react_agent
+</code></pre>
+<pre><code class="language-text">@tool
+def search(query: str) -&gt; str:
+</code></pre>
+<pre><code class="language-text">"""Search for
+information."""
+return f"Results
+for: {query}"
+</code></pre>
+<pre><code class="language-text">agent = create_react_agent (
+</code></pre>
+<pre><code class="language-text">ChatOpenAI(model="gpt -4o"), tools =[ search]
+)
+</code></pre>
+<pre><code class="language-text">@cl.on_message
+async def
+on_message(message: cl.Message):
+# Chainlit
+automatically
+renders
+每个步骤都是一个可折叠的 UI 元素
+</code></pre>
+<p><span class="page-ref" id="pdf-p497">原 PDF p.497</span></p>
+<pre><code class="language-text"># when
+using the
+callback
+handler
+async
+with cl.Step(name="Agent", type="run") as step:
+step.input = message.content
+result = await
+agent.ainvoke(
+{"messages": [{"role": "user", "content": message.content }]},
+config ={"callbacks": [cl. LangchainCallbackHandler ()]}
+)
+output = result["messages"][ -1]. content
+step.output = output
+</code></pre>
+<pre><code class="language-text">await cl.Message(content=output).send ()
+</code></pre>
+<p>清单 26.1：具有步骤可视化的最小 Chainlit 智能体</p>
+<p>格拉迪奥</p>
+<p>Gradio [401] 是一个用于快速构建 ML 演示和智能体界面的 Python 库。它的gr.ChatInterface
+gr.Blocks API 可以使用最少的代码快速构建会话智能体原型。
+智能体 UI 的优势：</p>
+<p>• 零配置部署：通过Hugging Face Spaces 实现单线共享。</p>
+<p>• 自定义组件：Gradio 自定义组件系统允许构建 React
+与 Python 后端无缝集成的组件。</p>
+<p>• 多模式输入：文件上传、图像、音频、视频和网络摄像头输入，只需最少的
+配置。</p>
+<p>• 流：对基于生成器的流响应的本机支持。</p>
+<p>局限性：Gradio 的布局系统不如完整的 React 框架灵活，而且它的状态
+管理是会话范围的，这使得复杂的多智能体协调具有挑战性。</p>
+<p>流线型</p>
+<p>Streamlit [402] 是一个用于数据应用程序的 Python 框架，已被广泛应用于智能体
+仪表板和监控 UI。它的反应式执行模型——整个脚本在每个
+交互——很简单，但可能会限制复杂的智能体工作流程。
+智能体用例：</p>
+<p>• 智能体仪表板：使用 st.metric 的实时指标、任务队列和状态显示，
+st.dataframe 和 st.status。</p>
+<p>• 会话状态：st.session_state 在重新运行期间保留智能体状态，从而实现多轮
+对话。</p>
+<p>• 流式传输：st.write_stream 逐步呈现生成器输出。</p>
+<p>• 片段：@st.fragment 装饰器支持部分重新运行，提高实时性能
+更新仪表板。</p>
+<p>OpenAI 助手游乐场</p>
+<p>OpenAI Assistants Playground 可作为智能体 UI 设计的参考实现。它
+演示：</p>
+<p>• 基于线程的对话管理，具有持久历史记录。</p>
+<p>• 文件附件和检索可视化。</p>
+<h2 id="chapter-27-p498-5">Generative UI</h2>
+<p><span class="page-ref" id="pdf-p498">原 PDF p.498</span></p>
+<p>• 带有输出显示（标准输出、图像、文件）的代码解释器执行。</p>
+<p>• 带有输入/输出检查的函数调用显示。</p>
+<p>• 运行步骤可视化显示模型调用和工具调用的顺序。</p>
+<p>虽然不是用于构建自定义 UI 的框架，但 Playground 的设计模式已广泛应用
+效仿。</p>
+<p>LangGraph工作室</p>
+<p>LangGraph Studio [403] 是一个桌面应用程序，为 LangGraph 智能体提供可视化 IDE。它是
+目前最先进的工具使用和工作流程可视化环境。
+特点：</p>
+<p>• 图形可视化：智能体状态机的交互式渲染，其中节点代表
+发送代表转换的智能体步骤和边。</p>
+<p>• 状态检查：在执行过程中的任何时刻，完整的智能体状态（所有变量、内存、工具
+结果）可以作为结构化 JSON 进行检查。</p>
+<p>• 时间旅行调试：重放任何先前的执行步骤、修改状态并从以下位置重新运行
+那一点。</p>
+<p>• 人在环集成：可以在任何节点上设置断点；执行暂停并且
+在继续之前等待人工输入。</p>
+<p>• 多智能体支持：可视化主管-子智能体层次结构和智能体间消息
+通过。</p>
+<p>框架比较</p>
+<p>表 26.1 总结了上述框架的主要特征。</p>
+<p>表 26.1：Agentic UI 框架比较。</p>
+<p>框架
+语言
+串流
+工具可视化
+多抗原。
+一代用户界面
+产品</p>
+<pre><code class="language-math">Vercel AI SDK
+TypeScript
+✓
+Partial
+Partial
+✓
+✓
+Chainlit
+Python
+✓
+✓
+Partial
+Partial
+✓
+Gradio
+Python
+✓
+◦
+×
+◦
+✓
+Streamlit
+Python
+✓
+◦
+×
+×
+✓
+OAI Playground
+N/A (hosted)
+✓
+✓
+×
+×
+×
+LangGraph Studio
+Python/TS
+✓
+✓
+✓
+×
+Partial
+</code></pre>
+<p>生成式用户界面</p>
+<p>生成式 UI 概念</p>
+<p>传统的 LLM 接口将模型输出呈现为文本或 Markdown。生成式 UI 反转
+this：模型的工具调用生成 UI 组件。模型不仅决定说什么，还决定
+如何根据内容类型和内容将其呈现为图表、表单、地图、日历小部件
+用户意图。</p>
+<p>生成式 UI 代表了LLM和界面之间关系的根本转变。
+该模型不是开发人员预先指定所有可能的 UI 状态，而是动态选择和
+参数化适合当前上下文的 UI 组件。</p>
+<p><span class="page-ref" id="pdf-p499">原 PDF p.499</span></p>
+<p>动态接口的 React 服务器组件</p>
+<p>Vercel AI SDK 的 RSC（React Server Components10）集成是最成熟的实现
+生成UI的重刑。该架构的工作原理如下：</p>
+<ol>
+<li>
+<p>用户向 Next.js11 服务器操作发送消息。</p>
+</li>
+<li>
+<p>服务器使用一组工具调用 LLM，每个工具都与一个 React 组件关联。</p>
+</li>
+<li>
+<p>当LLM调用工具（例如show_weather）时，服务器渲染相应的React
+以工具的输出作为 props 的组件。</p>
+</li>
+<li>
+<p>渲染的组件作为 React Server 组件流式传输到客户端，出现
+内联在聊天中。</p>
+</li>
+</ol>
+<pre><code class="language-text">// app/actions.tsx (Server
+Action)
+import { streamUI } from ’ai/rsc’;
+import { openai } from ’@ai -sdk/openai ’;
+import { WeatherCard } from ’@/components/WeatherCard ’;
+import { StockChart } from ’@/components/StockChart ’;
+</code></pre>
+<pre><code class="language-text">export
+async
+function
+chat(userMessage: string) {
+const
+result = await
+streamUI ({
+model: openai(’gpt -4o’),
+messages: [{ role: ’user ’, content: userMessage }],
+tools: {
+</code></pre>
+<pre><code class="language-text">show_weather: {
+</code></pre>
+<pre><code class="language-text">description: ’Display
+current
+weather
+for a location ’,
+parameters: z.object ({
+</code></pre>
+<pre><code class="language-text">location: z.string (),
+unit: z.enum ([’celsius ’, ’fahrenheit ’]),
+}),
+// Tool
+result
+rendered as a React
+component
+generate: async ({ location , unit }) =&gt; {
+</code></pre>
+<pre><code class="language-text">const
+data = await
+fetchWeather(location , unit);
+return &lt;WeatherCard
+data ={ data} /&gt;;
+},
+},
+show_stock: {
+</code></pre>
+<pre><code class="language-text">description: ’Display
+stock
+price
+chart ’,
+parameters: z.object ({ ticker: z.string () }),
+generate: async ({ ticker }) =&gt; {
+</code></pre>
+<pre><code class="language-text">const
+data = await
+fetchStockData (ticker);
+return &lt;StockChart
+ticker ={ ticker} data ={ data} /&gt;;
+},
+},
+},
+});
+return
+result.value;
+}
+</code></pre>
+<p>清单 26.2：使用 Vercel AI SDK RSC (TypeScript) 生成 UI</p>
+<p>基于内容类型的自适应界面</p>
+<p>生成式 UI 使界面能够适应所呈现内容的性质：</p>
+<p>• 表格数据→可排序、可过滤的数据表，具有导出选项。</p>
+<p>• 地理数据→带有标记和图层的交互式地图。</p>
+<p>• 时间序列→带注释的可缩放折线图。</p>
+<h2 id="chapter-27-p500-6">Streaming and Real-Time Patterns</h2>
+<p><span class="page-ref" id="pdf-p500">原 PDF p.500</span></p>
+<p>• 代码→带有运行按钮的语法突出显示编辑器。</p>
+<p>• 文档→带注释工具的格式化文档查看器。</p>
+<p>• 表单/结构化输入→动态生成的表单字段。</p>
+<p>该模型充当 UI 编排器，为每件作品选择最合适的呈现方式
+的信息。这减少了开发人员预测每种可能的输出类型和
+预先构建相应的组件。</p>
+<p>生成式 UI 的局限性
+应将多少 UI 生成委托给模型？完全模型驱动的 UI 风险
+一致性、可访问性失败和安全漏洞（例如，生成表单的模型
+将数据提交到意外端点）。在实践中，生成式 UI 在以下情况下效果最佳：
+模型从预先构建的、可访问的和安全的组件的精选库中进行选择，而不是
+生成任意 HTML 或 JSX。</p>
+<p>流媒体和实时模式</p>
+<p>流媒体是智能体 UI 的基础：它将体验从“等待结果”转变为
+“看特工的工作。”本节介绍关键的流模式及其实现
+考虑因素。</p>
+<p>token流</p>
+<p>token流在生成token时增量地提供 LLM 输出，而不是等待
+完整的回应。常用的传输机制有两种：</p>
+<p>• 服务器发送事件(SSE)12：从服务器到客户端的单向HTTP 流。每个
+事件携带一大块token。
+SSE 很简单，在标准 HTTP/1.1 上工作，并且
+由浏览器自动重新连接。它是 LLM 流 API 的主导机制
+（OpenAI、Anthropic、Google 都使用 SSE）。</p>
+<p>• WebSockets：双向持久连接。实施起来比较复杂但必要
+对于客户端需要在中流发送数据的交互式流场景（例如，
+打断智能体，提供中期反馈）。</p>
+<pre><code class="language-text">from
+fastapi
+import
+FastAPI
+from
+fastapi.responses
+import
+StreamingResponse
+from
+openai
+import
+AsyncOpenAI
+import
+json
+</code></pre>
+<pre><code class="language-text">app = FastAPI ()
+client = AsyncOpenAI ()
+</code></pre>
+<pre><code class="language-text">async def
+token_stream(prompt: str):
+"""Generator
+that
+yields SSE -formatted
+token
+chunks."""
+stream = await
+client.chat.completions.create(
+model="gpt -4o",
+messages =[{"role": "user", "content": prompt }],
+stream=True ,
+)
+async for chunk in stream:
+</code></pre>
+<pre><code class="language-text">delta = chunk.choices [0]. delta
+if delta.content:
+</code></pre>
+<pre><code class="language-text"># SSE format: "data: &lt;json &gt;\n\n"
+yield f"data: {json.dumps ({’ token ’: delta.content })}\n\n"
+elif
+chunk.choices [0]. finish_reason :
+yield f"data: {json.dumps ({’done ’: True })}\n\n"
+</code></pre>
+<p><span class="page-ref" id="pdf-p501">原 PDF p.501</span></p>
+<pre><code class="language-text">@app.get("/stream")
+async def
+stream_endpoint (prompt: str):
+return
+StreamingResponse (
+token_stream(prompt),
+media_type="text/event -stream",
+headers ={"Cache -Control": "no -cache", "X-Accel -Buffering": "no"},
+)
+</code></pre>
+<p>清单 26.3：使用 FastAPI 进行 SSE token流式传输</p>
+<p>工具调用流</p>
+<p>现代 LLM API 支持流式工具调用：工具名称和参数被流式传输
+逐渐地，使 UI 能够显示“智能体正在调用 search_web 并查询：‘气候变化
+2024 年’。。。在调用该工具之前。这需要解析部分JSON，可以是
+使用流式 JSON 解析器完成。
+工具调用流的模式：</p>
+<p>• 渐进式参数显示：在工具参数流入时显示工具参数，甚至在调用之前显示
+已完成。</p>
+<p>• 并行工具调用指示器：当模型同时调用多个工具时，显示所有工具
+其中一些处于待处理状态，然后在结果到达时更新每个。</p>
+<p>• 工具结果流式传输：某些工具（例如代码执行、网页抓取）本身可以流式传输
+结果；将这些逐渐通过流水线传送到 UI。</p>
+<p>多智能体流</p>
+<p>在多智能体系统中，多个智能体可能同时生成输出。用户界面必须
+处理并行流：</p>
+<p>• 智能体标记的流：每个流都标有智能体的身份； UI 呈现
+它们位于单独的车道或面板中。</p>
+<p>• 流合并：对于主管-子智能体模式，主管的流可能会交错
+具有子智能体流； UI 必须保持一致的顺序。</p>
+<p>• 背压：如果 UI 无法像流到达一样快地呈现（例如，多个智能体生成
+同时），反压机制必须防止缓冲区溢出。策略包括：
+删除中间token（仅显示最新的）、批量更新或暂停较慢
+溪流。</p>
+<p>乐观的用户界面更新</p>
+<p>乐观的 UI 更新通过立即反映用户操作来提高感知响应能力
+服务器确认前的 UI：</p>
+<p>• 当用户发送消息时，该消息会立即出现在聊天历史记录中（乐观地），同时
+该请求正在处理中。</p>
+<p>• 当批准门被接受时，UI 立即将操作显示为“已批准”并且
+甚至在服务器处理批准之前就开始显示智能体的后续步骤。</p>
+<p>• 如果服务器返回错误，乐观更新将回滚并显示错误状态。</p>
+<h2 id="chapter-27-p502-7">Human-in-the-Loop UI Design</h2>
+<p><span class="page-ref" id="pdf-p502">原 PDF p.502</span></p>
+<p>背压处理</p>
+<p>在高吞吐量智能体场景中，传入数据的速率可能会超过 UI 的渲染能力。
+管理背压的策略：</p>
+<p>• token批处理：缓冲token 50–100 毫秒并分批渲染，而不是逐一渲染，
+减少 DOM 更新频率。</p>
+<p>• 虚拟滚动：对于长输出，仅渲染内容的可见部分，丢弃
+离屏 DOM 节点。</p>
+<p>• 节流更新：对于指标和状态显示，以固定速率（例如 10 Hz）更新
+无论输入数据速率如何。</p>
+<p>• 渐进细节：在高吞吐量期间显示摘要视图；提供完整的详细信息
+按需。</p>
+<p>人在环 UI 设计</p>
+<p>人机交互（HITL）交互是智能体领域最重要的设计挑战之一
+用户界面。目标是保持有意义的人类监督，而不造成否定的瓶颈
+自动化的效率优势。</p>
+<p>何时中断智能体</p>
+<p>并非所有智能体行为都需要人工审查。原则性中断政策考虑：</p>
+<p>• 可逆性：始终不可逆的操作（删除文件、发送电子邮件、购买）
+授权批准。可逆操作（读取文件、搜索网络）通常不会。</p>
+<p>• 范围：影响外部系统或其他人的行为比纯粹的行为需要更多的审查
+本地行动。</p>
+<p>• 置信度：当智能体对用户意图的解释的置信度较低时，它会
+应该要求澄清而不是继续。</p>
+<p>• 成本：高成本的操作（大量 API 调用、昂贵的计算）需要批准。</p>
+<p>• 新颖性：在这种情况下，智能体之前没有采取过的行动值得比之前更严格的审查
+日常动作。</p>
+<p>分级审批流程</p>
+<p>分级审批政策兼顾监管与效率：</p>
+<p>三级审批模式</p>
+<p>第 1 层（自动批准）：低风险、可逆、常规操作。示例：网络搜索、阅读
+文件，调用只读 API。智能体不间断地继续进行；记录操作以供审核​​。
+第 2 层（通知）：中等风险操作。 UI 显示非阻塞通知（“智能体发送了
+草稿电子邮件到您的草稿文件夹”），用户可以异步审阅。一个简短的窗口（例如，
+30 秒）允许在操作完成之前取消。
+第 3 级（需要批准）：高风险、不可逆转或高成本的行动。智能体暂停并
+提出了一个阻塞审批门。用户必须明确批准、拒绝或修改之前
+智能体继续。</p>
+<p>用户可以配置层之间的阈值（“发送电子邮件之前始终询问”）
+或从用户行为中学习（如果用户始终批准网络搜索，则在
+未来）。</p>
+<h2 id="chapter-27-p503-8">Accessibility and Trust</h2>
+<p><span class="page-ref" id="pdf-p503">原 PDF p.503</span></p>
+<p>反馈机制</p>
+<p>除了审批关口之外，智能体 UI 还应该提供丰富的反馈机制来帮助智能体
+随着时间的推移改进：</p>
+<p>• 赞成/反对：响应的简单二进制反馈，存储并用于 RLHF 细化
+调整或偏好学习。</p>
+<p>• 在线更正：用户可以直接编辑智能体输出；原始值和原始值之间的增量
+校正后的输出是训练信号。</p>
+<p>• 偏好选择：当智能体提供多个选项时，用户的选择是
+偏好信号。</p>
+<p>• 明确指示：“不要再这样做”、“总是在 X 之前询问”、“优先选择 Y 方法”
+Z”——更新智能体行为策略的自然语言指令。</p>
+<p>• 评级及理由：评级附带可选的自由文本解释，提供
+比二进制反馈更丰富的信号。</p>
+<p>通过 UI 交互教授智能体</p>
+<p>最复杂的 HITL UI 将每次交互都视为一次教学机会：</p>
+<p>• 演示：用户手动执行任务；智能体观察并学习
+首选方法。</p>
+<p>• 泛化更正：当用户更正智能体操作时，UI 会询问
+“我应该总是以不同的方式做这件事吗？”概括修正。</p>
+<p>• 偏好启发：定期提示要求用户比较两个座席行为
+并指出哪个是首选。</p>
+<p>• 行为配置文件：UI 维护用户可以查看的可见“偏好”配置文件
+并进行编辑，使智能体的学习行为透明且可控。</p>
+<p>可达性和信任</p>
+<p>信任不是一个特征——它是一个系统的新兴属性，它始终如预期地运行，
+清晰地解释自己，并从失败中优雅地恢复。智能体 UI 的设计必须考虑到信任
+作为一流的关注点。</p>
+<p>解释智能体的决定</p>
+<p>智能体 UI 中的可解释性不仅仅是显示思维链。它需要：</p>
+<p>• 决策理由：对于后续决策，智能体不仅应该解释其内容
+决定了，但为什么——考虑了哪些因素，拒绝了哪些替代方案，以及
+做出了假设。</p>
+<p>• 来源归属：声明应与其来源相关联；检索到的文档应该是
+可引用的。</p>
+<p>• 反事实解释：“如果你说 X 而不是 Y，我就会做 Z”——帮助
+用户了解智能体的决策边界。</p>
+<p>• 不确定性量化：明确的置信度陈述以及驱动因素
+不确定性。</p>
+<p><span class="page-ref" id="pdf-p504">原 PDF p.504</span></p>
+<p>显示置信度</p>
+<p>置信度指标必须经过校准且有意义：</p>
+<p>• 言语自信：自然语言表达（“我相当有信心”、“我不确定
+对于大多数用户来说，这个”）比数字概率更容易解释。</p>
+<p>• 视觉置信度：颜色编码（绿色/黄色/红色）、图标变体或字体粗细可以编码
+无需添加文本即可获得信心。</p>
+<p>• 按声明的置信度：对于多声明响应，每个声明的置信度指标（例如，内联
+脚注）比单个响应级别分数提供更多信息。</p>
+<p>撤消和回滚功能</p>
+<p>在技术上可行的情况下，每个相应的智能体操作都应该是可撤销的：</p>
+<p>• 带撤消功能的操作日志：所有座席操作的时间顺序日志，带有“撤消”按钮
+每个可逆动作。</p>
+<p>• 基于快照的回滚：对于有状态任务（例如，代码编辑、文档编写），定期
+快照允许回滚到任何先前的状态。</p>
+<p>• 试运行模式：在执行计划之前，智能体可以对其进行模拟并显示预测结果
+状态更改，允许用户在采取任何实际操作之前批准或修改。</p>
+<p>• 优雅降级：当无法撤消时（例如，已发送电子邮件），UI
+清楚地传达这一点并提供最佳的可用替代方案（例如，发送后续信息）。</p>
+<p>UI 中的审计跟踪</p>
+<p>对于企业和受监管的用例，审计跟踪至关重要：</p>
+<p>• 不可变的操作日志：每个智能体操作、工具调用和人工批准都记录在案
+时间戳、用户身份和完整参数。</p>
+<p>• 可导出的历史记录：审计跟踪可以导出为 JSON、CSV 或 PDF 格式以确保合规性
+报告。</p>
+<p>• 差异视图：对于文档或代码修改，审计跟踪包括之前/之后的差异。</p>
+<p>• 会话重播：能够逐步重播整个智能体会话，以进行调试或
+合规审查。</p>
+<p>管理用户期望</p>
+<p>错误的期望是用户不信任的主要原因。智能体 UI 应主动管理
+期望：</p>
+<p>• 能力披露：清晰、易于理解的文档，说明智能体可以做什么和不能做什么。</p>
+<p>• 限制确认：当智能体遇到超出其能力范围的任务时，它会
+明确地说出来，而不是默默地尝试和失败。</p>
+<p>• 不确定性沟通：主动沟通不确定性，而不是等待
+以便用户发现错误。</p>
+<p>• 一致的角色：一致的座席身份和沟通风格可增强熟悉度
+和可预测性。</p>
+<h2 id="chapter-27-p505-9">Implementation Example: A Full-Stack Agentic UI</h2>
+<p><span class="page-ref" id="pdf-p505">原 PDF p.505</span></p>
+<p>通过透明度建立信任：案例研究</p>
+<p>考虑一个负责预订航班的智能体。低信任度 UI 呈现：“我已经预订了您的
+飞行。确认：AA1234。”高信任的 UI 呈现： (1) 搜索参数摘要
+使用的，(2) 考虑的替代方案以及选择该航班的原因，(3) 采取的具体行动
+（对预订系统的 API 调用），(4) 带有预订链接的确认详细信息，(5)
+撤销选项在接下来的 24 小时内有效，以及 (6) 关于智能体不能做什么的注释（例如，“我
+无法修改此预订；您需要直接致电航空公司”）。第二个 UI 需要更多时间
+屏幕空间，但可以建立用户对智能体行为正确的信心，并为他们提供
+如果需要的话，验证和恢复所需的信息。</p>
+<p>实施示例：全栈智能体 UI</p>
+<p>我们现在提出一个结合流、工具可视化和
+Python/React 堆栈中的批准门。后端使用FastAPI和LangGraph；前端
+将 React 与适用于自定义后端的 Vercel AI SDK 模式结合使用。</p>
+<p>后端：FastAPI + LangGraph 以及流式传输和审批门</p>
+<pre><code class="language-text"># backend/main.py
+import
+asyncio
+import
+json
+from
+typing
+import
+AsyncGenerator
+from
+fastapi
+import
+FastAPI , HTTPException
+from
+fastapi.responses
+import
+StreamingResponse
+from
+pydantic
+import
+BaseModel
+from
+langchain_openai
+import
+ChatOpenAI
+from
+langchain_core .tools
+import
+tool
+</code></pre>
+<pre><code class="language-text">app = FastAPI ()
+</code></pre>
+<pre><code class="language-text"># -- Tool
+definitions
+----------------------------------------------------------
+</code></pre>
+<pre><code class="language-text">@tool
+def
+web_search(query: str) -&gt; str:
+"""Search the web for
+information."""
+return f"Search
+results
+for
+’{query }’: [simulated
+results]"
+</code></pre>
+<pre><code class="language-text">@tool
+def
+send_email(to: str , subject: str , body: str) -&gt; str:
+"""Send an email. REQUIRES
+HUMAN
+APPROVAL."""
+return f"Email
+sent to {to} with
+subject
+’{subject}’"
+</code></pre>
+<pre><code class="language-text">@tool
+def
+read_file(path: str) -&gt; str:
+"""Read a file from the
+filesystem."""
+try:
+</code></pre>
+<pre><code class="language-text">with open(path) as f:
+</code></pre>
+<pre><code class="language-text">return f.read ()
+except
+FileNotFoundError :
+return f"Error: File not found: {path}"
+</code></pre>
+<pre><code class="language-text"># Tools
+requiring
+approval (Tier 3)
+APPROVAL_REQUIRED_TOOLS = {"send_email"}
+</code></pre>
+<pre><code class="language-text"># -- Approval
+gate
+store (in -memory; use Redis in production) ------------------
+</code></pre>
+<pre><code class="language-text">approval_store : dict[str , asyncio.Event] = {}
+approval_results : dict[str , dict] = {}
+</code></pre>
+<pre><code class="language-text"># -- LLM setup
+-----------------------------------------------------------------
+</code></pre>
+<p><span class="page-ref" id="pdf-p506">原 PDF p.506</span></p>
+<pre><code class="language-text">llm = ChatOpenAI(model="gpt -4o", streaming=True)
+tools = [web_search , send_email , read_file]
+llm_with_tools = llm.bind_tools(tools)
+</code></pre>
+<pre><code class="language-text">def
+should_request_approval (tool_name: str) -&gt; bool:
+return
+tool_name in
+APPROVAL_REQUIRED_TOOLS
+</code></pre>
+<pre><code class="language-text"># -- Streaming
+endpoint
+--------------------------------------------------------
+</code></pre>
+<pre><code class="language-text">async def
+agent_stream(
+session_id: str ,
+user_message: str ,
+) -&gt; AsyncGenerator[str , None ]:
+</code></pre>
+<pre><code class="language-text">"""Stream
+agent
+events as SSE."""
+</code></pre>
+<pre><code class="language-text">def sse(event_type: str , data: dict) -&gt; str:
+</code></pre>
+<pre><code class="language-text">return f"data: {json.dumps ({’type ’: event_type , ** data })}\n\n"
+</code></pre>
+<pre><code class="language-text">yield sse("status", {"message": "Agent
+starting ..."})
+</code></pre>
+<pre><code class="language-text"># Simulate multi -step
+agent
+execution
+steps = [
+</code></pre>
+<pre><code class="language-text">("thinking", {"content": "Analyzing
+the
+request ..."}),
+("tool_call", {
+</code></pre>
+<pre><code class="language-text">"tool": "web_search",
+"input": {"query": user_message},
+"tier": 1,
+# Auto -approve
+}),
+("tool_result", {
+</code></pre>
+<pre><code class="language-text">"tool": "web_search",
+"output": f"Results
+for: { user_message}",
+"duration_ms": 342,
+}),
+]
+</code></pre>
+<pre><code class="language-text">for event_type , data in steps:
+</code></pre>
+<pre><code class="language-text">await
+asyncio.sleep (0.5)
+# Simulate
+processing
+time
+yield sse(event_type , data)
+</code></pre>
+<pre><code class="language-text"># Simulate a Tier 3 action
+requiring
+approval
+approval_id = f"{session_id}_email_001"
+approval_event = asyncio.Event ()
+approval_store [approval_id] = approval_event
+</code></pre>
+<pre><code class="language-text">yield sse(" approval_required ", {
+</code></pre>
+<pre><code class="language-text">"approval_id": approval_id ,
+"tool": "send_email",
+"tier": 3,
+"risk": "irreversible",
+" action_summary": "Send
+summary
+email to user@example.com",
+"parameters": {
+</code></pre>
+<pre><code class="language-text">"to": "user@example.com",
+"subject": f"Research
+results: { user_message}",
+"body": "Here are the
+findings ...",
+},
+})
+</code></pre>
+<pre><code class="language-text"># Wait for human
+approval (timeout
+after 5 minutes)
+try:
+</code></pre>
+<pre><code class="language-text">await
+asyncio.wait_for( approval_event .wait (), timeout =300)
+result = approval_results .get(approval_id , {})
+</code></pre>
+<pre><code class="language-text">if result.get("approved"):
+</code></pre>
+<pre><code class="language-text">yield sse("tool_call", {
+</code></pre>
+<pre><code class="language-text">"tool": "send_email",
+"input": result.get("parameters", {}),
+</code></pre>
+<p><span class="page-ref" id="pdf-p507">原 PDF p.507</span></p>
+<pre><code class="language-text">"tier": 3,
+"approved_by": "human",
+})
+await
+asyncio.sleep (0.3)
+yield sse("tool_result", {
+</code></pre>
+<pre><code class="language-text">"tool": "send_email",
+"output": "Email
+sent
+successfully",
+"duration_ms": 128,
+})
+else:
+</code></pre>
+<pre><code class="language-text">yield sse(" action_rejected ", {
+</code></pre>
+<pre><code class="language-text">"tool": "send_email",
+"reason": result.get("reason", "User
+rejected"),
+})
+except
+asyncio.TimeoutError:
+yield sse(" approval_timeout ", {
+</code></pre>
+<pre><code class="language-text">"approval_id": approval_id ,
+"message": "Approval
+timed out; action
+skipped",
+})
+</code></pre>
+<pre><code class="language-text"># Final
+response
+yield sse("token", {"content": "I’ve completed
+the
+research. "})
+yield sse("token", {"content": "Here ’s a summary of what I found ..."})
+yield sse("done", {"total_tokens": 847, "duration_ms": 2341})
+</code></pre>
+<pre><code class="language-text">@app.get("/chat/stream")
+async def
+chat_stream(session_id: str , message: str):
+return
+StreamingResponse (
+agent_stream(session_id , message),
+media_type="text/event -stream",
+headers ={"Cache -Control": "no -cache", "X-Accel -Buffering": "no"},
+)
+</code></pre>
+<pre><code class="language-text">class
+ApprovalRequest (BaseModel):
+approval_id: str
+approved: bool
+parameters: dict | None = None
+reason: str | None = None
+</code></pre>
+<pre><code class="language-text">@app.post("/chat/approve")
+async def
+handle_approval (req: ApprovalRequest ):
+if req.approval_id
+not in approval_store :
+raise
+HTTPException(status_code =404 , detail="Approval
+not found")
+approval_results [req.approval_id] = {
+</code></pre>
+<pre><code class="language-text">"approved": req.approved ,
+"parameters": req.parameters ,
+"reason": req.reason ,
+}
+approval_store [req.approval_id ].set()
+return {"status": "ok"}
+</code></pre>
+<p>清单 26.4：带有流和批准门的 FastAPI 后端</p>
+<p>前端：使用流式处理和工具可视化进行反应</p>
+<pre><code class="language-text">// frontend/AgentChat.tsx
+import { useState , useEffect , useRef } from ’react ’;
+</code></pre>
+<pre><code class="language-text">// -- Types
+---------------------------------------------------------------------
+</code></pre>
+<pre><code class="language-text">type
+AgentEvent =
+| { type: ’status ’; message: string }
+| { type: ’thinking ’; content: string }
+| { type: ’token ’; content: string }
+| { type: ’tool_call ’; tool: string; input: object; tier: number }
+</code></pre>
+<p><span class="page-ref" id="pdf-p508">原 PDF p.508</span></p>
+<pre><code class="language-text">| { type: ’tool_result ’; tool: string; output: string; duration_ms: number }
+| { type: ’approval_required ’; approval_id: string; tool: string;
+</code></pre>
+<pre><code class="language-text">tier: number; risk: string; action_summary : string; parameters: object }
+| { type: ’action_rejected ’; tool: string; reason: string }
+| { type: ’done ’; total_tokens: number; duration_ms: number };
+</code></pre>
+<pre><code class="language-text">// -- Tool Card
+Component
+-------------------------------------------------------
+</code></pre>
+<pre><code class="language-text">function
+ToolCard ({ event }: { event: AgentEvent &amp; { type: ’tool_call ’ } }) {
+const [expanded , setExpanded] = useState(false);
+const
+tierColors = { 1: ’#22 c55e ’, 2: ’#f59e0b ’, 3: ’#ef4444 ’ };
+const
+color = tierColors[event.tier as keyof
+typeof
+tierColors] || ’#6 b7280 ’;
+</code></pre>
+<p>返回 （</p>
+<pre><code class="language-text">&lt;div style ={{ border: ‘1px solid ${color}‘, borderRadius : 8, padding: 8,
+</code></pre>
+<pre><code class="language-text">margin: ’4px 0’, fontSize: 13 }}&gt;
+&lt;div style ={{
+display: ’flex ’, alignItems: ’center ’, gap: 8 }}&gt;
+&lt;span
+style ={{ color , fontWeight: 600 }}&gt;[ gear] {event.tool}&lt;/span &gt;
+&lt;span
+style ={{ color: ’#6 b7280 ’, fontSize: 11 }}&gt;
+Tier {event.tier} . {event.tier === 1 ? ’Auto ’ : ’Approved ’}
+&lt;/span &gt;
+&lt;button
+onClick ={() =&gt; setExpanded (! expanded)}
+style ={{
+marginLeft: ’auto ’, fontSize: 11 }}&gt;
+{expanded ? ’Hide ’ : ’Details ’}
+&lt;/button &gt;
+&lt;/div &gt;
+{expanded &amp;&amp; (
+</code></pre>
+<pre><code class="language-text">&lt;pre style ={{
+marginTop: 8, fontSize: 11, background: ’#f3f4f6 ’,
+padding: 8, borderRadius : 4, overflow: ’auto ’ }}&gt;
+{JSON.stringify(event.input , null , 2)}
+&lt;/pre &gt;
+)}
+&lt;/div &gt;
+);
+}
+</code></pre>
+<pre><code class="language-text">// -- Approval
+Gate
+Component
+---------------------------------------------------
+</code></pre>
+<pre><code class="language-text">function
+ApprovalGate ({
+event ,
+onDecision ,
+}: {
+</code></pre>
+<pre><code class="language-text">event: AgentEvent &amp; { type: ’approval_required ’ };
+onDecision: (approved: boolean , params ?: object) =&gt; void;
+}) {
+</code></pre>
+<pre><code class="language-text">const
+riskColors = { reversible: ’#22 c55e ’, ’hard -to -undo ’: ’#f59e0b ’,
+</code></pre>
+<pre><code class="language-text">irreversible : ’#ef4444 ’ };
+const
+riskColor = riskColors[event.risk as keyof
+typeof
+riskColors] || ’#6 b7280 ’
+;
+</code></pre>
+<p>返回 （</p>
+<pre><code class="language-text">&lt;div style ={{ border: ‘2px solid ${riskColor}‘, borderRadius : 8,
+</code></pre>
+<pre><code class="language-text">padding: 16, margin: ’8px 0’, background: ’#fef9f0 ’ }}&gt;
+&lt;div style ={{
+fontWeight: 700, color: riskColor , marginBottom : 8 }}&gt;
+[!]
+Approval
+Required: {event.tool}
+&lt;/div &gt;
+&lt;div style ={{
+marginBottom: 8 }}&gt;{ event. action_summary }&lt;/div &gt;
+&lt;div style ={{
+fontSize: 12, color: ’#6 b7280 ’, marginBottom : 12 }}&gt;
+Risk
+level: &lt;span
+style ={{ color: riskColor }}&gt;{ event.risk}&lt;/span &gt;
+&lt;/div &gt;
+&lt;div style ={{
+display: ’flex ’, gap: 8 }}&gt;
+&lt;button
+</code></pre>
+<pre><code class="language-text">onClick ={() =&gt; onDecision(true , event.parameters)}
+style ={{
+背景：'#22 c55e'，颜色：'白色'，边框：'无'，
+borderRadius: 6, padding: ’8px 16px’, cursor: ’pointer ’ }}&gt;
+[OK] Approve
+</code></pre>
+<p><span class="page-ref" id="pdf-p509">原 PDF p.509</span></p>
+<pre><code class="language-text">&lt;/button &gt;
+&lt;button
+</code></pre>
+<pre><code class="language-text">onClick ={() =&gt; onDecision(false)}
+style ={{
+背景：'#ef4444'，颜色：'白色'，边框：'无'，
+borderRadius: 6, padding: ’8px 16px’, cursor: ’pointer ’ }}&gt;
+[X] Reject
+&lt;/button &gt;
+&lt;/div &gt;
+&lt;/div &gt;
+);
+}
+</code></pre>
+<pre><code class="language-text">// -- Main Chat
+Component
+-------------------------------------------------------
+</code></pre>
+<pre><code class="language-text">export
+function
+AgentChat () {
+const [events , setEvents] = useState &lt;AgentEvent [] &gt;([]);
+const [response , setResponse] = useState(’’);
+const [isStreaming , setIsStreaming ] = useState(false);
+const [input , setInput] = useState(’’);
+const
+sessionId = useRef(‘session_${Date.now()}‘);
+</code></pre>
+<pre><code class="language-text">const
+sendMessage = async () =&gt; {
+if (! input.trim () || isStreaming) return;
+setEvents ([]);
+setResponse(’’);
+setIsStreaming (true);
+</code></pre>
+<pre><code class="language-text">const url = ‘/chat/stream?session_id=${sessionId.current}‘
+</code></pre>
+<pre><code class="language-text">+ ‘&amp;message=${ encodeURIComponent (input)}‘;
+const es = new
+EventSource(url);
+</code></pre>
+<pre><code class="language-text">es.onmessage = (e) =&gt; {
+</code></pre>
+<pre><code class="language-text">const
+event: AgentEvent = JSON.parse(e.data);
+if (event.type === ’token ’) {
+</code></pre>
+<pre><code class="language-text">setResponse(prev =&gt; prev + event.content);
+} else if (event.type === ’done ’) {
+</code></pre>
+<pre><code class="language-text">setIsStreaming (false);
+es.close ();
+} else {
+</code></pre>
+<pre><code class="language-text">setEvents(prev =&gt; [... prev , event ]);
+}
+};
+</code></pre>
+<pre><code class="language-text">es.onerror = () =&gt; { setIsStreaming (false); es.close (); };
+setInput(’’);
+};
+</code></pre>
+<pre><code class="language-text">const
+handleApproval = async (
+approvalId: string ,
+approved: boolean ,
+parameters ?: object ,
+) =&gt; {
+</code></pre>
+<pre><code class="language-text">await
+fetch(’/chat/approve ’, {
+method: ’POST ’,
+headers: { ’Content -Type ’: ’application/json ’ },
+body: JSON.stringify ({ approval_id: approvalId , approved , parameters }),
+});
+};
+</code></pre>
+<p>返回 （</p>
+<pre><code class="language-text">&lt;div style ={{
+maxWidth: 800, margin: ’0 auto ’, padding: 16 }}&gt;
+&lt;div style ={{
+minHeight: 400, border: ’1px solid #e5e7eb ’,
+borderRadius: 8, padding: 16, marginBottom : 16 }}&gt;
+{events.map((event , i) =&gt; {
+</code></pre>
+<pre><code class="language-text">if (event.type === ’tool_call ’)
+</code></pre>
+<pre><code class="language-text">return &lt;ToolCard
+key={i} event ={ event} /&gt;;
+</code></pre>
+<p><span class="page-ref" id="pdf-p510">原 PDF p.510</span></p>
+<pre><code class="language-text">if (event.type === ’approval_required ’)
+</code></pre>
+<p>返回 （</p>
+<pre><code class="language-text">&lt;ApprovalGate
+key={i} event ={ event}
+onDecision ={( approved , params) =&gt;
+</code></pre>
+<pre><code class="language-text">handleApproval (event.approval_id , approved , params)} /&gt;
+);
+if (event.type === ’status ’ || event.type === ’thinking ’)
+</code></pre>
+<p>返回 （</p>
+<pre><code class="language-text">&lt;div key={i} style ={{ color: ’#6 b7280 ’, fontSize: 12,
+</code></pre>
+<pre><code class="language-text">fontStyle: ’italic ’, margin: ’4px 0’ }}&gt;
+{event.type === ’thinking ’ ? event.content : event.message}
+&lt;/div &gt;
+);
+return
+null;
+})}
+{response &amp;&amp; (
+</code></pre>
+<pre><code class="language-text">&lt;div style ={{
+marginTop: 8, lineHeight: 1.6 }}&gt;
+{response}
+{isStreaming &amp;&amp; &lt;span
+className="cursor -blink" &gt;|&lt;/span &gt;}
+&lt;/div &gt;
+)}
+&lt;/div &gt;
+&lt;div style ={{
+display: ’flex ’, gap: 8 }}&gt;
+&lt;input
+</code></pre>
+<pre><code class="language-text">value ={ input}
+onChange ={e =&gt; setInput(e.target.value)}
+onKeyDown ={e =&gt; e.key === ’Enter ’ &amp;&amp; sendMessage ()}
+placeholder="Ask the agent ..."
+style ={{ flex: 1, padding: ’8px 12px’, borderRadius: 6,
+</code></pre>
+<pre><code class="language-text">border: ’1px solid #d1d5db ’, fontSize: 14 }}
+/&gt;
+&lt;button
+onClick ={ sendMessage} disabled ={ isStreaming}
+style ={{
+padding: ’8px 16px’, background: ’#3 b82f6 ’,
+颜色：'白色'，边框：'无'，borderRadius：6，
+cursor: isStreaming ? ’not -allowed ’ : ’pointer ’ }}&gt;
+{isStreaming ? ’Running ...’ : ’Send ’}
+&lt;/button &gt;
+&lt;/div &gt;
+&lt;/div &gt;
+);
+}
+</code></pre>
+<p>清单 26.5：带有流工具可视化和审批门的 React 前端</p>
+<p>此实施说明了什么</p>
+<p>上面的代码说明了几种关键的智能体 UI 模式一起工作：</p>
+<p>• SSE 流式传输：后端流式传输不同类型的事件（状态、思考、工具调用、
+token）通过单个 HTTP 连接。</p>
+<p>• 类型化事件协议：事件类型的可区分联合使前端能够
+适当地渲染每个事件。</p>
+<p>• 工具可视化：ToolCard 使用层指示器和可扩展输入呈现工具调用
+详细信息。</p>
+<p>• 批准门：ApprovalGate 会阻塞流并在批准之前等待人工输入。
+智能体继续执行不可逆转的操作。</p>
+<p>• 异步审批：后端使用asyncio.Event 在等待时暂停流
+对于前端的审批 POST 请求，将审批 UI 与
+流logits。</p>
+<h2 id="chapter-27-p511-10">小结</h2>
+<p><span class="page-ref" id="pdf-p511">原 PDF p.511</span></p>
+<p>总结</p>
+<p>Agentic UI 框架代表了人机交互的新领域，需要
+从第一原则重新思考界面设计。本节的主要见解是：</p>
+<ol>
+<li>
+<p>范式选择很重要：适当的 UI 范式（聊天、画布、工作流程、dash-
+董事会、协作、自主）取决于任务结构、所需的人员参与、
+和输出类型。大多数生产系统结合了多种范例。</p>
+</li>
+<li>
+<p>透明度是不容谈判的：用户不能相信他们看不到的东西。思想展示、
+工具可视化和上下文面板不是可选功能 - 它们是基础
+值得信赖的智能体系统。</p>
+</li>
+<li>
+<p>流媒体是基线：用户希望看到智能体实时工作。token流，
+工具调用流和多智能体流是赌注功能。</p>
+</li>
+<li>
+<p>审批门必须分层：统一审批政策（全部审批或全部审批）
+什么都没有）在实践中失败。自动批准安全操作并阻止危险的分层策略
+保持监督而不造成瓶颈。</p>
+</li>
+<li>
+<p>生成式 UI 是前沿：LLM 不仅能够生成文本，还能生成 UI
+组件——图表、表单、地图、小部件——使界面能够适应内容而不是
+而不是将内容强行放入固定模板中。</p>
+</li>
+<li>
+<p>通过一致性和可恢复性赢得信任：撤消功能、审计跟踪、
+校准后的置信度指标与建立用户信任的原始能力同样重要。</p>
+</li>
+</ol>
+<p>设计原则：智能体作为透明的合作者</p>
+<p>智能体 UI 设计的北极星是透明的协作者：一个智能体，其行为是
+总是可见的，其推理总是可理解的，其错误总是可以纠正的，并且
+他们的能力和局限性总是很清楚的。每个 UI 决策都应根据
+这个标准。</p>
+<p>本节中描述的框架和模式 - Vercel AI SDK、Chainlit、Gradio、Streamlit、
+LangGraph Studio—提供构建块。从业者面临的挑战是将它们结合起来
+深思熟虑，以用户的特定需求和领域的特定风险为指导。</p>
+<p><span class="page-ref" id="pdf-p512">原 PDF p.512</span></p>
+<p>评估与参考</p></div>
+          <nav class="chapter-pager"><a class="pager-link" href="chapter-26.html">← 智能体开发框架</a><a class="pager-link next" href="chapter-28.html">测验题与详解 →</a></nav>
+        </article>
+        
+    </section>
+  </main>
+  <button class="back-top" id="back-top" type="button">↑</button>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/toc.js"></script>
+  <script src="../assets/js/progress.js"></script>
+  
+</body>
+</html>

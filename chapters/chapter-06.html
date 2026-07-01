@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PPO：近端策略优化 | 智能体式 AI 漫游指南</title>
+  <meta name="description" content="PPO 的目标函数、优势估计、KL 控制和生产训练实践。" />
+  <meta property="og:title" content="PPO：近端策略优化 | 智能体式 AI 漫游指南" />
+  <meta property="og:description" content="PPO 的目标函数、优势估计、KL 控制和生产训练实践。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
+  <link rel="canonical" href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/article.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+  
+</head>
+<body class="article-page">
+  <div class="reading-progress" id="reading-progress"></div>
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="智能体式 AI 漫游指南">
+      <span class="brand-mark">AI</span>
+      <span><strong>智能体式 AI 漫游指南</strong><small>从基础到系统的中文技术文档站</small></span>
+    </a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a>
+<a class="active" href="../chapters/index.html">章节</a>
+<a class="" href="../glossary.html">术语表</a>
+<a class="" href="../references.html">参考文献</a>
+<a class="" href="../search.html">搜索</a>
+<a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
+  </header>
+  <main class="layout">
+    
+        <aside class="left-nav" id="left-nav">
+          <div class="nav-section-title">章节</div>
+          <a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a>
+<a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a>
+<a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a>
+<a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a>
+<a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a>
+<a class="chapter-link active" href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a>
+<a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a>
+<a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a>
+<a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a>
+<a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a>
+<a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a>
+<a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a>
+<a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a>
+<a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a>
+<a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a>
+<a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a>
+<a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a>
+<a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a>
+<a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a>
+<a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a>
+<a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a>
+<a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a>
+<a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a>
+<a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a>
+<a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a>
+<a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a>
+<a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a>
+<a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a>
+<a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a>
+<a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a>
+        </aside>
+        <aside class="right-outline" id="right-outline">
+          <div class="nav-section-title">本页大纲</div>
+          <a class="outline-link level-h2" href="#chapter-06-p136-1">Motivation and History</a>
+<a class="outline-link level-h2" href="#chapter-06-p136-2">The Clipped Objective</a>
+<a class="outline-link level-h2" href="#chapter-06-p136-3">Full PPO Loss</a>
+<a class="outline-link level-h2" href="#chapter-06-p137-4">Derivation of the PPO Gradient and Update Rule</a>
+<a class="outline-link level-h2" href="#chapter-06-p138-5">Rollout Buffer and Rollouts</a>
+<a class="outline-link level-h2" href="#chapter-06-p140-6">PPO for RLHF: The Full Loop</a>
+<a class="outline-link level-h2" href="#chapter-06-p140-7">Detailed Mechanics: Logits and Policy Updates</a>
+<a class="outline-link level-h2" href="#chapter-06-p143-8">TRL Implementation</a>
+<a class="outline-link level-h2" href="#chapter-06-p144-9">Critical Hyperparameters</a>
+        </aside>
+        
+    <section class="content-shell">
+      
+        <article class="article-card">
+          <header class="article-header">
+            <p class="part-label">第二部分：LLM 的强化学习方法</p>
+            <h1>PPO：近端策略优化</h1>
+            <p>PPO 的目标函数、优势估计、KL 控制和生产训练实践。</p>
+            <div class="article-meta"><span>原 PDF p.136-144</span><span>9 个页内条目</span></div>
+          </header>
+          <div class="article-body"><h2 id="chapter-06-p136-1">Motivation and History</h2>
+<h2 id="chapter-06-p136-2">The Clipped Objective</h2>
+<h2 id="chapter-06-p136-3">Full PPO Loss</h2>
+<p><span class="page-ref" id="pdf-p136">原 PDF p.136</span></p>
+<p>PPO：近端策略优化</p>
+<p>动机和历史</p>
+<p>问题：普通策略梯度更新对步长没有限制。不幸的一批
+可以将政策推向产生垃圾的地区→垃圾获得低奖励→下一步
+梯度使事情变得更糟→不可恢复的崩溃。
+解决方案历史：</p>
+<ol>
+<li>
+<p>TRPO [167] (2015)：限制新旧政策之间的 KL 分歧。工作完美但是
+需要昂贵的二阶优化（Fisher 信息矩阵、共轭梯度）。</p>
+</li>
+<li>
+<p>PPO (2017) [168]：通过简单的一阶限幅目标实现类似的稳定性。 10×
+实现起来更简单，效果也几乎一样，可以轻松地扩展到分布式训练。</p>
+</li>
+</ol>
+<p>被剪裁的目标</p>
+<p>PPO 的核心创新是一个截断的替代目标，可以防止破坏性的大型政策
+更新，同时保持易于实施。</p>
+<p>(5.1)</p>
+<pre><code class="language-math">LCLIP(θ) = Et
+h
+min
+
+rt(θ) ˆAt, clip(rt(θ), 1−ϵ, 1+ϵ) ˆAt
+i
+</code></pre>
+<pre><code class="language-math">where rt(θ) =
+πθ(at|st)
+πθold(at|st) is the probability ratio.
+</code></pre>
+<p>剪裁直觉——关键洞察</p>
+<p>min 运算符创建一个悲观界限：</p>
+<p>• 良好的行动（^A &gt; 0）：我们希望增加其概率。智能体 r ˆA 随着 r 的增长而增长
+增加。但夹帽在 r = 1 + ϵ 时受益。 “不要贪图一个好例子。”</p>
+<p>• 不良行为（^A &lt; 0）：我们希望降低其概率。 r ˆA 随着 r 的减小而提高。但是
+夹帽在 r = 1 −ϵ 时受益。 “不要因为一个坏例子就忘记太激进。”</p>
+<p>净效应：每次更新步骤政策变化最多 ±20%。防止灾难性崩溃
+以及过于自信的专业化。</p>
+<p>完全 PPO 损失</p>
+<p>(5.2)</p>
+<pre><code class="language-text">+c2 H[πθ(·|st)]
+|
+{z
+}
+entropy bonus
+</code></pre>
+<p>L = LCLIP −c1 (Vθ(st) −V 目标
+t
+)2
+|
+{z
+}
+价值损失</p>
+<p>• 价值损失（c1 = 0.1）：训练批评者预测回报。还进行了修剪以保持稳定性。</p>
+<h2 id="chapter-06-p137-4">Derivation of the PPO Gradient and Update Rule</h2>
+<p><span class="page-ref" id="pdf-p137">原 PDF p.137</span></p>
+<p>• 熵红利(c2 = 0.01)：防止过早收敛到确定性策略。关键
+用于探索。</p>
+<p>PPO梯度的推导及更新规则</p>
+<p>本节追踪从 RL 目标到 PPO 更新规则的数学路径，显示
+为什么修剪的智能体有效。</p>
+<p>第 1 步：强化学习目标</p>
+<p>目标是最大化政策下的预期累积奖励：</p>
+<h1></h1>
+<p>” T
+X</p>
+<p>(5.3)</p>
+<pre><code class="language-math">J(θ) = Eτ∼πθ
+</code></pre>
+<p>时间=0
+室温</p>
+<p>第二步：策略梯度定理</p>
+<p>J(θ)相对于策略参数的梯度：</p>
+<h1></h1>
+<p>” T
+X</p>
+<p>(5.4)</p>
+<pre><code class="language-math">∇θJ(θ) = Eπθ
+</code></pre>
+<pre><code class="language-math">t=0
+∇θ log πθ(at|st) · ˆAt
+</code></pre>
+<p>其中 ^At 是优势函数（与平均水平相比，at 的动作好多少）
+状态 st 中的动作）。这用减少方差的优势取代了全部回报。</p>
+<p>步骤 3：离策略数据的重要性采样</p>
+<pre><code class="language-math">PPO 使用 πθold 收集数据，但更新 πθ。要纠正这种分布不匹配，请应用
+importance sampling:
+</code></pre>
+<h1></h1>
+<p>(5.5)</p>
+<pre><code class="language-math">∇θJ(θ) = Eπθold
+</code></pre>
+<pre><code class="language-math">"
+πθ(at|st)
+πθold(at|st)∇θ log πθ(at|st) · ˆAt
+</code></pre>
+<p>f，我们得到：</p>
+<pre><code class="language-math">Define the probability ratio rt(θ) =
+πθ(at|st)
+πθold(at|st). Using the identity ∇θ log f = ∇θf
+</code></pre>
+<pre><code class="language-math">h
+∇θ rt(θ) · ˆAt
+i
+(5.6)
+</code></pre>
+<pre><code class="language-math">∇θJ(θ) = Eπθold
+</code></pre>
+<p>这意味着最大化替代目标：</p>
+<pre><code class="language-math">LCPI(θ) = Et
+h
+rt(θ) · ˆAt
+i
+(5.7)
+</code></pre>
+<p>第四步：无约束智能体的问题</p>
+<p>LCPI 是一个有效的目标，但在没有约束的情况下，单个梯度步骤可以将 rt(θ) 推离 1.0，
+导致：</p>
+<p>• 重要性权重变得极端→高方差</p>
+<p>• 政策进入未经测试的地区→奖励模型给出不可靠的分数</p>
+<p>• 灾难性崩溃：政策产生垃圾，无法恢复</p>
+<pre><code class="language-math">TRPO solution: Constrain DKL(πθold∥πθ) ≤δ. Requires second-order methods (expensive).
+</code></pre>
+<h2 id="chapter-06-p138-5">Rollout Buffer and Rollouts</h2>
+<p><span class="page-ref" id="pdf-p138">原 PDF p.138</span></p>
+<p>第 5 步：PPO 的截断智能体（一阶近似）</p>
+<p>PPO 将硬 KL 约束替换为剪裁目标，该目标使用以下方法实现类似的行为
+仅一阶梯度：</p>
+<p>(5.8)</p>
+<pre><code class="language-math">LCLIP(θ) = Et
+h
+min
+
+rt(θ) ˆAt, clip(rt(θ), 1−ϵ, 1+ϵ) ˆAt
+i
+</code></pre>
+<p>梯度推导：
+令 Lt = min(rt ˆAt, ¯rt ˆAt)，其中 ¯rt = clip(rt, 1−ϵ, 1+ϵ)。</p>
+<p>∇θLt =</p>
+<pre><code class="language-math">(
+∇θrt(θ) · ˆAt
+if rt ˆAt &lt; ¯rt ˆAt (unclipped term is smaller)
+0
+if rt ˆAt ≥¯rt ˆAt (clipped term is smaller, gradient = 0)
+(5.9)
+</code></pre>
+<p>扩大条件：</p>
+<pre><code class="language-math">• 当 ^At &gt; 0 且 rt &lt; 1 + ϵ 时：梯度正常流动——鼓励策略增加
+πθ(at|st).
+</code></pre>
+<p>• 当 ˆAt &gt; 0 且 rt ≥1 + ϵ 时：梯度为零——策略已经增加得足够多，停止
+推动。</p>
+<pre><code class="language-math">• 当 ^At &lt; 0 且 rt &gt; 1 −ϵ 时：梯度正常流动——鼓励策略减少
+πθ(at|st).
+</code></pre>
+<p>• 当 ˆAt &lt; 0 且 rt ≤1 −ϵ 时：梯度为零 — 策略已经下降得足够多，停止
+推动。</p>
+<p>第 6 步：完整的 PPO 更新规则</p>
+<p>结合剪裁的策略损失、价值损失和熵奖励：</p>
+<p>(5.10)</p>
+<pre><code class="language-math">θk+1 = θk + α · ∇θ
+h
+LCLIP(θ) −c1LVF(θ) + c2H[πθ]
+i
+</code></pre>
+<p>where:</p>
+<p>LVF(θ) =
+
+Vθ(st) −V target
+t
+2
+(value function regression loss)
+(5.11)</p>
+<p>H[πθ] = −
+X</p>
+<pre><code class="language-math">a
+πθ(a|st) log πθ(a|st)
+(entropy of the policy)
+(5.12)
+</code></pre>
+<p>摘要：为什么这有效</p>
+<ol>
+<li>
+<p>政策梯度定理给我们改进政策的方向。</p>
+</li>
+<li>
+<p>重要性采样让我们可以在多个时期重复使用 πθold 的数据。</p>
+</li>
+<li>
+<p>剪裁可防止重要性权重变得极端，从而保证更新安全。</p>
+</li>
+<li>
+<p>min 运算符确保我们始终采用（剪裁、未剪裁）中更保守的一个 —
+改善的悲观下限。</p>
+</li>
+<li>
+<p>结果：仅使用一阶梯度以概率 1 进行单调改进。否
+Hessians，没有共轭梯度，没有线搜索。</p>
+</li>
+</ol>
+<p>转出缓冲区和转出</p>
+<p>在 PPO 中，数据管理依赖于称为 Rollout 的专门的短期存储系统
+缓冲器。与在重放缓冲区中无限期存储体验的离策略算法 (DQN) 不同，
+PPO 需要一个临时结构来满足其在策略数学约束。</p>
+<p><span class="page-ref" id="pdf-p139">原 PDF p.139</span></p>
+<p>什么是推出？</p>
+<p>推出（轨迹）是由运行当前策略的智能体生成的一系列交互
+在环境中：</p>
+<p>• 过程：智能体观察状态，选择动作，接收奖励，然后移动到
+下一个状态。它会重复固定的步数或直到剧集结束。</p>
+<p>• 在LLM/RLHF 中：推出包括从数据集中获取提示并让语言
+模型逐个标记生成完整的标记序列，直到命中文本结束标记。
+每个token都是一个“步骤”。</p>
+<p>推出缓冲区</p>
+<p>转出缓冲区临时存储转出阶段收集的所有数据。对于每个生成的
+token/step，它记录：</p>
+<pre><code class="language-text">B = {(st, at, log πθold(at|st), rt, V (st))}T
+t=1
+(5.13)
+</code></pre>
+<p>• st、at、rt：步骤t 的状态、采取的行动和奖励。</p>
+<p>log πθold(at|st)：在生成该操作的确切策略下采取该操作的对数概率
+（比率计算所需）。</p>
+<p>• V (st)：价值函数的基线预测（GAE 优势计算所需）。</p>
+<p>推出缓冲区生命周期</p>
+<p>缓冲器以严格的三相时钟周期运行：</p>
+<ol>
+<li>
+<p>收集：主动策略与环境交互，用新的轨迹填充缓冲区
+（对于批次 = 128、max_tokens = 512 的 70B 模型：每个最多 65K token级转换
+推出）。</p>
+</li>
+<li>
+<p>训练：计算跨轨迹的 GAE 优势。运行 K 个周期（通常为 3–10）
+小批量梯度下降使用修剪的目标来更新策略权重。</p>
+</li>
+<li>
+<p>清除：整个缓冲区被彻底擦拭干净。由于 PPO 符合政策，数据
+旧策略生成的数据无法在下一个更新周期安全地重用——比率 rt(θ)
+将会变得陈旧并且剪裁保证将会被打破。</p>
+</li>
+</ol>
+<p>转出缓冲区与重播缓冲区</p>
+<p>重播缓冲区（DQN、SAC）：离策略。无限期地存储数百万个过渡。随机
+抽样。在许多更新中重复使用数据。
+转出缓冲区（PPO、GRPO）：按策略。存储一批轨迹。用于几个
+纪元，然后完全丢弃。每个周期都需要新鲜数据。
+这就是为什么 PPO 需要连续生成——每次更新后缓冲区都会被清空，
+要求新鲜的推出。这造成了生成瓶颈（挂钟时间的 60-70%）
+特别痛苦。</p>
+<p>RLHF 背景下的 vLLM
+在 RLHF 训练中，vLLM 用于生成阶段（挂钟时间的 60-70%）。的
+策略模型生成部署，然后由奖励模型进行评分。主要优点：</p>
+<p>• 批量生成：跨提示并行生成 256 个以上响应。</p>
+<p>• 内存效率：适应更多并发代→更高的GPU利用率
+发电瓶颈。</p>
+<h2 id="chapter-06-p140-6">PPO for RLHF: The Full Loop</h2>
+<h2 id="chapter-06-p140-7">Detailed Mechanics: Logits and Policy Updates</h2>
+<p><span class="page-ref" id="pdf-p140">原 PDF p.140</span></p>
+<p>• 前缀共享：当每个提示（GRPO）生成N = 8 个响应时，提示KV
+计算一次并在所有 8 个之间共享——没有多余的预填充。</p>
+<p>• 集成：OpenRLHF 和 TRL 等框架使用 vLLM 作为生成后端，
+将发电工人 (vLLM) 与训练工人 (DeepSpeed/FSDP) 分开。</p>
+<p>RLHF 的 PPO：完整循环</p>
+<p>70B 聊天模型的具体 PPO 步骤</p>
+<p>设置：批量 128 个提示，Llama-3-70B 策略，最大 512 个token。
+步骤 1 — 生成：采样 128 个响应（温度=0.7，top-p=0.9）。这需要 60%
+时间。
+第 2 步 — 评分：奖励模型对每个（提示、响应）对进行评分。范围：0.2–0.95。
+步骤 3 — KL：计算每个token KL：KLt = log πθ(yt|y&lt;t) −log πref(yt|y&lt;t)。平均 KL 跨度
+标记：通常为 3-8 个。
+步骤 4 — 最终奖励：R = rRM −0.05 ×mean_KL（仅限最后一个token）。
+步骤 5 — GAE：使用值头预测计算每个标记位置的 ^At。美白
+优点（零均值，单位方差）。
+第 6 步 — 更新：16 个小批量上的 4 个 SGD 周期。剪辑比率 ϵ = 0.2。梯度范数
+剪裁为 1.0。
+结果：策略每步提高 ∼0.005 胜率。 10K 步后：绝对提高 5-10%
+通过 SFT 进行更换。</p>
+<p>LLM 强化学习中的分词陷阱
+当计算每个token的 KL 惩罚和优势时，请记住，分词决定了
+什么是“步骤”。单个概念操作（例如，输出“2024”）可能跨越 1-4 个标记
+取决于分词器。这会产生一些微妙的问题：</p>
+<p>• KL 核算：对于相同的语义内容，每个token KL 求和为不同的总数
+以不同的方式进行标记（例如，罕见的单词分成更多的子单词会得到更高的总 KL 惩罚）。</p>
+<p>• 信用分配：GAE 为每个token位置分配优势——但语义“决策”
+通常跨越多个token。该模型仅在单词的第一个标记处真正“决定”；
+随后的子词标记很大程度上是确定性的。</p>
+<p>• 奖励放置：仅在最后一个token上放置奖励意味着所有之前的token
+必须通过 GAE 向后传播信用——较长的响应会受到更稀释的影响
+信号。</p>
+<p>缓解措施：一些系统通过序列长度标准化 KL，使用字级奖励整形，或者
+在语义边界而不是最终标记上应用奖励。</p>
+<p>详细机制：Logits 和策略更新</p>
+<p>PPO 管理内存中两个不同的参数状态，它们共享相同的神经网络
+拓扑但在优化期间保持不同的权重值：</p>
+<figure><img alt="第 140 页图像 page_140_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_140_img_01.png"/>
+<em>图像：原 PDF p.140</em></figure>
+<p><span class="page-ref" id="pdf-p141">原 PDF p.141</span></p>
+<p>图 5.1：PPO 端到端：从提示批次到生成、奖励评分、KL 计算、
+优势估计，以减少政策更新。反馈循环显示更新后的策略被用于
+下一代的步骤。</p>
+<p>核心架构：两个网络</p>
+<pre><code class="language-math">1. The Policy Network (πθ): The active, live network parameterized by weights θ. Continu-
+在优化期间通过反向传播明显更新。
+</code></pre>
+<pre><code class="language-math">2. The Old Policy Network (πθold): A frozen snapshot parameterized by weights θold. Acts
+as a static anchor during a single optimization cycle to prevent the policy from shifting too
+drastically.
+</code></pre>
+<p>第一阶段：推出（数据收集）</p>
+<p>在数据收集期间，智能体与环境交互 T 个步骤。在每个时间步 t：</p>
+<p>1.环境产生当前状态/观察st（对于LLM：提示+生成的token
+到目前为止）。</p>
+<p>2.状态st通过当前网络快照（θold）传递。</p>
+<ol start="3">
+<li>
+<p>网络输出原始非标准化值 — logits zold — 大小为 |V | 的向量（词汇
+尺寸 32K–128K）。</p>
+</li>
+<li>
+<p>通过 Softmax 计算概率：</p>
+</li>
+</ol>
+<p>(5.14)</p>
+<pre><code class="language-math">P(a | st) = Softmax(zold) =
+exp(zold,a)
+P|V |
+j=1 exp(zold,j)
+</code></pre>
+<ol start="5">
+<li>从 P(a | st) 中采样 (next token) 处的动作，并且转换元组 ⟨st, at, rt, st+1⟩
+与 log πθold(at | st) 一起存储在 rollout 缓冲区中。</li>
+</ol>
+<p>为什么要存储对数概率？</p>
+<p>在推出期间将 log πθold(at | st) 存储为标量可以避免在推出期间重新运行冻结的网络
+优化。这为每个小批量节省了一次完整的前向传递——对于 70B 模型来说意义重大。</p>
+<p>第 2 阶段：优化循环（小批量更新）</p>
+<p>一旦 rollout 缓冲区已满，PPO 将在小批量上运行 K epoch（通常为 3-10）。对于每一个
+梯度步骤，使用存储的状态 st 为两个策略生成 logits：
+旧政策评估（冻结）：</p>
+<pre><code class="language-math">zold = f(st; θold)
+−→
+log πθold(at | st) = LogSoftmax(zold)[at]
+(5.15)
+</code></pre>
+<p>实现快捷方式：重用 rollout 中存储的标量，而不是重新计算。</p>
+<figure><img alt="第 141 页图像 page_141_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_141_img_01.png"/>
+<em>图像：原 PDF p.141</em></figure>
+<p><span class="page-ref" id="pdf-p142">原 PDF p.142</span></p>
+<p>实时政策评估（更新）：</p>
+<pre><code class="language-math">znew = f(st; θ)
+−→
+log πθ(at | st) = LogSoftmax(znew)[at]
+(5.16)
+</code></pre>
+<p>因为 θ 在每个小批量梯度步骤后都会更新，所以 znew 在整个过程中不断变化
+优化循环，而 zold 保持完全静态。</p>
+<p>从 Logits 到概率比</p>
+<p>核心 PPO 比率衡量的是新政策与现有政策相比采取行动的可能性有多少。
+旧：</p>
+<pre><code class="language-math">rt(θ) =
+πθ(at | st)
+πθold(at | st)
+(5.17)
+</code></pre>
+<p>为了避免除原始概率时出现灾难性的数值下溢/溢出，计算
+在日志空间中执行：</p>
+<p>log πθ(at | st) = LogSoftmax(znew)[at]
+(5.18)</p>
+<p>log πθold(at | st) = LogSoftmax(zold)[at]
+(5.19)</p>
+<p>该比率通过差值求幂来恢复：</p>
+<pre><code class="language-math">rt(θ) = exp(log πθ(at | st) −log πθold(at | st))
+(5.20)
+</code></pre>
+<p>该比率被注入到 PPO 裁剪目标中：</p>
+<p>(5.21)</p>
+<pre><code class="language-math">LCLIP(θ) = ˆEt
+h
+min
+
+rt(θ) ˆAt, clip(rt(θ), 1−ϵ, 1+ϵ) ˆAt
+i
+</code></pre>
+<p>剪辑的工作原理</p>
+<p>• 如果 ˆAt &gt; 0（良好行动）：比率被限制为 1 + ϵ — 不能过度利用良好行动。</p>
+<p>• 如果 ˆAt &lt; 0（不良行为）：比率被剪裁为 1 −ϵ — 不能过度惩罚不良行为。</p>
+<p>• min(·) 确保我们始终采用更保守的估计。</p>
+<p>结果：信任区域内的单调改进——没有灾难性的崩溃。</p>
+<p>PPO 重量生命周期</p>
+<p>表 5.1：PPO 训练阶段 θ 和 θold 的演变。</p>
+<pre><code class="language-math">Phase
+Live θ
+Old θold
+Ratio rt(θ)
+</code></pre>
+<ol>
+<li>推出开始
+活动副本
+相同的活动副本
+始终为 1.0（按身份）</li>
+<li>批量步骤1
+计算梯度
+冷冻
+1.0（初始步骤）
+3.批量步骤N
+修改 (θ ̸= θold)
+冷冻
+偏离 1.0（例如 1.06、0.94）</li>
+<li>削波激活
+以 ϵ 为界
+冷冻
+陷入束缚 (1 ± ϵ)
+5、优化结束
+高度优化
+废弃
+不适用</li>
+<li>下一个周期
+θ→θ旧
+接收新的 θ
+重置回 1.0</li>
+</ol>
+<p>连续行动空间扩展</p>
+<p>对于连续动作空间（对于LLM来说不是典型的，但对于机器人强化学习很重要），网络
+输出分布参数而不是离散 logits：</p>
+<p>• 预测平均向量 µ</p>
+<h2 id="chapter-06-p143-8">TRL Implementation</h2>
+<p><span class="page-ref" id="pdf-p143">原 PDF p.143</span></p>
+<p>• 预测标准差向量 σ</p>
+<p>对数概率通过高斯对数 PDF 计算：</p>
+<p>at −µ</p>
+<p>2
+−log(σ) −1</p>
+<p>log π(at | st) = −1</p>
+<p>σ</p>
+<p>2 log(2π)
+(5.22)</p>
+<pre><code class="language-math">The ratio rt(θ) = exp(log πθ −log πθold) is then computed identically and fed into the same clipping
+objective.
+</code></pre>
+<p>TRL实施</p>
+<p>Hugging Face TRL 库 [176] 提供所有主要 RL 的生产就绪实现
+LLM 的方法。</p>
+<pre><code class="language-text">from trl import
+PPOConfig , PPOTrainer , AutoModelForCausalLMWithValueHead
+from
+transformers
+import
+AutoTokenizer
+from peft
+import
+LoraConfig
+</code></pre>
+<pre><code class="language-text"># Model
+setup
+model = AutoModelForCausalLMWithValueHead . from_pretrained (
+</code></pre>
+<pre><code class="language-text">"meta -llama/Llama -3.1 -8B-Instruct",
+torch_dtype=torch.bfloat16 , device_map="auto",
+peft_config=LoraConfig(r=64, lora_alpha =16, target_modules =["q_proj","v_proj",
+"k_proj","o_proj"])
+)
+tokenizer = AutoTokenizer. from_pretrained ("meta -llama/Llama -3.1 -8B-Instruct")
+</code></pre>
+<pre><code class="language-text"># PPO config
+with all
+critical
+hyperparameters
+ppo_config = PPOConfig(
+</code></pre>
+<pre><code class="language-text">learning_rate =1.5e-6,
+# Low LR for
+stability
+batch_size =128,
+# Prompts
+per step
+mini_batch_size =16,
+# Gradient
+accumulation
+unit
+ppo_epochs =4,
+# Epochs per batch (reuse
+data)
+gamma =1.0,
+# No discounting (single
+turn)
+lam =0.95 ,
+# GAE lambda
+cliprange =0.2,
+# PPO
+epsilon
+cliprange_value =0.2,
+# Value
+function
+clipping
+vf_coef =0.1,
+# Value
+loss
+coefficient
+init_kl_coef =0.05 ,
+# Initial KL penalty
+target_kl =6.0,
+# Adaptive KL target
+whiten_rewards =True ,
+# Normalize
+advantages
+gradient_accumulation_steps =4,
+max_grad_norm =1.0,
+)
+</code></pre>
+<pre><code class="language-text">ppo_trainer = PPOTrainer(config=ppo_config , model=model , tokenizer=tokenizer ,
+</code></pre>
+<pre><code class="language-text">dataset=prompt_dataset , data_collator =collator)
+</code></pre>
+<pre><code class="language-text"># Training
+loop
+for batch in ppo_trainer.dataloader:
+</code></pre>
+<pre><code class="language-text"># 1. Generate
+responses
+query_tensors = batch["input_ids"]
+response_tensors = ppo_trainer.generate(
+</code></pre>
+<pre><code class="language-text">query_tensors , max_new_tokens =512 ,
+temperature =0.7 , top_p =0.9 ,
+do_sample=
+True
+</code></pre>
+<pre><code class="language-text">)
+# 2. Score
+with
+reward
+model
+texts = [tokenizer.decode(r, skip_special_tokens =True) for r in
+response_tensors ]
+</code></pre>
+<pre><code class="language-text">rewards = [torch.tensor(reward_model .score(q, r)) for q, r in zip(batch["query
+"], texts)]
+</code></pre>
+<pre><code class="language-text"># 3. PPO update (handles KL , GAE , clipping
+internally)
+</code></pre>
+<h2 id="chapter-06-p144-9">Critical Hyperparameters</h2>
+<p><span class="page-ref" id="pdf-p144">原 PDF p.144</span></p>
+<pre><code class="language-text">stats = ppo_trainer.step(query_tensors , response_tensors , rewards)
+# Monitor: stats ["ppo/mean_scores "], stats ["ppo/policy/approx_kl "]
+</code></pre>
+<p>关键超参数</p>
+<p>参数
+典型
+犯错的后果</p>
+<p>剪辑范围
+太低：没有学习。太高：不稳定。
+初始化kl_coef
+0.01–0.1
+太低：奖励黑客行为。太高：卡在
+SFT。
+目标kl
+4–8
+自适应控制器目标。较低=保守-
+积极的。
+ppo_epochs
+太多：过度适合批次。太少：浪费
+生成计算。
+学习率
+1−5 × 10−6
+太高：灾难性遗忘。
+批量大小
+64–256
+更大=更平滑的梯度，更多的生成计算。
+温度
+0.7–1.0
+较低：探索较少。更高：噪音更大
+塔格斯。</p></div>
+          <nav class="chapter-pager"><a class="pager-link" href="chapter-05.html">← 语言模型的强化学习基础</a><a class="pager-link next" href="chapter-07.html">DPO：直接偏好优化 →</a></nav>
+        </article>
+        
+    </section>
+  </main>
+  <button class="back-top" id="back-top" type="button">↑</button>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/toc.js"></script>
+  <script src="../assets/js/progress.js"></script>
+  
+</body>
+</html>

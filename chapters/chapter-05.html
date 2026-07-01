@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>语言模型的强化学习基础 | 智能体式 AI 漫游指南</title>
+  <meta name="description" content="把强化学习问题映射到语言模型的序列生成与偏好优化。" />
+  <meta property="og:title" content="语言模型的强化学习基础 | 智能体式 AI 漫游指南" />
+  <meta property="og:description" content="把强化学习问题映射到语言模型的序列生成与偏好优化。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
+  <link rel="canonical" href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/article.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+  
+</head>
+<body class="article-page">
+  <div class="reading-progress" id="reading-progress"></div>
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="智能体式 AI 漫游指南">
+      <span class="brand-mark">AI</span>
+      <span><strong>智能体式 AI 漫游指南</strong><small>从基础到系统的中文技术文档站</small></span>
+    </a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a>
+<a class="active" href="../chapters/index.html">章节</a>
+<a class="" href="../glossary.html">术语表</a>
+<a class="" href="../references.html">参考文献</a>
+<a class="" href="../search.html">搜索</a>
+<a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
+  </header>
+  <main class="layout">
+    
+        <aside class="left-nav" id="left-nav">
+          <div class="nav-section-title">章节</div>
+          <a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a>
+<a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a>
+<a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a>
+<a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a>
+<a class="chapter-link active" href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a>
+<a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a>
+<a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a>
+<a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a>
+<a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a>
+<a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a>
+<a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a>
+<a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a>
+<a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a>
+<a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a>
+<a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a>
+<a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a>
+<a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a>
+<a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a>
+<a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a>
+<a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a>
+<a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a>
+<a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a>
+<a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a>
+<a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a>
+<a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a>
+<a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a>
+<a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a>
+<a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a>
+<a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a>
+<a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a>
+        </aside>
+        <aside class="right-outline" id="right-outline">
+          <div class="nav-section-title">本页大纲</div>
+          <a class="outline-link level-h2" href="#chapter-05-p133-1">Two Paradigms for RL in LLMs</a>
+<a class="outline-link level-h2" href="#chapter-05-p134-2">Text Generation as an MDP</a>
+<a class="outline-link level-h2" href="#chapter-05-p134-3">The RLHF Pipeline</a>
+<a class="outline-link level-h2" href="#chapter-05-p135-4">Roadmap of This Part</a>
+        </aside>
+        
+    <section class="content-shell">
+      
+        <article class="article-card">
+          <header class="article-header">
+            <p class="part-label">第二部分：LLM 的强化学习方法</p>
+            <h1>语言模型的强化学习基础</h1>
+            <p>把强化学习问题映射到语言模型的序列生成与偏好优化。</p>
+            <div class="article-meta"><span>原 PDF p.133-135</span><span>4 个页内条目</span></div>
+          </header>
+          <div class="article-body"><h2 id="chapter-05-p133-1">Two Paradigms for RL in LLMs</h2>
+<p><span class="page-ref" id="pdf-p133">原 PDF p.133</span></p>
+<p>强化学习语言模型基础</p>
+<p>有监督微调（SFT）教模型模仿演示，但模仿是有上限的：
+该模型永远不会超过其训练数据的质量。强化学习打破了这个障碍。
+通过生成新颖的文本、接收奖励反馈并更新为更高奖励的行为，
+强化学习训练的模型可以发现人类演示者没有编写的策略——产生输出
+更有帮助、更准确、更符合人类偏好 [9]。
+这是每个前沿模型背后的机制：GPT-4 [23]、Claude、Llama-3 [25] 和
+DeepSeek-R1 [15] 都在 SFT 之后应用 RL 作为转变有能力但无导向的关键步骤
+模型成为一个对齐的助手。</p>
+<p>LLM中强化学习的两种范式</p>
+<p>语言模型的强化学习方法分为两大范式，每种范式适合不同的目标：</p>
+<p>范式 1：通过人类偏好进行调整 (RLHF/DPO)。
+最初的动机
+将强化学习应用于LLM的目的是对齐——使模型变得有用、无害且诚实。缰绳-
+从人类反馈中进行强制学习 (RLHF) [9, 174, 175] 训练奖励模型
+成对的人类判断（“哪种反应更好？”），然后优化策略以最大化
+即学到的奖励。 DPO [10] 通过完全消除奖励模型来简化这一点，将
+偏好直接转化为监督损失。两种方法都会产生一致的助手
+指示并遵守安全限制。</p>
+<p>范式 2：通过可验证奖励（RLVR）增强能力。
+最近，RL
+不仅用于对齐，还用于教授新能力，特别是推理，
+数学和代码生成。这里的奖励不是来自人类的偏好，而是来自
+可验证的结果：模型是否产生了正确的答案？代码是否通过了所有测试？
+DeepSeek-R1 [15] 证明了 GRPO 具有基于规则的奖励（格式正确性+答案
+准确性）可以训练模型来开发复杂的思想链推理，而无需任何人工
+偏好数据。这种范式——来自可验证奖励 (RLVR) 的强化学习——现在是主流方法
+用于构建推理模型和智能体系统。</p>
+<p>共享基金会
+尽管目标不同，但这两种范式共享相同的核心机制：</p>
+<p>• 自回归生成文本的策略 πθ（LLM）</p>
+<p>• 奖励信号r(x, y)（从偏好中学习或从验证中计算）</p>
+<p>• 针对参考策略的 KL 约束以防止退化解决方案</p>
+<p>• 策略梯度优化（PPO 或GRPO）以更新模型以获得更高的奖励</p>
+<p>本部分中的章节详细介绍了每个组件。</p>
+<h2 id="chapter-05-p134-2">Text Generation as an MDP</h2>
+<h2 id="chapter-05-p134-3">The RLHF Pipeline</h2>
+<p><span class="page-ref" id="pdf-p134">原 PDF p.134</span></p>
+<p>作为 MDP 的文本生成</p>
+<p>使强化学习适用于语言模型的关键见解是重塑自回归生成
+作为马尔可夫决策过程：</p>
+<p>LLM作为智能体的类比</p>
+<p>将 LLM 视为一次写入一个token的响应的智能体。在每一步中，它都会关注
+到目前为止写的所有内容（状态），选择下一个单词（动作），页面增长
+一个token（转换）。当回答完成后，评委将对其进行评分（奖励）。的
+目标：学习一种持续获得高分的写作策略（政策）。</p>
+<p>形式上，文本生成的 MDP 是：</p>
+<p>• 状态st = (x, y1, . . . , yt−1)：与迄今为止生成的所有标记连接的提示。</p>
+<p>• ε{1, 处的动作。。。 , |V|}：从词汇表中选择下一个标记（32K–128K 选项）。</p>
+<p>• 转换P(st+1|st, at)：确定性—只需附加所选标记。没有环境
+随机性。</p>
+<p>• 奖励r：通常仅在生成结束时给出（稀疏）。对于 RLHF：奖励
+模型得分。对于 RLVR：最终答案的正确性。</p>
+<p>• 策略 πθ(at|st)：LLM 的下一个token概率分布 — 正是 softmax 的分布
+输出已经计算。</p>
+<p>• 折扣γ = 1.0：剧集是有限的（一个响应），因此不需要折扣。</p>
+<p>这种映射非常强大，因为 LLM 已经是一种策略——它的 softmax 输出定义了 πθ(at|st)
+对于每个州。我们不需要建立一个单独的政策网络；我们只需要调整权重
+θ 因此模型为获得更高奖励的token序列分配了更高的概率。</p>
+<p>RLHF 流水线</p>
+<p>经典的 RLHF 流水线 [9] 由四个阶段组成：</p>
+<p>1.监督微调（SFT）：在高质量演示上训练基本模型
+产生一个可以遵循指令的策略 πSFT。</p>
+<ol start="2">
+<li>
+<p>奖励模型训练：收集人类偏好比较（yw ≻yl 对于相同的
+提示）并使用 Bradley-Terry 目标训练奖励模型 Rphi(x, y)。</p>
+</li>
+<li>
+<p>RL优化：使用奖励模型作为信号，通过PPO或
+GRPO，受到针对 πSFT 的 KL 约束。</p>
+</li>
+<li>
+<p>评估和迭代：评估对齐的模型，收集新的失败案例并迭代。</p>
+</li>
+</ol>
+<p>对于 RLVR（推理/智能体训练），阶段 1-2 被替换：训练 SFT 模型
+在推理痕迹上，奖励模型被验证者取代（例如，检查数学
+正确性）。第三阶段保持不变——针对奖励信号的 PPO 或 GRPO 优化。</p>
+<p>LLM 强化学习与经典强化学习有何不同
+LLM 的设置与经典的 RL 在一些重要方面有所不同：</p>
+<p>• 确定性转换：“下一个状态”只是先前标记的串联 -
+没有随机环境。</p>
+<p>• 稀疏奖励：反馈通常在生成结束时给出一次（结果奖励）
+或在关键步骤（过程奖励）。</p>
+<h2 id="chapter-05-p135-4">Roadmap of This Part</h2>
+<p><span class="page-ref" id="pdf-p135">原 PDF p.135</span></p>
+<p>• 巨大的行动空间：每一步都有 32K–128K 可能的标记，但探索是隐含的
+通过温度采样。</p>
+<p>• KL锚：LLM RL被限制接近SFT政策，阻止奖励
+黑客攻击是以减少探索为代价的。</p>
+<p>• 不需要价值函数：GRPO 使用群体完全消除了批评者网络
+相反，奖励的相对标准化。</p>
+<p>这些差异解释了为什么 PPO 和 GRPO 在LLM的 DQN 式方法中占主导地位。</p>
+<p>本部分路线图</p>
+<p>前面的章节构建了完整的 RL-for-LLM 工具包：</p>
+<ol>
+<li>
+<p>PPO（第 5 章）——修剪的替代目标、优势估计的 GAE、批评家
+网络，以及完整的 RLHF 训练循环。 GPT-4 和 Claude 背后的主力。</p>
+</li>
+<li>
+<p>DPO（第 6 章）——通过将偏好转换为对比来完全绕过 RL
+监督损失。比在线强化学习更简单，但灵活性较差。</p>
+</li>
+<li>
+<p>GRPO（第 7 章）——DeepSeek 的无批评算法，使用组级奖励 Nor-
+男性化。 DeepSeek-R1背后的方法和推理模型的主导选择
+训练。</p>
+</li>
+<li>
+<p>偏好优化变体（第 8 章）——Online DPO、KTO、Best-of-N 和
+方法选择指导。</p>
+</li>
+<li>
+<p>奖励建模（第 9 章）——Bradley-Terry 模型，过程奖励与结果奖励，
+基于规则的 RLVR 奖励和多目标组合。</p>
+</li>
+<li>
+<p>SFT 最佳实践（第 10 章）——序列打包、聊天模板、数据混合和
+SFT 质量如何决定 RL 上限。</p>
+</li>
+<li>
+<p>系统工程（第 11 章）——大规模分布式训练：并行策略、
+生成-训练解耦，以及数百个 GPU 的基础设施。</p>
+</li>
+</ol></div>
+          <nav class="chapter-pager"><a class="pager-link" href="chapter-04.html">← 强化学习简介</a><a class="pager-link next" href="chapter-06.html">PPO：近端策略优化 →</a></nav>
+        </article>
+        
+    </section>
+  </main>
+  <button class="back-top" id="back-top" type="button">↑</button>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/toc.js"></script>
+  <script src="../assets/js/progress.js"></script>
+  
+</body>
+</html>

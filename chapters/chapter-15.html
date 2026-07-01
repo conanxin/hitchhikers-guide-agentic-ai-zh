@@ -1,0 +1,1227 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LLM 评估 | 智能体式 AI 漫游指南</title>
+  <meta name="description" content="从基准、LLM-as-judge 到污染检测和校准的评估体系。" />
+  <meta property="og:title" content="LLM 评估 | 智能体式 AI 漫游指南" />
+  <meta property="og:description" content="从基准、LLM-as-judge 到污染检测和校准的评估体系。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
+  <link rel="canonical" href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/article.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+  
+</head>
+<body class="article-page">
+  <div class="reading-progress" id="reading-progress"></div>
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="智能体式 AI 漫游指南">
+      <span class="brand-mark">AI</span>
+      <span><strong>智能体式 AI 漫游指南</strong><small>从基础到系统的中文技术文档站</small></span>
+    </a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a>
+<a class="active" href="../chapters/index.html">章节</a>
+<a class="" href="../glossary.html">术语表</a>
+<a class="" href="../references.html">参考文献</a>
+<a class="" href="../search.html">搜索</a>
+<a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
+  </header>
+  <main class="layout">
+    
+        <aside class="left-nav" id="left-nav">
+          <div class="nav-section-title">章节</div>
+          <a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a>
+<a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a>
+<a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a>
+<a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a>
+<a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a>
+<a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a>
+<a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a>
+<a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a>
+<a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a>
+<a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a>
+<a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a>
+<a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a>
+<a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a>
+<a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a>
+<a class="chapter-link active" href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a>
+<a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a>
+<a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a>
+<a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a>
+<a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a>
+<a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a>
+<a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a>
+<a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a>
+<a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a>
+<a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a>
+<a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a>
+<a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a>
+<a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a>
+<a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a>
+<a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a>
+<a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a>
+        </aside>
+        <aside class="right-outline" id="right-outline">
+          <div class="nav-section-title">本页大纲</div>
+          <a class="outline-link level-h2" href="#chapter-15-p274-1">Evaluation Scheme Design</a>
+<a class="outline-link level-h2" href="#chapter-15-p275-2">Data Collection for Evaluation</a>
+<a class="outline-link level-h2" href="#chapter-15-p277-3">Synthetic Data Generation for Evaluation</a>
+<a class="outline-link level-h2" href="#chapter-15-p279-4">Metrics for Ranking Tasks</a>
+<a class="outline-link level-h2" href="#chapter-15-p281-5">Metrics for Generation Tasks</a>
+<a class="outline-link level-h2" href="#chapter-15-p284-6">Metrics for Agentic Tasks</a>
+<a class="outline-link level-h2" href="#chapter-15-p285-7">LLM-as-Judge</a>
+<a class="outline-link level-h2" href="#chapter-15-p288-8">Evaluation Pitfalls</a>
+        </aside>
+        
+    <section class="content-shell">
+      
+        <article class="article-card">
+          <header class="article-header">
+            <p class="part-label">第四部分：评估</p>
+            <h1>LLM 评估</h1>
+            <p>从基准、LLM-as-judge 到污染检测和校准的评估体系。</p>
+            <div class="article-meta"><span>原 PDF p.274-291</span><span>8 个页内条目</span></div>
+          </header>
+          <div class="article-body"><h2 id="chapter-15-p274-1">Evaluation Scheme Design</h2>
+<p><span class="page-ref" id="pdf-p274">原 PDF p.274</span></p>
+<p>LLM评估</p>
+<p>评估是任何严格的机器学习流程的支柱，但它可能是最重要的
+在大型语言模型的开发中未被充分认识的组件。与经典监督不同
+学习，其中带有真实标签的保留测试集提供了干净的信号，评估LLM
+需要解决开放式生成、主观质量判断、多步骤推理等问题
+链，以及始终存在的基准测试污染风险。本节提供了系统的
+评价景观的处理：从评价类型的分类和评价机制
+人工注释，通过排名指标的数学和LLM作为法官的实用性，
+到悄然破坏评估流程的陷阱。</p>
+<p>为什么LLM的评估很难</p>
+<p>LLM 评估与经典 ML 评估之间存在三个基本挑战：</p>
+<p>1.输出空间无界。语言模型可以产生任何字符串；很少有一个
+单一正确答案。</p>
+<ol start="2">
+<li>质量是多维的。乐于助人、真实、安全、连贯和风格是
+不同的轴可能会相互权衡。</li>
+</ol>
+<p>3.评价本身就是一项语言任务。判断一个响应是否良好需要
+理解，这意味着评估容易受到与生成相同的故障模式的影响。</p>
+<p>评估方案设计</p>
+<p>在收集单个数据点之前，从业者必须决定测量什么以及如何测量
+它。有原则的分类法可以防止因方便而不是选择指标而犯的常见错误
+而不是与部署目标保持一致。</p>
+<p>评估类型分类</p>
+<p>内在评价与外在评价。
+内在评估衡量模型输出的属性
+孤立地，不参考下游应用程序。保留语料库上的困惑，BLEU
+参考翻译的得分以及编码基准测试的 pass@k 都是内在的。外在的
+评估衡量模型对现实世界任务或系统的影响：是否集成
+将LLM纳入客户服务渠道可以降低问题升级率吗？是否有编码助手
+提高开发速度？</p>
+<p>内在与外在的差距</p>
+<p>内在指标成本低廉且可重复，但通常与现实世界的效用相关性较差。
+困惑度较低的模型不一定更有帮助。外在指标是昂贵的
+缓慢但直接衡量我们关心的内容。成熟的评估策略使用内在的
+用于快速迭代的指标和用于最终验证的外部指标。</p>
+<h2 id="chapter-15-p275-2">Data Collection for Evaluation</h2>
+<p><span class="page-ref" id="pdf-p275">原 PDF p.275</span></p>
+<p>自动评估与人工评估。
+自动评估使用确定性函数（BLEU、
+精确匹配）或学习模型（BERTScore、LLM-as-judge）在无需人工的情况下对输出进行评分
+参与。人类评估涉及注释者对模型输出进行评级或排名。表14.1
+总结了权衡。</p>
+<p>表 14.1：具有关键权衡的评估方法分类。</p>
+<p>类型
+成本
+速度
+再现性
+有效性</p>
+<p>自动（基于规则）
+很低
+非常快
+完美
+低-中
+自动（基于模型）
+低
+快
+高
+中-高
+众包人力
+中等
+天数
+中等
+中等
+专家人类
+高
+周数
+低-中
+高
+外部/A/B 测试
+非常高
+几个月
+低
+非常高</p>
+<p>基于参考与无参考评估。
+基于参考的指标（BLEU、ROUGE、
+BERTcore）将模型输出与一个或多个黄金标准参考进行比较。无参考指标
+（困惑、LLM作为法官、人类偏好）在没有参考的情况下评估质量。无参考
+当输出空间太大而无法进行详尽的参考收集时，方法就至关重要，例如
+开放式对话。</p>
+<p>何时使用什么</p>
+<p>对话助理的评估策略</p>
+<p>开发阶段：使用自动指标（困惑度、总结子任务的 ROUGE、
+pass@k on tool-use）用于快速迭代。在标准套件（MMLU、
+HellaSwag、HumanEval）。
+预发布阶段：进行人类偏好研究，将新模型与之前的模型进行比较
+检查站。使用 LLM-as-judge 在不同的提示集上进行可扩展的成对比较。
+发布后阶段：监控外部指标（用户满意度评分、任务完成率）
+并注意力生产提示中的分配变化。</p>
+<p>一个有用的决策框架：</p>
+<p>• 如果任务有明确的正确答案（数学、代码、事实 QA）：使用精确匹配或执行 -
+基于指标。</p>
+<p>• 如果任务是开放式的，但有参考输出：使用基于参考的指标作为较低的指标。
+绑定，补充LLM作为法官。</p>
+<p>• 如果任务是主观的（帮助性、语气、创造力）：使用人工评估或经过良好校准的评估
+LLM法官。</p>
+<p>• 如果任务涉及多步智能体行为：使用任务成功率和轨迹效率
+（第 14.6 节）。</p>
+<p>评估数据收集</p>
+<p>高质量的评估数据是值得信赖的基准测试的基础。本节涵盖
+人工注释流水线的设计、注释质量的统计测量以及选择
+介于众包和专家注释之间。</p>
+<p>人工注释流水线</p>
+<p>强大的注释流水线由五个阶段组成：</p>
+<ol>
+<li>任务定义。精确指定注释任务：评级内容、评级范围、
+以及以什么标准。此阶段的歧义会传播为嘈杂的标签。</li>
+</ol>
+<p><span class="page-ref" id="pdf-p276">原 PDF p.276</span></p>
+<ol start="2">
+<li>
+<p>指南制定。使用涵盖边缘的工作示例编写注释指南
+案例。在全面部署之前，与一个小型试点小组进行迭代。</p>
+</li>
+<li>
+<p>标注员招聘和训练。选择具有适当背景的注释者
+知识。进行校准会议，其中注释者标记相同的示例并进行讨论
+分歧。</p>
+</li>
+</ol>
+<p>4、质量控制。将具有已知标签的黄金标准示例嵌入到注释队列中。
+标记黄金示例准确性低于阈值的注释者。</p>
+<p>5.聚合。使用多数投票、平均或a组合每个项目的多个注释
+概率模型（例如 Dawid-Skene）。</p>
+<p>注释者间协议</p>
+<p>原始一致性（所有注释者都同意的项目的比例）是一个不充分的衡量标准，因为它
+不考虑机会协议。两个标准的机会校正测量是 Cohen 的 κ [252]
+（两个注释者）和 Fleiss’ κ [253]（多个注释者）。</p>
+<p>科恩的卡帕。
+给定两个注释器将 N 个项目标记为 k 个类别，令 po 为观察到的
+协议和 PE 是独立下的预期协议：</p>
+<p>κ = po −pe</p>
+<p>1-pe
+(14.1)</p>
+<p>哪里</p>
+<p>氮
+X</p>
+<p>波 = 1</p>
+<p>氮</p>
+<p>我=1
+1[注释者1在第i项上同意注释者2]
+(14.2)</p>
+<p>和</p>
+<p>k
+X</p>
+<pre><code class="language-math">pe =
+</code></pre>
+<p>c=1
+p1c · p2c
+(14.3)</p>
+<p>pjc 是注释者 j 分配给类别 c 的项目的比例。 Cohen 的 κ 范围为
+−1（完全不同意）到 0（偶然同意）到 1（完全同意）。值高于 0.6
+一般认为是可以接受的；高于 0.8 为强一致性。</p>
+<p>弗莱斯的河童。
+对于 n 个注释器将 N 个项目标记为 k 个类别，令 nij 为
+将项目 i 分配给类别 j 的注释者。定义：</p>
+<p>k
+X</p>
+<p>氮
+X</p>
+<p>氮</p>
+<p>́Pi =
+n(n-1)</p>
+<pre><code class="language-text">j=1
+nij(nij −1),
+¯P = 1
+</code></pre>
+<p>我=1
+́Pi
+(14.4)</p>
+<p>氮
+X</p>
+<p>k
+X</p>
+<p>P e
+j
+(14.5)</p>
+<p>P e
+j =
+尼</p>
+<pre><code class="language-math">i=1
+nij,
+Pe =
+</code></pre>
+<pre><code class="language-math">j=1
+</code></pre>
+<p>κF =
+́P-Pe
+1-Pe
+(14.6)</p>
+<p>Kappa 的局限性</p>
+<p>Kappa 对类别的流行程度很敏感：当一种类别占主导地位时，kappa 可以
+即使原始一致性很高（kappa 悖论），也很低。对于序数尺度，加权 kappa
+（根据分歧的距离按比例惩罚分歧）更合适。对于LLM
+评估，评级通常采用 1-5 Likert 量表，始终报告加权 kappa。</p>
+<h2 id="chapter-15-p277-3">Synthetic Data Generation for Evaluation</h2>
+<p><span class="page-ref" id="pdf-p277">原 PDF p.277</span></p>
+<p>注释指南设计</p>
+<p>有效的注释指南有几个共同的属性：</p>
+<p>• 可操作的标准。用具体的、可观察到的替换诸如“有帮助”之类的模糊术语
+行为：“响应直接解决了用户的问题并提供了所有信息
+需要完成规定的任务。”</p>
+<p>• 工作示例。每个评级级别至少提供两个示例，包括边缘案例。</p>
+<p>• 决策树。对于复杂的任务，可以使用流程图来指导注释者完成一系列任务
+二元决策减少了认知负荷并提高了一致性。</p>
+<p>• 明确的范围。说明注释者不应考虑哪些内容（例如，“不要因风格而受到惩罚”）
+偏好；只关注事实的准确性”）。</p>
+<p>众包与专家注释</p>
+<p>表14.2：LLM评估众包和专家注释的比较。</p>
+<p>尺寸
+众包
+专家注释</p>
+<p>每件商品的成本
+低（0.01−0.10）
+高 (1 −−50)
+吞吐量
+非常高
+低
+领域知识
+低
+高
+一致性
+变量
+高
+适合的任务
+简单偏好，流畅
+技术准确性、安全性
+平台
+MTurk，多产，规模化人工智能
+内部领域专家
+质量控制
+黄金
+例子，
+关注
+检查
+校准会议、同行评审</p>
+<p>对于安全关键评估（例如，检测有害输出、评估医疗建议），专家
+注释是不可协商的。对于大规模偏好收集（例如，构建奖励模型
+训练集），具有严格质量控制的众包通常是唯一可行的选择。</p>
+<p>用于评估的综合数据生成</p>
+<p>人工注释既昂贵又缓慢。合成数据生成使用LLM本身来生成
+大规模评估数据。本节涵盖主要范例。</p>
+<p>LLM作为校准法官</p>
+<p>当使用LLM生成评估标签时，校准是必不可少的：法官的分数必须
+与人类的判断保持一致。令 hi ∈[0, 1] 为项目 i 和 ˆhi 的人类偏好得分
+为裁判的预测分数。校准误差通过预期校准误差来衡量
+（欧洲经委会）[254]：</p>
+<p>|BB|</p>
+<p>乙
+X</p>
+<pre><code class="language-math">ECE =
+</code></pre>
+<p>n
+|acc(Bb) −conf(Bb)|
+(14.7)</p>
+<pre><code class="language-math">b=1
+</code></pre>
+<p>其中 Bb 是第 b 个置信区间，acc(Bb) 是判断者同意的区间中项目的分数
+对于人类，conf(Bb) 是该垃圾箱的平均判断置信度。
+一个经过良好校准的法官满足 E[ˆhi | ˆhi = p] = p 对于所有 p ∈[0, 1]。校准可以改进
+通过温度缩放：用 z/T 替换法官的原始 logit z，其中 T 在保留的参数上进行调整
+校准设置以最小化负对数似然。</p>
+<p><span class="page-ref" id="pdf-p278">原 PDF p.278</span></p>
+<p>自学</p>
+<p>自指令[255]从一组人工编写的任务中引导指令跟踪数据。的
+算法：</p>
+<p>1.维护一个初始化为175个种子任务的任务池。</p>
+<ol start="2">
+<li>
+<p>从池中抽取8个任务；使用它们作为少量示例来提示 LLM 生成
+新任务。</p>
+</li>
+<li>
+<p>过滤生成的任务：删除接近重复的任务（ROUGE-L 与任何现有的相似度 &gt; 0.7）
+任务），分类为分类与非分类，并生成输入输出实例。</p>
+</li>
+<li>
+<p>将已接受的任务添加到池中。</p>
+</li>
+<li>
+<p>重复此操作，直至达到所需的池大小。</p>
+</li>
+</ol>
+<p>自学提示模板</p>
+<pre><code class="language-text">system_prompt = """
+Come up with a series of tasks:
+Task 1: { seed_task_1_instruction }
+Task 2: { seed_task_2_instruction }
+...
+Task 8: { seed_task_8_instruction }
+Task 9:"""
+</code></pre>
+<p>模型完成提示，生成新的任务指令。然后有一个单独的提示
+为新任务生成输入输出对。</p>
+<p>进化指导</p>
+<p>Evol-Instruct [256]通过迭代地重写指令来进化种子指令集
+复杂或多样。应用了两个演化算子：</p>
+<p>• 深度演化：添加约束、增加推理步骤、具体化抽象、深化
+领域知识要求。</p>
+<p>• 广度演变：针对相关但不同的主题生成新指令，增加
+话题多样性。</p>
+<p>如果一条指令通过了消除过滤器，则该指令被接受：演化后的指令不得被
+一份简单的副本，不得包含“对不起”或类似的拒绝，并且不得短于
+原创。</p>
+<p>宪法人工智能数据生成</p>
+<p>宪法人工智能（CAI）[129]通过模型批判并修改其模型来生成偏好数据
+根据一套原则（“宪法”）自己的产出。流水线：</p>
+<p>1.监督学习阶段：对有害提示进行采样，生成初始响应，然后
+促使模型根据宪法原则批评响应并对其进行修改。
+使用修订后的响应作为监督微调目标。</p>
+<ol start="2">
+<li>RL 阶段：生成响应对（原始响应与修订后响应），使用模型来标记哪个是
+更符合宪法，并在这些标签上训练偏好模型。使用偏好模型作为
+RLHF 的奖励信号。</li>
+</ol>
+<p>这种方法生成偏好数据，无需人工标记有害内容，从而减少
+注释者接触令人痛苦的材料。</p>
+<h2 id="chapter-15-p279-4">Metrics for Ranking Tasks</h2>
+<p><span class="page-ref" id="pdf-p279">原 PDF p.279</span></p>
+<p>评估数据的蒸馏</p>
+<p>强大的教师模型（例如 GPT-4）可以生成高质量的评估数据来训练
+较小的法官模型。蒸馏流水线：</p>
+<ol>
+<li>
+<p>收集不同的提示和模型响应。</p>
+</li>
+<li>
+<p>利用老师给出详细的判断（分数+理由）。</p>
+</li>
+<li>
+<p>在（提示、响应、判断）三元组上微调较小的模型。</p>
+</li>
+<li>
+<p>根据保留的人工注释验证学生判断。</p>
+</li>
+</ol>
+<p>蒸馏偏差
+从单一老师提炼出来的学生评判继承了老师的偏见，包括冗长
+偏见（喜欢较长的回答）、自我增强偏见（如果老师也是榜样）
+评估）和位置偏差。始终根据独立的人类来验证精炼的法官
+注释。</p>
+<p>竞技场式成对生成</p>
+<p>Chatbot Arena [257]通过众包战斗平台生成评估数据，用户可以在该平台上
+提交提示并投票选出他们更喜欢的两个匿名模型回复中的哪一个。这会产生一个
+大规模、自然多样化的成对偏好数据集。关键设计选择：</p>
+<p>• 匿名化：隐藏模特身份以防止品牌偏见。</p>
+<p>• 用户提交的提示：确保提示的多样性和现实世界的相关性。</p>
+<p>• 平局处理：用户可以声明平局或表明两个响应都不好。</p>
+<p>• 重复数据删除：过滤接近重复的提示，以防止常见的提示过多
+查询。</p>
+<p>排名任务的指标</p>
+<p>当目标是按质量对模型进行排名时，成对比较数据比绝对数据更可靠
+分数。本节推导了 LLM 评估中使用的主要排名系统。</p>
+<p>ELO评级系统</p>
+<p>ELO 系统 [258] 最初是为国际象棋开发的，为每个玩家（模型）分配一个标量等级 R
+使得玩家 A 对玩家 B 的期望得分为：</p>
+<p>EA =
+1 + 10(RB−RA)/400
+(14.8)</p>
+<p>推导。
+ELO 模型假设每个玩家在给定游戏中的表现是随机的
+从以其评级为中心的物流分布中提取的变量。 A 击败 B 的概率为：</p>
+<p>P(A≻B) = σ
+RA-RB</p>
+<p>s</p>
+<h1></h1>
+<p>1 + e−(RA−RB)/s
+(14.9)</p>
+<pre><code class="language-math">where s = 400/ ln(10) ≈173.7 is a scale parameter chosen so that a 400-point difference corresponds
+to a 10 : 1 odds ratio. After each game with outcome SA ∈{0, 0.5, 1} (loss, draw, win), ratings are
+updated:
+RA ←RA + K(SA −EA),
+RB ←RB + K(SB −EB)
+(14.10)
+</code></pre>
+<p>其中 K 是控制学习率的 K 因子。在Chatbot Arena中，使用K = 4。</p>
+<p><span class="page-ref" id="pdf-p280">原 PDF p.280</span></p>
+<p>ELO直觉
+ELO 是对观察结果的对数似然进行的随机梯度下降更新
+物流模型。每个游戏都提供有噪声的梯度信号； K 因子控制步长。
+大的 K 适应得很快，但噪音较大；小K虽然稳定，但反映真实技能变化的速度较慢。</p>
+<p>ELO 的 Bootstrap 置信区间。
+因为 ELO 评级取决于以下顺序：
+处理游戏，通过引导重采样计算置信区间：对战斗进行重新采样
+记录替换 B = 1000 次，从头开始重新计算每次重新采样的 ELO 评级，以及
+将第 2.5 个和第 97.5 个百分位数报告为 95% 置信区间。</p>
+<p>布拉德利-特里模型</p>
+<p>Bradley–Terry (BT) 模型 [198] 是 ELO 的最大似然替代方案。给定 n 个模型
+强度参数 β1, .。。，βn &gt; 0，模型 i 击败模型 j 的概率为：</p>
+<pre><code class="language-math">P(i ≻j) =
+βi
+βi + βj
+(14.11)
+</code></pre>
+<p>给定一组成对结果 {(ik, jk, yk)}M
+k=1，其中 yk = 1，如果 ik 击败 jk，否则 yk = 0，
+对数似然是：</p>
+<p>”</p>
+<h1></h1>
+<p>中号
+X</p>
+<p>ℓ(β) =</p>
+<p>(14.12)</p>
+<pre><code class="language-math">yk log
+βik
+βik + βjk
++ (1 −yk) log
+βjk
+βik + βjk
+</code></pre>
+<pre><code class="language-math">k=1
+</code></pre>
+<pre><code class="language-math">MLE β 是通过迭代缩放或梯度上升找到的。 BT 型号只能识别
+to a multiplicative constant; a common normalisation is P
+i log βi = 0. Working in log-space with
+θi = log βi gives:
+</code></pre>
+<pre><code class="language-math">P(i ≻j) = σ(θi −θj)
+(14.13)
+</code></pre>
+<p>这相当于具有特定项目截距的logits回归。 BT型号优先
+当完整的战斗历史可用时，超过 ELO，因为它同时使用所有数据，而不是
+按顺序处理游戏。</p>
+<p>真技</p>
+<p>TrueSkill [259] 是一个贝叶斯技能评级系统，它将每个玩家的技能建模为高斯随机
+变量 si ∼N(μi, σ2
+我）。玩家 i 在游戏中的表现为 pi = si + ϵi，其中 ϵi ∼N(0, β2) 为
+游戏特定的噪音。如果 pi &gt; pj，玩家 i 击败玩家 j。
+观察 i ≻j 后的后验更新是通过期望传播 (EP) 计算的。的
+获胜者的关键更新方程是：</p>
+<p>
+(14.14)</p>
+<pre><code class="language-math">µi ←µi + σ2
+i
+c · v
+µi −µj
+</code></pre>
+<p>c</p>
+<p>”</p>
+<h1></h1>
+<p>(14.15)</p>
+<pre><code class="language-math">σ2
+i ←σ2
+i
+</code></pre>
+<p>1−σ2
+我
+c2·w
+µi−µj</p>
+<p>c</p>
+<p>其中c =
+q</p>
+<p>2β2 + σ2
+我+σ2
+j 和 v(t) = phi(t)/Φ(t), w(t) = v(t)(v(t) + t) 是截断高斯
+校正因子（Φ 和 Φ 是标准正态 PDF 和 CDF）。 TrueSkill 的不确定性估计
+σi 对于识别需要更多评估数据的模型特别有用。</p>
+<h2 id="chapter-15-p281-5">Metrics for Generation Tasks</h2>
+<p><span class="page-ref" id="pdf-p281">原 PDF p.281</span></p>
+<p>具有置信区间的胜率</p>
+<pre><code class="language-text">最简单的排名指标是胜率：模型 A 在成对比较中所占的比例
+is preferred. Given n comparisons with w wins, the win rate is ˆp = w/n. A Wilson score confidence
+interval [260] is preferred over the naive Wald interval because it has better coverage near p = 0 and
+p = 1:
+</code></pre>
+<p>^p(1−^p)</p>
+<p>n
++ z2</p>
+<p>2n±z
+q</p>
+<p>置信区间=
+^p+z2</p>
+<p>4n2
+1 + z2</p>
+<p>n
+(14.16)</p>
+<p>其中对于 95% 间隔，z = 1.96。对于多方比较，胜率应根据
+固定的基线模型以确保可比性。</p>
+<p>聊天机器人竞技场方法论</p>
+<p>Chatbot Arena [257] 将上述要素组合成一个生产规模的评估系统：</p>
+<ol>
+<li>
+<p>用户提交提示并收到两个匿名模型的回复。</p>
+</li>
+<li>
+<p>用户投票选出首选响应（或宣布平局）。</p>
+</li>
+</ol>
+<p>3.使用BT模型汇总投票，生成排行榜。</p>
+<ol start="4">
+<li>
+<p>报告每个模型得分的 Bootstrap 置信区间。</p>
+</li>
+<li>
+<p>具有重叠置信区间的模型被认为在统计上无法区分。</p>
+</li>
+</ol>
+<p>截至 2024 年，Chatbot Arena 已收集了超过 100 万张人类偏好票，使其成为
+最大的公开可用的 LLM 偏好数据集。</p>
+<p>生成任务的指标</p>
+<p>生成指标量化具有参考答案或良好的任务的模型输出的质量
+定义的正确性标准。</p>
+<p>蓝线</p>
+<p>BLEU（双语评估研究）[261] 测量假设 h 之间的 n 元语法精度
+以及一篇或多篇参考文献 R：！</p>
+<p>氮
+X</p>
+<p>BLEU = BP·exp</p>
+<p>(14.17)</p>
+<p>n=1
+wn 日志 pn</p>
+<p>其中 pn 是修改后的 n 元语法精度，wn = 1/N 是统一权重，BP 是简洁性
+处罚：</p>
+<pre><code class="language-math">BP =
+</code></pre>
+<pre><code class="language-text">(
+1
+if |h| &gt; |r|
+e1−|r|/|h|
+if |h| ≤|r|
+(14.18)
+</code></pre>
+<p>与 |r|是最接近参考的长度。修改后的 n 元语法精确度剪辑每个 n 元语法计数
+任何参考中的最大计数：</p>
+<p>磷
+ngram∈h min(count(ngram, h), maxr∈R count(ngram, r))</p>
+<pre><code class="language-math">pn =
+</code></pre>
+<p>磷
+ngram∈h 计数(ngram, h)
+(14.19)</p>
+<p>BLEU 限制
+BLEU 专为机器翻译而设计，具有多个参考文献。对于开放式的一代
+使用单一参考时，即使对于高质量输出，BLEU 分数也通常接近于零。 BLEU 确实
+不捕获语义相似性，惩罚有效的释义，并且对分词敏感。使用</p>
+<p><span class="page-ref" id="pdf-p282">原 PDF p.282</span></p>
+<p>仅当有多个不同的参考可用并且任务的输出多样性较低时才使用 BLEU。</p>
+<p>胭脂</p>
+<p>ROUGE（面向回忆的基础评估）[262] 是一个面向回忆的家族
+为总结而设计的指标：</p>
+<p>磷
+r∈R
+磷
+ngram∈r min(count(ngram, h), count(ngram, r))</p>
+<pre><code class="language-math">ROUGE-N =
+</code></pre>
+<p>磷
+r∈R
+磷
+ngram∈r 计数(ngram, r)
+(14.20)</p>
+<pre><code class="language-math">ROUGE-L = LCS(h, r)
+</code></pre>
+<p>|r|
+(14.21)</p>
+<p>其中LCS表示最长公共子序列。 ROUGE-1 和 ROUGE-2 测量一元组
+和二元记忆； ROUGE-L 捕获句子级结构。 F 测量变量天平
+准确率和召回率：</p>
+<pre><code class="language-math">ROUGE-NF = (1 + β2) · P · R
+</code></pre>
+<p>β2P+R
+(14.22)</p>
+<p>β = 1 表示等权重。</p>
+<p>BERT评分</p>
+<p>BERTScore [263] 使用预训练的上下文嵌入来计算标记级相似度
+BERT 模型。给定假设标记 ˆx = ⟨ˆx1, .。。 , ˆxm⟩ 和参考标记 x = ⟨x1, .。。 , xn⟩与
+嵌入 ^ei 和 ej：</p>
+<p>X</p>
+<p>罗伯特=1</p>
+<p>|x|</p>
+<pre><code class="language-math">xj∈x
+max
+ˆxi∈ˆx
+ˆe⊤
+i ej
+∥ˆei∥∥ej∥
+(14.23)
+</code></pre>
+<p>X</p>
+<p>PBERT = 1</p>
+<p>|ˆx|</p>
+<pre><code class="language-math">ˆxi∈ˆx
+max
+xj∈x
+ˆe⊤
+i ej
+∥ˆei∥∥ej∥
+(14.24)
+</code></pre>
+<p>FBERT = 2 · PBERT · RBERT</p>
+<p>佩伯特+瑞伯特
+(14.25)</p>
+<p>与 BLEU 和 ROUGE 相比，BERTScore 与人类判断的相关性更好，特别是对于
+释义和语义相同但词汇不同的输出。重要性加权使用
+逆文档频率 (IDF) 进一步提高相关性：</p>
+<p>磷
+xj∈x idf(xj) maxˆxi cos(ˆei, ej)</p>
+<p>里德夫
+伯特=</p>
+<p>磷
+xj∈x idf(xj)
+(14.26)</p>
+<p>流星</p>
+<p>METEOR [264] 通过计算一元匹配的 F 分数来解决 BLEU 的召回盲性问题，
+带有用于词干提取和同义词匹配的附加模块：</p>
+<p>METEOR = Fmean · (1 −Pen)
+(14.27)</p>
+<p>其中 F 平均值 =
+10PR
+R+9P（召回加权调和平均值）和碎片惩罚 Pen =
+0.5 · (c/um)3 惩罚非连续匹配（c = 块数，um = 匹配数
+一元词）。</p>
+<p><span class="page-ref" id="pdf-p283">原 PDF p.283</span></p>
+<p>困惑</p>
+<p>困惑度衡量语言模型预测保留文本序列 w1, w2, ... 的效果。。。，wT：！</p>
+<p>时间
+X</p>
+<p>−1</p>
+<p>(14.28)</p>
+<pre><code class="language-math">PPL(w1:T ) = exp
+</code></pre>
+<p>时间</p>
+<p>t=1
+log Pθ(wt | w1:t−1)</p>
+<p>较低的困惑度表明更好的预测性能。困惑对于比较很有用
+模型在相同的分词和测试集上，但在模型之间不能直接比较
+不同的词汇或标记器。出于评估目的，困惑作为理智最有用
+检查并检测分布变化。</p>
+<p>通过 @k 获取代码</p>
+<p>对于代码生成，功能正确性是通过根据测试执行生成的代码来衡量的
+案例。 pass@k 度量[265]估计 k 中至少一个生成样本的概率
+通过所有测试：</p>
+<p>”</p>
+<h1></h1>
+<p>n−c
+k
+</p>
+<p>1 −</p>
+<p>(14.29)</p>
+<p>通过@k = E问题</p>
+<p>n
+k
+</p>
+<p>其中 n 是每个问题生成的样本总数，c 是通过的数量。这个
+无偏估计器避免了朴素估计器的高方差（它精确地采样了 k 个解）
+并检查是否有通过）。实际上，生成 n = 200 个样本，pass@1、pass@10、pass@100
+被报道。</p>
+<p>Pass@k 计算</p>
+<pre><code class="language-text">import
+numpy as np
+from
+scipy.special
+import
+comb
+</code></pre>
+<pre><code class="language-text">def
+pass_at_k(n: int , c: int , k: int) -&gt; float:
+"""Unbiased
+estimator
+for pass@k.
+</code></pre>
+<p>参数：</p>
+<pre><code class="language-text">n: total
+samples
+generated
+per
+problem
+c: number of samples
+that pass all tests
+k: number of samples to consider
+"""
+if n - c &lt; k:
+</code></pre>
+<pre><code class="language-text">return 1.0
+return 1.0 - comb(n - c, k, exact=True) / comb(n, k, exact=True)
+</code></pre>
+<pre><code class="language-text"># Example: 200 samples , 15 pass , compute
+pass@1 , pass@10 , pass@100
+for k in [1, 10, 100]:
+</code></pre>
+<pre><code class="language-text">score = pass_at_k(n=200, c=15, k=k)
+print(f"pass@{k}: {score :.4f}")
+# pass@1:
+0.0750
+# pass@10:
+0.5391
+# pass@100: 0.9999
+</code></pre>
+<p>精确匹配和 F1</p>
+<p>对于提取式问答（例如 SQuAD），两个标准指标是：</p>
+<p>• 精确匹配 (EM)：预测答案字符串是否完全匹配的二进制指示符
+标准化后的任何黄金答案（小写、删除冠词和标点token）。</p>
+<p>• token级 F1：将预测和黄金答案视为token袋并计算 F1
+分数：</p>
+<p>F1 = 2 · |预测∩金|</p>
+<p>|预测| + |黄金|
+(14.30)</p>
+<h2 id="chapter-15-p284-6">Metrics for Agentic Tasks</h2>
+<p><span class="page-ref" id="pdf-p284">原 PDF p.284</span></p>
+<p>对于多答案设置，将报告所有黄金答案的最大 F1。</p>
+<p>表 14.3：生成指标摘要：适用性和关键属性。</p>
+<p>公制
+任务
+无参考？
+人际关系</p>
+<p>蓝线
+翻译
+否
+低-中
+胭脂
+总结
+否
+中等
+BERT评分
+一般NLG
+否
+高
+流星
+翻译
+否
+中-高
+困惑
+LM品质
+是的
+低
+通过@k
+代码生成
+否（测试）
+非常高
+精确匹配
+提取式质量保证
+否
+非常高
+tokenF1
+提取式质量保证
+否
+高</p>
+<p>智能体任务的指标</p>
+<p>智能体LLM在环境中运作，采取一系列行动，并且必须完成多步骤
+任务。标准发电指标不足；智能体评估需要捕获的指标
+任务完成情况、效率以及中间步骤的质量。</p>
+<p>任务成功率</p>
+<p>智能体任务的主要指标是任务成功率 (TSR)：完成任务的比例
+智能体达到指定的目标状态：</p>
+<p>X</p>
+<pre><code class="language-math">TSR =
+1
+|T |
+</code></pre>
+<pre><code class="language-math">τ∈T
+1[goal(τ) achieved]
+(14.31)
+</code></pre>
+<p>X</p>
+<p>目标实现通常由确定性预言机（例如，检查数据库状态、文件
+系统状态，或测试用例执行）。对于部分学分的任务，可以采用分级成功指标
+定义：
+TSR 分级 =
+|T |</p>
+<pre><code class="language-math">τ∈T
+score(τ) ∈[0, 1]
+(14.32)
+</code></pre>
+<p>轨迹效率</p>
+<p>成功的智能体应该以最少的不必要的操作来完成任务。轨迹效率
+测量最佳轨迹长度与智能体实际轨迹长度的比率：</p>
+<p>η =
+L*</p>
+<p>拉金特
+(14.33)</p>
+<p>其中 L* 是最短成功轨迹的长度（由预言机或人类专家计算）
+Lagent 是智能体采取的操作数量。 η ε(0, 1] 其中 η = 1 表示最优
+效率。对于失败的轨迹，η = 0。
+一个补充指标是冗余率：不存在的智能体操作的比例
+在任何最佳轨迹上。</p>
+<p>工具使用精度</p>
+<p>对于调用外部工具（API、代码解释器、搜索引擎）的智能体，工具使用的准确性
+衡量工具调用的正确性：</p>
+<p>TUA = # 正确的工具调用</p>
+<h1>工具调用总数</h1>
+<p>(14.34)</p>
+<p>如果 (a) 选择了正确的工具，(b) 参数有效，并且 (c) 调用，则工具调用是正确的
+是在轨迹中的适当点进行的。可以为正确的工具分配部分积分
+选择不正确的参数。</p>
+<h2 id="chapter-15-p285-7">LLM-as-Judge</h2>
+<p><span class="page-ref" id="pdf-p285">原 PDF p.285</span></p>
+<p>多步推理准确性</p>
+<p>对于需要推理链的任务（例如，多跳 QA、数学问题解决），步骤级别
+准确性衡量推理步骤正确的比例：</p>
+<p>X</p>
+<p>X</p>
+<pre><code class="language-math">SRA =
+1
+|T |
+</code></pre>
+<p>|Sτ|</p>
+<p>τεT</p>
+<p>s∈Sτ
+1[s正确]
+(14.35)</p>
+<p>其中 Sτ 是轨迹 τ 中的推理步骤集。步骤正确性可以通过流程来验证
+奖励模型（PRM）或通过人工注释。</p>
+<p>SWE 基准测试方法</p>
+<p>SWE-bench [266] 在现实世界的软件工程任务中评估LLM：给定一个 GitHub 问题
+描述和存储库代码库，模型必须生成解决问题的补丁。
+评估进行如下：</p>
+<ol>
+<li>给模型给出问题描述和相关代码上下文。</li>
+</ol>
+<p>2.模型生成补丁（统一diff格式）。</p>
+<ol start="3">
+<li>
+<p>补丁被应用到存储库。</p>
+</li>
+<li>
+<p>执行存储库的测试套件；如果所有测试都通过，则任务成功。</p>
+</li>
+</ol>
+<p>主要指标是已解决百分比：生成的补丁通过的问题比例
+所有测试。 SWE-bench Verified 是由人工注释者验证的 500 个问题的精选子集
+可解且明确。 SWE-bench Lite 是一个包含 300 个问题的子集，旨在加快评估速度。</p>
+<p>SWE-bench 关键统计数据（截至 2024 年）</p>
+<p>• 完整基准测试测试：来自 12 个流行 Python 存储库的 2,294 个任务。</p>
+<p>• 最佳开源智能体：∼43% 已解决（SWE-bench 已验证）。</p>
+<p>• 人类表现：∼87% 已解决（每项任务 15 分钟）。</p>
+<p>• 评估成本：基于API 的模型每项任务约0.25 美元。</p>
+<p>WebArena 方法论</p>
+<p>WebArena [267] 在沙盒浏览器环境中评估真实 Web 导航任务的智能体。
+该基准测试测试包括跨 5 个 Web 应用程序（电子商务、社交论坛、协作
+开发、内容管理和地图）。评价：</p>
+<p>• 功能评估：通过检查应用程序状态（例如，
+“该商品是否已添加到购物车？”、“帖子是否已创建？”）。</p>
+<p>• 基于 URL 的评估：对于导航任务，将最终 URL 与预期 URL 进行比较
+网址。</p>
+<p>• 基于程序的评估：自定义评估器脚本检查复杂的条件（例如，“Is
+价格低于 50 美元？”）。</p>
+<p>主要指标是任务成功率。人类表现约为 78%；最先进的
+智能体达到大约 35-45%。</p>
+<p>LLM法官</p>
+<p>LLM作为法官[257]使用有能力的LLM来评估其他（或相同）LLM的输出。这个
+方法无需人工注释即可扩展到大型评估集，并且可以提供详细的原理
+为其判断。</p>
+<p><span class="page-ref" id="pdf-p286">原 PDF p.286</span></p>
+<p>表14.4：智能体评估基准测试的比较。</p>
+<p>基准测试测试
+域名</p>
+<h1>任务</h1>
+<p>评估方法
+苏塔 (%)</p>
+<p>SWE-长凳
+软件工程师-
+英
+2,294
+测试执行
+〜43</p>
+<p>SWE-bench 精简版
+软件工程师-
+英
+测试执行
+〜50</p>
+<p>网络竞技场
+网页导航
+状态/URL/程序 ∼40
+ALF世界 [268]
+家务劳动
+3,553 人
+模拟器状态
+～90
+特工工作台 [269]
+多域
+1,091
+特定任务
+～45</p>
+<p>设置和提示模板</p>
+<p>向法官提供提示、一个或多个模型响应以及评估标准。三
+常见格式：</p>
+<p>逐点得分。
+法官为单个回答分配绝对分数：
+逐点判断提示</p>
+<pre><code class="language-text">POINTWISE_PROMPT = """
+You are an expert
+evaluator. Rate the
+following
+response on a scale
+of 1-10 for helpfulness , accuracy , and
+clarity.
+</code></pre>
+<pre><code class="language-text">[Question]
+{question}
+</code></pre>
+<pre><code class="language-text">[Response]
+{response}
+</code></pre>
+<pre><code class="language-text">Provide
+your
+evaluation in the
+following
+format:
+Reasoning: &lt;step -by -step analysis &gt;
+Score: &lt;integer
+from 1 to 10&gt;
+"""
+</code></pre>
+<p>成对比较。
+法官比较两个回答并选择更好的一个：
+成对判断提示</p>
+<pre><code class="language-text">PAIRWISE_PROMPT = """
+You are an expert
+evaluator. Compare
+the two
+responses
+below and
+determine
+which is better. Consider
+helpfulness , accuracy , and
+depth of explanation.
+</code></pre>
+<pre><code class="language-text">[Question]
+{question}
+</code></pre>
+<pre><code class="language-text">[Response A]
+{response_a}
+</code></pre>
+<pre><code class="language-text">[Response B]
+{response_b}
+</code></pre>
+<pre><code class="language-text">Output
+exactly
+one of: [[A]], [[B]], or [[C]] (tie).
+Reasoning: &lt;your analysis &gt;
+Verdict:
+&lt;[[A]], [[B]], or [[C]]&gt;
+"""
+</code></pre>
+<p>参考指导评分。
+向法官提供参考答案并对答案进行评分
+相对于它。这对于法官可能没有可靠信息的事实任务特别有用。</p>
+<p><span class="page-ref" id="pdf-p287">原 PDF p.287</span></p>
+<p>知识。</p>
+<p>缓解位置偏差</p>
+<p>LLM法官表现出立场偏见：对特定领域出现的反应的系统偏好
+位置（第一个或最后一个）。这种偏差可能高达 10-15 个百分点。缓解策略：</p>
+<ol>
+<li>交换增强：以两个顺序评估每一对（A 与 B 以及 B 与 A）。一致的
+判决被接受；不一致的判断记录为平局。</li>
+</ol>
+<p>2.校准提示：明确指示法官：“你的评价不应该是
+受到回答呈现顺序的影响。”</p>
+<ol start="3">
+<li>
+<p>综合评审：使用多个不同位置顺序的评审，并将其汇总
+判决。</p>
+</li>
+<li>
+<p>思维链强迫：要求法官在判决前给出详细的理由
+判决，从而减少对表面位置线索的依赖。</p>
+</li>
+</ol>
+<p>冗长偏差</p>
+<p>LLM评委也表现出冗长的偏见：系统地倾向于较长的回答，即使在
+附加内容不相关或重复。为了减轻这种情况，指示法官进行处罚
+不必要的篇幅，并注重信息的质量而不是数量。或者，
+在判断之前将响应截断为固定长度。</p>
+<p>多位评审团</p>
+<p>单个法官可能存在系统性偏见。来自不同模特家庭的评审团提供
+更稳健的评估。给定 J 法官的判决 v1, .。。 , vJ ∈{A, B, tie}，小组判决为
+由多数票决定。小组同意率为：</p>
+<p>协议=1</p>
+<pre><code class="language-math">i&lt;j
+1[vi = vj]
+(14.36)
+</code></pre>
+<p>J
+
+X</p>
+<p>对于三名法官组成的陪审团来说，一致的裁决（三人都同意）被视为高度可信； 2-1
+分裂为中等置信度；三路平局则表示信心不足。</p>
+<p>LLM法官的一致性指标</p>
+<p>为了验证LLM法官的有效性，将其裁决与保留集上的人类注释进行比较。钥匙
+指标：</p>
+<p>• 一致率：法官和人类一致的项目比例。</p>
+<p>• Cohen’s κ：机会校正一致性（公式 14.1）。</p>
+<p>• Spearman’s ρ：法官分数和人类分数之间的排名相关性，适用于
+顺序评级。</p>
+<p>• Kendall 的 τ：对关系更稳健的替代排名相关性。</p>
+<p>如果法官达到 κ &gt; 0.6 并且与人类的一致性率 &gt; 80%，则认为法官是可靠的
+对代表性样本进行注释。</p>
+<h2 id="chapter-15-p288-8">Evaluation Pitfalls</h2>
+<p><span class="page-ref" id="pdf-p288">原 PDF p.288</span></p>
+<p>G-评估框架</p>
+<p>G-Eval [270] 是基于 LLM 的评估的结构化框架，使用思维链提示
+和token概率加权以产生更可靠的分数。框架：</p>
+<ol>
+<li>
+<p>生成评估步骤：提示LLM生成详细的评估细则
+任务（例如，“列出评估摘要一致性所需采取的步骤”）。</p>
+</li>
+<li>
+<p>概率加权评分：对于每个评分值 s ∈{1, 2, 3, 4, 5}，得到
+来自判断模型的对数概率 log Pθ(s | 提示、步骤、响应)。最终得分为
+概率加权平均值：</p>
+</li>
+</ol>
+<p>X</p>
+<p>G-Eval 分数 =</p>
+<pre><code class="language-math">s=1
+s ·
+elog Pθ(s)
+P5
+s′=1 elog Pθ(s′)
+(14.37)
+</code></pre>
+<ol start="3">
+<li>归一化：通过除以最大分数将分数映射到 [0, 1]。</li>
+</ol>
+<p>与直接提示相比，G-Eval 与人类判断的相关性更高，特别是对于
+诸如连贯性和一致性之类的细微差别，因为概率加权捕获了
+判断的不确定性，而不是强迫做出离散的选择。</p>
+<p>为什么 G-Eval 有效</p>
+<p>标准提示要求法官输出一个标记（例如“4”），这会丢弃模型的
+不确定性。 G-Eval 读取所有分数标记的概率分布，有效地计算
+法官认为的预期分数。这类似于使用后验平均值
+分布而不是模式。</p>
+<p>评估陷阱</p>
+<p>即使精心设计的评估流程也可能产生误导性的结果。本节目录
+最常见的故障模式。</p>
+<p>基准测试污染</p>
+<p>当评估数据出现在模型的训练集中时，就会发生基准测试污染，无论是
+直接（逐字包含）或间接（释义或语义相似的内容）。被污染
+模型获得的分数过高，无法反映真实的泛化能力。</p>
+<p>检测方法：</p>
+<p>• n-gram 重叠：计算具有高 n-gram 重叠的评估示例的比例（例如，
+ROUGE-L &gt; 0.8）与训练语料库。</p>
+<p>• 成员资格推理：使用成员资格推理攻击来估计以下概率：
+每个评估示例都在训练集中。</p>
+<p>• 金丝雀字符串：在评估示例中嵌入唯一的、随机生成的字符串并检查
+如果模型可以完成它们。</p>
+<p>• 时间保留：使用模型训练截止日期之后创建的评估数据。</p>
+<p>缓解措施：</p>
+<p>• 维护一个从未公开发布的私有测试集。</p>
+<p>• 定期用新示例刷新基准测试。</p>
+<p>• 报告训练数据截止日期和净化程序。</p>
+<p><span class="page-ref" id="pdf-p289">原 PDF p.289</span></p>
+<p>与基准测试过度拟合</p>
+<p>即使没有直接污染，模型也可以针对特定基准测试进行隐式优化
+通过反复评估和超参数调整。这是自适应过度拟合的一种形式：
+基准测试测试将信息泄露到模型开发决策中。</p>
+<p>基准测试生命周期</p>
+<p>随着研究社区对其进行优化，基准测试的效用会随着时间的推移而降低。 MMLU[271]，
+曾经是对世界知识的一项具有挑战性的测试，现在模型已经达到了接近人类的性能，但
+这些模型在新的知识任务上仍然失败。新基准测试应被视为临时性的
+信号源，而不是永久的地面实况。</p>
+<p>古德哈特评价定律</p>
+<p>古德哈特定律指出：“当一项措施成为目标时，它就不再是一个好的措施。” [272] 在
+LLM评价，这体现在几个方面：</p>
+<p>• 奖励黑客：使用 RLHF 训练的模型学习利用奖励模型而不是
+真正改善。模型可能会学会产生冗长、听起来自信的回应
+在奖励模型上得分很高，但实际上是不正确的。</p>
+<p>• 度量游戏：经过微调以最大化 BLEU 或 ROUGE 的模型可能会产生以下输出：
+在这些指标上得分很高，但对人类来说用处不大。</p>
+<p>• 法官博弈：接受LLM法官反馈训练的模型可能会了解法官的偏见
+（例如，冗长偏见）而不是真正提高质量。</p>
+<p>对古德哈特定律的辩护</p>
+<ol>
+<li>指标多样性：使用不同系列的多个指标；一个游戏模型
+指标可能不会同时进行。</li>
+</ol>
+<p>2.保留评估：维护训练或模型中未使用的评估指标
+选择。</p>
+<ol start="3">
+<li>
+<p>人工抽查：定期对模型输出进行抽样以供人工审核，独立于
+自动化指标。</p>
+</li>
+<li>
+<p>对抗性评估：主动探测自动化指标遗漏的故障模式。</p>
+</li>
+<li>
+<p>外部验证：定期根据外部结果验证内部指标。</p>
+</li>
+</ol>
+<p>额外的陷阱</p>
+<p>迅速灵敏。
+由于评估的微小变化，LLM的表现可能会发生巨大变化
+提示（例如，添加“一步一步思考”或更改答案格式）。始终报告准确的信息
+使用提示并考虑对多个提示变体进行评估。</p>
+<p>聚合文物。
+不同难度级别和分数的任务的平均分数
+分布可能会产生误导性的总体指标。一个擅长完成简单任务但失败的模型
+在困难任务中可能与具有统一性能的模型具有相同的平均分数。</p>
+<p>人类评价中的选择偏差。
+人类评估者不是最终用户的随机样本。
+众包平台上的注释者可能有不同的偏好、文化背景和
+领域知识高于目标用户群体。</p>
+<p>评估-部署不匹配。
+评估提示通常更短、更清晰、更多
+比真实的用户查询格式良好。在基准测试提示上表现良好的模型可能会降级
+显着影响生产中发生的嘈杂、模糊、多轮对话。</p>
+<p><span class="page-ref" id="pdf-p290">原 PDF p.290</span></p>
+<p>评估设计的关键问题</p>
+<p>在部署评估流水线之前，询问：</p>
+<ol>
+<li>
+<p>评估指标是否与部署目标一致？</p>
+</li>
+<li>
+<p>评估数据是否代表目标分布？</p>
+</li>
+<li>
+<p>是否评估了污染和过度拟合风险？</p>
+</li>
+<li>
+<p>是否报告了所有指标的置信区间？</p>
+</li>
+<li>
+<p>评估是否可重复（固定种子、版本化提示、公共测试集）？</p>
+</li>
+<li>
+<p>评估是否根据人类判断或外部结果进行了验证？</p>
+</li>
+</ol>
+<p><span class="page-ref" id="pdf-p291">原 PDF p.291</span></p>
+<p>智能体式 AI</p></div>
+          <nav class="chapter-pager"><a class="pager-link" href="chapter-14.html">← 大型推理模型的强化学习</a><a class="pager-link next" href="chapter-16.html">智能体式 AI 简介 →</a></nav>
+        </article>
+        
+    </section>
+  </main>
+  <button class="back-top" id="back-top" type="button">↑</button>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/toc.js"></script>
+  <script src="../assets/js/progress.js"></script>
+  
+</body>
+</html>

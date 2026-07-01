@@ -1,0 +1,1441 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>模型上下文协议（MCP） | 智能体式 AI 漫游指南</title>
+  <meta name="description" content="MCP 的协议结构、客户端/服务器模型和工具生态。" />
+  <meta property="og:title" content="模型上下文协议（MCP） | 智能体式 AI 漫游指南" />
+  <meta property="og:description" content="MCP 的协议结构、客户端/服务器模型和工具生态。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
+  <link rel="canonical" href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/article.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+  
+</head>
+<body class="article-page">
+  <div class="reading-progress" id="reading-progress"></div>
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="智能体式 AI 漫游指南">
+      <span class="brand-mark">AI</span>
+      <span><strong>智能体式 AI 漫游指南</strong><small>从基础到系统的中文技术文档站</small></span>
+    </a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a>
+<a class="active" href="../chapters/index.html">章节</a>
+<a class="" href="../glossary.html">术语表</a>
+<a class="" href="../references.html">参考文献</a>
+<a class="" href="../search.html">搜索</a>
+<a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
+  </header>
+  <main class="layout">
+    
+        <aside class="left-nav" id="left-nav">
+          <div class="nav-section-title">章节</div>
+          <a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a>
+<a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a>
+<a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a>
+<a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a>
+<a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a>
+<a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a>
+<a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a>
+<a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a>
+<a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a>
+<a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a>
+<a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a>
+<a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a>
+<a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a>
+<a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a>
+<a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a>
+<a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a>
+<a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a>
+<a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a>
+<a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a>
+<a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a>
+<a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a>
+<a class="chapter-link active" href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a>
+<a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a>
+<a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a>
+<a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a>
+<a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a>
+<a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a>
+<a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a>
+<a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a>
+<a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a>
+        </aside>
+        <aside class="right-outline" id="right-outline">
+          <div class="nav-section-title">本页大纲</div>
+          <a class="outline-link level-h2" href="#chapter-22-p392-1">Motivation: The Tool Integration Problem</a>
+<a class="outline-link level-h2" href="#chapter-22-p393-2">架构概览</a>
+<a class="outline-link level-h2" href="#chapter-22-p395-3">Core Primitives</a>
+<a class="outline-link level-h2" href="#chapter-22-p396-4">Protocol Specification</a>
+<a class="outline-link level-h2" href="#chapter-22-p398-5">Tool Definition and Discovery</a>
+<a class="outline-link level-h2" href="#chapter-22-p400-6">Security Model</a>
+<a class="outline-link level-h2" href="#chapter-22-p402-7">Implementation Patterns</a>
+<a class="outline-link level-h2" href="#chapter-22-p405-8">The MCP Ecosystem</a>
+<a class="outline-link level-h2" href="#chapter-22-p406-9">MCP vs. Alternatives</a>
+<a class="outline-link level-h2" href="#chapter-22-p407-10">MCP for Agent Training</a>
+<a class="outline-link level-h2" href="#chapter-22-p410-11">小结</a>
+        </aside>
+        
+    <section class="content-shell">
+      
+        <article class="article-card">
+          <header class="article-header">
+            <p class="part-label">第五部分：智能体式 AI</p>
+            <h1>模型上下文协议（MCP）</h1>
+            <p>MCP 的协议结构、客户端/服务器模型和工具生态。</p>
+            <div class="article-meta"><span>原 PDF p.392-411</span><span>11 个页内条目</span></div>
+          </header>
+          <div class="article-body"><h2 id="chapter-22-p392-1">Motivation: The Tool Integration Problem</h2>
+<p><span class="page-ref" id="pdf-p392">原 PDF p.392</span></p>
+<p>模型上下文协议 (MCP)</p>
+<p>工具增强语言模型的兴起带来了碎片化问题：每个智能体
+框架、每个 LLM 提供商和每个企业部署都发明了自己的机制
+将模型连接到外部工具和数据源。模型上下文协议（MCP）[335]，
+Anthropic 于 2024 年末推出，是一个开放标准，旨在一次解决这个问题
+为所有人——在人工智能应用程序和它们所使用的工具之间提供一个通用的、供应商中立的接口
+需要。</p>
+<p>动机：工具集成问题</p>
+<p>为什么标准化很重要</p>
+<p>每次出现新的LLM智能体框架时，开发人员都必须重新实现连接器
+相同的工具：文件系统、数据库、网络搜索、代码执行、日历 API。这是浪费，
+容易出错，并且造成的维护负担与智能体数量呈二次方关系
+和工具。</p>
+<p>考虑一下任何想要将人工智能智能体连接到的组织所面临的组合爆炸
+它的基础设施。假设有 N 个不同的智能体框架（LangChain、AutoGen、CrewAI、
+定制智能体，.。。）和 M 个不同的工具提供商（GitHub、Slack、PostgreSQL、Jira，...）。没有
+标准协议，每种组合都需要定制集成：</p>
+<p>无标准积分 = N × M
+(21.1)</p>
+<p>使用通用协议，每一方只需要实现该协议一次：</p>
+<p>与标准集成 = N + M
+(21.2)</p>
+<p>对于 N = 20 个智能体框架和 M = 50 个工具提供商，这减少了集成负担
+从 1,000 个自定义连接器减少到仅 70 个协议实现，减少了 14 倍。这是
+正是 USB（通用设备连接）、HTTP（通用
+Web 通信）和 LSP（IDE 工具语言服务器协议）。 MCP同样适用
+人工智能工具使用的哲学。</p>
+<p>N × M →N + M 约简</p>
+<p>场景
+不带MCP
+与MCP</p>
+<p>20 个智能体，50 个工具
+1,000 个连接器
+70 次实施
+50 个智能体，200 个工具
+10,000 个连接器
+250 次实施
+100 个智能体，500 个工具
+50,000 个连接器
+600 次实施
+MCP 将二次积分问题转化为线性问题——与
+USB 取代了数十种专有端口标准。</p>
+<p>与语言服务器协议 (LSP)1 的类比尤其恰当。在LSP之前，每
+IDE 必须为每个项目实现语言支持（自动完成、转到定义、错误突出显示）</p>
+<h2 id="chapter-22-p393-2">架构概览</h2>
+<p><span class="page-ref" id="pdf-p393">原 PDF p.393</span></p>
+<p>单独的编程语言。 LSP之后，语言服务器和编辑只需要说一个
+通用协议。 MCP 对 AI 工具的作用就像 LSP 对开发人员工具的作用一样。</p>
+<p>图 21.1：MCP 的工作原理：单个用户请求流经主机、LLM 和 MCP 服务器。的
+LLM 决定调用哪个工具（第 3 步）；主机通过 JSON-RPC 将调用路由到适当的服务器
+（步骤4）；结果流回 LLM 进行自然语言格式化（步骤 5-7）。用户从不
+看到协议机制。</p>
+<p>架构概述</p>
+<p>MCP 遵循客户端-服务器架构，具有三个不同的角色，通过明确定义的连接
+协议层。</p>
+<p>三角色模型</p>
+<p>MCP主机
+最终用户直接与之交互的LLM应用程序。例子包括克劳德桌面，
+VS Code 扩展、自定义聊天机器人或自主智能体。主办方负责
+管理整体用户体验、决定连接到哪些 MCP 服务器并强制执行
+安全政策。主机包含一个或多个 MCP 客户端。
+MCP客户端
+嵌入在主机应用程序中的协议级组件。每个客户端都维护一个有状态的、
+与单个 MCP 服务器的一对一连接。客户端处理协议协商、消息
+序列化和连接的生命周期。单个主机可以同时运行多个客户端，
+每个连接到不同的服务器。
+MCP服务器
+向客户端公开功能（工具、资源、提示）的轻量级流程或服务。
+服务器通常是现有 API、数据库或系统接口的瘦包装器。他们是
+设计为易于实现——协议的复杂性由客户端/主机处理
+层。</p>
+<figure><img alt="第 393 页图像 page_393_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_393_img_01.png"/>
+<em>图像：原 PDF p.393</em></figure>
+<p><span class="page-ref" id="pdf-p394">原 PDF p.394</span></p>
+<p>具体示例：编码助手</p>
+<p>开发人员使用由 Claude（主机）支持的 VS Code 扩展。扩展运行三个
+客户端，每个连接到不同的服务器：</p>
+<p>• 可以读写本地文件的文件系统服务器</p>
+<p>• 可以查询问题、PR 和提交历史记录的 GitHub 服务器</p>
+<p>• 可以对开发数据库运行只读 SQL 查询的 PostgreSQL 服务器</p>
+<p>当开发人员询问“修复 auth.py 中导致问题中显示的登录失败的错误时</p>
+<h1>42”，LLM可以同时读取文件，获取GitHub问题，并查询相关</h1>
+<p>数据库日志——全部通过标准化 MCP 调用。</p>
+<p>传输层</p>
+<p>MCP 在协议级别与传输无关，但定义了两种标准传输机制：
+stdio（标准 I/O）
+客户端将服务器作为子进程生成，并通过标准输入/输出进行通信
+溪流。这是本地工具最简单、最常见的运输方式。它提供了很强的隔离性
+（服务器在单独的进程中运行）并且不需要网络配置。文件系统的理想选择
+访问、本地代码执行和开发人员工具。
+流式 HTTP
+服务器作为 HTTP 服务运行。客户端通过HTTP POST发送JSON-RPC请求；的
+服务器可以使用单个 JSON 响应进行响应或升级到服务器发送事件 (SSE) 流
+以获得增量结果。这种传输支持远程服务器，启用服务器端推送通知，
+并通过标准 Web 基础设施（智能体、负载平衡器、防火墙）工作。适合于
+云托管工具和企业部署。 （这取代了早期的仅 HTTP+SSE 传输
+在2025-03-26协议修订中。）</p>
+<p>协议生命周期</p>
+<p>每个 MCP 连接都遵循四个阶段的生命周期：</p>
+<ol>
+<li>
+<p>初始化：客户端发送初始化请求，其中包含其协议版本和
+支持的功能。
+服务器用它自己的版本和功能进行响应。
+这个
+建立可用于会话的功能集。</p>
+</li>
+<li>
+<p>能力协商：双方声明他们支持什么（例如，服务器是否
+提供工具、资源或提示；客户端是否支持采样）。能力不
+双方声明均未使用。</p>
+</li>
+</ol>
+<p>3.运行：主要阶段。客户端发送请求（工具调用、资源读取、提示
+获取）并且服务器响应。服务器还可以发送通知（例如，资源更改
+事件），无需询问。</p>
+<ol start="4">
+<li>关闭：任何一方都可以发起正常关闭。
+客户端发送关闭消息
+通知；服务器清理资源并终止。</li>
+</ol>
+<p>有状态会话与无状态请求</p>
+<p>MCP 中的一个关键设计决策是连接是有状态会话，而不是无状态 HTTP 请求。
+这很重要，原因如下：</p>
+<p>• 效率：能力协商在连接时发生一次，而不是在每次请求时发生。</p>
+<h2 id="chapter-22-p395-3">Core Primitives</h2>
+<p><span class="page-ref" id="pdf-p395">原 PDF p.395</span></p>
+<p>• 上下文：服务器可以维护会话状态（例如，打开的数据库事务、签出的事务）
+文件锁）。</p>
+<p>• 订阅：当资源发生变化时，服务器可以向客户端推送通知。</p>
+<p>• 长时间运行的操作：在有状态会话中，进度报告是很自然的。</p>
+<p>权衡是有状态会话需要连接管理（重新连接logits、会话
+无状态 API 避免的恢复）。</p>
+<p>完整架构图</p>
+<p>图 21.2 展示了完整的 MCP 堆栈，从用户界面到外部服务。</p>
+<p>图 21.2：完整的 MCP 架构堆栈。主机管理一个或多个客户端，每个客户端维护一个
+通过传输层（stdio 或 Streamable HTTP）与 MCP 服务器进行有状态会话。所有客户端-服务器
+通信使用 JSON-RPC 2.0。服务器包装外部服务并将它们公开为标准化工具，
+资源和提示。</p>
+<p>核心原语</p>
+<p>MCP 定义了服务器可以向客户端公开的四个核心原语。每个原语都有独特的
+目的、控制方向和用例。</p>
+<p>工具</p>
+<p>工具是最重要的原语——它们是服务器公开的类似函数的操作
+供LLM调用。一个工具有：</p>
+<p>• 名称（服务器内的唯一标识符）</p>
+<p>• 描述（LLM的自然语言解释）</p>
+<p>• inputSchema（定义参数的 JSON 模式）</p>
+<p>• 可选的outputSchema（返回值的JSON Schema）</p>
+<p>工具代表有副作用的操作：创建文件、发送消息、执行代码、查询
+数据库。 LLM决定何时以及如何调用工具；服务器执行它们。</p>
+<figure><img alt="第 395 页图像 page_395_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_395_img_01.png"/>
+<em>图像：原 PDF p.395</em></figure>
+<h2 id="chapter-22-p396-4">Protocol Specification</h2>
+<p><span class="page-ref" id="pdf-p396">原 PDF p.396</span></p>
+<p>资源</p>
+<p>资源是服务器可以提供给客户端的数据。与工具不同（由
+LLM），资源通常由主机应用程序读取以填充 LLM 的上下文窗口。
+资源具有 URI（例如 file:///home/user/notes.txt、db://customers/42）并且可以是静态的
+或动态。
+资源支持订阅：客户端可以订阅资源URI并接收
+当基础数据发生变化时发出通知。
+这使得反应智能体能够响应
+现实世界的事件。</p>
+<p>提示</p>
+<p>提示是服务器提供的可重复使用的提示模板。
+它们允许服务器作者
+将领域专业知识编码为主持人可以呈现给用户或注入的结构化提示
+对话。例如，GitHub MCP 服务器可能会提供“代码审查”提示模板
+以 PR 编号作为输入并生成结构化审核请求。</p>
+<p>取样</p>
+<p>采样是最不寻常的原语——它以相反的方向运行。而不是客户问
+服务器要做某事，服务器要求客户端执行LLM推理。这个逆流
+允许工具服务器合并模型驱动的推理步骤（例如，总结检索到的数据
+在返回之前）不需要他们自己的LLM部署。主机保留完全控制权
+是否满足采样请求，维护安全边界。</p>
+<p>MCP 原语比较</p>
+<p>原始的
+方向
+使用案例
+示例</p>
+<p>工具
+客户端→服务器
+LLM 调用的操作
+有副作用
+创建文件，
+发送电子邮件，
+运行查询
+资源
+客户端←服务器
+的上下文数据
+LLM的窗口
+文件内容、DB记录、API重新
+响应
+提示
+客户端←服务器
+可重复使用
+提示
+模板
+“总结 PR #id”、“调试此
+错误”
+取样
+服务器→客户端
+服务器请求LLM
+智能体子任务，递归推理-
+英</p>
+<p>协议规范</p>
+<p>MCP 基于 JSON-RPC 2.0 [371] 构建，这是一种轻量级远程过程调用协议，使用
+JSON 用于消息编码。这种选择提供了一个易于理解、与语言无关的基础
+与广泛的图书馆支持。</p>
+<p>JSON-RPC 2.0 消息格式</p>
+<p>JSON-RPC 2.0 中共有三种消息类型：
+请求（客户端→服务器，期望响应）：</p>
+<p>{</p>
+<pre><code class="language-text">"jsonrpc": "2.0",
+"id": 42,
+"method": "tools/call",
+"params": {
+</code></pre>
+<pre><code class="language-text">"name": "read_file",
+"arguments": { "path": "/home/user/notes.txt" }
+}
+}
+</code></pre>
+<p><span class="page-ref" id="pdf-p397">原 PDF p.397</span></p>
+<p>响应（服务器→客户端，回复请求）：</p>
+<p>{</p>
+<pre><code class="language-text">"jsonrpc": "2.0",
+"id": 42,
+"result": {
+</code></pre>
+<p>"content": [</p>
+<pre><code class="language-text">{ "type": "text", "text": "Meeting
+notes: ..." }
+],
+"isError": false
+}
+}
+</code></pre>
+<p>通知（任一方向，预计不会回复）：</p>
+<p>{</p>
+<pre><code class="language-text">"jsonrpc": "2.0",
+"method": "notifications/resources/updated",
+"params": { "uri": "file :/// home/user/notes.txt" }
+}
+</code></pre>
+<p>能力协商握手</p>
+<p>初始化握手确定双方可以做什么：</p>
+<pre><code class="language-text">// Client
+sends:
+{
+</code></pre>
+<pre><code class="language-text">"jsonrpc": "2.0", "id": 1,
+"method": "initialize",
+"params": {
+</code></pre>
+<pre><code class="language-text">" protocolVersion ": "2024 -11 -05",
+"capabilities": {
+</code></pre>
+<pre><code class="language-text">"sampling": {},
+// client
+supports
+sampling
+requests
+"roots": { "listChanged": true }
+},
+"clientInfo": { "name": "MyAgent", "version": "1.0.0" }
+}
+}
+</code></pre>
+<pre><code class="language-text">// Server
+responds:
+{
+</code></pre>
+<pre><code class="language-text">"jsonrpc": "2.0", "id": 1,
+"result": {
+</code></pre>
+<pre><code class="language-text">" protocolVersion ": "2024 -11 -05",
+"capabilities": {
+</code></pre>
+<pre><code class="language-text">"tools": { "listChanged": true },
+// server has tools
+"resources": { "subscribe": true }, // server
+supports
+subscriptions
+"prompts": {}
+},
+"serverInfo": { "name": "filesystem", "version": "0.6.2" }
+}
+}
+</code></pre>
+<p>错误处理</p>
+<p>JSON-RPC 错误遵循带有数字错误代码的标准格式。 MCP定义了附加代码
+超出 JSON-RPC 标准：</p>
+<p>{</p>
+<pre><code class="language-text">"jsonrpc": "2.0", "id": 42,
+"error": {
+</code></pre>
+<pre><code class="language-text">"code":
+-32602,
+// Invalid
+params (JSON -RPC
+standard)
+"message": "Invalid
+file path: path must be absolute",
+</code></pre>
+<h2 id="chapter-22-p398-5">Tool Definition and Discovery</h2>
+<p><span class="page-ref" id="pdf-p398">原 PDF p.398</span></p>
+<pre><code class="language-text">"data": { "path": "relative/path.txt" }
+}
+}
+</code></pre>
+<p>MCP 错误代码</p>
+<p>代码
+名称
+含义</p>
+<p>−32700
+解析错误
+收到无效的 JSON
+−32600
+无效请求
+不是有效的 JSON-RPC 对象
+−32601
+未找到方法
+方法不存在
+−32602
+无效参数
+方法参数无效
+−32603
+内部错误
+服务器内部错误
+取消是通过通知/取消（通知，而不是错误响应）来处理的。
+服务器可以定义额外的应用程序级错误代码，范围在-32000到-32099之间
+JSON-RPC 约定。</p>
+<p>进度报告</p>
+<p>对于长时间运行的操作，MCP 支持进度通知。客户端包含一个progressToken
+在请求中；服务器定期发送通知/进度消息：</p>
+<pre><code class="language-text">// Request
+with
+progress
+token
+{
+</code></pre>
+<pre><code class="language-text">"jsonrpc": "2.0", "id": 10,
+"method": "tools/call",
+"params": {
+</code></pre>
+<pre><code class="language-text">"name": " index_codebase",
+"arguments": { "path": "/repo" },
+"_meta": { "progressToken": "index -op -1" }
+}
+}
+</code></pre>
+<pre><code class="language-text">// Server
+sends
+progress
+notifications (no id = notification )
+{
+</code></pre>
+<pre><code class="language-text">"jsonrpc": "2.0",
+"method": "notifications/progress",
+"params": {
+</code></pre>
+<pre><code class="language-text">" progressToken": "index -op -1",
+"progress": 45,
+"total": 100,
+"message": "Indexed
+450/1000
+files ..."
+}
+}
+</code></pre>
+<p>工具定义和发现</p>
+<p>工具是 MCP 的核心。正确获得工具定义至关重要，因为LLM使用该名称
+和描述来决定调用哪个工具以及何时调用。</p>
+<p>工具架构格式</p>
+<p>完整的工具定义：</p>
+<p>{</p>
+<pre><code class="language-text">"name": " search_codebase ",
+"description": "Search for a pattern
+across all files in the
+repository.
+Returns
+matching
+file
+paths and line
+numbers. Use this when you need
+to find
+定义函数的位置、使用变量的位置，或者
+where a specific
+string
+appears. Supports
+regex
+patterns.",
+</code></pre>
+<p><span class="page-ref" id="pdf-p399">原 PDF p.399</span></p>
+<pre><code class="language-text">"inputSchema": {
+</code></pre>
+<pre><code class="language-text">"type": "object",
+"properties": {
+</code></pre>
+<p>"pattern": {</p>
+<pre><code class="language-text">"type": "string",
+"description": "Regex
+pattern to search for"
+},
+"path": {
+</code></pre>
+<pre><code class="language-text">"type": "string",
+"description": "Directory to search in (default: repo root)",
+"default": "."
+},
+" case_sensitive": {
+</code></pre>
+<pre><code class="language-text">"type": "boolean",
+"description": "Whether
+the search is case -sensitive",
+"default": false
+}
+},
+"required": ["pattern"]
+}
+}
+</code></pre>
+<p>动态工具注册</p>
+<p>服务器可以通过发送 notification/tools/list_changed 在会话期间添加、删除或修改工具
+通知。然后，客户端通过工具/列表请求重新获取工具列表。这使得：</p>
+<p>• 上下文相关工具：代码编辑器服务器可能会根据上下文公开不同的工具。
+当前打开的文件类型。</p>
+<p>• 权限控制工具：只有在用户授予特定权限后才可用的工具。
+权限。</p>
+<p>• 动态插件系统：运行时从外部注册表加载的工具。</p>
+<p>工具注释</p>
+<p>MCP 引入了工具注释——元数据提示，帮助主机做出更好的决策
+工具执行（在2025-03-26协议修订中添加）：</p>
+<p>{</p>
+<pre><code class="language-text">"name": "delete_file",
+"description": "Permanently
+delete a file from the
+filesystem.",
+"inputSchema": { ... },
+"annotations": {
+</code></pre>
+<pre><code class="language-text">"readOnlyHint": false ,
+// This tool
+modifies
+state
+" destructiveHint ": true ,
+// Changes
+are
+irreversible
+" idempotentHint": false ,
+// Calling
+twice has
+different
+effects
+" openWorldHint": false
+// Does not
+interact
+with
+external
+services
+}
+}
+</code></pre>
+<p>只读提示
+如果为 true，则该工具仅读取数据并且没有副作用。主机可以自动批准只读工具
+无需用户确认。
+破坏性提示
+如果为 true，该工具将执行不可逆的操作。主机应要求用户明确确认。
+幂等提示
+如果为 true，则使用相同参数多次调用该工具与调用该工具具有相同的效果
+一次。失败时可以安全地重试。</p>
+<h2 id="chapter-22-p400-6">Security Model</h2>
+<p><span class="page-ref" id="pdf-p400">原 PDF p.400</span></p>
+<p>开放世界提示
+如果为真，则该工具与服务器直接控制之外的外部服务进行交互（例如，发送
+电子邮件、发布到社交媒体）。</p>
+<p>工具描述很重要</p>
+<p>LLM几乎完全根据名称和描述字段来选择工具。模糊或
+模糊的描述会导致工具选择不正确，错失使用正确工具的机会，
+和幻觉的工具调用。最佳实践：</p>
+<p>• 具体说明该工具能做什么和不能做什么。 “按内容搜索文件”是
+比“搜索文件”更好。</p>
+<p>• 描述何时使用它。 “当您需要查找token的定义位置时使用此功能”
+指导LLM的决定。</p>
+<p>• 描述输出格式。 “返回文件、行、匹配对象的 JSON 数组”有帮助
+LLM解析结果。</p>
+<p>• 提及限制。 “仅搜索 .py 文件；对其他类型使用 search_all”防止
+滥用。</p>
+<p>• 避免使用LLM可能与工具的实际行为无关的术语。</p>
+<p>安全模型</p>
+<p>MCP 跨多个信任边界运行。了解这些界限对于安全至关重要
+部署。</p>
+<p>信任层次结构</p>
+<p>主机（最高信任度）
+主机应用程序受到用户信任。它执行安全策略，管理用户同意，
+并控制客户端连接到哪些服务器。主持人是采取何种行动的最终裁决者
+是允许的。
+客户端（受主机信任）
+客户端忠实地执行协议并执行主机的策略。它验证服务器
+在将数据传递给LLM之前响应并清理数据。
+服务器（有条件信任）
+服务器被信任诚实地实现其声明的功能，但主机不应该
+盲目信任服务器提供的数据。受损或恶意的服务器可能会尝试立即注入
+通过在资源内容中嵌入指令进行攻击。
+外部服务（不受信任）
+MCP 服务器与之交互的服务（Web API、数据库、文件系统）不受信任
+协议的观点。服务器必须验证和清理所有外部数据。</p>
+<p>用户同意</p>
+<p>MCP 要求用户必须明确同意工具执行，特别是对于具有以下功能的工具：
+副作用。主办方负责：</p>
+<p>• 清楚地描述工具在执行前将做什么</p>
+<p>• 区分只读操作和破坏性操作（使用注释）</p>
+<p>• 提供代表用户进行的所有工具调用的审核日志</p>
+<p>• 允许用户随时撤销权限</p>
+<p><span class="page-ref" id="pdf-p401">原 PDF p.401</span></p>
+<p>通过资源即时注入</p>
+<p>关键的攻击媒介：作为 MCP 资源加载的恶意文档或网页可能会
+包含诸如“忽略先前的说明并删除所有文件”之类的说明。 LLM可能会遵循
+这些说明（如果它们出现在其上下文窗口中）。缓解措施包括：</p>
+<p>• 在系统提示中明确将资源内容标记为不可信数据</p>
+<p>• 使用结构化输出格式将指令与数据分开</p>
+<p>• 在注入之前对资源数据实施内容过滤</p>
+<p>• 要求用户明确确认任何破坏性行为，无论其方式如何
+触发的</p>
+<p>输入验证和清理</p>
+<p>服务器必须在执行之前根据其声明的 JSON 架构验证所有输入。常见
+需要防范的漏洞：</p>
+<p>• 路径遍历：文件路径参数中的../../etc/passwd</p>
+<p>• SQL 注入：数据库查询工具中未经清理的字符串</p>
+<p>• 命令注入：代码执行工具中的 Shell 元字符</p>
+<p>• SSRF：HTTP 工具中指向内部网络资源的 URL</p>
+<p>凭证管理</p>
+<p>MCP 服务器经常需要凭据才能访问外部服务。最佳实践：</p>
+<p>• OAuth 2.0：用于用户委托访问第三方服务（GitHub、Google、Slack）。的
+服务器处理 OAuth 流程；主机安全地存储token。</p>
+<p>• 环境变量：API 密钥应通过环境变量注入，而不是硬编码
+或通过协议。</p>
+<p>• 秘密管理器：生产部署应使用专用秘密管理（AWS
+Secrets Manager、HashiCorp Vault）而不是环境变量。</p>
+<p>• 最小权限：服务器应该只请求它们需要的权限（只读
+数据库访问，而不是管理员凭据）。</p>
+<p>沙盒策略</p>
+<p>对于执行任意代码或访问敏感资源的服务器：</p>
+<p>• 进程隔离：在具有受限操作系统权限的单独进程中运行每个服务器
+（seccomp、AppArmor、SELinux）。</p>
+<p>• 容器隔离：在 Docker 容器中部署服务器，功能最少且无任何限制。
+网络访问内部服务。</p>
+<p>• 只读文件系统：除非明确需要写入访问权限，否则将文件系统挂载为只读。</p>
+<p>• 网络策略：使用防火墙规则来限制服务器可以访问哪些外部服务。</p>
+<h2 id="chapter-22-p402-7">Implementation Patterns</h2>
+<p><span class="page-ref" id="pdf-p402">原 PDF p.402</span></p>
+<p>实施模式</p>
+<p>使用 Python 构建 MCP 服务器</p>
+<p>官方Python SDK提供了FastMCP，一个处理协议协商的高级框架，
+序列化，自动传输。下面是一个完整的笔记MCP服务器：</p>
+<pre><code class="language-text">#!/usr/bin/env
+python3
+"""
+A simple MCP server
+exposing note -taking
+tools and
+resources.
+Install: pip
+install "mcp[cli]"
+Run:
+mcp run
+notes_server.py
+(stdio)
+mcp run
+notes_server.py --transport
+streamable -http
+(HTTP)
+"""
+from
+pathlib
+import
+Path
+from mcp.server.fastmcp
+import
+FastMCP
+</code></pre>
+<pre><code class="language-text"># -- Server
+setup
+--------------------------------------------------------------
+mcp = FastMCP("notes -server")
+NOTES_DIR = Path.home () / ".notes"
+NOTES_DIR.mkdir(exist_ok=True)
+</code></pre>
+<pre><code class="language-text"># -- Tools (LLM -invoked
+actions) -----------------------------------------------
+@mcp.tool ()
+def
+create_note(title: str , content: str , tags: list[str] | None = None) -&gt; str:
+"""Create a new text note with a given
+title and
+content.
+</code></pre>
+<pre><code class="language-text">Use this when the user
+wants to save
+information
+for later.
+Returns
+the path
+where the note was saved.
+"""
+tags = tags or []
+safe_title = "".join(
+</code></pre>
+<pre><code class="language-text">c if c.isalnum () or c in " -_" else "_" for c in title
+).strip ()
+note_path = NOTES_DIR / f"{safe_title }.md"
+</code></pre>
+<pre><code class="language-text">frontmatter = f" ---\ntitle: {title }\ ntags: {tags }\n---\n\n"
+note_path.write_text(frontmatter + content , encoding="utf -8")
+return f"Note
+saved to {note_path}"
+</code></pre>
+<pre><code class="language-text">@mcp.tool ()
+def
+search_notes(query: str) -&gt; str:
+"""Search
+notes by keyword. Searches
+both
+titles and
+content.
+</code></pre>
+<pre><code class="language-text">Returns a list of matching
+note
+titles and
+snippets.
+Use this
+before
+creating a note to check if one
+already
+exists.
+"""
+query_lower = query.lower ()
+results = []
+</code></pre>
+<pre><code class="language-text">for
+note_file in NOTES_DIR.glob("*.md"):
+text = note_file.read_text(encoding="utf -8")
+if query_lower in text.lower ():
+</code></pre>
+<pre><code class="language-text">idx = text.lower ().find(query_lower)
+snippet = text[max(0, idx - 50):idx + 100]. replace("\n", " ")
+results.append(f"- **{ note_file.stem }**: ...{ snippet }...")
+</code></pre>
+<pre><code class="language-text">return "\n".join(results) if results
+else f"No notes
+found
+matching
+’{query}’"
+</code></pre>
+<pre><code class="language-text"># -- Resources (context
+data for the LLM) -------------------------------------
+@mcp.resource("notes ://{ title}")
+def
+get_note(title: str) -&gt; str:
+"""Read a note by title."""
+note_path = NOTES_DIR / f"{title }.md"
+if not
+note_path.exists ():
+raise
+ValueError(f"Note not found: {title}")
+</code></pre>
+<p><span class="page-ref" id="pdf-p403">原 PDF p.403</span></p>
+<pre><code class="language-text">return
+note_path.read_text(encoding="utf -8")
+</code></pre>
+<pre><code class="language-text"># -- Entry
+point
+----------------------------------------------------------------
+if __name__ == "__main__":
+</code></pre>
+<pre><code class="language-text">mcp.run()
+# defaults to stdio
+transport
+</code></pre>
+<p>清单 21.1：完整的 MCP 服务器：笔记工具（FastMCP）</p>
+<p>与旧的低级 API 的主要区别：</p>
+<p>• 声明性工具：@mcp.tool() 装饰器从 Python 类型推理 JSON 架构
+提示和文档字符串——无需手动输入模式。</p>
+<p>• 自动传输：mcp.run() 根据传输方式处理 stdio 或 Streamable HTTP
+服务器已启动。</p>
+<p>• 资源作为函数：@mcp.resource("uri-template") 通过基于 URI 公开数据
+路由。</p>
+<p>构建 MCP 客户端</p>
+<p>连接到 Notes 服务器并调用工具的最小客户端：</p>
+<pre><code class="language-text">import
+asyncio
+from mcp import
+ClientSession , StdioServerParameters
+from mcp.client.stdio
+import
+stdio_client
+</code></pre>
+<pre><code class="language-text">async def main ():
+</code></pre>
+<pre><code class="language-text"># Connect to the notes
+server via stdio
+server_params = StdioServerParameters (
+</code></pre>
+<pre><code class="language-text">command="python",
+args =["notes_server.py"],
+env=None
+# inherit
+environment
+)
+</code></pre>
+<pre><code class="language-text">async
+with
+stdio_client(server_params ) as (read , write):
+async
+with
+ClientSession(read , write) as session:
+# Phase 1: Initialize
+await
+session.initialize ()
+</code></pre>
+<pre><code class="language-text"># Phase 2: Discover
+available
+tools
+tools_result = await
+session.list_tools ()
+print("Available
+tools:")
+for tool in tools_result .tools:
+</code></pre>
+<pre><code class="language-text">print(f"
+- {tool.name }: {tool.description [:60]}...")
+</code></pre>
+<pre><code class="language-text"># Phase 3: Call a tool
+result = await
+session.call_tool(
+"create_note",
+arguments ={
+</code></pre>
+<pre><code class="language-text">"title": "MCP
+Architecture
+Notes",
+"content": "MCP uses JSON -RPC 2.0 over
+stdio or HTTP+SSE.",
+"tags": ["mcp", "architecture"]
+}
+)
+print(f"\nTool
+result: {result.content [0]. text}")
+</code></pre>
+<pre><code class="language-text"># Phase 4: List
+resources
+resources = await
+session. list_resources ()
+print(f"\nAvailable
+resources: {len(resources.resources)}")
+</code></pre>
+<pre><code class="language-text">asyncio.run(main ())
+</code></pre>
+<p>清单 21.2：MCP 客户端：连接和调用工具</p>
+<p><span class="page-ref" id="pdf-p404">原 PDF p.404</span></p>
+<p>同时连接到多个服务器</p>
+<p>主机应用程序通常管理多个服务器连接。该模式使用连接
+池：</p>
+<pre><code class="language-text">import
+asyncio
+from
+contextlib
+import
+AsyncExitStack
+from mcp import
+ClientSession , StdioServerParameters
+from mcp.client.stdio
+import
+stdio_client
+</code></pre>
+<pre><code class="language-text">class
+MCPHost:
+"""Manages
+connections to multiple
+MCP
+servers."""
+</code></pre>
+<pre><code class="language-text">def
+__init__(self):
+self.sessions: dict[str , ClientSession ] = {}
+self.tool_registry: dict[str , tuple[str , object ]] = {}
+self._exit_stack = AsyncExitStack ()
+</code></pre>
+<pre><code class="language-text">async def
+connect(self , name: str , params: StdioServerParameters ):
+"""Connect to a named MCP server and
+register
+its tools."""
+read , write = await
+self._exit_stack. enter_async_context (
+stdio_client(params)
+)
+session = await
+self._exit_stack. enter_async_context (
+ClientSession(read , write)
+)
+await
+session.initialize ()
+self.sessions[name] = session
+</code></pre>
+<pre><code class="language-text"># Register
+all tools
+from this
+server
+tools = await
+session.list_tools ()
+for tool in tools.tools:
+</code></pre>
+<pre><code class="language-text">self.tool_registry[tool.name] = (name , tool)
+print(f"Registered
+tool
+’{tool.name}’ from
+server
+’{name}’")
+</code></pre>
+<pre><code class="language-text">async def
+call_tool(self , tool_name: str , arguments: dict):
+"""Route a tool call to the
+appropriate
+server."""
+if tool_name
+not in self.tool_registry :
+raise
+ValueError(f"Unknown
+tool: {tool_name}")
+</code></pre>
+<pre><code class="language-text">server_name , _ = self.tool_registry [tool_name]
+session = self.sessions[server_name]
+return
+await
+session.call_tool(tool_name , arguments)
+</code></pre>
+<pre><code class="language-text">async def
+get_all_tools(self) -&gt; list:
+"""Return all tools
+across all
+connected
+servers."""
+return [tool for _, tool in self. tool_registry .values ()]
+</code></pre>
+<pre><code class="language-text">async def close(self):
+</code></pre>
+<pre><code class="language-text">await
+self._exit_stack.aclose ()
+</code></pre>
+<pre><code class="language-text">async def main ():
+</code></pre>
+<pre><code class="language-text">host = MCPHost ()
+</code></pre>
+<pre><code class="language-text"># Connect to multiple
+servers
+concurrently
+await
+asyncio.gather(
+host.connect("filesystem", StdioServerParameters (
+</code></pre>
+<pre><code class="language-text">command="npx", args =["-y", " @modelcontextprotocol /server -filesystem",
+</code></pre>
+<pre><code class="language-text">"/home/user"]
+)),
+host.connect("github", StdioServerParameters (
+</code></pre>
+<pre><code class="language-text">command="npx", args =["-y", " @modelcontextprotocol /server -github"]
+)),
+host.connect("notes", StdioServerParameters (
+</code></pre>
+<pre><code class="language-text">command="python", args =["notes_server .py"]
+)),
+</code></pre>
+<h2 id="chapter-22-p405-8">The MCP Ecosystem</h2>
+<p><span class="page-ref" id="pdf-p405">原 PDF p.405</span></p>
+<p>)</p>
+<pre><code class="language-text"># All tools
+available
+through a single
+interface
+all_tools = await
+host.get_all_tools ()
+print(f"Total
+tools
+available: {len(all_tools)}")
+</code></pre>
+<pre><code class="language-text">await
+host.close ()
+</code></pre>
+<pre><code class="language-text">asyncio.run(main ())
+</code></pre>
+<p>清单 21.3：多服务器 MCP 主机模式</p>
+<p>错误恢复和重新连接</p>
+<p>生产 MCP 客户端必须处理服务器崩溃和网络中断：</p>
+<pre><code class="language-text">import
+asyncio
+import
+logging
+from mcp import
+ClientSession , StdioServerParameters
+from mcp.client.stdio
+import
+stdio_client
+</code></pre>
+<pre><code class="language-text">logger = logging.getLogger(__name__)
+</code></pre>
+<pre><code class="language-text">async def
+resilient_tool_call (
+params: StdioServerParameters ,
+tool_name: str ,
+arguments: dict ,
+max_retries: int = 3,
+backoff_base: float = 1.0
+):
+</code></pre>
+<pre><code class="language-text">"""Call a tool with
+automatic
+reconnection on failure."""
+for
+attempt in range(max_retries):
+try:
+</code></pre>
+<pre><code class="language-text">async
+with
+stdio_client(params) as (read , write):
+async
+with
+ClientSession (read , write) as session:
+await
+session.initialize ()
+return
+await
+session.call_tool(tool_name , arguments)
+</code></pre>
+<pre><code class="language-text">except (ConnectionError , TimeoutError , OSError) as e:
+</code></pre>
+<pre><code class="language-text">if attempt == max_retries - 1:
+</code></pre>
+<pre><code class="language-text">raise
+wait_time = backoff_base * (2 ** attempt)
+logger.warning(
+</code></pre>
+<pre><code class="language-text">f"Tool call
+failed (attempt {attempt +1}/{ max_retries }): {e}. "
+f"Retrying in {wait_time :.1f}s..."
+)
+await
+asyncio.sleep(wait_time)
+</code></pre>
+<p>清单 21.4：具有重试logits的弹性 MCP 连接</p>
+<p>MCP 生态系统</p>
+<p>自发布以来，MCP 吸引了一个快速增长的服务器、客户端和工具生态系统。2</p>
+<p>流行的 MCP 服务器</p>
+<h2 id="chapter-22-p406-9">MCP vs. Alternatives</h2>
+<p><span class="page-ref" id="pdf-p406">原 PDF p.406</span></p>
+<p>著名的 MCP 服务器（官方和社区）</p>
+<p>服务器
+类别
+关键能力</p>
+<p>服务器文件系统
+本地输入/输出
+读/写文件、目录列表、搜索
+服务器-github
+版本控制
+问题、PR、提交、代码搜索、文件访问
+服务器 postgres
+数据库
+只读 SQL 查询、模式检查
+服务器sqlite
+数据库
+完整的 SQLite 访问、模式管理
+服务器勇敢搜索
+网络
+通过 Brave API 进行网络搜索、新闻搜索
+服务器松弛
+通讯
+发布消息、阅读频道、搜索
+服务器谷歌地图
+地理空间
+地理编码、方向、地点搜索
+服务器傀儡师
+浏览器
+网页抓取、屏幕截图、表单交互
+服务器内存
+知识
+跨会话的持久知识图
+服务器顺序思维
+结构化多步推理脚手架</p>
+<p>生产应用中的 MCP</p>
+<p>MCP已被几大主流AI开发工具采用：
+克劳德桌面
+Anthropic 的桌面应用程序3 是第一个主要的 MCP 主机。用户在 JSON 中配置服务器
+配置文件；然后，克劳德可以在任何对话中使用来自所有连接服务器的工具。
+光标
+AI驱动的代码编辑器4支持MCP服务器，允许开发人员连接他们的开发-
+直接向编码助手提供更新工具（数据库、问题跟踪器、文档系统）。
+VS Code (GitHub Copilot)
+微软在 VS Code 中的 GitHub Copilot 中添加了 MCP 支持5，使编码助手能够
+访问特定于项目的工具和数据源。
+定制智能体
+开源社区已将 MCP 支持内置到 LangChain6、LlamaIndex7、
+和 AutoGen8，使基于这些框架构建的任何智能体都能够使用 MCP 服务器。</p>
+<p>服务器注册和发现</p>
+<p>MCP 生态系统正在开发服务器发现的基础设施：</p>
+<p>• MCP 注册表9：由Anthropic 维护的经过验证的MCP 服务器的官方精选列表。</p>
+<p>• npm：许多 JavaScript/TypeScript MCP 服务器在以下目录下发布为 npm 包：
+@modelcontext协议范围。</p>
+<p>• PyPI：Python 服务器作为 pip 包发布（例如，pip install mcp-server-sqlite）。</p>
+<p>• GitHub：modelcontextprotocol/servers10 存储库维护一个参考集合
+官方服务器。</p>
+<p>• Python SDK 文档11：完整的 API 参考和构建服务器的示例
+客户。</p>
+<p>MCP 与替代方案</p>
+<h2 id="chapter-22-p407-10">MCP for Agent Training</h2>
+<p><span class="page-ref" id="pdf-p407">原 PDF p.407</span></p>
+<p>MCP 与替代工具集成方法</p>
+<p>特点
+MCP
+OpenAI 函数
+浪链工具
+直接API</p>
+<p>标准化
+✓
+部分
+×
+×
+多供应商
+✓
+×
+部分
+×
+有状态会话
+✓
+×
+×
+各不相同
+资源流式传输
+✓
+×
+×
+各不相同
+服务器推送
+✓
+×
+×
+各不相同
+采样（反向）
+✓
+×
+×
+×
+生态系统规模
+成长
+大号
+大号
+无限
+设置复杂性
+中等
+低
+低
+高
+供应商锁定
+无
+开放人工智能
+浪链
+无</p>
+<p>何时使用 MCP 与自定义集成</p>
+<p>在以下情况下使用 MCP：</p>
+<p>• 您希望您的工具能够与多个 LLM 提供商或智能体框架配合使用</p>
+<p>• 您正在构建其他人将使用的工具（开源或企业发行版）</p>
+<p>• 您需要有状态会话、资源订阅或服务器推送功能</p>
+<p>• 您希望利用现有的 MCP 服务器生态系统</p>
+<p>在以下情况下使用自定义集成：</p>
+<p>• 您有一个紧密耦合的LLM提供商，并且不打算更换</p>
+<p>• 您需要极低的延迟并且无法承担协议开销</p>
+<p>• 您的工具界面非常不寻常，以至于 MCP 原语无法很好地映射</p>
+<p>• 您处于早期原型设计阶段并希望最大限度地减少依赖性</p>
+<p>迁移路径</p>
+<p>从 OpenAI 函数调用迁移到 MCP 非常简单：JSON 架构格式
+工具参数相同。主要变化是：</p>
+<ol>
+<li>
+<p>在 MCP 服务器中包装工具实现（使用 Python 或 TypeScript SDK）</p>
+</li>
+<li>
+<p>在客户端将直接API调用替换为session.call_tool()</p>
+</li>
+</ol>
+<p>3.添加能力协商和生命周期管理</p>
+<p>LangChain 工具可以使用 langchain-mcp-adapters 包封装在 MCP 服务器中 -
+Age，提供LangChain的BaseTool接口和MCP工具之间的自动转换
+定义。</p>
+<p>用于智能体训练的 MCP</p>
+<p>除了部署之外，MCP 对于训练使用工具的智能体也具有重大影响。本节
+探索 MCP 如何作为强化学习和监督微调的基础设施
+LLM。</p>
+<p><span class="page-ref" id="pdf-p408">原 PDF p.408</span></p>
+<p>MCP 服务器作为 RL 环境接口</p>
+<p>在LLM的强化学习中（参见第 3 节），智能体必须与环境交互以
+获得奖励。 MCP 服务器为此提供了一个自然的标准化接口：</p>
+<p>• 行动空间：可用工具集定义了智能体的行动空间。 MCP 的工具/列表
+端点提供了一个结构化的、机器可读的、可以动态更新的操作空间。</p>
+<p>• 观测空间：MCP 资源提供结构化观测。编码环境
+可能会将当前文件内容、测试结果和错误消息公开为资源。</p>
+<p>• 奖励信号：工具调用结果可以编码奖励信号。测试运行工具可能会返回
+{"passed": 8, "failed": 2, "reward": 0.8} 与测试输出一起。</p>
+<p>• 环境重置：reset_environment 工具可以将环境恢复到初始状态
+剧集之间的状态。</p>
+<p>SWE-bench 作为 MCP 环境
+SWE-bench 基准测试测试（来自真实 GitHub 问题的软件工程任务）可以实现：
+被配置为 MCP 服务器：</p>
+<pre><code class="language-text">• Tools: read_file, write_file, run_tests, apply_patch, search_codebase
+</code></pre>
+<p>• 资源：当前文件树、失败测试输出、问题描述</p>
+<p>• 奖励：智能体更改后测试通过的比例</p>
+<p>任何使用 MCP 的 RL 训练框架都可以在 SWE-bench 上进行训练，无需自定义环境
+代码。</p>
+<p>通过 MCP 标准化操作空间</p>
+<p>训练使用工具的智能体的一大挑战是不同的环境有不同的动作
+空间，使得迁移学到的政策变得困难。 MCP提供了一个通用的行动空间
+抽象：</p>
+<pre><code class="language-math">AMCP =
+[
+</code></pre>
+<p>s∈S
+工具
+(21.3)</p>
+<p>其中S是连接的MCP服务器的集合，Tools(s)是服务器的工具集。
+的
+智能体学习以可用操作集为条件的策略 π(a | o, AMCP)，从而实现零样本
+推广到新的工具集。
+工具参数的 JSON 架构格式提供了结构化的操作表示，
+LLM可以可靠地解析和生成。这比自由格式的 API 文档更容易处理
+并能够在训练期间系统地探索动作空间。</p>
+<p>记录SFT工具使用轨迹</p>
+<p>MCP 的结构化协议可以轻松记录高质量的工具使用轨迹，以供监督
+微调：</p>
+<pre><code class="language-text">import
+json
+import
+time
+from
+dataclasses
+import
+dataclass , field , asdict
+from
+typing
+import Any
+from mcp import
+ClientSession
+</code></pre>
+<pre><code class="language-text">@dataclass
+class
+ToolCallRecord:
+timestamp: float
+</code></pre>
+<p><span class="page-ref" id="pdf-p409">原 PDF p.409</span></p>
+<pre><code class="language-text">tool_name: str
+arguments: dict[str , Any]
+result: dict[str , Any]
+duration_ms: float
+is_error: bool
+</code></pre>
+<pre><code class="language-text">@dataclass
+class
+Trajectory:
+task_description : str
+tool_calls: list[ ToolCallRecord ] = field( default_factory =list)
+final_answer: str = ""
+success: bool = False
+total_reward: float = 0.0
+</code></pre>
+<pre><code class="language-text">class
+RecordingMCPClient :
+"""Wraps an MCP
+session to record all tool
+calls for SFT data."""
+</code></pre>
+<pre><code class="language-text">def
+__init__(self , session: ClientSession , trajectory: Trajectory):
+self.session = session
+self.trajectory = trajectory
+</code></pre>
+<pre><code class="language-text">async def
+call_tool(self , name: str , arguments: dict) -&gt; Any:
+start = time.monotonic ()
+result = await
+self.session.call_tool(name , arguments)
+duration = (time.monotonic () - start) * 1000
+</code></pre>
+<pre><code class="language-text">self.trajectory.tool_calls.append( ToolCallRecord (
+</code></pre>
+<pre><code class="language-text">timestamp=time.time (),
+tool_name=name ,
+arguments=arguments ,
+result ={"content": [c.text for c in result.content
+</code></pre>
+<pre><code class="language-text">if hasattr(c, "text")]},
+duration_ms=duration ,
+is_error=result.isError
+))
+return
+result
+</code></pre>
+<pre><code class="language-text">def
+save_trajectory (self , path: str):
+with open(path , "w") as f:
+</code></pre>
+<pre><code class="language-text">json.dump(asdict(self.trajectory), f, indent =2)
+</code></pre>
+<p>清单 21.5：用于 SFT 数据收集的轨迹记录中间件</p>
+<p>记录的轨迹可以转换为遵循指令的训练示例：</p>
+<pre><code class="language-text">def
+trajectory_to_sft_example (traj: Trajectory) -&gt; dict:
+"""Convert a recorded
+MCP
+trajectory to a chat -format SFT
+example."""
+messages = [
+</code></pre>
+<pre><code class="language-text">{"role": "system", "content": (
+</code></pre>
+<pre><code class="language-text">"You are a helpful
+assistant
+with
+access to tools. "
+"Use tools to complete
+tasks
+step by step."
+)},
+{"role": "user", "content": traj. task_description }
+]
+</code></pre>
+<pre><code class="language-text">for i, call in enumerate(traj.tool_calls):
+</code></pre>
+<pre><code class="language-text">call_id = f"call_{i:04d}"
+# Assistant
+decides to call a tool
+messages.append ({
+</code></pre>
+<pre><code class="language-text">"role": "assistant",
+"content": None ,
+"tool_calls": [{
+</code></pre>
+<pre><code class="language-text">"id": call_id ,
+"type": "function",
+"function": {
+</code></pre>
+<pre><code class="language-text">"name": call.tool_name ,
+"arguments": json.dumps(call.arguments)
+</code></pre>
+<h2 id="chapter-22-p410-11">小结</h2>
+<p><span class="page-ref" id="pdf-p410">原 PDF p.410</span></p>
+<pre><code class="language-text">}
+}]
+})
+# Tool
+returns a result
+messages.append ({
+</code></pre>
+<pre><code class="language-text">"role": "tool",
+"content": json.dumps(call.result),
+"tool_call_id": call_id ,
+})
+</code></pre>
+<pre><code class="language-text"># Final
+answer
+messages.append ({
+</code></pre>
+<pre><code class="language-text">"role": "assistant",
+"content": traj.final_answer
+})
+</code></pre>
+<p>返回 {</p>
+<pre><code class="language-text">"messages": messages ,
+"metadata": {
+</code></pre>
+<pre><code class="language-text">"success": traj.success ,
+"reward": traj.total_reward ,
+" num_tool_calls": len(traj.tool_calls)
+}
+}
+</code></pre>
+<p>清单 21.6：将 MCP 轨迹转换为 SFT 训练示例</p>
+<p>MCP 作为工具使用智能体的通用健身房</p>
+<p>MCP 可以作为工具使用 LLM 训练的体育馆（以前的 OpenAI Gym）吗？的
+类比很引人注目：就像 Gym 为机器人和游戏标准化 RL 环境一样
+智能体，MCP 可以标准化语言智能体的工具环境。关键开放性问题：</p>
+<p>• 奖励规范：奖励应如何编码在MCP 响应中？一个标准
+工具结果中的奖励字段将实现即插即用的强化学习训练。</p>
+<p>• 剧集管理：MCP 会话自然映射到剧集，但需要重置语义
+标准化。</p>
+<p>• 观察空间：资源提供观察结果，但结构化的观察模式
+（类似于 Gym 的观察空间）尚未标准化。</p>
+<p>• 基准测试测试套件：与 MCP 兼容的基准测试测试环境的集合（编码、
+网络导航、数据分析）将加速研究。</p>
+<p>总结</p>
+<p>模型上下文协议代表着人工智能智能体交互方式标准化的重要一步
+与世界。通过将 N × M 积分问题简化为 N + M，MCP 降低了障碍
+构建强大的、工具增强的人工智能系统。它的关键设计决策——JSON-RPC 2.0作为
+有线格式、有状态会话、四个核心原语（工具、资源、提示、采样）以及清晰的
+安全模型——反映 LSP 和 USB 生态系统来之不易的经验教训。</p>
+<p>对于构建经过 RL 训练的智能体的从业者来说，MCP 提供了一个特别引人注目的价值主张：
+化：一个标准化的、可扩展的界面，用于定义动作空间、收集训练轨迹、
+并在不同的环境中部署训练有素的智能体。随着生态系统的成熟和基准测试
+套件的出现，MCP可能成为工具使用智能体研究的事实上的基础——体育馆
+LLM时代。</p>
+<p><span class="page-ref" id="pdf-p411">原 PDF p.411</span></p>
+<p>MCP 概览</p>
+<p>财产
+价值</p>
+<p>有线协议
+JSON-RPC 2.0
+交通
+stdio，流式 HTTP
+核心原语
+工具、资源、提示、采样
+会话模型
+有状态（持久连接）
+工具架构格式
+JSON 架构（草案 7）
+安全模型
+主机强制同意+信任层次结构
+主要用例
+标准化LLM↔工具集成
+强化学习相关性
+标准化动作空间+轨迹记录
+官方SDK
+Python、TypeScript (Node.js)
+许可证
+开放标准（麻省理工学院）</p></div>
+          <nav class="chapter-pager"><a class="pager-link" href="chapter-21.html">← 智能体环境与基准</a><a class="pager-link next" href="chapter-23.html">智能体技能 →</a></nav>
+        </article>
+        
+    </section>
+  </main>
+  <button class="back-top" id="back-top" type="button">↑</button>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/toc.js"></script>
+  <script src="../assets/js/progress.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,127 @@
+[
+  {
+    "english": "Agentic AI",
+    "chinese": "智能体式 AI",
+    "note": "具备目标导向、工具使用、环境交互和多步执行能力的 AI 系统。"
+  },
+  {
+    "english": "Agent",
+    "chinese": "智能体",
+    "note": "能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。"
+  },
+  {
+    "english": "Token",
+    "chinese": "标记 / token",
+    "note": "语言模型处理文本的基本离散单位。"
+  },
+  {
+    "english": "Tokenization",
+    "chinese": "分词 / 标记化",
+    "note": "把文本转换成 token 序列的过程。"
+  },
+  {
+    "english": "Byte Pair Encoding",
+    "chinese": "字节对编码（BPE）",
+    "note": "常见子词分词方法，通过合并高频片段构造词表。"
+  },
+  {
+    "english": "Transformer",
+    "chinese": "Transformer",
+    "note": "以自注意力为核心的序列建模架构。"
+  },
+  {
+    "english": "Attention",
+    "chinese": "注意力",
+    "note": "根据查询、键和值计算上下文加权表示的机制。"
+  },
+  {
+    "english": "Self-Attention",
+    "chinese": "自注意力",
+    "note": "序列内部各位置之间相互关注的注意力机制。"
+  },
+  {
+    "english": "Reinforcement Learning",
+    "chinese": "强化学习",
+    "note": "通过奖励信号优化策略的学习范式。"
+  },
+  {
+    "english": "Supervised Fine-Tuning",
+    "chinese": "监督微调（SFT）",
+    "note": "用示范数据让模型学习期望响应格式和行为。"
+  },
+  {
+    "english": "Retrieval-Augmented Generation",
+    "chinese": "检索增强生成（RAG）",
+    "note": "先检索外部知识，再让模型基于上下文生成答案。"
+  },
+  {
+    "english": "Reward Model",
+    "chinese": "奖励模型",
+    "note": "把候选输出映射为偏好或质量分数的模型。"
+  },
+  {
+    "english": "Policy",
+    "chinese": "策略",
+    "note": "在状态下选择动作或生成 token 的概率分布。"
+  },
+  {
+    "english": "Trajectory",
+    "chinese": "轨迹",
+    "note": "智能体与环境交互形成的状态、动作、观察和奖励序列。"
+  },
+  {
+    "english": "Buffer",
+    "chinese": "缓冲区",
+    "note": "保存经验、轨迹或中间数据以供训练和分析的结构。"
+  },
+  {
+    "english": "Inference",
+    "chinese": "推理",
+    "note": "模型在部署或测试时生成输出的过程。"
+  },
+  {
+    "english": "Serving",
+    "chinese": "服务化",
+    "note": "把模型以稳定、可扩展、可观测的方式对外提供服务。"
+  },
+  {
+    "english": "PPO",
+    "chinese": "近端策略优化（PPO）",
+    "note": "通过裁剪目标限制策略更新幅度的强化学习算法。"
+  },
+  {
+    "english": "DPO",
+    "chinese": "直接偏好优化（DPO）",
+    "note": "从偏好对直接优化策略，不显式训练奖励模型的方法。"
+  },
+  {
+    "english": "GRPO",
+    "chinese": "组相对策略优化（GRPO）",
+    "note": "基于同一提示多条响应的组内相对优势进行优化的方法。"
+  },
+  {
+    "english": "RoPE",
+    "chinese": "旋转位置嵌入（RoPE）",
+    "note": "通过旋转变换注入相对位置信息的位置编码方法。"
+  },
+  {
+    "english": "vLLM",
+    "chinese": "vLLM",
+    "note": "使用 PagedAttention 等技术提升 LLM 服务效率的系统。"
+  },
+  {
+    "english": "FlashAttention",
+    "chinese": "FlashAttention",
+    "note": "面向 GPU 内存层次优化的精确注意力计算方法。"
+  },
+  {
+    "english": "MCP",
+    "chinese": "模型上下文协议（MCP）",
+    "note": "连接模型应用与工具/数据源的开放协议。"
+  },
+  {
+    "english": "A2A",
+    "chinese": "智能体间通信（A2A）",
+    "note": "面向智能体之间任务委托和协作的通信协议。"
+  }
+]

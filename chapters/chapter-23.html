@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>智能体技能 | 智能体式 AI 漫游指南</title>
+  <meta name="description" content="技能库、可复用能力、学习与组合。" />
+  <meta property="og:title" content="智能体技能 | 智能体式 AI 漫游指南" />
+  <meta property="og:description" content="技能库、可复用能力、学习与组合。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
+  <link rel="canonical" href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/article.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+  
+</head>
+<body class="article-page">
+  <div class="reading-progress" id="reading-progress"></div>
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="智能体式 AI 漫游指南">
+      <span class="brand-mark">AI</span>
+      <span><strong>智能体式 AI 漫游指南</strong><small>从基础到系统的中文技术文档站</small></span>
+    </a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a>
+<a class="active" href="../chapters/index.html">章节</a>
+<a class="" href="../glossary.html">术语表</a>
+<a class="" href="../references.html">参考文献</a>
+<a class="" href="../search.html">搜索</a>
+<a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
+  </header>
+  <main class="layout">
+    
+        <aside class="left-nav" id="left-nav">
+          <div class="nav-section-title">章节</div>
+          <a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a>
+<a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a>
+<a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a>
+<a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a>
+<a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a>
+<a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a>
+<a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a>
+<a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a>
+<a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a>
+<a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a>
+<a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a>
+<a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a>
+<a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a>
+<a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a>
+<a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a>
+<a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a>
+<a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a>
+<a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a>
+<a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a>
+<a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a>
+<a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a>
+<a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a>
+<a class="chapter-link active" href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a>
+<a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a>
+<a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a>
+<a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a>
+<a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a>
+<a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a>
+<a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a>
+<a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a>
+        </aside>
+        <aside class="right-outline" id="right-outline">
+          <div class="nav-section-title">本页大纲</div>
+          <a class="outline-link level-h2" href="#chapter-23-p412-1">What Is a Skill?</a>
+<a class="outline-link level-h2" href="#chapter-23-p413-2">Skill Architecture Patterns</a>
+<a class="outline-link level-h2" href="#chapter-23-p413-3">Case Study: Anthropic’s Agent Design</a>
+<a class="outline-link level-h2" href="#chapter-23-p415-4">Skill Lifecycle</a>
+<a class="outline-link level-h2" href="#chapter-23-p415-5">Skill Registries and Marketplaces</a>
+<a class="outline-link level-h2" href="#chapter-23-p416-6">Skills vs. Fine-Tuning</a>
+        </aside>
+        
+    <section class="content-shell">
+      
+        <article class="article-card">
+          <header class="article-header">
+            <p class="part-label">第五部分：智能体式 AI</p>
+            <h1>智能体技能</h1>
+            <p>技能库、可复用能力、学习与组合。</p>
+            <div class="article-meta"><span>原 PDF p.412-416</span><span>6 个页内条目</span></div>
+          </header>
+          <div class="article-body"><h2 id="chapter-23-p412-1">What Is a Skill?</h2>
+<p><span class="page-ref" id="pdf-p412">原 PDF p.412</span></p>
+<p>智能体技巧</p>
+<p>随着智能体从单一的提示和工具系统发展到模块化架构，一个关键的设计
+问题出现了：智能体的能力应该如何组织、发现和组合？的
+答案越来越集中在技能的概念上——离散的、可重复使用的行为单元
+无需重新训练即可加载、组合和交换。
+这个想法被 Voyager [228] 所推广，它证明了 Minecraft 中的 LLM 智能体
+可以积累一个不断增长的可执行代码技能库，每个技能都经过验证和存储以供以后重用。
+同样的原则也适用于生产智能体：技能将领域专业知识封装在可组合的、
+可版本控制的格式超出了任何单个提示可以容纳的范围。技能经常包裹MCP
+用于工具访问的服务器（第 21 章），将技能抽象连接到标准化工具层。</p>
+<p>什么是技能？</p>
+<p>技能是一个独立的能力模块，为客服人员提供特定领域或领域的专业知识
+任务。与原始工具（公开单个功能）不同，技能包括：</p>
+<p>• 系统提示增强：特定领域的指令、约束和角色
+元素注入到智能体的上下文中。</p>
+<p>• 工具绑定：技能所需的一个或多个工具（API、MCP 服务器、本地命令）。</p>
+<p>• 知识：智能体需要的参考材料、示例或少量演示
+正确执行技能。</p>
+<p>• 工作流logits：指导工作的多步骤过程、决策树或条件流
+智能体完成复杂的任务。</p>
+<p>• 护栏：技能特定的安全约束、输出格式要求和验证规则。</p>
+<p>技能 vs. 工具 vs. 智能体</p>
+<p>概念
+适用范围
+示例</p>
+<p>工具
+单一函数调用
+网络搜索（查询）
+技能
+相干能力（提示
++ 工具 + 知识）
+“研究分析师”技能</p>
+<p>智能体
+具有多个自治实体
+技巧
+编码助理</p>
+<p>工具是锤子。一项技能是知道如何建造房屋。智能体是木匠，他
+选择要应用的技能。</p>
+<h2 id="chapter-23-p413-2">Skill Architecture Patterns</h2>
+<h2 id="chapter-23-p413-3">Case Study: Anthropic’s Agent Design</h2>
+<p><span class="page-ref" id="pdf-p413">原 PDF p.413</span></p>
+<p>技能架构模式</p>
+<p>静态技能加载</p>
+<p>最简单的模式：根据配置在智能体初始化时加载技能。智能体
+始终可以使用其所有技能。</p>
+<pre><code class="language-text"># Pseudocode
+-- framework -agnostic
+pattern
+agent = Agent(
+</code></pre>
+<pre><code class="language-text">model="claude -sonnet -4 -20250514",
+skills =["code -review", "documentation ", "testing"],
+# Each
+skill
+adds prompts , tools , and
+knowledge to the agent
+)
+</code></pre>
+<p>优点：简单、可预测、低延迟。</p>
+<p>缺点：未使用技能时上下文窗口会浪费；无法扩展到数百种技能。</p>
+<p>动态技能发现</p>
+<p>智能体根据当前任务选择激活哪些技能。技能路由器（通常是轻量级的
+分类器或基于嵌入的匹配器）确定相关性：</p>
+<pre><code class="language-text"># Pseudocode
+-- framework -agnostic
+pattern
+relevant_skills = skill_router.match(
+</code></pre>
+<pre><code class="language-text">user_request=message ,
+available_skills =skill_registry ,
+max_skills =3
+)
+agent.activate( relevant_skills )
+</code></pre>
+<p>优点：可扩展到大型技能库；上下文有效。</p>
+<p>缺点：路由错误可能会错过相关技能；增加延迟。</p>
+<p>层次技能构成</p>
+<p>技能可以依赖于其他技能，形成 DAG。高级技能（例如“部署应用程序”）可能
+调用子技能（“运行测试”、“构建 Docker 映像”、“更新 DNS”）：</p>
+<p>• 技能明确声明依赖关系</p>
+<p>• 编排器在执行前解析依赖关系图</p>
+<p>• 子技能可以在多个父技能之间共享</p>
+<p>案例研究：Anthropic 的智能体设计</p>
+<p>Anthropic 的智能体架构方法 [342] 提供了最清晰的技能阐述之一——
+生产中基于智能体设计。他们的哲学强调简单而不是复杂
+整体框架上的可组合构建块。 （这些模式也涵盖
+从第 19 章的编排角度来看。）</p>
+<p>核心原则</p>
+<ol>
+<li>
+<p>从最简单的解决方案开始。在找到更简单的方法之前不要寻求智能体模式
+（单一LLM调用，检索+生成）已被尝试并发现不足。</p>
+</li>
+<li>
+<p>工作流程与智能体。人择区分：</p>
+</li>
+</ol>
+<p><span class="page-ref" id="pdf-p414">原 PDF p.414</span></p>
+<p>• 工作流程：LLM 调用的预定义编排 — 确定性控制流程
+LLM 在特定节点上进行步骤。更可预测，更容易调试。</p>
+<p>• 智能体：LLM 动态决定下一步做什么——工具选择、迭代计数、
+和停止标准都是模型驱动的。更灵活，更难控制。</p>
+<ol start="3">
+<li>扩充LLM为原子单元。原语从来都不是一个裸露的模型——它始终是一个
+模型与其检索源、可调用工具和持久内存捆绑在一起。这种复合
+实际上，单位是一个配备技能的模型。</li>
+</ol>
+<p>构建块模式</p>
+<p>Anthropic 确定了五种用作技能模板的可组合工作流程模式：</p>
+<p>表 22.1：Anthropic 的可组合智能体模式。</p>
+<p>图案
+机制
+何时使用</p>
+<p>具有清晰分解的多步转换
+位置</p>
+<p>提示链接
+连续的 LLM 调用在哪里
+每个步骤的输出都会提供
+接下来。台阶之间的门val-
+确定中间结果。</p>
+<p>不同的任务类别需要不同的经验
+蒂塞</p>
+<p>路由
+分类器或LLM指导-
+交给专门的处理程序
+（技能）基于任务类型。</p>
+<p>独立的子任务；或通过共识的信心
+苏斯</p>
+<p>并行化
+多个LLM调用同时运行
+taneously — 要么切片
+（分割任务）或投票（相同
+任务，聚合）。</p>
+<p>子任务不可预测的复杂任务
+提前</p>
+<p>协调者-工作者
+中央LLM打破了
+任务分解为子任务、代表
+到工人LLM，然后综合
+尺寸结果。</p>
+<p>具有明确质量标准的任务（代码、写作）</p>
+<p>评估器-优化器
+一个LLM生成，另一个
+评估；迭代直至质量
+达到阈值。</p>
+<p>强化LLM</p>
+<p>在 Anthropic 的框架中，基本单位不是裸模型，而是增强的 LLM：</p>
+<p>增强LLM = 模型 + 检索 + 工具 + 记忆</p>
+<p>这直接映射到技能概念：每个技能配置哪些检索源、工具和
+内存存储模型可以访问的特定任务。技能边界定义了模型的内容
+可以在特定调用中查看并执行操作。</p>
+<p>实际意义</p>
+<p>Anthropic 的关键见解</p>
+<p>最有效的药剂并不是最复杂的。它们是简单的循环，具有良好的
+工具：</p>
+<pre><code class="language-text">while not done:
+</code></pre>
+<pre><code class="language-text">action = llm.decide(context , tools)
+result = execute(action)
+context.append(result)
+done = llm.should_stop(context)
+</code></pre>
+<h2 id="chapter-23-p415-4">Skill Lifecycle</h2>
+<h2 id="chapter-23-p415-5">Skill Registries and Marketplaces</h2>
+<p><span class="page-ref" id="pdf-p415">原 PDF p.415</span></p>
+<p>智能来自（1）模型的能力，（2）工具描述的质量，以及
+(3) 任务框架的清晰度——不是来自复杂的编排logits。技能提供
+(2) 和 (3) 的结构。</p>
+<p>Anthropic 方法的设计建议：</p>
+<p>• 保持智能体循环简单：避免过度设计控制流。让模型决定吧。</p>
+<p>• 投资工具质量：详细、明确的工具描述比工具更有价值
+复杂的路由logits。</p>
+<p>• 使用结构化输出：强制模型以可解析格式（JSON、
+函数调用）——减少技能执行错误。</p>
+<p>• 内置恢复：技能应该优雅地处理错误——使用不同的参数重试，
+要求澄清，或升级给人工。</p>
+<p>• 限制每项技能的范围：试图做所有事情的技能将一事无成。狭窄，
+明确的技能比广泛的技能更有效。</p>
+<p>技能生命周期</p>
+<ol>
+<li>发现：系统识别哪些技能可用（注册、市场、本地
+定义）。</li>
+</ol>
+<p>2.选择：根据用户需求，匹配并加载相关技能。</p>
+<ol start="3">
+<li>激活：技能提示、工具和知识被注入到智能体的上下文中。</li>
+</ol>
+<p>4.执行：智能体使用技能的能力来完成任务。</p>
+<ol start="5">
+<li>停用：技能上下文被删除，以释放上下文窗口空间以用于后续任务。</li>
+</ol>
+<p>6.学习：执行结果可能会更新技能的少数样本或微调路由。</p>
+<p>技能注册和市场</p>
+<p>生产技能系统需要基础设施：</p>
+<p>• 技能清单：结构化描述（名称、能力、所需工具、输入/输出
+schema）实现自动发现和路由。</p>
+<p>• 版本控制：技能不断发展；智能体需要固定特定版本以实现可重复性。</p>
+<p>• 依赖性解析：技能可能需要特定的MCP 服务器、API 密钥或其他技能。</p>
+<p>• 权限模型：并非所有智能体都应该有权访问所有技能（安全性、成本、能力）
+边界）。</p>
+<p>• 市场：组织可以发布、共享和安装技能——类似于软件包
+代码管理器。</p>
+<p>技能清单示例</p>
+<p>技能清单声明了协调器加载和调用技能所需的一切。无工业-
+标准模式尚存在；下面是一个说明性格式，它捕获了真实世界中的常见字段
+实现（Anthropic MCP、OpenAI 功能规范、LangChain 工具定义）：</p>
+<pre><code class="language-text">// Illustrative
+schema
+-- not a specific
+SDK format
+</code></pre>
+<h2 id="chapter-23-p416-6">Skills vs. Fine-Tuning</h2>
+<p><span class="page-ref" id="pdf-p416">原 PDF p.416</span></p>
+<p>{</p>
+<pre><code class="language-text">"name": "code -review",
+"description": "Review
+code
+changes
+for bugs , style , and
+security
+issues",
+"version": "2.1.0",
+"requires": {
+</code></pre>
+<pre><code class="language-text">"tools": ["file_read", "grep", "git_diff"],
+"mcp_servers": ["github"],
+"models": ["claude -sonnet -4 -20250514"]
+},
+"input_schema": {
+</code></pre>
+<pre><code class="language-text">"type": "object",
+"properties": {
+</code></pre>
+<pre><code class="language-text">"repo": {"type": "string"},
+"pr_number": {"type": "integer"}
+}
+},
+"prompts": ["skills/code -review/system.md"],
+"knowledge": ["skills/code -review/style -guide.md"]
+}
+</code></pre>
+<p>技能与微调</p>
+<p>一个自然的问题：为什么使用运行时技能注入而不是微调模型？</p>
+<p>表 22.2：技能（上下文中）与添加功能的微调。</p>
+<p>尺寸
+技能（上下文）
+微调</p>
+<p>部署速度
+即时
+小时-天
+灵活性
+在运行时交换/组合
+训练时固定
+上下文成本
+使用上下文窗口
+零运行成本
+深层行为改变
+受上下文长度限制
+深度参数变化
+多租户
+每个用户的技能不同
+全部同型号
+维护保养
+更新文本文件
+使用新数据重新训练</p>
+<p>在实践中，这两种方法是互补的：微调提供基本功能（指令）
+化跟随、工具使用格式、推理），而技能则提供位于顶层的特定于任务的专业知识
+在运行时。</p></div>
+          <nav class="chapter-pager"><a class="pager-link" href="chapter-22.html">← 模型上下文协议（MCP）</a><a class="pager-link next" href="chapter-24.html">智能体间通信（A2A） →</a></nav>
+        </article>
+        
+    </section>
+  </main>
+  <button class="back-top" id="back-top" type="button">↑</button>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/toc.js"></script>
+  <script src="../assets/js/progress.js"></script>
+  
+</body>
+</html>
