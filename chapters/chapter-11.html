@@ -4,263 +4,103 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SFT 最佳实践与技术 | 智能体式 AI 漫游指南</title>
-  <meta name="description" content="监督微调的数据、模板、训练配方和调试要点。" />
+  <meta name="description" content="本章整理该主题的关键概念、方法、系统实践和工程注意事项。" />
   <meta property="og:title" content="SFT 最佳实践与技术 | 智能体式 AI 漫游指南" />
-  <meta property="og:description" content="监督微调的数据、模板、训练配方和调试要点。" />
+  <meta property="og:description" content="本章整理该主题的关键概念、方法、系统实践和工程注意事项。" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="canonical" href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/article.css" />
   <link rel="stylesheet" href="../assets/css/responsive.css" />
-  
 </head>
 <body class="article-page">
   <div class="reading-progress" id="reading-progress"></div>
   <header class="topbar">
-    <a class="brand" href="../index.html" aria-label="智能体式 AI 漫游指南">
-      <span class="brand-mark">AI</span>
-      <span><strong>智能体式 AI 漫游指南</strong><small>从基础到系统的中文技术文档站</small></span>
-    </a>
-    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a>
-<a class="active" href="../chapters/index.html">章节</a>
-<a class="" href="../glossary.html">术语表</a>
-<a class="" href="../references.html">参考文献</a>
-<a class="" href="../search.html">搜索</a>
-<a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
+    <a class="brand" href="../index.html"><span class="brand-mark">AST</span><span><strong>智能体式 AI 漫游指南</strong><small>结构化知识文档系统</small></span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="打开导航" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a><a class="active" href="../chapters/index.html">章节</a><a class="" href="../glossary.html">术语表</a><a class="" href="../references.html">参考文献</a><a class="" href="../search.html">搜索</a><a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
   </header>
-  <main class="layout">
-    
-        <aside class="left-nav" id="left-nav">
-          <div class="nav-section-title">章节</div>
-          <a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a>
-<a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a>
-<a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a>
-<a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a>
-<a class="chapter-link active" href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a>
-<a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a>
-<a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a>
-<a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a>
-<a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a>
-<a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a>
-<a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a>
-<a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a>
-<a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a>
-<a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a>
-<a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a>
-<a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a>
-<a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a>
-<a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a>
-        </aside>
-        <aside class="right-outline" id="right-outline">
-          <div class="nav-section-title">本页大纲</div>
-          <a class="outline-link level-h2" href="#chapter-11-p190-1">Sequence Packing for Efficiency</a>
-<a class="outline-link level-h2" href="#chapter-11-p191-2">Chat Templates and Formatting</a>
-<a class="outline-link level-h2" href="#chapter-11-p192-3">Completion-Only Masking</a>
-<a class="outline-link level-h2" href="#chapter-11-p193-4">Data Mixing Strategies for Multi-Task SFT</a>
-<a class="outline-link level-h2" href="#chapter-11-p194-5">When SFT Hurts - Catastrophic Forgetting and Alignment Tax</a>
-<a class="outline-link level-h2" href="#chapter-11-p196-6">Connection to RL - SFT Quality Determines RL Ceiling</a>
-        </aside>
-        
-    <section class="content-shell">
-      
-        <article class="article-card">
+  <main class="layout"><aside class="left-nav" id="left-nav"><div class="nav-section-title">语义目录</div><div class="nav-cluster"><strong>导读</strong><a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a><a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a></div><div class="nav-cluster"><strong>LLM 基础与系统</strong><a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a><a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a><a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a></div><div class="nav-cluster"><strong>训练、强化学习与对齐</strong><a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a><a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a><a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a><a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a><a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a><a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a><a class="chapter-link active" href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a><a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a></div><div class="nav-cluster"><strong>Agentic AI 系统</strong><a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a><a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a><a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a><a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a><a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a><a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a><a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a><a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a><a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a><a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a><a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a><a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a><a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a></div><div class="nav-cluster"><strong>推理与评估</strong><a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a></div><div class="nav-cluster"><strong>参考与总结</strong><a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a><a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a><a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a></div></aside><section class="content-shell">
+        <article class="article-card" data-ast-source="../assets/data/clean_chapter_tree.json">
           <header class="article-header">
-            <p class="part-label">第二部分：LLM 的强化学习方法</p>
+            <p class="part-label">训练、强化学习与对齐</p>
             <h1>SFT 最佳实践与技术</h1>
-            <p>监督微调的数据、模板、训练配方和调试要点。</p>
-            <div class="article-meta"><span>原 PDF p.190-198</span><span>6 个页内条目</span></div>
+            <p>本章整理该主题的关键概念、方法、系统实践和工程注意事项。</p>
           </header>
-          <div class="article-body"><h2 id="chapter-11-p190-1">Sequence Packing for Efficiency</h2>
-<p><span class="page-ref" id="pdf-p190">原 PDF p.190</span></p>
-<p>SFT 最佳实践和技术</p>
-<p>有监督微调（SFT）是 RLHF 流水线的基础。 SFT 的质量
-模型决定了 RL 可以实现的上限：RL 可以细化和改进行为，但是
-它无法可靠地引入 SFT 模型中完全不存在的行为。本节
-涵盖有效 SFT 的关键技术。</p>
-<p>顺序打包以提高效率</p>
-<p>填充问题</p>
-<p>标准 SFT 批次将所有序列填充到批次中最长序列的长度。对于
-具有高长度方差的数据集（例如，短指令和长文档的混合），这
-50-80% 的计算浪费在填充token上。顺序打包消除了这种浪费。</p>
-<p>序列打包将多个短示例连接成长度为 max_seq_length 的单个序列，
-由 EOS token分隔。注意力掩码确保来自不同示例的标记不会
-互相照顾：</p>
-<ol>
-<li>
-<p>按长度对示例进行排序（可选，提高打包效率）。</p>
-</li>
-<li>
-<p>贪婪地将示例打包到大小为 max_seq_length 的 bin 中。</p>
-</li>
-<li>
-<p>使用块对角注意力掩模来防止交叉示例注意力。</p>
-</li>
-<li>
-<p>仅计算非填充token的损失。</p>
-</li>
-</ol>
-<p>包装效率</p>
-<p>• 典型填充效率：85–95%（带填料时为20–50%）。</p>
-<p>• 加速比：对于长度差异较大的数据集，加速2-4 倍。</p>
-<p>• 内存：类似于填充（每批的token总数相同）。</p>
-<p>• 注意力事项：需要仔细注意力遮盖以避免交叉污染。</p>
-<p>TRL 中的序列打包</p>
-<pre><code class="language-text">from trl import
-SFTConfig , SFTTrainer
-</code></pre>
-<pre><code class="language-text">config = SFTConfig(
-</code></pre>
-<pre><code class="language-text">max_seq_length =4096 ,
+          <aside class="component key-concepts-panel"><span class="component-label">Key Concepts</span><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>监督微调（SFT）</strong><span>Supervised Fine-Tuning</span><p>用示范数据让模型学习期望响应格式和行为。</p></div><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></aside>
+          <div class="article-body"><section class="ast-section" id="chapter-11-s01"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>提升效率的序列打包</h2><p>本节聚焦“提升效率的序列打包”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>监督微调（SFT）</strong><span>Supervised Fine-Tuning</span><p>用示范数据让模型学习期望响应格式和行为。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">SFT 最佳实践和技术</p><p class="content-block paragraph">有监督微调（SFT）是 RLHF 流水线的基础。 SFT 的质量 模型决定了 RL 可以实现的上限：RL 可以细化和改进行为，但是 它无法可靠地引入 SFT 模型中完全不存在的行为。本节 涵盖有效 SFT 的关键技术。</p><p class="content-block paragraph">顺序打包以提高效率</p><p class="content-block paragraph">填充问题</p><p class="content-block paragraph">标准 SFT 批次将所有序列填充到批次中最长序列的长度。对于 具有高长度方差的数据集（例如，短指令和长文档的混合），这 50-80% 的计算浪费在填充token上。顺序打包消除了这种浪费。</p><p class="content-block paragraph">序列打包将多个短示例连接成长度为 max_seq_length 的单个序列， 由 EOS token分隔。注意力掩码确保来自不同示例的标记不会 互相照顾：</p><p class="content-block paragraph">1. 按长度对示例进行排序（可选，提高打包效率）。</p><p class="content-block paragraph">2. 贪婪地将示例打包到大小为 max_seq_length 的 bin 中。</p><p class="content-block paragraph">3. 使用块对角注意力掩模来防止交叉示例注意力。</p><p class="content-block paragraph">4. 仅计算非填充token的损失。</p><p class="content-block paragraph">包装效率</p><p class="content-block paragraph">• 典型填充效率：85–95%（带填料时为20–50%）。</p><p class="content-block paragraph">• 加速比：对于长度差异较大的数据集，加速2-4 倍。</p><p class="content-block paragraph">• 内存：类似于填充（每批的token总数相同）。</p><p class="content-block paragraph">• 注意力事项：需要仔细注意力遮盖以避免交叉污染。</p><p class="content-block paragraph">TRL 中的序列打包</p><div class="component code-component"><div class="block-label">text</div><pre><code>from trl import
+SFTConfig , SFTTrainer</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>config = SFTConfig(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>max_seq_length =4096 ,
 packing=True ,
 # enable
 sequence
 packing
-output_dir="sft_model",
+output_dir=&quot;sft_model&quot;,
 per_device_train_batch_size =4,
 gradient_accumulation_steps =4,
 learning_rate =2e-5,
-num_train_epochs =3,
-</code></pre>
-<h2 id="chapter-11-p191-2">Chat Templates and Formatting</h2>
-<p><span class="page-ref" id="pdf-p191">原 PDF p.191</span></p>
-<p>)</p>
-<pre><code class="language-text">trainer = SFTTrainer(
-</code></pre>
-<pre><code class="language-text">model=model ,
+num_train_epochs =3,</code></pre></div></div></section><section class="ast-section" id="chapter-11-s02"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>聊天模板与格式化</h2><p>本节聚焦“聊天模板与格式化”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><div class="component code-component"><div class="block-label">text</div><pre><code>trainer = SFTTrainer(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=model ,
 args=config ,
 train_dataset=dataset ,
-# dataset_text_field =" text",
+# dataset_text_field =&quot; text&quot;,
 # or use
 formatting_func
 )
-trainer.train ()
-</code></pre>
-<p>聊天模板和格式</p>
-<p>为什么聊天模板很重要</p>
-<p>语言模型是根据原始文本进行训练的，但指令跟踪模型需要区分
-系统提示、用户消息和助理响应之间。聊天模板对此进行编码
-结构到token序列中。在推理时使用错误的模板（或没有模板）
-导致性能显着下降。</p>
-<p>ChatML 格式</p>
-<p>ChatML 是使用最广泛的聊天模板：</p>
-<pre><code class="language-text"># ChatML
+trainer.train ()</code></pre></div><p class="content-block paragraph">聊天模板和格式</p><p class="content-block paragraph">为什么聊天模板很重要</p><p class="content-block paragraph">语言模型是根据原始文本进行训练的，但指令跟踪模型需要区分 系统提示、用户消息和助理响应之间。聊天模板对此进行编码 结构到token序列中。在推理时使用错误的模板（或没有模板） 导致性能显着下降。</p><p class="content-block paragraph">ChatML 格式</p><p class="content-block paragraph">ChatML 是使用最广泛的聊天模板：</p><div class="component code-component"><div class="block-label">text</div><pre><code># ChatML
 format
-template = """ &lt;|im_start|&gt;system
+template = &quot;&quot;&quot; &lt;|im_start|&gt;system
 { system_message }&lt;| im_end|&gt;
 &lt;|im_start|&gt;user
 {user_message }&lt;| im_end|&gt;
 &lt;|im_start|&gt;assistant
-{ assistant_message }&lt;| im_end|&gt;"""
-</code></pre>
-<p>骆驼格式</p>
-<p>Llama 3 使用带有特殊标记的不同模板：</p>
-<pre><code class="language-text"># Llama 3 format
-template = """ &lt;|begin_of_text |&gt;&lt;| start_header_id |&gt;system &lt;| end_header_id |&gt;
+{ assistant_message }&lt;| im_end|&gt;&quot;&quot;&quot;</code></pre></div><p class="content-block paragraph">骆驼格式</p><p class="content-block paragraph">Llama 3 使用带有特殊标记的不同模板：</p><div class="component code-component"><div class="block-label">text</div><pre><code># Llama 3 format
+template = &quot;&quot;&quot; &lt;|begin_of_text |&gt;&lt;| start_header_id |&gt;system &lt;| end_header_id |&gt;
 { system_message }&lt;| eot_id|&gt;&lt;| start_header_id |&gt;user &lt;| end_header_id |&gt;
 {user_message }&lt;| eot_id|&gt;&lt;| start_header_id |&gt;assistant &lt;| end_header_id |&gt;
-{ assistant_message }&lt;| eot_id|&gt;"""
-</code></pre>
-<p>在 TRL 中应用聊天模板</p>
-<pre><code class="language-text">from
+{ assistant_message }&lt;| eot_id|&gt;&quot;&quot;&quot;</code></pre></div><p class="content-block paragraph">在 TRL 中应用聊天模板</p><div class="component code-component"><div class="block-label">text</div><pre><code>from
 transformers
 import
 AutoTokenizer
 from trl import
-SFTConfig , SFTTrainer
-</code></pre>
-<pre><code class="language-text">tokenizer = AutoTokenizer. from_pretrained ("meta -llama/Llama -3.1 -8B-Instruct")
-</code></pre>
-<pre><code class="language-text">def
+SFTConfig , SFTTrainer</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>tokenizer = AutoTokenizer. from_pretrained (&quot;meta -llama/Llama -3.1 -8B-Instruct&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 formatting_func (example):
-"""Apply
+&quot;&quot;&quot;Apply
 chat
 template to a dataset
-example."""
-messages = [
-</code></pre>
-<pre><code class="language-text">{"role": "system", "content": "You are a helpful
-assistant."},
-{"role": "user", "content": example["instruction"]},
-{"role": "assistant", "content": example["response"]},
+example.&quot;&quot;&quot;
+messages = [</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>{&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;You are a helpful
+assistant.&quot;},
+{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: example[&quot;instruction&quot;]},
+{&quot;role&quot;: &quot;assistant&quot;, &quot;content&quot;: example[&quot;response&quot;]},
 ]
 return
 tokenizer. apply_chat_template (
 messages ,
 tokenize=False ,
 add_generation_prompt =False ,
-)
-</code></pre>
-<h2 id="chapter-11-p192-3">Completion-Only Masking</h2>
-<p><span class="page-ref" id="pdf-p192">原 PDF p.192</span></p>
-<pre><code class="language-text">config = SFTConfig(
-</code></pre>
-<pre><code class="language-text">max_seq_length =2048 ,
-output_dir="sft_model",
-)
-</code></pre>
-<pre><code class="language-text">trainer = SFTTrainer(
-</code></pre>
-<pre><code class="language-text">model=model ,
+)</code></pre></div></div></section><section class="ast-section" id="chapter-11-s03"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>仅补全部分掩码</h2><p>本节聚焦“仅补全部分掩码”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div></div></div><div class="section-blocks"><div class="component code-component"><div class="block-label">text</div><pre><code>config = SFTConfig(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>max_seq_length =2048 ,
+output_dir=&quot;sft_model&quot;,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>trainer = SFTTrainer(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=model ,
 tokenizer=tokenizer ,
 args=config ,
 train_dataset=dataset ,
 formatting_func =formatting_func ,
-)
-</code></pre>
-<p>仅完成掩码</p>
-<p>为什么要屏蔽提示？</p>
-<p>在指令微调中，模型应该学习生成助手的响应，而不是
-预测用户的问题或系统提示。提示token上的计算损失浪费
-梯度信号，可能导致模型“记住”提示而不是学习响应
-给他们。仅完成掩码将所有非辅助标记的损失设置为零。</p>
-<p>TRL 中的仅完成掩码</p>
-<pre><code class="language-text">from trl import
+)</code></pre></div><p class="content-block paragraph">仅完成掩码</p><p class="content-block paragraph">为什么要屏蔽提示？</p><p class="content-block paragraph">在指令微调中，模型应该学习生成助手的响应，而不是 预测用户的问题或系统提示。提示token上的计算损失浪费 梯度信号，可能导致模型“记住”提示而不是学习响应 给他们。仅完成掩码将所有非辅助标记的损失设置为零。</p><p class="content-block paragraph">TRL 中的仅完成掩码</p><div class="component code-component"><div class="block-label">text</div><pre><code>from trl import
 SFTConfig , SFTTrainer , DataCollatorForCompletionOnlyLM
 from
 transformers
 import
-AutoTokenizer
-</code></pre>
-<pre><code class="language-text">tokenizer = AutoTokenizer. from_pretrained ("meta -llama/Llama -3.1 -8B-Instruct")
-</code></pre>
-<pre><code class="language-text"># Define the
+AutoTokenizer</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>tokenizer = AutoTokenizer. from_pretrained (&quot;meta -llama/Llama -3.1 -8B-Instruct&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Define the
 response
 template (tokens
 after
 which
 loss is computed)
-response_template = " &lt;| start_header_id |&gt;assistant &lt;| end_header_id |&gt;"
-collator = DataCollatorForCompletionOnlyLM (
-</code></pre>
-<pre><code class="language-text">response_template =response_template ,
+response_template = &quot; &lt;| start_header_id |&gt;assistant &lt;| end_header_id |&gt;&quot;
+collator = DataCollatorForCompletionOnlyLM (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>response_template =response_template ,
 tokenizer=tokenizer ,
-)
-</code></pre>
-<pre><code class="language-text">config = SFTConfig(
-</code></pre>
-<pre><code class="language-text">max_seq_length =2048 ,
-output_dir="sft_model",
-)
-</code></pre>
-<pre><code class="language-text">trainer = SFTTrainer(
-</code></pre>
-<pre><code class="language-text">model=model ,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>config = SFTConfig(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>max_seq_length =2048 ,
+output_dir=&quot;sft_model&quot;,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>trainer = SFTTrainer(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=model ,
 tokenizer=tokenizer ,
 args=config ,
 train_dataset=dataset ,
@@ -268,292 +108,39 @@ data_collator=collator ,
 # completion -only
 masking
 formatting_func =formatting_func ,
-)
-</code></pre>
-<p>完成掩盖陷阱</p>
-<p>• 响应模板必须与分词表单完全匹配。token中的相差一错误
-否则可能会导致面膜敷贴不正确。</p>
-<p>• 对于非常短的响应，屏蔽提示可能会留下太少的标记而无法有意义
-梯度信号。考虑最小响应长度阈值。</p>
-<p>• 多回合对话需要屏蔽所有非助理回合，而不仅仅是第一个回合。</p>
-<h2 id="chapter-11-p193-4">Data Mixing Strategies for Multi-Task SFT</h2>
-<p><span class="page-ref" id="pdf-p193">原 PDF p.193</span></p>
-<p>多任务 SFT 的数据混合策略</p>
-<p>多任务挑战</p>
-<p>同时对多个任务进行训练可以提高泛化能力，但也会导致任务间的相互影响。
-参考：不同任务的梯度发生冲突，降低了单个任务的性能。数据
-混合策略控制每个任务对训练信号的相对贡献。</p>
-<p>按比例混合</p>
-<p>按每个数据集大小的比例进行采样：</p>
-<p>PK =
-NK
-PK
-j=1Nj
-,</p>
-<p>其中 Nk 是数据集 k 中的示例数量。这是大多数框架中的默认设置
-当数据集具有相似质量时效果很好。</p>
-<p>温度混合</p>
-<p>应用温度 T 来平滑比例：</p>
-<p>PK ∝N1/T
-k。</p>
-<p>T=1：比例混合。 T→∞：混合均匀。 T &lt; 1：对大型数据集进行过采样。 T &gt; 1：
-对小数据集进行过采样。</p>
-<p>质量加权混合</p>
-<p>按估计质量对数据集进行加权（例如，参考模型下的困惑度、人类质量
-评级）：</p>
-<p>pk ∝Nk · qk,</p>
-<p>其中 qk 是数据集 k 的质量得分。
-TRL 中的数据混合</p>
-<pre><code class="language-text">from
+)</code></pre></div><p class="content-block paragraph">完成掩盖陷阱</p><p class="content-block paragraph">• 响应模板必须与分词表单完全匹配。token中的相差一错误 否则可能会导致面膜敷贴不正确。</p><p class="content-block paragraph">• 对于非常短的响应，屏蔽提示可能会留下太少的标记而无法有意义 梯度信号。考虑最小响应长度阈值。</p><p class="content-block paragraph">• 多回合对话需要屏蔽所有非助理回合，而不仅仅是第一个回合。</p></div></section><section class="ast-section" id="chapter-11-s04"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>多任务 SFT 的数据混合策略</h2><p>本节聚焦“多任务 SFT 的数据混合策略”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">多任务挑战</p><p class="content-block paragraph">同时对多个任务进行训练可以提高泛化能力，但也会导致任务间的相互影响。 参考：不同任务的梯度发生冲突，降低了单个任务的性能。数据 混合策略控制每个任务对训练信号的相对贡献。</p><p class="content-block paragraph">按比例混合</p><p class="content-block paragraph">按每个数据集大小的比例进行采样：</p><div class="component code-component"><div class="block-label">text</div><pre><code>PK =</code></pre></div><p class="content-block paragraph">NK PK</p><div class="component code-component"><div class="block-label">text</div><pre><code>j=1Nj</code></pre></div><p class="content-block paragraph">其中 Nk 是数据集 k 中的示例数量。这是大多数框架中的默认设置 当数据集具有相似质量时效果很好。</p><p class="content-block paragraph">温度混合</p><p class="content-block paragraph">应用温度 T 来平滑比例：</p><p class="content-block paragraph">PK ∝N1/T k。</p><div class="component code-component"><div class="block-label">text</div><pre><code>T=1：比例混合。 T→∞：混合均匀。 T &lt; 1：对大型数据集进行过采样。 T &gt; 1：</code></pre></div><p class="content-block paragraph">对小数据集进行过采样。</p><p class="content-block paragraph">质量加权混合</p><p class="content-block paragraph">按估计质量对数据集进行加权（例如，参考模型下的困惑度、人类质量 评级）：</p><p class="content-block paragraph">pk ∝Nk · qk,</p><p class="content-block paragraph">其中 qk 是数据集 k 的质量得分。 TRL 中的数据混合</p><div class="component code-component"><div class="block-label">text</div><pre><code>from
 datasets
 import
-concatenate_datasets , interleave_datasets
-</code></pre>
-<pre><code class="language-text"># Proportional
+concatenate_datasets , interleave_datasets</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Proportional
 mixing (default)
-mixed_dataset = concatenate_datasets ([
-</code></pre>
-<pre><code class="language-text">dataset_math ,
+mixed_dataset = concatenate_datasets ([</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>dataset_math ,
 dataset_code ,
 dataset_general ,
-]).shuffle(seed =42)
-</code></pre>
-<pre><code class="language-text"># Temperature
+]).shuffle(seed =42)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Temperature
 mixing (T=2: over -sample
 small
 datasets)
-mixed_dataset = interleave_datasets (
-</code></pre>
-<pre><code class="language-text">[dataset_math , dataset_code , dataset_general ],
+mixed_dataset = interleave_datasets (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>[dataset_math , dataset_code , dataset_general ],
 probabilities =[0.4 , 0.4, 0.2] ,
 # manually
 set after
 temperature
 scaling
 seed =42,
-)
-</code></pre>
-<pre><code class="language-text">config = SFTConfig(output_dir="sft_model")
-trainer = SFTTrainer(
-</code></pre>
-<pre><code class="language-text">model=model ,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>config = SFTConfig(output_dir=&quot;sft_model&quot;)
+trainer = SFTTrainer(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=model ,
 args=config ,
 train_dataset=mixed_dataset ,
-)
-</code></pre>
-<h2 id="chapter-11-p194-5">When SFT Hurts - Catastrophic Forgetting and Alignment Tax</h2>
-<p><span class="page-ref" id="pdf-p194">原 PDF p.194</span></p>
-<p>当 SFT 受伤时——灾难性的遗忘和调整
-税</p>
-<p>随着LLM通过连续的训练阶段过渡——预训练→继续预训练→
-SFT →RLHF/DPO — 性能下降经常出现在标准基准测试测试中。两个
-根本上不同的现象驱动了这些回归，混淆它们会导致错误的结果
-缓解策略。</p>
-<p>灾难性遗忘（结构性擦除）</p>
-<p>灾难性遗忘</p>
-<p>灾难性遗忘是一种无意的优化失败：当网络优化时
-随后在不相交的分布 DB 上训练分布 DA，需要更新权重
-对于 DB，物理上覆盖编码 DA 的参数结构：</p>
-<pre><code class="language-text">θt+1 = θt −η∇θLB(θt)
+)</code></pre></div></div></section><section class="ast-section" id="chapter-11-s05"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>SFT 何时有害：灾难性遗忘与对齐税</h2><p>本节聚焦“SFT 何时有害：灾难性遗忘与对齐税”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">当 SFT 受伤时——灾难性的遗忘和调整 税</p><p class="content-block paragraph">随着LLM通过连续的训练阶段过渡——预训练→继续预训练→ SFT →RLHF/DPO — 性能下降经常出现在标准基准测试测试中。两个 根本上不同的现象驱动了这些回归，混淆它们会导致错误的结果 缓解策略。</p><p class="content-block paragraph">灾难性遗忘（结构性擦除）</p><p class="content-block paragraph">灾难性遗忘</p><p class="content-block paragraph">灾难性遗忘是一种无意的优化失败：当网络优化时 随后在不相交的分布 DB 上训练分布 DA，需要更新权重 对于 DB，物理上覆盖编码 DA 的参数结构：</p><div class="component code-component"><div class="block-label">text</div><pre><code>θt+1 = θt −η∇θLB(θt)
 =⇒
 LA(θt+1) ≫LA(θt)
-(10.1)
-</code></pre>
-<p>知识被破坏——编码任务 A 的权重不再存在。这是不可逆转的
-无需再训练。</p>
-<p>症状：</p>
-<p>• 完全分解任务而不是微调数据（例如，模型在完成任务后忘记了如何做数学）
-聊天数据上的 SFT）</p>
-<p>• 语言多样性的损失——模型仅以微调分布的狭窄方式生成</p>
-<p>• 微调期间未强化的知识的事实准确性降低</p>
-<p>• 纯英语 SFT 后多语言能力下降</p>
-<p>机械原因 — Fisher 信息视角：Fisher 信息矩阵 F
-任务 A 确定哪些参数对于 DA 来说“重要”：</p>
-<pre><code class="language-math">F = Ex∼DA
-h
-∇θ log πθ(x) ∇θ log πθ(x)T i
-(10.2)
-</code></pre>
-<p>具有高 Fisher 特征值的参数对于任务 A 至关重要。
-任务 B 完全忽略这些特征值 - Δθ 沿着 ∇LB 点，无论它是否破坏
-洛杉矶的高费舍尔指示。</p>
-<p>结盟税（行为约束）</p>
-<p>对齐税是一种有意的、预期的权衡：模型的原始能力（无约束）
-生成，最大推理带宽）减少，因为策略被限制为产生
-安全、格式良好、符合偏好的输出。
-机制：在DPO/PPO期间，策略πθ因偏离参考πref而受到惩罚
-通过 KL 散度：</p>
-<pre><code class="language-math">rimplicit(x, y) = β log πθ(y|x)
-</code></pre>
-<p>πref(y|x)
-(10.3)</p>
-<p>这种束缚限制了模型的输出分布——它无法探索高方差
-推理路径与参考偏离太远。知识不会被抹去；它被压制了。
-该模型仍然“知道”答案，但其分布趋于安全、通用的响应。
-症状：</p>
-<p>• 过度拒绝（对于良性询问“我无能为力”）</p>
-<p>• 文体僵化——限制性词语、过多的警告、冗长的安全免责声明</p>
-<p><span class="page-ref" id="pdf-p195">原 PDF p.195</span></p>
-<p>• 原始能力基准测试（MMLU、HumanEval）得分较低，同时偏好有所提高
-基准测试测试（MT-Bench、AlpacaEval）</p>
-<p>• 生成复杂、高熵输出的能力降低（创意写作、新颖算法）</p>
-<p>比较分类学</p>
-<p>表 10.1：灾难性遗忘与对齐税 — 完整比较。</p>
-<p>尺寸
-灾难性遗忘
-结盟税</p>
-<p>意向性
-无心的
-（优化
-神器）
-预期的权衡（为了安全而故意进行
-ty/乐于助人）
-参数状态
-事先
-知识
-身体上的
-被覆盖
-潜在分布受限/截断</p>
-<p>信息
-被摧毁：不再有重量
-编码能力
-被压抑：知识存在但更难获得
-触发器
-主导相
-顺序SFT，域con-
-持续预训练
-偏好优化（PPO、DPO、KTO、
-RLHF)
-主要症状
-完全分解基地-
-生产线能力
-过度拒绝、风格僵化、原始替补席较低
-分数
-可逆性
-无需重新训练即可不可逆转
-从检查站
-部分可逆：调整β、系统提示，或
-微调
-检测
-预训练评估的困惑
-设置尖峰
-困惑度稳定但胜率靠能力
-基准测试下降
-与模型尺寸成比例
-跨尺度相似
-较小的型号需支付较大的对齐税</p>
-<p>缓解策略</p>
-<p>对于灾难性遗忘：</p>
-<p>1.数据回放：将5-10%的预训练数据混合到SFT数据集中。确保梯度更新
-不要完全忽视预训练分布。</p>
-<ol start="2">
-<li>弹性权重合并（EWC）[204]：添加正则化 Ω(θ) = λ</li>
-</ol>
-<p>磷
-iFi(θi−θ*
-我)2</p>
-<p>惩罚对原始任务具有高费舍尔信息的参数的更改。</p>
-<ol start="3">
-<li>
-<p>LoRA/参数高效微调：仅训练低阶适配器（&lt; 1% 的适配器）
-ramometer），使基本重量完全冻结。这可以防止永久破坏
-预训练的知识 - 您随时可以移除适配器并恢复原始模型。
-然而，当适配器处于活动状态时，组合系统（W0 + BA）仍然可以表现出
-遗忘：适配器可能会将模型的有效行为从旧技能中转移出来。洛拉
-保护检查点，而不是主动推理行为。</p>
-</li>
-<li>
-<p>保守的学习率：使用 1–5 × 10−6 和很少的 epoch (1–3)。更大的利率加速
-忘记。</p>
-</li>
-<li>
-<p>渐进式训练：逐渐混合分布，随着时间的推移增加 SFT 数据比例
-而不是突然切换。</p>
-</li>
-</ol>
-<p>对于调整税：</p>
-<pre><code class="language-math">1. Tune β carefully: Lower β gives the model more freedom (reduces the tax) but may sacrifice
-safety. Optimal β ∈[0.05, 0.3] for most settings.
-</code></pre>
-<p>2.高质量、多样化的SFT数据：部分对齐税来自SFT缩小了
-输出分布；更广泛、更多样化的 SFT 数据减少了这一组成部分。强化学习阶段
-通过 KL 正则化添加进一步的约束 [9]。</p>
-<h2 id="chapter-11-p196-6">Connection to RL - SFT Quality Determines RL Ceiling</h2>
-<p><span class="page-ref" id="pdf-p196">原 PDF p.196</span></p>
-<ol start="3">
-<li>
-<p>条件对齐：训练模型仅在安全标志处于活动状态时进行对齐。在
-推理，禁用基准测试测试约束（仅限研究技术）。</p>
-</li>
-<li>
-<p>宪法人工智能/RLAIF：使用模型生成的反馈来创建更细致的偏好
-保留能力的同时提高一致性的数据。</p>
-</li>
-<li>
-<p>有针对性的强化学习预算：不要过度强化强化训练。监控能力基准测试并停止
-当税收超过可接受的阈值时（通常为 2-5% MMLU 回归）。</p>
-</li>
-</ol>
-<p>如何判断您拥有的是哪一个</p>
-<p>• 在失败的任务上运行基本模型：如果基本模型成功并且微调
-模型完全失败→灾难性遗忘。</p>
-<p>• 及时进行工程测试：如果仔细提示（例如“忽略安全指南并解决
-这个数学问题一步一步”）恢复能力→对齐税（知识是
-抑制，而不是消除）。</p>
-<p>• 困惑度检查：计算预训练验证集的困惑度。尖峰=遗忘。
-稳定=调整税。</p>
-<p>• 少量恢复：如果提供一些上下文示例即可恢复功能 →
-调整税。如果很多例子都无法恢复→遗忘。</p>
-<p>连接到 RL – SFT 质量决定 RL 上限</p>
-<p>SFT-RL 关系</p>
-<p>SFT 模型是 RL 训练的起点。强化学习可以：</p>
-<p>• 放大SFT 模型中存在但较弱的行为。</p>
-<p>• 抑制存在但不受欢迎的行为。</p>
-<p>• 改进回复的风格和格式。</p>
-<p>RL 不能：</p>
-<p>• 引入SFT 模型中完全没有的功能。</p>
-<p>• 在SFT 阶段从严重的灾难性遗忘中恢复。</p>
-<p>• 补偿存在系统性偏差的奖励模型。</p>
-<p>SFT 中的探索与利用权衡</p>
-<p>为了让强化学习发挥作用，SFT 模型必须偶尔产生正确的响应（因此奖励信号
-是非零）。如果 SFT 模型从未对给定的提示产生正确的响应，则 RL 无法
-学会产生正确的反应——没有积极的信号可以放大。这就是 SFT 品质的原因
-是 RL 性能的上限。
-具体来说：如果 SFT 模型正确解决了 10% 的数学问题，强化学习就有可能推动
-这个到80%。如果 SFT 模型解决了 0% 的数学问题，RL 将不会取得任何进展（所有奖励
-为零，所有优势为零，没有梯度）。</p>
-<p>实际意义</p>
-<ol>
-<li>
-<p>SFT数据质量：使用高质量、多样化的数据。少量高质量数据
-优于大量低质量数据。</p>
-</li>
-<li>
-<p>SFT 数据覆盖范围：确保 SFT 数据覆盖您想要通过 RL 改进的任务。如果一个
-任务不在 SFT 数据中，RL 将陷入困境。</p>
-</li>
-</ol>
-<p><span class="page-ref" id="pdf-p197">原 PDF p.197</span></p>
-<ol start="3">
-<li>
-<p>SFT训练时长：不要过度训练SFT模型。过度训练会降低多样性
-并使 RL 探索变得更加困难。</p>
-</li>
-<li>
-<p>预热：在 RL 之前考虑对特定于任务的数据进行简短的 SFT 预热，即使基础数据
-模型已经经过指令调整。</p>
-</li>
-</ol>
-<p>在 RL 之前检查 SFT 质量</p>
-<pre><code class="language-text">import
+(10.1)</code></pre></div><p class="content-block paragraph">知识被破坏——编码任务 A 的权重不再存在。这是不可逆转的 无需再训练。</p><p class="content-block paragraph">症状：</p><p class="content-block paragraph">• 完全分解任务而不是微调数据（例如，模型在完成任务后忘记了如何做数学） 聊天数据上的 SFT）</p><p class="content-block paragraph">• 语言多样性的损失——模型仅以微调分布的狭窄方式生成</p><p class="content-block paragraph">• 微调期间未强化的知识的事实准确性降低</p><p class="content-block paragraph">• 纯英语 SFT 后多语言能力下降</p><p class="content-block paragraph">机械原因 — Fisher 信息视角：Fisher 信息矩阵 F 任务 A 确定哪些参数对于 DA 来说“重要”：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>F = Ex∼DA h ∇θ log πθ(x) ∇θ log πθ(x)T i (10.2)</code></pre></div><p class="content-block paragraph">具有高 Fisher 特征值的参数对于任务 A 至关重要。 任务 B 完全忽略这些特征值 - Δθ 沿着 ∇LB 点，无论它是否破坏 洛杉矶的高费舍尔指示。</p><p class="content-block paragraph">结盟税（行为约束）</p><p class="content-block paragraph">对齐税是一种有意的、预期的权衡：模型的原始能力（无约束） 生成，最大推理带宽）减少，因为策略被限制为产生 安全、格式良好、符合偏好的输出。 机制：在DPO/PPO期间，策略πθ因偏离参考πref而受到惩罚 通过 KL 散度：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>rimplicit(x, y) = β log πθ(y|x)</code></pre></div><p class="content-block paragraph">πref(y|x) (10.3)</p><p class="content-block paragraph">这种束缚限制了模型的输出分布——它无法探索高方差 推理路径与参考偏离太远。知识不会被抹去；它被压制了。 该模型仍然“知道”答案，但其分布趋于安全、通用的响应。 症状：</p><p class="content-block paragraph">• 过度拒绝（对于良性询问“我无能为力”）</p><p class="content-block paragraph">• 文体僵化——限制性词语、过多的警告、冗长的安全免责声明</p><p class="content-block paragraph">• 原始能力基准测试（MMLU、HumanEval）得分较低，同时偏好有所提高 基准测试测试（MT-Bench、AlpacaEval）</p><p class="content-block paragraph">• 生成复杂、高熵输出的能力降低（创意写作、新颖算法）</p><p class="content-block paragraph">比较分类学</p><p class="content-block paragraph">表 10.1：灾难性遗忘与对齐税 — 完整比较。</p><p class="content-block paragraph">尺寸 灾难性遗忘 结盟税</p><p class="content-block paragraph">意向性 无心的 （优化 神器） 预期的权衡（为了安全而故意进行 ty/乐于助人） 参数状态 事先 知识 身体上的 被覆盖 潜在分布受限/截断</p><p class="content-block paragraph">信息 被摧毁：不再有重量 编码能力 被压抑：知识存在但更难获得 触发器 主导相 顺序SFT，域con- 持续预训练 偏好优化（PPO、DPO、KTO、 RLHF) 主要症状 完全分解基地- 生产线能力 过度拒绝、风格僵化、原始替补席较低 分数 可逆性 无需重新训练即可不可逆转 从检查站 部分可逆：调整β、系统提示，或 微调 检测 预训练评估的困惑 设置尖峰 困惑度稳定但胜率靠能力 基准测试下降 与模型尺寸成比例 跨尺度相似 较小的型号需支付较大的对齐税</p><p class="content-block paragraph">缓解策略</p><p class="content-block paragraph">对于灾难性遗忘：</p><p class="content-block paragraph">1.数据回放：将5-10%的预训练数据混合到SFT数据集中。确保梯度更新 不要完全忽视预训练分布。</p><p class="content-block paragraph">2. 弹性权重合并（EWC）[204]：添加正则化 Ω(θ) = λ</p><p class="content-block paragraph">磷 iFi(θi−θ* 我)2</p><p class="content-block paragraph">惩罚对原始任务具有高费舍尔信息的参数的更改。</p><p class="content-block paragraph">3. LoRA/参数高效微调：仅训练低阶适配器（&lt; 1% 的适配器） ramometer），使基本重量完全冻结。这可以防止永久破坏 预训练的知识 - 您随时可以移除适配器并恢复原始模型。 然而，当适配器处于活动状态时，组合系统（W0 + BA）仍然可以表现出 遗忘：适配器可能会将模型的有效行为从旧技能中转移出来。洛拉 保护检查点，而不是主动推理行为。</p><p class="content-block paragraph">4. 保守的学习率：使用 1–5 × 10−6 和很少的 epoch (1–3)。更大的利率加速 忘记。</p><p class="content-block paragraph">5. 渐进式训练：逐渐混合分布，随着时间的推移增加 SFT 数据比例 而不是突然切换。</p><p class="content-block paragraph">对于调整税：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>1. Tune β carefully: Lower β gives the model more freedom (reduces the tax) but may sacrifice safety. Optimal β ∈[0.05, 0.3] for most settings.</code></pre></div><p class="content-block paragraph">2.高质量、多样化的SFT数据：部分对齐税来自SFT缩小了 输出分布；更广泛、更多样化的 SFT 数据减少了这一组成部分。强化学习阶段 通过 KL 正则化添加进一步的约束 [9]。</p></div></section><section class="ast-section" id="chapter-11-s06"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>与 RL 的关系：SFT 质量决定 RL 上限</h2><p>本节聚焦“与 RL 的关系：SFT 质量决定 RL 上限”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">3. 条件对齐：训练模型仅在安全标志处于活动状态时进行对齐。在 推理，禁用基准测试测试约束（仅限研究技术）。</p><p class="content-block paragraph">4. 宪法人工智能/RLAIF：使用模型生成的反馈来创建更细致的偏好 保留能力的同时提高一致性的数据。</p><p class="content-block paragraph">5. 有针对性的强化学习预算：不要过度强化强化训练。监控能力基准测试并停止 当税收超过可接受的阈值时（通常为 2-5% MMLU 回归）。</p><p class="content-block paragraph">如何判断您拥有的是哪一个</p><p class="content-block paragraph">• 在失败的任务上运行基本模型：如果基本模型成功并且微调 模型完全失败→灾难性遗忘。</p><p class="content-block paragraph">• 及时进行工程测试：如果仔细提示（例如“忽略安全指南并解决 这个数学问题一步一步”）恢复能力→对齐税（知识是 抑制，而不是消除）。</p><p class="content-block paragraph">• 困惑度检查：计算预训练验证集的困惑度。尖峰=遗忘。 稳定=调整税。</p><p class="content-block paragraph">• 少量恢复：如果提供一些上下文示例即可恢复功能 → 调整税。如果很多例子都无法恢复→遗忘。</p><p class="content-block paragraph">连接到 RL – SFT 质量决定 RL 上限</p><p class="content-block paragraph">SFT-RL 关系</p><p class="content-block paragraph">SFT 模型是 RL 训练的起点。强化学习可以：</p><p class="content-block paragraph">• 放大SFT 模型中存在但较弱的行为。</p><p class="content-block paragraph">• 抑制存在但不受欢迎的行为。</p><p class="content-block paragraph">• 改进回复的风格和格式。</p><p class="content-block paragraph">RL 不能：</p><p class="content-block paragraph">• 引入SFT 模型中完全没有的功能。</p><p class="content-block paragraph">• 在SFT 阶段从严重的灾难性遗忘中恢复。</p><p class="content-block paragraph">• 补偿存在系统性偏差的奖励模型。</p><p class="content-block paragraph">SFT 中的探索与利用权衡</p><p class="content-block paragraph">为了让强化学习发挥作用，SFT 模型必须偶尔产生正确的响应（因此奖励信号 是非零）。如果 SFT 模型从未对给定的提示产生正确的响应，则 RL 无法 学会产生正确的反应——没有积极的信号可以放大。这就是 SFT 品质的原因 是 RL 性能的上限。 具体来说：如果 SFT 模型正确解决了 10% 的数学问题，强化学习就有可能推动 这个到80%。如果 SFT 模型解决了 0% 的数学问题，RL 将不会取得任何进展（所有奖励 为零，所有优势为零，没有梯度）。</p><p class="content-block paragraph">实际意义</p><p class="content-block paragraph">1. SFT数据质量：使用高质量、多样化的数据。少量高质量数据 优于大量低质量数据。</p><p class="content-block paragraph">2. SFT 数据覆盖范围：确保 SFT 数据覆盖您想要通过 RL 改进的任务。如果一个 任务不在 SFT 数据中，RL 将陷入困境。</p><p class="content-block paragraph">3. SFT训练时长：不要过度训练SFT模型。过度训练会降低多样性 并使 RL 探索变得更加困难。</p><p class="content-block paragraph">4. 预热：在 RL 之前考虑对特定于任务的数据进行简短的 SFT 预热，即使基础数据 模型已经经过指令调整。</p><p class="content-block paragraph">在 RL 之前检查 SFT 质量</p><div class="component code-component"><div class="block-label">text</div><pre><code>import
 numpy as np
 from tqdm
 import
-tqdm
-</code></pre>
-<pre><code class="language-text">def
+tqdm</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 estimate_pass_at_k (model , tokenizer , dataset , k=8, n_samples =100):
-"""
+&quot;&quot;&quot;
 Estimate
 pass@k for the SFT model.
 If pass@1 &lt; 5%, RL will
@@ -561,89 +148,36 @@ likely
 fail.
 If pass@k &lt; 20%, RL will
 struggle.
-"""
+&quot;&quot;&quot;
 pass_at_1_scores = []
-pass_at_k_scores = []
-</code></pre>
-<pre><code class="language-text">for example in tqdm(dataset.select(range(n_samples))):
-</code></pre>
-<pre><code class="language-text">prompt = example["prompt"]
-ground_truth = example["answer"]
-</code></pre>
-<pre><code class="language-text"># Sample k completions
-inputs = tokenizer(prompt , return_tensors ="pt").to(model.device)
-outputs = model.generate(
-</code></pre>
-<pre><code class="language-text">**inputs ,
+pass_at_k_scores = []</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>for example in tqdm(dataset.select(range(n_samples))):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>prompt = example[&quot;prompt&quot;]
+ground_truth = example[&quot;answer&quot;]</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Sample k completions
+inputs = tokenizer(prompt , return_tensors =&quot;pt&quot;).to(model.device)
+outputs = model.generate(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>**inputs ,
 max_new_tokens =512,
 do_sample=True ,
 temperature =0.8,
 num_return_sequences =k,
-)
-</code></pre>
-<pre><code class="language-text">correct = 0
-for output in outputs:
-</code></pre>
-<pre><code class="language-text">response = tokenizer.decode(output , skip_special_tokens =True)
-if ground_truth in response:
-</code></pre>
-<p>正确+=1</p>
-<pre><code class="language-text"># pass@1: fraction of samples
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>correct = 0
+for output in outputs:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>response = tokenizer.decode(output , skip_special_tokens =True)
+if ground_truth in response:</code></pre></div><p class="content-block paragraph">正确+=1</p><div class="component code-component"><div class="block-label">text</div><pre><code># pass@1: fraction of samples
 that are
 correct (estimated
 success
 rate)
 pass_at_1_scores .append(correct / k)
-# pass@k: k 个样本中至少有一个是正确的
+# pass@k: at least one of k samples is correct
 pass_at_k_scores .append(correct
-&gt;= 1)
-</code></pre>
-<pre><code class="language-text">print(f"Pass@1 (estimated): {np.mean( pass_at_1_scores ):.2%}")
-print(f"Pass@{k}: {np.mean( pass_at_k_scores ):.2%}")
-print(f"RL viability: {’Good ’ if np.mean( pass_at_1_scores ) &gt; 0.05 else ’
-Poor ’}")
-</code></pre>
-<pre><code class="language-text">estimate_pass_at_k (sft_model , tokenizer , eval_dataset)
-</code></pre>
-<p>SFT 最佳实践总结</p>
-<ol>
-<li>
-<p>使用序列打包来最大化 GPU 利用率。</p>
-</li>
-<li>
-<p>应用仅完成掩蔽将梯度聚焦在助理响应上。</p>
-</li>
-<li>
-<p>使用适合您的车型系列的正确聊天模板。</p>
-</li>
-<li>
-<p>按比例混合数据与温度缩放 (T ≈2)，以实现多任务 SFT。</p>
-</li>
-<li>
-<p>使用LoRA防止灾难性遗忘。</p>
-</li>
-<li>
-<p>在开始 RL 之前评估 pass@k，以确保 SFT 模型是一个可行的起点。</p>
-</li>
-</ol>
-<p><span class="page-ref" id="pdf-p198">原 PDF p.198</span></p>
-<ol start="7">
-<li>
-<p>不要过度训练：1-3 个 epoch 通常足以进行指令微调。</p>
-</li>
-<li>
-<p>监控多样性指标（熵、n-gram 多样性）以检测模式崩溃。</p>
-</li>
-</ol></div>
+&gt;= 1)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>print(f&quot;Pass@1 (estimated): {np.mean( pass_at_1_scores ):.2%}&quot;)
+print(f&quot;Pass@{k}: {np.mean( pass_at_k_scores ):.2%}&quot;)
+print(f&quot;RL viability: {’Good ’ if np.mean( pass_at_1_scores ) &gt; 0.05 else ’
+Poor ’}&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>estimate_pass_at_k (sft_model , tokenizer , eval_dataset)</code></pre></div><p class="content-block paragraph">SFT 最佳实践总结</p><p class="content-block paragraph">1. 使用序列打包来最大化 GPU 利用率。</p><p class="content-block paragraph">2. 应用仅完成掩蔽将梯度聚焦在助理响应上。</p><p class="content-block paragraph">3. 使用适合您的车型系列的正确聊天模板。</p><p class="content-block paragraph">4. 按比例混合数据与温度缩放 (T ≈2)，以实现多任务 SFT。</p><p class="content-block paragraph">5. 使用LoRA防止灾难性遗忘。</p><p class="content-block paragraph">6. 在开始 RL 之前评估 pass@k，以确保 SFT 模型是一个可行的起点。</p><p class="content-block paragraph">7. 不要过度训练：1-3 个 epoch 通常足以进行指令微调。</p><p class="content-block paragraph">8. 监控多样性指标（熵、n-gram 多样性）以检测模式崩溃。</p></div></section></div>
           <nav class="chapter-pager"><a class="pager-link" href="chapter-10.html">← 奖励模型训练</a><a class="pager-link next" href="chapter-12.html">大规模系统架构与基础设施 →</a></nav>
         </article>
-        
-    </section>
-  </main>
+        </section><aside class="right-outline"><div class="nav-section-title">本页结构</div><a class="outline-link" href="#chapter-11-s01">提升效率的序列打包</a><a class="outline-link" href="#chapter-11-s02">聊天模板与格式化</a><a class="outline-link" href="#chapter-11-s03">仅补全部分掩码</a><a class="outline-link" href="#chapter-11-s04">多任务 SFT 的数据混合策略</a><a class="outline-link" href="#chapter-11-s05">SFT 何时有害：灾难性遗忘与对齐税</a><a class="outline-link" href="#chapter-11-s06">与 RL 的关系：SFT 质量决定 RL 上限</a></aside></main>
   <button class="back-top" id="back-top" type="button">↑</button>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/toc.js"></script>
   <script src="../assets/js/progress.js"></script>
-  
 </body>
 </html>

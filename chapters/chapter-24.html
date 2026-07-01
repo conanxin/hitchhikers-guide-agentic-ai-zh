@@ -4,397 +4,145 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>智能体间通信（A2A） | 智能体式 AI 漫游指南</title>
-  <meta name="description" content="A2A 协议、消息结构、协作和安全边界。" />
+  <meta name="description" content="介绍智能体之间的任务委托、消息结构和协作模式。" />
   <meta property="og:title" content="智能体间通信（A2A） | 智能体式 AI 漫游指南" />
-  <meta property="og:description" content="A2A 协议、消息结构、协作和安全边界。" />
+  <meta property="og:description" content="介绍智能体之间的任务委托、消息结构和协作模式。" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="canonical" href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/article.css" />
   <link rel="stylesheet" href="../assets/css/responsive.css" />
-  
 </head>
 <body class="article-page">
   <div class="reading-progress" id="reading-progress"></div>
   <header class="topbar">
-    <a class="brand" href="../index.html" aria-label="智能体式 AI 漫游指南">
-      <span class="brand-mark">AI</span>
-      <span><strong>智能体式 AI 漫游指南</strong><small>从基础到系统的中文技术文档站</small></span>
-    </a>
-    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a>
-<a class="active" href="../chapters/index.html">章节</a>
-<a class="" href="../glossary.html">术语表</a>
-<a class="" href="../references.html">参考文献</a>
-<a class="" href="../search.html">搜索</a>
-<a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
+    <a class="brand" href="../index.html"><span class="brand-mark">AST</span><span><strong>智能体式 AI 漫游指南</strong><small>结构化知识文档系统</small></span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="打开导航" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a><a class="active" href="../chapters/index.html">章节</a><a class="" href="../glossary.html">术语表</a><a class="" href="../references.html">参考文献</a><a class="" href="../search.html">搜索</a><a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
   </header>
-  <main class="layout">
-    
-        <aside class="left-nav" id="left-nav">
-          <div class="nav-section-title">章节</div>
-          <a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a>
-<a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a>
-<a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a>
-<a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a>
-<a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a>
-<a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a>
-<a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a>
-<a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a>
-<a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a>
-<a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a>
-<a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a>
-<a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a>
-<a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a>
-<a class="chapter-link active" href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a>
-<a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a>
-<a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a>
-<a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a>
-        </aside>
-        <aside class="right-outline" id="right-outline">
-          <div class="nav-section-title">本页大纲</div>
-          <a class="outline-link level-h2" href="#chapter-24-p417-1">Motivation: Why Agents Must Communicate</a>
-<a class="outline-link level-h2" href="#chapter-24-p418-2">The Google A2A Protocol</a>
-<a class="outline-link level-h2" href="#chapter-24-p421-3">Communication Patterns</a>
-<a class="outline-link level-h2" href="#chapter-24-p423-4">Agent Discovery and Routing</a>
-<a class="outline-link level-h2" href="#chapter-24-p424-5">Message Formats and Schemas</a>
-<a class="outline-link level-h2" href="#chapter-24-p427-6">Coordination Protocols</a>
-<a class="outline-link level-h2" href="#chapter-24-p429-7">A2A vs. MCP: Complementary Protocols</a>
-<a class="outline-link level-h2" href="#chapter-24-p430-8">Security and Trust in Multi-Agent Systems</a>
-<a class="outline-link level-h2" href="#chapter-24-p432-9">Implementation Example: Multi-Agent Research Workflow</a>
-<a class="outline-link level-h2" href="#chapter-24-p437-10">小结</a>
-        </aside>
-        
-    <section class="content-shell">
-      
-        <article class="article-card">
+  <main class="layout"><aside class="left-nav" id="left-nav"><div class="nav-section-title">语义目录</div><div class="nav-cluster"><strong>导读</strong><a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a><a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a></div><div class="nav-cluster"><strong>LLM 基础与系统</strong><a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a><a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a><a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a></div><div class="nav-cluster"><strong>训练、强化学习与对齐</strong><a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a><a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a><a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a><a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a><a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a><a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a><a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a><a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a></div><div class="nav-cluster"><strong>Agentic AI 系统</strong><a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a><a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a><a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a><a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a><a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a><a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a><a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a><a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a><a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a><a class="chapter-link active" href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a><a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a><a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a><a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a></div><div class="nav-cluster"><strong>推理与评估</strong><a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a></div><div class="nav-cluster"><strong>参考与总结</strong><a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a><a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a><a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a></div></aside><section class="content-shell">
+        <article class="article-card" data-ast-source="../assets/data/clean_chapter_tree.json">
           <header class="article-header">
-            <p class="part-label">第五部分：智能体式 AI</p>
+            <p class="part-label">Agentic AI 系统</p>
             <h1>智能体间通信（A2A）</h1>
-            <p>A2A 协议、消息结构、协作和安全边界。</p>
-            <div class="article-meta"><span>原 PDF p.417-438</span><span>10 个页内条目</span></div>
+            <p>介绍智能体之间的任务委托、消息结构和协作模式。</p>
           </header>
-          <div class="article-body"><h2 id="chapter-24-p417-1">Motivation: Why Agents Must Communicate</h2>
-<p><span class="page-ref" id="pdf-p417">原 PDF p.417</span></p>
-<p>智能体间通信 (A2A)</p>
-<p>随着大型语言模型从孤立的助手发展成为专业的协作网络
-智能体之间如何相互交谈的问题变得与他们如何推理一样重要
-内部。本节涵盖了支持多点通信的协议、模式和工程实践。
-智能体系统来协调、委托和集体解决单个智能体无法解决的问题
-单独处理。</p>
-<p>动机：为什么智能体必须沟通</p>
-<p>专业化势在必行</p>
-<p>单一的多面手智能体面临着根本性的张力：知识的广度与知识的深度
-能力。现实世界的任务——法律文件审查、多步骤科学研究、企业
-软件开发——两者都需要。智能体之间的通信通过以下方式解决了这种紧张关系
-允许专家网络进行协作，每个人在委派任务的同时贡献自己的优势
-弱点。</p>
-<p>有多种力量推动了对结构化智能体间通信的需求：</p>
-<p>认知负荷和情境限制。
-每个LLM都在有限的背景窗口内运作。
-复杂的工作流程——跨越数百个文档、工具调用和推理步骤——很快就超过了
-单个智能体可以在内存中保存什么。通过跨智能体分解任务，每个智能体运行
-在可管理的上下文中，编排智能体仅维护高级状态。</p>
-<p>专业化和专业知识。
-不同的智能体可以进行微调、提示或配备工具
-对于特定领域：可以访问编译器和测试运行程序的 CodeAgent，可以访问的 LegalAgent
-访问判例法数据库、带有统计库的 DataAgent。将子任务路由到右侧
-专家提高质量和效率。</p>
-<p>并行性和吞吐量。
-独立的子任务可以分派给多个智能体
-同时。研究协调者可能会在五个专业领域展开文献检索
-并行智能体，然后综合它们的结果——大大减少挂钟时间。</p>
-<p>故障隔离和恢复能力。
-当一个智能体出现故障时，设计良好的多智能体系统可以
-使用不同的智能体重试，退回到更简单的方法，或者升级到人工 - 无需人工处理
-崩溃了整个工作流程。</p>
-<p>委派和交接。
-长时间运行的任务可能需要在智能体之间切换
-上下文发生变化。初始 PlannerAgent 分解目标，将子任务交给 ExecutorAgents，然后
-最终的 ReviewerAgent 验证输出 - 每个智能体准确接收其所需的上下文。</p>
-<h2 id="chapter-24-p418-2">The Google A2A Protocol</h2>
-<p><span class="page-ref" id="pdf-p418">原 PDF p.418</span></p>
-<p>A2A 通信的核心要求</p>
-<ol>
-<li>
-<p>可发现性：智能体必须能够找到其他智能体并了解他们的能力。</p>
-</li>
-<li>
-<p>互操作性：由不同团队或供应商构建的智能体必须使用通用协议。</p>
-</li>
-</ol>
-<p>3、异步：长时间运行的任务一定不能阻塞调用者；结果通过回调到达或
-投票。</p>
-<ol start="4">
-<li>安全性：智能体必须相互验证并强制执行授权边界。</li>
-</ol>
-<p>5.可观察性：每个消息交换都必须是可追踪的，以便调试和审计。</p>
-<p>谷歌 A2A 协议</p>
-<p>2025 年 4 月，Google（在 50 多个技术合作伙伴的贡献下）发布了 Agent-
-to-Agent (A2A) 协议 [372]，一种开放规范，用于跨智能体之间的互操作通信
-人工智能智能体。该协议随后被捐赠给 Linux 基金会，并已发展到
-截至 2026 年，拥有超过 150 个支持组织。A2A 是围绕一组核心原则设计的，这些原则
-它与早期的临时方法不同。</p>
-<p>设计理念</p>
-<p>A2A 规范阐明了五个指导原则（改编自官方规范 [372]，§1.2）：</p>
-<p>A2A设计原则</p>
-<p>执行不透明
-呼叫智能体从不检查远程智能体的内部结构——它们仅通过
-声明的接口。目标是 GPT-4、Gemini 还是基于规则的系统都无关紧要
-该协议，实现真正的异构智能体生态系统。
-企业准备就绪
-身份验证（OAuth 2.0、API 密钥、JWT）、审核日志记录和法规遵从性不包括在内
-事后的想法——它们从一开始就在协议级别集成。
-模态不可知论
-一条消息可以组合文本、二进制文件和结构化 JSON 有效负载，以适应
-无需协议扩展即可对图像、音频、代码或文档进行操作的智能体。
-通过现有标准实现简单性
-A2A 没有发明新的传输方式，而是通过 JSON-RPC 2.0 消息重用 HTTP/HTTPS，
-用于流式传输的服务器发送事件 (SSE) 和作为替代绑定的 gRPC — 这些技术
-每个基础设施团队都已经开始运作。
-异步优先任务模型
-长时间运行的操作是常态，而不是例外。推送通知和轮询都是
-一流的机制，因此调用者永远不需要保持连接数小时。</p>
-<p>智能体卡</p>
-<p>A2A 可发现性的基础是智能体卡——机器可读的 JSON 清单
-托管在众所周知的端点 (/.well-known/agent.json)。它宣传智能体可以做什么，
-如何进行身份验证以及将任务发送到何处 — 类似于 OpenAPI 规范，但适用于自治
-智能体而不是 REST 端点。</p>
-<p>智能体卡结构</p>
-<pre><code class="language-text"># Agent
+          <aside class="component key-concepts-panel"><span class="component-label">Key Concepts</span><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div></aside>
+          <div class="article-body"><section class="ast-section" id="chapter-24-s01"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>动机：为什么智能体必须通信</h2><p>本节聚焦“动机：为什么智能体必须通信”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>智能体间通信（A2A）</strong><span>A2A</span><p>面向智能体之间任务委托和协作的通信协议。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">智能体间通信 (A2A)</p><p class="content-block paragraph">随着大型语言模型从孤立的助手发展成为专业的协作网络 智能体之间如何相互交谈的问题变得与他们如何推理一样重要 内部。本节涵盖了支持多点通信的协议、模式和工程实践。 智能体系统来协调、委托和集体解决单个智能体无法解决的问题 单独处理。</p><p class="content-block paragraph">动机：为什么智能体必须沟通</p><p class="content-block paragraph">专业化势在必行</p><p class="content-block paragraph">单一的多面手智能体面临着根本性的张力：知识的广度与知识的深度 能力。现实世界的任务——法律文件审查、多步骤科学研究、企业 软件开发——两者都需要。智能体之间的通信通过以下方式解决了这种紧张关系 允许专家网络进行协作，每个人在委派任务的同时贡献自己的优势 弱点。</p><p class="content-block paragraph">有多种力量推动了对结构化智能体间通信的需求：</p><p class="content-block paragraph">认知负荷和情境限制。 每个LLM都在有限的背景窗口内运作。 复杂的工作流程——跨越数百个文档、工具调用和推理步骤——很快就超过了 单个智能体可以在内存中保存什么。通过跨智能体分解任务，每个智能体运行 在可管理的上下文中，编排智能体仅维护高级状态。</p><p class="content-block paragraph">专业化和专业知识。 不同的智能体可以进行微调、提示或配备工具 对于特定领域：可以访问编译器和测试运行程序的 CodeAgent，可以访问的 LegalAgent 访问判例法数据库、带有统计库的 DataAgent。将子任务路由到右侧 专家提高质量和效率。</p><p class="content-block paragraph">并行性和吞吐量。 独立的子任务可以分派给多个智能体 同时。研究协调者可能会在五个专业领域展开文献检索 并行智能体，然后综合它们的结果——大大减少挂钟时间。</p><p class="content-block paragraph">故障隔离和恢复能力。 当一个智能体出现故障时，设计良好的多智能体系统可以 使用不同的智能体重试，退回到更简单的方法，或者升级到人工 - 无需人工处理 崩溃了整个工作流程。</p><p class="content-block paragraph">委派和交接。 长时间运行的任务可能需要在智能体之间切换 上下文发生变化。初始 PlannerAgent 分解目标，将子任务交给 ExecutorAgents，然后 最终的 ReviewerAgent 验证输出 - 每个智能体准确接收其所需的上下文。</p></div></section><section class="ast-section" id="chapter-24-s02"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>Google A2A 协议</h2><p>本节聚焦“Google A2A 协议”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>智能体间通信（A2A）</strong><span>A2A</span><p>面向智能体之间任务委托和协作的通信协议。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">A2A 通信的核心要求</p><p class="content-block paragraph">1. 可发现性：智能体必须能够找到其他智能体并了解他们的能力。</p><p class="content-block paragraph">2. 互操作性：由不同团队或供应商构建的智能体必须使用通用协议。</p><p class="content-block paragraph">3、异步：长时间运行的任务一定不能阻塞调用者；结果通过回调到达或 投票。</p><p class="content-block paragraph">4. 安全性：智能体必须相互验证并强制执行授权边界。</p><p class="content-block paragraph">5.可观察性：每个消息交换都必须是可追踪的，以便调试和审计。</p><p class="content-block paragraph">谷歌 A2A 协议</p><p class="content-block paragraph">2025 年 4 月，Google（在 50 多个技术合作伙伴的贡献下）发布了 Agent- to-Agent (A2A) 协议 [372]，一种开放规范，用于跨智能体之间的互操作通信 人工智能智能体。该协议随后被捐赠给 Linux 基金会，并已发展到 截至 2026 年，拥有超过 150 个支持组织。A2A 是围绕一组核心原则设计的，这些原则 它与早期的临时方法不同。</p><p class="content-block paragraph">设计理念</p><p class="content-block paragraph">A2A 规范阐明了五个指导原则（改编自官方规范 [372]，§1.2）：</p><p class="content-block paragraph">A2A设计原则</p><p class="content-block paragraph">执行不透明 呼叫智能体从不检查远程智能体的内部结构——它们仅通过 声明的接口。目标是 GPT-4、Gemini 还是基于规则的系统都无关紧要 该协议，实现真正的异构智能体生态系统。 企业准备就绪 身份验证（OAuth 2.0、API 密钥、JWT）、审核日志记录和法规遵从性不包括在内 事后的想法——它们从一开始就在协议级别集成。 模态不可知论 一条消息可以组合文本、二进制文件和结构化 JSON 有效负载，以适应 无需协议扩展即可对图像、音频、代码或文档进行操作的智能体。 通过现有标准实现简单性 A2A 没有发明新的传输方式，而是通过 JSON-RPC 2.0 消息重用 HTTP/HTTPS， 用于流式传输的服务器发送事件 (SSE) 和作为替代绑定的 gRPC — 这些技术 每个基础设施团队都已经开始运作。 异步优先任务模型 长时间运行的操作是常态，而不是例外。推送通知和轮询都是 一流的机制，因此调用者永远不需要保持连接数小时。</p><p class="content-block paragraph">智能体卡</p><p class="content-block paragraph">A2A 可发现性的基础是智能体卡——机器可读的 JSON 清单 托管在众所周知的端点 (/.well-known/agent.json)。它宣传智能体可以做什么， 如何进行身份验证以及将任务发送到何处 — 类似于 OpenAPI 规范，但适用于自治 智能体而不是 REST 端点。</p><p class="content-block paragraph">智能体卡结构</p><div class="component code-component"><div class="block-label">text</div><pre><code># Agent
 Card
 served at https :// agent.example.com/.well -known/agent.json
-agent_card = {
-</code></pre>
-<pre><code class="language-text">"name": " DataAnalysisAgent ",
-"description": "Analyzes
+agent_card = {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;name&quot;: &quot; DataAnalysisAgent &quot;,
+&quot;description&quot;: &quot;Analyzes
 structured
 datasets , produces
 statistical
-summaries , "
-</code></pre>
-<p><span class="page-ref" id="pdf-p419">原 PDF p.419</span></p>
-<pre><code class="language-text">"generates
+summaries , &quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;generates
 visualizations , and
 answers
 data
-questions.",
-"url": "https :// agent.example.com/a2a",
-"version": "1.2.0",
-"capabilities": {
-</code></pre>
-<pre><code class="language-text">"streaming": True ,
-" pushNotifications ": True ,
-" stateTransitionHistory ": True
+questions.&quot;,
+&quot;url&quot;: &quot;https :// agent.example.com/a2a&quot;,
+&quot;version&quot;: &quot;1.2.0&quot;,
+&quot;capabilities&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;streaming&quot;: True ,
+&quot; pushNotifications &quot;: True ,
+&quot; stateTransitionHistory &quot;: True
 },
-" authentication": {
-</code></pre>
-<pre><code class="language-text">"schemes": ["Bearer", "ApiKey"]
+&quot; authentication&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;schemes&quot;: [&quot;Bearer&quot;, &quot;ApiKey&quot;]
 },
-"skills": [
-</code></pre>
-<p>{</p>
-<pre><code class="language-text">"id": "statistical -analysis",
-"name": "Statistical
-Analysis",
-"description": "Compute
-descriptive
-statistics , run
-hypothesis
-tests , "
-</code></pre>
-<pre><code class="language-text">"fit
+&quot;skills&quot;: [</code></pre></div><p class="content-block paragraph">“id”：“统计分析”，“name”：“统计分析”，“description”：“计算描述性统计，运行假设检验，”</p><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;fit
 regression
 models on tabular
-data.",
-"tags": ["statistics", "data", "analysis", "regression"],
-"examples": [
-</code></pre>
-<pre><code class="language-text">"What is the
+data.&quot;,
+&quot;tags&quot;: [&quot;statistics&quot;, &quot;data&quot;, &quot;analysis&quot;, &quot;regression&quot;],
+&quot;examples&quot;: [</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;What is the
 correlation
 between
-columns A and B?",
-"Run a t-test
+columns A and B?&quot;,
+&quot;Run a t-test
 comparing
-these two groups.",
-"Fit a linear
+these two groups.&quot;,
+&quot;Fit a linear
 regression
 predicting
 sales
-from ad spend."
+from ad spend.&quot;
 ],
-"inputModes": ["text", "data"],
-"outputModes": ["text", "data", "file"]
+&quot;inputModes&quot;: [&quot;text&quot;, &quot;data&quot;],
+&quot;outputModes&quot;: [&quot;text&quot;, &quot;data&quot;, &quot;file&quot;]
 },
-{
-</code></pre>
-<pre><code class="language-text">"id": "visualization",
-"name": "Data
-Visualization ",
-"description": "Generate
+{</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;id&quot;: &quot;visualization&quot;,
+&quot;name&quot;: &quot;Data
+Visualization &quot;,
+&quot;description&quot;: &quot;Generate
 charts , plots , and
 dashboards
-from data.",
-"tags": ["charts", "plots", " visualization ", "dashboard"],
-"examples": [
-</code></pre>
-<pre><code class="language-text">"Create a bar chart of monthly
-revenue.",
-"Plot the
+from data.&quot;,
+&quot;tags&quot;: [&quot;charts&quot;, &quot;plots&quot;, &quot; visualization &quot;, &quot;dashboard&quot;],
+&quot;examples&quot;: [</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;Create a bar chart of monthly
+revenue.&quot;,
+&quot;Plot the
 distribution of customer
-ages."
+ages.&quot;
 ],
-"inputModes": ["text", "data"],
-"outputModes": ["file", "text"]
+&quot;inputModes&quot;: [&quot;text&quot;, &quot;data&quot;],
+&quot;outputModes&quot;: [&quot;file&quot;, &quot;text&quot;]
 }
 ],
-" defaultInputModes ": ["text"],
-" defaultOutputModes ": ["text"]
-}
-</code></pre>
-<p>智能体卡支持基于功能的路由：编排器智能体可以从注册表中获取卡，
-在语义上将子任务匹配到最合适的智能体，并相应地分派——所有这些都不需要
-硬编码路由logits。</p>
-<p>任务生命周期</p>
-<p>A2A 模型都以任务的形式工作。任务通过明确定义的状态机进行：
-已提交
-客户端已发送任务；服务器已确认收到。
-工作
-智能体正在积极处理中。客户端可以轮询或等待 SSE 事件。
-需要输入
-智能体需要来自用户或呼叫智能体的附加信息才能继续（例如，
-澄清问题，缺少凭证）。
-已完成
-任务顺利完成；结果可在响应中找到。
-失败的</p>
-<p><span class="page-ref" id="pdf-p420">原 PDF p.420</span></p>
-<p>发生不可恢复的错误；错误消息解释了原因。
-被拒绝
-智能体拒绝了该任务（例如，超出其能力范围或未经授权）。 A2A v1.0 中添加。
-取消
-任务被客户端或服务器中止。</p>
-<p>通过服务器发送的事件进行流式传输</p>
-<p>对于产生增量输出的任务（例如，正在编写长报告、正在编写代码文件）
-生成），A2A 使用服务器发送事件（SSE）。客户端打开一个持久的HTTP连接
-并接收 JSON 事件流：</p>
-<p>SSE 事件流示例</p>
-<pre><code class="language-text"># Each SSE event
-carries a TaskStatusUpdateEvent
-or
-TaskArtifactUpdateEvent
-# Example
-stream for a "write a research
-report" task:
-</code></pre>
-<pre><code class="language-text"># Event 1: status
+&quot; defaultInputModes &quot;: [&quot;text&quot;],
+&quot; defaultOutputModes &quot;: [&quot;text&quot;]
+}</code></pre></div><p class="content-block paragraph">智能体卡支持基于功能的路由：编排器智能体可以从注册表中获取卡， 在语义上将子任务匹配到最合适的智能体，并相应地分派——所有这些都不需要 硬编码路由logits。</p><p class="content-block paragraph">任务生命周期</p><p class="content-block paragraph">A2A 模型都以任务的形式工作。任务通过明确定义的状态机进行： 已提交 客户端已发送任务；服务器已确认收到。 工作 智能体正在积极处理中。客户端可以轮询或等待 SSE 事件。 需要输入 智能体需要来自用户或呼叫智能体的附加信息才能继续（例如， 澄清问题，缺少凭证）。 已完成 任务顺利完成；结果可在响应中找到。 失败的</p><p class="content-block paragraph">发生不可恢复的错误；错误消息解释了原因。 被拒绝 智能体拒绝了该任务（例如，超出其能力范围或未经授权）。 A2A v1.0 中添加。 取消 任务被客户端或服务器中止。</p><p class="content-block paragraph">通过服务器发送的事件进行流式传输</p><p class="content-block paragraph">对于产生增量输出的任务（例如，正在编写长报告、正在编写代码文件） 生成），A2A 使用服务器发送事件（SSE）。客户端打开一个持久的HTTP连接 并接收 JSON 事件流：</p><p class="content-block paragraph">SSE 事件流示例</p><p class="content-block paragraph"># 每个 SSE 事件都携带一个 TaskStatusUpdateEvent 或 TaskArtifactUpdateEvent # “编写研究报告”任务的示例流：</p><div class="component code-component"><div class="block-label">text</div><pre><code># Event 1: status
 update
-data: {
-</code></pre>
-<pre><code class="language-text">"id": "task -abc123",
-"status": {"state": "working"},
-"final": false
-}
-</code></pre>
-<pre><code class="language-text"># Event 2: partial
+data: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;id&quot;: &quot;task -abc123&quot;,
+&quot;status&quot;: {&quot;state&quot;: &quot;working&quot;},
+&quot;final&quot;: false
+}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Event 2: partial
 artifact (streaming
 text)
-data: {
-</code></pre>
-<pre><code class="language-text">"id": "task -abc123",
-"artifact": {
-</code></pre>
-<pre><code class="language-text">"parts": [{"type": "text", "text": "## Introduction\n\nRecent
+data: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;id&quot;: &quot;task -abc123&quot;,
+&quot;artifact&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;parts&quot;: [{&quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;## Introduction\n\nRecent
 advances in
-..."}],
-</code></pre>
-<pre><code class="language-text">"index": 0,
-"append": false ,
-"lastChunk": false
+...&quot;}],</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;index&quot;: 0,
+&quot;append&quot;: false ,
+&quot;lastChunk&quot;: false
 },
-"final": false
-}
-</code></pre>
-<pre><code class="language-text"># Event 3: more text
+&quot;final&quot;: false
+}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Event 3: more text
 appended
-data: {
-</code></pre>
-<pre><code class="language-text">"id": "task -abc123",
-"artifact": {
-</code></pre>
-<pre><code class="language-text">"parts": [{"type": "text", "text": " reinforcement
+data: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;id&quot;: &quot;task -abc123&quot;,
+&quot;artifact&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;parts&quot;: [{&quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot; reinforcement
 learning
 have
-shown ..."
-}],
-</code></pre>
-<pre><code class="language-text">"index": 0,
-"append": true ,
+shown ...&quot;
+}],</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;index&quot;: 0,
+&quot;append&quot;: true ,
 # append to existing
 artifact
-"lastChunk": false
+&quot;lastChunk&quot;: false
 },
-"final": false
-}
-</code></pre>
-<pre><code class="language-text"># Final
+&quot;final&quot;: false
+}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Final
 event: task
 complete
-data: {
-</code></pre>
-<pre><code class="language-text">"id": "task -abc123",
-"status": {"state": "completed"},
-"final": true
-}
-</code></pre>
-<p>长时间运行任务的推送通知</p>
-<p>当任务可能需要几分钟或几小时时，保持开放的 SSE 连接是不切实际的。 A2A
-支持推送通知：客户端注册 webhook URL，服务器 POST 状态
-随着任务的进展而更新。</p>
-<h2 id="chapter-24-p421-3">Communication Patterns</h2>
-<p><span class="page-ref" id="pdf-p421">原 PDF p.421</span></p>
-<pre><code class="language-text"># Client
+data: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;id&quot;: &quot;task -abc123&quot;,
+&quot;status&quot;: {&quot;state&quot;: &quot;completed&quot;},
+&quot;final&quot;: true
+}</code></pre></div><p class="content-block paragraph">长时间运行任务的推送通知</p><p class="content-block paragraph">当任务可能需要几分钟或几小时时，保持开放的 SSE 连接是不切实际的。 A2A 支持推送通知：客户端注册 webhook URL，服务器 POST 状态 随着任务的进展而更新。</p></div></section><section class="ast-section" id="chapter-24-s03"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>通信模式</h2><p>本节聚焦“通信模式”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div><div class="concept-chip"><strong>智能体间通信（A2A）</strong><span>A2A</span><p>面向智能体之间任务委托和协作的通信协议。</p></div></div></div><div class="section-blocks"><div class="component code-component"><div class="block-label">text</div><pre><code># Client
 registers a push
 notification
 endpoint
 when
 submitting
 the task
-task_request = {
-</code></pre>
-<pre><code class="language-text">"id": "task -xyz789",
-"message": {
-</code></pre>
-<pre><code class="language-text">"role": "user",
-"parts": [{"type": "text", "text": "Analyze Q3 sales
+task_request = {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;id&quot;: &quot;task -xyz789&quot;,
+&quot;message&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;role&quot;: &quot;user&quot;,
+&quot;parts&quot;: [{&quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;Analyze Q3 sales
 data and
 produce a
-report."}]
-</code></pre>
-<pre><code class="language-text">},
-" pushNotification ": {
-</code></pre>
-<pre><code class="language-text">"url": "https ://my -orchestrator.example.com/webhooks/a2a",
-"token": "secret -hmac -token -for - 验证",
-" authentication": {
-</code></pre>
-<pre><code class="language-text">"schemes": ["Bearer"],
-"credentials": " eyJhbGciOiJIUzI1NiJ9 ..."
+report.&quot;}]</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>},
+&quot; pushNotification &quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;url&quot;: &quot;https ://my -orchestrator.example.com/webhooks/a2a&quot;,
+&quot;token&quot;: &quot;secret -hmac -token -for - verification&quot;,
+&quot; authentication&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;schemes&quot;: [&quot;Bearer&quot;],
+&quot;credentials&quot;: &quot; eyJhbGciOiJIUzI1NiJ9 ...&quot;
 }
 }
 }
@@ -407,533 +155,209 @@ URL
 # as the task
 transitions
 through
-states.
-</code></pre>
-<p>消息格式</p>
-<p>A2A 消息由角色（用户或智能体）以及键入部分的列表（文本、文件或结构化
-数据）。涵盖了完整的消息模式、多模式示例和上下文传递指南
-在第 23.5 节中。</p>
-<p>认证与授权</p>
-<p>A2A 支持多种身份验证方案，在智能体卡中声明并按请求强制执行：</p>
-<p>• 承载token（JWT/OAuth 2.0）：企业部署标准；token携带
-限制允许调用智能体请求的范围。</p>
-<p>• API 密钥：适用于内部或可信环境的更简单方案。</p>
-<p>• 相互TLS (mTLS)：用于高安全性部署的基于证书的身份验证。</p>
-<p>• OpenID Connect：联合身份，支持跨组织智能体通信。</p>
-<p>授权范围执行</p>
-<p>接收任务的智能体不仅必须验证呼叫者是谁（身份验证），还要验证呼叫者的身份
-允许请求（授权）。 ReportingAgent 可能接受来自以下位置的只读数据查询：
-任何经过身份验证的智能体，但将写入操作限制为持有特定 OAuth 范围的智能体。
-如果不强制执行这一点，就会在多智能体系统中产生权限升级漏洞。</p>
-<p>沟通模式</p>
-<p>多智能体系统根据对象的性质采用多种通信模式
-任务、延迟要求以及涉及的智能体数量。</p>
-<p>请求-响应</p>
-<p>最简单的模式：智能体 A 向智能体 B 发送任务并等待完整响应。适合
-对于简短的、定义明确的子任务，在继续之前需要得到结果。</p>
-<p>流媒体</p>
-<p>智能体A打开SSE连接；智能体 B 在生成部分结果时对其进行流式传输。非常适合
-长格式生成（报告、代码）、实时协作或渐进式 UI 更新。</p>
-<p><span class="page-ref" id="pdf-p422">原 PDF p.422</span></p>
-<p>流模式用例</p>
-<p>协调者要求写作智能体起草一份 10 页的技术文档。而不是等待
-完整的文档需要 2 分钟，编排器会在编写每个部分时对其进行流式传输，从而允许
-ReviewAgent 在仍在生成后面的部分时开始审阅早期部分 -
-将总延迟减少 40-60% 的流水线。</p>
-<p>多回合互动</p>
-<p>有些任务需要迭代细化。智能体进入需要输入的状态，协调器
-提供澄清，然后任务继续。这反映了人类协作工作流程：草稿→
-反馈→修改。</p>
-<pre><code class="language-text"># Multi -turn: orchestrator
+states.</code></pre></div><p class="content-block paragraph">消息格式</p><p class="content-block paragraph">A2A 消息由角色（用户或智能体）以及键入部分的列表（文本、文件或结构化 数据）。涵盖了完整的消息模式、多模式示例和上下文传递指南 在第 23.5 节中。</p><p class="content-block paragraph">认证与授权</p><p class="content-block paragraph">A2A 支持多种身份验证方案，在智能体卡中声明并按请求强制执行：</p><p class="content-block paragraph">• 承载token（JWT/OAuth 2.0）：企业部署标准；token携带 限制允许调用智能体请求的范围。</p><p class="content-block paragraph">• API 密钥：适用于内部或可信环境的更简单方案。</p><p class="content-block paragraph">• 相互TLS (mTLS)：用于高安全性部署的基于证书的身份验证。</p><p class="content-block paragraph">• OpenID Connect：联合身份，支持跨组织智能体通信。</p><p class="content-block paragraph">授权范围执行</p><p class="content-block paragraph">接收任务的智能体不仅必须验证呼叫者是谁（身份验证），还要验证呼叫者的身份 允许请求（授权）。 ReportingAgent 可能接受来自以下位置的只读数据查询： 任何经过身份验证的智能体，但将写入操作限制为持有特定 OAuth 范围的智能体。 如果不强制执行这一点，就会在多智能体系统中产生权限升级漏洞。</p><p class="content-block paragraph">沟通模式</p><p class="content-block paragraph">多智能体系统根据对象的性质采用多种通信模式 任务、延迟要求以及涉及的智能体数量。</p><p class="content-block paragraph">请求-响应</p><p class="content-block paragraph">最简单的模式：智能体 A 向智能体 B 发送任务并等待完整响应。适合 对于简短的、定义明确的子任务，在继续之前需要得到结果。</p><p class="content-block paragraph">流媒体</p><p class="content-block paragraph">智能体A打开SSE连接；智能体 B 在生成部分结果时对其进行流式传输。非常适合 长格式生成（报告、代码）、实时协作或渐进式 UI 更新。</p><p class="content-block paragraph">流模式用例</p><p class="content-block paragraph">协调者要求写作智能体起草一份 10 页的技术文档。而不是等待 完整的文档需要 2 分钟，编排器会在编写每个部分时对其进行流式传输，从而允许 ReviewAgent 在仍在生成后面的部分时开始审阅早期部分 - 将总延迟减少 40-60% 的流水线。</p><p class="content-block paragraph">多回合互动</p><p class="content-block paragraph">有些任务需要迭代细化。智能体进入需要输入的状态，协调器 提供澄清，然后任务继续。这反映了人类协作工作流程：草稿→ 反馈→修改。</p><div class="component code-component"><div class="block-label">text</div><pre><code># Multi -turn: orchestrator
 handles input -required
 state
 async def
 run_multiturn_task (client , initial_message ):
 task = await
-client.send_task(message= initial_message )
-</code></pre>
-<pre><code class="language-text">while
-task.status.state not in ("completed", "failed", "canceled"):
-if task.status.state == "input -required":
-</code></pre>
-<pre><code class="language-text"># Agent
+client.send_task(message= initial_message )</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>while
+task.status.state not in (&quot;completed&quot;, &quot;failed&quot;, &quot;canceled&quot;):
+if task.status.state == &quot;input -required&quot;:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Agent
 needs
 clarification
 clarification_needed = task.status.message
-print(f"Agent
-asks: { clarification_needed }")
-</code></pre>
-<pre><code class="language-text"># Orchestrator
+print(f&quot;Agent
+asks: { clarification_needed }&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Orchestrator
 generates or forwards a clarifying
 response
 user_reply = await
-get_clarification ( clarification_needed )
-</code></pre>
-<pre><code class="language-text"># Send the reply to continue
+get_clarification ( clarification_needed )</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Send the reply to continue
 the task
 task = await
 client.send_task(
 task_id=task.id ,
-message ={"role": "user",
-</code></pre>
-<pre><code class="language-text">"parts": [{"type": "text", "text": user_reply }]}
+message ={&quot;role&quot;: &quot;user&quot;,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;parts&quot;: [{&quot;type&quot;: &quot;text&quot;, &quot;text&quot;: user_reply }]}
 )
-else:
-</code></pre>
-<pre><code class="language-text"># Still
+else:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Still
 working
 --- poll
 after a delay
 await
 asyncio.sleep (2)
 task = await
-client.get_task(task.id)
-</code></pre>
-<p>返回
-任务</p>
-<p>广播</p>
-<p>协调器同时向多个智能体发送相同的消息——对于公告、
-分配共享上下文，或触发并行独立的工作流程。</p>
-<p>发布-订阅 (Pub-Sub)</p>
-<p>智能体订阅事件通道（例如，新文档上传、模型重新训练）。当
-事件触发，所有订阅的智能体都会收到通知。这将生产者与消费者脱钩，并使
-反应式、事件驱动的架构。</p>
-<p>洽谈</p>
-<p>两个智能体交换提案和反提案，以就计划、资源达成一致
-分配或方法。在多智能体规划系统中很常见，其中智能体有不同的
-目标或限制。</p>
-<p>谈判模式</p>
-<p>PlannerAgent 提出一个 5 步研究计划。 ResourceAgent 响应步骤 3（运行
-大型模拟）将超出计算预算。 PlannerAgent 反建议
-缩小模拟。资源智能体批准。然后将商定的计划发送至</p>
-<h2 id="chapter-24-p423-4">Agent Discovery and Routing</h2>
-<p><span class="page-ref" id="pdf-p423">原 PDF p.423</span></p>
-<p>执行智能体。</p>
-<p>基于拍卖的任务分配</p>
-<p>协调器宣布一项带有要求的任务；候选智能体商提交投标书（预计
-完成时间、信心、成本）；协调者将任务授予中标者。这个
-在智能体池中实现基于市场的动态负载平衡。</p>
-<p>表 23.1：A2A 通信模式摘要。</p>
-<p>图案
-延迟
-最适合</p>
-<p>请求-响应
-低
-简短、明确的子任务
-流媒体
-低（第一个token）
-长格式生成，实时 UI
-多匝
-中等
-需要澄清的不明确任务
-广播
-低
-共享上下文分布
-发布-订阅
-变量
-事件驱动的反应式工作流程
-洽谈
-中-高
-资源有限的规划
-拍卖
-中等
-动态负载平衡</p>
-<p>智能体发现和路由</p>
-<p>在一个智能体可以与另一个智能体通信之前，它必须找到它。智能体发现的过程是
-定位可以处理给定任务的智能体。</p>
-<p>智能体登记处</p>
-<p>智能体注册表是一种目录服务，用于索引智能体卡并提供搜索和查找
-API。存在两种部署模型：
-集中登记
-单个权威注册表（例如企业服务目录）对所有智能体进行索引。简单到
-可以运行，但会产生单点故障，并且可能无法扩展到跨组织部署。
-联合登记处
-多个注册中心，每个注册中心对一个域或组织具有权威性，并具有跨注册中心搜索
-协议。更具弹性和隐私保护，但需要标准化的联合协议。</p>
-<p>基于能力的路由</p>
-<p>编排器不是硬编码智能体 URL，而是执行基于功能的路由：它们查询
-注册表中匹配所需技能的智能体，然后选择最佳匹配。</p>
-<pre><code class="language-text">class
+client.get_task(task.id)</code></pre></div><p class="content-block paragraph">返回 任务</p><p class="content-block paragraph">广播</p><p class="content-block paragraph">协调器同时向多个智能体发送相同的消息——对于公告、 分配共享上下文，或触发并行独立的工作流程。</p><p class="content-block paragraph">发布-订阅 (Pub-Sub)</p><p class="content-block paragraph">智能体订阅事件通道（例如，新文档上传、模型重新训练）。当 事件触发，所有订阅的智能体都会收到通知。这将生产者与消费者脱钩，并使 反应式、事件驱动的架构。</p><p class="content-block paragraph">洽谈</p><p class="content-block paragraph">两个智能体交换提案和反提案，以就计划、资源达成一致 分配或方法。在多智能体规划系统中很常见，其中智能体有不同的 目标或限制。</p><p class="content-block paragraph">谈判模式</p><p class="content-block paragraph">PlannerAgent 提出一个 5 步研究计划。 ResourceAgent 响应步骤 3（运行 大型模拟）将超出计算预算。 PlannerAgent 反建议 缩小模拟。资源智能体批准。然后将商定的计划发送至</p></div></section><section class="ast-section" id="chapter-24-s04"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>智能体发现与路由</h2><p>本节聚焦“智能体发现与路由”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>智能体间通信（A2A）</strong><span>A2A</span><p>面向智能体之间任务委托和协作的通信协议。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">执行智能体。</p><p class="content-block paragraph">基于拍卖的任务分配</p><p class="content-block paragraph">协调器宣布一项带有要求的任务；候选智能体商提交投标书（预计 完成时间、信心、成本）；协调者将任务授予中标者。这个 在智能体池中实现基于市场的动态负载平衡。</p><p class="content-block paragraph">表 23.1：A2A 通信模式摘要。</p><p class="content-block paragraph">图案 延迟 最适合</p><p class="content-block paragraph">请求-响应 低 简短、明确的子任务 流媒体 低（第一个token） 长格式生成，实时 UI 多匝 中等 需要澄清的不明确任务 广播 低 共享上下文分布 发布-订阅 变量 事件驱动的反应式工作流程 洽谈 中-高 资源有限的规划 拍卖 中等 动态负载平衡</p><p class="content-block paragraph">智能体发现和路由</p><p class="content-block paragraph">在一个智能体可以与另一个智能体通信之前，它必须找到它。智能体发现的过程是 定位可以处理给定任务的智能体。</p><p class="content-block paragraph">智能体登记处</p><p class="content-block paragraph">智能体注册表是一种目录服务，用于索引智能体卡并提供搜索和查找 API。存在两种部署模型： 集中登记 单个权威注册表（例如企业服务目录）对所有智能体进行索引。简单到 可以运行，但会产生单点故障，并且可能无法扩展到跨组织部署。 联合登记处 多个注册中心，每个注册中心对一个域或组织具有权威性，并具有跨注册中心搜索 协议。更具弹性和隐私保护，但需要标准化的联合协议。</p><p class="content-block paragraph">基于能力的路由</p><p class="content-block paragraph">编排器不是硬编码智能体 URL，而是执行基于功能的路由：它们查询 注册表中匹配所需技能的智能体，然后选择最佳匹配。</p><div class="component code-component"><div class="block-label">text</div><pre><code>class
 AgentRouter:
-"""Routes
+&quot;&quot;&quot;Routes
 tasks to agents
 based on capability
-matching."""
-</code></pre>
-<pre><code class="language-text">def
+matching.&quot;&quot;&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 __init__(self , registry_url : str):
 self.registry_url = registry_url
-self._cache: dict[str , list[AgentCard ]] = {}
-</code></pre>
-<pre><code class="language-text">async def
-find_agents(self , required_skill : str ,
-</code></pre>
-<pre><code class="language-text">tags: list[str] | None = None) -&gt; list[AgentCard ]:
-"""Query
+self._cache: dict[str , list[AgentCard ]] = {}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def
+find_agents(self , required_skill : str ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>tags: list[str] | None = None) -&gt; list[AgentCard ]:
+&quot;&quot;&quot;Query
 registry
 for agents
 with the
 required
-skill."""
-params = {"skill": required_skill }
-if tags:
-</code></pre>
-<pre><code class="language-text">params["tags"] = ",".join(tags)
+skill.&quot;&quot;&quot;
+params = {&quot;skill&quot;: required_skill }
+if tags:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>params[&quot;tags&quot;] = &quot;,&quot;.join(tags)
 async
 with
 httpx.AsyncClient () as client:
 resp = await
-client.get(f"{self.registry_url }/ agents", params=params)
-return [AgentCard (** card) for card in resp.json ()["agents"]]
-</code></pre>
-<pre><code class="language-text">async def route(self , task_description : str) -&gt; AgentCard:
-</code></pre>
-<h2 id="chapter-24-p424-5">Message Formats and Schemas</h2>
-<p><span class="page-ref" id="pdf-p424">原 PDF p.424</span></p>
-<pre><code class="language-text">"""Semantically
+client.get(f&quot;{self.registry_url }/ agents&quot;, params=params)
+return [AgentCard (** card) for card in resp.json ()[&quot;agents&quot;]]</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def route(self , task_description : str) -&gt; AgentCard:</code></pre></div></div></section><section class="ast-section" id="chapter-24-s05"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>消息格式与 Schema</h2><p>本节聚焦“消息格式与 Schema”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div></div></div><div class="section-blocks"><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;&quot;&quot;Semantically
 match a task
 description to the best
 available
-agent."""
+agent.&quot;&quot;&quot;
 # Embed the task
 description
 task_embedding = await
-embed( task_description )
-</code></pre>
-<pre><code class="language-text"># Fetch all
+embed( task_description )</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Fetch all
 registered
 agents
 all_agents = await
-self.find_agents( required_skill ="*")
-</code></pre>
-<pre><code class="language-text"># Score
+self.find_agents( required_skill =&quot;*&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Score
 each
 agent by cosine
 similarity of task to agent
 description
 scored = []
-for agent in all_agents:
-</code></pre>
-<pre><code class="language-text">agent_embedding = await
+for agent in all_agents:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>agent_embedding = await
 embed(agent.description)
 score = cosine_similarity (task_embedding , agent_embedding )
-scored.append ((score , agent))
-</code></pre>
-<pre><code class="language-text"># Return the highest -scoring
+scored.append ((score , agent))</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Return the highest -scoring
 agent
 scored.sort(key=lambda x: x[0], reverse=True)
 return
-scored [0][1]
-</code></pre>
-<p>等效智能体之间的负载平衡</p>
-<p>当多个智能体提供相同的功能时，路由器必须分配负载。常见策略：</p>
-<p>• 循环：在所有可用智能体之间均匀分配任务。</p>
-<p>• 负载最少：路由到活动任务最少的智能体（需要运行状况/指标
-端点）。</p>
-<p>• 延迟感知：路由到最近响应时间最短的智能体。</p>
-<p>• 基于关联性：将相关任务路由到同一智能体以利用缓存的上下文。</p>
-<p>版本管理和兼容性</p>
-<p>智能体卡包括版本字段。 Orchestrator 应指定最低版本要求
-并在只有旧版本可用时处理优雅降级。语义版本控制 [373]
-(MAJOR.MINOR.PATCH) 推荐：破坏接口更改增量 MAJOR，新功能
-递增次要。</p>
-<p>长时间运行的系统中的版本偏差</p>
-<p>在生产多智能体系统中，不同的智能体可能会在不同的时间更新，从而创建
-版本倾斜。针对 Agent Card v2.1 编译的协调器可能仍会遇到智能体
-运行 v1.3。始终实现向后兼容的消息处理并测试跨版本
-明确的场景。</p>
-<p>消息格式和模式</p>
-<p>结构化与非结构化消息</p>
-<p>A2A 支持从完全非结构化（纯文本）到完全结构化（类型化 JSON）的范围
-模式）。正确的选择取决于所涉及的智能体：</p>
-<p>多模式消息</p>
-<pre><code class="language-text">A2A messages are structured as a role (user or agent) plus a list of typed parts:
-现代智能体越来越多地使用非文本模式。 A2A 的 FilePart 支持任何 MIME
-类型，实现丰富的多模式工作流程：
-</code></pre>
-<p><span class="page-ref" id="pdf-p425">原 PDF p.425</span></p>
-<p>表 23.2：结构化与非结构化 A2A 消息的权衡。</p>
-<p>消息类型
-优点
-缺点</p>
-<p>纯文本
-灵活，
-人类可读的，
-容易生成
-难以可靠地解析，没有模式验证</p>
-<p>结构化 JSON
-机器可解析，
-验证
-能够，打字
-需要架构协议，灵活性较差</p>
-<p>混合（文本+数据）
-人类可读
-意图
-+
-机器可解析的有效负载
-构造和解析更复杂</p>
-<p>表 23.3：A2A 消息部分类型（有线格式使用“type”：
-“文本”|“文件”|“数据”）。</p>
-<p>零件类型
-领域
-使用案例</p>
-<p>文本部分
-文字：
-字符串
-自然语言指令、响应
-文件部分
-mimeType、uri 或字节
-文档、图像、音频、代码文件
-数据部分
-数据：
-对象
-结构化 JSON（工具结果、模式）</p>
-<p>多模式 A2A 消息：数据分析</p>
-<pre><code class="language-text"># A message
+scored [0][1]</code></pre></div><p class="content-block paragraph">等效智能体之间的负载平衡</p><p class="content-block paragraph">当多个智能体提供相同的功能时，路由器必须分配负载。常见策略：</p><p class="content-block paragraph">• 循环：在所有可用智能体之间均匀分配任务。</p><p class="content-block paragraph">• 负载最少：路由到活动任务最少的智能体（需要运行状况/指标 端点）。</p><p class="content-block paragraph">• 延迟感知：路由到最近响应时间最短的智能体。</p><p class="content-block paragraph">• 基于关联性：将相关任务路由到同一智能体以利用缓存的上下文。</p><p class="content-block paragraph">版本管理和兼容性</p><p class="content-block paragraph">智能体卡包括版本字段。 Orchestrator 应指定最低版本要求 并在只有旧版本可用时处理优雅降级。语义版本控制 [373] (MAJOR.MINOR.PATCH) 推荐：破坏接口更改增量 MAJOR，新功能 递增次要。</p><p class="content-block paragraph">长时间运行的系统中的版本偏差</p><p class="content-block paragraph">在生产多智能体系统中，不同的智能体可能会在不同的时间更新，从而创建 版本倾斜。针对 Agent Card v2.1 编译的协调器可能仍会遇到智能体 运行 v1.3。始终实现向后兼容的消息处理并测试跨版本 明确的场景。</p><p class="content-block paragraph">消息格式和模式</p><p class="content-block paragraph">结构化与非结构化消息</p><p class="content-block paragraph">A2A 支持从完全非结构化（纯文本）到完全结构化（类型化 JSON）的范围 模式）。正确的选择取决于所涉及的智能体：</p><p class="content-block paragraph">多模式消息</p><div class="component code-component"><div class="block-label">text</div><pre><code>A2A messages are structured as a role (user or agent) plus a list of typed parts:
+Modern agents increasingly work with non-text modalities. A2A’s FilePart supports any MIME
+type, enabling rich multi-modal workflows:</code></pre></div><p class="content-block paragraph">表 23.2：结构化与非结构化 A2A 消息的权衡。</p><p class="content-block paragraph">消息类型 优点 缺点</p><p class="content-block paragraph">纯文本 灵活， 人类可读的， 容易生成 难以可靠地解析，没有模式验证</p><p class="content-block paragraph">结构化 JSON 机器可解析， 验证 能够，打字 需要架构协议，灵活性较差</p><p class="content-block paragraph">混合（文本+数据） 人类可读 意图 + 机器可解析的有效负载 构造和解析更复杂</p><p class="content-block paragraph">表 23.3：A2A 消息部分类型（有线格式使用“type”： “文本”|“文件”|“数据”）。</p><p class="content-block paragraph">零件类型 领域 使用案例</p><p class="content-block paragraph">文本部分 文字： 字符串 自然语言指令、响应 文件部分 mimeType、uri 或字节 文档、图像、音频、代码文件 数据部分 数据： 对象 结构化 JSON（工具结果、模式）</p><p class="content-block paragraph">多模式 A2A 消息：数据分析</p><div class="component code-component"><div class="block-label">text</div><pre><code># A message
 combining
 text
 instructions
 with a data
 payload
 and a file
-message = {
-</code></pre>
-<pre><code class="language-text">"role": "user",
-"parts": [
-</code></pre>
-<p>{</p>
-<pre><code class="language-text">"type": "text",
-"text": "Analyze
+message = {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;role&quot;: &quot;user&quot;,
+&quot;parts&quot;: [</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;type&quot;: &quot;text&quot;,
+&quot;text&quot;: &quot;Analyze
 the
 attached
 CSV and the schema
-below. "
-"Identify
+below. &quot;
+&quot;Identify
 anomalies
 and
 produce a summary
-report."
+report.&quot;
 },
-{
-</code></pre>
-<pre><code class="language-text">"type": "file",
-"mimeType": "text/csv",
-"uri": "https :// storage.example.com/data/sales_q3.csv"
+{</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;type&quot;: &quot;file&quot;,
+&quot;mimeType&quot;: &quot;text/csv&quot;,
+&quot;uri&quot;: &quot;https :// storage.example.com/data/sales_q3.csv&quot;
 },
-{
-</code></pre>
-<pre><code class="language-text">"type": "data",
-"data": {
-</code></pre>
-<p>"schema": {</p>
-<pre><code class="language-text">"columns": ["日期"、"地区"、"产品"、"收入"、"单位"
-],
-</code></pre>
-<pre><code class="language-text">"types":
-["date", "string", "string", "float", "int"]
+{</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;type&quot;: &quot;data&quot;,
+&quot;data&quot;: {</code></pre></div><p class="content-block paragraph">&quot;schema&quot;: {</p><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;columns&quot;: [&quot;date&quot;, &quot;region&quot;, &quot;product&quot;, &quot;revenue&quot;, &quot;units&quot;
+],</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;types&quot;:
+[&quot;date&quot;, &quot;string&quot;, &quot;string&quot;, &quot;float&quot;, &quot;int&quot;]
 },
-" expectedRowCount ": 15000 ,
-" anomalyThreshold ": 3.0
+&quot; expectedRowCount &quot;: 15000 ,
+&quot; anomalyThreshold &quot;: 3.0
 # z-score
 threshold
 }
 }
 ]
-}
-</code></pre>
-<p>多模态 A2A 消息：图像分析</p>
-<pre><code class="language-text"># Multi -modal
+}</code></pre></div><p class="content-block paragraph">多模态 A2A 消息：图像分析</p><div class="component code-component"><div class="block-label">text</div><pre><code># Multi -modal
 message: text + image + structured
 data
-multimodal_message = {
-</code></pre>
-<pre><code class="language-text">"role": "user",
-"parts": [
-</code></pre>
-<pre><code class="language-text">{"type": "text",
-</code></pre>
-<pre><code class="language-text">"text": "Describe
+multimodal_message = {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;role&quot;: &quot;user&quot;,
+&quot;parts&quot;: [</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>{&quot;type&quot;: &quot;text&quot;,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;text&quot;: &quot;Describe
 what is wrong
 with this
 chart and
 suggest
-fixes."},
-{"type": "file",
-</code></pre>
-<pre><code class="language-text">"mimeType": "image/png",
-"bytes": base64.b64encode( chart_image_bytes ).decode ()},
-{"type": "data",
-</code></pre>
-<p>"data": {</p>
-<p><span class="page-ref" id="pdf-p426">原 PDF p.426</span></p>
-<pre><code class="language-text">"chartType": "bar",
-"dataSource": "Q3 Revenue by Region",
-"knownIssues": ["y 轴不从零开始",
-</code></pre>
-<pre><code class="language-text">"missing
+fixes.&quot;},
+{&quot;type&quot;: &quot;file&quot;,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;mimeType&quot;: &quot;image/png&quot;,
+&quot;bytes&quot;: base64.b64encode( chart_image_bytes ).decode ()},
+{&quot;type&quot;: &quot;data&quot;,</code></pre></div><p class="content-block paragraph">&quot;data&quot;: {</p><p class="content-block paragraph">&quot;chartType&quot;: &quot;bar&quot;, &quot;dataSource&quot;: &quot;Q3 Revenue by Region&quot;, &quot;knownIssues&quot;: [&quot;y 轴不从零开始&quot;,</p><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;missing
 error
-bars"]
+bars&quot;]
 }}
 ]
-}
-</code></pre>
-<p>上下文传递：共享什么与保持私有</p>
-<p>多智能体系统中的一个关键设计决策是上下文范围：对话的数量
-历史记录和内部状态传递给子智能体。</p>
-<p>上下文范围原则</p>
-<p>最小背景
-仅传递子智能体完成其任务所需的内容。减少token使用、延迟和
-泄露敏感信息的风险。
-总结背景
-不要传递原始的对话历史记录，而是传递结构化的摘要：目标、约束、
-做出的决定以及相关事实。
-私人国家
-内部推理、中间草案和用户 PII 通常不应转发给子系统
-除非明确要求，否则智能体。
-相关 ID
-始终传递correlationId，以便子智能体操作可以追溯到原始智能体
-日志和审计跟踪中的工作流程。</p>
-<p>对话线程和关联 ID</p>
-<p>在复杂的工作流程中，许多任务可能同时进行。相关 ID 链接相关
-跨智能体的任务：</p>
-<p>进口
-uuid</p>
-<pre><code class="language-text">class
+}</code></pre></div><p class="content-block paragraph">上下文传递：共享什么与保持私有</p><p class="content-block paragraph">多智能体系统中的一个关键设计决策是上下文范围：对话的数量 历史记录和内部状态传递给子智能体。</p><p class="content-block paragraph">上下文范围原则</p><p class="content-block paragraph">最小背景 仅传递子智能体完成其任务所需的内容。减少token使用、延迟和 泄露敏感信息的风险。 总结背景 不要传递原始的对话历史记录，而是传递结构化的摘要：目标、约束、 做出的决定以及相关事实。</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>私人国家</code></pre></div><p class="content-block paragraph">内部推理、中间草案和用户 PII 通常不应转发给子系统 除非明确要求，否则智能体。 相关 ID 始终传递correlationId，以便子智能体操作可以追溯到原始智能体 日志和审计跟踪中的工作流程。</p><p class="content-block paragraph">对话线程和关联 ID</p><p class="content-block paragraph">在复杂的工作流程中，许多任务可能同时进行。相关 ID 链接相关 跨智能体的任务：</p><p class="content-block paragraph">进口 uuid</p><div class="component code-component"><div class="block-label">text</div><pre><code>class
 WorkflowContext :
-"""Carries
+&quot;&quot;&quot;Carries
 correlation
 metadata
 through a multi -agent
-workflow."""
-</code></pre>
-<pre><code class="language-text">def
+workflow.&quot;&quot;&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 __init__(self , workflow_id: str | None = None):
 self.workflow_id = workflow_id or str(uuid.uuid4 ())
 self.span_id = str(uuid.uuid4 ())
-self.parent_span_id : str | None = None
-</code></pre>
-<pre><code class="language-text">def
-child_context(self) -&gt; " WorkflowContext ":
-"""Create a child
-context for a sub -task."""
+self.parent_span_id : str | None = None</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
+child_context(self) -&gt; &quot; WorkflowContext &quot;:
+&quot;&quot;&quot;Create a child
+context for a sub -task.&quot;&quot;&quot;
 child = WorkflowContext (workflow_id=self.workflow_id)
 child. parent_span_id = self.span_id
 return
-child
-</code></pre>
-<pre><code class="language-text">def
+child</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 to_metadata(self) -&gt; dict:
-return {
-</code></pre>
-<pre><code class="language-text">"x-workflow -id": self.workflow_id ,
-"x-span -id": self.span_id ,
-"x-parent -span -id": self. parent_span_id
-}
-</code></pre>
-<pre><code class="language-text"># Usage: attach to every A2A task
+return {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;x-workflow -id&quot;: self.workflow_id ,
+&quot;x-span -id&quot;: self.span_id ,
+&quot;x-parent -span -id&quot;: self. parent_span_id
+}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Usage: attach to every A2A task
 submission
 ctx = WorkflowContext ()
 task = await
 client.send_task(
 message=message ,
-metadata=ctx.to_metadata ()
-</code></pre>
-<h2 id="chapter-24-p427-6">Coordination Protocols</h2>
-<p><span class="page-ref" id="pdf-p427">原 PDF p.427</span></p>
-<pre><code class="language-text">)
+metadata=ctx.to_metadata ()</code></pre></div></div></section><section class="ast-section" id="chapter-24-s06"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>协调协议</h2><p>本节聚焦“协调协议”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div></div></div><div class="section-blocks"><div class="component code-component"><div class="block-label">text</div><pre><code>)
 # Sub -tasks use child
 contexts
 for
 tracing
-sub_ctx = ctx.child_context ()
-</code></pre>
-<p>协调协议</p>
-<p>除了点对点通信之外，多智能体系统还受益于更高级别的协调
-协议——支持集体决策和解决问题的结构化交互模式
-解决。</p>
-<p>合约网协议</p>
-<p>合约网络协议（CNP）[374]是一种经典的多智能体协调机制
-对于基于LLM的系统：</p>
-<p>1.公告：管理者智能体向所有潜在的参与者广播任务公告
-拖拉机智能体，包括任务要求和评估标准。</p>
-<ol start="2">
-<li>
-<p>招标：承包商智能体根据自己的能力评估任务并提交投标书
-包含预计完成时间、置信度和资源需求。</p>
-</li>
-<li>
-<p>奖励：经理选择中标（或并行子任务的多个投标）并
-授予合同。</p>
-</li>
-<li>
-<p>执行和报告：承包商执行任务并将结果报告给承包商
-经理。</p>
-</li>
-</ol>
-<p>合约网协议实现</p>
-<pre><code class="language-text">import
-dataclasses
-</code></pre>
-<pre><code class="language-text">class
+sub_ctx = ctx.child_context ()</code></pre></div><p class="content-block paragraph">除了点对点通信之外，多智能体系统还受益于更高级别的协调 协议——支持集体决策和解决问题的结构化交互模式 解决。</p><p class="content-block paragraph">合约网协议</p><p class="content-block paragraph">合约网络协议（CNP）[374]是一种经典的多智能体协调机制 对于基于LLM的系统：</p><p class="content-block paragraph">1.公告：管理者智能体向所有潜在的参与者广播任务公告 拖拉机智能体，包括任务要求和评估标准。</p><p class="content-block paragraph">2. 招标：承包商智能体根据自己的能力评估任务并提交投标书 包含预计完成时间、置信度和资源需求。</p><p class="content-block paragraph">3. 奖励：经理选择中标（或并行子任务的多个投标）并 授予合同。</p><p class="content-block paragraph">4. 执行和报告：承包商执行任务并将结果报告给承包商 经理。</p><p class="content-block paragraph">合约网协议实现</p><div class="component code-component"><div class="block-label">text</div><pre><code>import
+dataclasses</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 ContractNetManager :
-"""Implements
+&quot;&quot;&quot;Implements
 the
 Contract
 Net
 Protocol
 for task
-allocation."""
-</code></pre>
-<pre><code class="language-text">async def
-allocate_task(self , task: Task ,
-</code></pre>
-<pre><code class="language-text">candidate_agents : list[AgentCard ]) -&gt; AgentCard:
+allocation.&quot;&quot;&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def
+allocate_task(self , task: Task ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>candidate_agents : list[AgentCard ]) -&gt; AgentCard:
 # Phase 1: Announce
 task to all
 candidates
-announcement = {
-</code></pre>
-<pre><code class="language-text">"type": "task -announcement",
-"task": dataclasses.asdict(task),
-"deadline": (datetime.now(timezone.utc) + timedelta(seconds =10)).
-isoformat (),
-</code></pre>
-<pre><code class="language-text">" evaluationCriteria ": ["confidence", " estimatedTime ", "cost"]
-}
-</code></pre>
-<pre><code class="language-text"># Phase 2: Collect
+announcement = {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;type&quot;: &quot;task -announcement&quot;,
+&quot;task&quot;: dataclasses.asdict(task),
+&quot;deadline&quot;: (datetime.now(timezone.utc) + timedelta(seconds =10)).
+isoformat (),</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot; evaluationCriteria &quot;: [&quot;confidence&quot;, &quot; estimatedTime &quot;, &quot;cost&quot;]
+}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Phase 2: Collect
 bids
 bids = await
 asyncio.gather (*[
 self._request_bid(agent , announcement )
 for agent in candidate_agents
-], return_exceptions =True)
-</code></pre>
-<pre><code class="language-text">valid_bids = [(agent , bid) for agent , bid in zip(candidate_agents , bids
-)
-</code></pre>
-<pre><code class="language-text">if not
-isinstance(bid , Exception) and bid is not None]
-</code></pre>
-<pre><code class="language-text">if not
+], return_exceptions =True)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>valid_bids = [(agent , bid) for agent , bid in zip(candidate_agents , bids
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>if not
+isinstance(bid , Exception) and bid is not None]</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>if not
 valid_bids:
 raise
-RuntimeError(f"No agents bid on task {task.id}")
-</code></pre>
-<pre><code class="language-text"># Phase 3: Award to best
+RuntimeError(f&quot;No agents bid on task {task.id}&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Phase 3: Award to best
 bidder (highest
 confidence , lowest
 time)
 def
 score_bid(agent_bid):
-_, bid = agent_bid
-</code></pre>
-<p><span class="page-ref" id="pdf-p428">原 PDF p.428</span></p>
-<pre><code class="language-text">return bid["confidence"] - 0.1 * bid[" estimatedSeconds "]
-</code></pre>
-<pre><code class="language-text">winner_agent , winning_bid = max(valid_bids , key=score_bid)
-</code></pre>
-<pre><code class="language-text"># Notify
+_, bid = agent_bid</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return bid[&quot;confidence&quot;] - 0.1 * bid[&quot; estimatedSeconds &quot;]</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>winner_agent , winning_bid = max(valid_bids , key=score_bid)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Notify
 winner and losers
 await
 self. _award_contract (winner_agent , task)
@@ -941,266 +365,107 @@ await
 asyncio.gather (*[
 self._reject_bid(agent , task.id)
 for agent , _ in valid_bids if agent != winner_agent
-])
-</code></pre>
-<pre><code class="language-text">return
-winner_agent
-</code></pre>
-<pre><code class="language-text">async def
-_request_bid(self , agent: AgentCard ,
-</code></pre>
-<pre><code class="language-text">announcement : dict) -&gt; dict | None:
-"""Ask an agent to bid on a task."""
-try:
-</code></pre>
-<pre><code class="language-text">result = await
+])</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return
+winner_agent</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def
+_request_bid(self , agent: AgentCard ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>announcement : dict) -&gt; dict | None:
+&quot;&quot;&quot;Ask an agent to bid on a task.&quot;&quot;&quot;
+try:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>result = await
 self.client.send_task(
 agent_url=agent.url ,
-message ={"role": "user",
-</code></pre>
-<pre><code class="language-text">"parts": [{"type": "data", "data": announcement }]}
+message ={&quot;role&quot;: &quot;user&quot;,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;parts&quot;: [{&quot;type&quot;: &quot;data&quot;, &quot;data&quot;: announcement }]}
 )
 return
-result.artifacts [0]. parts [0]["data"]
+result.artifacts [0]. parts [0][&quot;data&quot;]
 except
 Exception:
 return
-None
-</code></pre>
-<p>黑板系统</p>
-<p>黑板系统[321]提供了一个共享工作空间（“黑板”），智能体可以在其中发布信息
-部分解决方案、观察结果和假设。其他坐席监视黑板并做出贡献
-当他们可以增加价值时——一种机会主义的解决问题的方法。
-黑板系统非常适合解决事先未知解决方案路径的问题
-不同的智能体可能在不同的阶段做出贡献——例如科学假设的生成，
-复杂的调试，或多源情报分析。</p>
-<p>共识协议</p>
-<p>当多个智能体必须就一项决定达成一致时（例如，执行哪个计划、结果是否正确）
-正确），共识协议提供结构化投票机制：
-简单多数投票
-每位智能体投票；得票率 &gt; 50% 的选项获胜。快速但容易受到相关错误的影响，如果
-智能体共享相同的基本模型。
-加权投票
-投票根据智能体信心或历史准确性进行加权。更稳健，但需要校准
-置信度估计。
-基于法定人数
-决策需要 n 个智能体中至少 k 个的同意。提供容错能力：高达 n −k
-智能体可以失败或不同意而无需阻止。
-德尔菲法
-智能体投票，查看匿名结果，修改他们的投票，然后重复直到收敛。减少
-消除偏见并鼓励真正的深思熟虑。</p>
-<pre><code class="language-text">async def
-quorum_vote(agents: list[AgentCard], question: str ,
-</code></pre>
-<pre><code class="language-text">options: list[str], quorum: int) -&gt; str | None:
-"""Run a quorum
+None</code></pre></div><p class="content-block paragraph">黑板系统</p><p class="content-block paragraph">黑板系统[321]提供了一个共享工作空间（“黑板”），智能体可以在其中发布信息 部分解决方案、观察结果和假设。其他坐席监视黑板并做出贡献 当他们可以增加价值时——一种机会主义的解决问题的方法。 黑板系统非常适合解决事先未知解决方案路径的问题 不同的智能体可能在不同的阶段做出贡献——例如科学假设的生成， 复杂的调试，或多源情报分析。</p><p class="content-block paragraph">共识协议</p><p class="content-block paragraph">当多个智能体必须就一项决定达成一致时（例如，执行哪个计划、结果是否正确） 正确），共识协议提供结构化投票机制： 简单多数投票 每位智能体投票；得票率 &gt; 50% 的选项获胜。快速但容易受到相关错误的影响，如果 智能体共享相同的基本模型。 加权投票 投票根据智能体信心或历史准确性进行加权。更稳健，但需要校准 置信度估计。 基于法定人数 决策需要 n 个智能体中至少 k 个的同意。提供容错能力：高达 n −k 智能体可以失败或不同意而无需阻止。 德尔菲法 智能体投票，查看匿名结果，修改他们的投票，然后重复直到收敛。减少 消除偏见并鼓励真正的深思熟虑。</p><div class="component code-component"><div class="block-label">text</div><pre><code>async def
+quorum_vote(agents: list[AgentCard], question: str ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>options: list[str], quorum: int) -&gt; str | None:
+&quot;&quot;&quot;Run a quorum
 vote
 across
 agents. Returns
 winning
-option or None."""
+option or None.&quot;&quot;&quot;
 votes = await
 asyncio.gather (*[
 ask_agent_to_vote (agent , question , options)
 for agent in agents
-])
-</code></pre>
-<h2 id="chapter-24-p429-7">A2A vs. MCP: Complementary Protocols</h2>
-<p><span class="page-ref" id="pdf-p429">原 PDF p.429</span></p>
-<pre><code class="language-text">counts: dict[str , int] = {}
-for vote in votes:
-</code></pre>
-<pre><code class="language-text">if vote in options:
-</code></pre>
-<pre><code class="language-text">counts[vote] = counts.get(vote , 0) + 1
-</code></pre>
-<pre><code class="language-text"># Return
+])</code></pre></div></div></section><section class="ast-section" id="chapter-24-s07"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>A2A 与 MCP：互补协议</h2><p>本节聚焦“A2A 与 MCP：互补协议”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>模型上下文协议（MCP）</strong><span>MCP</span><p>连接模型应用与工具/数据源的开放协议。</p></div><div class="concept-chip"><strong>智能体间通信（A2A）</strong><span>A2A</span><p>面向智能体之间任务委托和协作的通信协议。</p></div></div></div><div class="section-blocks"><div class="component code-component"><div class="block-label">text</div><pre><code>counts: dict[str , int] = {}
+for vote in votes:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>if vote in options:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>counts[vote] = counts.get(vote , 0) + 1</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Return
 first
 option
 that
 reaches
 quorum
-for option , count in sorted(counts.items (), key=lambda x: -x[1]):
-</code></pre>
-<pre><code class="language-text">if count
+for option , count in sorted(counts.items (), key=lambda x: -x[1]):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>if count
 &gt;= quorum:
 return
 option
 return
 None
 # No quorum
-reached
-</code></pre>
-<p>领导人选举</p>
-<p>在动态多智能体系统中，可能需要在运行时选举一个领导者（协调者）
-例如，当原始协调器发生故障或智能体在没有预先分配的情况下自组织时
-协调员。经典的分布式系统算法（Bully、Ring）可以适用于智能体网络，
-与智能体交换能力分数或优先级token来选择最有能力的可用智能体
-作为领导者。</p>
-<p>A2A 与 MCP：补充协议</p>
-<p>一个常见的混淆来源是 A2A 和模型上下文协议之间的关系
-（MCP）[335]。这些协议是互补的，而不是竞争的：</p>
-<p>核心区别</p>
-<p>• MCP 是垂直协议：它将智能体向下延伸到数据库世界，
-API、文件系统和代码执行器。
-仅智能体原因； MCP 端点是
-确定性服务。</p>
-<p>• A2A 是水平协议：它将一个推理智能体连接到另一个推理智能体。双方都是
-能够推理、计划和使用工具的智能参与者。</p>
-<p>尺寸
-MCP
-A2A</p>
-<p>参加者
-智能体↔工具/资源
-智能体 ↔智能体
-情报
-一侧（智能体）是智能的
-双方都是聪明人
-状态性
-通常是无状态工具调用
-具有生命周期的有状态任务
-流媒体
-有限（工具结果）
-一流的 SSE 流媒体
-发现
-工具清单
-智能体卡
-认证模型
-服务器控制
-相互，OAuth 2.0
-典型延迟
-毫秒
-秒到分钟
-使用案例
-“搜索网络”、“运行 SQL”
-“委托给专家”</p>
-<p>何时使用哪个</p>
-<p>• 当远程端点是确定性函数时使用MCP：数据库查询、API
-call，代码执行沙箱。智能体完全控制交互。</p>
-<p>• 当远程端点需要推理请求时使用 A2A：解释不明确的内容
-指示、做出判断、使用自己的工具或进行多轮对话。</p>
-<p>• 在同一系统中使用两者：编排器智能体使用 A2A 委托给专家智能体，
-每个专业智能体都使用 MCP 来访问其工具。</p>
-<h2 id="chapter-24-p430-8">Security and Trust in Multi-Agent Systems</h2>
-<p><span class="page-ref" id="pdf-p430">原 PDF p.430</span></p>
-<p>组合架构</p>
-<p>在生产多智能体系统中，A2A 和 MCP 在不同层协同工作：A2A 句柄
-智能体间授权和协调（同行之间的水平通信），而 MCP
-处理每个智能体与其工具和数据源的连接（与功能的垂直集成）。
-这种关注点分离是构建可扩展智能体架构的关键。</p>
-<p>图 23.1：A2A + MCP 组合架构。协调者通过 A2A 委托给专业智能体；
-每个智能体通过 MCP 服务器访问其工具。</p>
-<p>• A2A 委派：当智能体需要其不具备的能力时，它将委派给
-另一个智能体通过 A2A 任务消息。每个智能体都是一个独立的服务，有自己的
-智能体卡。</p>
-<p>• 用于工具访问的MCP：每个智能体通过MCP 服务器连接到其工具。这意味着
-工具永远不会直接暴露给其他智能体——只能通过所属智能体的界面。</p>
-<p>• 信任边界分离：编排者信任专业智能体（通过验证）
-A2A 认证）。每个专家都信任自己的 MCP 服务器（本地或经过身份验证的）。
-没有传递工具访问。</p>
-<p>• 独立扩展：代码密集型工作负载可以扩展CodeAgent 实例；数据工作-
-加载规模 DataAgent。编排器仍然是轻量级的。</p>
-<p>多智能体系统的安全性和信任</p>
-<p>多智能体系统带来了独特的安全挑战。当智能体A委托给智能体B时，
-将其委托给智能体 C 时，必须仔细管理信任链。</p>
-<p>智能体身份验证</p>
-<p>每个智能体都必须拥有可验证的身份。选项包括：</p>
-<p>• JWT token[375]由受信任的身份提供商签名，携带智能体的 ID、发行者和
-到期。由接收智能体使用提供者的公钥进行验证。</p>
-<p>• 由内部CA颁发的mTLS证书[376]，提供身份验证和传输
-加密。</p>
-<p>• 去中心化标识符（DID）[377]，适用于没有单一标识符的跨组织场景
-存在值得信赖的权威。</p>
-<figure><img alt="第 430 页图像 page_430_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_430_img_01.png"/>
-<em>图像：原 PDF p.430</em></figure>
-<p><span class="page-ref" id="pdf-p431">原 PDF p.431</span></p>
-<p>消息完整性和加密</p>
-<p>• 所有 A2A 通信均应通过 TLS 1.3 [378] 进行，以防止窃听和
-中间人攻击。</p>
-<p>• 对于敏感负载，端到端加密（例如 JWE）可确保中间基础设施
-结构（负载均衡器、智能体）无法读取消息内容。</p>
-<p>• 消息签名 (JWS) 提供不可否认性：接收智能体可以证明
-特定消息来自特定发件人。</p>
-<p>授权范围</p>
-<p>并非每个智能体都应该能够要求其他所有智能体做任何事情。 OAuth 2.0授权
-范围[379]定义了边界：</p>
-<pre><code class="language-text"># Example
+reached</code></pre></div><p class="content-block paragraph">领导人选举</p><p class="content-block paragraph">在动态多智能体系统中，可能需要在运行时选举一个领导者（协调者） 例如，当原始协调器发生故障或智能体在没有预先分配的情况下自组织时 协调员。经典的分布式系统算法（Bully、Ring）可以适用于智能体网络， 与智能体交换能力分数或优先级token来选择最有能力的可用智能体 作为领导者。</p><p class="content-block paragraph">A2A 与 MCP：补充协议</p><p class="content-block paragraph">一个常见的混淆来源是 A2A 和模型上下文协议之间的关系 （MCP）[335]。这些协议是互补的，而不是竞争的：</p><p class="content-block paragraph">核心区别</p><p class="content-block paragraph">• MCP 是垂直协议：它将智能体向下延伸到数据库世界， API、文件系统和代码执行器。 仅智能体原因； MCP 端点是 确定性服务。</p><p class="content-block paragraph">• A2A 是水平协议：它将一个推理智能体连接到另一个推理智能体。双方都是 能够推理、计划和使用工具的智能参与者。</p><p class="content-block paragraph">尺寸 MCP A2A</p><p class="content-block paragraph">参加者 智能体↔工具/资源 智能体 ↔智能体 情报 一侧（智能体）是智能的 双方都是聪明人 状态性 通常是无状态工具调用 具有生命周期的有状态任务 流媒体 有限（工具结果） 一流的 SSE 流媒体 发现 工具清单 智能体卡 认证模型 服务器控制 相互，OAuth 2.0 典型延迟 毫秒 秒到分钟 使用案例 “搜索网络”、“运行 SQL” “委托给专家”</p><p class="content-block paragraph">何时使用哪个</p><p class="content-block paragraph">• 当远程端点是确定性函数时使用MCP：数据库查询、API call，代码执行沙箱。智能体完全控制交互。</p><p class="content-block paragraph">• 当远程端点需要推理请求时使用 A2A：解释不明确的内容 指示、做出判断、使用自己的工具或进行多轮对话。</p><p class="content-block paragraph">• 在同一系统中使用两者：编排器智能体使用 A2A 委托给专家智能体， 每个专业智能体都使用 MCP 来访问其工具。</p></div></section><section class="ast-section" id="chapter-24-s08"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>多智能体系统中的安全与信任</h2><p>本节聚焦“多智能体系统中的安全与信任”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>模型上下文协议（MCP）</strong><span>MCP</span><p>连接模型应用与工具/数据源的开放协议。</p></div><div class="concept-chip"><strong>智能体间通信（A2A）</strong><span>A2A</span><p>面向智能体之间任务委托和协作的通信协议。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">组合架构</p><p class="content-block paragraph">在生产多智能体系统中，A2A 和 MCP 在不同层协同工作：A2A 句柄 智能体间授权和协调（同行之间的水平通信），而 MCP 处理每个智能体与其工具和数据源的连接（与功能的垂直集成）。 这种关注点分离是构建可扩展智能体架构的关键。</p><p class="content-block paragraph">图 23.1：A2A + MCP 组合架构。协调者通过 A2A 委托给专业智能体； 每个智能体通过 MCP 服务器访问其工具。</p><p class="content-block paragraph">• A2A 委派：当智能体需要其不具备的能力时，它将委派给 另一个智能体通过 A2A 任务消息。每个智能体都是一个独立的服务，有自己的 智能体卡。</p><p class="content-block paragraph">• 用于工具访问的MCP：每个智能体通过MCP 服务器连接到其工具。这意味着 工具永远不会直接暴露给其他智能体——只能通过所属智能体的界面。</p><p class="content-block paragraph">• 信任边界分离：编排者信任专业智能体（通过验证） A2A 认证）。每个专家都信任自己的 MCP 服务器（本地或经过身份验证的）。 没有传递工具访问。</p><p class="content-block paragraph">• 独立扩展：代码密集型工作负载可以扩展CodeAgent 实例；数据工作- 加载规模 DataAgent。编排器仍然是轻量级的。</p><p class="content-block paragraph">多智能体系统的安全性和信任</p><p class="content-block paragraph">多智能体系统带来了独特的安全挑战。当智能体A委托给智能体B时， 将其委托给智能体 C 时，必须仔细管理信任链。</p><p class="content-block paragraph">智能体身份验证</p><p class="content-block paragraph">每个智能体都必须拥有可验证的身份。选项包括：</p><p class="content-block paragraph">• JWT token[375]由受信任的身份提供商签名，携带智能体的 ID、发行者和 到期。由接收智能体使用提供者的公钥进行验证。</p><p class="content-block paragraph">• 由内部CA颁发的mTLS证书[376]，提供身份验证和传输 加密。</p><p class="content-block paragraph">• 去中心化标识符（DID）[377]，适用于没有单一标识符的跨组织场景 存在值得信赖的权威。</p><figure class="component figure-component"><img src="../assets/images/figures/fig-064.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure><p class="content-block paragraph">消息完整性和加密</p><p class="content-block paragraph">• 所有 A2A 通信均应通过 TLS 1.3 [378] 进行，以防止窃听和 中间人攻击。</p><p class="content-block paragraph">• 对于敏感负载，端到端加密（例如 JWE）可确保中间基础设施 结构（负载均衡器、智能体）无法读取消息内容。</p><p class="content-block paragraph">• 消息签名 (JWS) 提供不可否认性：接收智能体可以证明 特定消息来自特定发件人。</p><p class="content-block paragraph">授权范围</p><p class="content-block paragraph">并非每个智能体都应该能够要求其他所有智能体做任何事情。 OAuth 2.0授权 范围[379]定义了边界：</p><div class="component code-component"><div class="block-label">text</div><pre><code># Example
 OAuth 2.0 scopes for a DataAgent
-SCOPES = {
-</code></pre>
-<pre><code class="language-text">"data:read":
-"Read data from
+SCOPES = {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;data:read&quot;:
+&quot;Read data from
 connected
-databases",
-"data:write":
-"Write or modify
+databases&quot;,
+&quot;data:write&quot;:
+&quot;Write or modify
 data in connected
-databases",
-"data:export":
-"Export
+databases&quot;,
+&quot;data:export&quot;:
+&quot;Export
 data to external
-systems",
-"analysis:run":
-"Execute
+systems&quot;,
+&quot;analysis:run&quot;:
+&quot;Execute
 statistical
-analyses",
-"analysis:schedule":"Schedule
+analyses&quot;,
+&quot;analysis:schedule&quot;:&quot;Schedule
 recurring
-analyses",
-"admin:config":
-"Modify
+analyses&quot;,
+&quot;admin:config&quot;:
+&quot;Modify
 agent
-configuration "
-}
-</code></pre>
-<pre><code class="language-text"># A ReportingAgent
+configuration &quot;
+}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># A ReportingAgent
 might
 hold only: data:read , analysis:run
 # An ETL
 pipeline
 agent
 might
-保持：数据：读取，数据：写入，数据：导出
+hold: data:read , data:write , data:export
 # Only a human
 admin
-holds: admin:config
-</code></pre>
-<pre><code class="language-text">class
+holds: admin:config</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 A2AServer:
 def
 verify_authorization (self , token: str , required_scope : str) -&gt; bool:
-"""Verify
+&quot;&quot;&quot;Verify
 that the
 calling
 agent
 holds the
 required
-scope."""
-claims = jwt.decode(token , self.public_key , algorithms =["RS256"])
-granted_scopes = claims.get("scope", "").split ()
+scope.&quot;&quot;&quot;
+claims = jwt.decode(token , self.public_key , algorithms =[&quot;RS256&quot;])
+granted_scopes = claims.get(&quot;scope&quot;, &quot;&quot;).split ()
 if required_scope
 not in granted_scopes :
 raise
 PermissionError (
-f"Caller
+f&quot;Caller
 lacks
 required
 scope
-’{ required_scope }’. "
-f"Granted: { granted_scopes }"
+’{ required_scope }’. &quot;
+f&quot;Granted: { granted_scopes }&quot;
 )
 return
-True
-</code></pre>
-<p>审计追踪和责任</p>
-<p>责任差距</p>
-<p>在智能体委托链中，谁负责某项操作可能会变得不清楚。如果智能体A
-要求Agent B删除文件，Agent B这样做了，谁负责？每一次 A2A 互动
-必须记录以下内容：调用智能体的身份、任务描述、使用的授权token、
-时间戳和结果。此审计跟踪对于事件响应、合规性、
-和调试。</p>
-<p>每个 A2A 服务器都应该发出结构化审核日志：</p>
-<pre><code class="language-text">@dataclass
+True</code></pre></div><p class="content-block paragraph">审计追踪和责任</p><p class="content-block paragraph">责任差距</p><p class="content-block paragraph">在智能体委托链中，谁负责某项操作可能会变得不清楚。如果智能体A 要求Agent B删除文件，Agent B这样做了，谁负责？每一次 A2A 互动 必须记录以下内容：调用智能体的身份、任务描述、使用的授权token、 时间戳和结果。此审计跟踪对于事件响应、合规性、 和调试。</p><p class="content-block paragraph">每个 A2A 服务器都应该发出结构化审核日志：</p><div class="component code-component"><div class="block-label">text</div><pre><code>@dataclass
 class
 A2AAuditEvent:
 timestamp: str
@@ -1223,35 +488,23 @@ agent
 callee_agent_id : str
 # This
 agent ’s identity
-task_id: str
-</code></pre>
-<h2 id="chapter-24-p432-9">Implementation Example: Multi-Agent Research Workflow</h2>
-<p><span class="page-ref" id="pdf-p432">原 PDF p.432</span></p>
-<pre><code class="language-text">skill_invoked: str
+task_id: str</code></pre></div></div></section><section class="ast-section" id="chapter-24-s09"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>实现示例：多智能体研究工作流</h2><p>本节聚焦“实现示例：多智能体研究工作流”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>智能体间通信（A2A）</strong><span>A2A</span><p>面向智能体之间任务委托和协作的通信协议。</p></div></div></div><div class="section-blocks"><div class="component code-component"><div class="block-label">text</div><pre><code>skill_invoked: str
 authorization_scopes : list[str]
 outcome: str
-# "completed" | "failed" | "rejected"
+# &quot;completed&quot; | &quot;failed&quot; | &quot;rejected&quot;
 duration_ms: int
-error_code: str | None
-</code></pre>
-<p>实施示例：多智能体研究工作流程</p>
-<p>以下示例演示了使用 A2A 的完整多智能体研究工作流程：
-OrchestratorAgent 分解研究问题，委托给专业智能体，然后综合
-他们的结果。</p>
-<pre><code class="language-text">"""
+error_code: str | None</code></pre></div><p class="content-block paragraph">实施示例：多智能体研究工作流程</p><p class="content-block paragraph">以下示例演示了使用 A2A 的完整多智能体研究工作流程： OrchestratorAgent 分解研究问题，委托给专业智能体，然后综合 他们的结果。</p><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;&quot;&quot;
 Multi -agent
 research
 workflow
 using A2A
 protocol.
-演示：智能体卡、A2A 客户端/服务器、任务
+Demonstrates: Agent Cards , A2A client/server , task
 lifecycle ,
 multi -turn
 interaction , and agent
 handoffs.
-"""
-</code></pre>
-<pre><code class="language-text">import
+&quot;&quot;&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>import
 asyncio
 import
 json
@@ -1263,9 +516,7 @@ AsyncIterator
 from
 datetime
 import
-datetime , timedelta , timezone
-</code></pre>
-<pre><code class="language-text">import
+datetime , timedelta , timezone</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>import
 httpx
 from
 fastapi
@@ -1278,59 +529,38 @@ StreamingResponse
 from
 pydantic
 import
-BaseModel , Field
-</code></pre>
-<pre><code class="language-text"># -- Data
+BaseModel , Field</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Data
 Models
---------------------------------------------------------------
-</code></pre>
-<pre><code class="language-text">class
+--------------------------------------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 Part(BaseModel):
 type: str
-# "text" | "file" | "data"
+# &quot;text&quot; | &quot;file&quot; | &quot;data&quot;
 text: str | None = None
 data: dict | None = None
 mimeType: str | None = None
-uri: str | None = None
-</code></pre>
-<pre><code class="language-text">class
+uri: str | None = None</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 Message(BaseModel):
 role: str
-# "user" | "agent"
-parts: list[Part]
-</code></pre>
-<pre><code class="language-text">class
+# &quot;user&quot; | &quot;agent&quot;
+parts: list[Part]</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 TaskStatus(BaseModel):
 state: str
-# 已提交 |工作|需要输入|已完成 |
-failed
-</code></pre>
-<pre><code class="language-text">message: str | None = None
-timestamp: str = Field(
-</code></pre>
-<pre><code class="language-text">default_factory =lambda: datetime.now(timezone.utc).isoformat ()
-)
-</code></pre>
-<pre><code class="language-text">class
+# submitted | working | input -required | completed |
+failed</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>message: str | None = None
+timestamp: str = Field(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>default_factory =lambda: datetime.now(timezone.utc).isoformat ()
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 Artifact(BaseModel):
 parts: list[Part]
 index: int = 0
 append: bool = False
-lastChunk: bool = True
-</code></pre>
-<pre><code class="language-text">class
+lastChunk: bool = True</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 Task(BaseModel):
 id: str
 status: TaskStatus
 messages: list[Message] = []
 artifacts: list[Artifact] = []
-metadata: dict = {}
-</code></pre>
-<pre><code class="language-text"># -- A2A Client (HTTP/REST
-binding) --------------------------------------------
-</code></pre>
-<p><span class="page-ref" id="pdf-p433">原 PDF p.433</span></p>
-<pre><code class="language-text"># Note: A2A v1.0 defines
+metadata: dict = {}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- A2A Client (HTTP/REST
+binding) --------------------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Note: A2A v1.0 defines
 three
 protocol
 bindings: JSON -RPC 2.0, gRPC , and
@@ -1339,79 +569,59 @@ example
 uses the REST
 binding
 for
-readability.
-</code></pre>
-<pre><code class="language-text">class
+readability.</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 A2AClient:
-"""Client for
+&quot;&quot;&quot;Client for
 sending
 tasks to A2A -compliant
-agents."""
-</code></pre>
-<pre><code class="language-text">def
+agents.&quot;&quot;&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 __init__(self , agent_url: str , auth_token: str):
-self.agent_url = agent_url.rstrip("/")
-self.headers = {
-</code></pre>
-<pre><code class="language-text">"Authorization": f"Bearer {auth_token}",
-"Content -Type": "application/json"
-}
-</code></pre>
-<pre><code class="language-text">async def
+self.agent_url = agent_url.rstrip(&quot;/&quot;)
+self.headers = {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;Authorization&quot;: f&quot;Bearer {auth_token}&quot;,
+&quot;Content -Type&quot;: &quot;application/json&quot;
+}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def
 get_agent_card(self) -&gt; dict:
-"""Fetch the agent ’s capability
-card."""
+&quot;&quot;&quot;Fetch the agent ’s capability
+card.&quot;&quot;&quot;
 async
 with
 httpx.AsyncClient () as client:
 resp = await
 client.get(
-f"{self.agent_url }/.well -known/agent.json",
+f&quot;{self.agent_url }/.well -known/agent.json&quot;,
 headers=self.headers
 )
 resp. raise_for_status ()
 return
-resp.json ()
-</code></pre>
-<pre><code class="language-text">async def
-send_task(self , message: Message ,
-</code></pre>
-<pre><code class="language-text">task_id: str | None = None ,
+resp.json ()</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def
+send_task(self , message: Message ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>task_id: str | None = None ,
 metadata: dict | None = None) -&gt; Task:
-"""Submit a task and return the
+&quot;&quot;&quot;Submit a task and return the
 initial
 task
-object."""
-payload = {
-</code></pre>
-<pre><code class="language-text">"id": task_id or str(uuid.uuid4 ()),
-"message": message.model_dump (),
-"metadata": metadata or {}
+object.&quot;&quot;&quot;
+payload = {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;id&quot;: task_id or str(uuid.uuid4 ()),
+&quot;message&quot;: message.model_dump (),
+&quot;metadata&quot;: metadata or {}
 }
 async
 with
 httpx.AsyncClient () as client:
 resp = await
 client.post(
-f"{self.agent_url }/ tasks/send",
+f&quot;{self.agent_url }/ tasks/send&quot;,
 json=payload ,
 headers=self.headers ,
 timeout =30.0
 )
 resp. raise_for_status ()
 return
-Task (** resp.json ())
-</code></pre>
-<pre><code class="language-text">async def
-stream_task(self , message: Message ,
-</code></pre>
-<pre><code class="language-text">metadata: dict | None = None) -&gt; AsyncIterator [dict ]:
-"""Submit a task and stream SSE events."""
-payload = {
-</code></pre>
-<pre><code class="language-text">"id": str(uuid.uuid4 ()),
-"message": message.model_dump (),
-"metadata": metadata or {}
+Task (** resp.json ())</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def
+stream_task(self , message: Message ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>metadata: dict | None = None) -&gt; AsyncIterator [dict ]:
+&quot;&quot;&quot;Submit a task and stream SSE events.&quot;&quot;&quot;
+payload = {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;id&quot;: str(uuid.uuid4 ()),
+&quot;message&quot;: message.model_dump (),
+&quot;metadata&quot;: metadata or {}
 }
 async
 with
@@ -1419,51 +629,35 @@ httpx.AsyncClient () as client:
 async
 with
 client.stream(
-"POST",
-f"{self.agent_url }/ tasks/ sendSubscribe ",
+&quot;POST&quot;,
+f&quot;{self.agent_url }/ tasks/ sendSubscribe &quot;,
 json=payload ,
-headers ={** self.headers , "Accept": "text/event -stream"},
+headers ={** self.headers , &quot;Accept&quot;: &quot;text/event -stream&quot;},
 timeout =300.0
-) as response:
-</code></pre>
-<pre><code class="language-text">async for line in response.aiter_lines ():
-</code></pre>
-<pre><code class="language-text">if line.startswith("data: "):
-</code></pre>
-<pre><code class="language-text">event_data = json.loads(line [6:])
+) as response:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async for line in response.aiter_lines ():</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>if line.startswith(&quot;data: &quot;):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>event_data = json.loads(line [6:])
 yield
 event_data
-if event_data.get("final"):
-</code></pre>
-<p>休息</p>
-<pre><code class="language-text">async def
-get_task(self , task_id: str) -&gt; Task:
-</code></pre>
-<p><span class="page-ref" id="pdf-p434">原 PDF p.434</span></p>
-<pre><code class="language-text">"""Poll for task
-status."""
+if event_data.get(&quot;final&quot;):</code></pre></div><p class="content-block paragraph">休息</p><div class="component code-component"><div class="block-label">text</div><pre><code>async def
+get_task(self , task_id: str) -&gt; Task:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;&quot;&quot;Poll for task
+status.&quot;&quot;&quot;
 async
 with
 httpx.AsyncClient () as client:
 resp = await
 client.get(
-f"{self.agent_url }/ tasks /{ task_id}",
+f&quot;{self.agent_url }/ tasks /{ task_id}&quot;,
 headers=self.headers
 )
 resp. raise_for_status ()
 return
-Task (** resp.json ())
-</code></pre>
-<pre><code class="language-text">async def
-wait_for_completion (self , task: Task ,
-</code></pre>
-<pre><code class="language-text">poll_interval : float = 2.0) -&gt; Task:
-"""Poll
+Task (** resp.json ())</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def
+wait_for_completion (self , task: Task ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>poll_interval : float = 2.0) -&gt; Task:
+&quot;&quot;&quot;Poll
 until
 task
 reaches a terminal
-state."""
-terminal_states = {"completed", "failed", "canceled"}
+state.&quot;&quot;&quot;
+terminal_states = {&quot;completed&quot;, &quot;failed&quot;, &quot;canceled&quot;}
 while
 task.status.state not in terminal_states :
 await
@@ -1471,13 +665,9 @@ asyncio.sleep(poll_interval )
 task = await
 self.get_task(task.id)
 return
-task
-</code></pre>
-<pre><code class="language-text"># -- A2A Server (FastAPI) -----------------------------------------------------
-</code></pre>
-<pre><code class="language-text">class
+task</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- A2A Server (FastAPI) -----------------------------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 ResearchAgent:
-"""
+&quot;&quot;&quot;
 A specialist
 research
 agent
@@ -1488,84 +678,54 @@ and
 summarizes
 findings on a given
 topic.
-"""
-</code></pre>
-<pre><code class="language-text">AGENT_CARD = {
-</code></pre>
-<pre><code class="language-text">"name": "ResearchAgent",
-"description": "Searches
-academic
-literature
-and
-synthesizes
-research
-findings.",
-</code></pre>
-<pre><code class="language-text">"url": "https :// research -agent.example.com/a2a",
-"version": "1.0.0",
-"capabilities": {
-</code></pre>
-<pre><code class="language-text">"streaming": True ,
-" pushNotifications ": False ,
-" stateTransitionHistory ": True
+&quot;&quot;&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>AGENT_CARD = {</code></pre></div><p class="content-block paragraph">&quot;name&quot;: &quot;ResearchAgent&quot;, &quot;description&quot;: &quot;检索学术文献并综合研究成果。&quot;,</p><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;url&quot;: &quot;https :// research -agent.example.com/a2a&quot;,
+&quot;version&quot;: &quot;1.0.0&quot;,
+&quot;capabilities&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;streaming&quot;: True ,
+&quot; pushNotifications &quot;: False ,
+&quot; stateTransitionHistory &quot;: True
 },
-" authentication": {"schemes": ["Bearer"]},
-"skills": [{
-</code></pre>
-<pre><code class="language-text">"id": "literature -search",
-"name": "Literature
-Search",
-"description": "Search and
+&quot; authentication&quot;: {&quot;schemes&quot;: [&quot;Bearer&quot;]},
+&quot;skills&quot;: [{</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;id&quot;: &quot;literature -search&quot;,
+&quot;name&quot;: &quot;Literature
+Search&quot;,
+&quot;description&quot;: &quot;Search and
 summarize
 academic
-papers on a topic.",
-"tags": ["research", "literature", "academic", "papers"],
-"examples": [
-</code></pre>
-<pre><code class="language-text">"Summarize
+papers on a topic.&quot;,
+&quot;tags&quot;: [&quot;research&quot;, &quot;literature&quot;, &quot;academic&quot;, &quot;papers&quot;],
+&quot;examples&quot;: [</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;Summarize
 recent
 papers on transformer
 attention
-mechanisms.",
-"What does the
+mechanisms.&quot;,
+&quot;What does the
 literature
 say about
 RLHF for code
-generation?"
+generation?&quot;
 ],
-"inputModes": ["text"],
-"outputModes": ["text", "data"]
+&quot;inputModes&quot;: [&quot;text&quot;],
+&quot;outputModes&quot;: [&quot;text&quot;, &quot;data&quot;]
 }]
-}
-</code></pre>
-<pre><code class="language-text">def
+}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 __init__(self):
 self.tasks: dict[str , Task] = {}
-self.app = FastAPI(title=" ResearchAgent
-A2A Server")
-self. _register_routes ()
-</code></pre>
-<pre><code class="language-text">def
+self.app = FastAPI(title=&quot; ResearchAgent
+A2A Server&quot;)
+self. _register_routes ()</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 _register_routes (self):
-@self.app.get("/.well -known/agent.json")
+@self.app.get(&quot;/.well -known/agent.json&quot;)
 async def
 agent_card ():
 return
-self.AGENT_CARD
-</code></pre>
-<pre><code class="language-text">@self.app.post("/tasks/send")
+self.AGENT_CARD</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@self.app.post(&quot;/tasks/send&quot;)
 async def
 send_task(request: Request):
 body = await
 request.json ()
 task = await
-self. _create_and_run_task (body)
-</code></pre>
-<p><span class="page-ref" id="pdf-p435">原 PDF p.435</span></p>
-<pre><code class="language-text">return
-task.model_dump ()
-</code></pre>
-<pre><code class="language-text">@self.app.post("/tasks/sendSubscribe ")
+self. _create_and_run_task (body)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return
+task.model_dump ()</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@self.app.post(&quot;/tasks/sendSubscribe &quot;)
 async def
 send_subscribe(request: Request):
 body = await
@@ -1573,53 +733,37 @@ request.json ()
 return
 StreamingResponse (
 self._stream_task(body),
-media_type="text/event -stream"
-)
-</code></pre>
-<pre><code class="language-text">@self.app.get("/tasks /{ task_id}")
+media_type=&quot;text/event -stream&quot;
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@self.app.get(&quot;/tasks /{ task_id}&quot;)
 async def
 get_task(task_id: str):
 if task_id
 not in self.tasks:
 raise
-HTTPException (status_code =404 , detail="Task not found")
+HTTPException (status_code =404 , detail=&quot;Task not found&quot;)
 return
-self.tasks[task_id ]. model_dump ()
-</code></pre>
-<pre><code class="language-text">async def
+self.tasks[task_id ]. model_dump ()</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def
 _create_and_run_task (self , body: dict) -&gt; Task:
-task_id = body.get("id", str(uuid.uuid4 ()))
-message = Message (** body["message"])
-</code></pre>
-<p>任务 = 任务（</p>
-<pre><code class="language-text">id=task_id ,
-status=TaskStatus(state="submitted"),
+task_id = body.get(&quot;id&quot;, str(uuid.uuid4 ()))
+message = Message (** body[&quot;message&quot;])</code></pre></div><p class="content-block paragraph">任务 = 任务（</p><div class="component code-component"><div class="block-label">text</div><pre><code>id=task_id ,
+status=TaskStatus(state=&quot;submitted&quot;),
 messages =[ message],
-metadata=body.get("metadata", {})
+metadata=body.get(&quot;metadata&quot;, {})
 )
-self.tasks[task_id] = task
-</code></pre>
-<pre><code class="language-text"># Run
+self.tasks[task_id] = task</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Run
 asynchronously
 asyncio.create_task(self._execute_task (task_id))
 return
-task
-</code></pre>
-<pre><code class="language-text">async def
+task</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def
 _execute_task(self , task_id: str):
 task = self.tasks[task_id]
-task.status = TaskStatus(state="working")
-</code></pre>
-<p>尝试：</p>
-<pre><code class="language-text"># Extract
+task.status = TaskStatus(state=&quot;working&quot;)</code></pre></div><p class="content-block paragraph">尝试：</p><div class="component code-component"><div class="block-label">text</div><pre><code># Extract
 the
 research
 question
 from the
 message
-question = task.messages [0]. parts [0]. text
-</code></pre>
-<pre><code class="language-text"># Simulate
+question = task.messages [0]. parts [0]. text</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Simulate
 literature
 search (replace
 with real
@@ -1630,106 +774,59 @@ asyncio.sleep (1)
 # Simulated
 latency
 findings = await
-self. _search_literature (question)
-</code></pre>
-<pre><code class="language-text"># Produce
+self. _search_literature (question)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Produce
 artifact
-task.artifacts = [Artifact(parts =[
-</code></pre>
-<pre><code class="language-text">Part(type="text", text=findings["summary"]),
-Part(type="data", data ={"papers": findings["papers"],
-</code></pre>
-<pre><code class="language-text">"query": question })
+task.artifacts = [Artifact(parts =[</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>Part(type=&quot;text&quot;, text=findings[&quot;summary&quot;]),
+Part(type=&quot;data&quot;, data ={&quot;papers&quot;: findings[&quot;papers&quot;],</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;query&quot;: question })
 ])]
-task.status = TaskStatus(state="completed")
-</code></pre>
-<pre><code class="language-text">except
+task.status = TaskStatus(state=&quot;completed&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>except
 Exception as e:
-task.status = TaskStatus(state="failed", message=str(e))
-</code></pre>
-<pre><code class="language-text">self.tasks[task_id] = task
-</code></pre>
-<pre><code class="language-text">async def
+task.status = TaskStatus(state=&quot;failed&quot;, message=str(e))</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>self.tasks[task_id] = task</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def
 _search_literature (self , question: str) -&gt; dict:
-“”“占位符：在生产中，调用真实的
-search API."""
-return {
-</code></pre>
-<pre><code class="language-text">"summary": f"Based on a search of recent
+&quot;&quot;&quot;Placeholder: in production , calls a real
+search API.&quot;&quot;&quot;
+return {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;summary&quot;: f&quot;Based on a search of recent
 literature
-regarding "
-f" ’{question}’, key
+regarding &quot;
+f&quot; ’{question}’, key
 findings
-include: ...",
-"papers": [
-</code></pre>
-<pre><code class="language-text">{"title": "Attention Is All You Need", "year": 2017 ,
-</code></pre>
-<pre><code class="language-text">"relevance": 0.95} ,
-{"title": "RLHF: Training
+include: ...&quot;,
+&quot;papers&quot;: [</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>{&quot;title&quot;: &quot;Attention Is All You Need&quot;, &quot;year&quot;: 2017 ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;relevance&quot;: 0.95} ,
+{&quot;title&quot;: &quot;RLHF: Training
 Language
 Models to Follow
-Instructions",
-</code></pre>
-<p><span class="page-ref" id="pdf-p436">原 PDF p.436</span></p>
-<pre><code class="language-text">"year": 2022, "relevance": 0.88}
+Instructions&quot;,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;year&quot;: 2022, &quot;relevance&quot;: 0.88}
 ]
-}
-</code></pre>
-<pre><code class="language-text">async def
+}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def
 _stream_task(self , body: dict) -&gt; AsyncIterator [str]:
 task = await
-self. _create_and_run_task (body)
-</code></pre>
-<pre><code class="language-text"># Stream
+self. _create_and_run_task (body)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Stream
 status
 updates
-yield f"data: {json.dumps ({’id ’: task.id , ’status ’: {’state ’: ’submitted
-’}, ’final ’: False })}\n\n"
-</code></pre>
-<pre><code class="language-text">yield f"data: {json.dumps ({’id ’: task.id , ’status ’: {’state ’: ’working ’},
-’final ’: False })}\n\n"
-</code></pre>
-<pre><code class="language-text"># Wait for
+yield f&quot;data: {json.dumps ({’id ’: task.id , ’status ’: {’state ’: ’submitted
+’}, ’final ’: False })}\n\n&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>yield f&quot;data: {json.dumps ({’id ’: task.id , ’status ’: {’state ’: ’working ’},
+’final ’: False })}\n\n&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Wait for
 completion
 while
-task.status.state not in ("completed", "failed", "canceled"):
+task.status.state not in (&quot;completed&quot;, &quot;failed&quot;, &quot;canceled&quot;):
 await
 asyncio.sleep (0.5)
-task = self.tasks[task.id]
-</code></pre>
-<pre><code class="language-text"># Stream the
-artifact
-if task.artifacts:
-</code></pre>
-<pre><code class="language-text">for part in task.artifacts [0]. parts:
-</code></pre>
-<pre><code class="language-math">event = {
-</code></pre>
-<pre><code class="language-text">"id": task.id ,
-"artifact": {
-</code></pre>
-<pre><code class="language-text">"parts": [part.model_dump ()],
-"index": 0,
-"append": False ,
-"lastChunk": True
+task = self.tasks[task.id]</code></pre></div><p class="content-block paragraph"># 流式传输工件 if task.artifacts:</p><div class="component code-component"><div class="block-label">text</div><pre><code>for part in task.artifacts [0]. parts:</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>event = {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;id&quot;: task.id ,
+&quot;artifact&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;parts&quot;: [part.model_dump ()],
+&quot;index&quot;: 0,
+&quot;append&quot;: False ,
+&quot;lastChunk&quot;: True
 },
-"final": False
+&quot;final&quot;: False
 }
-yield f"data: {json.dumps(event)}\n\n"
-</code></pre>
-<pre><code class="language-text"># Final
+yield f&quot;data: {json.dumps(event)}\n\n&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Final
 status
-yield f"data: {json.dumps ({’id ’: task.id , ’status ’: task.status.model_dump
-(), ’final ’: True })}\n\n"
-</code></pre>
-<pre><code class="language-text"># -- Orchestrator: Multi -Agent
+yield f&quot;data: {json.dumps ({’id ’: task.id , ’status ’: task.status.model_dump
+(), ’final ’: True })}\n\n&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Orchestrator: Multi -Agent
 Workflow
-----------------------------------------
-</code></pre>
-<pre><code class="language-text">class
+----------------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 ResearchOrchestrator :
-"""
+&quot;&quot;&quot;
 Orchestrates a multi -agent
 research
 workflow:
@@ -1739,191 +836,93 @@ research
 question
 into sub -questions
 2. Dispatches
-向 ResearchAgent 提出每个子问题
+each sub -question to a ResearchAgent
 3. Synthesizes
 results
 into a final
 report
-"""
-</code></pre>
-<pre><code class="language-text">def
+&quot;&quot;&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 __init__(self , research_agent_url : str , auth_token: str):
 self.research_client = A2AClient(research_agent_url , auth_token)
-self.workflow_id = str(uuid.uuid4 ())
-</code></pre>
-<pre><code class="language-text">async def run(self , research_question : str) -&gt; str:
-</code></pre>
-<pre><code class="language-text">print(f"[Orchestrator] Starting
-workflow {self.workflow_id}")
-print(f"[Orchestrator] Question: { research_question }")
-</code></pre>
-<pre><code class="language-text"># Step 1: Decompose
+self.workflow_id = str(uuid.uuid4 ())</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def run(self , research_question : str) -&gt; str:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>print(f&quot;[Orchestrator] Starting
+workflow {self.workflow_id}&quot;)
+print(f&quot;[Orchestrator] Question: { research_question }&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Step 1: Decompose
 into sub -questions
 sub_questions = self._decompose( research_question )
-print(f"[Orchestrator] Decomposed
-into {len( sub_questions )} sub -questions"
-)
-</code></pre>
-<pre><code class="language-text"># 第 2 步：并行分派子问题
+print(f&quot;[Orchestrator] Decomposed
+into {len( sub_questions )} sub -questions&quot;
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Step 2: Dispatch sub -questions in parallel
 tasks = await
 asyncio.gather (*[
-self. research_client .send_task(
-</code></pre>
-<pre><code class="language-text">message=Message(role="user", parts =[ Part(type="text", text=q)]),
-metadata ={"workflowId": self.workflow_id , "subQuestion": i}
-)
-</code></pre>
-<h2 id="chapter-24-p437-10">小结</h2>
-<p><span class="page-ref" id="pdf-p437">原 PDF p.437</span></p>
-<pre><code class="language-text">for i, q in enumerate( sub_questions )
-])
-</code></pre>
-<pre><code class="language-text"># Step 3: Wait for all tasks to complete
+self. research_client .send_task(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>message=Message(role=&quot;user&quot;, parts =[ Part(type=&quot;text&quot;, text=q)]),
+metadata ={&quot;workflowId&quot;: self.workflow_id , &quot;subQuestion&quot;: i}
+)</code></pre></div></div></section><section class="ast-section" id="chapter-24-s10"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>小结</h2><p>本节聚焦“小结”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>模型上下文协议（MCP）</strong><span>MCP</span><p>连接模型应用与工具/数据源的开放协议。</p></div><div class="concept-chip"><strong>智能体间通信（A2A）</strong><span>A2A</span><p>面向智能体之间任务委托和协作的通信协议。</p></div></div></div><div class="section-blocks"><div class="component code-component"><div class="block-label">text</div><pre><code>for i, q in enumerate( sub_questions )
+])</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Step 3: Wait for all tasks to complete
 completed_tasks = await
 asyncio.gather (*[
 self. research_client . wait_for_completion (task)
 for task in tasks
-])
-</code></pre>
-<pre><code class="language-text"># Step 4: Check for
+])</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Step 4: Check for
 failures
-failed = [t for t in completed_tasks if t.status.state == "failed"]
-if failed:
-</code></pre>
-<pre><code class="language-text">print(f"[Orchestrator] Warning: {len(failed)} sub -tasks
-failed")
-</code></pre>
-<pre><code class="language-text"># Step 5: Synthesize
+failed = [t for t in completed_tasks if t.status.state == &quot;failed&quot;]
+if failed:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>print(f&quot;[Orchestrator] Warning: {len(failed)} sub -tasks
+failed&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Step 5: Synthesize
 results
 findings = []
-for task , question in zip(completed_tasks , sub_questions ):
-</code></pre>
-<pre><code class="language-text">if task.status.state == "completed" and task.artifacts:
-</code></pre>
-<pre><code class="language-text">summary = task.artifacts [0]. parts [0]. text
-findings.append(f"### {question }\n{summary}")
-</code></pre>
-<pre><code class="language-text">report = self._synthesize(research_question , findings)
-print(f"[Orchestrator] Workflow
-complete. Report: {len(report)} chars")
+for task , question in zip(completed_tasks , sub_questions ):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>if task.status.state == &quot;completed&quot; and task.artifacts:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>summary = task.artifacts [0]. parts [0]. text
+findings.append(f&quot;### {question }\n{summary}&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>report = self._synthesize(research_question , findings)
+print(f&quot;[Orchestrator] Workflow
+complete. Report: {len(report)} chars&quot;)
 return
-report
-</code></pre>
-<pre><code class="language-text">def
+report</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 _decompose(self , question: str) -&gt; list[str]:
-"""Decompose a complex
+&quot;&quot;&quot;Decompose a complex
 question
 into
-focused sub -questions."""
-# 在生产中：使用LLM来分解
-return [
-</code></pre>
-<pre><code class="language-text">f"What are the
+focused sub -questions.&quot;&quot;&quot;
+# In production: use an LLM to decompose
+return [</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>f&quot;What are the
 foundational
 methods
-for: {question }?",
-f"What are the most
+for: {question }?&quot;,
+f&quot;What are the most
 recent
-advances in: {question }?",
-f"What are the open
+advances in: {question }?&quot;,
+f&quot;What are the open
 challenges
 and
-limitations in: {question }?"
-]
-</code></pre>
-<pre><code class="language-text">def
+limitations in: {question }?&quot;
+]</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 _synthesize(self , question: str , findings: list[str]) -&gt; str:
-"""Synthesize sub -findings
+&quot;&quot;&quot;Synthesize sub -findings
 into a coherent
-report."""
-# 在生产中：使用LLM来综合
-sections = "\n\n".join(findings)
-return f"# Research
-Report: {question }\n\n{sections}"
-</code></pre>
-<pre><code class="language-text"># -- Entry
+report.&quot;&quot;&quot;
+# In production: use an LLM to synthesize
+sections = &quot;\n\n&quot;.join(findings)
+return f&quot;# Research
+Report: {question }\n\n{sections}&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Entry
 Point
----------------------------------------------------------------
-</code></pre>
-<pre><code class="language-text">async def main ():
-</code></pre>
-<pre><code class="language-text">orchestrator = ResearchOrchestrator (
-</code></pre>
-<pre><code class="language-text">research_agent_url ="https :// research -agent.example.com/a2a",
-auth_token=" eyJhbGciOiJSUzI1NiJ9 ..."
+---------------------------------------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def main ():</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>orchestrator = ResearchOrchestrator (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>research_agent_url =&quot;https :// research -agent.example.com/a2a&quot;,
+auth_token=&quot; eyJhbGciOiJSUzI1NiJ9 ...&quot;
 )
 report = await
 orchestrator.run(
-" Reinforcement
+&quot; Reinforcement
 learning
 from
 human
 feedback
 for large
 language
-models"
+models&quot;
 )
-print(report)
-</code></pre>
-<pre><code class="language-text">if __name__ == "__main__":
-</code></pre>
-<pre><code class="language-text">asyncio.run(main ())
-</code></pre>
-<p>总结</p>
-<p>要点：智能体之间的通信</p>
-<ol>
-<li>A2A 实现大规模专业化：通过将任务分配给专业智能体，多方
-智能体系统同时实现深度和广度。 （第 24 章介绍了多智能体
-深入架构。）</li>
-</ol>
-<p><span class="page-ref" id="pdf-p438">原 PDF p.438</span></p>
-<ol start="2">
-<li>
-<p>Google 的 A2A 协议为可互操作提供了生产就绪的开放标准
-智能体通信，使用智能体卡、任务生命周期管理、SSE 流和
-企业认证。</p>
-</li>
-<li>
-<p>通信模式从简单的请求-响应到复杂的协商和
-基于拍卖的分配——根据任务复杂性和延迟需求进行选择。</p>
-</li>
-<li>
-<p>A2A和MCP是互补的：A2A连接智能体到智能体； MCP 连接
-智能体到工具。大多数生产系统都使用两者。</p>
-</li>
-<li>
-<p>安全不容妥协：智能体身份验证、授权范围、审核
-跟踪在任何多智能体部署中都是必不可少的。</p>
-</li>
-<li>
-<p>协调协议（Contract Net、Blackboard、Consensus）提供结构化机制
-集体决策超越简单的授权。</p>
-</li>
-<li>
-<p>通过关联 ID 实现的可观察性对于调试和审计复杂性至关重要
-跨越许多智能体和工具的多智能体工作流程。</p>
-</li>
-</ol>
-<p>A2A 中的开放研究问题</p>
-<p>• 智能体应如何处理来自层次结构中多个协调器的冲突指令？
-哪些冲突解决机制最有效？</p>
-<p>• 智能体能否通过经验而非传统方式学习更好的路由和委派策略？
-依赖静态能力声明？</p>
-<p>• 我们如何防止恶意智能体操纵下行的即时注入攻击
-通过在其消息中嵌入对抗性指令来流智能体？</p>
-<p>• 上下文传递的正确隐私边界是什么——对话历史记录有多少
-子智能体应该看到吗？我们如何从技术上强制执行这些边界？</p>
-<p>• 随着座席网络发展到数百或数千个座席，我们如何保持一致
-全局状态不会造成瓶颈或一致性违规？</p></div>
+print(report)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>if __name__ == &quot;__main__&quot;:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>asyncio.run(main ())</code></pre></div><p class="content-block paragraph">总结</p><p class="content-block paragraph">要点：智能体之间的通信</p><p class="content-block paragraph">1. A2A 实现大规模专业化：通过将任务分配给专业智能体，多方 智能体系统同时实现深度和广度。 （第 24 章介绍了多智能体 深入架构。）</p><p class="content-block paragraph">2. Google 的 A2A 协议为可互操作提供了生产就绪的开放标准 智能体通信，使用智能体卡、任务生命周期管理、SSE 流和 企业认证。</p><p class="content-block paragraph">3. 通信模式从简单的请求-响应到复杂的协商和 基于拍卖的分配——根据任务复杂性和延迟需求进行选择。</p><p class="content-block paragraph">4. A2A和MCP是互补的：A2A连接智能体到智能体； MCP 连接 智能体到工具。大多数生产系统都使用两者。</p><p class="content-block paragraph">5. 安全不容妥协：智能体身份验证、授权范围、审核 跟踪在任何多智能体部署中都是必不可少的。</p><p class="content-block paragraph">6. 协调协议（Contract Net、Blackboard、Consensus）提供结构化机制 集体决策超越简单的授权。</p><p class="content-block paragraph">7. 通过关联 ID 实现的可观察性对于调试和审计复杂性至关重要 跨越许多智能体和工具的多智能体工作流程。</p><p class="content-block paragraph">A2A 中的开放研究问题</p><p class="content-block paragraph">• 智能体应如何处理来自层次结构中多个协调器的冲突指令？ 哪些冲突解决机制最有效？</p><p class="content-block paragraph">• 智能体能否通过经验而非传统方式学习更好的路由和委派策略？ 依赖静态能力声明？</p><p class="content-block paragraph">• 我们如何防止恶意智能体操纵下行的即时注入攻击 通过在其消息中嵌入对抗性指令来流智能体？</p><p class="content-block paragraph">• 上下文传递的正确隐私边界是什么——对话历史记录有多少 子智能体应该看到吗？我们如何从技术上强制执行这些边界？</p><p class="content-block paragraph">• 随着座席网络发展到数百或数千个座席，我们如何保持一致 全局状态不会造成瓶颈或一致性违规？</p></div></section></div>
           <nav class="chapter-pager"><a class="pager-link" href="chapter-23.html">← 智能体技能</a><a class="pager-link next" href="chapter-25.html">多智能体系统 →</a></nav>
         </article>
-        
-    </section>
-  </main>
+        </section><aside class="right-outline"><div class="nav-section-title">本页结构</div><a class="outline-link" href="#chapter-24-s01">动机：为什么智能体必须通信</a><a class="outline-link" href="#chapter-24-s02">Google A2A 协议</a><a class="outline-link" href="#chapter-24-s03">通信模式</a><a class="outline-link" href="#chapter-24-s04">智能体发现与路由</a><a class="outline-link" href="#chapter-24-s05">消息格式与 Schema</a><a class="outline-link" href="#chapter-24-s06">协调协议</a><a class="outline-link" href="#chapter-24-s07">A2A 与 MCP：互补协议</a><a class="outline-link" href="#chapter-24-s08">多智能体系统中的安全与信任</a><a class="outline-link" href="#chapter-24-s09">实现示例：多智能体研究工作流</a><a class="outline-link" href="#chapter-24-s10">小结</a></aside></main>
   <button class="back-top" id="back-top" type="button">↑</button>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/toc.js"></script>
   <script src="../assets/js/progress.js"></script>
-  
 </body>
 </html>

@@ -4,172 +4,38 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>多智能体系统 | 智能体式 AI 漫游指南</title>
-  <meta name="description" content="多智能体协作、通信、协调、集中训练与分散执行。" />
+  <meta name="description" content="整理多智能体协作、通信、协调和集中训练分散执行。" />
   <meta property="og:title" content="多智能体系统 | 智能体式 AI 漫游指南" />
-  <meta property="og:description" content="多智能体协作、通信、协调、集中训练与分散执行。" />
+  <meta property="og:description" content="整理多智能体协作、通信、协调和集中训练分散执行。" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="canonical" href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/article.css" />
   <link rel="stylesheet" href="../assets/css/responsive.css" />
-  
 </head>
 <body class="article-page">
   <div class="reading-progress" id="reading-progress"></div>
   <header class="topbar">
-    <a class="brand" href="../index.html" aria-label="智能体式 AI 漫游指南">
-      <span class="brand-mark">AI</span>
-      <span><strong>智能体式 AI 漫游指南</strong><small>从基础到系统的中文技术文档站</small></span>
-    </a>
-    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a>
-<a class="active" href="../chapters/index.html">章节</a>
-<a class="" href="../glossary.html">术语表</a>
-<a class="" href="../references.html">参考文献</a>
-<a class="" href="../search.html">搜索</a>
-<a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
+    <a class="brand" href="../index.html"><span class="brand-mark">AST</span><span><strong>智能体式 AI 漫游指南</strong><small>结构化知识文档系统</small></span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="打开导航" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a><a class="active" href="../chapters/index.html">章节</a><a class="" href="../glossary.html">术语表</a><a class="" href="../references.html">参考文献</a><a class="" href="../search.html">搜索</a><a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
   </header>
-  <main class="layout">
-    
-        <aside class="left-nav" id="left-nav">
-          <div class="nav-section-title">章节</div>
-          <a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a>
-<a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a>
-<a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a>
-<a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a>
-<a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a>
-<a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a>
-<a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a>
-<a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a>
-<a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a>
-<a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a>
-<a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a>
-<a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a>
-<a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a>
-<a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a>
-<a class="chapter-link active" href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a>
-<a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a>
-<a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a>
-        </aside>
-        <aside class="right-outline" id="right-outline">
-          <div class="nav-section-title">本页大纲</div>
-          <a class="outline-link level-h2" href="#chapter-25-p439-1">Motivation: Why Multiple Agents?</a>
-<a class="outline-link level-h2" href="#chapter-25-p440-2">Multi-Agent Architectures</a>
-<a class="outline-link level-h2" href="#chapter-25-p444-3">Coordination Mechanisms</a>
-<a class="outline-link level-h2" href="#chapter-25-p447-4">Communication Protocols</a>
-<a class="outline-link level-h2" href="#chapter-25-p448-5">Role Design and Specialization</a>
-<a class="outline-link level-h2" href="#chapter-25-p450-6">Multi-Agent Patterns for LLMs</a>
-<a class="outline-link level-h2" href="#chapter-25-p451-7">Training Multi-Agent Systems with Reinforcement Learning</a>
-<a class="outline-link level-h2" href="#chapter-25-p454-8">Challenges and Solutions</a>
-<a class="outline-link level-h2" href="#chapter-25-p455-9">Real-World Multi-Agent Applications</a>
-<a class="outline-link level-h2" href="#chapter-25-p457-10">Architecture Comparison</a>
-<a class="outline-link level-h2" href="#chapter-25-p458-11">小结</a>
-        </aside>
-        
-    <section class="content-shell">
-      
-        <article class="article-card">
+  <main class="layout"><aside class="left-nav" id="left-nav"><div class="nav-section-title">语义目录</div><div class="nav-cluster"><strong>导读</strong><a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a><a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a></div><div class="nav-cluster"><strong>LLM 基础与系统</strong><a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a><a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a><a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a></div><div class="nav-cluster"><strong>训练、强化学习与对齐</strong><a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a><a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a><a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a><a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a><a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a><a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a><a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a><a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a></div><div class="nav-cluster"><strong>Agentic AI 系统</strong><a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a><a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a><a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a><a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a><a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a><a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a><a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a><a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a><a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a><a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a><a class="chapter-link active" href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a><a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a><a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a></div><div class="nav-cluster"><strong>推理与评估</strong><a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a></div><div class="nav-cluster"><strong>参考与总结</strong><a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a><a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a><a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a></div></aside><section class="content-shell">
+        <article class="article-card" data-ast-source="../assets/data/clean_chapter_tree.json">
           <header class="article-header">
-            <p class="part-label">第五部分：智能体式 AI</p>
+            <p class="part-label">Agentic AI 系统</p>
             <h1>多智能体系统</h1>
-            <p>多智能体协作、通信、协调、集中训练与分散执行。</p>
-            <div class="article-meta"><span>原 PDF p.439-458</span><span>11 个页内条目</span></div>
+            <p>整理多智能体协作、通信、协调和集中训练分散执行。</p>
           </header>
-          <div class="article-body"><h2 id="chapter-25-p439-1">Motivation: Why Multiple Agents?</h2>
-<p><span class="page-ref" id="pdf-p439">原 PDF p.439</span></p>
-<p>多智能体系统</p>
-<p>动机：为什么需要多个智能体？</p>
-<p>从很多方面来说，人工智能的历史都是一部规模化的历史。早期的人工智能系统是
-整体式：单个程序、单个知识库、单个推理引擎。作为问题
-随着情况变得越来越复杂，研究人员发现，没有任何一个单独的智能体——无论其能力如何——能够有效地
-处理丰富的、开放式任务的各个方面。这种见解在分布式人工智能中早已确立
-和多智能体系统 (MAS) 研究 [380, 381]，在大数据时代发现了新的紧迫性
-语言模型。</p>
-<p>核心直觉
-一个LLM，无论规模有多大，都是通才。专业的LLM团队，每个人都专注于
-一个狭窄的子问题并传达他们的结果，可以在复杂的问题上胜过通才，
-多方面的任务——就像一个由人类专家组成的团队在某项任务上胜过单个通才一样
-复杂的工程项目。</p>
-<p>四个基本动机推动了从整体智能体向智能体社会的转变：</p>
-<p>专业化。
-不同的子任务受益于不同的能力、提示策略和
-甚至不同的基础模型。代码生成智能体可以在编程语料库上进行微调；一个
-事实核查智能体可以通过检索工具进行接地；可以提示创意写作智能体
-为了风格的多样性。强迫单个智能体同时在所有这些方面表现出色都是低效的
-而且往往是不可能的。</p>
-<p>并行性。
-许多现实世界的任务分解为可以执行的独立子任务
-同时。需要文献回顾、数据分析和报告撰写的研究流程
-可以并行运行所有三个，从而大大减少挂钟时间。顺序单智能体处理
-是多智能体并行性消除的瓶颈。</p>
-<p>鲁棒性。
-单个智能体是单点故障。如果它产生幻觉，陷入循环，或者
-产生一个微妙的错误答案，没有检查。多智能体系统引入冗余：
-第二个智能体可以验证、批评或独立地重新得出结果。敌对智能体可以探测
-在输出被信任之前的弱点。</p>
-<p>新兴能力。
-也许最有趣的是，智能体集体可以展示能力
-没有任何个人智能体拥有。通过辩论、协商和迭代完善，多方
-智能体系统可以得出超越任何单个智能体单独产生的解决方案——
-社会有机体的新兴智能的计算模拟。</p>
-<p>历史背景
-多智能体系统研究可以追溯到 20 世纪 80 年代，其基础工作是分布式问题
-解决[382]、合同网络协议[374]和FIPA智能体通信标准[3]。
-向基于LLM的智能体的转变以新的基础重新激活了这些经典思想：而不是</p>
-<h2 id="chapter-25-p440-2">Multi-Agent Architectures</h2>
-<p><span class="page-ref" id="pdf-p440">原 PDF p.440</span></p>
-<p>具有token推理的手工编码智能体，我们现在拥有的智能体的“认知”来自于
-学习神经表征。核心架构模式——层次结构、市场、黑板、
-消息传递——仍然非常重要。</p>
-<p>从整体智能体到智能体社会的转变反映了复杂的更广泛的模式
-系统：随着问题空间的增长，分布式模块化架构始终表现出色
-集中的、单一的。问题不再是是否使用多个智能体，而是如何使用
-组织他们。</p>
-<p>多智能体架构</p>
-<p>多智能体系统的拓扑——智能体如何连接以及权限如何在智能体之间流动
-它们——是最重要的架构决策。出现了四种规范模式，每种模式
-具有明显的权衡。</p>
-<p>集中式（主管/经理）架构</p>
-<p>在集中式架构中，单个协调器智能体（各种称为主管、经理或
-planner）保存全局状态，分解任务，将子任务委托给工作智能体，并聚合
-他们的结果。该拓扑是中心辐射型：所有通信都流经中心节点。</p>
-<p>图 24.1：集中式（Supervisor）架构。经理将任务委派给专门的工人，
-汇总他们的产出。所有通信都通过中央枢纽进行。</p>
-<p>经理的职责包括：</p>
-<p>• 任务路由：决定哪个工作人员最适合每个子任务</p>
-<p>• 上下文管理：为每个工作人员提供全局上下文的相关子集</p>
-<p>• 结果聚合：将工人的输出合成一个连贯的整体</p>
-<p>• 错误处理：检测工作器故障并重新路由或重试</p>
-<figure><img alt="第 440 页图像 page_440_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_440_img_01.png"/>
-<em>图像：原 PDF p.440</em></figure>
-<p><span class="page-ref" id="pdf-p441">原 PDF p.441</span></p>
-<p>LangGraph 中的主管模式</p>
-<pre><code class="language-text">from
+          <aside class="component key-concepts-panel"><span class="component-label">Key Concepts</span><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div></aside>
+          <div class="article-body"><section class="ast-section" id="chapter-25-s01"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>动机：为什么需要多个智能体</h2><p>本节聚焦“动机：为什么需要多个智能体”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">动机：为什么需要多个智能体？</p><p class="content-block paragraph">从很多方面来说，人工智能的历史都是一部规模化的历史。早期的人工智能系统是 整体式：单个程序、单个知识库、单个推理引擎。作为问题 随着情况变得越来越复杂，研究人员发现，没有任何一个单独的智能体——无论其能力如何——能够有效地 处理丰富的、开放式任务的各个方面。这种见解在分布式人工智能中早已确立 和多智能体系统 (MAS) 研究 [380, 381]，在大数据时代发现了新的紧迫性 语言模型。</p><p class="content-block paragraph">核心直觉 一个LLM，无论规模有多大，都是通才。专业的LLM团队，每个人都专注于 一个狭窄的子问题并传达他们的结果，可以在复杂的问题上胜过通才， 多方面的任务——就像一个由人类专家组成的团队在某项任务上胜过单个通才一样 复杂的工程项目。</p><p class="content-block paragraph">四个基本动机推动了从整体智能体向智能体社会的转变：</p><p class="content-block paragraph">专业化。 不同的子任务受益于不同的能力、提示策略和 甚至不同的基础模型。代码生成智能体可以在编程语料库上进行微调；一个 事实核查智能体可以通过检索工具进行接地；可以提示创意写作智能体 为了风格的多样性。强迫单个智能体同时在所有这些方面表现出色都是低效的 而且往往是不可能的。</p><p class="content-block paragraph">并行性。 许多现实世界的任务分解为可以执行的独立子任务 同时。需要文献回顾、数据分析和报告撰写的研究流程 可以并行运行所有三个，从而大大减少挂钟时间。顺序单智能体处理 是多智能体并行性消除的瓶颈。</p><p class="content-block paragraph">鲁棒性。 单个智能体是单点故障。如果它产生幻觉，陷入循环，或者 产生一个微妙的错误答案，没有检查。多智能体系统引入冗余： 第二个智能体可以验证、批评或独立地重新得出结果。敌对智能体可以探测 在输出被信任之前的弱点。</p><p class="content-block paragraph">新兴能力。 也许最有趣的是，智能体集体可以展示能力 没有任何个人智能体拥有。通过辩论、协商和迭代完善，多方 智能体系统可以得出超越任何单个智能体单独产生的解决方案—— 社会有机体的新兴智能的计算模拟。</p><p class="content-block paragraph">历史背景 多智能体系统研究可以追溯到 20 世纪 80 年代，其基础工作是分布式问题 解决[382]、合同网络协议[374]和FIPA智能体通信标准[3]。 向基于LLM的智能体的转变以新的基础重新激活了这些经典思想：而不是</p></div></section><section class="ast-section" id="chapter-25-s02"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>多智能体架构</h2><p>本节聚焦“多智能体架构”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">具有token推理的手工编码智能体，我们现在拥有的智能体的“认知”来自于 学习神经表征。核心架构模式——层次结构、市场、黑板、 消息传递——仍然非常重要。</p><p class="content-block paragraph">从整体智能体到智能体社会的转变反映了复杂的更广泛的模式 系统：随着问题空间的增长，分布式模块化架构始终表现出色 集中的、单一的。问题不再是是否使用多个智能体，而是如何使用 组织他们。</p><p class="content-block paragraph">多智能体系统的拓扑——智能体如何连接以及权限如何在智能体之间流动 它们——是最重要的架构决策。出现了四种规范模式，每种模式 具有明显的权衡。</p><p class="content-block paragraph">集中式（主管/经理）架构</p><p class="content-block paragraph">在集中式架构中，单个协调器智能体（各种称为主管、经理或 planner）保存全局状态，分解任务，将子任务委托给工作智能体，并聚合 他们的结果。该拓扑是中心辐射型：所有通信都流经中心节点。</p><p class="content-block paragraph">图 24.1：集中式（Supervisor）架构。经理将任务委派给专门的工人， 汇总他们的产出。所有通信都通过中央枢纽进行。</p><p class="content-block paragraph">经理的职责包括：</p><p class="content-block paragraph">• 任务路由：决定哪个工作人员最适合每个子任务</p><p class="content-block paragraph">• 上下文管理：为每个工作人员提供全局上下文的相关子集</p><p class="content-block paragraph">• 结果聚合：将工人的输出合成一个连贯的整体</p><p class="content-block paragraph">• 错误处理：检测工作器故障并重新路由或重试</p><figure class="component figure-component"><img src="../assets/images/figures/fig-065.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure><p class="content-block paragraph">LangGraph 中的主管模式</p><div class="component code-component"><div class="block-label">text</div><pre><code>from
 langgraph.graph
 import
 StateGraph , START , END
 from
 typing
 import
-TypedDict , Literal
-</code></pre>
-<pre><code class="language-text">class
+TypedDict , Literal</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 TeamState(TypedDict):
 task: str
 plan: str
@@ -177,142 +43,58 @@ code: str
 tests: str
 review: str
 next_agent: str
-final_output: str
-</code></pre>
-<pre><code class="language-text">def
+final_output: str</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 supervisor_node (state: TeamState) -&gt; TeamState:
-"""Central
+&quot;&quot;&quot;Central
 orchestrator: decides
 which
 agent to invoke
-next."""
-messages = [
-</code></pre>
-<pre><code class="language-text">{"role": "system", "content": SUPERVISOR_PROMPT },
-{"role": "user",
-"content": f"Task: {state[’task ’]}\n"
-</code></pre>
-<pre><code class="language-text">f"Plan: {state.get(’plan ’,’’)}\n"
-f"Code: {state.get(’code ’,’’)}\n"
-f"Tests: {state.get(’tests ’,’’)}\n"
-"Which
+next.&quot;&quot;&quot;
+messages = [</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>{&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: SUPERVISOR_PROMPT },
+{&quot;role&quot;: &quot;user&quot;,
+&quot;content&quot;: f&quot;Task: {state[’task ’]}\n&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>f&quot;Plan: {state.get(’plan ’,’’)}\n&quot;
+f&quot;Code: {state.get(’code ’,’’)}\n&quot;
+f&quot;Tests: {state.get(’tests ’,’’)}\n&quot;
+&quot;Which
 agent
-should act next? "
-"Options: planner , coder , tester ,
-reviewer , FINISH"}
-</code></pre>
-<pre><code class="language-text">]
+should act next? &quot;
+&quot;Options: planner , coder , tester ,
+reviewer , FINISH&quot;}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>]
 response = llm.invoke(messages)
-return {** state , "next_agent": response.content.strip ()}
-</code></pre>
-<pre><code class="language-text">def route(state: TeamState) -&gt; Literal["planner","coder","tester","reviewer","
-</code></pre>
-<p><strong>end</strong>"]:</p>
-<pre><code class="language-text">return
-state["next_agent"] if state["next_agent"] != "FINISH" else END
-</code></pre>
-<pre><code class="language-text">builder = StateGraph(TeamState)
-builder.add_node("supervisor", supervisor_node )
-builder.add_node("planner",
+return {** state , &quot;next_agent&quot;: response.content.strip ()}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def route(state: TeamState) -&gt; Literal[&quot;planner&quot;,&quot;coder&quot;,&quot;tester&quot;,&quot;reviewer&quot;,&quot;</code></pre></div><p class="content-block paragraph">__end__&quot;]:</p><div class="component code-component"><div class="block-label">text</div><pre><code>return
+state[&quot;next_agent&quot;] if state[&quot;next_agent&quot;] != &quot;FINISH&quot; else END</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>builder = StateGraph(TeamState)
+builder.add_node(&quot;supervisor&quot;, supervisor_node )
+builder.add_node(&quot;planner&quot;,
 planner_node )
-builder.add_node("coder",
+builder.add_node(&quot;coder&quot;,
 coder_node)
-builder.add_node("tester",
+builder.add_node(&quot;tester&quot;,
 tester_node)
-builder.add_node("reviewer",
-reviewer_node )
-</code></pre>
-<pre><code class="language-text">builder.add_edge(START , "supervisor")
-builder. add_conditional_edges ("supervisor", route)
-for agent in ["planner", "coder", "tester", "reviewer"]:
-</code></pre>
-<pre><code class="language-text">builder.add_edge(agent , "supervisor")
+builder.add_node(&quot;reviewer&quot;,
+reviewer_node )</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>builder.add_edge(START , &quot;supervisor&quot;)
+builder. add_conditional_edges (&quot;supervisor&quot;, route)
+for agent in [&quot;planner&quot;, &quot;coder&quot;, &quot;tester&quot;, &quot;reviewer&quot;]:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>builder.add_edge(agent , &quot;supervisor&quot;)
 # always
-return to supervisor
-</code></pre>
-<pre><code class="language-text">graph = builder.compile ()
-</code></pre>
-<p>集中式架构权衡
-优点：控制流程简单；明确的责任；易于调试（所有决策都集中在一处）；
-易于实施。</p>
-<p>缺点：单点故障——如果经理产生幻觉或感到困惑，整个系统
-失败；高负载下管理者成为瓶颈；管理器的上下文窗口必须
-保持全局状态，限制可扩展性。</p>
-<p>去中心化（点对点）架构</p>
-<p>在去中心化架构中，智能体之间直接交互，无需中央协调器。
-拓扑是一个网格：任何智能体都可以与任何其他智能体进行通信。协调产生于
-局部互动而非全局规划。
-对等系统中的紧急协调是通过以下机制产生的：</p>
-<p><span class="page-ref" id="pdf-p442">原 PDF p.442</span></p>
-<p>图 24.2：去中心化（点对点）架构。智能体商直接沟通；协调出现
-来自当地的互动。</p>
-<p>• 谈判：智能体竞标任务或资源</p>
-<p>• Stigmergy：智能体修改其他人观察到的共享状态（参见第 24.3.6 节）</p>
-<p>• Gossip 协议：智能体通过网络传播信息</p>
-<p>• 局部共识：小团体在没有全球协调的情况下达成一致</p>
-<p>去中心化架构的权衡
-优点：能够抵御单个智能体故障；随着智能体的添加而自然扩展；无瓶颈。</p>
-<p>缺点：难以调试——突发行为难以追踪；智能体时可能发生冲突
-对国家的看法不一致；协调开销随着简单消息传递的 O(n2) 增长；
-难以保证全局一致性。</p>
-<p>层次结构</p>
-<p>分层架构将集中式模式概括为具有多个的树结构
-管理水平。顶级协调者委派给特定于域的子经理，他们在
-把委托交给专门的工人。这反映了大企业的组织结构。
-分层系统的主要特征：</p>
-<p>• 授权链：权限和上下文沿着树向下流动；结果向上流动</p>
-<p>• 升级路径：员工可以将无法解决的问题升级给经理</p>
-<p>• 领域隔离：子级管理者维护特定领域的上下文，减少认知
-加载到顶级协调器上</p>
-<p>• 范围限制：每个智能体只需了解其直接上级和下级即可
-内茨</p>
-<figure><img alt="第 442 页图像 page_442_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_442_img_01.png"/>
-<em>图像：原 PDF p.442</em></figure>
-<p><span class="page-ref" id="pdf-p443">原 PDF p.443</span></p>
-<p>图 24.3：分层架构。顶级协调者委派给域子经理，他们
-委托给专门的工作人员。虚线箭头显示升级路径。</p>
-<p>企业的比喻是恰当的：首席执行官（最高协调者）制定战略； VP（副经理）
-将战略转化为领域计划；个人贡献者（工人）执行。等级制度
-在保持问责制的同时实现规模化。</p>
-<p>群体架构</p>
-<p>群体架构受到生物系统（蚁群、鸟群）的启发，由许多
-松散耦合的智能体遵循简单的局部规则，产生复杂的全局行为，而无需
-任何中央协调员或全球国家。
-OpenAI 的 Swarm 框架 [336]（现已被 OpenAI Agents SDK 取代，但其概念
-原语仍然有影响力）用两个原语来操作它：</p>
-<p>• 例程：智能体完成子任务所遵循的指令序列</p>
-<p>• 切换：一个智能体将控制权（和相关上下文）转移给另一个智能体</p>
-<p>OpenAI Swarm：例程和切换</p>
-<pre><code class="language-text">from
+return to supervisor</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>graph = builder.compile ()</code></pre></div><p class="content-block paragraph">集中式架构权衡 优点：控制流程简单；明确的责任；易于调试（所有决策都集中在一处）； 易于实施。</p><p class="content-block paragraph">缺点：单点故障——如果经理产生幻觉或感到困惑，整个系统 失败；高负载下管理者成为瓶颈；管理器的上下文窗口必须 保持全局状态，限制可扩展性。</p><p class="content-block paragraph">去中心化（点对点）架构</p><p class="content-block paragraph">在去中心化架构中，智能体之间直接交互，无需中央协调器。 拓扑是一个网格：任何智能体都可以与任何其他智能体进行通信。协调产生于 局部互动而非全局规划。 对等系统中的紧急协调是通过以下机制产生的：</p><p class="content-block paragraph">图 24.2：去中心化（点对点）架构。智能体商直接沟通；协调出现 来自当地的互动。</p><p class="content-block paragraph">• 谈判：智能体竞标任务或资源</p><p class="content-block paragraph">• Stigmergy：智能体修改其他人观察到的共享状态（参见第 24.3.6 节）</p><p class="content-block paragraph">• Gossip 协议：智能体通过网络传播信息</p><p class="content-block paragraph">• 局部共识：小团体在没有全球协调的情况下达成一致</p><p class="content-block paragraph">去中心化架构的权衡 优点：能够抵御单个智能体故障；随着智能体的添加而自然扩展；无瓶颈。</p><p class="content-block paragraph">缺点：难以调试——突发行为难以追踪；智能体时可能发生冲突 对国家的看法不一致；协调开销随着简单消息传递的 O(n2) 增长； 难以保证全局一致性。</p><p class="content-block paragraph">层次结构</p><p class="content-block paragraph">分层架构将集中式模式概括为具有多个的树结构 管理水平。顶级协调者委派给特定于域的子经理，他们在 把委托交给专门的工人。这反映了大企业的组织结构。 分层系统的主要特征：</p><p class="content-block paragraph">• 授权链：权限和上下文沿着树向下流动；结果向上流动</p><p class="content-block paragraph">• 升级路径：员工可以将无法解决的问题升级给经理</p><p class="content-block paragraph">• 领域隔离：子级管理者维护特定领域的上下文，减少认知 加载到顶级协调器上</p><p class="content-block paragraph">• 范围限制：每个智能体只需了解其直接上级和下级即可 内茨</p><figure class="component figure-component"><img src="../assets/images/figures/fig-066.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure><p class="content-block paragraph">图 24.3：分层架构。顶级协调者委派给域子经理，他们 委托给专门的工作人员。虚线箭头显示升级路径。</p><p class="content-block paragraph">企业的比喻是恰当的：首席执行官（最高协调者）制定战略； VP（副经理） 将战略转化为领域计划；个人贡献者（工人）执行。等级制度 在保持问责制的同时实现规模化。</p><p class="content-block paragraph">群体架构</p><p class="content-block paragraph">群体架构受到生物系统（蚁群、鸟群）的启发，由许多 松散耦合的智能体遵循简单的局部规则，产生复杂的全局行为，而无需 任何中央协调员或全球国家。 OpenAI 的 Swarm 框架 [336]（现已被 OpenAI Agents SDK 取代，但其概念 原语仍然有影响力）用两个原语来操作它：</p><p class="content-block paragraph">• 例程：智能体完成子任务所遵循的指令序列</p><p class="content-block paragraph">• 切换：一个智能体将控制权（和相关上下文）转移给另一个智能体</p><p class="content-block paragraph">OpenAI Swarm：例程和切换</p><div class="component code-component"><div class="block-label">text</div><pre><code>from
 swarm
-import Swarm , Agent
-</code></pre>
-<pre><code class="language-text">client = Swarm ()
-</code></pre>
-<pre><code class="language-text">def
+import Swarm , Agent</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>client = Swarm ()</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 transfer_to_billing ():
-"""Handoff: transfer
+&quot;&quot;&quot;Handoff: transfer
 control to the
 billing
-specialist."""
+specialist.&quot;&quot;&quot;
 return
-billing_agent
-</code></pre>
-<pre><code class="language-text">def
+billing_agent</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 transfer_to_technical ():
-"""Handoff: transfer
+&quot;&quot;&quot;Handoff: transfer
 control to the
 technical
 support
-agent."""
+agent.&quot;&quot;&quot;
 return
-technical_agent
-</code></pre>
-<pre><code class="language-text">triage_agent = Agent(
-</code></pre>
-<pre><code class="language-text">name="Triage
-Agent",
-instructions="""You are a customer
+technical_agent</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>triage_agent = Agent(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>name=&quot;Triage
+Agent&quot;,
+instructions=&quot;&quot;&quot;You are a customer
 service
 triage
 agent.
@@ -329,73 +111,41 @@ support.
 - For
 general
 questions , answer
-directly.""",
+directly.&quot;&quot;&quot;,
 functions =[ transfer_to_billing , transfer_to_technical ],
-)
-</code></pre>
-<pre><code class="language-text">billing_agent = Agent(
-</code></pre>
-<pre><code class="language-text">name="Billing
-Specialist",
-instructions="You handle
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>billing_agent = Agent(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>name=&quot;Billing
+Specialist&quot;,
+instructions=&quot;You handle
 billing
-inquiries. "
-"Access
+inquiries. &quot;
+&quot;Access
 account
 data and
 resolve
 payment
-issues.",
+issues.&quot;,
 functions =[ lookup_account , process_refund ],
-)
-</code></pre>
-<pre><code class="language-text">technical_agent = Agent(
-</code></pre>
-<figure><img alt="第 443 页图像 page_443_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_443_img_01.png"/>
-<em>图像：原 PDF p.443</em></figure>
-<h2 id="chapter-25-p444-3">Coordination Mechanisms</h2>
-<p><span class="page-ref" id="pdf-p444">原 PDF p.444</span></p>
-<pre><code class="language-text">name="Technical
-Support",
-instructions="You
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>technical_agent = Agent(</code></pre></div><figure class="component figure-component"><img src="../assets/images/figures/fig-067.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure></div></section><section class="ast-section" id="chapter-25-s03"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>协调机制</h2><p>本节聚焦“协调机制”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div></div></div><div class="section-blocks"><div class="component code-component"><div class="block-label">text</div><pre><code>name=&quot;Technical
+Support&quot;,
+instructions=&quot;You
 resolve
 technical
-issues. "
-"Diagnose
+issues. &quot;
+&quot;Diagnose
 problems
 and
 provide step -by -step
-solutions.",
+solutions.&quot;,
 functions =[ run_diagnostics , escalate_to_engineering ],
-)
-</code></pre>
-<pre><code class="language-text"># No global
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># No global
 state
 --- each
 agent
 operates on its local
 context
-response = client.run(
-</code></pre>
-<pre><code class="language-text">agent=triage_agent ,
-messages =[{"role": "user", "content": "My invoice is wrong"}]
-)
-</code></pre>
-<p>群体属性</p>
-<p>• 无全局状态：每个智能体仅维护其本地上下文窗口</p>
-<p>• 本地决策：路由决策由当前智能体做出，而不是中央规划者</p>
-<p>• 通过集体行为完成任务：复杂的任务通过集体行为完成
-交接链，每个智能体贡献其专业</p>
-<p>• 轻量级：无编排开销；智能体在切换之间是无状态的</p>
-<p>协调机制</p>
-<p>智能体如何协调——如何共享信息、分工和解决冲突——就像
-与拓扑一样重要。六种规范协调机制适用于基于 LLM 的多智能体
-系统。</p>
-<p>共享状态（全局黑板）</p>
-<p>黑板架构[321]提供了一个所有智能体都可以读取的共享数据结构
-并写信至。在 LLM 系统中，这通常作为共享字典、数据库或
-结构化文档。</p>
-<pre><code class="language-text">import
+response = client.run(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>agent=triage_agent ,
+messages =[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;My invoice is wrong&quot;}]
+)</code></pre></div><p class="content-block paragraph">群体属性</p><p class="content-block paragraph">• 无全局状态：每个智能体仅维护其本地上下文窗口</p><p class="content-block paragraph">• 本地决策：路由决策由当前智能体做出，而不是中央规划者</p><p class="content-block paragraph">• 通过集体行为完成任务：复杂的任务通过集体行为完成 交接链，每个智能体贡献其专业</p><p class="content-block paragraph">• 轻量级：无编排开销；智能体在切换之间是无状态的</p><p class="content-block paragraph">智能体如何协调——如何共享信息、分工和解决冲突——就像 与拓扑一样重要。六种规范协调机制适用于基于 LLM 的多智能体 系统。</p><p class="content-block paragraph">共享状态（全局黑板）</p><p class="content-block paragraph">黑板架构[321]提供了一个所有智能体都可以读取的共享数据结构 并写信至。在 LLM 系统中，这通常作为共享字典、数据库或 结构化文档。</p><div class="component code-component"><div class="block-label">text</div><pre><code>import
 threading
 from
 dataclasses
@@ -403,39 +153,27 @@ import
 dataclass , field
 from
 typing
-import Any , Callable , Dict , List
-</code></pre>
-<pre><code class="language-text">@dataclass
+import Any , Callable , Dict , List</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@dataclass
 class
 BlackboardEntry :
 value: Any
 author: str
 timestamp: float
-confidence: float = 1.0
-</code></pre>
-<pre><code class="language-text">class
+confidence: float = 1.0</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 Blackboard:
-"""Thread -safe
+&quot;&quot;&quot;Thread -safe
 shared
 state for multi -agent
-coordination."""
-</code></pre>
-<pre><code class="language-text">def
+coordination.&quot;&quot;&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 __init__(self):
 self._data: Dict[str , BlackboardEntry ] = {}
 self._lock = threading.RLock ()
-self._subscribers: Dict[str , List[Callable ]] = {}
-</code></pre>
-<pre><code class="language-text">def write(self , key: str , value: Any , author: str ,
-</code></pre>
-<pre><code class="language-text">confidence: float = 1.0) -&gt; bool:
-"""Write to blackboard; higher -confidence
+self._subscribers: Dict[str , List[Callable ]] = {}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def write(self , key: str , value: Any , author: str ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>confidence: float = 1.0) -&gt; bool:
+&quot;&quot;&quot;Write to blackboard; higher -confidence
 entries
 win
-conflicts."""
-with self._lock:
-</code></pre>
-<pre><code class="language-text">existing = self._data.get(key)
+conflicts.&quot;&quot;&quot;
+with self._lock:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>existing = self._data.get(key)
 if existing
 and
 existing.confidence &gt; confidence:
@@ -445,53 +183,22 @@ False
 entry
 wins
 import
-time
-</code></pre>
-<p><span class="page-ref" id="pdf-p445">原 PDF p.445</span></p>
-<pre><code class="language-text">self._data[key] = BlackboardEntry (
-</code></pre>
-<pre><code class="language-text">value=value , author=author ,
+time</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>self._data[key] = BlackboardEntry (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>value=value , author=author ,
 timestamp=time.time (), confidence=confidence
 )
 self._notify(key , value)
 return
-True
-</code></pre>
-<pre><code class="language-text">def read(self , key: str) -&gt; Any:
-</code></pre>
-<pre><code class="language-text">with self._lock:
-</code></pre>
-<pre><code class="language-text">entry = self._data.get(key)
+True</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def read(self , key: str) -&gt; Any:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>with self._lock:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>entry = self._data.get(key)
 return
 entry.value if entry
-else None
-</code></pre>
-<pre><code class="language-text">def
+else None</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 subscribe(self , key: str , callback: Callable):
-"""Agents
+&quot;&quot;&quot;Agents
 subscribe to changes on specific
-keys."""
-self._subscribers.setdefault(key , []).append(callback)
-</code></pre>
-<pre><code class="language-text">def
+keys.&quot;&quot;&quot;
+self._subscribers.setdefault(key , []).append(callback)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 _notify(self , key: str , value: Any):
-for cb in self._subscribers .get(key , []):
-</code></pre>
-<pre><code class="language-text">cb(key , value)
-</code></pre>
-<p>清单 24.1：具有冲突解决功能的共享黑板</p>
-<p>消息传递</p>
-<p>消息传递是LLM智能体最自然的协调机制：智能体进行通信
-通过相互发送结构化文本消息。关键设计决策包括：</p>
-<p>• 消息格式：结构化（JSON 模式）与自然语言与混合语言</p>
-<p>• 路由：直接（智能体到智能体）与广播与基于主题的发布/订阅</p>
-<p>• 对话线程：维护多轮交换的上下文</p>
-<p>• 确认：发件人是否要求确认接收/处理</p>
-<p>规划与分解</p>
-<p>管理器智能体将高级任务分解为子任务的有向无环图（DAG），
-将每个任务分配给适当的工作人员，并跟踪依赖关系。这是多智能体的模拟
-经典的分层任务网络（HTN）规划。</p>
-<pre><code class="language-text">from
+for cb in self._subscribers .get(key , []):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>cb(key , value)</code></pre></div><p class="content-block paragraph">清单 24.1：具有冲突解决功能的共享黑板</p><p class="content-block paragraph">消息传递</p><p class="content-block paragraph">消息传递是LLM智能体最自然的协调机制：智能体进行通信 通过相互发送结构化文本消息。关键设计决策包括：</p><p class="content-block paragraph">• 消息格式：结构化（JSON 模式）与自然语言与混合语言</p><p class="content-block paragraph">• 路由：直接（智能体到智能体）与广播与基于主题的发布/订阅</p><p class="content-block paragraph">• 对话线程：维护多轮交换的上下文</p><p class="content-block paragraph">• 确认：发件人是否要求确认接收/处理</p><p class="content-block paragraph">规划与分解</p><p class="content-block paragraph">管理器智能体将高级任务分解为子任务的有向无环图（DAG）， 将每个任务分配给适当的工作人员，并跟踪依赖关系。这是多智能体的模拟 经典的分层任务网络（HTN）规划。</p><div class="component code-component"><div class="block-label">text</div><pre><code>from
 dataclasses
 import
 dataclass , field
@@ -499,55 +206,35 @@ from
 typing
 import List , Optional
 import
-asyncio
-</code></pre>
-<pre><code class="language-text">@dataclass
+asyncio</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@dataclass
 class
 Task:
 id: str
 description: str
 assigned_to: str
 dependencies: List[str] = field( default_factory =list)
-status: str = "pending"
+status: str = &quot;pending&quot;
 # pending | running | done | failed
-result: Optional[str] = None
-</code></pre>
-<pre><code class="language-text">class
+result: Optional[str] = None</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 TaskDAG:
 def
 __init__(self):
-self.tasks: dict[str , Task] = {}
-</code></pre>
-<pre><code class="language-text">def
+self.tasks: dict[str , Task] = {}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 add_task(self , task: Task):
-self.tasks[task.id] = task
-</code></pre>
-<pre><code class="language-text">def
+self.tasks[task.id] = task</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 ready_tasks(self) -&gt; List[Task ]:
-"""Return
+&quot;&quot;&quot;Return
 tasks
 whose
 dependencies
 are all
-completed."""
-</code></pre>
-<p><span class="page-ref" id="pdf-p446">原 PDF p.446</span></p>
-<p>返回 [</p>
-<pre><code class="language-text">t for t in self.tasks.values ()
-if t.status == "pending"
-and all(self.tasks[d]. status == "done"
-</code></pre>
-<pre><code class="language-text">for d in t.dependencies )
-]
-</code></pre>
-<pre><code class="language-text">async def
+completed.&quot;&quot;&quot;</code></pre></div><p class="content-block paragraph">返回 [</p><div class="component code-component"><div class="block-label">text</div><pre><code>t for t in self.tasks.values ()
+if t.status == &quot;pending&quot;
+and all(self.tasks[d]. status == &quot;done&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>for d in t.dependencies )
+]</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def
 execute(self , agent_pool: dict):
-while any(t.status != "done" for t in self.tasks.values ()):
-</code></pre>
-<pre><code class="language-text">ready = self.ready_tasks ()
-if not ready:
-</code></pre>
-<pre><code class="language-text">await
+while any(t.status != &quot;done&quot; for t in self.tasks.values ()):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>ready = self.ready_tasks ()
+if not ready:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>await
 asyncio.sleep (0.1)
 continue
 # Execute
@@ -557,91 +244,18 @@ await
 asyncio.gather (*[
 self._run_task(t, agent_pool[t.assigned_to ])
 for t in ready
-])
-</code></pre>
-<pre><code class="language-text">async def
+])</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def
 _run_task(self , task: Task , agent):
-task.status = "running"
-try:
-</code></pre>
-<pre><code class="language-text">task.result = await
+task.status = &quot;running&quot;
+try:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>task.result = await
 agent.execute(task.description)
-task.status = "done"
+task.status = &quot;done&quot;
 except
 Exception as e:
-task.status = "failed"
-raise
-</code></pre>
-<p>清单 24.2：任务 DAG 分解</p>
-<p>投票与共识</p>
-<p>当多个智能体产生相互冲突的输出时，投票机制会将他们的响应汇总为
-一个单一的决定。常见的方案包括：</p>
-<p>• 多数投票：最常见的答案获胜；对于事实性问题有效</p>
-<p>• 加权投票：具有较高业绩记录或置信度得分的智能体获得更多权重</p>
-<p>• 基于辩论的解决方案：智能体为自己的立场进行辩论；法官智能体决定</p>
-<p>• 德尔菲法：迭代轮次，智能体在看到其他人的答案后修改他们的答案</p>
-<p>形式上，给定 n 个智能体，产生输出 {o1,...。。 , on}，权重为 {w1, .。。 , wn}, 加权
-共识是：</p>
-<p>n
-X</p>
-<p>o*= arg 最大值
-哦</p>
-<pre><code class="language-text">i=1
+task.status = &quot;failed&quot;
+raise</code></pre></div><p class="content-block paragraph">清单 24.2：任务 DAG 分解</p><p class="content-block paragraph">投票与共识</p><p class="content-block paragraph">当多个智能体产生相互冲突的输出时，投票机制会将他们的响应汇总为 一个单一的决定。常见的方案包括：</p><p class="content-block paragraph">• 多数投票：最常见的答案获胜；对于事实性问题有效</p><p class="content-block paragraph">• 加权投票：具有较高业绩记录或置信度得分的智能体获得更多权重</p><p class="content-block paragraph">• 基于辩论的解决方案：智能体为自己的立场进行辩论；法官智能体决定</p><p class="content-block paragraph">• 德尔菲法：迭代轮次，智能体在看到其他人的答案后修改他们的答案</p><p class="content-block paragraph">形式上，给定 n 个智能体，产生输出 {o1,...。。 , on}，权重为 {w1, .。。 , wn}, 加权 共识是：</p><p class="content-block paragraph">n X</p><p class="content-block paragraph">o*= arg 最大值 哦</p><div class="component code-component"><div class="block-label">text</div><pre><code>i=1
 wi · 1[oi = o]
-(24.1)
-</code></pre>
-<p>对于连续输出（例如概率估计），加权平均适用：</p>
-<p>^p =</p>
-<p>PN
-i=1 wi · pi
-PN
-我=1维
-(24.2)</p>
-<p>基于市场的协调</p>
-<p>市场机制通过拍卖、招标的方式配置任务和资源。合同网
-协议[374]是最古老的多智能体协调机制之一，是一种任务拍卖：</p>
-<ol>
-<li>
-<p>经理广播任务公告并提出要求</p>
-</li>
-<li>
-<p>承包商智能体提交标书（能力声明+成本估算）</p>
-</li>
-</ol>
-<h2 id="chapter-25-p447-4">Communication Protocols</h2>
-<p><span class="page-ref" id="pdf-p447">原 PDF p.447</span></p>
-<ol start="3">
-<li>
-<p>经理将合同授予最佳投标人</p>
-</li>
-<li>
-<p>中标承包商执行并报告结果</p>
-</li>
-</ol>
-<p>在LLM系统中，出价可以用自然语言表达（“我可以通过3步完成这个
-具有高置信度”）或结构化格式。市场机制对于以下方面特别有效
-资源受限的设置，其中 API 成本必须最小化。</p>
-<p>Stigmergy：通过环境进行间接交流</p>
-<p>臭味[? ] 用更简单的机制取代显式的智能体到智能体消息传递：每个智能体
-修改共享环境作为其工作的副作用，其他智能体对此做出反应
-修改而不是直接信号。经典的插图是一只觅食的蚂蚁沉积
-返回路径上的信息素；随后的蚂蚁会放大成功的路线，而无需任何蚂蚁“说话”
-到另一个。
-在LLM多智能体系统中，污蔑表现为：</p>
-<p>• 共享文档：智能体写入共享文档；其他人阅读并在此基础上进行构建</p>
-<p>• 代码存储库：一名智能体提交代码；另一个读取并扩展它</p>
-<p>• 注释层：智能体注释共享工件（突出显示错误、添加注释）</p>
-<p>• 任务队列：智能体从共享队列添加和使用任务</p>
-<p>Stigmergy 无需显式通信开销即可实现协调——智能体只需观察
-共享环境的状态并采取相应的行动。</p>
-<p>通讯协议</p>
-<p>有效的多智能体系统需要明确定义的通信协议：商定的格式、
-智能体到智能体消息的语义和模式。 （有关标准化智能体间协议，请参见
-第23章。）</p>
-<p>结构化消息格式</p>
-<p>LLM 智能体之间的消息应结构化以实现可靠的解析和路由。最小的
-消息架构：</p>
-<pre><code class="language-text">from
+(24.1)</code></pre></div><p class="content-block paragraph">对于连续输出（例如概率估计），加权平均适用：</p><div class="component code-component"><div class="block-label">text</div><pre><code>^p =</code></pre></div><p class="content-block paragraph">PN</p><div class="component code-component"><div class="block-label">text</div><pre><code>i=1 wi · pi</code></pre></div><p class="content-block paragraph">PN 我=1维 (24.2)</p><p class="content-block paragraph">基于市场的协调</p><p class="content-block paragraph">市场机制通过拍卖、招标的方式配置任务和资源。合同网 协议[374]是最古老的多智能体协调机制之一，是一种任务拍卖：</p><p class="content-block paragraph">1. 经理广播任务公告并提出要求</p><p class="content-block paragraph">2. 承包商智能体提交标书（能力声明+成本估算）</p></div></section><section class="ast-section" id="chapter-25-s04"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>通信协议</h2><p>本节聚焦“通信协议”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">3. 经理将合同授予最佳投标人</p><p class="content-block paragraph">4. 中标承包商执行并报告结果</p><p class="content-block paragraph">在LLM系统中，出价可以用自然语言表达（“我可以通过3步完成这个 具有高置信度”）或结构化格式。市场机制对于以下方面特别有效 资源受限的设置，其中 API 成本必须最小化。</p><p class="content-block paragraph">Stigmergy：通过环境进行间接交流</p><p class="content-block paragraph">臭味[? ] 用更简单的机制取代显式的智能体到智能体消息传递：每个智能体 修改共享环境作为其工作的副作用，其他智能体对此做出反应 修改而不是直接信号。经典的插图是一只觅食的蚂蚁沉积 返回路径上的信息素；随后的蚂蚁会放大成功的路线，而无需任何蚂蚁“说话” 到另一个。 在LLM多智能体系统中，污蔑表现为：</p><p class="content-block paragraph">• 共享文档：智能体写入共享文档；其他人阅读并在此基础上进行构建</p><p class="content-block paragraph">• 代码存储库：一名智能体提交代码；另一个读取并扩展它</p><p class="content-block paragraph">• 注释层：智能体注释共享工件（突出显示错误、添加注释）</p><p class="content-block paragraph">• 任务队列：智能体从共享队列添加和使用任务</p><p class="content-block paragraph">Stigmergy 无需显式通信开销即可实现协调——智能体只需观察 共享环境的状态并采取相应的行动。</p><p class="content-block paragraph">通讯协议</p><p class="content-block paragraph">有效的多智能体系统需要明确定义的通信协议：商定的格式、 智能体到智能体消息的语义和模式。 （有关标准化智能体间协议，请参见 第23章。）</p><p class="content-block paragraph">结构化消息格式</p><p class="content-block paragraph">LLM 智能体之间的消息应结构化以实现可靠的解析和路由。最小的 消息架构：</p><div class="component code-component"><div class="block-label">text</div><pre><code>from
 pydantic
 import
 BaseModel , Field
@@ -654,31 +268,25 @@ datetime
 import
 datetime , timezone
 import
-uuid
-</code></pre>
-<pre><code class="language-text">PerformativeType = Literal[
-</code></pre>
-<pre><code class="language-text">"inform",
+uuid</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>PerformativeType = Literal[</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;inform&quot;,
 # Share
 information
-"request",
+&quot;request&quot;,
 # Request an action
-"propose",
+&quot;propose&quot;,
 # Propose a course of action
-"accept",
+&quot;accept&quot;,
 # Accept a proposal
-"reject",
+&quot;reject&quot;,
 # Reject a proposal
-"query",
+&quot;query&quot;,
 # Ask a question
-"confirm",
+&quot;confirm&quot;,
 # Confirm
 receipt/completion
-"failure",
+&quot;failure&quot;,
 # Report a failure
-]
-</code></pre>
-<pre><code class="language-text">class
+]</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 AgentMessage(BaseModel):
 message_id: str = Field( default_factory =lambda: str(uuid.uuid4 ()))
 conversation_id : str
@@ -690,11 +298,7 @@ sender: str
 identifier
 receiver: str
 # Target
-agent (or "broadcast ")
-</code></pre>
-<h2 id="chapter-25-p448-5">Role Design and Specialization</h2>
-<p><span class="page-ref" id="pdf-p448">原 PDF p.448</span></p>
-<pre><code class="language-text">performative: PerformativeType
+agent (or &quot;broadcast &quot;)</code></pre></div></div></section><section class="ast-section" id="chapter-25-s05"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>角色设计与专业化</h2><p>本节聚焦“角色设计与专业化”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><div class="component code-component"><div class="block-label">text</div><pre><code>performative: PerformativeType
 content: str
 # Natural
 language
@@ -706,155 +310,25 @@ reply_to: Optional[str] = None
 being
 replied to
 timestamp: datetime = Field( default_factory =lambda: datetime.now(timezone.utc)
-)
-</code></pre>
-<pre><code class="language-text">def
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 to_llm_prompt(self) -&gt; str:
-"""Render
+&quot;&quot;&quot;Render
 message as a prompt
 fragment
 for the
 receiving
-agent."""
-return (
-</code></pre>
-<pre><code class="language-text">f"[MESSAGE
-from {self.sender }]\n"
-f"Type: {self.performative }\n"
-f"Content: {self.content }\n"
-+ (f"Metadata: {self.metadata }\n" if self.metadata
-else "")
-)
-</code></pre>
-<p>清单 24.3：智能体消息模式</p>
-<p>表演类型（FIPA-ACL 启发）</p>
-<p>借鉴 FIPA 智能体通信语言 [3]，针对 LLM 智能体进行了现代化改造：</p>
-<p>表 24.1：LLM 智能体消息的 FIPA-ACL 启发执行类型。</p>
-<p>述行性
-语义学
-使用示例</p>
-<p>通知
-发件人相信 phi 为真
-分享研究成果
-请求
-发送者希望接收者做α
-委派子任务
-提议
-发送者提出计划π
-提出一种方法
-接受
-接管人同意提议
-确认任务分配
-拒绝
-接管人拒绝提议
-拒绝不相容的任务
-查询
-发件人想知道 phi
-要求澄清
-确认
-发件人确认 phi 发生
-确认完成
-失败
-发送方未能达到α
-报告错误</p>
-<p>上下文共享策略</p>
-<p>多智能体通信中的一个关键挑战是上下文管理：有多少历史记录
-每个智能体需要吗？三种策略：</p>
-<p>• 完整历史记录：将整个对话历史记录传递给每个座席。信息量最大但
-昂贵；上下文窗口很快就填满了。</p>
-<p>• 摘要：摘要生成器智能体将先前的交流压缩为紧凑的摘要。高效
-但有损；重要的细节可能会被删除。</p>
-<p>• 相关摘录：使用语义搜索仅检索最相关的先前消息。
-平衡成本和信息量；需要一个检索机制。</p>
-<p>上下文共享经验法则</p>
-<p>使用完整的历史记录进行简短对话（&lt;10 轮）；中等长度对话的摘要；
-长时间运行的智能体会话的检索增强摘录。始终包含最新的
-k 逐字传递消息以保留即时上下文。</p>
-<p>角色设计和专业化</p>
-<p>智能体角色的设计——他们的能力、角色和职责——既是一门艺术，也是一门艺术。
-一门科学。精心设计的角色可以实现专业化；角色设计不当会造成混乱
-冗余。</p>
-<p><span class="page-ref" id="pdf-p449">原 PDF p.449</span></p>
-<p>定义智能体角色</p>
-<p>LLM多智能体系统中的常见角色：</p>
-<p>表 24.2：LLM 多智能体系统中的常见智能体角色。</p>
-<p>角色
-主要能力
-典型工具</p>
-<p>研究员
-信息收集、综合
-姐姐
-网络搜索、RAG、数据库</p>
-<p>规划师
-任务分解、调度
-英
-无（仅推理）</p>
-<p>编码员
-代码生成、调试
-代码解释器、linter
-审稿人
-质量评估、批评
-无（仅推理）
-测试员
-测试生成、执行
-测试运行器、覆盖率工具
-作家
-散文生成、编辑
-语法检查器、风格指南
-批评家
-对抗性评估
-无（仅推理）
-协调者
-协调、授权
-所有智能体接口</p>
-<p>基于能力与基于角色的分配</p>
-<p>任务分配的两种理念：</p>
-<p>• 基于角色：根据预定义的角色标签分配任务。简单且可预测；可能
-当任务跨越多个角色时，效果并不理想。</p>
-<p>• 基于能力：根据对每个座席能力的动态评估来分配任务
-与任务要求相关的联系。更灵活；需要能力注册和匹配
-机制。</p>
-<p>动态角色重新分配</p>
-<p>在长时间运行的系统中，静态角色分配变得不是最优的。动态重新分配允许
-智能体将根据以下条件承担新角色：</p>
-<p>• 当前工作负载（负载平衡）</p>
-<p>• 在近期任务中表现出色</p>
-<p>• 改变任务要求</p>
-<p>• 需要覆盖的智能体故障</p>
-<p>思想多样性的角色设计</p>
-<p>一种微妙但强大的技术：为智能体提供独特的角色，鼓励不同的观点。
-设计不是五个相同的“助理”智能体，而是：</p>
-<p>• 强调机会的乐观主义者</p>
-<p>• 质疑假设的怀疑论者</p>
-<p>• 注重实施的实用主义者</p>
-<p>• 具有长远眼光的远见卓识者</p>
-<p>• 持有相反立场的唱反调者</p>
-<p>这种思想的多样性，受到六顶思考帽[383]等技术的启发，减少了群体思维
-并产生更强大的集体推理。</p>
-<h2 id="chapter-25-p450-6">Multi-Agent Patterns for LLMs</h2>
-<p><span class="page-ref" id="pdf-p450">原 PDF p.450</span></p>
-<p>角色冲突解决
-当智能体职责重叠时，就会出现冲突。以明确的优先级解决它们
-规则：定义每种任务类型的优先角色。或者，使用元智能体
-其唯一职责是冲突仲裁。永远不要隐含角色冲突——它们会
-表现为矛盾的输出或无限循环。</p>
-<p>LLM 的多智能体模式</p>
-<p>除了架构拓扑之外，多种交互模式已被证明对于以下方面特别有效：
-基于LLM的多智能体系统。 （这些补充了第 19 章中的单智能体设计模式。）</p>
-<p>辩论模式</p>
-<p>多名智能体争论不同的立场；法官智能体评估论点并做出决定。
-辩论已被证明可以提高事实准确性并减少幻觉[384]。</p>
-<pre><code class="language-text">async def
-debate_round(question: str , agents: list , judge: Agent ,
-</code></pre>
-<pre><code class="language-text">rounds: int = 2) -&gt; str:
-"""Run a multi -agent
-debate and return the judge ’s verdict."""
-positions = {a.name: await a. generate_position (question)
-</code></pre>
-<pre><code class="language-text">for a in agents}
-</code></pre>
-<pre><code class="language-text">for
+agent.&quot;&quot;&quot;
+return (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>f&quot;[MESSAGE
+from {self.sender }]\n&quot;
+f&quot;Type: {self.performative }\n&quot;
+f&quot;Content: {self.content }\n&quot;
++ (f&quot;Metadata: {self.metadata }\n&quot; if self.metadata
+else &quot;&quot;)
+)</code></pre></div><p class="content-block paragraph">清单 24.3：智能体消息模式</p><p class="content-block paragraph">表演类型（FIPA-ACL 启发）</p><p class="content-block paragraph">借鉴 FIPA 智能体通信语言 [3]，针对 LLM 智能体进行了现代化改造：</p><p class="content-block paragraph">表 24.1：LLM 智能体消息的 FIPA-ACL 启发执行类型。</p><p class="content-block paragraph">述行性 语义学 使用示例</p><p class="content-block paragraph">通知 发件人相信 phi 为真 分享研究成果 请求 发送者希望接收者做α 委派子任务 提议 发送者提出计划π 提出一种方法 接受 接管人同意提议 确认任务分配 拒绝 接管人拒绝提议 拒绝不相容的任务 查询 发件人想知道 phi 要求澄清 确认 发件人确认 phi 发生 确认完成 失败 发送方未能达到α 报告错误</p><p class="content-block paragraph">上下文共享策略</p><p class="content-block paragraph">多智能体通信中的一个关键挑战是上下文管理：有多少历史记录 每个智能体需要吗？三种策略：</p><p class="content-block paragraph">• 完整历史记录：将整个对话历史记录传递给每个座席。信息量最大但 昂贵；上下文窗口很快就填满了。</p><p class="content-block paragraph">• 摘要：摘要生成器智能体将先前的交流压缩为紧凑的摘要。高效 但有损；重要的细节可能会被删除。</p><p class="content-block paragraph">• 相关摘录：使用语义搜索仅检索最相关的先前消息。 平衡成本和信息量；需要一个检索机制。</p><p class="content-block paragraph">上下文共享经验法则</p><p class="content-block paragraph">使用完整的历史记录进行简短对话（&lt;10 轮）；中等长度对话的摘要； 长时间运行的智能体会话的检索增强摘录。始终包含最新的 k 逐字传递消息以保留即时上下文。</p><p class="content-block paragraph">角色设计和专业化</p><p class="content-block paragraph">智能体角色的设计——他们的能力、角色和职责——既是一门艺术，也是一门艺术。 一门科学。精心设计的角色可以实现专业化；角色设计不当会造成混乱 冗余。</p><p class="content-block paragraph">定义智能体角色</p><p class="content-block paragraph">LLM多智能体系统中的常见角色：</p><p class="content-block paragraph">表 24.2：LLM 多智能体系统中的常见智能体角色。</p><p class="content-block paragraph">角色 主要能力 典型工具</p><p class="content-block paragraph">研究员 信息收集、综合 姐姐 网络搜索、RAG、数据库</p><p class="content-block paragraph">规划师 任务分解、调度 英 无（仅推理）</p><p class="content-block paragraph">编码员 代码生成、调试 代码解释器、linter 审稿人 质量评估、批评 无（仅推理） 测试员 测试生成、执行 测试运行器、覆盖率工具 作家 散文生成、编辑 语法检查器、风格指南 批评家 对抗性评估 无（仅推理） 协调者 协调、授权 所有智能体接口</p><p class="content-block paragraph">基于能力与基于角色的分配</p><p class="content-block paragraph">任务分配的两种理念：</p><p class="content-block paragraph">• 基于角色：根据预定义的角色标签分配任务。简单且可预测；可能 当任务跨越多个角色时，效果并不理想。</p><p class="content-block paragraph">• 基于能力：根据对每个座席能力的动态评估来分配任务 与任务要求相关的联系。更灵活；需要能力注册和匹配 机制。</p><p class="content-block paragraph">动态角色重新分配</p><p class="content-block paragraph">在长时间运行的系统中，静态角色分配变得不是最优的。动态重新分配允许 智能体将根据以下条件承担新角色：</p><p class="content-block paragraph">• 当前工作负载（负载平衡）</p><p class="content-block paragraph">• 在近期任务中表现出色</p><p class="content-block paragraph">• 改变任务要求</p><p class="content-block paragraph">• 需要覆盖的智能体故障</p><p class="content-block paragraph">思想多样性的角色设计</p><p class="content-block paragraph">一种微妙但强大的技术：为智能体提供独特的角色，鼓励不同的观点。 设计不是五个相同的“助理”智能体，而是：</p><p class="content-block paragraph">• 强调机会的乐观主义者</p><p class="content-block paragraph">• 质疑假设的怀疑论者</p><p class="content-block paragraph">• 注重实施的实用主义者</p><p class="content-block paragraph">• 具有长远眼光的远见卓识者</p><p class="content-block paragraph">• 持有相反立场的唱反调者</p><p class="content-block paragraph">这种思想的多样性，受到六顶思考帽[383]等技术的启发，减少了群体思维 并产生更强大的集体推理。</p></div></section><section class="ast-section" id="chapter-25-s06"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>面向 LLM 的多智能体模式</h2><p>本节聚焦“面向 LLM 的多智能体模式”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">角色冲突解决 当智能体职责重叠时，就会出现冲突。以明确的优先级解决它们 规则：定义每种任务类型的优先角色。或者，使用元智能体 其唯一职责是冲突仲裁。永远不要隐含角色冲突——它们会 表现为矛盾的输出或无限循环。</p><p class="content-block paragraph">LLM 的多智能体模式</p><p class="content-block paragraph">除了架构拓扑之外，多种交互模式已被证明对于以下方面特别有效： 基于LLM的多智能体系统。 （这些补充了第 19 章中的单智能体设计模式。）</p><p class="content-block paragraph">辩论模式</p><p class="content-block paragraph">多名智能体争论不同的立场；法官智能体评估论点并做出决定。 辩论已被证明可以提高事实准确性并减少幻觉[384]。</p><div class="component code-component"><div class="block-label">text</div><pre><code>async def
+debate_round(question: str , agents: list , judge: Agent ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>rounds: int = 2) -&gt; str:
+&quot;&quot;&quot;Run a multi -agent
+debate and return the judge ’s verdict.&quot;&quot;&quot;
+positions = {a.name: await a. generate_position (question)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>for a in agents}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>for
 round_num in range(rounds):
 # Each
 agent
@@ -862,79 +336,26 @@ sees
 others ’ positions
 and can rebut
 rebuttals = {}
-for agent in agents:
-</code></pre>
-<pre><code class="language-text">others = {k: v for k, v in positions.items ()
-</code></pre>
-<pre><code class="language-text">if k != agent.name}
+for agent in agents:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>others = {k: v for k, v in positions.items ()</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>if k != agent.name}
 rebuttals[agent.name] = await
 agent.rebut(
 question , positions[agent.name], others
 )
-positions = rebuttals
-</code></pre>
-<pre><code class="language-text"># Judge
+positions = rebuttals</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Judge
 evaluates
 all final
 positions
 verdict = await
 judge.evaluate(question , positions)
 return
-verdict
-</code></pre>
-<p>清单 24.4：辩论模式实现</p>
-<p>反射图案</p>
-<p>一个智能体生成一个输出；第二个特工批评它；第一个智能体根据
-批评。这实现了一个生成-批评-修改循环，迭代地提高质量。</p>
-<pre><code class="language-text">async def
-reflection_loop (task: str , generator: Agent ,
-</code></pre>
-<pre><code class="language-text">critic: Agent , max_rounds: int = 3) -&gt; str:
+verdict</code></pre></div><p class="content-block paragraph">清单 24.4：辩论模式实现</p><p class="content-block paragraph">反射图案</p><p class="content-block paragraph">一个智能体生成一个输出；第二个特工批评它；第一个智能体根据 批评。这实现了一个生成-批评-修改循环，迭代地提高质量。</p><div class="component code-component"><div class="block-label">text</div><pre><code>async def
+reflection_loop (task: str , generator: Agent ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>critic: Agent , max_rounds: int = 3) -&gt; str:
 draft = await
-generator.generate(task)
-</code></pre>
-<pre><code class="language-text">for _ in range(max_rounds):
-</code></pre>
-<pre><code class="language-text">critique = await
+generator.generate(task)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>for _ in range(max_rounds):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>critique = await
 critic.critique(task , draft)
-if critique. is_satisfactory :
-</code></pre>
-<pre><code class="language-text">break
+if critique. is_satisfactory :</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>break
 draft = await
-generator.revise(task , draft , critique.feedback)
-</code></pre>
-<p>返回
-草案</p>
-<p>清单 24.5：反射模式</p>
-<h2 id="chapter-25-p451-7">Training Multi-Agent Systems with Reinforcement Learning</h2>
-<p><span class="page-ref" id="pdf-p451">原 PDF p.451</span></p>
-<p>分工模式</p>
-<p>任务被分解为并行执行的独立子任务。结果由
-合成剂。这种模式可以最大限度地提高并行任务的吞吐量。</p>
-<p>流水线模式</p>
-<pre><code class="language-math">智能体形成顺序处理链：每个智能体都会转换前一个智能体的输出。
-Analogous to Unix pipes. Effective for tasks with clear sequential dependencies (e.g., research →
-outline →draft →edit →format).
-</code></pre>
-<p>合奏模式</p>
-<p>多个Agent独立解决同一问题；选择机制选择最佳答案
-（N 中最佳）或聚合答案（专家混合风格）。提高可靠性，但代价是
-计算。</p>
-<p>o*=arg
-最大
-o∈{o1,...,oN} 分数(o, 任务)
-(24.3)</p>
-<p>其中score可以是奖励模型、法官LLM或验证者。</p>
-<p>师生模式</p>
-<p>能力较强的智能体（教师）指导能力较差的智能体（学生）完成任务，提供提示，
-更正和解释。这种模式可以在推理时进行知识蒸馏，并且可以
-用于微调学生智能体。</p>
-<p>红队图案</p>
-<p>敌方智能体（红队）积极尝试找出系统中的弱点、错误或安全违规行为。
-其他智能体的输出。红队特工被要求在其工作中保持最大程度的批判性和创造性。
-攻击。这种模式对于安全关键型应用至关重要。</p>
-<p>红队特工提示</p>
-<pre><code class="language-text">RED_TEAM_PROMPT = """You are a red team
+generator.revise(task , draft , critique.feedback)</code></pre></div><p class="content-block paragraph">返回 草案</p><p class="content-block paragraph">清单 24.5：反射模式</p></div></section><section class="ast-section" id="chapter-25-s07"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>用强化学习训练多智能体系统</h2><p>本节聚焦“用强化学习训练多智能体系统”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">分工模式</p><p class="content-block paragraph">任务被分解为并行执行的独立子任务。结果由 合成剂。这种模式可以最大限度地提高并行任务的吞吐量。</p><p class="content-block paragraph">流水线模式</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Agents form a sequential processing chain: each agent transforms the output of the previous agent. Analogous to Unix pipes. Effective for tasks with clear sequential dependencies (e.g., research → outline →draft →edit →format).</code></pre></div><p class="content-block paragraph">合奏模式</p><p class="content-block paragraph">多个Agent独立解决同一问题；选择机制选择最佳答案 （N 中最佳）或聚合答案（专家混合风格）。提高可靠性，但代价是 计算。</p><p class="content-block paragraph">o*=arg 最大 o∈{o1,...,oN} 分数(o, 任务) (24.3)</p><p class="content-block paragraph">其中score可以是奖励模型、法官LLM或验证者。</p><p class="content-block paragraph">师生模式</p><p class="content-block paragraph">能力较强的智能体（教师）指导能力较差的智能体（学生）完成任务，提供提示， 更正和解释。这种模式可以在推理时进行知识蒸馏，并且可以 用于微调学生智能体。</p><p class="content-block paragraph">红队图案</p><p class="content-block paragraph">敌方智能体（红队）积极尝试找出系统中的弱点、错误或安全违规行为。 其他智能体的输出。红队特工被要求在其工作中保持最大程度的批判性和创造性。 攻击。这种模式对于安全关键型应用至关重要。</p><p class="content-block paragraph">红队特工提示</p><div class="component code-component"><div class="block-label">text</div><pre><code>RED_TEAM_PROMPT = &quot;&quot;&quot;You are a red team
 agent. Your job is to find
 flaws , errors , biases , safety
 violations , and
@@ -942,9 +363,7 @@ failure
 modes in the
 following
 output. Be adversarial , creative , and
-thorough.
-</code></pre>
-<pre><code class="language-text">Consider:
+thorough.</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>Consider:
 1. Factual
 errors or hallucinations
 2. Logical
@@ -963,230 +382,18 @@ exploit
 this
 output
 6. Unintended
-consequences
-</code></pre>
-<pre><code class="language-text">Output: { agent_output}
-</code></pre>
-<pre><code class="language-text">Provide a detailed
+consequences</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>Output: { agent_output}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>Provide a detailed
 critique
 with
 specific
 examples of each flaw
-found."""
-</code></pre>
-<p>使用强化学习训练多智能体系统</p>
-<p>使用强化学习训练多智能体系统带来的挑战超出了单智能体强化学习的范围。的
-根本困难在于每个智能体的环境都包含其他学习智能体，使得
-从任何单个智能体的角度来看，环境都是非平稳的。</p>
-<p><span class="page-ref" id="pdf-p452">原 PDF p.452</span></p>
-<p>数学公式</p>
-<p>多智能体系统被形式化为马尔可夫博弈（也称为随机博弈）[385]：</p>
-<pre><code class="language-math">G = ⟨N, S, {Ai}i∈N , T , {Ri}i∈N , γ⟩
-(24.4)
-</code></pre>
-<p>其中 N = {1, .。。 , n} 是智能体的集合，S 是共享状态空间，Ai 是智能体 i 的动作空间，
-T : S × A1 × · · · × An →Δ(S) 是转移函数，Ri : S × A1 × · · · × An →R 是智能体 i 的
-奖励函数，γ是折扣因子。
-每个智能体 i 都寻求最大化其预期折扣回报：</p>
-<h1></h1>
-<p>” ∞
-X</p>
-<p>(24.5)</p>
-<pre><code class="language-math">Ji(π1, . . . , πn) = Eπ1,...,πn
-</code></pre>
-<p>时间=0
-γtRi(st, a1
-t , .。。 , 一个
-)</p>
-<p>自主学习</p>
-<p>最简单的方法：每个智能体 i 将其他智能体视为其环境的一部分并优化其
-使用标准单智能体 RL（例如，PPO、REINFORCE）独立地制定自己的策略 πi。</p>
-<pre><code class="language-math">∇θiJi ≈E
-h
-∇θi log πi(ai
-t|oi
-t) · ˆAi
-t
-i
-(24.6)
-</code></pre>
-<p>非平稳性问题</p>
-<p>独立学习违反了马尔可夫假设：当其他智能体更新其策略时，
-智能体 i 看到的转换和奖励分配发生了变化。这可能会导致训练不稳定，
-振荡，无法收敛。独立学习在实践中适用于简单的合作
-任务，但在竞争或复杂的合作环境中挣扎。</p>
-<p>集中训练，分散执行（CTDE）</p>
-<p>CTDE [386, 387] 是协作多智能体强化学习的主导范例。在训练期间，一个
-集中批评家可以访问全局状态 s 和所有智能体的行为 a = (a1, . . . , an)。期间
-执行时，每个智能体仅使用其本地观察 oi 进行操作。
-智能体 i 的集中批评家：</p>
-<p>齐
-ψ(s, a) = Qi
-ψ(s, a1, ..., an)
-(24.7)</p>
-<p>智能体 i 的去中心化参与者：
-πi
-θi(ai|oi)
-(24.8)</p>
-<p>集中批评家的政策梯度：</p>
-<pre><code class="language-math">∇θiJi = E
-h
-∇θi log πi(ai|oi) · Qi
-ϕ(s, a)
-i
-(24.9)
-</code></pre>
-<p>CTDE 解决了训练过程中的非平稳性（中心化批评者看到了完整的联合状态）
-同时保留分散执行（推理时无需通信）。</p>
-<p>沟通学习</p>
-<p>智能体可以了解要通信的内容，而不是使用固定的通信协议。在
-可微分的通信框架 [388, 389]，智能体产生持续的通信
-向量 mi
-t 被传递给其他智能体：</p>
-<p>艾
-时间、英里
-t = πi
-θi(oi
-t, {mj
-t−1}j̸=i)
-(24.10)</p>
-<p>通信向量通过联合奖励的反向传播进行端到端优化
-信号。对于 LLM 智能体，这近似于训练智能体产生结构化自然
-最大限度地提高任务绩效的语言消息。</p>
-<p><span class="page-ref" id="pdf-p453">原 PDF p.453</span></p>
-<p>紧急通讯</p>
-<p>当仅使用奖励信号（没有预定义语言）从头开始训练智能体时，他们
-可以开发紧急通信协议[390]：编码的共享token系统
-任务相关信息。虽然LLM系统中的科学性令人着迷，但新兴的交流
-通常是不可取的——我们希望智能体以人类可解释的语言进行交流。</p>
-<p>自玩</p>
-<p>在竞争性或混合动机环境中，自我对弈 [20] 通过让智能体与智能体竞争来训练智能体
-他们自己的副本。这会生成一个自动课程：随着智能体的进步，它的对手
-（其之前的版本）变得更难被击败。
-对于 LLM 智能体，自我对弈用于：</p>
-<p>• 红队与蓝队训练</p>
-<p>• 辩论训练（智能体相互争论）</p>
-<p>• 谈判训练（智能体商相互谈判）</p>
-<p>基于人群的训练</p>
-<p>基于群体的训练（PBT）[391]维护了具有不同特征的多样化智能体群体
-策略、超参数和专业化。定期评估智能体；表现不佳
-智能体被高性能智能体的突变副本所取代。
-对于多智能体 LLM 系统，PBT 能够：</p>
-<p>• 自动发现有效的角色专业化</p>
-<p>• 对个体智能体故障的鲁棒性（不同群体）</p>
-<p>• 通过人口多样性避免局部最优</p>
-<p>社会福利与纳什均衡</p>
-<p>在多智能体设置中，最优性的概念比单智能体设置中更复杂。两个
-关键解决方案概念：
-纳什均衡：联合策略 (π1<em>, . . . , πn</em>) 使得任何智能体都无法提高其预期
-单方面偏离返回：</p>
-<pre><code class="language-text">Ji(πi∗, π−i∗) ≥Ji(πi, π−i∗)
+found.&quot;&quot;&quot;</code></pre></div><p class="content-block paragraph">使用强化学习训练多智能体系统</p><p class="content-block paragraph">使用强化学习训练多智能体系统带来的挑战超出了单智能体强化学习的范围。的 根本困难在于每个智能体的环境都包含其他学习智能体，使得 从任何单个智能体的角度来看，环境都是非平稳的。</p><p class="content-block paragraph">数学公式</p><p class="content-block paragraph">多智能体系统被形式化为马尔可夫博弈（也称为随机博弈）[385]：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>G = ⟨N, S, {Ai}i∈N , T , {Ri}i∈N , γ⟩ (24.4)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>其中 N = {1, .。。 , n} 是智能体的集合，S 是共享状态空间，Ai 是智能体 i 的动作空间，</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>T : S × A1 × · · · × An →Δ(S) 是转移函数，Ri : S × A1 × · · · × An →R 是智能体 i 的</code></pre></div><p class="content-block paragraph">奖励函数，γ是折扣因子。 每个智能体 i 都寻求最大化其预期折扣回报：</p><p class="content-block paragraph">” ∞ X</p><p class="content-block paragraph">(24.5)</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Ji(π1, . . . , πn) = Eπ1,...,πn</code></pre></div><p class="content-block paragraph">时间=0 γtRi(st, a1 t , .。。 , 一个 )</p><p class="content-block paragraph">自主学习</p><p class="content-block paragraph">最简单的方法：每个智能体 i 将其他智能体视为其环境的一部分并优化其 使用标准单智能体 RL（例如，PPO、REINFORCE）独立地制定自己的策略 πi。</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>∇θiJi ≈E h ∇θi log πi(ai t|oi t) · ˆAi t i (24.6)</code></pre></div><p class="content-block paragraph">非平稳性问题</p><p class="content-block paragraph">独立学习违反了马尔可夫假设：当其他智能体更新其策略时， 智能体 i 看到的转换和奖励分配发生了变化。这可能会导致训练不稳定， 振荡，无法收敛。独立学习在实践中适用于简单的合作 任务，但在竞争或复杂的合作环境中挣扎。</p><p class="content-block paragraph">集中训练，分散执行（CTDE）</p><p class="content-block paragraph">CTDE [386, 387] 是协作多智能体强化学习的主导范例。在训练期间，一个</p><div class="component code-component"><div class="block-label">text</div><pre><code>集中批评家可以访问全局状态 s 和所有智能体的行为 a = (a1, . . . , an)。期间</code></pre></div><p class="content-block paragraph">执行时，每个智能体仅使用其本地观察 oi 进行操作。 智能体 i 的集中批评家：</p><p class="content-block paragraph">齐 ψ(s, a) = Qi ψ(s, a1, ..., an) (24.7)</p><p class="content-block paragraph">智能体 i 的去中心化参与者： πi θi(ai|oi) (24.8)</p><p class="content-block paragraph">集中批评家的政策梯度：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>∇θiJi = E h ∇θi log πi(ai|oi) · Qi ϕ(s, a) i (24.9)</code></pre></div><p class="content-block paragraph">CTDE 解决了训练过程中的非平稳性（中心化批评者看到了完整的联合状态） 同时保留分散执行（推理时无需通信）。</p><p class="content-block paragraph">沟通学习</p><p class="content-block paragraph">智能体可以了解要通信的内容，而不是使用固定的通信协议。在 可微分的通信框架 [388, 389]，智能体产生持续的通信 向量 mi t 被传递给其他智能体：</p><p class="content-block paragraph">艾 时间、英里</p><div class="component code-component"><div class="block-label">text</div><pre><code>t = πi</code></pre></div><p class="content-block paragraph">θi(oi t, {mj t−1}j̸=i) (24.10)</p><p class="content-block paragraph">通信向量通过联合奖励的反向传播进行端到端优化 信号。对于 LLM 智能体，这近似于训练智能体产生结构化自然 最大限度地提高任务绩效的语言消息。</p><p class="content-block paragraph">紧急通讯</p><p class="content-block paragraph">当仅使用奖励信号（没有预定义语言）从头开始训练智能体时，他们 可以开发紧急通信协议[390]：编码的共享token系统 任务相关信息。虽然LLM系统中的科学性令人着迷，但新兴的交流 通常是不可取的——我们希望智能体以人类可解释的语言进行交流。</p><p class="content-block paragraph">自玩</p><p class="content-block paragraph">在竞争性或混合动机环境中，自我对弈 [20] 通过让智能体与智能体竞争来训练智能体 他们自己的副本。这会生成一个自动课程：随着智能体的进步，它的对手 （其之前的版本）变得更难被击败。 对于 LLM 智能体，自我对弈用于：</p><p class="content-block paragraph">• 红队与蓝队训练</p><p class="content-block paragraph">• 辩论训练（智能体相互争论）</p><p class="content-block paragraph">• 谈判训练（智能体商相互谈判）</p><p class="content-block paragraph">基于人群的训练</p><p class="content-block paragraph">基于群体的训练（PBT）[391]维护了具有不同特征的多样化智能体群体 策略、超参数和专业化。定期评估智能体；表现不佳 智能体被高性能智能体的突变副本所取代。 对于多智能体 LLM 系统，PBT 能够：</p><p class="content-block paragraph">• 自动发现有效的角色专业化</p><p class="content-block paragraph">• 对个体智能体故障的鲁棒性（不同群体）</p><p class="content-block paragraph">• 通过人口多样性避免局部最优</p><p class="content-block paragraph">社会福利与纳什均衡</p><p class="content-block paragraph">在多智能体设置中，最优性的概念比单智能体设置中更复杂。两个 关键解决方案概念： 纳什均衡：联合策略 (π1*, . . . , πn*) 使得任何智能体都无法提高其预期 单方面偏离返回：</p><div class="component code-component"><div class="block-label">text</div><pre><code>Ji(πi∗, π−i∗) ≥Ji(πi, π−i∗)
 ∀i, ∀πi
-(24.11)
-</code></pre>
-<p>其中 π−i 表示除 i 之外的所有智能体的联合策略。
-社会福利最大化：优化所有智能体人的回报总和：</p>
-<p>n
-X</p>
-<p>max
-π1,...,πn</p>
-<pre><code class="language-text">i=1
+(24.11)</code></pre></div><p class="content-block paragraph">其中 π−i 表示除 i 之外的所有智能体的联合策略。</p><div class="component code-component"><div class="block-label">text</div><pre><code>Social Welfare Maximization: optimize the sum of all agents’ returns:</code></pre></div><p class="content-block paragraph">n X</p><p class="content-block paragraph">max π1,...,πn</p><div class="component code-component"><div class="block-label">text</div><pre><code>i=1
 Ji(π1, . . . , πn)
-(24.12)
-</code></pre>
-<p>在完全合作的环境中（所有智能体共享相同的奖励），社会福利最大化是
-适当的目标。在竞争环境中，纳什均衡是相关的解决方案概念。
-大多数现实世界的多智能体 LLM 系统都是混合动机的：智能体部分对齐，部分对齐
-相互冲突的目标。</p>
-<p>延伸阅读：多智能体强化学习的博弈论</p>
-<p>对于对多智能体系统的博弈论基础感兴趣的读者：</p>
-<p>• Shoham &amp; Leyton-Brown [392] — 涵盖纳什均衡的综合教科书，
-机制设计和智能体系统的社会选择理论。</p>
-<h2 id="chapter-25-p454-8">Challenges and Solutions</h2>
-<p><span class="page-ref" id="pdf-p454">原 PDF p.454</span></p>
-<p>• 张等人。 [393]——具有收敛保证的多智能体强化学习算法综述
-在合作、竞争和混合环境下。</p>
-<p>• 尼桑等人。 [394] — 算法博弈论的权威参考，涵盖拍卖、
-均衡计算和无政府状态的价格。</p>
-<p>挑战与解决方案</p>
-<p>协调开销</p>
-<p>每个智能体间消息都会消耗token，因此也会消耗时间和金钱。在一个天真的实现中
-化，智能体不断沟通，即使是在不必要的时候。</p>
-<p>何时不宜沟通</p>
-<p>• 当信息已存在于共享黑板上时</p>
-<p>• 当接收智能体不需要当前任务的信息时</p>
-<p>• 当消息重复已发送的信息时</p>
-<p>• 当任务对于单个智能体来说足够简单时</p>
-<p>规则：仅当信息的预期价值超过信息成本时才进行沟通
-消息。</p>
-<p>量化通信成本：如果一条消息花费 c 个token，并且接收智能体的任务有
-值 v，仅当任务值的预期改进 Δv &gt; c · cost_per_token 时进行沟通。</p>
-<p>冗余与效率</p>
-<p>多个智能体可能独立解决相同的子问题，从而浪费计算。解决方案：</p>
-<p>• 重复检测：开始任务之前，检查黑板上是否有现有结果</p>
-<p>• 结果缓存：存储已完成的子任务结果以及语义键以供检索</p>
-<p>• 任务锁定：将任务标记为“正在进行”以防止重复执行</p>
-<p>归因</p>
-<p>当多智能体系统成功或失败时，哪个智能体负责？归因对于以下方面至关重要：</p>
-<p>• RL 奖励分配（信用分配问题）</p>
-<p>• 调试和改进</p>
-<p>• 信任校准（依赖哪些智能体）</p>
-<p>反事实信用分配方法通过询问以下问题来估计每个智能体的贡献：
-“如果这名特工采取不同的行动，结果会发生多大变化？”</p>
-<pre><code class="language-text">crediti = J(π1, . . . , πn) −J(π1, . . . , πi
+(24.12)</code></pre></div><p class="content-block paragraph">在完全合作的环境中（所有智能体共享相同的奖励），社会福利最大化是 适当的目标。在竞争环境中，纳什均衡是相关的解决方案概念。 大多数现实世界的多智能体 LLM 系统都是混合动机的：智能体部分对齐，部分对齐 相互冲突的目标。</p><p class="content-block paragraph">延伸阅读：多智能体强化学习的博弈论</p><p class="content-block paragraph">对于对多智能体系统的博弈论基础感兴趣的读者：</p><p class="content-block paragraph">• Shoham &amp; Leyton-Brown [392] — 涵盖纳什均衡的综合教科书， 机制设计和智能体系统的社会选择理论。</p></div></section><section class="ast-section" id="chapter-25-s08"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>挑战与解决方案</h2><p>本节聚焦“挑战与解决方案”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">• 张等人。 [393]——具有收敛保证的多智能体强化学习算法综述 在合作、竞争和混合环境下。</p><p class="content-block paragraph">• 尼桑等人。 [394] — 算法博弈论的权威参考，涵盖拍卖、 均衡计算和无政府状态的价格。</p><p class="content-block paragraph">协调开销</p><p class="content-block paragraph">每个智能体间消息都会消耗token，因此也会消耗时间和金钱。在一个天真的实现中 化，智能体不断沟通，即使是在不必要的时候。</p><p class="content-block paragraph">何时不宜沟通</p><p class="content-block paragraph">• 当信息已存在于共享黑板上时</p><p class="content-block paragraph">• 当接收智能体不需要当前任务的信息时</p><p class="content-block paragraph">• 当消息重复已发送的信息时</p><p class="content-block paragraph">• 当任务对于单个智能体来说足够简单时</p><p class="content-block paragraph">规则：仅当信息的预期价值超过信息成本时才进行沟通 消息。</p><p class="content-block paragraph">量化通信成本：如果一条消息花费 c 个token，并且接收智能体的任务有 值 v，仅当任务值的预期改进 Δv &gt; c · cost_per_token 时进行沟通。</p><p class="content-block paragraph">冗余与效率</p><p class="content-block paragraph">多个智能体可能独立解决相同的子问题，从而浪费计算。解决方案：</p><p class="content-block paragraph">• 重复检测：开始任务之前，检查黑板上是否有现有结果</p><p class="content-block paragraph">• 结果缓存：存储已完成的子任务结果以及语义键以供检索</p><p class="content-block paragraph">• 任务锁定：将任务标记为“正在进行”以防止重复执行</p><p class="content-block paragraph">归因</p><p class="content-block paragraph">当多智能体系统成功或失败时，哪个智能体负责？归因对于以下方面至关重要：</p><p class="content-block paragraph">• RL 奖励分配（信用分配问题）</p><p class="content-block paragraph">• 调试和改进</p><p class="content-block paragraph">• 信任校准（依赖哪些智能体）</p><p class="content-block paragraph">反事实信用分配方法通过询问以下问题来估计每个智能体的贡献： “如果这名特工采取不同的行动，结果会发生多大变化？”</p><div class="component code-component"><div class="block-label">text</div><pre><code>crediti = J(π1, . . . , πn) −J(π1, . . . , πi
 default, . . . , πn)
-(24.13)
-</code></pre>
-<p>可扩展性</p>
-<p>简单的消息传递随着智能体的数量而变化为 O(n2)。解决方案：</p>
-<p>• 分层通信：智能体仅在其子树内进行通信</p>
-<p>• 基于主题的发布/订阅：智能体仅订阅相关消息主题</p>
-<h2 id="chapter-25-p455-9">Real-World Multi-Agent Applications</h2>
-<p><span class="page-ref" id="pdf-p455">原 PDF p.455</span></p>
-<p>• 稀疏通信图：仅连接需要交互的智能体</p>
-<p>• 异步通信：智能体不会阻塞等待响应</p>
-<p>紧急行为和安全</p>
-<p>多智能体系统可能会表现出意想不到的紧急行为——智能体之间的交互
-产生的结果不是单个智能体被设计来产生的。这既是一个功能（紧急
-能力）和风险（紧急故障）。</p>
-<p>多智能体系统中的安全问题</p>
-<p>• 快速注入级联：对一个智能体的恶意输入会在系统中传播</p>
-<p>• 奖励黑客：智能体发现违反意图的意想不到的方法来最大化奖励</p>
-<p>• 共谋：在竞争环境中，智能体可能会制定隐性共谋策略</p>
-<p>• 放大：一个智能体的错误或偏差被下游智能体放大</p>
-<p>始终包含一个安全监控智能体，用于观察所有智能体间通信并可以
-如果检测到不安全行为，则停止系统。</p>
-<p>评价</p>
-<p>评估多智能体系统需要多个级别的指标：</p>
-<p>表 24.3：多智能体系统的多级评估指标。</p>
-<p>级别
-公制
-示例</p>
-<p>系统
-任务完成率
-正确完成任务的百分比
-系统
-端到端延迟
-从任务到最终输出的时间
-系统
-token总成本
-所有智能体消耗的token
-智能体
-个人准确度
-每个智能体的任务成功率
-智能体
-沟通效率
-有用信息/总信息
-智能体
-贡献分
-反事实信用（公式 24.13）
-新兴的
-协调品质
-任务重叠/差距的程度</p>
-<p>现实世界的多智能体应用程序</p>
-<p>软件开发团队</p>
-<p>多智能体软件开发团队反映了真实的工程组织：</p>
-<pre><code class="language-text">from
+(24.13)</code></pre></div><p class="content-block paragraph">可扩展性</p><p class="content-block paragraph">简单的消息传递随着智能体的数量而变化为 O(n2)。解决方案：</p><p class="content-block paragraph">• 分层通信：智能体仅在其子树内进行通信</p><p class="content-block paragraph">• 基于主题的发布/订阅：智能体仅订阅相关消息主题</p></div></section><section class="ast-section" id="chapter-25-s09"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>真实世界多智能体应用</h2><p>本节聚焦“真实世界多智能体应用”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">• 稀疏通信图：仅连接需要交互的智能体</p><p class="content-block paragraph">• 异步通信：智能体不会阻塞等待响应</p><p class="content-block paragraph">紧急行为和安全</p><p class="content-block paragraph">多智能体系统可能会表现出意想不到的紧急行为——智能体之间的交互 产生的结果不是单个智能体被设计来产生的。这既是一个功能（紧急 能力）和风险（紧急故障）。</p><p class="content-block paragraph">多智能体系统中的安全问题</p><p class="content-block paragraph">• 快速注入级联：对一个智能体的恶意输入会在系统中传播</p><p class="content-block paragraph">• 奖励黑客：智能体发现违反意图的意想不到的方法来最大化奖励</p><p class="content-block paragraph">• 共谋：在竞争环境中，智能体可能会制定隐性共谋策略</p><p class="content-block paragraph">• 放大：一个智能体的错误或偏差被下游智能体放大</p><p class="content-block paragraph">始终包含一个安全监控智能体，用于观察所有智能体间通信并可以 如果检测到不安全行为，则停止系统。</p><p class="content-block paragraph">评价</p><p class="content-block paragraph">评估多智能体系统需要多个级别的指标：</p><p class="content-block paragraph">表 24.3：多智能体系统的多级评估指标。</p><p class="content-block paragraph">级别 公制 示例</p><p class="content-block paragraph">系统 任务完成率 正确完成任务的百分比 系统 端到端延迟 从任务到最终输出的时间 系统 token总成本 所有智能体消耗的token 智能体 个人准确度 每个智能体的任务成功率 智能体 沟通效率 有用信息/总信息 智能体 贡献分 反事实信用（公式 24.13） 新兴的 协调品质 任务重叠/差距的程度</p><p class="content-block paragraph">现实世界的多智能体应用程序</p><p class="content-block paragraph">软件开发团队</p><p class="content-block paragraph">多智能体软件开发团队反映了真实的工程组织：</p><div class="component code-component"><div class="block-label">text</div><pre><code>from
 dataclasses
 import
 dataclass
@@ -1195,9 +402,7 @@ typing
 import
 Optional
 import
-asyncio
-</code></pre>
-<pre><code class="language-text">@dataclass
+asyncio</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@dataclass
 class
 SoftwareTeamState :
 requirements: str
@@ -1206,28 +411,19 @@ code: Optional[str] = None
 tests: Optional[str] = None
 review_feedback : Optional[str] = None
 final_code: Optional[str] = None
-approved: bool = False
-</code></pre>
-<pre><code class="language-text">class
+approved: bool = False</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 SoftwareDevelopmentTeam :
-"""
+&quot;&quot;&quot;
 Multi -agent
 software
-team:
-</code></pre>
-<p><span class="page-ref" id="pdf-p456">原 PDF p.456</span></p>
-<pre><code class="language-text">Architect
+team:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>Architect
 -&gt; Coder
 -&gt; Tester
 -&gt; Reviewer
 -&gt; (iterate or ship)
-"""
-</code></pre>
-<pre><code class="language-text">def
+&quot;&quot;&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 __init__(self , llm_factory):
-self.architect = llm_factory(
-</code></pre>
-<pre><code class="language-text">system_prompt="""You are a software
+self.architect = llm_factory(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>system_prompt=&quot;&quot;&quot;You are a software
 architect. Given
 requirements ,
 produce a clear
@@ -1235,237 +431,84 @@ technical
 design: components , interfaces , data
 structures , and
 implementation
-plan."""
+plan.&quot;&quot;&quot;
 )
-self.coder = llm_factory(
-</code></pre>
-<pre><code class="language-text">system_prompt="""You are an expert
+self.coder = llm_factory(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>system_prompt=&quot;&quot;&quot;You are an expert
 software
 engineer. Given a
 technical
-设计、编写干净、文档齐全、生产就绪
+design , write clean , well -documented , production -ready
 code. Follow
 best
 practices
 for the
-language."""
+language.&quot;&quot;&quot;
 )
-self.tester = llm_factory(
-</code></pre>
-<pre><code class="language-text">system_prompt="""You are a QA engineer. Given code , write
+self.tester = llm_factory(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>system_prompt=&quot;&quot;&quot;You are a QA engineer. Given code , write
 comprehensive
-测试：单元测试、边缘情况、集成
+tests: unit tests , edge cases , integration
 tests.
 Identify
 potential
 bugs and
 failure
-modes."""
+modes.&quot;&quot;&quot;
 )
-self.reviewer = llm_factory(
-</code></pre>
-<pre><code class="language-text">system_prompt="""You are a senior
+self.reviewer = llm_factory(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>system_prompt=&quot;&quot;&quot;You are a senior
 code
 reviewer. Evaluate
 code
-为了正确性、安全性、性能和
+for correctness , security , performance , and
 maintainability .
 Provide
 specific , actionable
 feedback. Approve
-only if excellent."""
-)
-</code></pre>
-<pre><code class="language-text">async def build(self , requirements: str ,
-</code></pre>
-<pre><code class="language-text">max_iterations : int = 3) -&gt; SoftwareTeamState :
-state = SoftwareTeamState (requirements= requirements)
-</code></pre>
-<pre><code class="language-text"># Phase 1: Architecture
+only if excellent.&quot;&quot;&quot;
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def build(self , requirements: str ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>max_iterations : int = 3) -&gt; SoftwareTeamState :
+state = SoftwareTeamState (requirements= requirements)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Phase 1: Architecture
 state.architecture = await
 self.architect.invoke(
-f"Requirements :\n{requirements }\n\nProduce
+f&quot;Requirements :\n{requirements }\n\nProduce
 technical
-design."
-)
-</code></pre>
-<pre><code class="language-text">for
+design.&quot;
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>for
 iteration in range(max_iterations ):
 # Phase 2: Implementation
-prompt = (f"Design :\n{state.architecture }\n\n"
-</code></pre>
-<pre><code class="language-text">+ (f"Previous
-feedback :\n{state. review_feedback }\n\n"
+prompt = (f&quot;Design :\n{state.architecture }\n\n&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>+ (f&quot;Previous
+feedback :\n{state. review_feedback }\n\n&quot;
 if state. review_feedback
-else "")
-+ "Write the
-implementation .")
+else &quot;&quot;)
++ &quot;Write the
+implementation .&quot;)
 state.code = await
-self.coder.invoke(prompt)
-</code></pre>
-<pre><code class="language-text"># Phase 3: Testing
+self.coder.invoke(prompt)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Phase 3: Testing
 state.tests = await
 self.tester.invoke(
-f"Code :\n{state.code }\n\nWrite
+f&quot;Code :\n{state.code }\n\nWrite
 comprehensive
-tests."
-)
-</code></pre>
-<pre><code class="language-text"># Phase 4: Review
+tests.&quot;
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Phase 4: Review
 review = await
 self.reviewer.invoke(
-f"Code :\n{state.code }\n\nTests :\n{state.tests }\n\n"
-"Review
+f&quot;Code :\n{state.code }\n\nTests :\n{state.tests }\n\n&quot;
+&quot;Review
 this code. End with
-APPROVED or NEEDS_REVISION ."
-)
-</code></pre>
-<pre><code class="language-text">if "APPROVED" in review:
-</code></pre>
-<pre><code class="language-text">state.final_code = state.code
+APPROVED or NEEDS_REVISION .&quot;
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>if &quot;APPROVED&quot; in review:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>state.final_code = state.code
 state.approved = True
 break
-else:
-</code></pre>
-<pre><code class="language-text">state. review_feedback = review
-</code></pre>
-<p>返回
-状态</p>
-<pre><code class="language-text">async def run(self , requirements: str) -&gt; str:
-</code></pre>
-<pre><code class="language-text">state = await
+else:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>state. review_feedback = review</code></pre></div><p class="content-block paragraph">返回 状态</p><div class="component code-component"><div class="block-label">text</div><pre><code>async def run(self , requirements: str) -&gt; str:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>state = await
 self.build(requirements)
-if state.approved:
-</code></pre>
-<pre><code class="language-text">return f"# Final
-Implementation \n\n{state.final_code}"
-</code></pre>
-<h2 id="chapter-25-p457-10">Architecture Comparison</h2>
-<p><span class="page-ref" id="pdf-p457">原 PDF p.457</span></p>
-<p>别的：</p>
-<pre><code class="language-text">return f"# Best
+if state.approved:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return f&quot;# Final
+Implementation \n\n{state.final_code}&quot;</code></pre></div></div></section><section class="ast-section" id="chapter-25-s10"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>架构比较</h2><p>本节聚焦“架构比较”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">别的：</p><div class="component code-component"><div class="block-label">text</div><pre><code>return f&quot;# Best
 Attempt (not
-approved)\n\n{state.code}"
-</code></pre>
-<p>研究团队</p>
-<p>研究团队智能体协会反映了学术合作：</p>
-<p>• 文献综述：搜索并综合现有工作</p>
-<p>• 假设生成器：提出新颖的研究方向</p>
-<p>• 实验者：设计并运行实验（通过代码执行）</p>
-<p>• 统计学家：分析结果并评估显着性</p>
-<p>• 作者：将调查结果综合成连贯的报告</p>
-<p>客户服务系统</p>
-<p>分级客户服务体系：</p>
-<p>• 路由器：对传入请求进行分类并路由至专家</p>
-<p>• 计费专家：处理付款和帐户问题</p>
-<p>• 技术专家：解决产品/服务问题</p>
-<p>• 升级智能体：处理需要人工判断的复杂案例</p>
-<p>创作团队</p>
-<p>创意制作流程：</p>
-<p>• 头脑风暴：在没有自我审查的情况下产生不同的想法</p>
-<p>• 起草者：将最有前途的想法发展成完整的草稿</p>
-<p>• 编辑：完善草稿以提高清晰度、风格和连贯性</p>
-<p>• 批评家：提供对抗性反馈以加强工作</p>
-<p>架构比较</p>
-<p>表 24.4：跨关键维度比较的多智能体架构模式。评级：高/中/
-低。</p>
-<p>建筑
-可扩展性
-调试
-坐标。成本
-故障容限
-最适合</p>
-<p>集中式（主管）
-中号
-H
-L
-L
-流水线简单；清晰的任务分解；小团队
-去中心化（P2P）
-H
-L
-H
-H
-动态环境；弹性至关重要；大规模
-分层的
-H
-中号
-中号
-中号
-企业工作流程；复杂的多领域任务
-蜂群
-H
-L
-L
-H
-客户服务路线；简单的切换链
-流水线
-中号
-H
-L
-L
-顺序处理；明确阶段依赖关系
-合奏团
-L
-H
-H
-H
-高风险决策；可靠性高于效率</p>
-<p>选择架构</p>
-<p>• 独立的子任务→并行架构（分工、集成）。</p>
-<p>• 具有明确依赖性的顺序→流水线。</p>
-<p>• 需要容错→避免中心化；更喜欢分层的或分散的。</p>
-<h2 id="chapter-25-p458-11">小结</h2>
-<p><span class="page-ref" id="pdf-p458">原 PDF p.458</span></p>
-<p>• 可调试性至关重要→集中式或流水线式（所有决策均可追踪）。</p>
-<p>• &lt;5 个智能体→集中式是最简单的。 &gt;20 个智能体→分层或群体。</p>
-<p>在实践中，大多数生产系统都使用分层架构：顶级主管
-委派给特定领域的副主管，由他们管理由专业员工组成的小团队。</p>
-<p>总结</p>
-<p>多智能体系统代表了我们部署LLM的方式的根本转变：从孤立的助手
-专业智能体的合作协会。本节的主要见解：</p>
-<p>多智能体系统：关键要点</p>
-<ol>
-<li>
-<p>架构很重要：智能体连接的拓扑决定了可扩展性、调试能力
-能力和容错能力。根据任务结构和操作要求进行选择。</p>
-</li>
-<li>
-<p>协调成本高昂：每个智能体间消息都需要花费token。设计沟通
-协议，以最大限度地减少开销，同时保留必要的信息流。</p>
-</li>
-<li>
-<p>专业化确保质量：座席始终具有专注的角色和量身定制的提示
-在复杂任务上胜过通才智能体。</p>
-</li>
-<li>
-<p>强化学习训练困难：多智能体强化学习引入非平稳性、学分分配
-挑战和紧急行为。 CTDE是目前合作社的最佳实践
-设置。</p>
-</li>
-<li>
-<p>安全需要显式设计：多智能体系统会放大错误并表现出错误
-意外的紧急行为。安全监控必须是一流的建筑关注点。</p>
-</li>
-<li>
-<p>从简单开始：从集中式监管模式开始，衡量其局限性，然后
-仅在必要时才向更复杂的架构发展。</p>
-</li>
-</ol>
-<p>多智能体LLM系统领域正在迅速发展。所描述的模式和技术
-这里代表了当前的技术水平，但是新的架构、协调机制和
-训练算法不断涌现。基本原则——专业化、协调性
-化、紧急行为以及效率和鲁棒性之间的紧张关系仍然具有相关性
-无论具体实现如何发展。</p></div>
+approved)\n\n{state.code}&quot;</code></pre></div><p class="content-block paragraph">研究团队</p><p class="content-block paragraph">研究团队智能体协会反映了学术合作：</p><p class="content-block paragraph">• 文献综述：搜索并综合现有工作</p><p class="content-block paragraph">• 假设生成器：提出新颖的研究方向</p><p class="content-block paragraph">• 实验者：设计并运行实验（通过代码执行）</p><p class="content-block paragraph">• 统计学家：分析结果并评估显着性</p><p class="content-block paragraph">• 作者：将调查结果综合成连贯的报告</p><p class="content-block paragraph">客户服务系统</p><p class="content-block paragraph">分级客户服务体系：</p><p class="content-block paragraph">• 路由器：对传入请求进行分类并路由至专家</p><p class="content-block paragraph">• 计费专家：处理付款和帐户问题</p><p class="content-block paragraph">• 技术专家：解决产品/服务问题</p><p class="content-block paragraph">• 升级智能体：处理需要人工判断的复杂案例</p><p class="content-block paragraph">创作团队</p><p class="content-block paragraph">创意制作流程：</p><p class="content-block paragraph">• 头脑风暴：在没有自我审查的情况下产生不同的想法</p><p class="content-block paragraph">• 起草者：将最有前途的想法发展成完整的草稿</p><p class="content-block paragraph">• 编辑：完善草稿以提高清晰度、风格和连贯性</p><p class="content-block paragraph">• 批评家：提供对抗性反馈以加强工作</p><p class="content-block paragraph">表 24.4：跨关键维度比较的多智能体架构模式。评级：高/中/ 低。</p><p class="content-block paragraph">建筑 可扩展性 调试 坐标。成本 故障容限 最适合</p><p class="content-block paragraph">集中式（主管） 中号 H L L 流水线简单；清晰的任务分解；小团队 去中心化（P2P） H L H H 动态环境；弹性至关重要；大规模 分层的 H 中号 中号 中号 企业工作流程；复杂的多领域任务 蜂群 H L L H 客户服务路线；简单的切换链 流水线 中号 H L L 顺序处理；明确阶段依赖关系 合奏团 L H H H 高风险决策；可靠性高于效率</p><p class="content-block paragraph">选择架构</p><p class="content-block paragraph">• 独立的子任务→并行架构（分工、集成）。</p><p class="content-block paragraph">• 具有明确依赖性的顺序→流水线。</p><p class="content-block paragraph">• 需要容错→避免中心化；更喜欢分层的或分散的。</p></div></section><section class="ast-section" id="chapter-25-s11"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>小结</h2><p>本节聚焦“小结”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">• 可调试性至关重要→集中式或流水线式（所有决策均可追踪）。</p><p class="content-block paragraph">• &lt;5 个智能体→集中式是最简单的。 &gt;20 个智能体→分层或群体。</p><p class="content-block paragraph">在实践中，大多数生产系统都使用分层架构：顶级主管 委派给特定领域的副主管，由他们管理由专业员工组成的小团队。</p><p class="content-block paragraph">总结</p><p class="content-block paragraph">多智能体系统代表了我们部署LLM的方式的根本转变：从孤立的助手 专业智能体的合作协会。本节的主要见解：</p><p class="content-block paragraph">多智能体系统：关键要点</p><p class="content-block paragraph">1. 架构很重要：智能体连接的拓扑决定了可扩展性、调试能力 能力和容错能力。根据任务结构和操作要求进行选择。</p><p class="content-block paragraph">2. 协调成本高昂：每个智能体间消息都需要花费token。设计沟通 协议，以最大限度地减少开销，同时保留必要的信息流。</p><p class="content-block paragraph">3. 专业化确保质量：座席始终具有专注的角色和量身定制的提示 在复杂任务上胜过通才智能体。</p><p class="content-block paragraph">4. 强化学习训练困难：多智能体强化学习引入非平稳性、学分分配 挑战和紧急行为。 CTDE是目前合作社的最佳实践 设置。</p><p class="content-block paragraph">5. 安全需要显式设计：多智能体系统会放大错误并表现出错误 意外的紧急行为。安全监控必须是一流的建筑关注点。</p><p class="content-block paragraph">6. 从简单开始：从集中式监管模式开始，衡量其局限性，然后 仅在必要时才向更复杂的架构发展。</p><p class="content-block paragraph">多智能体LLM系统领域正在迅速发展。所描述的模式和技术 这里代表了当前的技术水平，但是新的架构、协调机制和 训练算法不断涌现。基本原则——专业化、协调性 化、紧急行为以及效率和鲁棒性之间的紧张关系仍然具有相关性 无论具体实现如何发展。</p></div></section></div>
           <nav class="chapter-pager"><a class="pager-link" href="chapter-24.html">← 智能体间通信（A2A）</a><a class="pager-link next" href="chapter-26.html">智能体开发框架 →</a></nav>
         </article>
-        
-    </section>
-  </main>
+        </section><aside class="right-outline"><div class="nav-section-title">本页结构</div><a class="outline-link" href="#chapter-25-s01">动机：为什么需要多个智能体</a><a class="outline-link" href="#chapter-25-s02">多智能体架构</a><a class="outline-link" href="#chapter-25-s03">协调机制</a><a class="outline-link" href="#chapter-25-s04">通信协议</a><a class="outline-link" href="#chapter-25-s05">角色设计与专业化</a><a class="outline-link" href="#chapter-25-s06">面向 LLM 的多智能体模式</a><a class="outline-link" href="#chapter-25-s07">用强化学习训练多智能体系统</a><a class="outline-link" href="#chapter-25-s08">挑战与解决方案</a><a class="outline-link" href="#chapter-25-s09">真实世界多智能体应用</a><a class="outline-link" href="#chapter-25-s10">架构比较</a><a class="outline-link" href="#chapter-25-s11">小结</a></aside></main>
   <button class="back-top" id="back-top" type="button">↑</button>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/toc.js"></script>
   <script src="../assets/js/progress.js"></script>
-  
 </body>
 </html>

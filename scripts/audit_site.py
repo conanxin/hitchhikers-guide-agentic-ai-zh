@@ -24,23 +24,24 @@ REQUIRED = [
     "assets/js/search.js",
     "assets/js/toc.js",
     "assets/js/progress.js",
+    "assets/data/clean_chapter_tree.json",
     "assets/data/search-index.json",
-    "assets/data/chapters.json",
     "assets/data/glossary.json",
 ]
+
 ALLOWED_WORDS = {
-    "LLM", "AI", "API", "GPU", "CPU", "CUDA", "BPE", "RL", "SFT", "RAG", "DPO",
-    "GRPO", "MDP", "PPO", "SGD", "ADAM", "ADAMW", "TRANSFORMER", "TOKEN",
-    "ROPE", "VLLM", "FLASHATTENTION", "HUGGING", "FACE", "ARXIV", "DOI", "URL",
-    "MCP", "A2A", "KV", "MLP", "RLHF", "RLVR", "TP", "PP", "DP", "FSDP", "DDP",
-    "LORA", "QLORA", "PEFT", "MOE", "ICLR", "ACL", "NEURIPS", "ICML", "FASTAPI",
-    "REACT", "LANGGRAPH", "BF16", "FP8", "INT8", "FP32", "AWQ", "AQLM", "V100",
-    "A100", "H100", "H200", "B200", "GB", "TB", "TF", "HBM", "PCIE", "NVLINK",
-    "INFINIBAND", "NDR", "RDMA", "ROCE", "TCP", "ETHERNET", "VOLTA", "AMPERE",
-    "HOPPER", "BLACKWELL", "AMD", "GOOGLE", "TPU", "JAX", "XLA", "TENSOR",
-    "CORE", "CORES", "SMOOTHQUANT", "DEEPSPEED", "ZERO", "KB", "MB", "L2",
-    "TMA", "FP4", "TMEM", "BRADLEY", "TERRY", "MLE", "SIGMOID", "FLOP",
-    "FLOPS", "ROOFLINE", "BATCH",
+    "LLM", "AI", "API", "GPU", "CPU", "CUDA", "BPE", "RL", "SFT", "RAG",
+    "DPO", "GRPO", "MDP", "PPO", "SGD", "ADAM", "ADAMW", "TRANSFORMER",
+    "TOKEN", "ROPE", "VLLM", "FLASHATTENTION", "HUGGING", "FACE", "ARXIV",
+    "DOI", "URL", "MCP", "A2A", "KV", "MLP", "RLHF", "RLVR", "TP", "PP",
+    "DP", "FSDP", "DDP", "LORA", "QLORA", "PEFT", "MOE", "ICLR", "ACL",
+    "NEURIPS", "ICML", "FASTAPI", "REACT", "LANGGRAPH", "BF16", "FP8",
+    "INT8", "FP32", "AWQ", "AQLM", "V100", "A100", "H100", "H200",
+    "B200", "GB", "TB", "TF", "HBM", "PCIE", "NVLINK", "INFINIBAND",
+    "NDR", "RDMA", "ROCE", "TCP", "ETHERNET", "VOLTA", "AMPERE",
+    "HOPPER", "BLACKWELL", "AMD", "GOOGLE", "TPU", "JAX", "XLA",
+    "TENSOR", "CORE", "CORES", "FLOP", "FLOPS", "ROOFLINE", "BATCH",
+    "KAHNEMAN", "TVERSKY", "KAHNEMAN-TVERSKY", "QWQ", "QWEN", "DEEPSEEK",
 }
 
 
@@ -48,10 +49,17 @@ def html_files() -> list[Path]:
     return sorted(path for path in REPO.rglob("*.html") if ".git" not in path.parts)
 
 
-def visible_text(soup: BeautifulSoup) -> str:
+def load_json(path: Path, default):
+    if not path.exists():
+        return default
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def visible_soup(path: Path) -> BeautifulSoup:
+    soup = BeautifulSoup(path.read_text(encoding="utf-8", errors="replace"), "html.parser")
     for tag in soup(["script", "style", "pre", "code"]):
         tag.decompose()
-    return soup.get_text("\n", strip=True)
+    return soup
 
 
 def english_residuals() -> list[dict[str, str]]:
@@ -59,12 +67,10 @@ def english_residuals() -> list[dict[str, str]]:
     for path in html_files():
         if path.name == "references.html":
             continue
-        soup = BeautifulSoup(path.read_text(encoding="utf-8"), "html.parser")
-        for node in soup.find_all(["h1", "h2", "h3", "p", "li"]):
-            if node.find_parent(["pre", "code"]):
-                continue
+        soup = visible_soup(path)
+        for node in soup.find_all(["h1", "h2", "h3", "p", "li", "figcaption"]):
             text = node.get_text(" ", strip=True)
-            if len(text) < 40 or re.search(r"https?://|arXiv|DOI", text):
+            if len(text) < 48 or re.search(r"https?://|arXiv|DOI", text):
                 continue
             words = re.findall(r"[A-Za-z][A-Za-z\-']+", text)
             meaningful = [w for w in words if w.upper() not in ALLOWED_WORDS]
@@ -76,22 +82,44 @@ def english_residuals() -> list[dict[str, str]]:
     return findings
 
 
-def page_heading_findings() -> list[str]:
-    bad = []
-    pattern = re.compile(r"<h[1-3][^>]*>\s*第\s*\d+\s*页\s*</h[1-3]>", re.I)
+def english_heading_residuals() -> list[dict[str, str]]:
+    findings = []
     for path in html_files():
-        text = path.read_text(encoding="utf-8")
-        if pattern.search(text):
+        if path.name == "references.html":
+            continue
+        soup = visible_soup(path)
+        for node in soup.find_all(["h1", "h2", "h3"]):
+            text = node.get_text(" ", strip=True)
+            words = re.findall(r"[A-Za-z][A-Za-z\-']+", text)
+            meaningful = [w for w in words if w.upper() not in ALLOWED_WORDS]
+            if len(meaningful) >= 2:
+                findings.append({"file": str(path.relative_to(REPO)), "text": text})
+                if len(findings) >= 50:
+                    return findings
+    return findings
+
+
+def page_number_dom_findings() -> list[str]:
+    bad = []
+    patterns = [
+        re.compile(r"第\s*\d+\s*页"),
+        re.compile(r"原\s*PDF\s*p\.?\s*\d+", re.I),
+        re.compile(r"pdf-p\d+", re.I),
+        re.compile(r"page-ref", re.I),
+        re.compile(r"page_\d{3}", re.I),
+    ]
+    for path in html_files():
+        text = path.read_text(encoding="utf-8", errors="replace")
+        if any(p.search(text) for p in patterns):
             bad.append(str(path.relative_to(REPO)))
     return bad
 
 
 def garbled_findings() -> list[str]:
     bad = []
-    pattern = re.compile(r"\ufffd|���|□□|鈥|锛|绗\?")
+    pattern = re.compile(r"\ufffd|���|□□|鈥|锛|绗\?||||\\fn")
     for path in html_files():
-        text = path.read_text(encoding="utf-8", errors="replace")
-        if pattern.search(text):
+        if pattern.search(path.read_text(encoding="utf-8", errors="replace")):
             bad.append(str(path.relative_to(REPO)))
     return bad
 
@@ -118,32 +146,77 @@ def broken_links() -> list[str]:
     return broken[:50]
 
 
+def audit_ast(ast: dict) -> dict:
+    issues = []
+    if ast.get("schema") != "clean_chapter_tree.v3":
+        issues.append("clean_chapter_tree schema is not v3")
+    if not ast.get("chapters"):
+        issues.append("no chapters in clean AST")
+    formula_count = 0
+    fallback_count = 0
+    raw_markdown_count = 0
+    for chapter in ast.get("chapters", []):
+        if "metadata" not in chapter or "source_pages" not in chapter["metadata"]:
+            issues.append(f"{chapter.get('id')} missing page metadata")
+        if not chapter.get("sections"):
+            issues.append(f"{chapter.get('id')} missing sections")
+        for section in chapter.get("sections", []):
+            for block in section.get("blocks", []):
+                if block.get("type") in {"formula", "formula_image"}:
+                    formula_count += 1
+                    if block.get("fallback") in {"latex", "image"}:
+                        fallback_count += 1
+                if block.get("type") == "raw_markdown":
+                    raw_markdown_count += 1
+                text = json.dumps(block, ensure_ascii=False)
+                if re.search(r"<a id=|##\s+第\s*\d+\s*页|page-ref", text):
+                    issues.append(f"{chapter.get('id')} contains raw markdown/page marker")
+    if raw_markdown_count:
+        issues.append("raw markdown block exists")
+    if formula_count == 0 or fallback_count == 0:
+        issues.append("formula fallback not found")
+    return {"issues": issues, "formula_count": formula_count, "fallback_count": fallback_count}
+
+
 def audit() -> dict:
     missing = [item for item in REQUIRED if not (REPO / item).exists()]
-    chapters = json.loads((REPO / "assets/data/chapters.json").read_text(encoding="utf-8")) if (REPO / "assets/data/chapters.json").exists() else []
-    search_index = json.loads((REPO / "assets/data/search-index.json").read_text(encoding="utf-8")) if (REPO / "assets/data/search-index.json").exists() else []
-    page_headings = page_heading_findings()
+    ast = load_json(REPO / "assets/data/clean_chapter_tree.json", {})
+    search_index = load_json(REPO / "assets/data/search-index.json", [])
+    chapter_files = list((REPO / "chapters").glob("chapter-*.html"))
+    page_dom = page_number_dom_findings()
     english = english_residuals()
+    english_headings = english_heading_residuals()
     garbled = garbled_findings()
     links = broken_links()
-    css_mobile = (REPO / "assets/css/responsive.css").exists() and "max-width" in (REPO / "assets/css/responsive.css").read_text(encoding="utf-8")
+    ast_result = audit_ast(ast)
+    css_mobile = "max-width" in (REPO / "assets/css/responsive.css").read_text(encoding="utf-8") if (REPO / "assets/css/responsive.css").exists() else False
+    structure_sources = {
+        "clean_chapter_tree": (REPO / "assets/data/clean_chapter_tree.json").exists(),
+        "legacy_chapters_json": (REPO / "assets/data/chapters.json").exists(),
+    }
     status = "PASS"
-    if missing or page_headings or garbled or links or len(chapters) < 5 or not search_index:
+    if missing or not ast.get("chapters") or not search_index or page_dom or english_headings or garbled or links or ast_result["issues"] or structure_sources["legacy_chapters_json"]:
         status = "FAILED"
     elif english:
         status = "WARN"
     return {
         "status": status,
         "missing": missing,
-        "chapter_count": len(chapters),
+        "chapter_count": len(ast.get("chapters", [])),
+        "chapter_page_count": len(chapter_files),
         "search_index_count": len(search_index),
-        "page_heading_findings": page_headings,
+        "structure_sources": structure_sources,
+        "page_number_dom_findings": page_dom,
+        "english_heading_residuals": english_headings,
         "english_residuals": english,
         "garbled_findings": garbled,
         "broken_links": links,
+        "ast_issues": ast_result["issues"],
+        "formula_count": ast_result["formula_count"],
+        "fallback_count": ast_result["fallback_count"],
         "mobile_css": css_mobile,
-        "left_nav": bool(list((REPO / "chapters").glob("chapter-*.html"))),
-        "right_outline": "right-outline" in (REPO / "chapters" / "chapter-02.html").read_text(encoding="utf-8") if (REPO / "chapters" / "chapter-02.html").exists() else False,
+        "componentized_sections": "section-overview" in (chapter_files[0].read_text(encoding="utf-8") if chapter_files else ""),
+        "key_concepts": "key-concepts-panel" in (chapter_files[0].read_text(encoding="utf-8") if chapter_files else ""),
     }
 
 

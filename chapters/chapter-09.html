@@ -4,146 +4,37 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>偏好优化变体 | 智能体式 AI 漫游指南</title>
-  <meta name="description" content="IPO、KTO、ORPO、SimPO 等对齐方法的比较。" />
+  <meta name="description" content="本章整理该主题的关键概念、方法、系统实践和工程注意事项。" />
   <meta property="og:title" content="偏好优化变体 | 智能体式 AI 漫游指南" />
-  <meta property="og:description" content="IPO、KTO、ORPO、SimPO 等对齐方法的比较。" />
+  <meta property="og:description" content="本章整理该主题的关键概念、方法、系统实践和工程注意事项。" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="canonical" href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/article.css" />
   <link rel="stylesheet" href="../assets/css/responsive.css" />
-  
 </head>
 <body class="article-page">
   <div class="reading-progress" id="reading-progress"></div>
   <header class="topbar">
-    <a class="brand" href="../index.html" aria-label="智能体式 AI 漫游指南">
-      <span class="brand-mark">AI</span>
-      <span><strong>智能体式 AI 漫游指南</strong><small>从基础到系统的中文技术文档站</small></span>
-    </a>
-    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a>
-<a class="active" href="../chapters/index.html">章节</a>
-<a class="" href="../glossary.html">术语表</a>
-<a class="" href="../references.html">参考文献</a>
-<a class="" href="../search.html">搜索</a>
-<a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
+    <a class="brand" href="../index.html"><span class="brand-mark">AST</span><span><strong>智能体式 AI 漫游指南</strong><small>结构化知识文档系统</small></span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="打开导航" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a><a class="active" href="../chapters/index.html">章节</a><a class="" href="../glossary.html">术语表</a><a class="" href="../references.html">参考文献</a><a class="" href="../search.html">搜索</a><a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
   </header>
-  <main class="layout">
-    
-        <aside class="left-nav" id="left-nav">
-          <div class="nav-section-title">章节</div>
-          <a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a>
-<a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a>
-<a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a>
-<a class="chapter-link active" href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a>
-<a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a>
-<a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a>
-<a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a>
-<a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a>
-<a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a>
-<a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a>
-<a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a>
-<a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a>
-<a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a>
-<a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a>
-<a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a>
-<a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a>
-<a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a>
-<a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a>
-        </aside>
-        <aside class="right-outline" id="right-outline">
-          <div class="nav-section-title">本页大纲</div>
-          <a class="outline-link level-h2" href="#chapter-09-p174-1">Online DPO</a>
-<a class="outline-link level-h2" href="#chapter-09-p175-2">KTO - Kahneman-Tversky Optimization</a>
-<a class="outline-link level-h2" href="#chapter-09-p177-3">IPO - Identity Preference Optimization</a>
-<a class="outline-link level-h2" href="#chapter-09-p178-4">ORPO - Odds Ratio Preference Optimization</a>
-<a class="outline-link level-h2" href="#chapter-09-p179-5">Best-of-N Sampling (Rejection Sampling)</a>
-<a class="outline-link level-h2" href="#chapter-09-p180-6">Summary: Choosing an Alignment Method</a>
-        </aside>
-        
-    <section class="content-shell">
-      
-        <article class="article-card">
+  <main class="layout"><aside class="left-nav" id="left-nav"><div class="nav-section-title">语义目录</div><div class="nav-cluster"><strong>导读</strong><a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a><a class="chapter-link active" href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a></div><div class="nav-cluster"><strong>LLM 基础与系统</strong><a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a><a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a><a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a></div><div class="nav-cluster"><strong>训练、强化学习与对齐</strong><a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a><a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a><a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a><a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a><a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a><a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a><a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a><a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a></div><div class="nav-cluster"><strong>Agentic AI 系统</strong><a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a><a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a><a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a><a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a><a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a><a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a><a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a><a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a><a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a><a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a><a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a><a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a><a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a></div><div class="nav-cluster"><strong>推理与评估</strong><a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a></div><div class="nav-cluster"><strong>参考与总结</strong><a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a><a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a><a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a></div></aside><section class="content-shell">
+        <article class="article-card" data-ast-source="../assets/data/clean_chapter_tree.json">
           <header class="article-header">
-            <p class="part-label">第二部分：LLM 的强化学习方法</p>
+            <p class="part-label">导读</p>
             <h1>偏好优化变体</h1>
-            <p>IPO、KTO、ORPO、SimPO 等对齐方法的比较。</p>
-            <div class="article-meta"><span>原 PDF p.174-181</span><span>6 个页内条目</span></div>
+            <p>本章整理该主题的关键概念、方法、系统实践和工程注意事项。</p>
           </header>
-          <div class="article-body"><h2 id="chapter-09-p174-1">Online DPO</h2>
-<p><span class="page-ref" id="pdf-p174">原 PDF p.174</span></p>
-<p>偏好优化变体</p>
-<p>本章涵盖了使用不同目标、数据扩展或替换 DPO 的一系列方法
-假设或架构权衡。每个解决了标准离线 DPO 的特定限制：
-分布偏移（在线 DPO）、配对数据的需求（KTO）、对噪声标签的过度拟合（IPO）、
-参考模型内存成本 (ORPO) 或训练复杂度（Best-of-N）。</p>
-<p>在线数据保护官</p>
-<p>动机</p>
-<p>标准 DPO 的主要限制：偏好数据是由不同的模型生成的（通常
-较旧的检查点甚至不同的型号系列）。随着训练的进行，策略会生成
-文本看起来与训练对完全不同→损失正在不相关的分布上进行优化。
-在线 DPO 解决方案 [195]：每次从当前策略生成新的偏好对
-步骤，用奖励模型来判断它们，然后应用 DPO 损失。</p>
-<p>算法</p>
-<ol>
-<li>
-<p>根据当前 πθ 根据提示生成 K 个响应</p>
-</li>
-<li>
-<p>使用奖励模型 rphi 对所有响应进行评分</p>
-</li>
-<li>
-<p>创建配对：最高得分 = 选择，最低得分 = 拒绝</p>
-</li>
-<li>
-<p>对这些新对应用 DPO 损失</p>
-</li>
-</ol>
-<p>5.重复（每一步产生新的一代）</p>
-<p>在线 DPO = 两全其美</p>
-<p>• 来自DPO：简单的监督损失，无价值函数，无GAE，稳定优化</p>
-<p>• 来自 PPO：符合政策的数据、数据集之外的自我改进、无分布变化</p>
-<p>• 与 GRPO 的主要区别：使用 DPO 损失（基于对）而不是 PPO 损失（每个样本）
-优势）</p>
-<p>权衡：需要奖励模型（DPO 不需要），但没有价值头（PPO 需要）。中间立场
-复杂性。</p>
-<p>TRL实施</p>
-<p>下面显示了使用 Hugging Face TRL 的最小工作示例。</p>
-<h2 id="chapter-09-p175-2">KTO - Kahneman-Tversky Optimization</h2>
-<p><span class="page-ref" id="pdf-p175">原 PDF p.175</span></p>
-<pre><code class="language-text">from trl import
+          <aside class="component key-concepts-panel"><span class="component-label">Key Concepts</span><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div></aside>
+          <div class="article-body"><section class="ast-section" id="chapter-09-s01"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>在线 DPO</h2><p>本节聚焦“在线 DPO”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div><div class="concept-chip"><strong>组相对策略优化（GRPO）</strong><span>GRPO</span><p>基于同一提示多条响应的组内相对优势进行优化的方法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">本章涵盖了使用不同目标、数据扩展或替换 DPO 的一系列方法 假设或架构权衡。每个解决了标准离线 DPO 的特定限制： 分布偏移（在线 DPO）、配对数据的需求（KTO）、对噪声标签的过度拟合（IPO）、 参考模型内存成本 (ORPO) 或训练复杂度（Best-of-N）。</p><p class="content-block paragraph">在线数据保护官</p><p class="content-block paragraph">动机</p><p class="content-block paragraph">标准 DPO 的主要限制：偏好数据是由不同的模型生成的（通常 较旧的检查点甚至不同的型号系列）。随着训练的进行，策略会生成 文本看起来与训练对完全不同→损失正在不相关的分布上进行优化。 在线 DPO 解决方案 [195]：每次从当前策略生成新的偏好对 步骤，用奖励模型来判断它们，然后应用 DPO 损失。</p><p class="content-block paragraph">算法</p><p class="content-block paragraph">1. 根据当前 πθ 根据提示生成 K 个响应</p><p class="content-block paragraph">2. 使用奖励模型 rphi 对所有响应进行评分</p><p class="content-block paragraph">3. 创建配对：最高得分 = 选择，最低得分 = 拒绝</p><p class="content-block paragraph">4. 对这些新对应用 DPO 损失</p><p class="content-block paragraph">5.重复（每一步产生新的一代）</p><div class="component code-component"><div class="block-label">text</div><pre><code>在线 DPO = 两全其美</code></pre></div><p class="content-block paragraph">• 来自DPO：简单的监督损失，无价值函数，无GAE，稳定优化</p><p class="content-block paragraph">• 来自 PPO：符合政策的数据、数据集之外的自我改进、无分布变化</p><p class="content-block paragraph">• 与 GRPO 的主要区别：使用 DPO 损失（基于对）而不是 PPO 损失（每个样本） 优势）</p><p class="content-block paragraph">权衡：需要奖励模型（DPO 不需要），但没有价值头（PPO 需要）。中间立场 复杂性。</p><p class="content-block paragraph">TRL实施</p><p class="content-block paragraph">下面显示了使用 Hugging Face TRL 的最小工作示例。</p></div></section><section class="ast-section" id="chapter-09-s02"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>KTO：Kahneman-Tversky 优化</h2><p>本节聚焦“KTO：Kahneman-Tversky 优化”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div></div></div><div class="section-blocks"><div class="component code-component"><div class="block-label">text</div><pre><code>from trl import
 OnlineDPOConfig , OnlineDPOTrainer
 from
 transformers
 import
-AutoModelForCausalLM , AutoModelForSequenceClassification
-</code></pre>
-<pre><code class="language-text">model = AutoModelForCausalLM . from_pretrained ("meta -llama/Llama -3.1 -8B-Instruct",
-</code></pre>
-<pre><code class="language-text">torch_dtype=torch.bfloat16)
-reward_model = AutoModelForSequenceClassification . from_pretrained (
-</code></pre>
-<pre><code class="language-text">"RLHFlow/ArmoRM -Llama3 -8B-v0.1", torch_dtype=torch.bfloat16)
-</code></pre>
-<pre><code class="language-text">online_dpo_config = OnlineDPOConfig (
-</code></pre>
-<pre><code class="language-text">output_dir="./ online_dpo_output ",
+AutoModelForCausalLM , AutoModelForSequenceClassification</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model = AutoModelForCausalLM . from_pretrained (&quot;meta -llama/Llama -3.1 -8B-Instruct&quot;,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>torch_dtype=torch.bfloat16)
+reward_model = AutoModelForSequenceClassification . from_pretrained (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;RLHFlow/ArmoRM -Llama3 -8B-v0.1&quot;, torch_dtype=torch.bfloat16)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>online_dpo_config = OnlineDPOConfig (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>output_dir=&quot;./ online_dpo_output &quot;,
 learning_rate =5e-7,
 beta =0.1,
 # DPO beta (same
@@ -159,95 +50,23 @@ temperature =0.7,
 bf16=True ,
 num_train_epochs =1,
 logging_steps =10,
-)
-</code></pre>
-<pre><code class="language-text">trainer = OnlineDPOTrainer (
-</code></pre>
-<pre><code class="language-text">model=model ,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>trainer = OnlineDPOTrainer (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=model ,
 reward_model=reward_model ,
 args=online_dpo_config ,
 train_dataset=prompt_dataset ,
 tokenizer=tokenizer ,
 )
-trainer.train ()
-</code></pre>
-<p>在线 DPO 与离线 DPO 与 PPO</p>
-<p>数据
-型号
-损失
-最适合</p>
-<p>离线DPO
-静态对
-2（政策+参考）
-数据保护组织
-快速对齐，有限
-计算
-在线数据保护官
-刚从 πθ
-3（政策+参考+重新
-病房模型）
-数据保护组织
-当 DPO 趋于平稳时，需要
-探索
-聚苯醚
-刚从 πθ
-4（政策+参考+重新
-病房模型+值头）
-PPO夹
-最高质量，复杂的重新
-索尼</p>
-<p>KTO：卡尼曼-特沃斯基优化</p>
-<p>动机</p>
-<p>DPO 需要成对的偏好：对于同一个提示，您需要好的响应和坏的响应。在
-在实践中，大多数反馈都是不成对的：用户对个别响应给出赞成/反对的意见，但没有
-匹配的一对。
-KTO 的见解[11]：使用前景理论（来自行为经济学）。人类更容易感受到损失
-强于收益。 “拇指向下”应该产生比“拇指向上”更强的梯度。</p>
-<p>损失函数</p>
-<pre><code class="language-math">LKTO = Eyw [λw(1 −v(x, yw))] + Eyl [λl · v(x, yl)]
-(8.1)
-</code></pre>
-<pre><code class="language-math">where v(x, y) = σ
-
-β log πθ(y|x)
-</code></pre>
-<p>πref(y|x) -zref
-，zref 是预期的 KL 散度（运行基线）。</p>
-<p><span class="page-ref" id="pdf-p176">原 PDF p.176</span></p>
-<p>通过前景理论获得 KTO 直觉</p>
-<p>期望的响应 (yw)：模型通过增加概率来获得“效用”。但与
-收益递减——一旦这种情况已经很可能发生，就不要再努力了。
-不良反应 (yl)：损失厌恶意味着对生成不良文本的惩罚进行加权
-比对好文字的奖励更强烈。默认值：λl = 1.0，λw = 1.0，但您可以设置 λl &gt; λw。
-主要优点：每个训练示例都是独立的！无需寻找匹配对。可以使用
-直接赞成/反对数据。</p>
-<pre><code class="language-text">KTO Data Format
-Unlike DPO which needs: {"prompt": ..., "chosen": ..., "rejected": ...}
-KTO only needs: {"prompt": ..., "completion": ..., "label": true/false}
-This means you can use:
-</code></pre>
-<p>• 生产流量的好评/差评</p>
-<p>• 来自论坛的赞成票/反对票</p>
-<p>• 人类评分二值化（4-5 星 = 好，1-2 = 差）</p>
-<p>• 任何每次响应的质量信号</p>
-<p>TRL实施</p>
-<p>下面显示了使用 Hugging Face TRL 的最小工作示例。</p>
-<pre><code class="language-text">from trl import
-KTOConfig , KTOTrainer
-</code></pre>
-<pre><code class="language-text"># Dataset
-format: {" prompt ": str , "completion ": str , "label ": bool}
+trainer.train ()</code></pre></div><p class="content-block paragraph">在线 DPO 与离线 DPO 与 PPO</p><p class="content-block paragraph">数据 型号 损失 最适合</p><p class="content-block paragraph">离线DPO 静态对 2（政策+参考） 数据保护组织 快速对齐，有限 计算 在线数据保护官 刚从 πθ 3（政策+参考+重新 病房模型） 数据保护组织 当 DPO 趋于平稳时，需要 探索 聚苯醚 刚从 πθ 4（政策+参考+重新 病房模型+值头） PPO夹 最高质量，复杂的重新 索尼</p><p class="content-block paragraph">KTO：卡尼曼-特沃斯基优化</p><p class="content-block paragraph">动机</p><p class="content-block paragraph">DPO 需要成对的偏好：对于同一个提示，您需要好的响应和坏的响应。在 在实践中，大多数反馈都是不成对的：用户对个别响应给出赞成/反对的意见，但没有 匹配的一对。 KTO 的见解[11]：使用前景理论（来自行为经济学）。人类更容易感受到损失 强于收益。 “拇指向下”应该产生比“拇指向上”更强的梯度。</p><p class="content-block paragraph">损失函数</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>LKTO = Eyw [λw(1 −v(x, yw))] + Eyl [λl · v(x, yl)] (8.1)</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>where v(x, y) = σ  β log πθ(y|x)</code></pre></div><p class="content-block paragraph">πref(y|x) -zref</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>，zref 是预期的 KL 散度（运行基线）。</code></pre></div><p class="content-block paragraph">通过前景理论获得 KTO 直觉</p><p class="content-block paragraph">期望的响应 (yw)：模型通过增加概率来获得“效用”。但与 收益递减——一旦这种情况已经很可能发生，就不要再努力了。 不良反应 (yl)：损失厌恶意味着对生成不良文本的惩罚进行加权 比对好文字的奖励更强烈。默认值：λl = 1.0，λw = 1.0，但您可以设置 λl &gt; λw。 主要优点：每个训练示例都是独立的！无需寻找匹配对。可以使用 直接赞成/反对数据。</p><div class="component code-component"><div class="block-label">text</div><pre><code>KTO Data Format
+Unlike DPO which needs: {&quot;prompt&quot;: ..., &quot;chosen&quot;: ..., &quot;rejected&quot;: ...}
+KTO only needs: {&quot;prompt&quot;: ..., &quot;completion&quot;: ..., &quot;label&quot;: true/false}
+This means you can use:</code></pre></div><p class="content-block paragraph">• 生产流量的好评/差评</p><p class="content-block paragraph">• 来自论坛的赞成票/反对票</p><p class="content-block paragraph">• 人类评分二值化（4-5 星 = 好，1-2 = 差）</p><p class="content-block paragraph">• 任何每次响应的质量信号</p><p class="content-block paragraph">TRL实施</p><p class="content-block paragraph">下面显示了使用 Hugging Face TRL 的最小工作示例。</p><div class="component code-component"><div class="block-label">text</div><pre><code>from trl import
+KTOConfig , KTOTrainer</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Dataset
+format: {&quot; prompt &quot;: str , &quot;completion &quot;: str , &quot;label &quot;: bool}
 # label=True for desirable , label=False for
 undesirable
-kto_dataset = [
-</code></pre>
-<pre><code class="language-text">{"prompt": "What ’s 2+2?", "completion": "The answer is 4.", "label": True},
-{"prompt": "What ’s 2+2?", "completion": "It might be 5.", "label": False},
-]
-</code></pre>
-<pre><code class="language-text">kto_config = KTOConfig(
-</code></pre>
-<pre><code class="language-text">output_dir="./ kto_output",
+kto_dataset = [</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>{&quot;prompt&quot;: &quot;What ’s 2+2?&quot;, &quot;completion&quot;: &quot;The answer is 4.&quot;, &quot;label&quot;: True},
+{&quot;prompt&quot;: &quot;What ’s 2+2?&quot;, &quot;completion&quot;: &quot;It might be 5.&quot;, &quot;label&quot;: False},
+]</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>kto_config = KTOConfig(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>output_dir=&quot;./ kto_output&quot;,
 beta =0.1,
 desirable_weight =1.0,
 # Weight for good
@@ -256,70 +75,26 @@ undesirable_weight =1.0,
 # Weight for bad
 examples (increase
 for loss
-aversion)
-</code></pre>
-<pre><code class="language-text">learning_rate =5e-7,
+aversion)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>learning_rate =5e-7,
 max_length =2048 ,
 per_device_train_batch_size =4,
 gradient_accumulation_steps =4,
 num_train_epochs =1,
 bf16=True ,
-)
-</code></pre>
-<pre><code class="language-text">trainer = KTOTrainer(
-</code></pre>
-<pre><code class="language-text">model=model ,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>trainer = KTOTrainer(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=model ,
 ref_model=ref_model ,
 # Or None with LoRA
 args=kto_config ,
 train_dataset=kto_dataset ,
 tokenizer=tokenizer ,
 )
-trainer.train ()
-</code></pre>
-<p>何时选择 KTO</p>
-<p>• 您有二元反馈，但没有匹配对</p>
-<h2 id="chapter-09-p177-3">IPO - Identity Preference Optimization</h2>
-<p><span class="page-ref" id="pdf-p177">原 PDF p.177</span></p>
-<p>• 大规模生产赞成/反对数据</p>
-<p>• 一类占主导地位（例如，90% 好，10% 坏）——KTO 更好地处理不平衡</p>
-<p>• 使用噪声标签进行快速迭代（比 DPO 对噪声更稳健）</p>
-<p>IPO——身份偏好优化</p>
-<p>动机</p>
-<p>DPO有一个简并的解决方案：它可以通过在选择和选择之间做余量来实现零损失
-拒绝无限大。实际上，这意味着 DPO 过度拟合——将所选概率推至 1 并且
-拒绝为0，记忆训练数据。
-IPO 的解决方案 [12]：使用针对特定目标的平方损失，而不是 log-sigmoid（饱和）
-保证金。损耗在有限间隙（而不是无穷大）处最小化。</p>
-<p>损失函数</p>
-<p>2#</p>
-<p>”
-对数 πθ(yw|x)</p>
-<p>(8.2)</p>
-<p>锂聚合物=E</p>
-<p>2β</p>
-<pre><code class="language-math">πref(yw|x) −log πθ(yl|x)
-</code></pre>
-<p>πref(yl|x) −1</p>
-<p>IPO 与 DPO：通过目标利润率进行正规化</p>
-<p>DPO： σ(margin) → 1 最佳。裕度 → 无穷大。没有自然的停止点。
-IPO：保证金 →
-2β最佳。平方损失会惩罚过小和过大的利润。
-结果：IPO 对嘈杂的标签更加稳健（标签错误的一对受到的影响有限），并且
-概括性更好，因为它不需要记忆。</p>
-<p>TRL实施</p>
-<p>下面显示了使用 Hugging Face TRL 的最小工作示例。</p>
-<pre><code class="language-text">from trl import
-DPOConfig , DPOTrainer
-</code></pre>
-<pre><code class="language-text"># IPO is implemented as a DPO
+trainer.train ()</code></pre></div><p class="content-block paragraph">何时选择 KTO</p><p class="content-block paragraph">• 您有二元反馈，但没有匹配对</p></div></section><section class="ast-section" id="chapter-09-s03"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>IPO：身份偏好优化</h2><p>本节聚焦“IPO：身份偏好优化”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">• 大规模生产赞成/反对数据</p><p class="content-block paragraph">• 一类占主导地位（例如，90% 好，10% 坏）——KTO 更好地处理不平衡</p><p class="content-block paragraph">• 使用噪声标签进行快速迭代（比 DPO 对噪声更稳健）</p><p class="content-block paragraph">IPO——身份偏好优化</p><p class="content-block paragraph">动机</p><p class="content-block paragraph">DPO有一个简并的解决方案：它可以通过在选择和选择之间做余量来实现零损失 拒绝无限大。实际上，这意味着 DPO 过度拟合——将所选概率推至 1 并且 拒绝为0，记忆训练数据。 IPO 的解决方案 [12]：使用针对特定目标的平方损失，而不是 log-sigmoid（饱和） 保证金。损耗在有限间隙（而不是无穷大）处最小化。</p><p class="content-block paragraph">损失函数</p><p class="content-block paragraph">2#</p><p class="content-block paragraph">” 对数 πθ(yw|x)</p><p class="content-block paragraph">(8.2)</p><p class="content-block paragraph">锂聚合物=E</p><p class="content-block paragraph">2β</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>πref(yw|x) −log πθ(yl|x)</code></pre></div><p class="content-block paragraph">πref(yl|x) −1</p><p class="content-block paragraph">IPO 与 DPO：通过目标利润率进行正规化</p><p class="content-block paragraph">DPO： σ(margin) → 1 最佳。裕度 → 无穷大。没有自然的停止点。 IPO：保证金 →</p><p class="content-block paragraph">2β最佳。平方损失会惩罚过小和过大的利润。 结果：IPO 对嘈杂的标签更加稳健（标签错误的一对受到的影响有限），并且 概括性更好，因为它不需要记忆。</p><p class="content-block paragraph">TRL实施</p><p class="content-block paragraph">下面显示了使用 Hugging Face TRL 的最小工作示例。</p><div class="component code-component"><div class="block-label">text</div><pre><code>from trl import
+DPOConfig , DPOTrainer</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># IPO is implemented as a DPO
 loss_type
 variant in TRL
-ipo_config = DPOConfig(
-</code></pre>
-<pre><code class="language-text">output_dir="./ ipo_output",
+ipo_config = DPOConfig(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>output_dir=&quot;./ ipo_output&quot;,
 beta =0.1,
-loss_type="ipo",
+loss_type=&quot;ipo&quot;,
 # The key
 difference!
 learning_rate =5e-7,
@@ -328,66 +103,13 @@ per_device_train_batch_size =4,
 gradient_accumulation_steps =8,
 bf16=True ,
 num_train_epochs =1,
-)
-</code></pre>
-<pre><code class="language-text">trainer = DPOTrainer(
-</code></pre>
-<pre><code class="language-text">model=model , ref_model=None , args=ipo_config ,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>trainer = DPOTrainer(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=model , ref_model=None , args=ipo_config ,
 train_dataset=pref_dataset , tokenizer=tokenizer , peft_config=lora_config ,
 )
-trainer.train ()
-</code></pre>
-<p>何时选择 IPO 而不是 DPO</p>
-<p>• 嘈杂的偏好数据（众包、人工智能判断有错误）</p>
-<p>• 观察 DPO 过度拟合（训练损失 →0 但评估性能下降）</p>
-<p>• 想要更保守、更稳健的调整</p>
-<h2 id="chapter-09-p178-4">ORPO - Odds Ratio Preference Optimization</h2>
-<p><span class="page-ref" id="pdf-p178">原 PDF p.178</span></p>
-<p>• 需要多个纪元（DPO 在第 1 纪元后降级；IPO 更稳定）</p>
-<p>ORPO：优势比偏好优化</p>
-<p>动机</p>
-<p>到目前为止，所有方法都需要一个参考模型——要么作为单独的副本（双倍内存），要么隐式地
-通过洛拉。 ORPO [13] 通过结合 SFT 和偏好对齐完全消除了引用
-在单次损失中。
-关键见解：使用生成选择与拒绝的优势比作为偏好信号。的
-SFT 组件自然可以防止崩溃（不需要 KL 正则化）。</p>
-<p>损失函数</p>
-<pre><code class="language-math">−λ ·
-log σ
-
-log oddsθ(yw|x)
-</code></pre>
-<p>(8.3)</p>
-<p>赔率θ(yl|x)</p>
-<p>洛波 =
-LSFT(yw)
-|
-{z
-}
-所选标准 NLL</p>
-<p>|
-{z
-}
-通过优势比进行偏好调整</p>
-<pre><code class="language-text">where oddsθ(y|x) =
+trainer.train ()</code></pre></div><p class="content-block paragraph">何时选择 IPO 而不是 DPO</p><p class="content-block paragraph">• 嘈杂的偏好数据（众包、人工智能判断有错误）</p><p class="content-block paragraph">• 观察 DPO 过度拟合（训练损失 →0 但评估性能下降）</p><p class="content-block paragraph">• 想要更保守、更稳健的调整</p></div></section><section class="ast-section" id="chapter-09-s04"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>ORPO：赔率比偏好优化</h2><p>本节聚焦“ORPO：赔率比偏好优化”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">• 需要多个纪元（DPO 在第 1 纪元后降级；IPO 更稳定）</p><p class="content-block paragraph">ORPO：优势比偏好优化</p><p class="content-block paragraph">动机</p><p class="content-block paragraph">到目前为止，所有方法都需要一个参考模型——要么作为单独的副本（双倍内存），要么隐式地 通过洛拉。 ORPO [13] 通过结合 SFT 和偏好对齐完全消除了引用 在单次损失中。 关键见解：使用生成选择与拒绝的优势比作为偏好信号。的 SFT 组件自然可以防止崩溃（不需要 KL 正则化）。</p><p class="content-block paragraph">损失函数</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>−λ · log σ  log oddsθ(yw|x)</code></pre></div><p class="content-block paragraph">(8.3)</p><p class="content-block paragraph">赔率θ(yl|x)</p><p class="content-block paragraph">洛波 = LSFT(yw) | {z } 所选标准 NLL</p><p class="content-block paragraph">| {z } 通过优势比进行偏好调整</p><div class="component code-component"><div class="block-label">text</div><pre><code>where oddsθ(y|x) =
 Pθ(y|x)
-1−Pθ(y|x).
-</code></pre>
-<p>ORPO：SFT + 一次对齐</p>
-<p>SFT 术语：训练模型以很好地生成所选响应（标准语言建模）。
-优势比项：另外推动模型更倾向于选择而不是拒绝。优势比
-是一种自然的对比，不需要参考模型。
-为什么不需要参考？：SFT 损失已经将模型锚定到合理的文本。它
-在其他方法中与 KL-to-reference 的作用相同。一种模型，一次前向传递，一次损失。
-内存减少 50%！</p>
-<p>TRL实施</p>
-<p>下面显示了使用 Hugging Face TRL 的最小工作示例。</p>
-<pre><code class="language-text">from trl import
-ORPOConfig , ORPOTrainer
-</code></pre>
-<pre><code class="language-text">orpo_config = ORPOConfig(
-</code></pre>
-<pre><code class="language-text">output_dir="./ orpo_output",
+1−Pθ(y|x).</code></pre></div><p class="content-block paragraph">ORPO：SFT + 一次对齐</p><p class="content-block paragraph">SFT 术语：训练模型以很好地生成所选响应（标准语言建模）。 优势比项：另外推动模型更倾向于选择而不是拒绝。优势比 是一种自然的对比，不需要参考模型。 为什么不需要参考？：SFT 损失已经将模型锚定到合理的文本。它 在其他方法中与 KL-to-reference 的作用相同。一种模型，一次前向传递，一次损失。 内存减少 50%！</p><p class="content-block paragraph">TRL实施</p><p class="content-block paragraph">下面显示了使用 Hugging Face TRL 的最小工作示例。</p><div class="component code-component"><div class="block-label">text</div><pre><code>from trl import
+ORPOConfig , ORPOTrainer</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>orpo_config = ORPOConfig(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>output_dir=&quot;./ orpo_output&quot;,
 beta =0.1,
 # Odds
 ratio
@@ -399,11 +121,7 @@ gradient_accumulation_steps =8,
 bf16=True ,
 num_train_epochs =1,
 gradient_checkpointing =True ,
-)
-</code></pre>
-<pre><code class="language-text">trainer = ORPOTrainer(
-</code></pre>
-<pre><code class="language-text">model=model ,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>trainer = ORPOTrainer(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=model ,
 # No ref_model
 needed!
 args=orpo_config ,
@@ -413,254 +131,51 @@ format as DPO: prompt/chosen/rejected
 tokenizer=tokenizer ,
 peft_config=lora_config ,
 )
-trainer.train ()
-</code></pre>
-<p>何时选择 ORPO</p>
-<p>• 内存受限：无法提供参考模型副本（为 70B 节省 70–140GB）</p>
-<h2 id="chapter-09-p179-5">Best-of-N Sampling (Rejection Sampling)</h2>
-<p><span class="page-ref" id="pdf-p179">原 PDF p.179</span></p>
-<p>• 从基础模型开始（尚未进行 SFT）— ORPO 同时进行 SFT</p>
-<p>• 想要最简单的流水线：一个模型、一次损失、一次训练运行</p>
-<p>• 从一开始就可获得良好的偏好数据</p>
-<p>ORPO 限制</p>
-<p>• 比 DPO/PPO 研究较少 — 70B+ 规模的经过验证的配方较少</p>
-<p>• SFT 组件意味着它需要高质量的选择响应（而不仅仅是相对偏好）
-恩斯）</p>
-<p>• 更难调试：两个损耗分量可能会发生冲突</p>
-<p>另请参阅：SimPO
-SimPO [183] 是另一种无参考偏好方法，它使用长度归一化对数
-概率作为隐性奖励，完全消除参考模型。
-它被覆盖在
-由于其共享的无引用理念，第 6.9.8 节与其他 DPO 扩展并列。</p>
-<p>N 次最佳采样（拒绝采样）</p>
-<p>动机</p>
-<p>有时最简单的方法会获胜。 Best-of-N [196] 在 RL 期间根本不需要任何训练
-阶段 - 只需生成多个候选者并选择最好的一个。</p>
-<p>算法</p>
-<ol>
-<li>
-<p>对于每个提示，根据策略生成 N 个响应（通常 N = 4–64）</p>
-</li>
-<li>
-<p>使用奖励模型对所有回复进行评分</p>
-</li>
-<li>
-<p>选择得分最高的答案</p>
-</li>
-</ol>
-<p>4.（可选）使用选定的响应作为下一次迭代的 SFT 数据</p>
-<pre><code class="language-math">Best-of-N response :
-y∗= arg
-max
-yi∼πθ(·|x) rϕ(x, yi)
-(8.4)
-</code></pre>
-<p>为什么 Best-of-N 是一种合法的“强化学习”方法</p>
-<p>在推理时：Best-of-N 可以在不改变模型权重的情况下提高输出质量。与
-N = 64，胜率比贪婪提高 10-20%——有时匹配或超过 PPO。
-作为训练方法（拒绝采样微调/RFT）：</p>
-<ol>
-<li>
-<p>生成许多响应，选择最佳响应</p>
-</li>
-<li>
-<p>对所选响应进行 SFT</p>
-</li>
-<li>
-<p>重复（迭代细化）</p>
-</li>
-</ol>
-<pre><code class="language-math">这就是训练多个生产模型的方式：比 PPO 更简单，几乎同样有效，完全
-stable.
-Theoretical connection [197]:
-Best-of-N 实现隐式 KL 约束策略：
-πBoN(y|x) ∝πθ(y|x)1−1/N · r(x, y)1/N.
-</code></pre>
-<h2 id="chapter-09-p180-6">Summary: Choosing an Alignment Method</h2>
-<p><span class="page-ref" id="pdf-p180">原 PDF p.180</span></p>
-<p>TRL实施</p>
-<p>下面显示了使用 Hugging Face TRL 的最小工作示例。</p>
-<pre><code class="language-text">from
+trainer.train ()</code></pre></div><p class="content-block paragraph">何时选择 ORPO</p><p class="content-block paragraph">• 内存受限：无法提供参考模型副本（为 70B 节省 70–140GB）</p></div></section><section class="ast-section" id="chapter-09-s05"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>Best-of-N 采样（拒绝采样）</h2><p>本节聚焦“Best-of-N 采样（拒绝采样）”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">• 从基础模型开始（尚未进行 SFT）— ORPO 同时进行 SFT</p><p class="content-block paragraph">• 想要最简单的流水线：一个模型、一次损失、一次训练运行</p><p class="content-block paragraph">• 从一开始就可获得良好的偏好数据</p><p class="content-block paragraph">ORPO 限制</p><p class="content-block paragraph">• 比 DPO/PPO 研究较少 — 70B+ 规模的经过验证的配方较少</p><p class="content-block paragraph">• SFT 组件意味着它需要高质量的选择响应（而不仅仅是相对偏好） 恩斯）</p><p class="content-block paragraph">• 更难调试：两个损耗分量可能会发生冲突</p><p class="content-block paragraph">另请参阅：SimPO SimPO [183] 是另一种无参考偏好方法，它使用长度归一化对数 概率作为隐性奖励，完全消除参考模型。 它被覆盖在 由于其共享的无引用理念，第 6.9.8 节与其他 DPO 扩展并列。</p><p class="content-block paragraph">N 次最佳采样（拒绝采样）</p><p class="content-block paragraph">动机</p><p class="content-block paragraph">有时最简单的方法会获胜。 Best-of-N [196] 在 RL 期间根本不需要任何训练 阶段 - 只需生成多个候选者并选择最好的一个。</p><p class="content-block paragraph">算法</p><div class="component code-component"><div class="block-label">text</div><pre><code>1. 对于每个提示，根据策略生成 N 个响应（通常 N = 4–64）</code></pre></div><p class="content-block paragraph">2. 使用奖励模型对所有回复进行评分</p><p class="content-block paragraph">3. 选择得分最高的答案</p><p class="content-block paragraph">4.（可选）使用选定的响应作为下一次迭代的 SFT 数据</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Best-of-N response : y∗= arg max yi∼πθ(·|x) rϕ(x, yi) (8.4)</code></pre></div><p class="content-block paragraph">为什么 Best-of-N 是一种合法的“强化学习”方法</p><p class="content-block paragraph">在推理时：Best-of-N 可以在不改变模型权重的情况下提高输出质量。与</p><div class="component code-component"><div class="block-label">text</div><pre><code>N = 64，胜率比贪婪提高 10-20%——有时匹配或超过 PPO。</code></pre></div><p class="content-block paragraph">作为训练方法（拒绝采样微调/RFT）：</p><p class="content-block paragraph">1. 生成许多响应，选择最佳响应</p><p class="content-block paragraph">2. 对所选响应进行 SFT</p><p class="content-block paragraph">3. 重复（迭代细化）</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>This is how many production models are trained: simpler than PPO, almost as effective, completely stable. Theoretical connection [197]: Best-of-N implements an implicit KL-constrained policy: πBoN(y|x) ∝πθ(y|x)1−1/N · r(x, y)1/N.</code></pre></div></div></section><section class="ast-section" id="chapter-09-s06"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>总结：选择对齐方法</h2><p>本节聚焦“总结：选择对齐方法”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">TRL实施</p><p class="content-block paragraph">下面显示了使用 Hugging Face TRL 的最小工作示例。</p><div class="component code-component"><div class="block-label">text</div><pre><code>from
 transformers
 import
 pipeline
 import
-numpy as np
-</code></pre>
-<pre><code class="language-text"># Inference -time Best -of -N (manual
+numpy as np</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Inference -time Best -of -N (manual
 implementation )
-gen_pipeline = pipeline("text -generation", model=model , tokenizer=tokenizer)
-</code></pre>
-<pre><code class="language-text">def
+gen_pipeline = pipeline(&quot;text -generation&quot;, model=model , tokenizer=tokenizer)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 best_of_n(prompt , n=16, temperature =0.8):
-"""Generate N candidates
-and return the highest -reward one."""
-candidates = gen_pipeline(
-</code></pre>
-<pre><code class="language-text">prompt , num_return_sequences =n,
+&quot;&quot;&quot;Generate N candidates
+and return the highest -reward one.&quot;&quot;&quot;
+candidates = gen_pipeline(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>prompt , num_return_sequences =n,
 temperature=temperature , do_sample=True , max_new_tokens =512 ,
 )
-scores = [reward_model.score(prompt , c[" generated_text "]) for c in candidates]
+scores = [reward_model.score(prompt , c[&quot; generated_text &quot;]) for c in candidates]
 return
-candidates[np.argmax(scores)][" generated_text "]
-</code></pre>
-<pre><code class="language-text">best_response = best_of_n(prompt , n=16)
-</code></pre>
-<pre><code class="language-text"># Training: Rejection
+candidates[np.argmax(scores)][&quot; generated_text &quot;]</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>best_response = best_of_n(prompt , n=16)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Training: Rejection
 Sampling Fine -Tuning (RFT)
 from trl import
-SFTConfig , SFTTrainer
-</code></pre>
-<pre><code class="language-text"># Step 1: Generate
+SFTConfig , SFTTrainer</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Step 1: Generate
 and filter
 all_responses = []
-for prompt in prompts:
-</code></pre>
-<pre><code class="language-text">candidates = [generate(prompt , temp =0.9) for _ in range (16)]
+for prompt in prompts:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>candidates = [generate(prompt , temp =0.9) for _ in range (16)]
 scores = [reward_model.score(prompt , c) for c in candidates]
 best_idx = np.argmax(scores)
 if scores[best_idx] &gt; threshold:
 # Quality
 gate
-all_responses.append ({"prompt": prompt , "completion": candidates[best_idx
-]})
-</code></pre>
-<pre><code class="language-text"># Step 2: SFT on best
+all_responses.append ({&quot;prompt&quot;: prompt , &quot;completion&quot;: candidates[best_idx
+]})</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Step 2: SFT on best
 responses
-sft_config = SFTConfig(output_dir="./ rft_output", learning_rate =2e-5,
-</code></pre>
-<pre><code class="language-text">num_train_epochs =2, max_seq_length =2048)
-trainer = SFTTrainer(model=model , args=sft_config , train_dataset =all_responses ,
-</code></pre>
-<pre><code class="language-text">tokenizer=tokenizer)
+sft_config = SFTConfig(output_dir=&quot;./ rft_output&quot;, learning_rate =2e-5,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>num_train_epochs =2, max_seq_length =2048)
+trainer = SFTTrainer(model=model , args=sft_config , train_dataset =all_responses ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>tokenizer=tokenizer)
 trainer.train ()
 # Step 3: Repeat
 from Step 1 with
 updated
 model (iterative
-RFT)
-</code></pre>
-<p>N 中最佳的缩放法则</p>
-<p>氮
-质量增益
-成本
-注释</p>
-<pre><code class="language-math">1
-Baseline
-1×
-Standard sampling
-4
-+5–8% win-rate
-4×
-Minimum useful. Good cost/quality
-ratio
-16
-+10–15% win-rate
-16×
-效果很强，通常可接近 PPO 质量
-64
-+15–20% win-rate
-64×
-收益开始递减
-256
-+18–22% win-rate
-256×
-仅适用于关键应用
-</code></pre>
-<p>N 中最佳作为基线
-始终将您的 RL 方法与具有相同计算预算的 Best-of-N 进行比较。如果 PPO 与
-64 个 GPU 小时无法击败具有 64 个 GPU 小时生成的 Best-of-N，您的 PPO 有一个错误。</p>
-<p>摘要：选择对齐方法</p>
-<p>我们现在已经全面调查了偏好优化和基于强化学习的对齐方法。
-本节将关键权衡整合到一个参考中，以帮助从业者选择
-解决他们的限制的正确方法。</p>
-<p><span class="page-ref" id="pdf-p181">原 PDF p.181</span></p>
-<p>表 8.1：比对方法的跨方法比较。</p>
-<p>方法
-型号
-数据
-计算
-稳定性
-最适合</p>
-<p>聚苯醚
-在线（创）
-非常高
-低
-最高质量，复杂推理
-GRPO
-2（无评论）
-在线（创）
-高
-中等
-数学/代码（可验证的奖励）
-数据保护组织
-离线配对
-低
-高
-风格/安全，有限的计算
-在线数据保护官
-在线（创）
-中等
-中高
-无分配转移的 DPO
-韩国贸易组织
-未配对的二进制文件
-低
-高
-生产反馈，赞成/反对
-首次公开募股
-离线配对
-低
-非常高
-噪声标签、防过拟合
-奥尔普
-离线配对
-很低
-高
-内存有限，SFT+align 组合
-N 中最佳
-1+RM
-在线（创）
-中等
-完美
-强大的基线，数据生成</p>
-<p>图 8.1：近似质量与计算前沿。 SFT 上限线以上的方法得到了改进
-仅靠监督微调就能达到什么效果。位置是说明性的并且取决于模型。</p>
-<p>决策树：使用哪种方法？</p>
-<ol>
-<li>
-<p>你们有可验证的奖励吗？ （数学/代码）→GRPO</p>
-</li>
-<li>
-<p>您是否需要最高质量的复杂任务？ →PPO</p>
-</li>
-<li>
-<p>您有配对偏好吗？ →DPO（或 IPO，如果有噪音）</p>
-</li>
-<li>
-<p>只有不成对的二进制反馈？ →韩国旅游局</p>
-</li>
-<li>
-<p>内存有限，从基本模型开始？ →ORPO</p>
-</li>
-<li>
-<p>DPO 趋于稳定，想要合规吗？ →在线DPO</p>
-</li>
-<li>
-<p>需要快速建立强大的基线吗？ →N 次最佳 / RFT</p>
-</li>
-</ol>
-<figure><img alt="第 181 页图像 page_181_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_181_img_01.png"/>
-<em>图像：原 PDF p.181</em></figure></div>
+RFT)</code></pre></div><p class="content-block paragraph">N 中最佳的缩放法则</p><p class="content-block paragraph">氮 质量增益 成本 注释</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>1 Baseline 1× Standard sampling 4 +5–8% win-rate 4× Minimum useful. Good cost/quality ratio 16 +10–15% win-rate 16× Strong. Often matches PPO quality 64 +15–20% win-rate 64× Diminishing returns start 256 +18–22% win-rate 256× Only for critical applications</code></pre></div><p class="content-block paragraph">N 中最佳作为基线 始终将您的 RL 方法与具有相同计算预算的 Best-of-N 进行比较。如果 PPO 与 64 个 GPU 小时无法击败具有 64 个 GPU 小时生成的 Best-of-N，您的 PPO 有一个错误。</p><p class="content-block paragraph">摘要：选择对齐方法</p><p class="content-block paragraph">我们现在已经全面调查了偏好优化和基于强化学习的对齐方法。 本节将关键权衡整合到一个参考中，以帮助从业者选择 解决他们的限制的正确方法。</p><p class="content-block paragraph">表 8.1：比对方法的跨方法比较。</p><p class="content-block paragraph">方法 型号 数据 计算 稳定性 最适合</p><p class="content-block paragraph">聚苯醚</p><p class="content-block paragraph">在线（创） 非常高 低 最高质量，复杂推理 GRPO 2（无评论） 在线（创） 高 中等 数学/代码（可验证的奖励） 数据保护组织</p><p class="content-block paragraph">离线配对 低 高 风格/安全，有限的计算 在线数据保护官</p><p class="content-block paragraph">在线（创） 中等 中高 无分配转移的 DPO 韩国贸易组织</p><p class="content-block paragraph">未配对的二进制文件 低 高 生产反馈，赞成/反对 首次公开募股</p><p class="content-block paragraph">离线配对 低 非常高 噪声标签、防过拟合 奥尔普</p><p class="content-block paragraph">离线配对 很低 高 内存有限，SFT+align 组合 N 中最佳 1+RM 在线（创） 中等 完美 强大的基线，数据生成</p><p class="content-block paragraph">图 8.1：近似质量与计算前沿。 SFT 上限线以上的方法得到了改进 仅靠监督微调就能达到什么效果。位置是说明性的并且取决于模型。</p><p class="content-block paragraph">决策树：使用哪种方法？</p><p class="content-block paragraph">1. 你们有可验证的奖励吗？ （数学/代码）→GRPO</p><p class="content-block paragraph">2. 您是否需要最高质量的复杂任务？ →PPO</p><p class="content-block paragraph">3. 您有配对偏好吗？ →DPO（或 IPO，如果有噪音）</p><p class="content-block paragraph">4. 只有不成对的二进制反馈？ →韩国旅游局</p><p class="content-block paragraph">5. 内存有限，从基本模型开始？ →ORPO</p><p class="content-block paragraph">6. DPO 趋于稳定，想要合规吗？ →在线DPO</p><p class="content-block paragraph">7. 需要快速建立强大的基线吗？ →N 次最佳 / RFT</p><figure class="component figure-component"><img src="../assets/images/figures/fig-027.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure></div></section></div>
           <nav class="chapter-pager"><a class="pager-link" href="chapter-08.html">← GRPO：组相对策略优化</a><a class="pager-link next" href="chapter-10.html">奖励模型训练 →</a></nav>
         </article>
-        
-    </section>
-  </main>
+        </section><aside class="right-outline"><div class="nav-section-title">本页结构</div><a class="outline-link" href="#chapter-09-s01">在线 DPO</a><a class="outline-link" href="#chapter-09-s02">KTO：Kahneman-Tversky 优化</a><a class="outline-link" href="#chapter-09-s03">IPO：身份偏好优化</a><a class="outline-link" href="#chapter-09-s04">ORPO：赔率比偏好优化</a><a class="outline-link" href="#chapter-09-s05">Best-of-N 采样（拒绝采样）</a><a class="outline-link" href="#chapter-09-s06">总结：选择对齐方法</a></aside></main>
   <button class="back-top" id="back-top" type="button">↑</button>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/toc.js"></script>
   <script src="../assets/js/progress.js"></script>
-  
 </body>
 </html>

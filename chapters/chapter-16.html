@@ -4,194 +4,37 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>智能体式 AI 简介 | 智能体式 AI 漫游指南</title>
-  <meta name="description" content="从聊天机器人到自主智能体的动机、架构和运行范式。" />
+  <meta name="description" content="从聊天机器人过渡到自主智能体，建立架构、状态和行动循环。" />
   <meta property="og:title" content="智能体式 AI 简介 | 智能体式 AI 漫游指南" />
-  <meta property="og:description" content="从聊天机器人到自主智能体的动机、架构和运行范式。" />
+  <meta property="og:description" content="从聊天机器人过渡到自主智能体，建立架构、状态和行动循环。" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="canonical" href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/article.css" />
   <link rel="stylesheet" href="../assets/css/responsive.css" />
-  
 </head>
 <body class="article-page">
   <div class="reading-progress" id="reading-progress"></div>
   <header class="topbar">
-    <a class="brand" href="../index.html" aria-label="智能体式 AI 漫游指南">
-      <span class="brand-mark">AI</span>
-      <span><strong>智能体式 AI 漫游指南</strong><small>从基础到系统的中文技术文档站</small></span>
-    </a>
-    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a>
-<a class="active" href="../chapters/index.html">章节</a>
-<a class="" href="../glossary.html">术语表</a>
-<a class="" href="../references.html">参考文献</a>
-<a class="" href="../search.html">搜索</a>
-<a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
+    <a class="brand" href="../index.html"><span class="brand-mark">AST</span><span><strong>智能体式 AI 漫游指南</strong><small>结构化知识文档系统</small></span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="打开导航" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a><a class="active" href="../chapters/index.html">章节</a><a class="" href="../glossary.html">术语表</a><a class="" href="../references.html">参考文献</a><a class="" href="../search.html">搜索</a><a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
   </header>
-  <main class="layout">
-    
-        <aside class="left-nav" id="left-nav">
-          <div class="nav-section-title">章节</div>
-          <a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a>
-<a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a>
-<a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a>
-<a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a>
-<a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a>
-<a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a>
-<a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a>
-<a class="chapter-link active" href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a>
-<a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a>
-<a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a>
-<a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a>
-<a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a>
-<a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a>
-<a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a>
-<a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a>
-<a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a>
-<a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a>
-        </aside>
-        <aside class="right-outline" id="right-outline">
-          <div class="nav-section-title">本页大纲</div>
-          <a class="outline-link level-h2" href="#chapter-16-overview">本章概览</a>
-        </aside>
-        
-    <section class="content-shell">
-      
-        <article class="article-card">
+  <main class="layout"><aside class="left-nav" id="left-nav"><div class="nav-section-title">语义目录</div><div class="nav-cluster"><strong>导读</strong><a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a><a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a></div><div class="nav-cluster"><strong>LLM 基础与系统</strong><a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a><a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a><a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a></div><div class="nav-cluster"><strong>训练、强化学习与对齐</strong><a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a><a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a><a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a><a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a><a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a><a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a><a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a><a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a></div><div class="nav-cluster"><strong>Agentic AI 系统</strong><a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a><a class="chapter-link active" href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a><a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a><a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a><a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a><a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a><a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a><a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a><a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a><a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a><a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a><a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a><a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a></div><div class="nav-cluster"><strong>推理与评估</strong><a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a></div><div class="nav-cluster"><strong>参考与总结</strong><a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a><a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a><a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a></div></aside><section class="content-shell">
+        <article class="article-card" data-ast-source="../assets/data/clean_chapter_tree.json">
           <header class="article-header">
-            <p class="part-label">第五部分：智能体式 AI</p>
+            <p class="part-label">Agentic AI 系统</p>
             <h1>智能体式 AI 简介</h1>
-            <p>从聊天机器人到自主智能体的动机、架构和运行范式。</p>
-            <div class="article-meta"><span>原 PDF p.292-294</span><span>1 个页内条目</span></div>
+            <p>从聊天机器人过渡到自主智能体，建立架构、状态和行动循环。</p>
           </header>
-          <div class="article-body"><h2 id="chapter-16-overview">本章概览</h2>
-<p><span class="page-ref" id="pdf-p292">原 PDF p.292</span></p>
-<p>智能体式 AI简介</p>
-<p>前面的部分为我们提供了算法工具包——如何训练、对齐和推理
-LLM。我们介绍了 Transformer 架构和 GPU 系统（第一部分）、强化学习
-使模型与人类意图保持一致的方法（第二部分），从中产生的推理能力
-RL 训练（第三部分）和评估方法（第四部分）。这一部分转向中心问题
-现代人工智能工程的研究：我们如何将这些模型部署为自主智能体来感知、计划、
-在开放式环境中行动和学习？
-智能体式 AI 系统是LLM在循环中运行的系统：它接收来自
-环境（用户消息、工具输出、传感器数据）、下一步行动的原因、采取行动
-（工具调用、代码执行、API 请求），并迭代直到实现目标或明确要求
-人工输入。这与“单轮聊天机器人”范例形成鲜明对比，在“单轮聊天机器人”范例中，模型生成一个
-响应并等待。
-从聊天机器人到智能体的转变引入了单个模型调用的几个基本挑战
-无法解决：</p>
-<p>• 持久性：智能体必须记住它做了什么、失败了什么以及上下文是什么
-建立起来——跨越回合、会议，甚至几天。</p>
-<p>• 接地：座席必须获取尚未出现的最新、特定领域的知识
-在其训练数据中。</p>
-<p>• 操作：智能体必须与外部系统交互——数据库、API、文件系统、
-浏览器——通过明确定义的界面。</p>
-<p>• 协调：复杂的任务通常超出单个智能体的处理能力；多个专业
-智能体必须合作、委托和谈判。</p>
-<p>• 安全：自主行动需要护栏、人工监督和优雅降级
-当智能体不确定时。</p>
-<p>为了应对这些挑战，生产智能体系统被构建为分层架构。每个
-层解决了一个特定的问题，接下来的章节从下到上涵盖了整个堆栈：</p>
-<p>• 第16 章：RAG（检索增强生成）— 知识层。 RAG
-通过在查询时检索相关文档，使智能体能够访问动态外部知识
-时间。这解决了接地问题：智能体可以回答有关专有的问题
-模型在训练期间从未见过的数据、最近的事件或特定领域的内容。我们
-涵盖嵌入模型、向量数据库、分块策略、混合检索和高级
-像智能体 RAG 这样的模式，智能体决定何时检索以及检索什么。</p>
-<p>• 第17 章：内存——持久层。记忆使智能体能够回忆起信息
-跨交互——从单个任务中的短期工作记忆到长期情景记忆
-跨越几个月的记忆。我们涵盖内存架构（缓冲区、摘要、向量索引、
-知识图）、内存整合以及如何设计可扩展的内存系统
-不会淹没上下文窗口。</p>
-<p><span class="page-ref" id="pdf-p293">原 PDF p.293</span></p>
-<p>• 第18 章：利用和编排——运行时层。编排工具是
-智能体的“操作系统”：它管理智能体循环、上下文窗口预算、工具
-调度、错误恢复、状态持久性和可观察性。我们涵盖上下文管理
-策略（汇总、滑动窗口、分层）、执行控制（顺序、并行、
-分支）、护栏和人机循环模式。</p>
-<p>• 第19 章：设计模式——架构层。结构化的规范模式
-智能体：ReAct（推理+行动交错）、计划然后执行、反射循环、工具增强
-生成和多步骤工作流程。我们分析每种模式何时适用、它们的失败
-模式，以及如何将它们组合起来以完成复杂的现实世界任务。</p>
-<p>• 第20 章：环境和基准测试——评估层。地点和方式
-评估智能体行为。我们涵盖网络导航基准测试、编码环境、
-工具使用评估套件，以及评估多步自主的独特挑战
-系统（部分信用、轨迹质量、安全违规）。</p>
-<p>• 第21 章：MCP（模型上下文协议）— 工具集成标准。 MCP
-标准化智能体发现和调用工具的方式——类似于硬件的 USB。我们涵盖
-协议规范、服务器/客户端架构、资源管理以及 MCP 如何
-消除了智能体和工具之间的N×M集成问题。</p>
-<p>• 第22 章：智能体技能——能力层。
-智能体如何获取和组合
-基本工具使用之外的专业能力，包括技能库、技能选择和
-组合任务解决。</p>
-<p>• 第23 章：A2A（智能体到智能体通信）— 智能体间协议。当
-任务需要多名专家，A2A 提供了用于智能体发现的标准化协议，
-任务委托、进度流和结果聚合——支持异构智能体
-（来自不同的供应商、框架或组织）进行协作。</p>
-<p>• 第24 章：多智能体系统——协调层。多智能体架构
-协作：分层授权、点对点协商、辩论和共识、群体
-智力和紧急行为。我们介绍何时使用单智能体与多智能体设计
-以及如何调试协调失败。</p>
-<p>• 第25 章：框架——实现层。实现的生产工具包
-以上概念：LangGraph（基于状态图的编排）、CrewAI（基于角色的多业务）
-智能体）、OpenAI Agents SDK、AutoGen 等。我们比较他们的权衡、架构
-决策以及对不同用例的适用性。</p>
-<p>• 第26 章：智能体UI — 交互层。用户如何互动和监督
-智能体：流式界面、渐进式披露、审批工作流程、状态仪表板以及
-在自治系统中建立适当信任的用户体验模式。</p>
-<p>这些层并不是孤立运行的——它们形成了一个紧密集成的系统，其中每个层
-组件依赖于并增强其他组件：</p>
-<p>• 智能体核心（具有第二部分至第三部分推理能力的LLM）位于中心，
-执行感知-推理-行动循环。</p>
-<p>• RAG 在每个推理步骤之前为智能体提供相关知识，而记忆
-提供跨步骤和会话的连续性。</p>
-<p>• Orchestration Harness 协调一切：它决定何时检索、何时调用
-工具、何时委托给子智能体以及何时向人类寻求指导。</p>
-<p>• MCP 提供标准化接口，智能体可以通过该接口访问所有外部工具，
-A2A 为智能体间通信提供等效接口。</p>
-<p><span class="page-ref" id="pdf-p294">原 PDF p.294</span></p>
-<p>• 设计模式定义了高层策略（ReAct、计划和执行、反思），同时
-框架提供了这些模式的具体实现。</p>
-<p>• UI 层通过将智能体连接回人类来闭合循环——以进行监督、
-纠正和协作解决问题。</p>
-<p>自始至终，我们都坚持系统的观点：智能体式 AI不仅仅是提示——它
-需要仔细设计上下文管理、错误处理、安全护栏和可观察性
-在每一层。下图显示了这些组件如何在架构上组合在一起。</p>
-<p>图 15.1：Agentic AI 架构堆栈。 Agent Core 执行感知-推理-行动循环，
-由管理上下文、状态、护栏和观察的 Harness &amp; Orchestration 层协调
-能力。智能体与外部系统向下交互——RAG用于知识检索、记忆
-为了持久性，通过 MCP 提供工具，通过 A2A 提供其他智能体——所有这些都基于环境。用户
-提供来自上面的目标、反馈和监督。箭头表示双向数据流；蓝色循环
-箭头显示迭代的智能体循环。</p>
-<figure><img alt="第 294 页图像 page_294_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_294_img_01.png"/>
-<em>图像：原 PDF p.294</em></figure></div>
+          <aside class="component key-concepts-panel"><span class="component-label">Key Concepts</span><div class="concept-chip"><strong>智能体式 AI</strong><span>Agentic AI</span><p>具备目标导向、工具使用、环境交互和多步执行能力的 AI 系统。</p></div><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></div><div class="concept-chip"><strong>缓冲区</strong><span>Buffer</span><p>保存经验、轨迹或中间数据以供训练和分析的结构。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></aside>
+          <div class="article-body"><section class="ast-section" id="chapter-16-s01"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>本章概览</h2><p>本节聚焦“本章概览”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体式 AI</strong><span>Agentic AI</span><p>具备目标导向、工具使用、环境交互和多步执行能力的 AI 系统。</p></div><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">智能体式 AI简介</p><p class="content-block paragraph">前面的部分为我们提供了算法工具包——如何训练、对齐和推理 LLM。我们介绍了 Transformer 架构和 GPU 系统（第一部分）、强化学习 使模型与人类意图保持一致的方法（第二部分），从中产生的推理能力 RL 训练（第三部分）和评估方法（第四部分）。这一部分转向中心问题 现代人工智能工程的研究：我们如何将这些模型部署为自主智能体来感知、计划、 在开放式环境中行动和学习？ 智能体式 AI 系统是LLM在循环中运行的系统：它接收来自 环境（用户消息、工具输出、传感器数据）、下一步行动的原因、采取行动 （工具调用、代码执行、API 请求），并迭代直到实现目标或明确要求 人工输入。这与“单轮聊天机器人”范例形成鲜明对比，在“单轮聊天机器人”范例中，模型生成一个 响应并等待。 从聊天机器人到智能体的转变引入了单个模型调用的几个基本挑战 无法解决：</p><p class="content-block paragraph">• 持久性：智能体必须记住它做了什么、失败了什么以及上下文是什么 建立起来——跨越回合、会议，甚至几天。</p><p class="content-block paragraph">• 接地：座席必须获取尚未出现的最新、特定领域的知识 在其训练数据中。</p><p class="content-block paragraph">• 操作：智能体必须与外部系统交互——数据库、API、文件系统、 浏览器——通过明确定义的界面。</p><p class="content-block paragraph">• 协调：复杂的任务通常超出单个智能体的处理能力；多个专业 智能体必须合作、委托和谈判。</p><p class="content-block paragraph">• 安全：自主行动需要护栏、人工监督和优雅降级 当智能体不确定时。</p><p class="content-block paragraph">为了应对这些挑战，生产智能体系统被构建为分层架构。每个 层解决了一个特定的问题，接下来的章节从下到上涵盖了整个堆栈：</p><p class="content-block paragraph">• 第16 章：RAG（检索增强生成）— 知识层。 RAG 通过在查询时检索相关文档，使智能体能够访问动态外部知识 时间。这解决了接地问题：智能体可以回答有关专有的问题 模型在训练期间从未见过的数据、最近的事件或特定领域的内容。我们 涵盖嵌入模型、向量数据库、分块策略、混合检索和高级 像智能体 RAG 这样的模式，智能体决定何时检索以及检索什么。</p><p class="content-block paragraph">• 第17 章：内存——持久层。记忆使智能体能够回忆起信息 跨交互——从单个任务中的短期工作记忆到长期情景记忆 跨越几个月的记忆。我们涵盖内存架构（缓冲区、摘要、向量索引、 知识图）、内存整合以及如何设计可扩展的内存系统 不会淹没上下文窗口。</p><p class="content-block paragraph">• 第18 章：利用和编排——运行时层。编排工具是 智能体的“操作系统”：它管理智能体循环、上下文窗口预算、工具 调度、错误恢复、状态持久性和可观察性。我们涵盖上下文管理 策略（汇总、滑动窗口、分层）、执行控制（顺序、并行、 分支）、护栏和人机循环模式。</p><p class="content-block paragraph">• 第19 章：设计模式——架构层。结构化的规范模式 智能体：ReAct（推理+行动交错）、计划然后执行、反射循环、工具增强 生成和多步骤工作流程。我们分析每种模式何时适用、它们的失败 模式，以及如何将它们组合起来以完成复杂的现实世界任务。</p><p class="content-block paragraph">• 第20 章：环境和基准测试——评估层。地点和方式 评估智能体行为。我们涵盖网络导航基准测试、编码环境、 工具使用评估套件，以及评估多步自主的独特挑战 系统（部分信用、轨迹质量、安全违规）。</p><p class="content-block paragraph">• 第21 章：MCP（模型上下文协议）— 工具集成标准。 MCP 标准化智能体发现和调用工具的方式——类似于硬件的 USB。我们涵盖 协议规范、服务器/客户端架构、资源管理以及 MCP 如何 消除了智能体和工具之间的N×M集成问题。</p><p class="content-block paragraph">• 第22 章：智能体技能——能力层。 智能体如何获取和组合 基本工具使用之外的专业能力，包括技能库、技能选择和 组合任务解决。</p><p class="content-block paragraph">• 第23 章：A2A（智能体到智能体通信）— 智能体间协议。当 任务需要多名专家，A2A 提供了用于智能体发现的标准化协议， 任务委托、进度流和结果聚合——支持异构智能体 （来自不同的供应商、框架或组织）进行协作。</p><p class="content-block paragraph">• 第24 章：多智能体系统——协调层。多智能体架构 协作：分层授权、点对点协商、辩论和共识、群体 智力和紧急行为。我们介绍何时使用单智能体与多智能体设计 以及如何调试协调失败。</p><p class="content-block paragraph">• 第25 章：框架——实现层。实现的生产工具包 以上概念：LangGraph（基于状态图的编排）、CrewAI（基于角色的多业务） 智能体）、OpenAI Agents SDK、AutoGen 等。我们比较他们的权衡、架构 决策以及对不同用例的适用性。</p><p class="content-block paragraph">• 第26 章：智能体UI — 交互层。用户如何互动和监督 智能体：流式界面、渐进式披露、审批工作流程、状态仪表板以及 在自治系统中建立适当信任的用户体验模式。</p><p class="content-block paragraph">这些层并不是孤立运行的——它们形成了一个紧密集成的系统，其中每个层 组件依赖于并增强其他组件：</p><p class="content-block paragraph">• 智能体核心（具有第二部分至第三部分推理能力的LLM）位于中心， 执行感知-推理-行动循环。</p><p class="content-block paragraph">• RAG 在每个推理步骤之前为智能体提供相关知识，而记忆 提供跨步骤和会话的连续性。</p><p class="content-block paragraph">• Orchestration Harness 协调一切：它决定何时检索、何时调用 工具、何时委托给子智能体以及何时向人类寻求指导。</p><p class="content-block paragraph">• MCP 提供标准化接口，智能体可以通过该接口访问所有外部工具， A2A 为智能体间通信提供等效接口。</p><p class="content-block paragraph">• 设计模式定义了高层策略（ReAct、计划和执行、反思），同时 框架提供了这些模式的具体实现。</p><p class="content-block paragraph">• UI 层通过将智能体连接回人类来闭合循环——以进行监督、 纠正和协作解决问题。</p><p class="content-block paragraph">自始至终，我们都坚持系统的观点：智能体式 AI不仅仅是提示——它 需要仔细设计上下文管理、错误处理、安全护栏和可观察性 在每一层。下图显示了这些组件如何在架构上组合在一起。</p><p class="content-block paragraph">图 15.1：Agentic AI 架构堆栈。 Agent Core 执行感知-推理-行动循环， 由管理上下文、状态、护栏和观察的 Harness &amp; Orchestration 层协调 能力。智能体与外部系统向下交互——RAG用于知识检索、记忆 为了持久性，通过 MCP 提供工具，通过 A2A 提供其他智能体——所有这些都基于环境。用户 提供来自上面的目标、反馈和监督。箭头表示双向数据流；蓝色循环 箭头显示迭代的智能体循环。</p><figure class="component figure-component"><img src="../assets/images/figures/fig-045.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure></div></section></div>
           <nav class="chapter-pager"><a class="pager-link" href="chapter-15.html">← LLM 评估</a><a class="pager-link next" href="chapter-17.html">检索增强生成（RAG） →</a></nav>
         </article>
-        
-    </section>
-  </main>
+        </section><aside class="right-outline"><div class="nav-section-title">本页结构</div><a class="outline-link" href="#chapter-16-s01">本章概览</a></aside></main>
   <button class="back-top" id="back-top" type="button">↑</button>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/toc.js"></script>
   <script src="../assets/js/progress.js"></script>
-  
 </body>
 </html>

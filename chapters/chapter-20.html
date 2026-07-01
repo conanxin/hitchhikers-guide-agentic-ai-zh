@@ -4,404 +4,63 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>智能体设计模式 | 智能体式 AI 漫游指南</title>
-  <meta name="description" content="反思、规划、工具使用、多步骤执行和人类确认等模式。" />
+  <meta name="description" content="本章整理该主题的关键概念、方法、系统实践和工程注意事项。" />
   <meta property="og:title" content="智能体设计模式 | 智能体式 AI 漫游指南" />
-  <meta property="og:description" content="反思、规划、工具使用、多步骤执行和人类确认等模式。" />
+  <meta property="og:description" content="本章整理该主题的关键概念、方法、系统实践和工程注意事项。" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="canonical" href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/article.css" />
   <link rel="stylesheet" href="../assets/css/responsive.css" />
-  
 </head>
 <body class="article-page">
   <div class="reading-progress" id="reading-progress"></div>
   <header class="topbar">
-    <a class="brand" href="../index.html" aria-label="智能体式 AI 漫游指南">
-      <span class="brand-mark">AI</span>
-      <span><strong>智能体式 AI 漫游指南</strong><small>从基础到系统的中文技术文档站</small></span>
-    </a>
-    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a>
-<a class="active" href="../chapters/index.html">章节</a>
-<a class="" href="../glossary.html">术语表</a>
-<a class="" href="../references.html">参考文献</a>
-<a class="" href="../search.html">搜索</a>
-<a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
+    <a class="brand" href="../index.html"><span class="brand-mark">AST</span><span><strong>智能体式 AI 漫游指南</strong><small>结构化知识文档系统</small></span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="打开导航" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a><a class="active" href="../chapters/index.html">章节</a><a class="" href="../glossary.html">术语表</a><a class="" href="../references.html">参考文献</a><a class="" href="../search.html">搜索</a><a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
   </header>
-  <main class="layout">
-    
-        <aside class="left-nav" id="left-nav">
-          <div class="nav-section-title">章节</div>
-          <a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a>
-<a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a>
-<a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a>
-<a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a>
-<a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a>
-<a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a>
-<a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a>
-<a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a>
-<a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a>
-<a class="chapter-link active" href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a>
-<a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a>
-<a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a>
-<a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a>
-<a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a>
-<a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a>
-<a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a>
-<a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a>
-        </aside>
-        <aside class="right-outline" id="right-outline">
-          <div class="nav-section-title">本页大纲</div>
-          <a class="outline-link level-h2" href="#chapter-20-p369-1">Workflow Patterns</a>
-<a class="outline-link level-h2" href="#chapter-20-p371-2">Autonomous Agent Patterns</a>
-<a class="outline-link level-h2" href="#chapter-20-p373-3">Design Principles</a>
-<a class="outline-link level-h2" href="#chapter-20-p374-4">Pattern Selection Guide</a>
-        </aside>
-        
-    <section class="content-shell">
-      
-        <article class="article-card">
+  <main class="layout"><aside class="left-nav" id="left-nav"><div class="nav-section-title">语义目录</div><div class="nav-cluster"><strong>导读</strong><a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a><a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a></div><div class="nav-cluster"><strong>LLM 基础与系统</strong><a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a><a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a><a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a></div><div class="nav-cluster"><strong>训练、强化学习与对齐</strong><a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a><a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a><a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a><a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a><a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a><a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a><a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a><a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a></div><div class="nav-cluster"><strong>Agentic AI 系统</strong><a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a><a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a><a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a><a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a><a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a><a class="chapter-link active" href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a><a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a><a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a><a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a><a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a><a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a><a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a><a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a></div><div class="nav-cluster"><strong>推理与评估</strong><a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a></div><div class="nav-cluster"><strong>参考与总结</strong><a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a><a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a><a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a></div></aside><section class="content-shell">
+        <article class="article-card" data-ast-source="../assets/data/clean_chapter_tree.json">
           <header class="article-header">
-            <p class="part-label">第五部分：智能体式 AI</p>
+            <p class="part-label">Agentic AI 系统</p>
             <h1>智能体设计模式</h1>
-            <p>反思、规划、工具使用、多步骤执行和人类确认等模式。</p>
-            <div class="article-meta"><span>原 PDF p.369-374</span><span>4 个页内条目</span></div>
+            <p>本章整理该主题的关键概念、方法、系统实践和工程注意事项。</p>
           </header>
-          <div class="article-body"><h2 id="chapter-20-p369-1">Workflow Patterns</h2>
-<p><span class="page-ref" id="pdf-p369">原 PDF p.369</span></p>
-<p>智能体设计模式</p>
-<p>构建有效的智能体需要的不仅仅是一个强大的模型和一套工具。架构——如何
-LLM 是如何编排的，任务是如何分解的，以及控制如何在组件之间流动——
-确定智能体是否可靠、可调试且具有成本效益。本章介绍了
-Anthropic、OpenAI 的生产部署中出现的规范设计模式，
-谷歌和开源社区。</p>
-<p>何时使用智能体与工作流</p>
-<p>并非所有任务都需要自主智能体。主要区别：</p>
-<p>• 工作流程：预定义的控制流程，LLM 在特定步骤调用。可预测、可测试、
-更便宜。当任务结构已知时使用。</p>
-<p>• 智能体：LLM 动态地决定下一步做什么。灵活，处理新情况。使用
-当任务需要适应性决策时。</p>
-<p>从工作流程开始。仅当任务真正需要动态时才升级为智能体
-路线或开放式探索。</p>
-<p>工作流程模式</p>
-<p>这些模式改编自 Anthropic 的智能体构建模块分类法 [342]，使用LLM
-在预定义的控制流内。系统（而不是模型）决定执行顺序。</p>
-<p>提示链接</p>
-<p>最简单的模式：将复杂的任务分解为固定的 LLM 调用序列，通过流水线传输结果
-将一个调用作为下一个调用的上下文。步骤之间的验证门可以尽早发现错误
-向下游传播。</p>
-<p>图 19.1：与质量门的提示链接。每个步骤都是一个单独的 LLM 调用。盖茨可以是基于LLM的
-或程序化。</p>
-<p>何时使用：自然连续的任务——内容生成、数据转换、
-多阶段分析。
-主要优点：每个步骤可以使用不同的提示、模型或温度。中级
-结果是可检查和可调试的。</p>
-<figure><img alt="第 369 页图像 page_369_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_369_img_01.png"/>
-<em>图像：原 PDF p.369</em></figure>
-<p><span class="page-ref" id="pdf-p370">原 PDF p.370</span></p>
-<p>路由</p>
-<p>分类器（LLM 或传统）检查输入并将其分派给专门的处理程序。</p>
-<p>图 19.2：路由模式：输入被分类一次，然后由专家处理。</p>
-<p>何时使用：具有不同最佳提示、工具或模型的不同任务类型。客户
-支持分类、多模式输入处理。</p>
-<p>并行化</p>
-<p>多个 LLM 调用同时运行，并由编程层组合它们的输出。两个
-子模式出现：</p>
-<p>• 分段（扇出）：将输入划分为不相交的块并独立处理每个块 -
-例如，同时对代码库运行安全性、性能和风格检查。</p>
-<p>• 投票（冗余）：使用不同的种子或温度发出相同的提示 N 次，
-然后通过多数投票[343]、奖励模型评分或LLM作为评委来选择最佳结果。</p>
-<p>并行化示例：代码审查</p>
-<p>1.并行调用：安全审查∥性能审查∥风格审查</p>
-<ol start="2">
-<li>聚合：合并所有发现、删除重复、按严重程度排名</li>
-</ol>
-<p>延迟 = max（单个呼叫）而不是 P（单个呼叫）。</p>
-<p>协调者-工作者</p>
-<p>在这里，LLM 自己决定如何分配工作。协调器模型分析任务，产生
-子任务计划，将每个子任务分派给工作人员 LLM（可能有不同的提示或
-工具），最后将它们的输出合并成一个连贯的结果。与并行化的主要区别
-分解logits是模型生成的，而不是硬编码的。
-何时使用：子任务的数量和性质无法确定的开放式问题
-在设计时枚举 - 例如，“重构此代码库”需要首先了解依赖关系
-在决定修改哪些文件之前先绘制图表。</p>
-<p>评估器-优化器</p>
-<p>双模型反馈循环[240]：生成器产生候选输出，而单独的评估器
-根据明确的标准对它们进行评分。如果分数低于阈值，评估者的批评是
-附加到生成器的上下文并重复循环，直到满足质量标准或重试
-预算已用完。
-何时使用：具有明确质量标准的任务——必须通过测试的代码、必须通过测试的翻译
-必须保留意义，写作必须符合风格指南。</p>
-<figure><img alt="第 370 页图像 page_370_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_370_img_01.png"/>
-<em>图像：原 PDF p.370</em></figure>
-<h2 id="chapter-20-p371-2">Autonomous Agent Patterns</h2>
-<p><span class="page-ref" id="pdf-p371">原 PDF p.371</span></p>
-<p>图19.3：Orchestrator-workers：LLM决定如何分解任务并合成worker
-结果。</p>
-<p>图 19.4：评估器优化器：无需训练的迭代细化。</p>
-<p>自主智能体模式</p>
-<p>这些模式使LLM能够控制执行流程本身。</p>
-<p>反应（理性+行动）</p>
-<p>基本智能体模式[127]。LLM在思考（内部推理）、
-循环执行（工具调用）和观察（处理结果），直到产生最终答案。</p>
-<p>React 实施要点</p>
-<p>• 便签本：记录“想法”步骤，但不向用户显示。</p>
-<p>• 工具解析：工具从模型输出中提取结构化工具调用。</p>
-<p>• 最大迭代次数：始终限制循环（典型：10-25 次迭代）。</p>
-<p>• 终止：模型输出特殊操作（例如，final_answer）或不调用任何工具
-检测到。</p>
-<p>规划智能体</p>
-<p>智能体在执行之前生成明确的计划，并且可以在执行中修改计划[126]。</p>
-<p>规划智能体：研究报告生成</p>
-<p>用户请求：“写一份 2 页的报告，比较时间序列的Transformer架构
-预测。”
-第 1 步 — 计划生成（单个LLM调用）：</p>
-<figure><img alt="第 371 页图像 page_371_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_371_img_01.png"/>
-<em>图像：原 PDF p.371</em><figcaption>图像：原 PDF p.371</figcaption></figure>
-
-<p><span class="page-ref" id="pdf-p372">原 PDF p.372</span></p>
-<p>表 19.1：规划策略比较</p>
-<p>策略
-重新规划
-特点</p>
-<p>先计划后执行
-从来没有
-简单；脆弱到意想不到的结果
-自适应
-失败时
-仅当某个步骤失败时才重新计划；成本适中
-连续
-每一步
-每次观察后全面重新评估；费用-
-严重但稳健
-分层的
-子计划已完成
-高层计划确定；子计划生成dy-
-纳米地</p>
-<pre><code class="language-math">plan = [
-</code></pre>
-<pre><code class="language-text">{"id": 1, "task": "Search for recent
-transformer -based "
-"time -series
+          <aside class="component key-concepts-panel"><span class="component-label">Key Concepts</span><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></aside>
+          <div class="article-body"><section class="ast-section" id="chapter-20-s01"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>工作流模式</h2><p>本节聚焦“工作流模式”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">构建有效的智能体需要的不仅仅是一个强大的模型和一套工具。架构——如何 LLM 是如何编排的，任务是如何分解的，以及控制如何在组件之间流动—— 确定智能体是否可靠、可调试且具有成本效益。本章介绍了 Anthropic、OpenAI 的生产部署中出现的规范设计模式， 谷歌和开源社区。</p><p class="content-block paragraph">何时使用智能体与工作流</p><p class="content-block paragraph">并非所有任务都需要自主智能体。主要区别：</p><p class="content-block paragraph">• 工作流程：预定义的控制流程，LLM 在特定步骤调用。可预测、可测试、 更便宜。当任务结构已知时使用。</p><p class="content-block paragraph">• 智能体：LLM 动态地决定下一步做什么。灵活，处理新情况。使用 当任务需要适应性决策时。</p><p class="content-block paragraph">从工作流程开始。仅当任务真正需要动态时才升级为智能体 路线或开放式探索。</p><p class="content-block paragraph">工作流程模式</p><p class="content-block paragraph">这些模式改编自 Anthropic 的智能体构建模块分类法 [342]，使用LLM 在预定义的控制流内。系统（而不是模型）决定执行顺序。</p><p class="content-block paragraph">提示链接</p><p class="content-block paragraph">最简单的模式：将复杂的任务分解为固定的 LLM 调用序列，通过流水线传输结果 将一个调用作为下一个调用的上下文。步骤之间的验证门可以尽早发现错误 向下游传播。</p><p class="content-block paragraph">图 19.1：与质量门的提示链接。每个步骤都是一个单独的 LLM 调用。盖茨可以是基于LLM的 或程序化。</p><p class="content-block paragraph">何时使用：自然连续的任务——内容生成、数据转换、 多阶段分析。 主要优点：每个步骤可以使用不同的提示、模型或温度。中级 结果是可检查和可调试的。</p><figure class="component figure-component"><img src="../assets/images/figures/fig-056.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure><p class="content-block paragraph">路由</p><p class="content-block paragraph">分类器（LLM 或传统）检查输入并将其分派给专门的处理程序。</p><p class="content-block paragraph">图 19.2：路由模式：输入被分类一次，然后由专家处理。</p><p class="content-block paragraph">何时使用：具有不同最佳提示、工具或模型的不同任务类型。客户 支持分类、多模式输入处理。</p><p class="content-block paragraph">并行化</p><p class="content-block paragraph">多个 LLM 调用同时运行，并由编程层组合它们的输出。两个 子模式出现：</p><p class="content-block paragraph">• 分段（扇出）：将输入划分为不相交的块并独立处理每个块 - 例如，同时对代码库运行安全性、性能和风格检查。</p><p class="content-block paragraph">• 投票（冗余）：使用不同的种子或温度发出相同的提示 N 次， 然后通过多数投票[343]、奖励模型评分或LLM作为评委来选择最佳结果。</p><p class="content-block paragraph">并行化示例：代码审查</p><p class="content-block paragraph">1.并行调用：安全审查∥性能审查∥风格审查</p><p class="content-block paragraph">2. 聚合：合并所有发现、删除重复、按严重程度排名</p><p class="content-block paragraph">延迟 = max（单个呼叫）而不是 P（单个呼叫）。</p><p class="content-block paragraph">协调者-工作者</p><p class="content-block paragraph">在这里，LLM 自己决定如何分配工作。协调器模型分析任务，产生 子任务计划，将每个子任务分派给工作人员 LLM（可能有不同的提示或 工具），最后将它们的输出合并成一个连贯的结果。与并行化的主要区别 分解logits是模型生成的，而不是硬编码的。 何时使用：子任务的数量和性质无法确定的开放式问题 在设计时枚举 - 例如，“重构此代码库”需要首先了解依赖关系 在决定修改哪些文件之前先绘制图表。</p><p class="content-block paragraph">评估器-优化器</p><p class="content-block paragraph">双模型反馈循环[240]：生成器产生候选输出，而单独的评估器 根据明确的标准对它们进行评分。如果分数低于阈值，评估者的批评是 附加到生成器的上下文并重复循环，直到满足质量标准或重试 预算已用完。 何时使用：具有明确质量标准的任务——必须通过测试的代码、必须通过测试的翻译 必须保留意义，写作必须符合风格指南。</p><figure class="component figure-component"><img src="../assets/images/figures/fig-057.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure></div></section><section class="ast-section" id="chapter-20-s02"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>自主智能体模式</h2><p>本节聚焦“自主智能体模式”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">图19.3：Orchestrator-workers：LLM决定如何分解任务并合成worker 结果。</p><p class="content-block paragraph">图 19.4：评估器优化器：无需训练的迭代细化。</p><p class="content-block paragraph">这些模式使LLM能够控制执行流程本身。</p><p class="content-block paragraph">反应（理性+行动）</p><p class="content-block paragraph">基本智能体模式[127]。LLM在思考（内部推理）、 循环执行（工具调用）和观察（处理结果），直到产生最终答案。</p><p class="content-block paragraph">React 实施要点</p><p class="content-block paragraph">• 便签本：记录“想法”步骤，但不向用户显示。</p><p class="content-block paragraph">• 工具解析：工具从模型输出中提取结构化工具调用。</p><p class="content-block paragraph">• 最大迭代次数：始终限制循环（典型：10-25 次迭代）。</p><p class="content-block paragraph">• 终止：模型输出特殊操作（例如，final_answer）或不调用任何工具 检测到。</p><p class="content-block paragraph">规划智能体</p><p class="content-block paragraph">智能体在执行之前生成明确的计划，并且可以在执行中修改计划[126]。</p><p class="content-block paragraph">规划智能体：研究报告生成</p><p class="content-block paragraph">用户请求：“写一份 2 页的报告，比较时间序列的Transformer架构 预测。” 第 1 步 — 计划生成（单个LLM调用）：</p><figure class="component figure-component"><img src="../assets/images/figures/fig-058.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure><figure class="component figure-component"><img src="../assets/images/figures/fig-059.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure><p class="content-block paragraph">表 19.1：规划策略比较</p><p class="content-block paragraph">策略 重新规划 特点</p><p class="content-block paragraph">先计划后执行 从来没有 简单；脆弱到意想不到的结果 自适应 失败时 仅当某个步骤失败时才重新计划；成本适中 连续 每一步 每次观察后全面重新评估；费用- 严重但稳健 分层的 子计划已完成 高层计划确定；子计划生成dy- 纳米地</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>plan = [</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>{&quot;id&quot;: 1, &quot;task&quot;: &quot;Search for recent
+transformer -based &quot;
+&quot;time -series
 models
-(2023 -2025)",
-"tool": "search_web", "deps": []},
-{"id": 2, "task": "Read top 5 papers , extract
+(2023 -2025)&quot;,
+&quot;tool&quot;: &quot;search_web&quot;, &quot;deps&quot;: []},
+{&quot;id&quot;: 2, &quot;task&quot;: &quot;Read top 5 papers , extract
 key
-methods",
-"tool": "read_papers", "deps": [1]} ,
-{"id": 3, "task": "Build
+methods&quot;,
+&quot;tool&quot;: &quot;read_papers&quot;, &quot;deps&quot;: [1]} ,
+{&quot;id&quot;: 3, &quot;task&quot;: &quot;Build
 comparison
-table (architecture , "
-"dataset , metrics)",
-"tool": "none", "deps": [2]} ,
-{"id": 4, "task": "Write
+table (architecture , &quot;
+&quot;dataset , metrics)&quot;,
+&quot;tool&quot;: &quot;none&quot;, &quot;deps&quot;: [2]} ,
+{&quot;id&quot;: 4, &quot;task&quot;: &quot;Write
 introduction + methodology
-section",
-"tool": "none", "deps": [2]} ,
-{"id": 5, "task": "Write
-results + conclusion",
-"tool": "none", "deps": [3, 4]},
-{"id": 6, "task": "Review and polish
+section&quot;,
+&quot;tool&quot;: &quot;none&quot;, &quot;deps&quot;: [2]} ,
+{&quot;id&quot;: 5, &quot;task&quot;: &quot;Write
+results + conclusion&quot;,
+&quot;tool&quot;: &quot;none&quot;, &quot;deps&quot;: [3, 4]},
+{&quot;id&quot;: 6, &quot;task&quot;: &quot;Review and polish
 final
-report",
-"tool": "none", "deps": [5]} ,
-]
-</code></pre>
-<p>步骤 2 — 通过自适应重新规划执行：智能体独立执行步骤
-订单。第 1 步之后，搜索仅返回 3 篇相关论文。智能体重新规划：它添加了一个
-将搜索范围扩大到相邻域（例如 PatchTST、iTransformer）的子步骤。修订后的
-计划从步骤 2 继续，使用扩展的语料库。
-关键见解：该计划是一份动态文件——它提供了结构，但适应了观察。
-该执行框架以 DAG 的形式跟踪依赖关系，并且仅执行其前辈已执行的步骤
-完成。</p>
-<p>反思与自我批评</p>
-<p>智能体停下来评估自己的轨迹和正确的路线：</p>
-<ol>
-<li>
-<p>输出验证：“这是正确的吗？我错过了什么吗？”</p>
-</li>
-<li>
-<p>轨迹审查：审查最后 k 个步骤，识别错误或效率低下的地方。</p>
-</li>
-<li>
-<p>策略修订：重新考虑总体方法（“我解决的问题正确吗？”）。</p>
-</li>
-</ol>
-<p>反思：从失败中学习</p>
-<p>反射模式[224]维持持久的“反射记忆”。每次尝试失败后，
-智能体编写自然语言反射（“我失败了，因为我没有检查边缘情况”）。开
-下一次尝试时，这些反思将包含在提示中——实现跨情节学习
-没有体重更新。</p>
-<p>工具使用模式</p>
-<p>智能体如何调用工具会显着影响其可靠性、延迟和成本。五规范
-模式已经出现[332]：</p>
-<p>单转工具的使用。
-最简单的模式：模型发出一个工具调用，接收结果，
-并给出最终答案。足以满足事实查找、单位转换或单个 API 查询。
-该工具恰好进行了两次 LLM 调用（一项用于决定工具，一项用于综合结果）。</p>
-<h2 id="chapter-20-p373-3">Design Principles</h2>
-<p><span class="page-ref" id="pdf-p373">原 PDF p.373</span></p>
-<p>表 19.2：工具调用模式</p>
-<p>图案
-描述
-示例</p>
-<p>单匝
-每个 LLM 重新调用一次工具
-响应
-带搜索的简单问答</p>
-<p>多功能工具
-多个并行工具调用
-一个回应
-搜索+计算+格式</p>
-<p>顺序
-工具输出进入下一个
-工具调用
-搜索→阅读→提取</p>
-<p>嵌套
-工具
-打电话
-触发器
-另一个
-智能体
-代码智能体调用测试运行程序</p>
-<p>回退
-首选工具失败；尝试改变-
-本地人
-API→抓取→缓存</p>
-<p>多工具（并行）。
-现代 API（OpenAI、Anthropic）允许模型请求多个
-一次响应中的工具调用。该工具同时执行它们并一起返回所有结果。
-这极大地减少了需要来自多个来源的独立信息的任务的延迟——
-例如，同时获取股票价格、天气和日历。关键约束：工具必须
-是独立的（不需要任何工具的输出作为另一个工具的输入）。</p>
-<p>顺序（流水线）。
-每个工具的输出都会输入到下一个工具的输入中，形成数据流水线。
-模型根据之前的结果决定下一个工具。研究工作流程中常见的：
-搜索→获取页面→提取数据→分析。安全带必须跟踪不断增长的环境
-并且可能需要总结中间结果以保持在预算之内。</p>
-<p>嵌套（智能体即工具）。
-工具调用调用一个完全独立的智能体——有自己的提示符，
-工具和背景。父智能体将子智能体视为黑盒函数。这使得
-专业化：研究智能体将代码执行委托给编码智能体，编码智能体可以访问
-沙箱和测试运行程序。群体模式[336]通过专门的之间的切换概括了这一点
-智能体。</p>
-<p>回退（优雅降级）。
-执行框架按优先顺序尝试工具：如果首选工具
-失败（超时、速率限制、API 错误），它会自动回退到替代方案。模型需要
-无需了解后备logits - 执行框架会透明地处理它。示例：初级搜索
-API→备份搜索→缓存结果→通知模型搜索不可用。</p>
-<p>设计原则</p>
-<p>以下原则摘自 Anthropic 构建有效智能体的指南 [342]，适用
-跨越所有模式：</p>
-<ol>
-<li>
-<p>保持简单。使用最简单、可行的架构。仅在以下情况下增加复杂性：
-证明有必要。解决问题的提示链总是比
-多智能体系统可能。</p>
-</li>
-<li>
-<p>透明胜于聪明。每一步都应该是可检查的。避免隐藏状态或
-隐含推理。当智能体失败时，您需要了解原因——不透明架构
-使调试变得不可能。</p>
-</li>
-</ol>
-<p>3.提供好的工具。文档齐全、类型良好且具有清晰错误消息的工具是强制的
-乘数。描述模糊的工具会被滥用；具有精确模式的工具和
-使用指南将被正确选择。</p>
-<ol start="4">
-<li>为失败做好计划。每个工具调用都可能失败。构建重试logits、回退和优雅降级
-在执行框架级别，因此模型不需要推理基础设施故障。</li>
-</ol>
-<h2 id="chapter-20-p374-4">Pattern Selection Guide</h2>
-<p><span class="page-ref" id="pdf-p374">原 PDF p.374</span></p>
-<ol start="5">
-<li>
-<p>使用结构化输出。约束生成（JSON 模式、函数调用）可防止
-解析失败。生成需要正则表达式解析的自由格式文本的智能体很脆弱；一
-生成经过验证的 JSON 是稳健的。</p>
-</li>
-<li>
-<p>使用不同的输入进行测试。智能体行为比单轮聊天更加多变。一样的
-提示可以在不同的运行中产生不同的工具调用序列。进行对抗性测试，
-边缘情况、不明确的请求和格式错误的输入。</p>
-</li>
-</ol>
-<p>图案选择指南</p>
-<p>选择正确的模式取决于三个因素：(1) 任务结构的可预测性，
-(2) 在延迟和成本方面您可以承受多少个 LLM 调用，以及 (3) 质量是否需要迭代。
-使用下表作为决策矩阵 - 从顶部（最简单）开始，仅在以下情况下向下移动
-更简单的模式显然是失败的。</p>
-<p>表 19.3：何时使用每种智能体设计模式</p>
-<p>图案
-复杂性
-LLM电话
-最适合</p>
-<p>提示链接
-低
-N（固定）
-顺序任务、内容流水线
-路由
-低
-1+1
-多类型输入、分类
-并行化
-低
-N（平行）
-独立子任务、投票
-协调者-工作者
-中等
-变量
-未知分解
-评估优化器
-中等
-2–10（循环）
-质量关键的输出
-反应
-中等
-3–25（循环）
-一般工具使用、探索
-策划智能体
-高
-5–50+
-长期、多步骤的任务
-反思
-高
-+50% 管理费用
-第一次尝试经常失败的任务
-多智能体
-高
-很多
-领域复杂、专业化</p>
-<p>模式是可组合的：规划智能体可以对各个步骤使用提示链，
-评估器优化器在其审查阶段，并路由将子任务分派给专家。艺术
-知道何时停止添加图层。</p></div>
+report&quot;,
+&quot;tool&quot;: &quot;none&quot;, &quot;deps&quot;: [5]} ,
+]</code></pre></div><p class="content-block paragraph">步骤 2 — 通过自适应重新规划执行：智能体独立执行步骤 订单。第 1 步之后，搜索仅返回 3 篇相关论文。智能体重新规划：它添加了一个 将搜索范围扩大到相邻域（例如 PatchTST、iTransformer）的子步骤。修订后的 计划从步骤 2 继续，使用扩展的语料库。 关键见解：该计划是一份动态文件——它提供了结构，但适应了观察。 该执行框架以 DAG 的形式跟踪依赖关系，并且仅执行其前辈已执行的步骤 完成。</p><p class="content-block paragraph">反思与自我批评</p><p class="content-block paragraph">智能体停下来评估自己的轨迹和正确的路线：</p><p class="content-block paragraph">1. 输出验证：“这是正确的吗？我错过了什么吗？”</p><p class="content-block paragraph">2. 轨迹审查：审查最后 k 个步骤，识别错误或效率低下的地方。</p><p class="content-block paragraph">3. 策略修订：重新考虑总体方法（“我解决的问题正确吗？”）。</p><p class="content-block paragraph">反思：从失败中学习</p><p class="content-block paragraph">反射模式[224]维持持久的“反射记忆”。每次尝试失败后， 智能体编写自然语言反射（“我失败了，因为我没有检查边缘情况”）。开 下一次尝试时，这些反思将包含在提示中——实现跨情节学习 没有体重更新。</p><p class="content-block paragraph">工具使用模式</p><p class="content-block paragraph">智能体如何调用工具会显着影响其可靠性、延迟和成本。五规范 模式已经出现[332]：</p><p class="content-block paragraph">单转工具的使用。 最简单的模式：模型发出一个工具调用，接收结果， 并给出最终答案。足以满足事实查找、单位转换或单个 API 查询。 该工具恰好进行了两次 LLM 调用（一项用于决定工具，一项用于综合结果）。</p></div></section><section class="ast-section" id="chapter-20-s03"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>设计原则</h2><p>本节聚焦“设计原则”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">表 19.2：工具调用模式</p><p class="content-block paragraph">图案 描述 示例</p><p class="content-block paragraph">单匝 每个 LLM 重新调用一次工具 响应 带搜索的简单问答</p><p class="content-block paragraph">多功能工具 多个并行工具调用 一个回应 搜索+计算+格式</p><p class="content-block paragraph">顺序 工具输出进入下一个 工具调用 搜索→阅读→提取</p><p class="content-block paragraph">嵌套 工具 打电话 触发器 另一个 智能体 代码智能体调用测试运行程序</p><p class="content-block paragraph">回退 首选工具失败；尝试改变- 本地人 API→抓取→缓存</p><p class="content-block paragraph">多工具（并行）。 现代 API（OpenAI、Anthropic）允许模型请求多个 一次响应中的工具调用。该工具同时执行它们并一起返回所有结果。 这极大地减少了需要来自多个来源的独立信息的任务的延迟—— 例如，同时获取股票价格、天气和日历。关键约束：工具必须 是独立的（不需要任何工具的输出作为另一个工具的输入）。</p><p class="content-block paragraph">顺序（流水线）。 每个工具的输出都会输入到下一个工具的输入中，形成数据流水线。 模型根据之前的结果决定下一个工具。研究工作流程中常见的： 搜索→获取页面→提取数据→分析。安全带必须跟踪不断增长的环境 并且可能需要总结中间结果以保持在预算之内。</p><p class="content-block paragraph">嵌套（智能体即工具）。 工具调用调用一个完全独立的智能体——有自己的提示符， 工具和背景。父智能体将子智能体视为黑盒函数。这使得 专业化：研究智能体将代码执行委托给编码智能体，编码智能体可以访问 沙箱和测试运行程序。群体模式[336]通过专门的之间的切换概括了这一点 智能体。</p><p class="content-block paragraph">回退（优雅降级）。 执行框架按优先顺序尝试工具：如果首选工具 失败（超时、速率限制、API 错误），它会自动回退到替代方案。模型需要 无需了解后备logits - 执行框架会透明地处理它。示例：初级搜索 API→备份搜索→缓存结果→通知模型搜索不可用。</p><p class="content-block paragraph">以下原则摘自 Anthropic 构建有效智能体的指南 [342]，适用 跨越所有模式：</p><p class="content-block paragraph">1. 保持简单。使用最简单、可行的架构。仅在以下情况下增加复杂性： 证明有必要。解决问题的提示链总是比 多智能体系统可能。</p><p class="content-block paragraph">2. 透明胜于聪明。每一步都应该是可检查的。避免隐藏状态或 隐含推理。当智能体失败时，您需要了解原因——不透明架构 使调试变得不可能。</p><p class="content-block paragraph">3.提供好的工具。文档齐全、类型良好且具有清晰错误消息的工具是强制的 乘数。描述模糊的工具会被滥用；具有精确模式的工具和 使用指南将被正确选择。</p><p class="content-block paragraph">4. 为失败做好计划。每个工具调用都可能失败。构建重试logits、回退和优雅降级 在执行框架级别，因此模型不需要推理基础设施故障。</p></div></section><section class="ast-section" id="chapter-20-s04"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>模式选择指南</h2><p>本节聚焦“模式选择指南”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">5. 使用结构化输出。约束生成（JSON 模式、函数调用）可防止 解析失败。生成需要正则表达式解析的自由格式文本的智能体很脆弱；一 生成经过验证的 JSON 是稳健的。</p><p class="content-block paragraph">6. 使用不同的输入进行测试。智能体行为比单轮聊天更加多变。一样的 提示可以在不同的运行中产生不同的工具调用序列。进行对抗性测试， 边缘情况、不明确的请求和格式错误的输入。</p><p class="content-block paragraph">图案选择指南</p><p class="content-block paragraph">选择正确的模式取决于三个因素：(1) 任务结构的可预测性， (2) 在延迟和成本方面您可以承受多少个 LLM 调用，以及 (3) 质量是否需要迭代。 使用下表作为决策矩阵 - 从顶部（最简单）开始，仅在以下情况下向下移动 更简单的模式显然是失败的。</p><p class="content-block paragraph">表 19.3：何时使用每种智能体设计模式</p><p class="content-block paragraph">图案 复杂性 LLM电话 最适合</p><p class="content-block paragraph">提示链接 低 N（固定） 顺序任务、内容流水线 路由 低 1+1 多类型输入、分类 并行化 低 N（平行） 独立子任务、投票 协调者-工作者 中等 变量 未知分解 评估优化器 中等 2–10（循环） 质量关键的输出 反应 中等 3–25（循环） 一般工具使用、探索 策划智能体 高 5–50+ 长期、多步骤的任务 反思 高 +50% 管理费用 第一次尝试经常失败的任务 多智能体 高 很多 领域复杂、专业化</p><p class="content-block paragraph">模式是可组合的：规划智能体可以对各个步骤使用提示链， 评估器优化器在其审查阶段，并路由将子任务分派给专家。艺术 知道何时停止添加图层。</p></div></section></div>
           <nav class="chapter-pager"><a class="pager-link" href="chapter-19.html">← 智能体执行框架：上下文管理与编排</a><a class="pager-link next" href="chapter-21.html">智能体环境与基准 →</a></nav>
         </article>
-        
-    </section>
-  </main>
+        </section><aside class="right-outline"><div class="nav-section-title">本页结构</div><a class="outline-link" href="#chapter-20-s01">工作流模式</a><a class="outline-link" href="#chapter-20-s02">自主智能体模式</a><a class="outline-link" href="#chapter-20-s03">设计原则</a><a class="outline-link" href="#chapter-20-s04">模式选择指南</a></aside></main>
   <button class="back-top" id="back-top" type="button">↑</button>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/toc.js"></script>
   <script src="../assets/js/progress.js"></script>
-  
 </body>
 </html>

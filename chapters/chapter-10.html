@@ -4,197 +4,59 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>奖励模型训练 | 智能体式 AI 漫游指南</title>
-  <meta name="description" content="奖励模型、排序损失、标注质量和奖励黑客防护。" />
+  <meta name="description" content="本章整理该主题的关键概念、方法、系统实践和工程注意事项。" />
   <meta property="og:title" content="奖励模型训练 | 智能体式 AI 漫游指南" />
-  <meta property="og:description" content="奖励模型、排序损失、标注质量和奖励黑客防护。" />
+  <meta property="og:description" content="本章整理该主题的关键概念、方法、系统实践和工程注意事项。" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="canonical" href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/article.css" />
   <link rel="stylesheet" href="../assets/css/responsive.css" />
-  
 </head>
 <body class="article-page">
   <div class="reading-progress" id="reading-progress"></div>
   <header class="topbar">
-    <a class="brand" href="../index.html" aria-label="智能体式 AI 漫游指南">
-      <span class="brand-mark">AI</span>
-      <span><strong>智能体式 AI 漫游指南</strong><small>从基础到系统的中文技术文档站</small></span>
-    </a>
-    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a>
-<a class="active" href="../chapters/index.html">章节</a>
-<a class="" href="../glossary.html">术语表</a>
-<a class="" href="../references.html">参考文献</a>
-<a class="" href="../search.html">搜索</a>
-<a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
+    <a class="brand" href="../index.html"><span class="brand-mark">AST</span><span><strong>智能体式 AI 漫游指南</strong><small>结构化知识文档系统</small></span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="打开导航" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a><a class="active" href="../chapters/index.html">章节</a><a class="" href="../glossary.html">术语表</a><a class="" href="../references.html">参考文献</a><a class="" href="../search.html">搜索</a><a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
   </header>
-  <main class="layout">
-    
-        <aside class="left-nav" id="left-nav">
-          <div class="nav-section-title">章节</div>
-          <a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a>
-<a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a>
-<a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a>
-<a class="chapter-link active" href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a>
-<a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a>
-<a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a>
-<a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a>
-<a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a>
-<a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a>
-<a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a>
-<a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a>
-<a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a>
-<a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a>
-<a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a>
-<a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a>
-<a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a>
-<a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a>
-        </aside>
-        <aside class="right-outline" id="right-outline">
-          <div class="nav-section-title">本页大纲</div>
-          <a class="outline-link level-h2" href="#chapter-10-p182-1">Bradley-Terry Model - Full Derivation</a>
-<a class="outline-link level-h2" href="#chapter-10-p183-2">Reward Model Architectures</a>
-<a class="outline-link level-h2" href="#chapter-10-p183-3">Reward Model Training Tricks</a>
-<a class="outline-link level-h2" href="#chapter-10-p184-4">Process Reward Models vs Outcome Reward Models</a>
-<a class="outline-link level-h2" href="#chapter-10-p185-5">Rule-Based Rewards for RLVR</a>
-<a class="outline-link level-h2" href="#chapter-10-p186-6">Multi-Objective Rewards - Combination Strategies</a>
-<a class="outline-link level-h2" href="#chapter-10-p187-7">Listwise Rank-Based Rewards</a>
-        </aside>
-        
-    <section class="content-shell">
-      
-        <article class="article-card">
+  <main class="layout"><aside class="left-nav" id="left-nav"><div class="nav-section-title">语义目录</div><div class="nav-cluster"><strong>导读</strong><a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a><a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a></div><div class="nav-cluster"><strong>LLM 基础与系统</strong><a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a><a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a><a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a></div><div class="nav-cluster"><strong>训练、强化学习与对齐</strong><a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a><a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a><a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a><a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a><a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a><a class="chapter-link active" href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a><a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a><a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a></div><div class="nav-cluster"><strong>Agentic AI 系统</strong><a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a><a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a><a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a><a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a><a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a><a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a><a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a><a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a><a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a><a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a><a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a><a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a><a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a></div><div class="nav-cluster"><strong>推理与评估</strong><a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a></div><div class="nav-cluster"><strong>参考与总结</strong><a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a><a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a><a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a></div></aside><section class="content-shell">
+        <article class="article-card" data-ast-source="../assets/data/clean_chapter_tree.json">
           <header class="article-header">
-            <p class="part-label">第二部分：LLM 的强化学习方法</p>
+            <p class="part-label">训练、强化学习与对齐</p>
             <h1>奖励模型训练</h1>
-            <p>奖励模型、排序损失、标注质量和奖励黑客防护。</p>
-            <div class="article-meta"><span>原 PDF p.182-189</span><span>7 个页内条目</span></div>
+            <p>本章整理该主题的关键概念、方法、系统实践和工程注意事项。</p>
           </header>
-          <div class="article-body"><h2 id="chapter-10-p182-1">Bradley-Terry Model - Full Derivation</h2>
-<p><span class="page-ref" id="pdf-p182">原 PDF p.182</span></p>
-<p>奖励模型训练</p>
-<p>奖励模型是人类偏好和强化学习训练信号之间的桥梁。一个训练有素的
-奖励模式对于成功的 RLHF 至关重要；训练有素的人会导致奖励黑客行为
-行为失调。本节涵盖理论基础、实践训练技术、
-以及奖励模型的架构选择。</p>
-<p>Bradley-Terry 模型 – 完全推导</p>
-<p>Bradley-Terry 模型 [198] 是成对偏好的标准概率框架
-学习。给定对提示 q 的两个响应 y1 和 y2，模型假设：</p>
-<p>P(y1 ≻y2 | q) = σ(r(y1, q) −r(y2, q)) =
-呃（y1，q）</p>
-<p>er(y1,q) + er(y2,q) ,</p>
-<pre><code class="language-math">其中 r : Y × Q →R 是标量奖励函数，σ 是 sigmoid 函数。
-</code></pre>
-<p>最大似然估计</p>
-<pre><code class="language-text">Given a dataset D = {(q(k), y(k)
+          <aside class="component key-concepts-panel"><span class="component-label">Key Concepts</span><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div></aside>
+          <div class="article-body"><section class="ast-section" id="chapter-10-s01"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>Bradley-Terry 模型完整推导</h2><p>本节聚焦“Bradley-Terry 模型完整推导”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">奖励模型是人类偏好和强化学习训练信号之间的桥梁。一个训练有素的 奖励模式对于成功的 RLHF 至关重要；训练有素的人会导致奖励黑客行为 行为失调。本节涵盖理论基础、实践训练技术、 以及奖励模型的架构选择。</p><p class="content-block paragraph">Bradley-Terry 模型 – 完全推导</p><p class="content-block paragraph">Bradley-Terry 模型 [198] 是成对偏好的标准概率框架 学习。给定对提示 q 的两个响应 y1 和 y2，模型假设：</p><p class="content-block paragraph">P(y1 ≻y2 | q) = σ(r(y1, q) −r(y2, q)) = 呃（y1，q）</p><p class="content-block paragraph">er(y1,q) + er(y2,q) ,</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>where r : Y × Q →R is the scalar reward function and σ is the sigmoid function.</code></pre></div><p class="content-block paragraph">最大似然估计</p><div class="component code-component"><div class="block-label">text</div><pre><code>Given a dataset D = {(q(k), y(k)
 w , y(k)
 l
 )}N
-k=1 of preference pairs, the MLE objective is:
-</code></pre>
-<p>氮
-X</p>
-<p>LBT(φ) = −1</p>
-<p>氮</p>
-<pre><code class="language-text">k=1
+k=1 of preference pairs, the MLE objective is:</code></pre></div><p class="content-block paragraph">氮 X</p><p class="content-block paragraph">LBT(φ) = −1</p><div class="component code-component"><div class="block-label">text</div><pre><code>k=1
 log σ
  rϕ(y(k)
 w , q(k)) −rϕ(y(k)
 l
 , q(k))
-,
-</code></pre>
-<p>其中 rphi 是由 phi 参数化的神经网络。这是一个二元交叉熵损失，其中
-“积极”类别是首选响应。</p>
-<p>布拉德利-特里假设</p>
-<ol>
-<li>
-<p>偏好是传递的：如果 y1 ≻y2 且 y2 ≻y3，则 y1 ≻y3。</p>
-</li>
-<li>
-<p>偏好由标量奖励决定（无多维偏好）。</p>
-</li>
-<li>
-<p>偏好概率仅取决于奖励的差异。</p>
-</li>
-<li>
-<p>各对之间的偏好是独立的（无注释器效应）。</p>
-</li>
-</ol>
-<p>这些假设在实践中经常被违反，从而激发了 Plackett-Luce 模型等扩展
-用于排名和多维奖励模型。</p>
-<p>保证金损失延长</p>
-<p>常见的扩展会添加保证金 m 以确保获胜和失败奖励之间的最小差距：</p>
-<p>氮
-X</p>
-<p>L 保证金 = −1</p>
-<p>氮</p>
-<pre><code class="language-text">k=1
+,</code></pre></div><p class="content-block paragraph">其中 rphi 是由 phi 参数化的神经网络。这是一个二元交叉熵损失，其中 “积极”类别是首选响应。</p><p class="content-block paragraph">布拉德利-特里假设</p><p class="content-block paragraph">1. 偏好是传递的：如果 y1 ≻y2 且 y2 ≻y3，则 y1 ≻y3。</p><p class="content-block paragraph">2. 偏好由标量奖励决定（无多维偏好）。</p><p class="content-block paragraph">3. 偏好概率仅取决于奖励的差异。</p><p class="content-block paragraph">4. 各对之间的偏好是独立的（无注释器效应）。</p><p class="content-block paragraph">这些假设在实践中经常被违反，从而激发了 Plackett-Luce 模型等扩展 用于排名和多维奖励模型。</p><p class="content-block paragraph">保证金损失延长</p><p class="content-block paragraph">常见的扩展会添加保证金 m 以确保获胜和失败奖励之间的最小差距：</p><p class="content-block paragraph">氮 X</p><p class="content-block paragraph">L 保证金 = −1</p><div class="component code-component"><div class="block-label">text</div><pre><code>k=1
 log σ
  rϕ(y(k)
 w , q(k)) −rϕ(y(k)
 l
 , q(k)) −m
-.
-</code></pre>
-<h2 id="chapter-10-p183-2">Reward Model Architectures</h2>
-<h2 id="chapter-10-p183-3">Reward Model Training Tricks</h2>
-<p><span class="page-ref" id="pdf-p183">原 PDF p.183</span></p>
-<p>奖励模型架构</p>
-<p>LLM分类
-标准奖励模型架构采用预训练的 LLM 并取代了语言
-带有标量回归头的建模头（将隐藏状态映射到词汇logits）
-（将最终的隐藏状态映射到单个奖励值）。</p>
-<p>该架构是：</p>
-<ol>
-<li>Backbone：一个预训练的 LLM（例如 Llama、Mistral），用于编码提示-响应对
-进入一系列隐藏状态。</li>
-</ol>
-<p>2.池化：提取最后一个标记位置的隐藏状态（对于仅解码器模型）或
-[CLS] token（用于编码器模型）。</p>
-<ol start="3">
-<li>回归头：一个线性层 W ∈Rd×1，将池化隐藏状态映射到标量
-奖励。</li>
-</ol>
-<p>TRL 中的奖励模型训练</p>
-<pre><code class="language-text">from trl import
+.</code></pre></div></div></section><section class="ast-section" id="chapter-10-s02"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>奖励模型架构</h2><p>本节聚焦“奖励模型架构”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">LLM分类 标准奖励模型架构采用预训练的 LLM 并取代了语言 带有标量回归头的建模头（将隐藏状态映射到词汇logits） （将最终的隐藏状态映射到单个奖励值）。</p><p class="content-block paragraph">该架构是：</p><p class="content-block paragraph">1. Backbone：一个预训练的 LLM（例如 Llama、Mistral），用于编码提示-响应对 进入一系列隐藏状态。</p><p class="content-block paragraph">2.池化：提取最后一个标记位置的隐藏状态（对于仅解码器模型）或 [CLS] token（用于编码器模型）。</p><p class="content-block paragraph">3. 回归头：一个线性层 W ∈Rd×1，将池化隐藏状态映射到标量 奖励。</p><p class="content-block paragraph">TRL 中的奖励模型训练</p><div class="component code-component"><div class="block-label">text</div><pre><code>from trl import
 RewardConfig , RewardTrainer
 from
 transformers
 import
-AutoModelForSequenceClassification
-</code></pre>
-<pre><code class="language-text"># Load
+AutoModelForSequenceClassification</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Load
 model
 with
 scalar
 head (num_labels =1)
-model = AutoModelForSequenceClassification . from_pretrained (
-</code></pre>
-<pre><code class="language-text">"meta -llama/Llama -3.1 -8B-Instruct",
+model = AutoModelForSequenceClassification . from_pretrained (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;meta -llama/Llama -3.1 -8B-Instruct&quot;,
 num_labels =1,
-)
-</code></pre>
-<pre><code class="language-text">config = RewardConfig(
-</code></pre>
-<pre><code class="language-text">output_dir="reward_model",
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>config = RewardConfig(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>output_dir=&quot;reward_model&quot;,
 per_device_train_batch_size =4,
 gradient_accumulation_steps =4,
 learning_rate =1e-5,
@@ -202,396 +64,132 @@ num_train_epochs =1,
 # Margin
 loss
 center_rewards_coefficient =0.01 ,
-)
-</code></pre>
-<pre><code class="language-text">trainer = RewardTrainer(
-</code></pre>
-<pre><code class="language-text">model=model ,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>trainer = RewardTrainer(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=model ,
 args=config ,
 train_dataset=dataset ,
 # must have
 chosen/rejected
 columns
 )
-trainer.train ()
-</code></pre>
-<p>奖励模型训练技巧</p>
-<p>奖励中心</p>
-<p>原始奖励模型输出可以具有任意规模和偏移量。以奖励为中心（减去
-平均值）稳定 RL 训练：</p>
-<p>rcentered(y, q) = rψ(y, q) −Ey′∼πθ[rψ(y′, q)]。</p>
-<p>在 TRL 中，这是通过 center_rewards_coefficient 参数实现的，该参数添加了
-惩罚非零均值奖励的奖励模型损失的正则化项。</p>
-<h2 id="chapter-10-p184-4">Process Reward Models vs Outcome Reward Models</h2>
-<p><span class="page-ref" id="pdf-p184">原 PDF p.184</span></p>
-<p>长度偏差校正</p>
-<p>众所周知，奖励模型表现出长度偏差：它们倾向于将更高的奖励分配给更长的人
-响应，无论质量如何。这可以通过以下方式纠正：</p>
-<ol>
-<li>
-<p>长度归一化：将奖励除以响应长度。</p>
-</li>
-<li>
-<p>长度控制训练：将长度作为特征，训练模型为长度-
-不变的。</p>
-</li>
-<li>
-<p>校准：事后回归以消除长度效应。</p>
-</li>
-</ol>
-<p>保证金损失</p>
-<p>在 Bradley-Terry 损失中添加边际 m 可确保奖励模型分配有意义的不同值
-首选和非首选响应的分数：</p>
-<pre><code class="language-text">Lmargin = max
+trainer.train ()</code></pre></div><p class="content-block paragraph">奖励中心</p><p class="content-block paragraph">原始奖励模型输出可以具有任意规模和偏移量。以奖励为中心（减去 平均值）稳定 RL 训练：</p><p class="content-block paragraph">rcentered(y, q) = rψ(y, q) −Ey′∼πθ[rψ(y′, q)]。</p><p class="content-block paragraph">在 TRL 中，这是通过 center_rewards_coefficient 参数实现的，该参数添加了 惩罚非零均值奖励的奖励模型损失的正则化项。</p></div></section><section class="ast-section" id="chapter-10-s03"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>奖励模型训练技巧</h2><p>本节聚焦“奖励模型训练技巧”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">LLM分类 标准奖励模型架构采用预训练的 LLM 并取代了语言 带有标量回归头的建模头（将隐藏状态映射到词汇logits） （将最终的隐藏状态映射到单个奖励值）。</p><p class="content-block paragraph">该架构是：</p><p class="content-block paragraph">1. Backbone：一个预训练的 LLM（例如 Llama、Mistral），用于编码提示-响应对 进入一系列隐藏状态。</p><p class="content-block paragraph">2.池化：提取最后一个标记位置的隐藏状态（对于仅解码器模型）或 [CLS] token（用于编码器模型）。</p><p class="content-block paragraph">3. 回归头：一个线性层 W ∈Rd×1，将池化隐藏状态映射到标量 奖励。</p><p class="content-block paragraph">TRL 中的奖励模型训练</p><div class="component code-component"><div class="block-label">text</div><pre><code>from trl import
+RewardConfig , RewardTrainer
+from
+transformers
+import
+AutoModelForSequenceClassification</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Load
+model
+with
+scalar
+head (num_labels =1)
+model = AutoModelForSequenceClassification . from_pretrained (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;meta -llama/Llama -3.1 -8B-Instruct&quot;,
+num_labels =1,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>config = RewardConfig(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>output_dir=&quot;reward_model&quot;,
+per_device_train_batch_size =4,
+gradient_accumulation_steps =4,
+learning_rate =1e-5,
+num_train_epochs =1,
+# Margin
+loss
+center_rewards_coefficient =0.01 ,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>trainer = RewardTrainer(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=model ,
+args=config ,
+train_dataset=dataset ,
+# must have
+chosen/rejected
+columns
+)
+trainer.train ()</code></pre></div><p class="content-block paragraph">奖励中心</p><p class="content-block paragraph">原始奖励模型输出可以具有任意规模和偏移量。以奖励为中心（减去 平均值）稳定 RL 训练：</p><p class="content-block paragraph">rcentered(y, q) = rψ(y, q) −Ey′∼πθ[rψ(y′, q)]。</p><p class="content-block paragraph">在 TRL 中，这是通过 center_rewards_coefficient 参数实现的，该参数添加了 惩罚非零均值奖励的奖励模型损失的正则化项。</p></div></section><section class="ast-section" id="chapter-10-s04"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>过程奖励模型与结果奖励模型</h2><p>本节聚焦“过程奖励模型与结果奖励模型”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">长度偏差校正</p><p class="content-block paragraph">众所周知，奖励模型表现出长度偏差：它们倾向于将更高的奖励分配给更长的人 响应，无论质量如何。这可以通过以下方式纠正：</p><p class="content-block paragraph">1. 长度归一化：将奖励除以响应长度。</p><p class="content-block paragraph">2. 长度控制训练：将长度作为特征，训练模型为长度- 不变的。</p><p class="content-block paragraph">3. 校准：事后回归以消除长度效应。</p><p class="content-block paragraph">保证金损失</p><p class="content-block paragraph">在 Bradley-Terry 损失中添加边际 m 可确保奖励模型分配有意义的不同值 首选和非首选响应的分数：</p><div class="component code-component"><div class="block-label">text</div><pre><code>Lmargin = max
  0, m −(rw −rl)
-.
-</code></pre>
-<p>过程奖励模型与结果奖励模型</p>
-<p>PRM 与 ORM 比较</p>
-<p>财产
-ORM
-PRM</p>
-<p>奖励信号
-仅最终答案
-每个推理步骤
-训练数据
-（提示、回答、正确吗？）
-（提示、步骤、步骤标签）
-注释成本
-低
-高
-学分分配
-稀疏
-密集
-奖励黑客行为
-更容易被黑客攻击
-更难破解
-最适合
-简单的任务
-多步推理
-推理成本
-低
-高（每一步得分）</p>
-<p>何时使用 PRM</p>
-<p>流程奖励模型在以下情况下最有价值：</p>
-<p>• 该任务需要多步骤推理（数学、代码、logits）。</p>
-<p>• 最终答案是二元的（正确/不正确），但中间步骤的质量各不相同。</p>
-<p>• 您想要使用奖励模型进行搜索（例如，具有步骤分数的波束搜索）。</p>
-<p>• 您可以访问步骤级注释（或可以自动生成它们）。</p>
-<p>对于简单的任务（情感、毒性、事实性），ORM 就足够了，而且便宜得多。</p>
-<p>LLM RLHF 中的 PBRS
-原始奖励：二进制正确性（如果最终答案正确则为 1，否则为 0）——极其稀疏
-用于多步推理。
-潜在函数： Φ(s) = 来自验证者的部分信用（例如，中间推理的分数
-logits上有效的步骤）。
-成形奖励：智能体为每个有效推理步骤获取增量信号，同时保留
-保证最优策略仍然最大化最终答案的正确性。
-实际实现：</p>
-<p>• 流程奖励模型 (PRM)，对思维链中的每个步骤进行评分</p>
-<p>• 代码生成中的中间编译检查</p>
-<h2 id="chapter-10-p185-5">Rule-Based Rewards for RLVR</h2>
-<p><span class="page-ref" id="pdf-p185">原 PDF p.185</span></p>
-<p>• 多部分答案的部分匹配分数</p>
-<p>这是基于潜力的奖励塑造（PBRS）[173]在LLM设置中的直接应用——
-成形奖励保持最优政策的理论保证使 PRM 成为有原则的
-推理任务中密集奖励的方法。</p>
-<p>自动 PRM 注释</p>
-<p>可以使用以下方法自动生成步骤级注释：</p>
-<ol>
-<li>
-<p>蒙特卡洛推出：对于每个中间步骤，对多个完成进行采样并使用
-达到正确答案的分数作为步骤奖励。</p>
-</li>
-<li>
-<p>LLM作为评判：使用强大的LLM来评估每一步。</p>
-</li>
-<li>
-<p>形式验证：对于数学/代码，使用验证器来检查每个步骤。</p>
-</li>
-</ol>
-<p>RLVR 基于规则的奖励</p>
-<p>可验证奖励的强化学习 (RLVR) 使用确定性、基于规则的奖励
-函数而不是学习奖励模型。这大大减少了奖励黑客行为（尽管
-模型仍然可以利用格式技巧、边缘情况或测试记忆），并且是使用的方法
-DeepSeek-R1 [15]。</p>
-<p>TRL 中基于规则的奖励函数</p>
-<p>进口重新</p>
-<pre><code class="language-text">def
+.</code></pre></div><p class="content-block paragraph">PRM 与 ORM 比较</p><p class="content-block paragraph">财产 ORM PRM</p><p class="content-block paragraph">奖励信号 仅最终答案 每个推理步骤 训练数据 （提示、回答、正确吗？） （提示、步骤、步骤标签） 注释成本 低 高 学分分配 稀疏 密集 奖励黑客行为 更容易被黑客攻击 更难破解 最适合 简单的任务 多步推理 推理成本 低 高（每一步得分）</p><p class="content-block paragraph">何时使用 PRM</p><p class="content-block paragraph">流程奖励模型在以下情况下最有价值：</p><p class="content-block paragraph">• 该任务需要多步骤推理（数学、代码、logits）。</p><p class="content-block paragraph">• 最终答案是二元的（正确/不正确），但中间步骤的质量各不相同。</p><p class="content-block paragraph">• 您想要使用奖励模型进行搜索（例如，具有步骤分数的波束搜索）。</p><p class="content-block paragraph">• 您可以访问步骤级注释（或可以自动生成它们）。</p><p class="content-block paragraph">对于简单的任务（情感、毒性、事实性），ORM 就足够了，而且便宜得多。</p><p class="content-block paragraph">LLM RLHF 中的 PBRS 原始奖励：二进制正确性（如果最终答案正确则为 1，否则为 0）——极其稀疏 用于多步推理。 潜在函数： Φ(s) = 来自验证者的部分信用（例如，中间推理的分数 logits上有效的步骤）。 成形奖励：智能体为每个有效推理步骤获取增量信号，同时保留 保证最优策略仍然最大化最终答案的正确性。 实际实现：</p><p class="content-block paragraph">• 流程奖励模型 (PRM)，对思维链中的每个步骤进行评分</p><p class="content-block paragraph">• 代码生成中的中间编译检查</p></div></section><section class="ast-section" id="chapter-10-s05"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>面向 RLVR 的规则奖励</h2><p>本节聚焦“面向 RLVR 的规则奖励”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">• 多部分答案的部分匹配分数</p><p class="content-block paragraph">这是基于潜力的奖励塑造（PBRS）[173]在LLM设置中的直接应用—— 成形奖励保持最优政策的理论保证使 PRM 成为有原则的 推理任务中密集奖励的方法。</p><p class="content-block paragraph">自动 PRM 注释</p><p class="content-block paragraph">可以使用以下方法自动生成步骤级注释：</p><p class="content-block paragraph">1. 蒙特卡洛推出：对于每个中间步骤，对多个完成进行采样并使用 达到正确答案的分数作为步骤奖励。</p><p class="content-block paragraph">2. LLM作为评判：使用强大的LLM来评估每一步。</p><p class="content-block paragraph">3. 形式验证：对于数学/代码，使用验证器来检查每个步骤。</p><p class="content-block paragraph">RLVR 基于规则的奖励</p><p class="content-block paragraph">可验证奖励的强化学习 (RLVR) 使用确定性、基于规则的奖励 函数而不是学习奖励模型。这大大减少了奖励黑客行为（尽管 模型仍然可以利用格式技巧、边缘情况或测试记忆），并且是使用的方法 DeepSeek-R1 [15]。</p><p class="content-block paragraph">TRL 中基于规则的奖励函数</p><p class="content-block paragraph">进口重新</p><div class="component code-component"><div class="block-label">text</div><pre><code>def
 format_reward(completions , ** kwargs):
-"""Reward for using &lt;think &gt;... &lt;/ think &gt;&lt;answer &gt;... &lt;/ answer &gt; format."""
+&quot;&quot;&quot;Reward for using &lt;think &gt;... &lt;/ think &gt;&lt;answer &gt;... &lt;/ answer &gt; format.&quot;&quot;&quot;
 rewards = []
-pattern = r"&lt;think &gt;.*? &lt;/ think &gt;\s*&lt;answer &gt;.*? &lt;/ answer &gt;"
+pattern = r&quot;&lt;think &gt;.*? &lt;/ think &gt;\s*&lt;answer &gt;.*? &lt;/ answer &gt;&quot;
 for
 completion in completions:
-text = completion [0]["content"]
+text = completion [0][&quot;content&quot;]
 rewards.append (1.0 if re.fullmatch(pattern , text , re.DOTALL) else 0.0)
 return
-rewards
-</code></pre>
-<pre><code class="language-text">def
+rewards</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 correctness_reward (completions , ground_truth , ** kwargs):
-"""Reward for
+&quot;&quot;&quot;Reward for
 correct
 final
-answer."""
+answer.&quot;&quot;&quot;
 rewards = []
-for completion , gt in zip(completions , ground_truth):
-</code></pre>
-<pre><code class="language-text">text = completion [0]["content"]
-match = re.search(r"&lt;answer &gt;(.*?) &lt;/answer &gt;", text , re.DOTALL)
-if match:
-</code></pre>
-<pre><code class="language-text">answer = match.group (1).strip ()
+for completion , gt in zip(completions , ground_truth):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>text = completion [0][&quot;content&quot;]
+match = re.search(r&quot;&lt;answer &gt;(.*?) &lt;/answer &gt;&quot;, text , re.DOTALL)
+if match:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>answer = match.group (1).strip ()
 rewards.append (1.0 if answer == gt else 0.0)
-else:
-</code></pre>
-<pre><code class="language-text">rewards.append (0.0)
+else:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>rewards.append (0.0)
 return
-rewards
-</code></pre>
-<pre><code class="language-text">def
+rewards</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 code_execution_reward (completions , test_cases , ** kwargs):
-"""Reward for code that
+&quot;&quot;&quot;Reward for code that
 passes
 test
-cases."""
+cases.&quot;&quot;&quot;
 import
 subprocess , tempfile , os
 rewards = []
-for completion , tests in zip(completions , test_cases):
-</code></pre>
-<pre><code class="language-text">code = completion [0]["content"]
+for completion , tests in zip(completions , test_cases):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>code = completion [0][&quot;content&quot;]
 passed = 0
-for test in tests:
-</code></pre>
-<pre><code class="language-text">with
+for test in tests:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>with
 tempfile. NamedTemporaryFile (
-mode="w", suffix=".py", delete=False
-) as f:
-</code></pre>
-<pre><code class="language-text">f.write(code + "\n" + test)
-fname = f.name
-</code></pre>
-<h2 id="chapter-10-p186-6">Multi-Objective Rewards - Combination Strategies</h2>
-<p><span class="page-ref" id="pdf-p186">原 PDF p.186</span></p>
-<p>尝试：</p>
-<pre><code class="language-text">result = subprocess.run(
-</code></pre>
-<pre><code class="language-text">["python", fname], capture_output =True ,
+mode=&quot;w&quot;, suffix=&quot;.py&quot;, delete=False
+) as f:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>f.write(code + &quot;\n&quot; + test)
+fname = f.name</code></pre></div></div></section><section class="ast-section" id="chapter-10-s06"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>多目标奖励：组合策略</h2><p>本节聚焦“多目标奖励：组合策略”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div><div class="concept-chip"><strong>组相对策略优化（GRPO）</strong><span>GRPO</span><p>基于同一提示多条响应的组内相对优势进行优化的方法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">尝试：</p><div class="component code-component"><div class="block-label">text</div><pre><code>result = subprocess.run(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>[&quot;python&quot;, fname], capture_output =True ,
 timeout =5, text=True
 )
 passed += int(result.returncode == 0)
 except
 Exception:
 pass
-finally:
-</code></pre>
-<pre><code class="language-text">os.unlink(fname)
+finally:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>os.unlink(fname)
 rewards.append(passed / len(tests))
 return
-rewards
-</code></pre>
-<p>基于规则的奖励陷阱</p>
-<p>• 格式游戏：模型学习在没有正确内容的情况下生成正确的格式。
-始终将格式和正确性奖励结合起来。</p>
-<p>• 测试用例泄漏：如果测试用例在训练数据中，则模型会记住它们。</p>
-<p>• 超时利用：模型可能会生成超时代码（避免失败）。使用
-严格超时并明确惩罚超时。</p>
-<p>• 奖励稀疏性：二元奖励（0/1）对于复杂任务来说可能过于稀疏。考虑
-部分学分或中间奖励。</p>
-<p>多目标奖励——组合策略</p>
-<p>当使用多个奖励信号进行训练时，组合策略会显着影响最终结果
-政策。</p>
-<p>多重奖励组合策略</p>
-<p>1.加权和：r=P
-n wnrn。简单但对规模敏感。</p>
-<ol start="2">
-<li>标准化然后求和（GDPO）：将每个奖励标准化为零均值和单位方差
-组内，然后与权重相加。尺度不变。</li>
-</ol>
-<p>3、词典：按优先顺序优化奖励；只考虑较低优先级的奖励
-当更高优先级的任务被捆绑时。</p>
-<ol start="4">
-<li>受约束：在次要奖励的约束下最大化主要奖励。</li>
-</ol>
-<p>5.帕累托：维持政策的帕累托前沿并根据偏好进行选择。</p>
-<p>TRL 中的多重奖励训练</p>
-<pre><code class="language-text">from trl import
-GRPOConfig , GRPOTrainer
-</code></pre>
-<pre><code class="language-text">config = GRPOConfig(
-</code></pre>
-<pre><code class="language-text"># GDPO: normalise
+rewards</code></pre></div><p class="content-block paragraph">基于规则的奖励陷阱</p><p class="content-block paragraph">• 格式游戏：模型学习在没有正确内容的情况下生成正确的格式。 始终将格式和正确性奖励结合起来。</p><p class="content-block paragraph">• 测试用例泄漏：如果测试用例在训练数据中，则模型会记住它们。</p><p class="content-block paragraph">• 超时利用：模型可能会生成超时代码（避免失败）。使用 严格超时并明确惩罚超时。</p><p class="content-block paragraph">• 奖励稀疏性：二元奖励（0/1）对于复杂任务来说可能过于稀疏。考虑 部分学分或中间奖励。</p><p class="content-block paragraph">多目标奖励——组合策略</p><p class="content-block paragraph">当使用多个奖励信号进行训练时，组合策略会显着影响最终结果 政策。</p><p class="content-block paragraph">多重奖励组合策略</p><div class="component code-component"><div class="block-label">text</div><pre><code>1.加权和：r=P</code></pre></div><p class="content-block paragraph">n wnrn。简单但对规模敏感。</p><p class="content-block paragraph">2. 标准化然后求和（GDPO）：将每个奖励标准化为零均值和单位方差 组内，然后与权重相加。尺度不变。</p><p class="content-block paragraph">3、词典：按优先顺序优化奖励；只考虑较低优先级的奖励 当更高优先级的任务被捆绑时。</p><p class="content-block paragraph">4. 受约束：在次要奖励的约束下最大化主要奖励。</p><p class="content-block paragraph">5.帕累托：维持政策的帕累托前沿并根据偏好进行选择。</p><p class="content-block paragraph">TRL 中的多重奖励训练</p><div class="component code-component"><div class="block-label">text</div><pre><code>from trl import
+GRPOConfig , GRPOTrainer</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>config = GRPOConfig(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># GDPO: normalise
 each
 reward
 independently
-multi_objective_aggregation =" normalize_then_sum ",
+multi_objective_aggregation =&quot; normalize_then_sum &quot;,
 reward_weights =[1.0 , 0.3, 0.1] ,
 # correctness , format , length
 num_generations =8,
-)
-</code></pre>
-<pre><code class="language-text">trainer = GRPOTrainer(
-</code></pre>
-<pre><code class="language-text">model=model ,
-reward_funcs =[
-</code></pre>
-<pre><code class="language-text">correctness_reward ,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>trainer = GRPOTrainer(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=model ,
+reward_funcs =[</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>correctness_reward ,
 format_reward ,
 length_penalty_reward ,
-],
-</code></pre>
-<h2 id="chapter-10-p187-7">Listwise Rank-Based Rewards</h2>
-<p><span class="page-ref" id="pdf-p187">原 PDF p.187</span></p>
-<pre><code class="language-text">args=config ,
+],</code></pre></div></div></section><section class="ast-section" id="chapter-10-s07"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>基于列表排序的奖励</h2><p>本节聚焦“基于列表排序的奖励”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>组相对策略优化（GRPO）</strong><span>GRPO</span><p>基于同一提示多条响应的组内相对优势进行优化的方法。</p></div></div></div><div class="section-blocks"><div class="component code-component"><div class="block-label">text</div><pre><code>args=config ,
 train_dataset=dataset ,
-)
-</code></pre>
-<p>基于列表排名的奖励</p>
-<p>虽然 Bradley-Terry 模型可以处理成对偏好 (yw ≻yl)，但许多实际场景
-涉及同时对多个响应进行排名。列表奖励模型从完整的模型中学习
-排序，提供更丰富的训练信号并实现更好的校准。</p>
-<p>动机：超越成对</p>
-<p>为什么选择列表方式？</p>
-<p>• 更丰富的信号：K 个响应的排名包含
-K
-隐式的成对比较，但是
-还捕获相对利润（排名 1 比排名 3 好多少）。</p>
-<p>• 更好的校准：Pairwise BT 模型只学习奖励的差异；列表模型
-学习绝对奖励尺度。</p>
-<p>• 天生适合 GRPO：GRPO 每个提示生成 N 个响应并对它们进行排名 —
-列表奖励与此工作流程直接一致。</p>
-<p>• 注释器效率：对 5 个响应进行排名比标记所有 10 个可能的对更快
-独立。</p>
-<p>普拉克特-卢斯模型</p>
-<p>Plackett-Luce (PL) 模型 [199] 是 Bradley-Terry 到完整排名的标准扩展。
-给定 K 个响应 y1, .。。 , yK 的排名为 π（其中 π(1) 是最好的）：</p>
-<p>Plackett-Luce 似然</p>
-<p>K
-是</p>
-<p>P(π | q) =</p>
-<pre><code class="language-math">i=1
-</code></pre>
-<pre><code class="language-text">erϕ(yπ(i),q)
+)</code></pre></div><p class="content-block paragraph">基于列表排名的奖励</p><p class="content-block paragraph">虽然 Bradley-Terry 模型可以处理成对偏好 (yw ≻yl)，但许多实际场景 涉及同时对多个响应进行排名。列表奖励模型从完整的模型中学习 排序，提供更丰富的训练信号并实现更好的校准。</p><p class="content-block paragraph">动机：超越成对</p><p class="content-block paragraph">为什么选择列表方式？</p><p class="content-block paragraph">• 更丰富的信号：K 个响应的排名包含 K</p><p class="content-block paragraph">隐式的成对比较，但是 还捕获相对利润（排名 1 比排名 3 好多少）。</p><p class="content-block paragraph">• 更好的校准：Pairwise BT 模型只学习奖励的差异；列表模型 学习绝对奖励尺度。</p><p class="content-block paragraph">• 天生适合 GRPO：GRPO 每个提示生成 N 个响应并对它们进行排名 — 列表奖励与此工作流程直接一致。</p><p class="content-block paragraph">• 注释器效率：对 5 个响应进行排名比标记所有 10 个可能的对更快 独立。</p><p class="content-block paragraph">普拉克特-卢斯模型</p><p class="content-block paragraph">Plackett-Luce (PL) 模型 [199] 是 Bradley-Terry 到完整排名的标准扩展。 给定 K 个响应 y1, .。。 , yK 的排名为 π（其中 π(1) 是最好的）：</p><p class="content-block paragraph">Plackett-Luce 似然</p><p class="content-block paragraph">K 是</p><p class="content-block paragraph">P(π | q) =</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>i=1</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>erϕ(yπ(i),q)
 PK
-j=i erϕ(yπ(j),q)
-</code></pre>
-<p>直觉：依次选择剩余的最佳项目。每一步选择的概率
-项 π(i) 是其余项的 softmax。
-损失函数：</p>
-<p></p>
-<p></p>
-<p>X</p>
-<p>K−1
-X</p>
-<p>K
-X</p>
-<p>LPL(φ) = −1</p>
-<p>rphi(yπ(i), q) −log</p>
-<p></p>
-<p>|D|</p>
-<pre><code class="language-math">i=1
-</code></pre>
-<p>j=i
-erψ(yπ(j),q)</p>
-<p>(q,π)εD</p>
-<p>普拉克特-卢斯降级为布拉德利-特里</p>
-<p>对于 K = 2，PL 模型给出： P(y1 ≻y2) =
-呃(y1)</p>
-<p>er(y1)+er(y2) = σ(r(y1) −r(y2)) — 正是
-布拉德利-特里模型。 PL 是严格的概括。</p>
-<p>ListMLE 和基于排名的损失</p>
-<p>列表损失函数</p>
-<p>• ListMLE [200]：直接最大化ground-truth排名的PL可能性。简单
-并且有效。</p>
-<p>• ListNet [201]：最小化模型 top-1 概率分布之间的 KL 散度</p>
-<p><span class="page-ref" id="pdf-p188">原 PDF p.188</span></p>
-<p>和事实真相：</p>
-<p>K
-X</p>
-<p>LListNet = -</p>
-<p>我=1
-Ptrue(yi 最好) · log Pmodel(yi 最好)</p>
-<p>其中 Pmodel(yi 最好) =
-erψ(yi)
-磷</p>
-<p>j erψ(yj)。</p>
-<p>• LambdaRank [202]：通过排名指标的变化对成对梯度进行加权（例如，
-NDCG）。当将质量排在最前面时非常有用。</p>
-<p>• RankNet [203]：所有对的成对交叉熵求和——相当于所有对的 BT
-K
-从排名中提取的对。</p>
-<p>GRPO 和拒绝抽样的列表奖励</p>
-<p>与 GRPO 集成</p>
-<p>GRPO 自然地生成排名组：对于每个提示，N 个响应都会被评分和排名。一个
-列表奖励模型可以直接在这些排名上进行训练：</p>
-<ol>
-<li>
-<p>生成：针对策略中的每个提示，样本 N = 8 个响应。</p>
-</li>
-<li>
-<p>排名：使用现有的奖励模型（或人工注释者）来生成完整的排名 π。</p>
-</li>
-<li>
-<p>训练列表 RM：优化 (q, π) 元组上的 PL 损失。</p>
-</li>
-</ol>
-<p>4.在GRPO中使用：listwise RM为每个响应分配标量奖励r(yi, q)； GRPO
-将优势计算为 ˆAi = (ri −µ)/σ。</p>
-<p>相对于成对的优势：列表 RM 同时看到所有 N 个响应，并了解到
-等级 1 应该比等级 N 获得更高的奖励（不仅仅是“比其他等级稍微好一点”）
-回应”）。</p>
-<p>实际考虑</p>
-<p>列表训练挑战</p>
-<p>• 注释成本：完整排名的成本很高。部分排名（前 3 名，共 8 名）减少
-成本与最小的质量损失。</p>
-<p>• 平局：真实的排名常常是平局。使用 Plackett-Luce 扩展来表示关系：分配相等
-关联项的概率质量。</p>
-<p>• 位置偏差：注释者倾向于更喜欢首先显示的项目。随机呈现顺序
-并训练去偏。</p>
-<p>• 列表长度：通常在K = 4–8 上进行训练。较长的列表 (K &gt; 16) 不会增加太多噪音
-好处。</p>
-<p>• 一致性：不同注释者的排名可能会不一致。
-使用内部注释器
-协议 (κ &gt; 0.6) 作为质量过滤器。</p>
-<p>Plackett-Luce 训练代码</p>
-<pre><code class="language-text">import
+j=i erϕ(yπ(j),q)</code></pre></div><p class="content-block paragraph">直觉：依次选择剩余的最佳项目。每一步选择的概率 项 π(i) 是其余项的 softmax。 损失函数：</p><p class="content-block paragraph">K−1 X</p><p class="content-block paragraph">K X</p><p class="content-block paragraph">LPL(φ) = −1</p><p class="content-block paragraph">rphi(yπ(i), q) −log</p><p class="content-block paragraph">|D|</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>i=1</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>j=i</code></pre></div><p class="content-block paragraph">erψ(yπ(j),q)</p><p class="content-block paragraph">(q,π)εD</p><p class="content-block paragraph">普拉克特-卢斯降级为布拉德利-特里</p><div class="component code-component"><div class="block-label">text</div><pre><code>对于 K = 2，PL 模型给出： P(y1 ≻y2) =</code></pre></div><p class="content-block paragraph">呃(y1)</p><p class="content-block paragraph">er(y1)+er(y2) = σ(r(y1) −r(y2)) — 正是 布拉德利-特里模型。 PL 是严格的概括。</p><p class="content-block paragraph">ListMLE 和基于排名的损失</p><p class="content-block paragraph">列表损失函数</p><p class="content-block paragraph">• ListMLE [200]：直接最大化ground-truth排名的PL可能性。简单 并且有效。</p><p class="content-block paragraph">• ListNet [201]：最小化模型 top-1 概率分布之间的 KL 散度</p><p class="content-block paragraph">和事实真相：</p><p class="content-block paragraph">K X</p><div class="component code-component"><div class="block-label">text</div><pre><code>LListNet = -</code></pre></div><p class="content-block paragraph">我=1 Ptrue(yi 最好) · log Pmodel(yi 最好)</p><p class="content-block paragraph">其中 Pmodel(yi 最好) = erψ(yi) 磷</p><p class="content-block paragraph">j erψ(yj)。</p><p class="content-block paragraph">• LambdaRank [202]：通过排名指标的变化对成对梯度进行加权（例如， NDCG）。当将质量排在最前面时非常有用。</p><p class="content-block paragraph">• RankNet [203]：所有对的成对交叉熵求和——相当于所有对的 BT K</p><p class="content-block paragraph">从排名中提取的对。</p><p class="content-block paragraph">GRPO 和拒绝抽样的列表奖励</p><p class="content-block paragraph">与 GRPO 集成</p><p class="content-block paragraph">GRPO 自然地生成排名组：对于每个提示，N 个响应都会被评分和排名。一个 列表奖励模型可以直接在这些排名上进行训练：</p><div class="component code-component"><div class="block-label">text</div><pre><code>1. 生成：针对策略中的每个提示，样本 N = 8 个响应。</code></pre></div><p class="content-block paragraph">2. 排名：使用现有的奖励模型（或人工注释者）来生成完整的排名 π。</p><p class="content-block paragraph">3. 训练列表 RM：优化 (q, π) 元组上的 PL 损失。</p><p class="content-block paragraph">4.在GRPO中使用：listwise RM为每个响应分配标量奖励r(yi, q)； GRPO 将优势计算为 ˆAi = (ri −µ)/σ。</p><p class="content-block paragraph">相对于成对的优势：列表 RM 同时看到所有 N 个响应，并了解到 等级 1 应该比等级 N 获得更高的奖励（不仅仅是“比其他等级稍微好一点”） 回应”）。</p><p class="content-block paragraph">实际考虑</p><p class="content-block paragraph">列表训练挑战</p><p class="content-block paragraph">• 注释成本：完整排名的成本很高。部分排名（前 3 名，共 8 名）减少 成本与最小的质量损失。</p><p class="content-block paragraph">• 平局：真实的排名常常是平局。使用 Plackett-Luce 扩展来表示关系：分配相等 关联项的概率质量。</p><p class="content-block paragraph">• 位置偏差：注释者倾向于更喜欢首先显示的项目。随机呈现顺序 并训练去偏。</p><p class="content-block paragraph">• 列表长度：通常在K = 4–8 上进行训练。较长的列表 (K &gt; 16) 不会增加太多噪音 好处。</p><p class="content-block paragraph">• 一致性：不同注释者的排名可能会不一致。 使用内部注释器 协议 (κ &gt; 0.6) 作为质量过滤器。</p><p class="content-block paragraph">Plackett-Luce 训练代码</p><div class="component code-component"><div class="block-label">text</div><pre><code>import
 torch
 import
-torch.nn.functional as F
-</code></pre>
-<pre><code class="language-text">def
+torch.nn.functional as F</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 plackett_luce_loss (rewards , rankings):
-"""
-</code></pre>
-<p><span class="page-ref" id="pdf-p189">原 PDF p.189</span></p>
-<p>参数：</p>
-<pre><code class="language-text">rewards: (batch , K) - predicted
+&quot;&quot;&quot;</code></pre></div><p class="content-block paragraph">参数：</p><div class="component code-component"><div class="block-label">text</div><pre><code>rewards: (batch , K) - predicted
 scalar
 rewards
 for K responses
 rankings: (batch , K) - ground -truth
 ranking
 indices (0 = best)
-Returns:
-</code></pre>
-<pre><code class="language-text">scalar
+Returns:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>scalar
 loss
-"""
+&quot;&quot;&quot;
 batch_size , K = rewards.shape
 # Sort
 rewards by ground -truth
 ranking
 order
 sorted_rewards = torch.gather(rewards , 1, rankings)
-# (batch , K)
-</code></pre>
-<pre><code class="language-text"># PL log -likelihood: sum over
+# (batch , K)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># PL log -likelihood: sum over
 positions
 loss = 0.0
-for i in range(K - 1):
-</code></pre>
-<pre><code class="language-text"># Log -softmax
+for i in range(K - 1):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Log -softmax
 over
 remaining
 items (position i to K)
@@ -599,12 +197,8 @@ remaining = sorted_rewards [:, i:]
 # (batch , K-i)
 log_probs = remaining [:, 0] - torch.logsumexp(remaining , dim =1)
 loss
--= log_probs.mean ()
-</code></pre>
-<pre><code class="language-text">return
-loss / (K - 1)
-</code></pre>
-<pre><code class="language-text"># Example: 8 responses
+-= log_probs.mean ()</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return
+loss / (K - 1)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Example: 8 responses
 per prompt , ranked by annotator
 rewards = reward_model(responses)
 # (batch , 8)
@@ -612,17 +206,13 @@ rankings = torch.argsort(human_scores , descending=True)
 # best
 first
 loss = plackett_luce_loss (rewards , rankings)
-loss.backward ()
-</code></pre></div>
+loss.backward ()</code></pre></div></div></section></div>
           <nav class="chapter-pager"><a class="pager-link" href="chapter-09.html">← 偏好优化变体</a><a class="pager-link next" href="chapter-11.html">SFT 最佳实践与技术 →</a></nav>
         </article>
-        
-    </section>
-  </main>
+        </section><aside class="right-outline"><div class="nav-section-title">本页结构</div><a class="outline-link" href="#chapter-10-s01">Bradley-Terry 模型完整推导</a><a class="outline-link" href="#chapter-10-s02">奖励模型架构</a><a class="outline-link" href="#chapter-10-s03">奖励模型训练技巧</a><a class="outline-link" href="#chapter-10-s04">过程奖励模型与结果奖励模型</a><a class="outline-link" href="#chapter-10-s05">面向 RLVR 的规则奖励</a><a class="outline-link" href="#chapter-10-s06">多目标奖励：组合策略</a><a class="outline-link" href="#chapter-10-s07">基于列表排序的奖励</a></aside></main>
   <button class="back-top" id="back-top" type="button">↑</button>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/toc.js"></script>
   <script src="../assets/js/progress.js"></script>
-  
 </body>
 </html>

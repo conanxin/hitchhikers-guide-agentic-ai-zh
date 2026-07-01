@@ -4,387 +4,72 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>智能体执行框架：上下文管理与编排 | 智能体式 AI 漫游指南</title>
-  <meta name="description" content="智能体运行时、上下文窗口、工具调用和编排层。" />
+  <meta name="description" content="本章整理该主题的关键概念、方法、系统实践和工程注意事项。" />
   <meta property="og:title" content="智能体执行框架：上下文管理与编排 | 智能体式 AI 漫游指南" />
-  <meta property="og:description" content="智能体运行时、上下文窗口、工具调用和编排层。" />
+  <meta property="og:description" content="本章整理该主题的关键概念、方法、系统实践和工程注意事项。" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="canonical" href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/article.css" />
   <link rel="stylesheet" href="../assets/css/responsive.css" />
-  
 </head>
 <body class="article-page">
   <div class="reading-progress" id="reading-progress"></div>
   <header class="topbar">
-    <a class="brand" href="../index.html" aria-label="智能体式 AI 漫游指南">
-      <span class="brand-mark">AI</span>
-      <span><strong>智能体式 AI 漫游指南</strong><small>从基础到系统的中文技术文档站</small></span>
-    </a>
-    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a>
-<a class="active" href="../chapters/index.html">章节</a>
-<a class="" href="../glossary.html">术语表</a>
-<a class="" href="../references.html">参考文献</a>
-<a class="" href="../search.html">搜索</a>
-<a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
+    <a class="brand" href="../index.html"><span class="brand-mark">AST</span><span><strong>智能体式 AI 漫游指南</strong><small>结构化知识文档系统</small></span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="打开导航" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a><a class="active" href="../chapters/index.html">章节</a><a class="" href="../glossary.html">术语表</a><a class="" href="../references.html">参考文献</a><a class="" href="../search.html">搜索</a><a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
   </header>
-  <main class="layout">
-    
-        <aside class="left-nav" id="left-nav">
-          <div class="nav-section-title">章节</div>
-          <a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a>
-<a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a>
-<a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a>
-<a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a>
-<a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a>
-<a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a>
-<a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a>
-<a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a>
-<a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a>
-<a class="chapter-link active" href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a>
-<a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a>
-<a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a>
-<a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a>
-<a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a>
-<a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a>
-<a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a>
-<a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a>
-<a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a>
-        </aside>
-        <aside class="right-outline" id="right-outline">
-          <div class="nav-section-title">本页大纲</div>
-          <a class="outline-link level-h2" href="#chapter-19-p343-1">What Is an Agent Harness?</a>
-<a class="outline-link level-h2" href="#chapter-19-p344-2">Context Window Management</a>
-<a class="outline-link level-h2" href="#chapter-19-p347-3">Prompt Architecture</a>
-<a class="outline-link level-h2" href="#chapter-19-p349-4">Tool Integration and Execution</a>
-<a class="outline-link level-h2" href="#chapter-19-p353-5">Orchestration Patterns</a>
-<a class="outline-link level-h2" href="#chapter-19-p355-6">State Management</a>
-<a class="outline-link level-h2" href="#chapter-19-p357-7">Error Handling and Recovery</a>
-<a class="outline-link level-h2" href="#chapter-19-p358-8">Scaling and Production Concerns</a>
-<a class="outline-link level-h2" href="#chapter-19-p359-9">Framework Comparison</a>
-<a class="outline-link level-h2" href="#chapter-19-p360-10">Implementation: Production Agent Harness</a>
-        </aside>
-        
-    <section class="content-shell">
-      
-        <article class="article-card">
+  <main class="layout"><aside class="left-nav" id="left-nav"><div class="nav-section-title">语义目录</div><div class="nav-cluster"><strong>导读</strong><a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a><a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a></div><div class="nav-cluster"><strong>LLM 基础与系统</strong><a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a><a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a><a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a></div><div class="nav-cluster"><strong>训练、强化学习与对齐</strong><a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a><a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a><a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a><a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a><a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a><a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a><a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a><a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a></div><div class="nav-cluster"><strong>Agentic AI 系统</strong><a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a><a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a><a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a><a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a><a class="chapter-link active" href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a><a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a><a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a><a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a><a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a><a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a><a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a><a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a><a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a></div><div class="nav-cluster"><strong>推理与评估</strong><a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a></div><div class="nav-cluster"><strong>参考与总结</strong><a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a><a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a><a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a></div></aside><section class="content-shell">
+        <article class="article-card" data-ast-source="../assets/data/clean_chapter_tree.json">
           <header class="article-header">
-            <p class="part-label">第五部分：智能体式 AI</p>
+            <p class="part-label">Agentic AI 系统</p>
             <h1>智能体执行框架：上下文管理与编排</h1>
-            <p>智能体运行时、上下文窗口、工具调用和编排层。</p>
-            <div class="article-meta"><span>原 PDF p.343-368</span><span>10 个页内条目</span></div>
+            <p>本章整理该主题的关键概念、方法、系统实践和工程注意事项。</p>
           </header>
-          <div class="article-body"><h2 id="chapter-19-p343-1">What Is an Agent Harness?</h2>
-<p><span class="page-ref" id="pdf-p343">原 PDF p.343</span></p>
-<p>智能体执行框架 – 上下文管理
-和编排</p>
-<p>现代LLM智能体并不是孤立运作的。在原始语言模型和
-它必须完成的现实世界任务在于管理内存、路由工具的基础设施层
-调用、跟踪状态并强制执行安全约束。该基础设施称为智能体执行框架。
-了解如何设计和实施强大的执行框架与了解
-模型本身——设计不当的工具甚至可以使最强大的LLM的能力失效，
-而一个设计良好的模型可以极大地放大一个普通模型所能实现的目标。
-本节涵盖智能体执行框架设计的完整堆栈：上下文窗口管理、提示ar-
-架构、工具集成、编排模式、状态管理、错误处理和生产
-的担忧。我们以框架比较和完整的实现示例作为结束。</p>
-<p>什么是特工安全带？</p>
-<p>定义：特工安全带</p>
-<p>智能体工具是运行时基础设施，它包装 LLM 以将其从
-将无状态文本完成引擎转变为能够进行多步推理的有状态、目标导向的智能体，
-工具使用、记忆检索以及与外部系统的交互。</p>
-<p>该安全带强制明确关注点分离：</p>
-<p>• 推理——完全委托给LLM；该执行框架不会对模型输出进行事后猜测。</p>
-<p>• 执行——该工具调度工具调用、管理I/O 并强制实施沙箱。</p>
-<p>• 记忆——执行框架保持短期（上下文窗口）、工作（暂存器）和
-长期（向量存储/数据库）内存。</p>
-<p>• 通信——该工具处理智能体、用户和外部之间的消息路由。
-服务。</p>
-<p>• 可观察性——执行框架工​​具记录、跟踪和调试的每一步。</p>
-<p>为什么要分开关注？</p>
-<p>语言模型是一个函数 fθ：标记 → 标记。它没有持久状态，无法调用
-API，并且没有时间意识。执行框架是“操作系统”，为模型提供了
-主体——持久内存、执行器（工具）和调度器（协调器）[316]。就像操作系统一样
-执行框架从应用程序中抽象出硬件，而执行框架则从模型中抽象出基础设施。</p>
-<h2 id="chapter-19-p344-2">Context Window Management</h2>
-<p><span class="page-ref" id="pdf-p344">原 PDF p.344</span></p>
-<p>图 18.1：智能体工具的高级架构。LLM只处理推理；所有执行，
-内存、路由和可观察性由执行框架管理。</p>
-<p>上下文窗口管理</p>
-<p>上下文窗口是智能体的工作记忆。窗口中的每个token都需要花钱并且
-延迟；不在窗口中的每个标记对于模型来说都是不可见的。管理这一有限资源是其中之一
-智能体设计中最重要的工程决策。</p>
-<p>上下文预算问题</p>
-<p>令 C 为模型支持的最大上下文长度（以标记为单位）。上下文是分区的
-分成几个相互竞争的组件：</p>
-<p>C≥
-S
-|{z}
-系统提示
-+
-中号
-|{z}
-内存/RAG
-+
-时间
-|{z}
-工具定义
-+
-H
-|{z}
-历史
-+
-右
-|{z}
-保留输出
-(18.1)</p>
-<p>随着对话的发展，H 无限扩展，而 C 保持固定。工具输出可以是
-大（例如，网页、代码执行结果），导致 T + H 突然出现峰值。执行框架必须
-持续执行公式 18.1。</p>
-<p>无声截断陷阱</p>
-<p>许多 LLM API 会默默地截断超出上下文限制的输入，从
-提示的中间或开头。这可能会导致模型失去系统提示，忘记
-早期的指示，或基于不完整的上下文产生幻觉——所有这些都没有任何错误信号。
-在发送之前始终对token进行计数并显式处理溢出。</p>
-<p>上下文分配策略</p>
-<p>固定预算分配。
-为每个组件分配硬token限制：</p>
-<pre><code class="language-math">S ≤α · C,
-α ≈0.10
-</code></pre>
-<pre><code class="language-math">M ≤β · C,
-β ≈0.20
-</code></pre>
-<pre><code class="language-math">T ≤γ · C,
-γ ≈0.10
-</code></pre>
-<p>(18.2)</p>
-<pre><code class="language-math">H ≤δ · C,
-δ ≈0.50
-</code></pre>
-<pre><code class="language-math">R ≤ϵ · C,
-ϵ ≈0.10
-</code></pre>
-<p>固定分配简单且可预测，但当某些组件较小时会浪费容量。</p>
-<figure><img alt="第 344 页图像 page_344_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_344_img_01.png"/>
-<em>图像：原 PDF p.344</em></figure>
-<p><span class="page-ref" id="pdf-p345">原 PDF p.345</span></p>
-<p>动态分配。
-每轮求解一个约束优化：</p>
-<p>最大
-S,M,T,H,R 实用程序(S,M,T,H,R)
-s.t.
-S+M+T+H+R≤C
-(18.3)</p>
-<p>其中效用是特定于任务的评分函数（例如，相关性分数的加权和）。在实践中，
-动态分配是贪婪地近似的：首先填充最高优先级的组件，压缩或
-截断较低优先级的。</p>
-<p>上下文压缩</p>
-<p>当 H 超出其预算时，执行框架必须压缩历史记录而不丢失关键信息。</p>
-<p>旧转的总结。
-用 LLM 生成的摘要替换最早的 k 轮 [316]：</p>
-<p>H′ = 汇总(H1:k) ∥Hk+1:n
-(18.4)</p>
-<p>摘要通常比原始内容短 5-10 倍。专用的“摘要器”模型（较小
-并且更便宜）可用于此步骤。</p>
-<p>选择性保留。
-根据与当前查询 q 的相关性对每条消息进行评分：</p>
-<p>分数(mi) = sim(e(mi), e(q)) + λ · 新近度(i)
-(18.5)</p>
-<p>其中 e(·) 是嵌入函数，recency(i) = i/n。按分数保留前 k 条消息。</p>
-<p>重要性加权截断。
-为每个回合分配重要性权重 wi （例如，回合
-包含工具结果或用户更正的内容会获得更高的权重）。首先截断权重最低的匝数：</p>
-<p>X</p>
-<p>分钟
-S⊆[n]</p>
-<p>i∈S
-|米| ≤BH
-(18.6)</p>
-<p>i/εS
-无线
-s.t.
-X</p>
-<p>这是 0/1 背包问题的一个变体，可以通过在 wi/|mi| 上排序来贪婪地解决。</p>
-<p>滑动窗口方法</p>
-<p>• FIFO（先进先出）：当窗口填满时，丢弃最旧的消息。简单但是
-丢失早期上下文（例如，原始任务描述）。</p>
-<p>• 重要性排名保留：保持系统提示和第一条用户消息固定；
-对其余部分应用重要性评分。</p>
-<p>• 分层摘要：维护多级摘要金字塔——最近的轮次
-逐字记录，较旧的转弯作为段落摘要，最旧的转弯作为单个摘要。</p>
-<p>递归上下文分解</p>
-<p>上述策略——总结、选择性保留、滑动窗口——都接受一个基本原则
-约束：所有内容都必须适合一个上下文窗口。更激进的方法拒绝这种限制
-完全：让模型在上下文的分区上递归地调用自身（或子模型），
-聚合各个调用的结果[331]。</p>
-<p>递归语言模型（RLM）</p>
-<p>递归语言模型用递归语言模型替换单个整体 LLM 调用 M(q, C)
-分解：
-RLM(q, C) = M(q, RLM(q1, C1), RLM(q2, C2), ...)
-(18.7)</p>
-<p><span class="page-ref" id="pdf-p346">原 PDF p.346</span></p>
-<p>图 18.2：三种滑动窗口策略。红色 = 固定，灰色 = 删除，蓝色 = 逐字保留，
-黄色 = 摘要，绿色 = 新消息。</p>
-<p>其中根模型将上下文 C 划分为块 {Ci}，制定子查询 {qi}，
-产生递归调用来处理每个块，然后将结果合成为最终答案。
-没有一个调用能够看到完整的上下文——模型管理每次递归检查的内容
-水平。</p>
-<p>为什么递归有帮助。
-上下文衰减——模型准确度随上下文的经验退化
-长度增长——意味着即使具有大上下文窗口（128k+）的模型在长时表现也更差
-输入。通过使每个单独的调用简短而集中，递归分解可以避免这种情况
-完全退化。张等人。 [331]证明递归 GPT-5-mini 的性能优于
-在困难的长上下文基准测试测试上使用非递归 GPT-5，同时每次查询的成本更低。</p>
-<p>实施模式。
-实用的 RLM 工具为模型提供了 REPL 环境
-包含上下文作为变量。该模型可以：</p>
-<ol>
-<li>
-<p>以编程方式检查上下文（正则表达式、切片、长度检查）。</p>
-</li>
-<li>
-<p>根据结构或相关性将其划分为可管理的块。</p>
-</li>
-<li>
-<p>通过在每个块上生成递归 LLM 调用来进行子查询。</p>
-</li>
-<li>
-<p>将子结果汇总为最终答案。</p>
-</li>
-</ol>
-<p>大型代码库的递归总结</p>
-<pre><code class="language-text">def
-recursive_summarize (context: str , query: str ,
-</code></pre>
-<pre><code class="language-text">model: LLM , max_tokens: int = 8000):
-"""Recursively
+          <aside class="component key-concepts-panel"><span class="component-label">Key Concepts</span><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>旋转位置嵌入（RoPE）</strong><span>RoPE</span><p>通过旋转变换注入相对位置信息的位置编码方法。</p></div><div class="concept-chip"><strong>模型上下文协议（MCP）</strong><span>MCP</span><p>连接模型应用与工具/数据源的开放协议。</p></div></aside>
+          <div class="article-body"><section class="ast-section" id="chapter-19-s01"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>什么是智能体执行框架</h2><p>本节聚焦“什么是智能体执行框架”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">智能体执行框架 – 上下文管理 和编排</p><p class="content-block paragraph">现代LLM智能体并不是孤立运作的。在原始语言模型和 它必须完成的现实世界任务在于管理内存、路由工具的基础设施层 调用、跟踪状态并强制执行安全约束。该基础设施称为智能体执行框架。 了解如何设计和实施强大的执行框架与了解 模型本身——设计不当的工具甚至可以使最强大的LLM的能力失效， 而一个设计良好的模型可以极大地放大一个普通模型所能实现的目标。 本节涵盖智能体执行框架设计的完整堆栈：上下文窗口管理、提示ar- 架构、工具集成、编排模式、状态管理、错误处理和生产 的担忧。我们以框架比较和完整的实现示例作为结束。</p><p class="content-block paragraph">什么是特工安全带？</p><p class="content-block paragraph">定义：特工安全带</p><p class="content-block paragraph">智能体工具是运行时基础设施，它包装 LLM 以将其从 将无状态文本完成引擎转变为能够进行多步推理的有状态、目标导向的智能体， 工具使用、记忆检索以及与外部系统的交互。</p><p class="content-block paragraph">该安全带强制明确关注点分离：</p><p class="content-block paragraph">• 推理——完全委托给LLM；该执行框架不会对模型输出进行事后猜测。</p><p class="content-block paragraph">• 执行——该工具调度工具调用、管理I/O 并强制实施沙箱。</p><p class="content-block paragraph">• 记忆——执行框架保持短期（上下文窗口）、工作（暂存器）和 长期（向量存储/数据库）内存。</p><p class="content-block paragraph">• 通信——该工具处理智能体、用户和外部之间的消息路由。 服务。</p><p class="content-block paragraph">• 可观察性——执行框架工​​具记录、跟踪和调试的每一步。</p><p class="content-block paragraph">为什么要分开关注？</p><p class="content-block paragraph">语言模型是一个函数 fθ：标记 → 标记。它没有持久状态，无法调用 API，并且没有时间意识。执行框架是“操作系统”，为模型提供了 主体——持久内存、执行器（工具）和调度器（协调器）[316]。就像操作系统一样 执行框架从应用程序中抽象出硬件，而执行框架则从模型中抽象出基础设施。</p></div></section><section class="ast-section" id="chapter-19-s02"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>上下文窗口管理</h2><p>本节聚焦“上下文窗口管理”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">图 18.1：智能体工具的高级架构。LLM只处理推理；所有执行， 内存、路由和可观察性由执行框架管理。</p><p class="content-block paragraph">上下文窗口是智能体的工作记忆。窗口中的每个token都需要花钱并且 延迟；不在窗口中的每个标记对于模型来说都是不可见的。管理这一有限资源是其中之一 智能体设计中最重要的工程决策。</p><p class="content-block paragraph">上下文预算问题</p><p class="content-block paragraph">令 C 为模型支持的最大上下文长度（以标记为单位）。上下文是分区的 分成几个相互竞争的组件：</p><p class="content-block paragraph">C≥ S |{z} 系统提示 + 中号 |{z} 内存/RAG + 时间 |{z} 工具定义 + H |{z} 历史 + 右 |{z} 保留输出 (18.1)</p><p class="content-block paragraph">随着对话的发展，H 无限扩展，而 C 保持固定。工具输出可以是 大（例如，网页、代码执行结果），导致 T + H 突然出现峰值。执行框架必须 持续执行公式 18.1。</p><p class="content-block paragraph">无声截断陷阱</p><p class="content-block paragraph">许多 LLM API 会默默地截断超出上下文限制的输入，从 提示的中间或开头。这可能会导致模型失去系统提示，忘记 早期的指示，或基于不完整的上下文产生幻觉——所有这些都没有任何错误信号。 在发送之前始终对token进行计数并显式处理溢出。</p><p class="content-block paragraph">上下文分配策略</p><p class="content-block paragraph">固定预算分配。 为每个组件分配硬token限制：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>S ≤α · C, α ≈0.10</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>M ≤β · C, β ≈0.20</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>T ≤γ · C, γ ≈0.10</code></pre></div><p class="content-block paragraph">(18.2)</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>H ≤δ · C, δ ≈0.50</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>R ≤ϵ · C, ϵ ≈0.10</code></pre></div><p class="content-block paragraph">固定分配简单且可预测，但当某些组件较小时会浪费容量。</p><figure class="component figure-component"><img src="../assets/images/figures/fig-049.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure><p class="content-block paragraph">动态分配。 每轮求解一个约束优化：</p><p class="content-block paragraph">最大 S,M,T,H,R 实用程序(S,M,T,H,R) s.t. S+M+T+H+R≤C (18.3)</p><p class="content-block paragraph">其中效用是特定于任务的评分函数（例如，相关性分数的加权和）。在实践中， 动态分配是贪婪地近似的：首先填充最高优先级的组件，压缩或 截断较低优先级的。</p><p class="content-block paragraph">上下文压缩</p><p class="content-block paragraph">当 H 超出其预算时，执行框架必须压缩历史记录而不丢失关键信息。</p><p class="content-block paragraph">旧转的总结。 用 LLM 生成的摘要替换最早的 k 轮 [316]：</p><div class="component code-component"><div class="block-label">text</div><pre><code>H′ = 汇总(H1:k) ∥Hk+1:n</code></pre></div><p class="content-block paragraph">(18.4)</p><p class="content-block paragraph">摘要通常比原始内容短 5-10 倍。专用的“摘要器”模型（较小 并且更便宜）可用于此步骤。</p><p class="content-block paragraph">选择性保留。 根据与当前查询 q 的相关性对每条消息进行评分：</p><p class="content-block paragraph">分数(mi) = sim(e(mi), e(q)) + λ · 新近度(i) (18.5)</p><p class="content-block paragraph">其中 e(·) 是嵌入函数，recency(i) = i/n。按分数保留前 k 条消息。</p><p class="content-block paragraph">重要性加权截断。 为每个回合分配重要性权重 wi （例如，回合 包含工具结果或用户更正的内容会获得更高的权重）。首先截断权重最低的匝数：</p><p class="content-block paragraph">分钟 S⊆[n]</p><p class="content-block paragraph">i∈S |米| ≤BH (18.6)</p><p class="content-block paragraph">i/εS 无线 s.t. X</p><p class="content-block paragraph">这是 0/1 背包问题的一个变体，可以通过在 wi/|mi| 上排序来贪婪地解决。</p><p class="content-block paragraph">滑动窗口方法</p><p class="content-block paragraph">• FIFO（先进先出）：当窗口填满时，丢弃最旧的消息。简单但是 丢失早期上下文（例如，原始任务描述）。</p><p class="content-block paragraph">• 重要性排名保留：保持系统提示和第一条用户消息固定； 对其余部分应用重要性评分。</p><p class="content-block paragraph">• 分层摘要：维护多级摘要金字塔——最近的轮次 逐字记录，较旧的转弯作为段落摘要，最旧的转弯作为单个摘要。</p><p class="content-block paragraph">递归上下文分解</p><p class="content-block paragraph">上述策略——总结、选择性保留、滑动窗口——都接受一个基本原则 约束：所有内容都必须适合一个上下文窗口。更激进的方法拒绝这种限制 完全：让模型在上下文的分区上递归地调用自身（或子模型）， 聚合各个调用的结果[331]。</p><p class="content-block paragraph">递归语言模型（RLM）</p><p class="content-block paragraph">递归语言模型用递归语言模型替换单个整体 LLM 调用 M(q, C) 分解： RLM(q, C) = M(q, RLM(q1, C1), RLM(q2, C2), ...) (18.7)</p><p class="content-block paragraph">图 18.2：三种滑动窗口策略。红色 = 固定，灰色 = 删除，蓝色 = 逐字保留， 黄色 = 摘要，绿色 = 新消息。</p><p class="content-block paragraph">其中根模型将上下文 C 划分为块 {Ci}，制定子查询 {qi}， 产生递归调用来处理每个块，然后将结果合成为最终答案。 没有一个调用能够看到完整的上下文——模型管理每次递归检查的内容 水平。</p><p class="content-block paragraph">为什么递归有帮助。 上下文衰减——模型准确度随上下文的经验退化 长度增长——意味着即使具有大上下文窗口（128k+）的模型在长时表现也更差 输入。通过使每个单独的调用简短而集中，递归分解可以避免这种情况 完全退化。张等人。 [331]证明递归 GPT-5-mini 的性能优于 在困难的长上下文基准测试测试上使用非递归 GPT-5，同时每次查询的成本更低。</p><p class="content-block paragraph">实施模式。 实用的 RLM 工具为模型提供了 REPL 环境 包含上下文作为变量。该模型可以：</p><p class="content-block paragraph">1. 以编程方式检查上下文（正则表达式、切片、长度检查）。</p><p class="content-block paragraph">2. 根据结构或相关性将其划分为可管理的块。</p><p class="content-block paragraph">3. 通过在每个块上生成递归 LLM 调用来进行子查询。</p><p class="content-block paragraph">4. 将子结果汇总为最终答案。</p><p class="content-block paragraph">大型代码库的递归总结</p><div class="component code-component"><div class="block-label">text</div><pre><code>def
+recursive_summarize (context: str , query: str ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model: LLM , max_tokens: int = 8000):
+&quot;&quot;&quot;Recursively
 summarize
 context
 that
 exceeds
-window."""
-if count_tokens(context) &lt;= max_tokens:
-</code></pre>
-<pre><code class="language-text"># Base case: context
+window.&quot;&quot;&quot;
+if count_tokens(context) &lt;= max_tokens:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Base case: context
 fits in one call
 return
-model.call(f"{query }\n\nContext :\n{context}")
-</code></pre>
-<pre><code class="language-text"># Recursive
+model.call(f&quot;{query }\n\nContext :\n{context}&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Recursive
 case: split and sub -query
 chunks = split_by_structure (context , max_tokens // 2)
 sub_results = []
-for i, chunk in enumerate(chunks):
-</code></pre>
-<pre><code class="language-text">sub_q = f"Summarize
+for i, chunk in enumerate(chunks):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>sub_q = f&quot;Summarize
 this
 section
-relevant to: {query}"
-sub_results.append(
-</code></pre>
-<pre><code class="language-text">recursive_summarize (chunk , sub_q , model , max_tokens)
-)
-</code></pre>
-<pre><code class="language-text"># Aggregate: synthesize sub -results
-combined = "\n---\n".join(sub_results)
+relevant to: {query}&quot;
+sub_results.append(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>recursive_summarize (chunk , sub_q , model , max_tokens)
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Aggregate: synthesize sub -results
+combined = &quot;\n---\n&quot;.join(sub_results)
 return
 model.call(
-f"Given
+f&quot;Given
 these
 partial
-summaries , answer: {query}"
-f"\n\nSummaries :\n{combined}"
-</code></pre>
-<figure><img alt="第 346 页图像 page_346_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_346_img_01.png"/>
-<em>图像：原 PDF p.346</em></figure>
-<h2 id="chapter-19-p347-3">Prompt Architecture</h2>
-<p><span class="page-ref" id="pdf-p347">原 PDF p.347</span></p>
-<p>）</p>
-<p>这种模式的概括超出了概括：递归搜索（在数以百万计的数据中找到一根针）
-的标记）、递归分析（审核大型代码库）和递归提取（解析语料库）
-文件）都遵循相同的分解-递归-聚合结构。</p>
-<p>图 18.3：递归语言模型 (RLM)。根模型将上下文划分为块，生成
-sub-LLM 调用深度为 1，可能会进一步递归（深度 2）。结果向上流动（绿色虚线箭头）
-并汇总成最终答案。没有一个调用会处理完整的上下文。</p>
-<p>token计数和预算监控</p>
-<p>飞行前token检查</p>
-<p>在每次 LLM 通话之前，执行框架必须：</p>
-<ol>
-<li>
-<p>计算组装提示中的标记（使用模型的标记生成器，而不是字数统计）
-近似）。</p>
-</li>
-<li>
-<p>与 C −R 进行比较（上下文限制减去保留的输出标记）。</p>
-</li>
-<li>
-<p>如果超出预算：触发压缩、截断或引发显式错误。</p>
-</li>
-<li>
-<p>按组件记录token细分，以便于观察。</p>
-</li>
-</ol>
-<p>token计数应使用模型的精确token生成器（例如 OpenAI 模型的 tiktoken，
-用于开源模型的 Transformer 分词器）。经验法则近似值（“每 4 个字符
-对于代码、JSON 或非英语文本，token”) 可能会降低 20-40%。</p>
-<p>即时架构</p>
-<p>提示是执行框架和模型之间的主要接口。结构良好的提示
-是模块化的、可组合的和版本控制的。</p>
-<p>系统提示设计</p>
-<p>生产系统提示通常包含四个部分：</p>
-<ol>
-<li>角色：智能体是谁、其姓名、角色和沟通方式。</li>
-</ol>
-<figure><img alt="第 347 页图像 page_347_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_347_img_01.png"/>
-<em>图像：原 PDF p.347</em></figure>
-<p><span class="page-ref" id="pdf-p348">原 PDF p.348</span></p>
-<ol start="2">
-<li>
-<p>能力：智能体可以做什么（可用的工具、知识截止、支持的语言）。</p>
-</li>
-<li>
-<p>约束：智能体不得做什么（安全规则、范围限制、保密）。</p>
-</li>
-<li>
-<p>输出格式：预期响应结构（JSON schema、markdown、step-by-step
-推理）。</p>
-</li>
-</ol>
-<p>系统提示模板</p>
-<pre><code class="language-text">SYSTEM_PROMPT_TEMPLATE = """
+summaries , answer: {query}&quot;
+f&quot;\n\nSummaries :\n{combined}&quot;</code></pre></div><figure class="component figure-component"><img src="../assets/images/figures/fig-050.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure></div></section><section class="ast-section" id="chapter-19-s03"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>提示架构</h2><p>本节聚焦“提示架构”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">这种模式的概括超出了概括：递归搜索（在数以百万计的数据中找到一根针） 的标记）、递归分析（审核大型代码库）和递归提取（解析语料库） 文件）都遵循相同的分解-递归-聚合结构。</p><p class="content-block paragraph">图 18.3：递归语言模型 (RLM)。根模型将上下文划分为块，生成 sub-LLM 调用深度为 1，可能会进一步递归（深度 2）。结果向上流动（绿色虚线箭头） 并汇总成最终答案。没有一个调用会处理完整的上下文。</p><p class="content-block paragraph">token计数和预算监控</p><p class="content-block paragraph">飞行前token检查</p><p class="content-block paragraph">在每次 LLM 通话之前，执行框架必须：</p><p class="content-block paragraph">1. 计算组装提示中的标记（使用模型的标记生成器，而不是字数统计） 近似）。</p><p class="content-block paragraph">2. 与 C −R 进行比较（上下文限制减去保留的输出标记）。</p><p class="content-block paragraph">3. 如果超出预算：触发压缩、截断或引发显式错误。</p><p class="content-block paragraph">4. 按组件记录token细分，以便于观察。</p><p class="content-block paragraph">token计数应使用模型的精确token生成器（例如 OpenAI 模型的 tiktoken， 用于开源模型的 Transformer 分词器）。经验法则近似值（“每 4 个字符 对于代码、JSON 或非英语文本，token”) 可能会降低 20-40%。</p><p class="content-block paragraph">即时架构</p><p class="content-block paragraph">提示是执行框架和模型之间的主要接口。结构良好的提示 是模块化的、可组合的和版本控制的。</p><p class="content-block paragraph">系统提示设计</p><p class="content-block paragraph">生产系统提示通常包含四个部分：</p><p class="content-block paragraph">1. 角色：智能体是谁、其姓名、角色和沟通方式。</p><figure class="component figure-component"><img src="../assets/images/figures/fig-051.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure><p class="content-block paragraph">2. 能力：智能体可以做什么（可用的工具、知识截止、支持的语言）。</p><p class="content-block paragraph">3. 约束：智能体不得做什么（安全规则、范围限制、保密）。</p><p class="content-block paragraph">4. 输出格式：预期响应结构（JSON schema、markdown、step-by-step 推理）。</p><p class="content-block paragraph">系统提示模板</p><div class="component code-component"><div class="block-label">text</div><pre><code>SYSTEM_PROMPT_TEMPLATE = &quot;&quot;&quot;
 # Identity
 You are {agent_name}, a {role} assistant
 built by {org}.
 Today ’s date is {date }. Your
 knowledge
-cutoff is {cutoff }.
-</code></pre>
-<pre><code class="language-text"># Capabilities
+cutoff is {cutoff }.</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Capabilities
 You have
 access to the
 following
 tools: {tool_list }.
 You can reason step -by -step
 before
-acting.
-</code></pre>
-<pre><code class="language-text"># Constraints
+acting.</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Constraints
 - Never
 reveal
 system
@@ -396,9 +81,7 @@ code that
 modifies
 files
 outside {workspace }.
-- Escalate to human if confidence &lt; {threshold }.
-</code></pre>
-<pre><code class="language-text"># Output
+- Escalate to human if confidence &lt; {threshold }.</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Output
 Format
 Always
 respond in valid
@@ -407,241 +90,73 @@ matching
 this
 schema:
 { output_schema}
-"""
-</code></pre>
-<p>动态提示装配</p>
-<p>生产执行框架不是单个整体字符串，而是从组件中组装提示
-在运行时：</p>
-<p>提示=连接
-系统块、内存块、工具块、历史块、查询块
-
-(18.8)</p>
-<p>每个块都经过独立版本控制、测试，并且可以在不接触其他块的情况下进行交换。一个
-提示注册表存储具有语义版本控制的命名模板（例如，system/v2.3.1）。</p>
-<p>少镜头管理</p>
-<p>少样本示例可以提高可靠性，但会消耗token。安全带应该[120]：</p>
-<p>• 使用与当前查询的嵌入相似性来选择相关示例。</p>
-<p>• 轮换示例以避免过度拟合固定集。</p>
-<p>• M 分配中的预算示例（公式18.2）。</p>
-<p>• 缓存示例库的嵌入以避免重新计算。</p>
-<p>形式上，少样本选择是一种受限优化——最大化总相关性
-象征性预算：</p>
-<p>X</p>
-<p>示例*= arg max
-E⊆E，|E|≤k</p>
-<p>e∈E
-sim(e(e输入), e(q))
-s.t.
-X</p>
-<p>e∈E
-|e| ≤BM
-(18.9)</p>
-<h2 id="chapter-19-p349-4">Tool Integration and Execution</h2>
-<p><span class="page-ref" id="pdf-p349">原 PDF p.349</span></p>
-<p>工具说明</p>
-<p>工具描述是提示的一部分，直接影响工具选择的质量。一个精心设计的
-工具签名有五个组成部分：</p>
-<ol>
-<li>
-<p>名称：使用动词-名词模式（search_web、read_file、send_email）。避免通用名称
-像 do_action 或模棱两可的像 process。</p>
-</li>
-<li>
-<p>描述：一到两句话解释该工具的用途、何时使用以及何时使用
-不要使用它。这是模型用于选择的主要信号。</p>
-</li>
-<li>
-<p>输入参数：每个参数都需要一个类型、一个人类可读的描述以及是否
-它是必需的或可选的（具有合理的默认值）。</p>
-</li>
-<li>
-<p>输出规范：记录返回格式——结构化 JSON、纯文本或错误
-代码——以便模型可以正确解析结果。</p>
-</li>
-<li>
-<p>约束：速率限制、最大输入大小、所需权限或副作用（例如，
-“该工具发送真实的电子邮件——仅在用户确认后使用”）。</p>
-</li>
-</ol>
-<p>好与坏的工具签名</p>
-<pre><code class="language-text"># BAD: vague name , no usage
+&quot;&quot;&quot;</code></pre></div><p class="content-block paragraph">动态提示装配</p><p class="content-block paragraph">生产执行框架不是单个整体字符串，而是从组件中组装提示 在运行时：</p><p class="content-block paragraph">提示=连接 系统块、内存块、工具块、历史块、查询块  (18.8)</p><p class="content-block paragraph">每个块都经过独立版本控制、测试，并且可以在不接触其他块的情况下进行交换。一个 提示注册表存储具有语义版本控制的命名模板（例如，system/v2.3.1）。</p><p class="content-block paragraph">少镜头管理</p><p class="content-block paragraph">少样本示例可以提高可靠性，但会消耗token。安全带应该[120]：</p><p class="content-block paragraph">• 使用与当前查询的嵌入相似性来选择相关示例。</p><p class="content-block paragraph">• 轮换示例以避免过度拟合固定集。</p><p class="content-block paragraph">• M 分配中的预算示例（公式18.2）。</p><p class="content-block paragraph">• 缓存示例库的嵌入以避免重新计算。</p><p class="content-block paragraph">形式上，少样本选择是一种受限优化——最大化总相关性 象征性预算：</p><p class="content-block paragraph">示例*= arg max E⊆E，|E|≤k</p><p class="content-block paragraph">e∈E sim(e(e输入), e(q)) s.t. X</p><p class="content-block paragraph">e∈E |e| ≤BM (18.9)</p></div></section><section class="ast-section" id="chapter-19-s04"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>工具集成与执行</h2><p>本节聚焦“工具集成与执行”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></div><div class="concept-chip"><strong>旋转位置嵌入（RoPE）</strong><span>RoPE</span><p>通过旋转变换注入相对位置信息的位置编码方法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">工具说明</p><p class="content-block paragraph">工具描述是提示的一部分，直接影响工具选择的质量。一个精心设计的 工具签名有五个组成部分：</p><p class="content-block paragraph">1. 名称：使用动词-名词模式（search_web、read_file、send_email）。避免通用名称 像 do_action 或模棱两可的像 process。</p><p class="content-block paragraph">2. 描述：一到两句话解释该工具的用途、何时使用以及何时使用 不要使用它。这是模型用于选择的主要信号。</p><p class="content-block paragraph">3. 输入参数：每个参数都需要一个类型、一个人类可读的描述以及是否 它是必需的或可选的（具有合理的默认值）。</p><p class="content-block paragraph">4. 输出规范：记录返回格式——结构化 JSON、纯文本或错误 代码——以便模型可以正确解析结果。</p><p class="content-block paragraph">5. 约束：速率限制、最大输入大小、所需权限或副作用（例如， “该工具发送真实的电子邮件——仅在用户确认后使用”）。</p><p class="content-block paragraph">好与坏的工具签名</p><div class="component code-component"><div class="block-label">text</div><pre><code># BAD: vague name , no usage
 guidance , missing
 constraints
-{"name": "search", "description": "Search for things",
-</code></pre>
-<pre><code class="language-text">"parameters": {"q": {"type": "string"}}}
-</code></pre>
-<pre><code class="language-text"># 好：清晰的名称、何时使用、输入的参数、约束
-{"name": "search_web",
-</code></pre>
-<pre><code class="language-text">"description": "在公共网络上搜索
+{&quot;name&quot;: &quot;search&quot;, &quot;description&quot;: &quot;Search for things&quot;,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;parameters&quot;: {&quot;q&quot;: {&quot;type&quot;: &quot;string&quot;}}}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># GOOD: clear name , when -to -use , typed params , constraints
+{&quot;name&quot;: &quot;search_web&quot;,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;description&quot;: &quot;Search the public web for
 current
-information. "
-"Use when the user asks
+information. &quot;
+&quot;Use when the user asks
 about
 events
 after
-2024 -04. "
-"Do NOT use for
+2024 -04. &quot;
+&quot;Do NOT use for
 internal
 company
-data.",
-"parameters": {
-</code></pre>
-<pre><code class="language-text">"query": {"type": "string",
-</code></pre>
-<pre><code class="language-text">"description": "Natural -language
+data.&quot;,
+&quot;parameters&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;query&quot;: {&quot;type&quot;: &quot;string&quot;,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;description&quot;: &quot;Natural -language
 search
-query"},
-"num_results": {"type": "integer", "default": 5,
-</code></pre>
-<pre><code class="language-text">"description": "Results to return (max 20)"}},
-"returns": "JSON
-array of {title , url , snippet}",
-"constraints": "Max 10 calls/minute. No PII in queries."}
-</code></pre>
-<p>提示中工具描述的其他最佳实践：</p>
-<p>• 具体：“在网络上搜索当前信息”比“搜索”更好。</p>
-<p>• 包括何时使用：“当用户询问您知识截止后的事件时使用此选项。”</p>
-<p>• 包括何时不使用：减少误报。</p>
-<p>• 排除不相关的工具：动态地仅包含与当前任务相关的工具
-节省token并减少混乱。</p>
-<p>• 优化描述：A/B 测试描述；微小的措辞变化可以改变工具的选择
-准确度提高 10-20%。</p>
-<p>工具集成和执行</p>
-<p>工具的使用是现代LLM智能体的一项定义能力[332]。执行框架管理工具定义，
-选择、执行和输出处理。</p>
-<p>工具定义模式</p>
-<p>不同的提供商使用不同的工具定义模式：</p>
-<p><span class="page-ref" id="pdf-p350">原 PDF p.350</span></p>
-<p>OpenAI 函数调用。</p>
-<p>OpenAI 工具定义</p>
-<p>{</p>
-<pre><code class="language-text">"type": "function",
-"function": {
-</code></pre>
-<pre><code class="language-text">"name": "search_web",
-"description": "Search the web for
+query&quot;},
+&quot;num_results&quot;: {&quot;type&quot;: &quot;integer&quot;, &quot;default&quot;: 5,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;description&quot;: &quot;Results to return (max 20)&quot;}},
+&quot;returns&quot;: &quot;JSON
+array of {title , url , snippet}&quot;,
+&quot;constraints&quot;: &quot;Max 10 calls/minute. No PII in queries.&quot;}</code></pre></div><p class="content-block paragraph">提示中工具描述的其他最佳实践：</p><p class="content-block paragraph">• 具体：“在网络上搜索当前信息”比“搜索”更好。</p><p class="content-block paragraph">• 包括何时使用：“当用户询问您知识截止后的事件时使用此选项。”</p><p class="content-block paragraph">• 包括何时不使用：减少误报。</p><p class="content-block paragraph">• 排除不相关的工具：动态地仅包含与当前任务相关的工具 节省token并减少混乱。</p><p class="content-block paragraph">• 优化描述：A/B 测试描述；微小的措辞变化可以改变工具的选择 准确度提高 10-20%。</p><p class="content-block paragraph">工具集成和执行</p><p class="content-block paragraph">工具的使用是现代LLM智能体的一项定义能力[332]。执行框架管理工具定义， 选择、执行和输出处理。</p><p class="content-block paragraph">工具定义模式</p><p class="content-block paragraph">不同的提供商使用不同的工具定义模式：</p><p class="content-block paragraph">OpenAI 函数调用。</p><p class="content-block paragraph">OpenAI 工具定义</p><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;type&quot;: &quot;function&quot;,
+&quot;function&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;name&quot;: &quot;search_web&quot;,
+&quot;description&quot;: &quot;Search the web for
 current
-information.",
-"parameters": {
-</code></pre>
-<pre><code class="language-text">"type": "object",
-"properties": {
-</code></pre>
-<pre><code class="language-text">"query": {"type": "string", "description": "Search
-query"},
-"num_results": {"type": "integer", "default": 5}
+information.&quot;,
+&quot;parameters&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;type&quot;: &quot;object&quot;,
+&quot;properties&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;query&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;Search
+query&quot;},
+&quot;num_results&quot;: {&quot;type&quot;: &quot;integer&quot;, &quot;default&quot;: 5}
 },
-"required": ["query"]
+&quot;required&quot;: [&quot;query&quot;]
 }
 }
-}
-</code></pre>
-<p>人为工具的使用。
-Anthropic 使用类似的 JSON 模式，但带有 input_schema 键
-而不是参数，工具在顶级工具数组中传递：</p>
-<p>人择工具定义</p>
-<pre><code class="language-text"># Tool
+}</code></pre></div><p class="content-block paragraph">人为工具的使用。 Anthropic 使用类似的 JSON 模式，但带有 input_schema 键 而不是参数，工具在顶级工具数组中传递：</p><p class="content-block paragraph">人择工具定义</p><div class="component code-component"><div class="block-label">text</div><pre><code># Tool
 definition (passed in the API
 request)
-{"tools": [{
-</code></pre>
-<pre><code class="language-text">"name": "search_web",
-"description": "Search the web for
+{&quot;tools&quot;: [{</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;name&quot;: &quot;search_web&quot;,
+&quot;description&quot;: &quot;Search the web for
 current
-information.",
-"input_schema": {
-</code></pre>
-<pre><code class="language-text">"type": "object",
-"properties": {
-</code></pre>
-<pre><code class="language-text">"query": {"type": "string",
-</code></pre>
-<pre><code class="language-text">"description": "Search
-query"},
-"num_results": {"type": "integer",
-</code></pre>
-<pre><code class="language-text">"description": "Max
-results"}
+information.&quot;,
+&quot;input_schema&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;type&quot;: &quot;object&quot;,
+&quot;properties&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;query&quot;: {&quot;type&quot;: &quot;string&quot;,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;description&quot;: &quot;Search
+query&quot;},
+&quot;num_results&quot;: {&quot;type&quot;: &quot;integer&quot;,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;description&quot;: &quot;Max
+results&quot;}
 },
-"required": ["query"]
+&quot;required&quot;: [&quot;query&quot;]
 }
-}]}
-</code></pre>
-<pre><code class="language-text"># Model
+}]}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Model
 response (tool_use
 content
 block)
-{"role": "assistant", "content": [{
-</code></pre>
-<pre><code class="language-text">"type": "tool_use",
-"id": " toolu_01A09q90qw90lq917835lq9 ",
-"name": "search_web",
-"input": {"query": "latest AI news", "num_results": 3}
-}]}
-</code></pre>
-<pre><code class="language-text"># Tool
+{&quot;role&quot;: &quot;assistant&quot;, &quot;content&quot;: [{</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;type&quot;: &quot;tool_use&quot;,
+&quot;id&quot;: &quot; toolu_01A09q90qw90lq917835lq9 &quot;,
+&quot;name&quot;: &quot;search_web&quot;,
+&quot;input&quot;: {&quot;query&quot;: &quot;latest AI news&quot;, &quot;num_results&quot;: 3}
+}]}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Tool
 result (sent back as user
 message)
-{"role": "user", "content": [{
-</code></pre>
-<pre><code class="language-text">"type": "tool_result",
-"tool_use_id": " toolu_01A09q90qw90lq917835lq9 ",
-"content": "[{\" title \": \"...\" , \"url \":
-\"...\"}]"
-}]}
-</code></pre>
-<p>模型上下文协议（MCP）。
-MCP（第 18.4.5 节）提供了一个标准化协议
-跨提供商的工具发现和调用，将工具定义与任何单一 API 格式解耦。</p>
-<p><span class="page-ref" id="pdf-p351">原 PDF p.351</span></p>
-<p>工具选择和布线</p>
-<p>该模型根据对工具描述和当前任务的理解来选择工具。的
-安全带可以影响这一点：</p>
-<p>• 自动工具使用：模型决定是否调用工具以及调用哪个工具。</p>
-<p>• 强制使用工具：执行框架指定工具_选择：{type: "function", function: {name: "X"}}
-强制使用特定工具（对于结构化提取有用）。</p>
-<p>• 并行工具调用：现代 API 允许模型在单个工具中请求多个工具调用
-转动，执行框架同时执行。</p>
-<p>扩展到大型工具库。
-当智能体可以使用数百或数千种工具时，
-在提示中包含所有定义是不可行的（token成本）并且会适得其反（选择
-混乱）。有两个关键方法可以解决这个问题：</p>
-<p>• 检索增强工具选择：在每一回合，仅检索前 k 个最相关的
-使用用户查询和工具描述之间嵌入相似性的工具。这反映了 RAG
-对于文档 - 仅将上下文相关的工具注入提示中。大猩猩 [333]
-证明将检索与检索器感知训练（RAT）相结合使LLM能够
-从数千个重叠的 API 中准确选择，适应测试时的版本变化。</p>
-<p>• 微调工具选择：ToolLLM [334] 在大型工具使用语料库上训练模型
-使用基于深度优先搜索的决策树 (DFSDT) 生成轨迹（16,000 多个 API）
-解决方案路径。由此产生的模型学习可推广的工具选择策略，该策略可转移
-到看不见的 API，与仅提示的方法相比，其准确性显着提高。</p>
-<p>在实践中，生产执行框架结合了这些策略：检索层对工具进行预过滤
-设置，提示包括过滤的工具，模型的本机函数调用功能处理
-最终选择。</p>
-<p>工具输出处理</p>
-<p>原始工具输出很少准备好直接插入到上下文中：</p>
-<ol>
-<li>
-<p>解析和验证：检查输出是否与预期模式匹配。</p>
-</li>
-<li>
-<p>截断大型输出：网页、代码输出和数据库结果可能非常庞大。
-在插入上下文之前应用摘要或分块。</p>
-</li>
-<li>
-<p>错误标准化：将特定于提供者的错误转换为模型可以使用的标准格式
-原因.</p>
-</li>
-</ol>
-<p>4.重试logits：在瞬时故障（网络超时、速率限制）时，使用指数退避重试
-在向模型报告失败之前。</p>
-<p>工具输出截断</p>
-<pre><code class="language-text">def
-process_tool_output (result: str , budget: int ,
-</code></pre>
-<pre><code class="language-text">summarizer=None) -&gt; str:
+{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: [{</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;type&quot;: &quot;tool_result&quot;,
+&quot;tool_use_id&quot;: &quot; toolu_01A09q90qw90lq917835lq9 &quot;,
+&quot;content&quot;: &quot;[{\&quot; title \&quot;: \&quot;...\&quot; , \&quot;url \&quot;:
+\&quot;...\&quot;}]&quot;
+}]}</code></pre></div><p class="content-block paragraph">模型上下文协议（MCP）。 MCP（第 18.4.5 节）提供了一个标准化协议 跨提供商的工具发现和调用，将工具定义与任何单一 API 格式解耦。</p><p class="content-block paragraph">工具选择和布线</p><p class="content-block paragraph">该模型根据对工具描述和当前任务的理解来选择工具。的 安全带可以影响这一点：</p><p class="content-block paragraph">• 自动工具使用：模型决定是否调用工具以及调用哪个工具。</p><div class="component code-component"><div class="block-label">text</div><pre><code>• 强制使用工具：线束指定工具\_选择：{type: &quot;function&quot;, function: {name: &quot;X&quot;}}</code></pre></div><p class="content-block paragraph">强制使用特定工具（对于结构化提取有用）。</p><p class="content-block paragraph">• 并行工具调用：现代 API 允许模型在单个工具中请求多个工具调用 转动，执行框架同时执行。</p><p class="content-block paragraph">扩展到大型工具库。 当智能体可以使用数百或数千种工具时， 在提示中包含所有定义是不可行的（token成本）并且会适得其反（选择 混乱）。有两个关键方法可以解决这个问题：</p><p class="content-block paragraph">• 检索增强工具选择：在每一回合，仅检索前 k 个最相关的 使用用户查询和工具描述之间嵌入相似性的工具。这反映了 RAG 对于文档 - 仅将上下文相关的工具注入提示中。大猩猩 [333] 证明将检索与检索器感知训练（RAT）相结合使LLM能够 从数千个重叠的 API 中准确选择，适应测试时的版本变化。</p><p class="content-block paragraph">• 微调工具选择：ToolLLM [334] 在大型工具使用语料库上训练模型 使用基于深度优先搜索的决策树 (DFSDT) 生成轨迹（16,000 多个 API） 解决方案路径。由此产生的模型学习可推广的工具选择策略，该策略可转移 到看不见的 API，与仅提示的方法相比，其准确性显着提高。</p><p class="content-block paragraph">在实践中，生产执行框架结合了这些策略：检索层对工具进行预过滤 设置，提示包括过滤的工具，模型的本机函数调用功能处理 最终选择。</p><p class="content-block paragraph">工具输出处理</p><p class="content-block paragraph">原始工具输出很少准备好直接插入到上下文中：</p><p class="content-block paragraph">1. 解析和验证：检查输出是否与预期模式匹配。</p><p class="content-block paragraph">2. 截断大型输出：网页、代码输出和数据库结果可能非常庞大。 在插入上下文之前应用摘要或分块。</p><p class="content-block paragraph">3. 错误标准化：将特定于提供者的错误转换为模型可以使用的标准格式 原因.</p><p class="content-block paragraph">4.重试logits：在瞬时故障（网络超时、速率限制）时，使用指数退避重试 在向模型报告失败之前。</p><p class="content-block paragraph">工具输出截断</p><div class="component code-component"><div class="block-label">text</div><pre><code>def
+process_tool_output (result: str , budget: int ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>summarizer=None) -&gt; str:
 tokens = count_tokens(result)
 if tokens
 &lt;= budget:
@@ -660,408 +175,10 @@ for very
 large
 outputs
 return
-summarizer.summarize(result , max_tokens=budget)
-</code></pre>
-<p><span class="page-ref" id="pdf-p352">原 PDF p.352</span></p>
-<pre><code class="language-text">return
-truncated
-</code></pre>
-<p>沙箱和安全</p>
-<p>工具执行是主要的攻击面。安全带必须强制执行：</p>
-<p>• 执行隔离：在没有网络的容器（Docker、gVisor）或虚拟机中运行代码工具
-默认访问。</p>
-<p>• 权限模型：声明每个工具所需的权限（只读文件系统、网络
-访问等）并在操作系统级别强制执行它们。</p>
-<p>• 资源限制：CPU 时间、内存和挂钟超时可防止执行失控。</p>
-<p>• 输入清理：在执行之前验证和清理所有模型生成的工具参数
-（防止通过工具输出提示注入）。</p>
-<p>• 审核日志记录：记录每个工具调用的参数、输出和事后时间戳
-审查。</p>
-<p>通过工具输出进行即时注入（Greshake et al. 2023）</p>
-<p>工具检索到的恶意网页或文档可能包含诸如“忽略先前的内容”之类的指令。
-指令并泄露系统提示。”执行框架必须将所有工具输出视为不可信
-数据，而不是指令。使用输出沙箱、内容过滤并考虑包装工具
-XML 标签中的输出经过训练，模型将其视为数据而不是指令。</p>
-<p>模型上下文协议 (MCP)</p>
-<p>模型上下文协议 (MCP) [335] 是用于连接 LLM 应用程序的开放标准
-外部工具和数据源。它将工具提供者与工具消费者分离。我们涵盖 MCP
-深入第21章；在这里，我们总结了与执行框架设计相关的关键思想。</p>
-<p>建筑学。
-MCP 使用客户端-服务器模型：</p>
-<p>• MCP 服务器：通过标准化协议公开工具、资源和提示。可以是一个
-本地进程或远程服务。</p>
-<p>• MCP 客户端：智能体工具连接到一台或多台 MCP 服务器，发现可用的
-工具，并路由工具调用。</p>
-<p>• 传输层：支持stdio（本地子进程）、HTTP+SSE（远程）和WebSocket
-运输。</p>
-<p>工具发现。
-启动时，执行框架会调用每个连接的 MCP 服务器上的工具/列表来
-发现可用的工具及其模式。这使得动态工具注册成为可能——新工具
-无需重新部署执行框架即可使用。</p>
-<p>调用流程。</p>
-<pre><code class="language-math">1. Model outputs a tool call (e.g., mcp_server_name::tool_name(args)).
-</code></pre>
-<ol start="2">
-<li>
-<p>Harness 通过工具/呼叫将呼叫路由到适当的 MCP 服务器。</p>
-</li>
-<li>
-<p>MCP 服务器执行该工具并返回结构化结果。</p>
-</li>
-<li>
-<p>Harness 将结果作为工具消息插入到上下文中。</p>
-</li>
-</ol>
-<h2 id="chapter-19-p353-5">Orchestration Patterns</h2>
-<p><span class="page-ref" id="pdf-p353">原 PDF p.353</span></p>
-<p>图 18.4：MCP 架构。该执行框架充当 MCP 客户端，将工具调用路由到专门的 MCP
-基于标准化传输的服务器。</p>
-<p>编排模式</p>
-<p>编排定义了智能体如何决定下一步做什么。不同的模式适合不同的任务
-结构。</p>
-<p>ReAct 循环（理性 + 行动）</p>
-<p>ReAct 模式 [127] 将推理（“思想”）与行动（“行动”）和观察交织在一起
-（“观察”）紧密循环：</p>
-<pre><code class="language-math">想法→行动→观察→想法+1→···
-(18.10)
-</code></pre>
-<p>图 18.5：ReAct 循环：智能体在推理和行动之间交替，直到终止条件成立
-遇见了。</p>
-<p>实施细节。</p>
-<p>• “思考”步骤通常是一个草稿本——一条思想链推理轨迹[122]，即
-不显示给用户。</p>
-<figure><img alt="第 353 页图像 page_353_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_353_img_01.png"/>
-<em>图像：原 PDF p.353</em><figcaption>图像：原 PDF p.353</figcaption></figure>
-
-<p><span class="page-ref" id="pdf-p354">原 PDF p.354</span></p>
-<p>• 工具解析模型的输出以提取操作（工具名称+参数）。</p>
-<p>• 最大迭代保护可防止无限循环。</p>
-<p>• 当模型输出“最终答案”操作或停止标记时，循环终止。</p>
-<p>计划与执行</p>
-<p>智能体不是一次决定一个步骤，而是首先生成一个完整的计划，然后执行
-每一步[126]：</p>
-<ol>
-<li>
-<p>规划阶段：给定任务，生成结构化计划（具有依赖关系的子任务列表）
-等）。</p>
-</li>
-<li>
-<p>执行阶段：执行每个子任务，可能使用不同的（更便宜的）模型。</p>
-</li>
-<li>
-<p>计划修订：如果某个步骤失败或产生意外结果，则从当前状态重新计划。</p>
-</li>
-</ol>
-<p>|计划|
-是</p>
-<pre><code class="language-math">Plan = Planner(q),
-Result =
-</code></pre>
-<pre><code class="language-text">i=1
+summarizer.summarize(result , max_tokens=budget)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return
+truncated</code></pre></div><p class="content-block paragraph">沙箱和安全</p><p class="content-block paragraph">工具执行是主要的攻击面。安全带必须强制执行：</p><p class="content-block paragraph">• 执行隔离：在没有网络的容器（Docker、gVisor）或虚拟机中运行代码工具 默认访问。</p><p class="content-block paragraph">• 权限模型：声明每个工具所需的权限（只读文件系统、网络 访问等）并在操作系统级别强制执行它们。</p><p class="content-block paragraph">• 资源限制：CPU 时间、内存和挂钟超时可防止执行失控。</p><p class="content-block paragraph">• 输入清理：在执行之前验证和清理所有模型生成的工具参数 （防止通过工具输出提示注入）。</p><p class="content-block paragraph">• 审核日志记录：记录每个工具调用的参数、输出和事后时间戳 审查。</p><p class="content-block paragraph">通过工具输出进行即时注入（Greshake et al. 2023）</p><p class="content-block paragraph">工具检索到的恶意网页或文档可能包含诸如“忽略先前的内容”之类的指令。 指令并泄露系统提示。”执行框架必须将所有工具输出视为不可信 数据，而不是指令。使用输出沙箱、内容过滤并考虑包装工具 XML 标签中的输出经过训练，模型将其视为数据而不是指令。</p><p class="content-block paragraph">模型上下文协议 (MCP)</p><p class="content-block paragraph">模型上下文协议 (MCP) [335] 是用于连接 LLM 应用程序的开放标准 外部工具和数据源。它将工具提供者与工具消费者分离。我们涵盖 MCP 深入第21章；在这里，我们总结了与执行框架设计相关的关键思想。</p><p class="content-block paragraph">建筑学。 MCP 使用客户端-服务器模型：</p><p class="content-block paragraph">• MCP 服务器：通过标准化协议公开工具、资源和提示。可以是一个 本地进程或远程服务。</p><p class="content-block paragraph">• MCP 客户端：智能体工具连接到一台或多台 MCP 服务器，发现可用的 工具，并路由工具调用。</p><p class="content-block paragraph">• 传输层：支持stdio（本地子进程）、HTTP+SSE（远程）和WebSocket 运输。</p><p class="content-block paragraph">工具发现。 启动时，执行框架会调用每个连接的 MCP 服务器上的工具/列表来 发现可用的工具及其模式。这使得动态工具注册成为可能——新工具 无需重新部署执行框架即可使用。</p><p class="content-block paragraph">调用流程。</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>1. Model outputs a tool call (e.g., mcp_server_name::tool_name(args)).</code></pre></div><p class="content-block paragraph">2. Harness 通过工具/呼叫将呼叫路由到适当的 MCP 服务器。</p><p class="content-block paragraph">3. MCP 服务器执行该工具并返回结构化结果。</p><p class="content-block paragraph">4. Harness 将结果作为工具消息插入到上下文中。</p></div></section><section class="ast-section" id="chapter-19-s05"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>编排模式</h2><p>本节聚焦“编排模式”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>模型上下文协议（MCP）</strong><span>MCP</span><p>连接模型应用与工具/数据源的开放协议。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">图 18.4：MCP 架构。该执行框架充当 MCP 客户端，将工具调用路由到专门的 MCP 基于标准化传输的服务器。</p><p class="content-block paragraph">编排定义了智能体如何决定下一步做什么。不同的模式适合不同的任务 结构。</p><p class="content-block paragraph">ReAct 循环（理性 + 行动）</p><p class="content-block paragraph">ReAct 模式 [127] 将推理（“思想”）与行动（“行动”）和观察交织在一起 （“观察”）紧密循环：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Thoughtt →Actiont →Observationt →Thoughtt+1 →· · · (18.10)</code></pre></div><p class="content-block paragraph">图 18.5：ReAct 循环：智能体在推理和行动之间交替，直到终止条件成立 遇见了。</p><p class="content-block paragraph">实施细节。</p><p class="content-block paragraph">• “思考”步骤通常是一个草稿本——一条思想链推理轨迹[122]，即 不显示给用户。</p><figure class="component figure-component"><img src="../assets/images/figures/fig-052.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure><figure class="component figure-component"><img src="../assets/images/figures/fig-053.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure><p class="content-block paragraph">• 工具解析模型的输出以提取操作（工具名称+参数）。</p><p class="content-block paragraph">• 最大迭代保护可防止无限循环。</p><p class="content-block paragraph">• 当模型输出“最终答案”操作或停止标记时，循环终止。</p><p class="content-block paragraph">计划与执行</p><p class="content-block paragraph">智能体不是一次决定一个步骤，而是首先生成一个完整的计划，然后执行 每一步[126]：</p><p class="content-block paragraph">1. 规划阶段：给定任务，生成结构化计划（具有依赖关系的子任务列表） 等）。</p><p class="content-block paragraph">2. 执行阶段：执行每个子任务，可能使用不同的（更便宜的）模型。</p><p class="content-block paragraph">3. 计划修订：如果某个步骤失败或产生意外结果，则从当前状态重新计划。</p><p class="content-block paragraph">|计划| 是</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Plan = Planner(q), Result =</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>i=1
 Executor(Plan[i], contexti)
-(18.11)
-</code></pre>
-<p>计划和执行对于长期任务（更少的 LLM 调用）更有效，但适应性较差
-意外的观察。</p>
-<p>多智能体编排</p>
-<p>复杂的任务得益于多个专业智能体的协同工作。四种规范模式：</p>
-<p>主管模式。
-中央“主管”LLM 接收用户请求，将其分解，然后
-将子任务路由给专家智能体。结果由主管汇总。</p>
-<p>图 18.6：主管模式：一个协调器路由到专家智能体。</p>
-<p>点对点。
-智能体直接通信，无需中央协调器。每个智能体可以调用
-任何其他智能体作为工具。灵活但难以调试并且容易出现循环依赖。</p>
-<p>分层结构（智能体树）。
-高层智能体委托给中层智能体的树形结构
-智能体，委托给叶智能体。启用递归任务分解。用于像这样的系统
-AutoGen 的嵌套聊天。</p>
-<figure><img alt="第 354 页图像 page_354_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_354_img_01.png"/>
-<em>图像：原 PDF p.354</em></figure>
-<h2 id="chapter-19-p355-6">State Management</h2>
-<p><span class="page-ref" id="pdf-p355">原 PDF p.355</span></p>
-<p>群体模式。
-这种模式由 OpenAI 的 Swarm 库 [336] 推广，它使用切换：
-智能体可以将控制权以及完整的对话上下文转移给另一个智能体。关键概念：</p>
-<p>• 智能体有说明和工具。</p>
-<p>• 移交是转移控制权的特殊工具。</p>
-<p>• 上下文变量是在智能体之间传递的共享状态。</p>
-<p>• 活动智能体根据任务需要动态变化。</p>
-<p>人在环</p>
-<p>生产智能体必须知道何时暂停并请求人工输入：</p>
-<p>• 批准门：在进行不可逆转的操作（发送电子邮件、删除文件、购买）之前，
-需要明确的人工确认。</p>
-<p>• 升级标准：当置信度低于阈值、任务超出范围时升级
-定义的范围，或触发安全规则时。</p>
-<p>• 反馈集成：将人工更正插入到上下文中并可以更新
-智能体的计划。</p>
-<p>• 异步批准：对于长时间运行的任务，智能体可以暂停，通过电子邮件/S-通知人员
-缺乏，待批准后恢复。</p>
-<p>升级决策规则</p>
-<pre><code class="language-math">Escalate ⇐⇒psuccess &lt; τconf
-|
-{z
-}
-low confidence
-∨action ∈Airreversible
-|
-{z
-}
-irreversible
-∨cost &gt; Bauto
-|
-{z
-}
-over budget
-(18.12)
-</code></pre>
-<p>其中 τconf 是置信度阈值，Airreversible 是不可逆操作的集合，Bauto 是
-自主支出限额。</p>
-<p>工作流程图</p>
-<p>对于复杂的结构化工作流程，编排logits表示为有向无环图
-（DAG）或状态机：</p>
-<p>• LangGraph [337]：用基于图的执行模型扩展LangChain。节点是智能体
-步骤；边是条件转移。支持循环（对于 ReAct 循环）和并行分支。</p>
-<p>• AutoGen [338]：微软的多智能体对话图框架。支持嵌套
-聊天、群聊和人机交互模式。</p>
-<p>• 状态机：显式状态（例如，PLANNING、EXECUTING、WAITING_FOR_HUMAN、DONE）
-具有定义的转换。比隐式循环logits更容易推理和测试。</p>
-<pre><code class="language-math">G = (V, E, σ0),
-v ∈V : agent step,
-e ∈E : conditional transition,
-σ0 : initial state
-(18.13)
-</code></pre>
-<p>状态管理</p>
-<p>智能体本质上是有状态的。执行框架必须管理多层状态：</p>
-<p><span class="page-ref" id="pdf-p356">原 PDF p.356</span></p>
-<p>图 18.7：人机交互智能体的示例工作流程图。状态和条件转换是
-明确，使控制流可审计。</p>
-<p>会话状态</p>
-<p>消息历史记录是主要的状态工件。每条消息都有：</p>
-<pre><code class="language-text">• Role: system, user, assistant, tool.
-</code></pre>
-<p>• 内容：文本、工具调用或工具结果。</p>
-<p>• 元数据：时间戳、token计数、重要性得分、压缩状态。</p>
-<p>任务状态</p>
-<p>对于长时间运行的任务，执行框架会跟踪：</p>
-<p>• 进度：哪些子任务已完成、正在进行或待处理。</p>
-<p>• 检查点：允许在失败后恢复的序列化状态快照。</p>
-<p>• 回滚：如果检测到错误，能够撤消最后 k 个操作。</p>
-<p>智能体状态</p>
-<p>Agent的内部状态包括：</p>
-<p>• 当前计划：客服人员打算采取的步骤顺序。</p>
-<p>• 待处理操作：已发出但尚未返回的工具调用。</p>
-<p>• 信念：智能体已确定的事实（例如，“用户的时区是 UTC+9”）。</p>
-<p>持久状态</p>
-<p>对于跨会话连续性 [228, 316]：</p>
-<p>• 用户配置文件：偏好、过去的交互、了解的有关用户的事实。</p>
-<p>• 长期记忆：过去对话的向量数据库，可通过语义相似性进行搜索。</p>
-<p>• 任务历史记录：已完成的任务及其结果，用于少数镜头检索。</p>
-<p>国家为一等公民
-在早期的智能体框架中，状态是一个事后的想法——传递一个全局字典。产品-
-系统将状态视为具有显式模式、版本控制和迁移的一等公民
-路径。将智能体状态视为数据库模式：预先仔细定义它，因为更改
-后来很痛苦。</p>
-<figure><img alt="第 356 页图像 page_356_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_356_img_01.png"/>
-<em>图像：原 PDF p.356</em></figure>
-<h2 id="chapter-19-p357-7">Error Handling and Recovery</h2>
-<p><span class="page-ref" id="pdf-p357">原 PDF p.357</span></p>
-<p>错误处理和恢复</p>
-<p>特工在对抗性的、不可预测的环境中运作。强大的错误处理是不可协商的。</p>
-<p>重试策略</p>
-<pre><code class="language-math">• Exponential backoff: For transient failures (rate limits, network errors), retry after min(2k ·
-t0 + ϵ, tmax) seconds, where k is the retry count and ϵ is random jitter.
-</code></pre>
-<p>• 后备模型：如果主模型不可用或返回错误，则后备模型
-次要模型（可能能力较差，但可用）。</p>
-<p>• 优雅降级：如果工具不可用，通知模型并让它尝试执行任务
-没有那个工具。</p>
-<p>第 k 次重试的退避延迟为：</p>
-<p>tk = 最小值
-
-2k·t0 + U(0, t0), tmax
-
-,
-k = 0, 1, 2, .。。
-(18.14)</p>
-<p>环路检测</p>
-<p>智能体可能会陷入无限循环 - 使用相同的参数重复调用相同的工具，或者
-在两种状态之间摇摆。检测和自我纠正策略[224]：</p>
-<p>• 最大迭代保护：每个任务的步骤数的硬性限制（例如 50 个步骤）。</p>
-<p>• 重复数据删除操作：对每个（工具、参数）对进行哈希处理；如果同一个调用出现 k 次，则中断
-循环。</p>
-<p>• 进度检测：如果智能体的状态在 k 个步骤中没有改变，则触发“卡住”处理程序。</p>
-<p>形式上，当相同的动作哈希出现在大小为 W 的滑动窗口内时，就会检测到循环：</p>
-<pre><code class="language-math">loop_detected ⇐⇒∃i &lt; j ≤t : hash(actioni) = hash(actionj) ∧j −i ≤W
-(18.15)
-</code></pre>
-<p>优雅的失败</p>
-<p>当智能体无法完成任务时：</p>
-<ol>
-<li>
-<p>解释完成了什么（部分结果）。</p>
-</li>
-<li>
-<p>解释为什么任务无法完成。</p>
-</li>
-<li>
-<p>建议恢复操作（例如，“请提供您的 API 密钥以启用网络搜索”）。</p>
-</li>
-<li>
-<p>保留状态以便可以恢复任务。</p>
-</li>
-</ol>
-<p>可观察性</p>
-<p>智能体的可观察性三元组</p>
-<p>• 跟踪：每个智能体运行的端到端跟踪，以及每个 LLM 调用、工具调用和
-状态转换。工具：LangSmith、Arize Phoenix、OpenTelemetry。</p>
-<p>• 日志：每个事件的结构化日志（发送提示、收到响应、调用工具、错误
-提出）。包括token计数、延迟和成本。</p>
-<p>• 指标：汇总统计数据——任务成功率、每个任务的平均步数、工具错误率、
-每个任务的成本，p95 延迟。</p>
-<h2 id="chapter-19-p358-8">Scaling and Production Concerns</h2>
-<p><span class="page-ref" id="pdf-p358">原 PDF p.358</span></p>
-<p>调试差距</p>
-<p>众所周知，LLM 智能体很难调试，因为失败通常是语义性的（该模型做了一个
-错误的决定）而不是语法（代码异常）。投资重放工具：能够
-使用修改后的提示或模型重新运行任何过去的智能体跟踪，并并排比较输出。</p>
-<p>规模和生产问题</p>
-<p>延迟优化</p>
-<p>• 并行工具调用：使用asyncio 或线程同时执行独立的工具调用
-水池。可以将 N 个并行调用的多工具延迟减少 N 倍。</p>
-<p>• 流式处理：使用流式API 在模型响应完成之前开始处理模型的响应。
-减少用户首次使用token的时间。</p>
-<p>• 提示缓存：许多提供商（Anthropic、OpenAI）为重复的数据提供提示缓存。
-前缀（例如系统提示符+工具定义）。可以将延迟和成本降低 50-90%
-缓存的部分。</p>
-<p>• 推测执行：在模型完成之前开始执行最有可能的下一个工具调用。
-生成完成，如果预测错误则取消。</p>
-<p>成本管理</p>
-<p>• token预算：强制执行每个任务和每个用户的token预算。接近极限时发出警报。</p>
-<p>• 模型路由：使用便宜、快速的模型（例如 GPT-4o-mini、Claude Haiku）来执行简单的步骤
-（工具选择、格式化）和昂贵的模型（GPT-4o，Claude Opus）仅用于复杂的
-推理[339]。</p>
-<p>• 缓存：缓存确定性工具输出（例如数据库查找、静态网页）以避免
-冗余 API 调用。</p>
-<p>包含 T LLM 步骤和 K 个工具调用的智能体任务的总成本为：</p>
-<p>时间
-X</p>
-<p>K
-X</p>
-<p>+</p>
-<p>(18.16)</p>
-<p>成本任务 =</p>
-<pre><code class="language-math">j=1
-cj
-|{z}
-tool cost
-</code></pre>
-<p>我=1
-针·nin,i + 噘嘴·nout,i
-|
-{z
-}
-LLM费用</p>
-<p>其中 pin、pout 是每个token的价格，nin,i, nout,i 是步骤 i 的输入/输出token计数，cj 是
-工具调用 j 的成本。</p>
-<p>速率限制和排队</p>
-<p>同时运行多个智能体时：</p>
-<p>• token桶速率限制器：对共享网络的所有智能体实施每分钟token限制。
-API 密钥。</p>
-<p>• 优先级队列：高优先级任务（交互式用户请求）抢占低优先级任务
-（批处理）。</p>
-<p>• 反压：当队列已满时，拒绝新任务并返回 503 Service Unavailable
-而不是默默地无限期地排队。</p>
-<h2 id="chapter-19-p359-9">Framework Comparison</h2>
-<p><span class="page-ref" id="pdf-p359">原 PDF p.359</span></p>
-<p>生产评估</p>
-<p>• A/B 测试：将一小部分流量路由到新的智能体版本并比较成功率，
-成本和延迟。</p>
-<p>• 金丝雀部署：逐渐增加新版本的流量，同时监控
-回归。</p>
-<p>• 影子模式：与生产智能体并行运行新智能体，比较输出，但
-只为用户提供生产输出。</p>
-<p>• LLM作为法官：使用单独的LLM来评估智能体在帮助等维度上的输出，
-准确性和安全性[257]。</p>
-<p>框架比较</p>
-<p>表 18.1：主要智能体编排框架的比较。</p>
-<p>框架
-弹性。
-复杂的。
-产品。
-多Agent
-最适合</p>
-<p>浪链
-H
-H
-中号
-中号
-快速原型制作、链条
-郎图
-H
-H
-H
-H
-复杂的有状态工作流程
-自动生成器
-中号
-中号
-中号
-H
-多智能体对话
-船员人工智能
-中号
-L
-中号
-H
-基于角色的团队
-办公室助理
-L
-L
-H
-L
-简单的托管智能体
-OpenAI 群
-中号
-L
-L
-H
-切换模式
-定制
-H
-H
-H
-H
-完全控制，无锁定</p>
-<p>图例：H = 高，M = 中，L = 低。弹性。 = 灵活性、复杂性。 = 复杂性，
-产品。 = 生产就绪。</p>
-<p>• LangChain [340]1提供了丰富的集成生态系统，但学习曲线陡峭
-以及可能掩盖实际发生的事情的抽象。</p>
-<p>• LangGraph [337]2向LangChain添加了显式的基于图的控制流，使得复杂
-多步骤智能体更易于管理。</p>
-<p>• AutoGen [338]3 擅长多智能体对话和嵌套聊天，并具有良好的支持
-人机交互模式。</p>
-<p>• CrewAI [341]4 提供了一个易于获取的高级、基于角色的抽象（“智能体员”）
-开始使用自定义模式，但灵活性较差。</p>
-<p>• OpenAI Assistant API5 是完全托管的（无需运行基础设施），但提供的功能有限
-定制和供应商锁定。</p>
-<p>• OpenAI Swarm [336]6 是一个轻量级的教育框架，展示了切换
-图案；尚未做好生产准备。</p>
-<p>• 定制执行框架可提供最大程度的控制，是生产系统的正确选择
-具体要求，但需要大量的工程投资。</p>
-<p>何时使用框架与构建自定义？</p>
-<p>在以下情况下使用框架：您正在制作原型，您的用例适合框架的抽象，或者
-您需要与许多工具快速集成。在以下情况下构建自定义：您有严格的延迟/成本
-需求，框架的抽象以导致错误的方式泄漏，您需要细粒度
-控制上下文管理，或者您正在构建一个以智能体工具为核心的产品
-差异化因素。</p>
-<h2 id="chapter-19-p360-10">Implementation: Production Agent Harness</h2>
-<p><span class="page-ref" id="pdf-p360">原 PDF p.360</span></p>
-<p>实施：生产智能体执行框架</p>
-<p>以下是完整的、生产质量的智能体工具实现，展示了上下文
-管理、工具集成、ReAct 编排循环和错误处理。</p>
-<pre><code class="language-text">"""
+(18.11)</code></pre></div><p class="content-block paragraph">计划和执行对于长期任务（更少的 LLM 调用）更有效，但适应性较差 意外的观察。</p><p class="content-block paragraph">多智能体编排</p><p class="content-block paragraph">复杂的任务得益于多个专业智能体的协同工作。四种规范模式：</p><p class="content-block paragraph">主管模式。 中央“主管”LLM 接收用户请求，将其分解，然后 将子任务路由给专家智能体。结果由主管汇总。</p><p class="content-block paragraph">图 18.6：主管模式：一个协调器路由到专家智能体。</p><p class="content-block paragraph">点对点。 智能体直接通信，无需中央协调器。每个智能体可以调用 任何其他智能体作为工具。灵活但难以调试并且容易出现循环依赖。</p><p class="content-block paragraph">分层结构（智能体树）。 高层智能体委托给中层智能体的树形结构 智能体，委托给叶智能体。启用递归任务分解。用于像这样的系统 AutoGen 的嵌套聊天。</p><figure class="component figure-component"><img src="../assets/images/figures/fig-054.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure></div></section><section class="ast-section" id="chapter-19-s06"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>状态管理</h2><p>本节聚焦“状态管理”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">群体模式。 这种模式由 OpenAI 的 Swarm 库 [336] 推广，它使用切换： 智能体可以将控制权以及完整的对话上下文转移给另一个智能体。关键概念：</p><p class="content-block paragraph">• 智能体有说明和工具。</p><p class="content-block paragraph">• 移交是转移控制权的特殊工具。</p><p class="content-block paragraph">• 上下文变量是在智能体之间传递的共享状态。</p><p class="content-block paragraph">• 活动智能体根据任务需要动态变化。</p><p class="content-block paragraph">人在环</p><p class="content-block paragraph">生产智能体必须知道何时暂停并请求人工输入：</p><p class="content-block paragraph">• 批准门：在进行不可逆转的操作（发送电子邮件、删除文件、购买）之前， 需要明确的人工确认。</p><p class="content-block paragraph">• 升级标准：当置信度低于阈值、任务超出范围时升级 定义的范围，或触发安全规则时。</p><p class="content-block paragraph">• 反馈集成：将人工更正插入到上下文中并可以更新 智能体的计划。</p><p class="content-block paragraph">• 异步批准：对于长时间运行的任务，智能体可以暂停，通过电子邮件/S-通知人员 缺乏，待批准后恢复。</p><p class="content-block paragraph">升级决策规则</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Escalate ⇐⇒psuccess &lt; τconf | {z } low confidence ∨action ∈Airreversible | {z } irreversible ∨cost &gt; Bauto | {z } over budget (18.12)</code></pre></div><p class="content-block paragraph">其中 τconf 是置信度阈值，Airreversible 是不可逆操作的集合，Bauto 是 自主支出限额。</p><p class="content-block paragraph">工作流程图</p><p class="content-block paragraph">对于复杂的结构化工作流程，编排logits表示为有向无环图 （DAG）或状态机：</p><p class="content-block paragraph">• LangGraph [337]：用基于图的执行模型扩展LangChain。节点是智能体 步骤；边是条件转移。支持循环（对于 ReAct 循环）和并行分支。</p><p class="content-block paragraph">• AutoGen [338]：微软的多智能体对话图框架。支持嵌套 聊天、群聊和人机交互模式。</p><p class="content-block paragraph">• 状态机：显式状态（例如，PLANNING、EXECUTING、WAITING_FOR_HUMAN、DONE） 具有定义的转换。比隐式循环logits更容易推理和测试。</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>G = (V, E, σ0), v ∈V : agent step, e ∈E : conditional transition, σ0 : initial state (18.13)</code></pre></div><p class="content-block paragraph">智能体本质上是有状态的。执行框架必须管理多层状态：</p><p class="content-block paragraph">图 18.7：人机交互智能体的示例工作流程图。状态和条件转换是 明确，使控制流可审计。</p><p class="content-block paragraph">会话状态</p><p class="content-block paragraph">消息历史记录是主要的状态工件。每条消息都有：</p><div class="component code-component"><div class="block-label">text</div><pre><code>• Role: system, user, assistant, tool.</code></pre></div><p class="content-block paragraph">• 内容：文本、工具调用或工具结果。</p><p class="content-block paragraph">• 元数据：时间戳、token计数、重要性得分、压缩状态。</p><p class="content-block paragraph">任务状态</p><p class="content-block paragraph">对于长时间运行的任务，执行框架会跟踪：</p><p class="content-block paragraph">• 进度：哪些子任务已完成、正在进行或待处理。</p><p class="content-block paragraph">• 检查点：允许在失败后恢复的序列化状态快照。</p><p class="content-block paragraph">• 回滚：如果检测到错误，能够撤消最后 k 个操作。</p><p class="content-block paragraph">智能体状态</p><p class="content-block paragraph">Agent的内部状态包括：</p><p class="content-block paragraph">• 当前计划：客服人员打算采取的步骤顺序。</p><p class="content-block paragraph">• 待处理操作：已发出但尚未返回的工具调用。</p><p class="content-block paragraph">• 信念：智能体已确定的事实（例如，“用户的时区是 UTC+9”）。</p><p class="content-block paragraph">持久状态</p><p class="content-block paragraph">对于跨会话连续性 [228, 316]：</p><p class="content-block paragraph">• 用户配置文件：偏好、过去的交互、了解的有关用户的事实。</p><p class="content-block paragraph">• 长期记忆：过去对话的向量数据库，可通过语义相似性进行搜索。</p><p class="content-block paragraph">• 任务历史记录：已完成的任务及其结果，用于少数镜头检索。</p><p class="content-block paragraph">国家为一等公民 在早期的智能体框架中，状态是一个事后的想法——传递一个全局字典。产品- 系统将状态视为具有显式模式、版本控制和迁移的一等公民 路径。将智能体状态视为数据库模式：预先仔细定义它，因为更改 后来很痛苦。</p><figure class="component figure-component"><img src="../assets/images/figures/fig-055.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure></div></section><section class="ast-section" id="chapter-19-s07"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>错误处理与恢复</h2><p>本节聚焦“错误处理与恢复”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">错误处理和恢复</p><p class="content-block paragraph">特工在对抗性的、不可预测的环境中运作。强大的错误处理是不可协商的。</p><p class="content-block paragraph">重试策略</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>• Exponential backoff: For transient failures (rate limits, network errors), retry after min(2k · t0 + ϵ, tmax) seconds, where k is the retry count and ϵ is random jitter.</code></pre></div><p class="content-block paragraph">• 后备模型：如果主模型不可用或返回错误，则后备模型 次要模型（可能能力较差，但可用）。</p><p class="content-block paragraph">• 优雅降级：如果工具不可用，通知模型并让它尝试执行任务 没有那个工具。</p><p class="content-block paragraph">第 k 次重试的退避延迟为：</p><div class="component code-component"><div class="block-label">text</div><pre><code>tk = 最小值</code></pre></div><p class="content-block paragraph"> 2k·t0 + U(0, t0), tmax</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>公式内容已由 OCR 清洗；请结合上下文或图像 fallback 阅读。</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>k = 0, 1, 2, .。。</code></pre></div><p class="content-block paragraph">(18.14)</p><p class="content-block paragraph">环路检测</p><p class="content-block paragraph">智能体可能会陷入无限循环 - 使用相同的参数重复调用相同的工具，或者 在两种状态之间摇摆。检测和自我纠正策略[224]：</p><p class="content-block paragraph">• 最大迭代保护：每个任务的步骤数的硬性限制（例如 50 个步骤）。</p><p class="content-block paragraph">• 重复数据删除操作：对每个（工具、参数）对进行哈希处理；如果同一个调用出现 k 次，则中断 循环。</p><p class="content-block paragraph">• 进度检测：如果智能体的状态在 k 个步骤中没有改变，则触发“卡住”处理程序。</p><p class="content-block paragraph">形式上，当相同的动作哈希出现在大小为 W 的滑动窗口内时，就会检测到循环：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>loop_detected ⇐⇒∃i &lt; j ≤t : hash(actioni) = hash(actionj) ∧j −i ≤W (18.15)</code></pre></div><p class="content-block paragraph">优雅的失败</p><p class="content-block paragraph">当智能体无法完成任务时：</p><p class="content-block paragraph">1. 解释完成了什么（部分结果）。</p><p class="content-block paragraph">2. 解释为什么任务无法完成。</p><p class="content-block paragraph">3. 建议恢复操作（例如，“请提供您的 API 密钥以启用网络搜索”）。</p><p class="content-block paragraph">4. 保留状态以便可以恢复任务。</p><p class="content-block paragraph">可观察性</p><p class="content-block paragraph">智能体的可观察性三元组</p><p class="content-block paragraph">• 跟踪：每个智能体运行的端到端跟踪，以及每个 LLM 调用、工具调用和 状态转换。工具：LangSmith、Arize Phoenix、OpenTelemetry。</p><p class="content-block paragraph">• 日志：每个事件的结构化日志（发送提示、收到响应、调用工具、错误 提出）。包括token计数、延迟和成本。</p><p class="content-block paragraph">• 指标：汇总统计数据——任务成功率、每个任务的平均步数、工具错误率、 每个任务的成本，p95 延迟。</p></div></section><section class="ast-section" id="chapter-19-s08"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>扩展与生产化关注点</h2><p>本节聚焦“扩展与生产化关注点”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">调试差距</p><p class="content-block paragraph">众所周知，LLM 智能体很难调试，因为失败通常是语义性的（该模型做了一个 错误的决定）而不是语法（代码异常）。投资重放工具：能够 使用修改后的提示或模型重新运行任何过去的智能体跟踪，并并排比较输出。</p><p class="content-block paragraph">规模和生产问题</p><p class="content-block paragraph">延迟优化</p><p class="content-block paragraph">• 并行工具调用：使用asyncio 或线程同时执行独立的工具调用 水池。可以将 N 个并行调用的多工具延迟减少 N 倍。</p><p class="content-block paragraph">• 流式处理：使用流式API 在模型响应完成之前开始处理模型的响应。 减少用户首次使用token的时间。</p><p class="content-block paragraph">• 提示缓存：许多提供商（Anthropic、OpenAI）为重复的数据提供提示缓存。 前缀（例如系统提示符+工具定义）。可以将延迟和成本降低 50-90% 缓存的部分。</p><p class="content-block paragraph">• 推测执行：在模型完成之前开始执行最有可能的下一个工具调用。 生成完成，如果预测错误则取消。</p><p class="content-block paragraph">成本管理</p><p class="content-block paragraph">• token预算：强制执行每个任务和每个用户的token预算。接近极限时发出警报。</p><p class="content-block paragraph">• 模型路由：使用便宜、快速的模型（例如 GPT-4o-mini、Claude Haiku）来执行简单的步骤 （工具选择、格式化）和昂贵的模型（GPT-4o，Claude Opus）仅用于复杂的 推理[339]。</p><p class="content-block paragraph">• 缓存：缓存确定性工具输出（例如数据库查找、静态网页）以避免 冗余 API 调用。</p><p class="content-block paragraph">包含 T LLM 步骤和 K 个工具调用的智能体任务的总成本为：</p><p class="content-block paragraph">时间 X</p><p class="content-block paragraph">K X</p><p class="content-block paragraph">(18.16)</p><p class="content-block paragraph">成本任务 =</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>j=1 cj |{z} tool cost</code></pre></div><p class="content-block paragraph">我=1 针·nin,i + 噘嘴·nout,i | {z } LLM费用</p><p class="content-block paragraph">其中 pin、pout 是每个token的价格，nin,i, nout,i 是步骤 i 的输入/输出token计数，cj 是 工具调用 j 的成本。</p><p class="content-block paragraph">速率限制和排队</p><p class="content-block paragraph">同时运行多个智能体时：</p><p class="content-block paragraph">• token桶速率限制器：对共享网络的所有智能体实施每分钟token限制。 API 密钥。</p><p class="content-block paragraph">• 优先级队列：高优先级任务（交互式用户请求）抢占低优先级任务 （批处理）。</p><p class="content-block paragraph">• 反压：当队列已满时，拒绝新任务并返回 503 Service Unavailable 而不是默默地无限期地排队。</p></div></section><section class="ast-section" id="chapter-19-s09"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>框架比较</h2><p>本节聚焦“框架比较”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">生产评估</p><p class="content-block paragraph">• A/B 测试：将一小部分流量路由到新的智能体版本并比较成功率， 成本和延迟。</p><p class="content-block paragraph">• 金丝雀部署：逐渐增加新版本的流量，同时监控 回归。</p><p class="content-block paragraph">• 影子模式：与生产智能体并行运行新智能体，比较输出，但 只为用户提供生产输出。</p><p class="content-block paragraph">• LLM作为法官：使用单独的LLM来评估智能体在帮助等维度上的输出， 准确性和安全性[257]。</p><p class="content-block paragraph">表 18.1：主要智能体编排框架的比较。</p><p class="content-block paragraph">框架 弹性。 复杂的。 产品。 多Agent 最适合</p><p class="content-block paragraph">浪链 H H 中号 中号 快速原型制作、链条 郎图 H H H H 复杂的有状态工作流程 自动生成器 中号 中号 中号 H 多智能体对话 船员人工智能 中号 L 中号 H 基于角色的团队 办公室助理 L L H L 简单的托管智能体 OpenAI 群 中号 L L H 切换模式 定制 H H H H 完全控制，无锁定</p><div class="component code-component"><div class="block-label">text</div><pre><code>图例：H = 高，M = 中，L = 低。弹性。 = 灵活性、复杂性。 = 复杂性，</code></pre></div><p class="content-block paragraph">产品。 = 生产就绪。</p><p class="content-block paragraph">• LangChain [340]1提供了丰富的集成生态系统，但学习曲线陡峭 以及可能掩盖实际发生的事情的抽象。</p><p class="content-block paragraph">• LangGraph [337]2向LangChain添加了显式的基于图的控制流，使得复杂 多步骤智能体更易于管理。</p><p class="content-block paragraph">• AutoGen [338]3 擅长多智能体对话和嵌套聊天，并具有良好的支持 人机交互模式。</p><p class="content-block paragraph">• CrewAI [341]4 提供了一个易于获取的高级、基于角色的抽象（“智能体员”） 开始使用自定义模式，但灵活性较差。</p><p class="content-block paragraph">• OpenAI Assistant API5 是完全托管的（无需运行基础设施），但提供的功能有限 定制和供应商锁定。</p><p class="content-block paragraph">• OpenAI Swarm [336]6 是一个轻量级的教育框架，展示了切换 图案；尚未做好生产准备。</p><p class="content-block paragraph">• 定制执行框架可提供最大程度的控制，是生产系统的正确选择 具体要求，但需要大量的工程投资。</p><p class="content-block paragraph">何时使用框架与构建自定义？</p><p class="content-block paragraph">在以下情况下使用框架：您正在制作原型，您的用例适合框架的抽象，或者 您需要与许多工具快速集成。在以下情况下构建自定义：您有严格的延迟/成本 需求，框架的抽象以导致错误的方式泄漏，您需要细粒度 控制上下文管理，或者您正在构建一个以智能体工具为核心的产品 差异化因素。</p></div></section><section class="ast-section" id="chapter-19-s10"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>实现：生产级智能体执行框架</h2><p>本节聚焦“实现：生产级智能体执行框架”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>旋转位置嵌入（RoPE）</strong><span>RoPE</span><p>通过旋转变换注入相对位置信息的位置编码方法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">实施：生产智能体执行框架</p><p class="content-block paragraph">以下是完整的、生产质量的智能体工具实现，展示了上下文 管理、工具集成、ReAct 编排循环和错误处理。</p><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;&quot;&quot;
 production_harness .py -- A production -quality
 agent
 harness.
@@ -1071,9 +188,7 @@ integration ,
 ReAct loop , error
 handling , and
 observability .
-"""
-</code></pre>
-<pre><code class="language-text">from
+&quot;&quot;&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>from
 __future__
 import
 annotations
@@ -1096,34 +211,24 @@ import
 Enum
 from
 typing
-import Any , Callable , Optional
-</code></pre>
-<pre><code class="language-text">import
+import Any , Callable , Optional</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>import
 tiktoken
 from
 openai
 import
-AsyncOpenAI
-</code></pre>
-<pre><code class="language-text"># -- Logging / Observability
+AsyncOpenAI</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Logging / Observability
 ----------------------------------
-logger = logging.getLogger("agent_harness ")
-</code></pre>
-<pre><code class="language-text"># -- Data
+logger = logging.getLogger(&quot;agent_harness &quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Data
 Models
-----------------------------------------------
-</code></pre>
-<pre><code class="language-text">class
+----------------------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 Role(str , Enum):
 SYSTEM
-= "system"
+= &quot;system&quot;
 USER
-= "user"
-ASSISTANT = "assistant"
+= &quot;user&quot;
+ASSISTANT = &quot;assistant&quot;
 TOOL
-= "tool"
-</code></pre>
-<pre><code class="language-text">@dataclass
+= &quot;tool&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@dataclass
 class
 Message:
 role:
@@ -1136,22 +241,12 @@ tool_call_id: Optional[str]
 = None
 metadata:
 dict
-= field( default_factory =dict)
-</code></pre>
-<pre><code class="language-text">def
+= field( default_factory =dict)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 to_api_dict(self) -&gt; dict:
-d: dict = {"role": self.role.value ,
-</code></pre>
-<pre><code class="language-text">"content": self.content or None}
-if self.tool_calls:
-</code></pre>
-<pre><code class="language-text">d["tool_calls"] = self.tool_calls
-if self.tool_call_id:
-</code></pre>
-<pre><code class="language-text">d["tool_call_id"] = self. tool_call_id
-return d
-</code></pre>
-<pre><code class="language-text">@dataclass
+d: dict = {&quot;role&quot;: self.role.value ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;content&quot;: self.content or None}
+if self.tool_calls:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>d[&quot;tool_calls&quot;] = self.tool_calls
+if self.tool_call_id:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>d[&quot;tool_call_id&quot;] = self. tool_call_id
+return d</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@dataclass
 class
 ToolDefinition:
 name:
@@ -1161,32 +256,19 @@ parameters:
 dict
 handler:
 Callable
-requires_approval : bool = False
-</code></pre>
-<pre><code class="language-text">def
+requires_approval : bool = False</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 to_api_dict(self) -&gt; dict:
-return {
-</code></pre>
-<pre><code class="language-text">"type": "function",
-"function": {
-</code></pre>
-<pre><code class="language-text">"name":
+return {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;type&quot;: &quot;function&quot;,
+&quot;function&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;name&quot;:
 self.name ,
-"description": self.description ,
-</code></pre>
-<p><span class="page-ref" id="pdf-p361">原 PDF p.361</span></p>
-<pre><code class="language-text">"parameters":
+&quot;description&quot;: self.description ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;parameters&quot;:
 self.parameters ,
 }
-}
-</code></pre>
-<pre><code class="language-text"># -- Context
+}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Context
 Manager
-------------------------------------------
-</code></pre>
-<pre><code class="language-text">class
+------------------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 ContextManager:
-"""
+&quot;&quot;&quot;
 Manages
 the
 context
@@ -1196,21 +278,17 @@ budget
 enforcement ,
 compression , and token
 counting.
-"""
-BUDGET_FRACTIONS = {
-</code></pre>
-<pre><code class="language-text">"system":
+&quot;&quot;&quot;
+BUDGET_FRACTIONS = {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;system&quot;:
 0.10,
-"memory":
+&quot;memory&quot;:
 0.20,
-"tools":
+&quot;tools&quot;:
 0.10,
-"history":
+&quot;history&quot;:
 0.50,
-"reserved": 0.10,
-}
-</code></pre>
-<pre><code class="language-text">def
+&quot;reserved&quot;: 0.10,
+}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 __init__(self , model: str , max_tokens: int):
 self.model
 = model
@@ -1219,113 +297,66 @@ self.enc
 = tiktoken. encoding_for_model (model)
 self.history:
 list[Message] = []
-self.system_msg: Optional[Message] = None
-</code></pre>
-<pre><code class="language-text">def
+self.system_msg: Optional[Message] = None</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 count_tokens(self , text: str) -&gt; int:
-return len(self.enc.encode(text))
-</code></pre>
-<pre><code class="language-text">def
+return len(self.enc.encode(text))</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 count_message_tokens (self , msg: Message) -&gt; int:
 # OpenAI
 overhead: 4 tokens per
 message + role
 return
-self.count_tokens(msg.content or "") + 4
-</code></pre>
-<pre><code class="language-text">def
+self.count_tokens(msg.content or &quot;&quot;) + 4</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 total_history_tokens (self) -&gt; int:
-return sum(self. count_message_tokens (m)
-</code></pre>
-<pre><code class="language-text">for m in self.history)
-</code></pre>
-<pre><code class="language-text">def
+return sum(self. count_message_tokens (m)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>for m in self.history)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 history_budget (self) -&gt; int:
-return int(self.max_tokens
-</code></pre>
-<pre><code class="language-text">* self. BUDGET_FRACTIONS ["history"])
-</code></pre>
-<pre><code class="language-text">def
+return int(self.max_tokens</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>* self. BUDGET_FRACTIONS [&quot;history&quot;])</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 add_message(self , msg: Message) -&gt; None:
 self.history.append(msg)
-self._enforce_budget ()
-</code></pre>
-<pre><code class="language-text">def
+self._enforce_budget ()</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 _enforce_budget (self) -&gt; None:
 budget = self.history_budget ()
-while (self. total_history_tokens () &gt; budget
-</code></pre>
-<pre><code class="language-text">and len(self.history) &gt; 2):
+while (self. total_history_tokens () &gt; budget</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>and len(self.history) &gt; 2):
 # Drop
 oldest non -pinned
 message (index 1).
-# 如果有 tool_calls ，也删除该工具
+# If it has tool_calls , also drop the tool
 results
 # that
 follow it to keep the
 conversation
 valid.
 dropped = self.history.pop (1)
-if dropped.tool_calls:
-</code></pre>
-<pre><code class="language-text">while (len(self.history) &gt; 1
-</code></pre>
-<pre><code class="language-text">and self.history [1]. role == Role.TOOL):
+if dropped.tool_calls:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>while (len(self.history) &gt; 1</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>and self.history [1]. role == Role.TOOL):
 self.history.pop (1)
-logger.debug(
-</code></pre>
-<pre><code class="language-text">"Context: %d/%d tokens
-used",
+logger.debug(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;Context: %d/%d tokens
+used&quot;,
 self. total_history_tokens (), budget
-)
-</code></pre>
-<pre><code class="language-text">def
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 preflight_check (self , tool_tokens: int) -&gt; bool:
-"""Returns
+&quot;&quot;&quot;Returns
 True if we are within
-budget."""
-sys_tokens = (self. count_message_tokens (self.system_msg)
-</code></pre>
-<pre><code class="language-text">if self.system_msg
-else 0)
-</code></pre>
-<p><span class="page-ref" id="pdf-p362">原 PDF p.362</span></p>
-<pre><code class="language-text">total = (sys_tokens
-</code></pre>
-<pre><code class="language-text">+ tool_tokens
+budget.&quot;&quot;&quot;
+sys_tokens = (self. count_message_tokens (self.system_msg)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>if self.system_msg
+else 0)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>total = (sys_tokens</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>+ tool_tokens
 + self. total_history_tokens ())
-reserved = int(self.max_tokens
-</code></pre>
-<pre><code class="language-text">* self. BUDGET_FRACTIONS ["reserved"])
+reserved = int(self.max_tokens</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>* self. BUDGET_FRACTIONS [&quot;reserved&quot;])
 ok = total
 &lt;= (self.max_tokens - reserved)
-if not ok:
-</code></pre>
-<pre><code class="language-text">logger.warning(
-</code></pre>
-<pre><code class="language-text">"Context
-overflow: %d &gt; %d",
+if not ok:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>logger.warning(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;Context
+overflow: %d &gt; %d&quot;,
 total , self.max_tokens - reserved
 )
-return ok
-</code></pre>
-<pre><code class="language-text">def
+return ok</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 build_messages (self) -&gt; list[dict ]:
 msgs = []
-if self.system_msg:
-</code></pre>
-<pre><code class="language-text">msgs.append(self.system_msg.to_api_dict ())
+if self.system_msg:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>msgs.append(self.system_msg.to_api_dict ())
 msgs.extend(m.to_api_dict () for m in self.history)
 return
-msgs
-</code></pre>
-<pre><code class="language-text"># -- Tool
+msgs</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Tool
 Executor
---------------------------------------------
-</code></pre>
-<pre><code class="language-text">class
+--------------------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 ToolExecutor:
-"""
+&quot;&quot;&quot;
 Executes
 tool
 calls
@@ -1333,34 +364,22 @@ with
 sandboxing , retry logic ,
 and output
 truncation.
-"""
+&quot;&quot;&quot;
 MAX_OUTPUT_TOKENS = 2000
 MAX_RETRIES
-= 3
-</code></pre>
-<pre><code class="language-text">def
-__init__(self , tools: list[ ToolDefinition ],
-</code></pre>
-<pre><code class="language-text">approval_callback : Optional[Callable] = None ,
-encoding: str = "cl100k_base"):
+= 3</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
+__init__(self , tools: list[ ToolDefinition ],</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>approval_callback : Optional[Callable] = None ,
+encoding: str = &quot;cl100k_base&quot;):
 self.tools
 = {t.name: t for t in tools}
 self.approval = approval_callback
 self.enc
-= tiktoken.get_encoding (encoding)
-</code></pre>
-<pre><code class="language-text">async def
-execute(self , tool_name: str ,
-</code></pre>
-<pre><code class="language-text">args: dict) -&gt; str:
+= tiktoken.get_encoding (encoding)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def
+execute(self , tool_name: str ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>args: dict) -&gt; str:
 tool = self.tools.get(tool_name)
-if not tool:
-</code></pre>
-<pre><code class="language-text">return f"Error: unknown
+if not tool:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return f&quot;Error: unknown
 tool
-’{tool_name}’"
-</code></pre>
-<pre><code class="language-text"># Human -in -the -loop
+’{tool_name}’&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Human -in -the -loop
 approval
 gate
 if tool. requires_approval
@@ -1369,15 +388,11 @@ approved = await
 self.approval(tool_name , args)
 if not
 approved:
-return "Action
+return &quot;Action
 rejected by human
-reviewer."
-</code></pre>
-<pre><code class="language-text">for
+reviewer.&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>for
 attempt in range(self.MAX_RETRIES):
-try:
-</code></pre>
-<pre><code class="language-text">result = await
+try:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>result = await
 asyncio.wait_for(
 self._call(tool , args), timeout =30.0
 )
@@ -1385,108 +400,69 @@ return
 self._truncate(result)
 except
 asyncio.TimeoutError :
-logger.warning("Tool %s timed out (attempt %d)",
-</code></pre>
-<pre><code class="language-text">tool_name , attempt + 1)
-if attempt == self.MAX_RETRIES - 1:
-</code></pre>
-<pre><code class="language-text">return f"Error: tool
-’{tool_name}’ timed out"
+logger.warning(&quot;Tool %s timed out (attempt %d)&quot;,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>tool_name , attempt + 1)
+if attempt == self.MAX_RETRIES - 1:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return f&quot;Error: tool
+’{tool_name}’ timed out&quot;
 await
 asyncio.sleep (2 ** attempt)
 # backoff
 except
 Exception as exc:
-logger.error("Tool %s error: %s", tool_name , exc)
-if attempt == self.MAX_RETRIES - 1:
-</code></pre>
-<pre><code class="language-text">return f"Error: {exc}"
+logger.error(&quot;Tool %s error: %s&quot;, tool_name , exc)
+if attempt == self.MAX_RETRIES - 1:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return f&quot;Error: {exc}&quot;
 await
-asyncio.sleep (2 ** attempt)
-</code></pre>
-<p><span class="page-ref" id="pdf-p363">原 PDF p.363</span></p>
-<pre><code class="language-text">return "Error: max
+asyncio.sleep (2 ** attempt)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return &quot;Error: max
 retries
-exceeded"
-</code></pre>
-<pre><code class="language-text">async def _call(self , tool: ToolDefinition ,
-</code></pre>
-<pre><code class="language-text">args: dict) -&gt; str:
-if asyncio. iscoroutinefunction (tool.handler):
-</code></pre>
-<pre><code class="language-text">result = await
+exceeded&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def _call(self , tool: ToolDefinition ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>args: dict) -&gt; str:
+if asyncio. iscoroutinefunction (tool.handler):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>result = await
 tool.handler (** args)
-else:
-</code></pre>
-<pre><code class="language-text">result = await
+else:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>result = await
 asyncio. get_running_loop (). run_in_executor (
 None , lambda: tool.handler (** args)
 )
-return str(result)
-</code></pre>
-<pre><code class="language-text">def
+return str(result)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 _truncate(self , text: str) -&gt; str:
 tokens = self.enc.encode(text)
-if len(tokens) &lt;= self. MAX_OUTPUT_TOKENS :
-</code></pre>
-<pre><code class="language-text">return
+if len(tokens) &lt;= self. MAX_OUTPUT_TOKENS :</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return
 text
-truncated = self.enc.decode(
-</code></pre>
-<pre><code class="language-text">tokens [: self. MAX_OUTPUT_TOKENS ]
+truncated = self.enc.decode(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>tokens [: self. MAX_OUTPUT_TOKENS ]
 )
 return
-truncated + "\n[...
+truncated + &quot;\n[...
 output
 truncated
-...]"
-</code></pre>
-<pre><code class="language-text"># -- Loop
+...]&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Loop
 Detector
---------------------------------------------
-</code></pre>
-<pre><code class="language-text">class
+--------------------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 LoopDetector:
-"""Detects
+&quot;&quot;&quot;Detects
 repeated
 actions
 within a sliding
-window."""
+window.&quot;&quot;&quot;
 def
 __init__(self , window: int = 5, max_repeats: int = 2):
 self.window
 = window
 self.max_repeats = max_repeats
-self.action_hashes: list[str] = []
-</code></pre>
-<pre><code class="language-text">def record(self , tool_name: str , args: dict) -&gt; bool:
-</code></pre>
-<pre><code class="language-text">"""Returns
-True if a loop is detected."""
-h = hashlib.md5(
-</code></pre>
-<pre><code class="language-text">f"{tool_name }:{ json.dumps(args , sort_keys=True)}"
+self.action_hashes: list[str] = []</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def record(self , tool_name: str , args: dict) -&gt; bool:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;&quot;&quot;Returns
+True if a loop is detected.&quot;&quot;&quot;
+h = hashlib.md5(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>f&quot;{tool_name }:{ json.dumps(args , sort_keys=True)}&quot;
 .encode ()
 ).hexdigest ()
 self.action_hashes.append(h)
 recent = self.action_hashes [-self.window :]
-if recent.count(h) &gt;= self.max_repeats:
-</code></pre>
-<pre><code class="language-text">logger.warning("Loop
-detected: %s called %d times",
+if recent.count(h) &gt;= self.max_repeats:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>logger.warning(&quot;Loop
+detected: %s called %d times&quot;,
 tool_name , recent.count(h))
 return
 True
 return
-False
-</code></pre>
-<pre><code class="language-text"># -- Agent
+False</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Agent
 Harness
---------------------------------------------
-</code></pre>
-<pre><code class="language-text">class
+--------------------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 AgentHarness:
-"""
+&quot;&quot;&quot;
 Production
 agent
 harness
@@ -1500,10 +476,8 @@ integration ,
 error
 handling , and
 observability .
-"""
-MAX_ITERATIONS = 50
-</code></pre>
-<pre><code class="language-text">def
+&quot;&quot;&quot;
+MAX_ITERATIONS = 50</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 __init__(
 self ,
 model:
@@ -1517,28 +491,17 @@ approval_cb:
 Optional[Callable] = None ,
 client:
 Optional[AsyncOpenAI] = None ,
-):
-</code></pre>
-<pre><code class="language-text">self.model
+):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>self.model
 = model
 self.client
 = client or AsyncOpenAI ()
-self.ctx_mgr = ContextManager (model , max_tokens)
-</code></pre>
-<p><span class="page-ref" id="pdf-p364">原 PDF p.364</span></p>
-<pre><code class="language-text">self.executor = ToolExecutor (tools , approval_cb)
+self.ctx_mgr = ContextManager (model , max_tokens)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>self.executor = ToolExecutor (tools , approval_cb)
 self.loop_det = LoopDetector ()
 self.tools
-= tools
-</code></pre>
-<pre><code class="language-text"># Set system
+= tools</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Set system
 message
 sys_msg = Message(Role.SYSTEM , system_prompt )
-self.ctx_mgr.system_msg = sys_msg
-</code></pre>
-<pre><code class="language-text">async def run(self , user_input: str) -&gt; str:
-</code></pre>
-<pre><code class="language-text">"""
+self.ctx_mgr.system_msg = sys_msg</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def run(self , user_input: str) -&gt; str:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;&quot;&quot;
 Execute
 the ReAct
 loop for a user
@@ -1547,382 +510,215 @@ Returns
 the final
 response
 string.
-"""
+&quot;&quot;&quot;
 run_id
 = hashlib.md5(
-f"{time.time ()}:{ user_input}".encode ()
+f&quot;{time.time ()}:{ user_input}&quot;.encode ()
 ).hexdigest () [:8]
 start_ts = time.monotonic ()
-logger.info("[%s] Starting
-run: %s", run_id ,
-user_input [:80])
-</code></pre>
-<pre><code class="language-text"># Add user
+logger.info(&quot;[%s] Starting
+run: %s&quot;, run_id ,
+user_input [:80])</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Add user
 message to context
-self.ctx_mgr.add_message(
-</code></pre>
-<pre><code class="language-text">Message(Role.USER , user_input)
-)
-</code></pre>
-<pre><code class="language-text">tool_defs = [t.to_api_dict () for t in self.tools]
-tool_tokens = sum(
-</code></pre>
-<pre><code class="language-text">self.ctx_mgr.count_tokens (json.dumps(t))
+self.ctx_mgr.add_message(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>Message(Role.USER , user_input)
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>tool_defs = [t.to_api_dict () for t in self.tools]
+tool_tokens = sum(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>self.ctx_mgr.count_tokens (json.dumps(t))
 for t in tool_defs
-)
-</code></pre>
-<pre><code class="language-text">for
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>for
 iteration in range(self. MAX_ITERATIONS ):
 # Pre -flight
 context
 check
-if not self.ctx_mgr. preflight_check (tool_tokens):
-</code></pre>
-<pre><code class="language-text">logger.error("[%s] Context
-overflow at iter %d",
+if not self.ctx_mgr. preflight_check (tool_tokens):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>logger.error(&quot;[%s] Context
+overflow at iter %d&quot;,
 run_id , iteration)
-return ("I’ve run out of context
-space. "
-"Please
+return (&quot;I’ve run out of context
+space. &quot;
+&quot;Please
 start a new
-conversation.")
-</code></pre>
-<pre><code class="language-text"># -- LLM Call
+conversation.&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- LLM Call
 ----------------------------------
 messages = self.ctx_mgr. build_messages ()
-try:
-</code></pre>
-<pre><code class="language-text">response = await
+try:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>response = await
 self.client.chat.completions.create(
 model=self.model ,
 messages=messages ,
 tools=tool_defs if self.tools
 else None ,
-tool_choice="auto",
+tool_choice=&quot;auto&quot;,
 temperature =0.0 ,
 )
 except
 Exception as exc:
-logger.error("[%s] LLM call
-failed: %s",
+logger.error(&quot;[%s] LLM call
+failed: %s&quot;,
 run_id , exc)
-return f"I encountered an error: {exc}"
-</code></pre>
-<pre><code class="language-text">choice
+return f&quot;I encountered an error: {exc}&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>choice
 = response.choices [0]
 msg
 = choice.message
 finish
-= choice.finish_reason
-</code></pre>
-<pre><code class="language-text"># Store
+= choice.finish_reason</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Store
 assistant
 message
-assistant_msg = Message(
-</code></pre>
-<pre><code class="language-text">role=Role.ASSISTANT ,
-content=msg.content or "",
-tool_calls =([tc.model_dump ()
-</code></pre>
-<pre><code class="language-text">for tc in msg.tool_calls]
+assistant_msg = Message(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>role=Role.ASSISTANT ,
+content=msg.content or &quot;&quot;,
+tool_calls =([tc.model_dump ()</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>for tc in msg.tool_calls]
 if msg.tool_calls
 else None),
-)
-</code></pre>
-<p><span class="page-ref" id="pdf-p365">原 PDF p.365</span></p>
-<pre><code class="language-text">self.ctx_mgr.add_message( assistant_msg )
-</code></pre>
-<pre><code class="language-text"># -- Terminal
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>self.ctx_mgr.add_message( assistant_msg )</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Terminal
 condition
 -------------------------
-if finish == "stop" or not msg.tool_calls:
-</code></pre>
-<pre><code class="language-text">elapsed = time.monotonic () - start_ts
-logger.info(
-</code></pre>
-<pre><code class="language-text">"[%s] Done in %d iters , %.2fs",
+if finish == &quot;stop&quot; or not msg.tool_calls:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>elapsed = time.monotonic () - start_ts
+logger.info(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;[%s] Done in %d iters , %.2fs&quot;,
 run_id , iteration + 1, elapsed
 )
-return msg.content or "Task
-complete."
-</code></pre>
-<pre><code class="language-text"># -- Tool
+return msg.content or &quot;Task
+complete.&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Tool
 Execution
 -----------------------------
 tool_results = await
 self. _execute_tool_calls (
 msg.tool_calls , run_id
-)
-</code></pre>
-<pre><code class="language-text"># Check for loops
-for tc in msg.tool_calls:
-</code></pre>
-<pre><code class="language-text">args = json.loads(tc.function.arguments)
-if self.loop_det.record(tc.function.name , args):
-</code></pre>
-<pre><code class="language-text">return ("I seem to be stuck in a loop. "
-</code></pre>
-<pre><code class="language-text">"Please
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Check for loops
+for tc in msg.tool_calls:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>args = json.loads(tc.function.arguments)
+if self.loop_det.record(tc.function.name , args):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return (&quot;I seem to be stuck in a loop. &quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;Please
 clarify
 your
-request.")
-</code></pre>
-<pre><code class="language-text"># Add tool
+request.&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Add tool
 results to context
-for tool_call_id , result in tool_results.items ():
-</code></pre>
-<pre><code class="language-text">self.ctx_mgr.add_message(Message(
-</code></pre>
-<pre><code class="language-text">role=Role.TOOL ,
+for tool_call_id , result in tool_results.items ():</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>self.ctx_mgr.add_message(Message(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>role=Role.TOOL ,
 content=result ,
 tool_call_id=tool_call_id ,
-))
-</code></pre>
-<pre><code class="language-text"># Max
+))</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Max
 iterations
 reached
-logger.warning("[%s] Max
+logger.warning(&quot;[%s] Max
 iterations
-reached", run_id)
-return ("I reached
+reached&quot;, run_id)
+return (&quot;I reached
 the
 maximum
-number of steps "
-"without
+number of steps &quot;
+&quot;without
 completing
-the task. "
-"Here is what I found so far: "
-+ (msg.content or ""))
-</code></pre>
-<pre><code class="language-text">async def
+the task. &quot;
+&quot;Here is what I found so far: &quot;
++ (msg.content or &quot;&quot;))</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def
 _execute_tool_calls (
 self ,
 tool_calls: list ,
 run_id: str ,
-) -&gt; dict[str , str]:
-</code></pre>
-<pre><code class="language-text">"""Execute
+) -&gt; dict[str , str]:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;&quot;&quot;Execute
 tool
-calls in parallel."""
+calls in parallel.&quot;&quot;&quot;
 tasks = {}
-for tc in tool_calls:
-</code></pre>
-<pre><code class="language-text">name = tc.function.name
-try:
-</code></pre>
-<pre><code class="language-text">args = json.loads(tc.function.arguments)
+for tc in tool_calls:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>name = tc.function.name
+try:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>args = json.loads(tc.function.arguments)
 except
 json. JSONDecodeError :
 args = {}
-logger.info("[%s] Tool call: %s(%s)",
-</code></pre>
-<pre><code class="language-text">run_id , name , args)
-tasks[tc.id] = self.executor.execute(name , args)
-</code></pre>
-<pre><code class="language-text">results = await
+logger.info(&quot;[%s] Tool call: %s(%s)&quot;,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>run_id , name , args)
+tasks[tc.id] = self.executor.execute(name , args)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>results = await
 asyncio.gather(
 *tasks.values (), return_exceptions =True
 )
 output = {}
-for tool_id , result in zip(tasks.keys (), results):
-</code></pre>
-<pre><code class="language-text">if isinstance(result , Exception):
-</code></pre>
-<pre><code class="language-text">output[tool_id] = f"Error: {result}"
-else:
-</code></pre>
-<pre><code class="language-text">output[tool_id] = result
+for tool_id , result in zip(tasks.keys (), results):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>if isinstance(result , Exception):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>output[tool_id] = f&quot;Error: {result}&quot;
+else:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>output[tool_id] = result
 return
-output
-</code></pre>
-<p><span class="page-ref" id="pdf-p366">原 PDF p.366</span></p>
-<pre><code class="language-text"># -- Example
+output</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Example
 Usage
---------------------------------------------
-</code></pre>
-<pre><code class="language-text">async def main ():
-</code></pre>
-<pre><code class="language-text"># Define
+--------------------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def main ():</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Define
 tools
 async def
-search_web(query: str ,
-</code></pre>
-<pre><code class="language-text">num_results: int = 5) -&gt; str:
+search_web(query: str ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>num_results: int = 5) -&gt; str:
 # In production: call a real
 search API
-return f"[Search
+return f&quot;[Search
 results
 for
-’{query }’: ...]"
-</code></pre>
-<pre><code class="language-text">async def
+’{query }’: ...]&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def
 run_python(code: str) -&gt; str:
 # In production: execute in a sandbox
 container
-return f"[Execution
-result of code: ...]"
-</code></pre>
-<pre><code class="language-math">tools = [
-</code></pre>
-<pre><code class="language-text">ToolDefinition (
-</code></pre>
-<pre><code class="language-text">name="search_web",
-description =(
-</code></pre>
-<pre><code class="language-text">"Search the web for
+return f&quot;[Execution
+result of code: ...]&quot;</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>tools = [</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>ToolDefinition (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>name=&quot;search_web&quot;,
+description =(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;Search the web for
 current
-information. "
-"Use when the user asks
+information. &quot;
+&quot;Use when the user asks
 about
 recent
-events "
-"or facts
+events &quot;
+&quot;or facts
 beyond
 your
 knowledge
-cutoff."
+cutoff.&quot;
 ),
-parameters ={
-</code></pre>
-<pre><code class="language-text">"type": "object",
-"properties": {
-</code></pre>
-<p>"query": {</p>
-<pre><code class="language-text">"type": "string",
-"description": "Search
-query"
+parameters ={</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;type&quot;: &quot;object&quot;,
+&quot;properties&quot;: {</code></pre></div><p class="content-block paragraph">&quot;query&quot;: {</p><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;type&quot;: &quot;string&quot;,
+&quot;description&quot;: &quot;Search
+query&quot;
 },
-"num_results": {
-</code></pre>
-<pre><code class="language-text">"type": "integer",
-"default": 5
+&quot;num_results&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;type&quot;: &quot;integer&quot;,
+&quot;default&quot;: 5
 },
 },
-"required": ["query"],
+&quot;required&quot;: [&quot;query&quot;],
 },
 handler=search_web ,
 ),
-ToolDefinition (
-</code></pre>
-<pre><code class="language-text">name="run_python",
-description =(
-</code></pre>
-<pre><code class="language-text">"Execute
+ToolDefinition (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>name=&quot;run_python&quot;,
+description =(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;Execute
 Python
-code in a sandbox. "
-"Use for calculations , data
-processing , "
-"or generating
-visualizations ."
+code in a sandbox. &quot;
+&quot;Use for calculations , data
+processing , &quot;
+&quot;or generating
+visualizations .&quot;
 ),
-parameters ={
-</code></pre>
-<pre><code class="language-text">"type": "object",
-"properties": {
-</code></pre>
-<p>"code": {</p>
-<pre><code class="language-text">"type": "string",
-"description": "Python
-code to execute"
+parameters ={</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;type&quot;: &quot;object&quot;,
+&quot;properties&quot;: {</code></pre></div><p class="content-block paragraph">&quot;code&quot;: {</p><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;type&quot;: &quot;string&quot;,
+&quot;description&quot;: &quot;Python
+code to execute&quot;
 },
 },
-"required": ["code"],
+&quot;required&quot;: [&quot;code&quot;],
 },
 handler=run_python ,
 requires_approval =True ,
 # Requires
 human sign -off
 ),
-]
-</code></pre>
-<pre><code class="language-text">harness = AgentHarness(
-</code></pre>
-<pre><code class="language-text">model="gpt -4o",
-system_prompt =(
-</code></pre>
-<pre><code class="language-text">"You are a helpful
+]</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>harness = AgentHarness(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=&quot;gpt -4o&quot;,
+system_prompt =(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;You are a helpful
 research
-assistant. "
-"Think
+assistant. &quot;
+&quot;Think
 step by step
 before
-acting. "
-"Always
+acting. &quot;
+&quot;Always
 cite your
-sources."
-),
-</code></pre>
-<p><span class="page-ref" id="pdf-p367">原 PDF p.367</span></p>
-<pre><code class="language-text">tools=tools ,
+sources.&quot;
+),</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>tools=tools ,
 max_tokens =128 _000 ,
-)
-</code></pre>
-<pre><code class="language-text">response = await
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>response = await
 harness.run(
-"What were the key AI research
-breakthroughs "
-"in the first
-half of 2025?"
+&quot;What were the key AI research
+breakthroughs &quot;
+&quot;in the first
+half of 2025?&quot;
 )
-print(response)
-</code></pre>
-<pre><code class="language-text">if __name__ == "__main__":
-</code></pre>
-<pre><code class="language-text">asyncio.run(main ())
-</code></pre>
-<p>清单 18.1：生产智能体执行框架 - 核心实现</p>
-<p>实施中的关键设计决策</p>
-<p>• 上下文强制执行发生在每次add_message 调用上，而不仅仅是在LLM 调用之前。
-这可以防止静默溢出。</p>
-<p>• 通过 asyncio.gather 执行并行工具可减少模型请求时的延迟
-multiple tools simultaneously.</p>
-<p>• 循环检测在滑动窗口上使用内容散列，捕获两个精确的重复
-和近乎重复。</p>
-<p>• 批准门针对每个工具而不是每个运行，允许对哪些操作进行细粒度控制
-需要人工签核。</p>
-<p>• 使用 run_id 进行结构化日志记录可以轻松跟踪单个智能体的运行情况
-分布式日志。</p>
-<p>• 指数退避适用于工具级别，而不是 LLM 级别，因为工具故障是在
-more common and more recoverable.</p>
-<p>如何测试特工安全带？</p>
-<p>测试智能体与测试确定性软件有根本的不同。关键策略：(1)
-单独对每个组件（上下文管理器、工具执行器、循环检测器）进行单元测试
-嘲笑的依赖关系。 (2) 针对返回的模拟 LLM 集成测试完整的工具
-脚本化的回应。 (3) 评估工具：在已知的任务基准测试上运行智能体
-正确答案并衡量成功率。 （4）对抗性测试：建造的景观
-tool outputs and verify graceful failure. (5) 回归测试：重放过去的生产痕迹
-并验证输出在更改后不会回归。</p>
-<p>总结</p>
-<p>智能体工具是将语言模型转换为有能力的、
-可靠的智能体。本节的主要要点是：</p>
-<p>• 上下文是一种有限的、宝贵的资源。明确的执行预算，使用
-模型的精确分词器，并主动压缩历史记录。</p>
-<p>• 提示就是代码。对它们进行版本控制、测试并模块化地组装它们
-组件。</p>
-<p>• Tools are the agent’s actuators.精确定义它们，沙箱它们的执行，并处理
-their outputs defensively.</p>
-<p>• 编排模式不是一刀切。 ReAct 用于探索性任务，Plan-and-
-执行结构化任务，多智能体执行复杂的可分解任务。</p>
-<p><span class="page-ref" id="pdf-p368">原 PDF p.368</span></p>
-<p>• 状态管理是首要问题。预先设计状态模式；改造
-他们很痛苦。</p>
-<p>• 错误是不可避免的；优雅的恢复是一个功能。实现重试logits、循环
-检测和信息性故障消息。</p>
-<p>• 可观察性不是可选的。
-你无法调试你看不到的东西。
-仪器仪表
-从第一天开始的一切。</p>
-<p>• 生产涉及化合物。延迟、成本、速率限制和评估都是相互作用的。
-系统地解决这些问题，而不是事后才想到。</p></div>
+print(response)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>if __name__ == &quot;__main__&quot;:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>asyncio.run(main ())</code></pre></div><p class="content-block paragraph">清单 18.1：生产智能体执行框架 - 核心实现</p><p class="content-block paragraph">实施中的关键设计决策</p><p class="content-block paragraph">• 上下文强制执行发生在每次add_message 调用上，而不仅仅是在LLM 调用之前。 这可以防止静默溢出。</p><p class="content-block paragraph">• 通过 asyncio.gather 执行并行工具可减少模型请求时的延迟 multiple tools simultaneously.</p><p class="content-block paragraph">• 循环检测在滑动窗口上使用内容散列，捕获两个精确的重复 和近乎重复。</p><p class="content-block paragraph">• 批准门针对每个工具而不是每个运行，允许对哪些操作进行细粒度控制 需要人工签核。</p><p class="content-block paragraph">• 使用 run_id 进行结构化日志记录可以轻松跟踪单个智能体的运行情况 分布式日志。</p><p class="content-block paragraph">• 指数退避适用于工具级别，而不是 LLM 级别，因为工具故障是在 more common and more recoverable.</p><p class="content-block paragraph">如何测试特工安全带？</p><p class="content-block paragraph">测试智能体与测试确定性软件有根本的不同。关键策略：(1) 单独对每个组件（上下文管理器、工具执行器、循环检测器）进行单元测试 嘲笑的依赖关系。 (2) 针对返回的模拟 LLM 集成测试完整的工具 脚本化的回应。 (3) 评估工具：在已知的任务基准测试上运行智能体 correct answers and measure success rate. （4）对抗性测试：故意注入畸形的 tool outputs and verify graceful failure. (5) 回归测试：重放过去的生产痕迹 并验证输出在更改后不会回归。</p><p class="content-block paragraph">总结</p><p class="content-block paragraph">智能体工具是将语言模型转换为有能力的、 可靠的智能体。本节的主要要点是：</p><p class="content-block paragraph">• Context is a finite, precious resource.明确执行预算，使用 模型的精确分词器，并主动压缩历史记录。</p><p class="content-block paragraph">• 提示就是代码。对它们进行版本控制、测试并模块化地组装它们 组件。</p><p class="content-block paragraph">• Tools are the agent’s actuators.精确定义它们，沙箱它们的执行，并处理 their outputs defensively.</p><p class="content-block paragraph">• 编排模式并非一刀切。 ReAct for exploratory tasks, Plan-and- 执行结构化任务，多智能体执行复杂的可分解任务。</p><p class="content-block paragraph">• 状态管理是首要问题。预先设计状态模式；改造 他们很痛苦。</p><p class="content-block paragraph">• 错误是不可避免的；优雅的恢复是一个功能。实现重试logits、循环 检测和信息性故障消息。</p><p class="content-block paragraph">• 可观察性不是可选的。 你无法调试你看不到的东西。 仪器仪表 从第一天开始的一切。</p><p class="content-block paragraph">• 生产涉及化合物。延迟、成本、速率限制和评估都是相互作用的。 系统地解决这些问题，而不是事后才想到。</p></div></section></div>
           <nav class="chapter-pager"><a class="pager-link" href="chapter-18.html">← 智能体记忆系统</a><a class="pager-link next" href="chapter-20.html">智能体设计模式 →</a></nav>
         </article>
-        
-    </section>
-  </main>
+        </section><aside class="right-outline"><div class="nav-section-title">本页结构</div><a class="outline-link" href="#chapter-19-s01">什么是智能体执行框架</a><a class="outline-link" href="#chapter-19-s02">上下文窗口管理</a><a class="outline-link" href="#chapter-19-s03">提示架构</a><a class="outline-link" href="#chapter-19-s04">工具集成与执行</a><a class="outline-link" href="#chapter-19-s05">编排模式</a><a class="outline-link" href="#chapter-19-s06">状态管理</a><a class="outline-link" href="#chapter-19-s07">错误处理与恢复</a><a class="outline-link" href="#chapter-19-s08">扩展与生产化关注点</a><a class="outline-link" href="#chapter-19-s09">框架比较</a><a class="outline-link" href="#chapter-19-s10">实现：生产级智能体执行框架</a></aside></main>
   <button class="back-top" id="back-top" type="button">↑</button>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/toc.js"></script>
   <script src="../assets/js/progress.js"></script>
-  
 </body>
 </html>

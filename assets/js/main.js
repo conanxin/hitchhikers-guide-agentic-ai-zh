@@ -1,24 +1,2 @@
 
-(() => {
-  const navToggle = document.getElementById('nav-toggle');
-  const topnav = document.getElementById('topnav');
-  const leftNav = document.getElementById('left-nav');
-  const backTop = document.getElementById('back-top');
-
-  navToggle?.addEventListener('click', () => {
-    const topOpen = topnav?.classList.toggle('open');
-    if (leftNav && document.body.classList.contains('article-page')) {
-      leftNav.classList.toggle('open');
-    }
-    navToggle.setAttribute('aria-expanded', String(Boolean(topOpen || leftNav?.classList.contains('open'))));
-  });
-
-  leftNav?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      leftNav.classList.remove('open');
-      navToggle?.setAttribute('aria-expanded', 'false');
-    });
-  });
-
-  backTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-})();
+(()=>{const n=document.getElementById("nav-toggle"),t=document.getElementById("topnav"),l=document.getElementById("left-nav"),b=document.getElementById("back-top");n?.addEventListener("click",()=>{const o=t?.classList.toggle("open");if(l&&document.body.classList.contains("article-page"))l.classList.toggle("open");n.setAttribute("aria-expanded",String(Boolean(o||l?.classList.contains("open"))))});l?.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{l.classList.remove("open");n?.setAttribute("aria-expanded","false")}));b?.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}))})();

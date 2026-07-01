@@ -3,57 +3,39 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>V2 质量报告 | 智能体式 AI 漫游指南</title>
-  <meta name="description" content="V2 文档站重构质量报告。" />
-  <meta property="og:title" content="V2 质量报告 | 智能体式 AI 漫游指南" />
-  <meta property="og:description" content="V2 文档站重构质量报告。" />
+  <title>V3 质量报告 | 智能体式 AI 漫游指南</title>
+  <meta name="description" content="V3 AST-first 重构报告。" />
+  <meta property="og:title" content="V3 质量报告 | 智能体式 AI 漫游指南" />
+  <meta property="og:description" content="V3 AST-first 重构报告。" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="canonical" href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/article.css" />
   <link rel="stylesheet" href="assets/css/responsive.css" />
-  
 </head>
 <body class="site-page">
   <div class="reading-progress" id="reading-progress"></div>
   <header class="topbar">
-    <a class="brand" href="index.html" aria-label="智能体式 AI 漫游指南">
-      <span class="brand-mark">AI</span>
-      <span><strong>智能体式 AI 漫游指南</strong><small>从基础到系统的中文技术文档站</small></span>
-    </a>
-    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="topnav" id="topnav"><a class="active" href="index.html">首页</a>
-<a class="" href="chapters/index.html">章节</a>
-<a class="" href="glossary.html">术语表</a>
-<a class="" href="references.html">参考文献</a>
-<a class="" href="search.html">搜索</a>
-<a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
+    <a class="brand" href="index.html"><span class="brand-mark">AST</span><span><strong>智能体式 AI 漫游指南</strong><small>结构化知识文档系统</small></span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="打开导航" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="active" href="index.html">首页</a><a class="" href="chapters/index.html">章节</a><a class="" href="glossary.html">术语表</a><a class="" href="references.html">参考文献</a><a class="" href="search.html">搜索</a><a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
   </header>
-  <main class="layout">
-    
-    <section class="content-shell">
-      
+  <main class="layout"><section class="content-shell">
     <article class="plain-card">
-      <h1>V2 质量报告</h1>
-      <p class="lead">本页面汇总 V2 重构的质量门禁结果。完整 Markdown 报告同步写入 <code>docs/v2_site_redesign_report.md</code> 与本地 report 目录。</p>
+      <h1>V3 质量报告</h1>
+      <p class="lead">V3 完成 AST-first 重构：页面从 clean_chapter_tree.json 生成，页码只保留在 metadata。</p>
       <div class="status-grid">
-        <div><strong>多页面结构</strong><span>首页、章节、术语表、参考文献、搜索页已生成</span></div>
-        <div><strong>章节数量</strong><span>30 个章节页</span></div>
-        <div><strong>页码处理</strong><span>PDF 页码改为小型来源锚点</span></div>
-        <div><strong>搜索索引</strong><span>本地 JSON 索引</span></div>
+        <div><strong>AST</strong><span>clean_chapter_tree.json</span></div>
+        <div><strong>TOC</strong><span>语义聚类</span></div>
+        <div><strong>Search</strong><span>Clean AST index</span></div>
+        <div><strong>Formula</strong><span>LaTeX / image fallback</span></div>
       </div>
-      <p><a class="button primary" href="docs/v2_site_redesign_report.md">查看 Markdown 报告</a></p>
+      <p><a class="button primary" href="docs/v3_site_rebuild_report.md">查看报告</a></p>
     </article>
-    
-    </section>
-  </main>
+    </section></main>
   <button class="back-top" id="back-top" type="button">↑</button>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/toc.js"></script>
   <script src="assets/js/progress.js"></script>
-  
 </body>
 </html>

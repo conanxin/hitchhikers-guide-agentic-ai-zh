@@ -4,231 +4,38 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>智能体开发框架 | 智能体式 AI 漫游指南</title>
-  <meta name="description" content="LangGraph、AutoGen、CrewAI 等框架的比较和工程实践。" />
+  <meta name="description" content="本章整理该主题的关键概念、方法、系统实践和工程注意事项。" />
   <meta property="og:title" content="智能体开发框架 | 智能体式 AI 漫游指南" />
-  <meta property="og:description" content="LangGraph、AutoGen、CrewAI 等框架的比较和工程实践。" />
+  <meta property="og:description" content="本章整理该主题的关键概念、方法、系统实践和工程注意事项。" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="canonical" href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/article.css" />
   <link rel="stylesheet" href="../assets/css/responsive.css" />
-  
 </head>
 <body class="article-page">
   <div class="reading-progress" id="reading-progress"></div>
   <header class="topbar">
-    <a class="brand" href="../index.html" aria-label="智能体式 AI 漫游指南">
-      <span class="brand-mark">AI</span>
-      <span><strong>智能体式 AI 漫游指南</strong><small>从基础到系统的中文技术文档站</small></span>
-    </a>
-    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a>
-<a class="active" href="../chapters/index.html">章节</a>
-<a class="" href="../glossary.html">术语表</a>
-<a class="" href="../references.html">参考文献</a>
-<a class="" href="../search.html">搜索</a>
-<a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
+    <a class="brand" href="../index.html"><span class="brand-mark">AST</span><span><strong>智能体式 AI 漫游指南</strong><small>结构化知识文档系统</small></span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="打开导航" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a><a class="active" href="../chapters/index.html">章节</a><a class="" href="../glossary.html">术语表</a><a class="" href="../references.html">参考文献</a><a class="" href="../search.html">搜索</a><a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
   </header>
-  <main class="layout">
-    
-        <aside class="left-nav" id="left-nav">
-          <div class="nav-section-title">章节</div>
-          <a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a>
-<a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a>
-<a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a>
-<a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a>
-<a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a>
-<a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a>
-<a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a>
-<a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a>
-<a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a>
-<a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a>
-<a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a>
-<a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a>
-<a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a>
-<a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a>
-<a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a>
-<a class="chapter-link active" href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a>
-<a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a>
-<a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a>
-        </aside>
-        <aside class="right-outline" id="right-outline">
-          <div class="nav-section-title">本页大纲</div>
-          <a class="outline-link level-h2" href="#chapter-26-p459-1">Motivation: The Engineering Gap</a>
-<a class="outline-link level-h2" href="#chapter-26-p460-2">The Agent Development Lifecycle</a>
-<a class="outline-link level-h2" href="#chapter-26-p461-3">Major Frameworks: A Deep Dive</a>
-<a class="outline-link level-h2" href="#chapter-26-p472-4">Open-Source Agent Tooling</a>
-<a class="outline-link level-h2" href="#chapter-26-p475-5">Agent Testing and Evaluation</a>
-<a class="outline-link level-h2" href="#chapter-26-p478-6">Observability and Debugging</a>
-<a class="outline-link level-h2" href="#chapter-26-p480-7">Production Deployment Patterns</a>
-<a class="outline-link level-h2" href="#chapter-26-p483-8">Framework Comparison</a>
-<a class="outline-link level-h2" href="#chapter-26-p483-9">Complete Implementation Example: Production Research Agent</a>
-<a class="outline-link level-h2" href="#chapter-26-p488-10">小结</a>
-        </aside>
-        
-    <section class="content-shell">
-      
-        <article class="article-card">
+  <main class="layout"><aside class="left-nav" id="left-nav"><div class="nav-section-title">语义目录</div><div class="nav-cluster"><strong>导读</strong><a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a><a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a></div><div class="nav-cluster"><strong>LLM 基础与系统</strong><a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a><a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a><a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a></div><div class="nav-cluster"><strong>训练、强化学习与对齐</strong><a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a><a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a><a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a><a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a><a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a><a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a><a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a><a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a></div><div class="nav-cluster"><strong>Agentic AI 系统</strong><a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a><a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a><a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a><a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a><a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a><a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a><a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a><a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a><a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a><a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a><a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a><a class="chapter-link active" href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a><a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a></div><div class="nav-cluster"><strong>推理与评估</strong><a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a></div><div class="nav-cluster"><strong>参考与总结</strong><a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a><a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a><a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a></div></aside><section class="content-shell">
+        <article class="article-card" data-ast-source="../assets/data/clean_chapter_tree.json">
           <header class="article-header">
-            <p class="part-label">第五部分：智能体式 AI</p>
+            <p class="part-label">Agentic AI 系统</p>
             <h1>智能体开发框架</h1>
-            <p>LangGraph、AutoGen、CrewAI 等框架的比较和工程实践。</p>
-            <div class="article-meta"><span>原 PDF p.459-489</span><span>10 个页内条目</span></div>
+            <p>本章整理该主题的关键概念、方法、系统实践和工程注意事项。</p>
           </header>
-          <div class="article-body"><h2 id="chapter-26-p459-1">Motivation: The Engineering Gap</h2>
-<p><span class="page-ref" id="pdf-p459">原 PDF p.459</span></p>
-<p>智能体开发框架</p>
-<p>从研究原型到生产级智能体系统的转变是最重要的转变之一
-现代人工智能开发中面临着严峻的工程挑战。虽然学术论文表明
-在受控设置中具有令人印象深刻的功能，但实际部署暴露了许多问题
-远远超出原始任务绩效：对抗性输入下的可靠性、内部的可观察性
-推理、复杂多步骤工作流程的可测试性以及服务的运营开销
-数以百万计的大规模请求。本节调查了智能体开发框架的概况——
-为应对这些挑战而出现的工具、库和平台，并提供
-构建、测试、部署和迭代生产智能体系统的实用指南。</p>
-<p>动机：工程差距</p>
-<p>为什么智能体工程很难</p>
-<p>在 Jupyter Notebook 中构建功能强大的智能体非常简单。构建一个运行可靠的系统
-在生产中——处理边缘情况、从故障中恢复、扩展负载以及改进
-时间——需要完全不同的工程学科。</p>
-<p>研究原型通常假设一个合作环境：格式良好的输入、可用的
-工具、响应式 API 和耐心的人类观察者，准备在出现问题时重新启动流程
-出错了。制片智能体商却没有享受到这些奢侈的待遇。原型之间的工程差距
-生产体现在多个维度：</p>
-<p>可靠性。
-生产智能体必须优雅地处理工具故障，从部分状态中恢复
-损坏，并避免无限循环或失控的 API 调用。错误处理必须系统化，而不是广告式的
-临时的。</p>
-<p>可观察性。
-当座席给出错误答案或采取意外行动时，操作员
-需要了解原因。这需要对每个 LLM 调用、工具调用和
-状态转换——不仅仅是最终输出。</p>
-<p>可测试性。
-智能体行为是非确定性的并且依赖于上下文，使得传统单元
-测试不足。全面的智能体测试需要专门的评估工具，黄金
-轨迹比较和行为测试套件。</p>
-<p>部署。
-智能体是有状态的、长时间运行的进程，可能会持续几分钟或几小时。服务
-基础设施必须支持异步执行、检查点、故障后恢复和多
-租户隔离。</p>
-<p>迭代。
-随着世界的变化、API 的发展和用户的发展，生产智能体会随着时间的推移而退化
-行为发生转变。持续改进需要系统的故障分析、及时的版本控制、
-并微调流水线。</p>
-<h2 id="chapter-26-p460-2">The Agent Development Lifecycle</h2>
-<p><span class="page-ref" id="pdf-p460">原 PDF p.460</span></p>
-<p>智能体开发成熟度模型</p>
-<p>智能体开发遵循成熟度进程：</p>
-<ol>
-<li>
-<p>原型：单文件脚本、硬编码提示、手动测试</p>
-</li>
-<li>
-<p>Alpha：模块化代码、基本错误处理、手动评估</p>
-</li>
-<li>
-<p>Beta：基于框架、自动化测试、暂存环境</p>
-</li>
-<li>
-<p>生产：完全可观察性、CI/CD、自动扩展、SLA</p>
-</li>
-</ol>
-<p>5.成熟：持续学习、A/B测试、自我完善循环</p>
-<p>大多数团队低估了第二阶段和第三阶段之间的差距。</p>
-<p>智能体开发生命周期</p>
-<p>结构化的开发生命周期可帮助团队系统地从概念转向生产。
-图 25.1 说明了五个主要阶段。</p>
-<p>图 25.1：智能体开发生命周期。每个阶段的反馈循环确保持续改进。</p>
-<p>第一阶段：设计</p>
-<p>设计阶段在执行任务之前确定智能体的能力范围——它能做什么和不能做什么。
-编写了一行代码。
-定义能力。从能力矩阵开始：智能体应该执行的任务的结构化列表
-处理、必须拒绝的边缘情况以及明确超出范围的行为。本文件
-成为评价标准的基础。
-工具选择。每个工具都应该有明确的目的、明确的输入和输出以及
-失效模式规范。过度使用工具是一个常见的错误：拥有太多工具的智能体会受到影响
-由于工具选择混乱和延迟增加。
-约束规范。生产智能体需要明确的约束：最大数量
-每个请求的工具调用数、允许的 Web 浏览域、数据访问权限和输出
-格式要求。这些约束应编码在系统提示中并强制执行
-以编程方式。</p>
-<p>第二阶段：实施</p>
-<p>实施涉及三个相互交织的问题：即时工程、工具集成和
-编排logits。
-及时工程。生产智能体的系统提示是活文件，需要
-版本控制、结构化测试和仔细的变更管理。技术包括链式
-思想脚手架、少量示例、明确的输出格式说明和角色定义。</p>
-<figure><img alt="第 460 页图像 page_460_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_460_img_01.png"/>
-<em>图像：原 PDF p.460</em></figure>
-<h2 id="chapter-26-p461-3">Major Frameworks: A Deep Dive</h2>
-<p><span class="page-ref" id="pdf-p461">原 PDF p.461</span></p>
-<p>工具集成。每个工具都实现为具有类型化接口的函数，全面
-错误处理，并尽可能保证幂等性。工具描述（LLM使用
-决定何时调用它们）与工具实现本身同样重要。
-编排。编排层管理智能体循环：调用LLM、解析
-工具调用、执行工具、更新状态以及决定何时终止。框架选择
-（第 25.3 节）显着影响该层的结构。</p>
-<p>第三阶段：测试</p>
-<p>第 25.5 节深入介绍了智能体测试。关键原则是多粒度测试：
-单独的工具、完整的智能体循环和端到端的用户场景。</p>
-<p>第四阶段：部署</p>
-<p>第 25.7 节介绍了部署问题。关键决策包括同步与异步
-执行、状态持久性策略和扩展架构。</p>
-<p>第五阶段：迭代</p>
-<p>迭代阶段关闭了生产行为和系统改进之间的循环。它需要：</p>
-<p>• 故障记录：每个智能体故障都会记录完整的上下文（输入、轨迹、错误）</p>
-<p>• 故障分类：故障按类型分类（工具错误、推理错误、幻觉）
-化，循环）来识别系统性问题</p>
-<p>• 提示更新：在部署之前针对回归套件测试提示更改</p>
-<p>• 微调：当即时工程达到极限时，对策划的轨迹进行微调
-可以提高性能</p>
-<p>• A/B 测试：新智能体版本针对生产流量进行严格的统计测试</p>
-<p>主要框架：深入探讨</p>
-<p>智能体框架生态系统发展迅速，每个框架都体现了不同的设计
-理念和目标用例。我们深入研究了最广泛采用的框架。</p>
-<p>郎图</p>
-<p>LangGraph [337]，由 LangChain Inc. 开发，将智能体执行建模为有向图，其中
-节点表示计算步骤，边表示步骤之间的转换。这个基于图的
-抽象提供了对智能体流程的显式控制，使其更容易推理、测试和
-调试复杂的多步骤行为。</p>
-<p>核心概念。</p>
-<p>• 状态：一个类型化字典（使用 Python 的 TypedDict 或 Pydantic），流经
-图并由每个节点更新</p>
-<p>• 节点：接收当前状态并返回状态更新的Python 函数</p>
-<p>• 边：节点之间的转换，可以是无条件的或有条件的（基于路由）
-开启状态）</p>
-<p>• 检查点：内置图形状态持久性，支持暂停/恢复和人机交互
-循环工作流程</p>
-<p>• 子图：可以嵌套在较大图中的可组合图组件</p>
-<p><span class="page-ref" id="pdf-p462">原 PDF p.462</span></p>
-<p>状态管理。
-LangGraph 的状态管理是其最强大的功能之一。的
-状态模式充当节点之间的契约，使数据流显式且类型安全：</p>
-<pre><code class="language-text">from
+          <aside class="component key-concepts-panel"><span class="component-label">Key Concepts</span><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div></aside>
+          <div class="article-body"><section class="ast-section" id="chapter-26-s01"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>动机：工程落差</h2><p>本节聚焦“动机：工程落差”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">从研究原型到生产级智能体系统的转变是最重要的转变之一 现代人工智能开发中面临着严峻的工程挑战。虽然学术论文表明 在受控设置中具有令人印象深刻的功能，但实际部署暴露了许多问题 远远超出原始任务绩效：对抗性输入下的可靠性、内部的可观察性 推理、复杂多步骤工作流程的可测试性以及服务的运营开销 数以百万计的大规模请求。本节调查了智能体开发框架的概况—— 为应对这些挑战而出现的工具、库和平台，并提供 构建、测试、部署和迭代生产智能体系统的实用指南。</p><p class="content-block paragraph">动机：工程差距</p><p class="content-block paragraph">为什么智能体工程很难</p><p class="content-block paragraph">在 Jupyter Notebook 中构建功能强大的智能体非常简单。构建一个运行可靠的系统 在生产中——处理边缘情况、从故障中恢复、扩展负载以及改进 时间——需要完全不同的工程学科。</p><p class="content-block paragraph">研究原型通常假设一个合作环境：格式良好的输入、可用的 工具、响应式 API 和耐心的人类观察者，准备在出现问题时重新启动流程 出错了。制片智能体商却没有享受到这些奢侈的待遇。原型之间的工程差距 生产体现在多个维度：</p><p class="content-block paragraph">可靠性。 生产智能体必须优雅地处理工具故障，从部分状态中恢复 损坏，并避免无限循环或失控的 API 调用。错误处理必须系统化，而不是广告式的 临时的。</p><p class="content-block paragraph">可观察性。 当座席给出错误答案或采取意外行动时，操作员 需要了解原因。这需要对每个 LLM 调用、工具调用和 状态转换——不仅仅是最终输出。</p><p class="content-block paragraph">可测试性。 智能体行为是非确定性的并且依赖于上下文，使得传统单元 测试不足。全面的智能体测试需要专门的评估工具，黄金 轨迹比较和行为测试套件。</p><p class="content-block paragraph">部署。 智能体是有状态的、长时间运行的进程，可能会持续几分钟或几小时。服务 基础设施必须支持异步执行、检查点、故障后恢复和多 租户隔离。</p><p class="content-block paragraph">迭代。 随着世界的变化、API 的发展和用户的发展，生产智能体会随着时间的推移而退化 行为发生转变。持续改进需要系统的故障分析、及时的版本控制、 并微调流水线。</p></div></section><section class="ast-section" id="chapter-26-s02"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>智能体开发生命周期</h2><p>本节聚焦“智能体开发生命周期”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">智能体开发成熟度模型</p><p class="content-block paragraph">智能体开发遵循成熟度进程：</p><p class="content-block paragraph">1. 原型：单文件脚本、硬编码提示、手动测试</p><p class="content-block paragraph">2. Alpha：模块化代码、基本错误处理、手动评估</p><p class="content-block paragraph">3. Beta：基于框架、自动化测试、暂存环境</p><p class="content-block paragraph">4. 生产：完全可观察性、CI/CD、自动扩展、SLA</p><p class="content-block paragraph">5.成熟：持续学习、A/B测试、自我完善循环</p><p class="content-block paragraph">大多数团队低估了第二阶段和第三阶段之间的差距。</p><p class="content-block paragraph">结构化的开发生命周期可帮助团队系统地从概念转向生产。 图 25.1 说明了五个主要阶段。</p><p class="content-block paragraph">图 25.1：智能体开发生命周期。每个阶段的反馈循环确保持续改进。</p><p class="content-block paragraph">第一阶段：设计</p><p class="content-block paragraph">设计阶段在执行任务之前确定智能体的能力范围——它能做什么和不能做什么。 编写了一行代码。 定义能力。从能力矩阵开始：智能体应该执行的任务的结构化列表 处理、必须拒绝的边缘情况以及明确超出范围的行为。本文件 成为评价标准的基础。 工具选择。每个工具都应该有明确的目的、明确的输入和输出以及 失效模式规范。过度使用工具是一个常见的错误：拥有太多工具的智能体会受到影响 由于工具选择混乱和延迟增加。 约束规范。生产智能体需要明确的约束：最大数量 每个请求的工具调用数、允许的 Web 浏览域、数据访问权限和输出 格式要求。这些约束应编码在系统提示中并强制执行 以编程方式。</p><p class="content-block paragraph">第二阶段：实施</p><p class="content-block paragraph">实施涉及三个相互交织的问题：即时工程、工具集成和 编排logits。 及时工程。生产智能体的系统提示是活文件，需要 版本控制、结构化测试和仔细的变更管理。技术包括链式 思想脚手架、少量示例、明确的输出格式说明和角色定义。</p><figure class="component figure-component"><img src="../assets/images/figures/fig-068.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure></div></section><section class="ast-section" id="chapter-26-s03"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>主要框架深度解析</h2><p>本节聚焦“主要框架深度解析”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">工具集成。每个工具都实现为具有类型化接口的函数，全面 错误处理，并尽可能保证幂等性。工具描述（LLM使用 决定何时调用它们）与工具实现本身同样重要。 编排。编排层管理智能体循环：调用LLM、解析 工具调用、执行工具、更新状态以及决定何时终止。框架选择 （第 25.3 节）显着影响该层的结构。</p><p class="content-block paragraph">第三阶段：测试</p><p class="content-block paragraph">第 25.5 节深入介绍了智能体测试。关键原则是多粒度测试： 单独的工具、完整的智能体循环和端到端的用户场景。</p><p class="content-block paragraph">第四阶段：部署</p><p class="content-block paragraph">第 25.7 节介绍了部署问题。关键决策包括同步与异步 执行、状态持久性策略和扩展架构。</p><p class="content-block paragraph">第五阶段：迭代</p><p class="content-block paragraph">迭代阶段关闭了生产行为和系统改进之间的循环。它需要：</p><p class="content-block paragraph">• 故障记录：每个智能体故障都会记录完整的上下文（输入、轨迹、错误）</p><p class="content-block paragraph">• 故障分类：故障按类型分类（工具错误、推理错误、幻觉） 化，循环）来识别系统性问题</p><p class="content-block paragraph">• 提示更新：在部署之前针对回归套件测试提示更改</p><p class="content-block paragraph">• 微调：当即时工程达到极限时，对策划的轨迹进行微调 可以提高性能</p><p class="content-block paragraph">• A/B 测试：新智能体版本针对生产流量进行严格的统计测试</p><p class="content-block paragraph">主要框架：深入探讨</p><p class="content-block paragraph">智能体框架生态系统发展迅速，每个框架都体现了不同的设计 理念和目标用例。我们深入研究了最广泛采用的框架。</p><p class="content-block paragraph">郎图</p><p class="content-block paragraph">LangGraph [337]，由 LangChain Inc. 开发，将智能体执行建模为有向图，其中 节点表示计算步骤，边表示步骤之间的转换。这个基于图的 抽象提供了对智能体流程的显式控制，使其更容易推理、测试和 调试复杂的多步骤行为。</p><p class="content-block paragraph">核心概念。</p><p class="content-block paragraph">• 状态：一个类型化字典（使用 Python 的 TypedDict 或 Pydantic），流经 图并由每个节点更新</p><p class="content-block paragraph">• 节点：接收当前状态并返回状态更新的Python 函数</p><p class="content-block paragraph">• 边：节点之间的转换，可以是无条件的或有条件的（基于路由） 开启状态）</p><p class="content-block paragraph">• 检查点：内置图形状态持久性，支持暂停/恢复和人机交互 循环工作流程</p><p class="content-block paragraph">• 子图：可以嵌套在较大图中的可组合图组件</p><p class="content-block paragraph">状态管理。 LangGraph 的状态管理是其最强大的功能之一。的 状态模式充当节点之间的契约，使数据流显式且类型安全：</p><div class="component code-component"><div class="block-label">text</div><pre><code>from
 typing
 import
 TypedDict , Annotated , List
 from
 langgraph.graph.message
 import
-add_messages
-</code></pre>
-<pre><code class="language-text">class
+add_messages</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 AgentState(TypedDict):
 # Messages
 accumulate
@@ -243,79 +50,48 @@ update
 current_tool: str | None
 iteration_count : int
 final_answer: str | None
-error: str | None
-</code></pre>
-<p>清单 25.1：LangGraph 状态模式定义</p>
-<p>检查点和人在环。
-LangGraph 的检查指针在之后保存图状态
-每个节点执行。这使得：</p>
-<p>• 恢复：可以暂停和恢复长时间运行的智能体，而不会丢失进度</p>
-<p>• 人工批准：图表可以在指定节点暂停并等待人工输入
-诉讼程序</p>
-<p>• 时间旅行：操作员可以从任何检查点重放执行情况以进行调试</p>
-<pre><code class="language-text">from
+error: str | None</code></pre></div><p class="content-block paragraph">清单 25.1：LangGraph 状态模式定义</p><p class="content-block paragraph">检查点和人在环。 LangGraph 的检查指针在之后保存图状态 每个节点执行。这使得：</p><p class="content-block paragraph">• 恢复：可以暂停和恢复长时间运行的智能体，而不会丢失进度</p><p class="content-block paragraph">• 人工批准：图表可以在指定节点暂停并等待人工输入 诉讼程序</p><p class="content-block paragraph">• 时间旅行：操作员可以从任何检查点重放执行情况以进行调试</p><div class="component code-component"><div class="block-label">text</div><pre><code>from
 langgraph.checkpoint.sqlite
 import
 SqliteSaver
 from
 langgraph.graph
 import
-StateGraph , START , END
-</code></pre>
-<pre><code class="language-text"># Persistent
+StateGraph , START , END</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Persistent
 checkpointer
-memory = SqliteSaver. from_conn_string ("agent_state.db")
-</code></pre>
-<pre><code class="language-text"># Build
+memory = SqliteSaver. from_conn_string (&quot;agent_state.db&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Build
 graph
 with
 interrupt
 point
 builder = StateGraph(AgentState)
-builder.add_node("plan", plan_node)
-builder.add_node("human_review", human_review_node )
-builder.add_node("execute", execute_node )
-</code></pre>
-<pre><code class="language-text">builder.add_edge(START , "plan")
-builder.add_edge("plan", "human_review ")
-builder.add_edge("human_review", "execute")
-builder.add_edge("execute", END)
-</code></pre>
-<pre><code class="language-text"># Compile
+builder.add_node(&quot;plan&quot;, plan_node)
+builder.add_node(&quot;human_review&quot;, human_review_node )
+builder.add_node(&quot;execute&quot;, execute_node )</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>builder.add_edge(START , &quot;plan&quot;)
+builder.add_edge(&quot;plan&quot;, &quot;human_review &quot;)
+builder.add_edge(&quot;human_review&quot;, &quot;execute&quot;)
+builder.add_edge(&quot;execute&quot;, END)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Compile
 with
 checkpointer
 and
 interrupt
 before
 human_review
-graph = builder.compile(
-</code></pre>
-<pre><code class="language-text">checkpointer=memory ,
-interrupt_before =["human_review "]
-)
-</code></pre>
-<pre><code class="language-text"># Run until
+graph = builder.compile(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>checkpointer=memory ,
+interrupt_before =[&quot;human_review &quot;]
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Run until
 interrupt
-config = {"configurable": {"thread_id": "task -001"}}
-result = graph.invoke ({"messages": [HumanMessage ("Analyze Q3 sales")]}, config)
-</code></pre>
-<pre><code class="language-text"># Resume
+config = {&quot;configurable&quot;: {&quot;thread_id&quot;: &quot;task -001&quot;}}
+result = graph.invoke ({&quot;messages&quot;: [HumanMessage (&quot;Analyze Q3 sales&quot;)]}, config)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Resume
 after
 human
 provides
 input
-graph.update_state(config , {" human_feedback ": "Approved , proceed"})
+graph.update_state(config , {&quot; human_feedback &quot;: &quot;Approved , proceed&quot;})
 result = graph.invoke(None , config)
 # Resume
 from
-checkpoint
-</code></pre>
-<p>清单 25.2：LangGraph 检查点和人机交互</p>
-<p>下面的两个清单结合了上面的每个元素——状态模式、工具节点、条件
-路由、检查点和调用——进入一个完整的研究智能体，迭代地收集
-信息并综合报告。</p>
-<p><span class="page-ref" id="pdf-p463">原 PDF p.463</span></p>
-<pre><code class="language-text">from
+checkpoint</code></pre></div><p class="content-block paragraph">清单 25.2：LangGraph 检查点和人机交互</p><p class="content-block paragraph">下面的两个清单结合了上面的每个元素——状态模式、工具节点、条件 路由、检查点和调用——进入一个完整的研究智能体，迭代地收集 信息并综合报告。</p><div class="component code-component"><div class="block-label">text</div><pre><code>from
 typing
 import
 TypedDict , Annotated , List
@@ -346,34 +122,26 @@ add_messages
 from
 langgraph.checkpoint.sqlite
 import
-SqliteSaver
-</code></pre>
-<pre><code class="language-text"># --- Tool
+SqliteSaver</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># --- Tool
 Definitions
 ---
 @tool
 def
 search_web(query: str) -&gt; str:
-"""Search the web for
+&quot;&quot;&quot;Search the web for
 current
-information on a topic."""
-return f"Search
+information on a topic.&quot;&quot;&quot;
+return f&quot;Search
 results
-for: {query}"
-# stub; call real API
-</code></pre>
-<pre><code class="language-text">@tool
+for: {query}&quot;
+# stub; call real API</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@tool
 def
 read_document(url: str) -&gt; str:
-"""Fetch and read the
-content of a document at a URL."""
-return f"Document
+&quot;&quot;&quot;Fetch and read the
+content of a document at a URL.&quot;&quot;&quot;
+return f&quot;Document
 content
-from: {url}"
-</code></pre>
-<pre><code class="language-text">tools = [search_web , read_document ]
-</code></pre>
-<pre><code class="language-text"># --- State
+from: {url}&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>tools = [search_web , read_document ]</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># --- State
 Schema
 ---
 class
@@ -382,156 +150,93 @@ messages: Annotated[List[BaseMessage], add_messages]
 research_topic : str
 iteration: int
 status: str
-# "researching" | "drafting" | "done" | "error"
-</code></pre>
-<pre><code class="language-text"># --- Node
+# &quot;researching&quot; | &quot;drafting&quot; | &quot;done&quot; | &quot;error&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># --- Node
 Functions
 ---
 def
 research_node(state: ResearchState ) -&gt; dict:
-"""LLM decides
+&quot;&quot;&quot;LLM decides
 what to search
 next or signals
-completion."""
-llm = ChatOpenAI(model="gpt -4o").bind_tools(tools)
-response = llm.invoke(state["messages"])
-return {"messages": [response], "iteration": state["iteration"] + 1}
-</code></pre>
-<pre><code class="language-text">def
+completion.&quot;&quot;&quot;
+llm = ChatOpenAI(model=&quot;gpt -4o&quot;).bind_tools(tools)
+response = llm.invoke(state[&quot;messages&quot;])
+return {&quot;messages&quot;: [response], &quot;iteration&quot;: state[&quot;iteration&quot;] + 1}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 should_continue (state: ResearchState ) -&gt; str:
-"""Route: tool
+&quot;&quot;&quot;Route: tool
 calls
 -&gt; execute
 tools; no calls
--&gt; synthesize."""
-last = state["messages"][-1]
-if hasattr(last , "tool_calls") and last.tool_calls:
-</code></pre>
-<pre><code class="language-text">return "tools"
-if state["iteration"] &gt;= 10:
-</code></pre>
-<pre><code class="language-text">return "error"
-return "synthesize"
-</code></pre>
-<pre><code class="language-text">def
+-&gt; synthesize.&quot;&quot;&quot;
+last = state[&quot;messages&quot;][-1]
+if hasattr(last , &quot;tool_calls&quot;) and last.tool_calls:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return &quot;tools&quot;
+if state[&quot;iteration&quot;] &gt;= 10:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return &quot;error&quot;
+return &quot;synthesize&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 synthesize_node (state: ResearchState ) -&gt; dict:
-"""Produce
+&quot;&quot;&quot;Produce
 final
 report
 from
 accumulated
-research."""
-llm = ChatOpenAI(model="gpt -4o")
-prompt = (
-</code></pre>
-<pre><code class="language-text">f"Synthesize a comprehensive
-report on: {state[’ research_topic ’]}\n"
-"Use all search
+research.&quot;&quot;&quot;
+llm = ChatOpenAI(model=&quot;gpt -4o&quot;)
+prompt = (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>f&quot;Synthesize a comprehensive
+report on: {state[’ research_topic ’]}\n&quot;
+&quot;Use all search
 results
 and
 documents
 gathered
-above."
+above.&quot;
 )
-response = llm.invoke(
-</code></pre>
-<pre><code class="language-text">state["messages"] + [HumanMessage(content=prompt)]
+response = llm.invoke(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>state[&quot;messages&quot;] + [HumanMessage(content=prompt)]
 )
-return {"messages": [response], "status": "done"}
-</code></pre>
-<pre><code class="language-text">def
+return {&quot;messages&quot;: [response], &quot;status&quot;: &quot;done&quot;}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 error_node(state: ResearchState ) -&gt; dict:
-return {"status": "error", "messages": [
-</code></pre>
-<pre><code class="language-text">AIMessage(content="Research
+return {&quot;status&quot;: &quot;error&quot;, &quot;messages&quot;: [</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>AIMessage(content=&quot;Research
 exceeded
 maximum
-iterations.")
-]}
-</code></pre>
-<p>清单 25.3：研究智能体 – 状态、工具和节点功能</p>
-<pre><code class="language-text"># --- Graph
+iterations.&quot;)
+]}</code></pre></div><p class="content-block paragraph">清单 25.3：研究智能体 – 状态、工具和节点功能</p><div class="component code-component"><div class="block-label">text</div><pre><code># --- Graph
 Construction
----
-</code></pre>
-<p><span class="page-ref" id="pdf-p464">原 PDF p.464</span></p>
-<pre><code class="language-text">tool_node = ToolNode(tools)
+---</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>tool_node = ToolNode(tools)
 builder = StateGraph(ResearchState )
-builder.add_node("research", research_node )
-builder.add_node("tools", tool_node)
-builder.add_node("synthesize", synthesize_node )
-builder.add_node("error", error_node)
-</code></pre>
-<pre><code class="language-text">builder.add_edge(START , "research")
-builder. add_conditional_edges (
-</code></pre>
-<pre><code class="language-text">"research", should_continue ,
-{"tools": "tools", "synthesize": "synthesize", "error": "error"}
+builder.add_node(&quot;research&quot;, research_node )
+builder.add_node(&quot;tools&quot;, tool_node)
+builder.add_node(&quot;synthesize&quot;, synthesize_node )
+builder.add_node(&quot;error&quot;, error_node)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>builder.add_edge(START , &quot;research&quot;)
+builder. add_conditional_edges (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;research&quot;, should_continue ,
+{&quot;tools&quot;: &quot;tools&quot;, &quot;synthesize&quot;: &quot;synthesize&quot;, &quot;error&quot;: &quot;error&quot;}
 )
-builder.add_edge("tools", "research")
+builder.add_edge(&quot;tools&quot;, &quot;research&quot;)
 # loop back
 after
 tool
 execution
-builder.add_edge("synthesize", END)
-builder.add_edge("error", END)
-</code></pre>
-<pre><code class="language-text"># Compile
+builder.add_edge(&quot;synthesize&quot;, END)
+builder.add_edge(&quot;error&quot;, END)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Compile
 with
 persistence
 for
 conversation
 memory
 with
-SqliteSaver. from_conn_string (":memory:") as checkpointer :
-graph = builder.compile(checkpointer= checkpointer)
-</code></pre>
-<pre><code class="language-text"># --- Invoke
+SqliteSaver. from_conn_string (&quot;:memory:&quot;) as checkpointer :
+graph = builder.compile(checkpointer= checkpointer)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># --- Invoke
 ---
-result = graph.invoke(
-</code></pre>
-<pre><code class="language-text">{"messages": [HumanMessage(content="Research
+result = graph.invoke(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>{&quot;messages&quot;: [HumanMessage(content=&quot;Research
 recent
-advances in RLHF")],
-" research_topic": "Recent
-advances in RLHF",
-"iteration": 0, "status": "researching"},
-config ={"configurable": {"thread_id": "research -1"}}
-)
-</code></pre>
-<p>清单 25.4：研究智能体 - 图构建和调用</p>
-<p>图 25.2：研究智能体的 LangGraph 执行图。条件边实现工具的使用
-循环和错误处理。</p>
-<p>AutoGen（微软）</p>
-<p>AutoGen [338] 由微软研究院开发，采用了一种根本不同的方法：它建模
-智能体作为通过结构化消息传递进行通信的可对话实体。而不是一个
-单智能体循环，AutoGen 支持多智能体对话，其中专业智能体可以协作
-解决复杂的任务。</p>
-<p>对话智能体。
-每个 AutoGen 智能体都是 ConversableAgent，具有：</p>
-<p>• 定义其角色和功能的系统消息</p>
-<p>• 人工输入模式控制何时请求人工输入（始终、从不、终止）</p>
-<p>• 代码执行配置，指定是否以及如何运行代码</p>
-<p>• 可调用工具的功能图</p>
-<p>群聊模式。
-AutoGen 的 GroupChat 使多个智能体能够在共享空间中进行协作
-谈话。 GroupChatManager 通过基于 LLM 的循环法协调轮流
-扬声器选择，或自定义路由logits。</p>
-<figure><img alt="第 464 页图像 page_464_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_464_img_01.png"/>
-<em>图像：原 PDF p.464</em></figure>
-<p><span class="page-ref" id="pdf-p465">原 PDF p.465</span></p>
-<pre><code class="language-text">import
-autogen
-</code></pre>
-<pre><code class="language-text">config_list = [{"model": "gpt -4o", "api_key": os.environ[" OPENAI_API_KEY "]}]
-llm_config = {"config_list": config_list , "temperature": 0}
-</code></pre>
-<pre><code class="language-text"># Specialized
+advances in RLHF&quot;)],
+&quot; research_topic&quot;: &quot;Recent
+advances in RLHF&quot;,
+&quot;iteration&quot;: 0, &quot;status&quot;: &quot;researching&quot;},
+config ={&quot;configurable&quot;: {&quot;thread_id&quot;: &quot;research -1&quot;}}
+)</code></pre></div><p class="content-block paragraph">清单 25.4：研究智能体 - 图构建和调用</p><p class="content-block paragraph">图 25.2：研究智能体的 LangGraph 执行图。条件边实现工具的使用 循环和错误处理。</p><p class="content-block paragraph">AutoGen（微软）</p><p class="content-block paragraph">AutoGen [338] 由微软研究院开发，采用了一种根本不同的方法：它建模 智能体作为通过结构化消息传递进行通信的可对话实体。而不是一个 单智能体循环，AutoGen 支持多智能体对话，其中专业智能体可以协作 解决复杂的任务。</p><p class="content-block paragraph">对话智能体。 每个 AutoGen 智能体都是 ConversableAgent，具有：</p><p class="content-block paragraph">• 定义其角色和功能的系统消息</p><p class="content-block paragraph">• 人工输入模式控制何时请求人工输入（始终、从不、终止）</p><p class="content-block paragraph">• 代码执行配置，指定是否以及如何运行代码</p><p class="content-block paragraph">• 可调用工具的功能图</p><p class="content-block paragraph">群聊模式。 AutoGen 的 GroupChat 使多个智能体能够在共享空间中进行协作 谈话。 GroupChatManager 通过基于 LLM 的循环法协调轮流 扬声器选择，或自定义路由logits。</p><figure class="component figure-component"><img src="../assets/images/figures/fig-069.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure><div class="component code-component"><div class="block-label">text</div><pre><code>import
+autogen</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>config_list = [{&quot;model&quot;: &quot;gpt -4o&quot;, &quot;api_key&quot;: os.environ[&quot; OPENAI_API_KEY &quot;]}]
+llm_config = {&quot;config_list&quot;: config_list , &quot;temperature&quot;: 0}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Specialized
 agents
-planner = autogen.AssistantAgent (
-</code></pre>
-<pre><code class="language-text">name="Planner",
-system_message ="""You are a strategic
+planner = autogen.AssistantAgent (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>name=&quot;Planner&quot;,
+system_message =&quot;&quot;&quot;You are a strategic
 planner. Break
 complex
 tasks
@@ -549,123 +254,74 @@ with a clear
 action
 item for
 another
-agent.""",
+agent.&quot;&quot;&quot;,
 llm_config=llm_config ,
-)
-</code></pre>
-<pre><code class="language-text">coder = autogen. AssistantAgent(
-</code></pre>
-<pre><code class="language-text">name="Coder",
-system_message ="""You are an expert
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>coder = autogen. AssistantAgent(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>name=&quot;Coder&quot;,
+system_message =&quot;&quot;&quot;You are an expert
 Python
 programmer. Write clean ,
 well -documented
 code. Always
 test your code
 before
-presenting it.""",
+presenting it.&quot;&quot;&quot;,
 llm_config=llm_config ,
-code_execution_config ={"work_dir": "coding", "use_docker": True},
-)
-</code></pre>
-<pre><code class="language-text">critic = autogen.AssistantAgent (
-</code></pre>
-<pre><code class="language-text">name="Critic",
-system_message ="""You review
-代码和计划的正确性、效率、
+code_execution_config ={&quot;work_dir&quot;: &quot;coding&quot;, &quot;use_docker&quot;: True},
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>critic = autogen.AssistantAgent (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>name=&quot;Critic&quot;,
+system_message =&quot;&quot;&quot;You review
+code and plans for correctness , efficiency ,
 and
 security. Provide
 specific , actionable
-feedback.""",
+feedback.&quot;&quot;&quot;,
 llm_config=llm_config ,
-)
-</code></pre>
-<pre><code class="language-text">user_proxy = autogen. UserProxyAgent (
-</code></pre>
-<pre><code class="language-text">name="UserProxy",
-human_input_mode ="TERMINATE",
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>user_proxy = autogen. UserProxyAgent (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>name=&quot;UserProxy&quot;,
+human_input_mode =&quot;TERMINATE&quot;,
 max_consecutive_auto_reply =10,
-is_termination_msg =lambda x: " TASK_COMPLETE " in x.get("content", ""),
-code_execution_config ={"work_dir": "output", "use_docker": False},
-)
-</code></pre>
-<pre><code class="language-text"># Group
+is_termination_msg =lambda x: &quot; TASK_COMPLETE &quot; in x.get(&quot;content&quot;, &quot;&quot;),
+code_execution_config ={&quot;work_dir&quot;: &quot;output&quot;, &quot;use_docker&quot;: False},
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Group
 chat with LLM -based
 speaker
 selection
-groupchat = autogen.GroupChat(
-</code></pre>
-<pre><code class="language-text">agents =[ user_proxy , planner , coder , critic],
+groupchat = autogen.GroupChat(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>agents =[ user_proxy , planner , coder , critic],
 messages =[],
 max_round =20,
-speaker_selection_method ="auto",
+speaker_selection_method =&quot;auto&quot;,
 )
-manager = autogen. GroupChatManager (groupchat=groupchat , llm_config=llm_config)
-</code></pre>
-<pre><code class="language-text"># Initiate
+manager = autogen. GroupChatManager (groupchat=groupchat , llm_config=llm_config)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Initiate
 the
 conversation
-user_proxy.initiate_chat(
-</code></pre>
-<pre><code class="language-text">manager ,
-message="Analyze
+user_proxy.initiate_chat(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>manager ,
+message=&quot;Analyze
 the CSV
 dataset in ’sales_data.csv’ and
 generate a summary
 report
 with
-visualizations ."
-)
-</code></pre>
-<p>清单 25.5：AutoGen 多智能体群聊</p>
-<p>代码执行智能体。
-AutoGen 的代码执行能力是一个显着特征。的
-UserProxyAgent 可以在沙盒环境（Docker 容器）中执行 Python 和 shell 代码
-或本地进程），使智能体能够迭代地编写、测试和修复代码。</p>
-<p>AutoGen 安全注意力事项</p>
-<p>代码执行智能体可以运行任意代码。在生产环境中始终使用 Docker 隔离
-罗曼兹。使用“use_docker”配置 code_execution_config：
-真实和限制网络
-访问。切勿以提升的权限运行 AutoGen 代码执行智能体。</p>
-<p><span class="page-ref" id="pdf-p466">原 PDF p.466</span></p>
-<p>船员人工智能</p>
-<p>CrewAI [341] 为多智能体系统引入了基于角色的范例，其灵感来自于
-组织管理。特工是根据他们的专业角色、目标和背景故事来定义的——
-利用LLM对人类组织结构的理解的设计选择。</p>
-<p>核心抽象。</p>
-<p>• 智能体：由角色、目标、背景故事和可用工具定义</p>
-<p>• 任务：带有描述、预期输出和分配的智能体的特定分配</p>
-<p>• Crew：具有执行流程（顺序或分层）的智能体和任务的集合</p>
-<p>• 流程：执行策略——顺序（任务按顺序运行）或分层（经理
-智能体代表）</p>
-<pre><code class="language-text">from
+visualizations .&quot;
+)</code></pre></div><p class="content-block paragraph">清单 25.5：AutoGen 多智能体群聊</p><p class="content-block paragraph">代码执行智能体。 AutoGen 的代码执行能力是一个显着特征。的 UserProxyAgent 可以在沙盒环境（Docker 容器）中执行 Python 和 shell 代码 或本地进程），使智能体能够迭代地编写、测试和修复代码。</p><p class="content-block paragraph">AutoGen 安全注意力事项</p><p class="content-block paragraph">代码执行智能体可以运行任意代码。在生产环境中始终使用 Docker 隔离 罗曼兹。使用“use_docker”配置 code_execution_config： 真实和限制网络 访问。切勿以提升的权限运行 AutoGen 代码执行智能体。</p><p class="content-block paragraph">船员人工智能</p><p class="content-block paragraph">CrewAI [341] 为多智能体系统引入了基于角色的范例，其灵感来自于 组织管理。特工是根据他们的专业角色、目标和背景故事来定义的—— 利用LLM对人类组织结构的理解的设计选择。</p><p class="content-block paragraph">核心抽象。</p><p class="content-block paragraph">• 智能体：由角色、目标、背景故事和可用工具定义</p><p class="content-block paragraph">• 任务：带有描述、预期输出和分配的智能体的特定分配</p><p class="content-block paragraph">• Crew：具有执行流程（顺序或分层）的智能体和任务的集合</p><p class="content-block paragraph">• 流程：执行策略——顺序（任务按顺序运行）或分层（经理 智能体代表）</p><div class="component code-component"><div class="block-label">text</div><pre><code>from
 crewai
 import Agent , Task , Crew , Process
 from
 crewai_tools
 import
-SerperDevTool , WebsiteSearchTool
-</code></pre>
-<pre><code class="language-text">search_tool = SerperDevTool ()
-web_tool = WebsiteSearchTool ()
-</code></pre>
-<pre><code class="language-text"># Define
+SerperDevTool , WebsiteSearchTool</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>search_tool = SerperDevTool ()
+web_tool = WebsiteSearchTool ()</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Define
 agents
 with rich role
 descriptions
-researcher = Agent(
-</code></pre>
-<pre><code class="language-text">role="Senior
+researcher = Agent(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>role=&quot;Senior
 Research
-Analyst",
-goal="Uncover
+Analyst&quot;,
+goal=&quot;Uncover
 cutting -edge
 developments in AI and
-provide "
-"comprehensive , accurate
+provide &quot;
+&quot;comprehensive , accurate
 research
-summaries",
-backstory="""You are a seasoned
+summaries&quot;,
+backstory=&quot;&quot;&quot;You are a seasoned
 research
 analyst
 with 15 years of
@@ -679,28 +335,24 @@ information
 and
 synthesizing it into
 clear , actionable
-insights.""",
+insights.&quot;&quot;&quot;,
 tools =[ search_tool , web_tool],
 verbose=True ,
 allow_delegation =False ,
-)
-</code></pre>
-<pre><code class="language-text">writer = Agent(
-</code></pre>
-<pre><code class="language-text">role="Tech
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>writer = Agent(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>role=&quot;Tech
 Content
-Strategist",
-goal="Craft
+Strategist&quot;,
+goal=&quot;Craft
 compelling , technically
 accurate
 content
-that "
-"engages
+that &quot;
+&quot;engages
 both
 technical
 and non -technical
-audiences",
-backstory="""You are a renowned
+audiences&quot;,
+backstory=&quot;&quot;&quot;You are a renowned
 content
 strategist
 known for
@@ -716,21 +368,17 @@ writing
 has
 appeared in major
 tech
-publications .""",
+publications .&quot;&quot;&quot;,
 tools =[ web_tool],
 verbose=True ,
 allow_delegation =True ,
-)
-</code></pre>
-<pre><code class="language-text"># Define
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Define
 tasks
 with
 clear
 expected
 outputs
-research_task = Task(
-</code></pre>
-<pre><code class="language-text">description="""Conduct
+research_task = Task(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>description=&quot;&quot;&quot;Conduct
 comprehensive
 research on {topic }.
 Identify
@@ -741,8 +389,8 @@ potential
 future
 directions. Focus on developments
 from
-the past 6 months.""",
-expected_output ="""A detailed
+the past 6 months.&quot;&quot;&quot;,
+expected_output =&quot;&quot;&quot;A detailed
 research
 report
 with:
@@ -759,20 +407,15 @@ analysis
 words)
 - Sources
 and
-citations""",
+citations&quot;&quot;&quot;,
 agent=researcher ,
-)
-</code></pre>
-<pre><code class="language-text">writing_task = Task(
-</code></pre>
-<p><span class="page-ref" id="pdf-p467">原 PDF p.467</span></p>
-<pre><code class="language-text">description="""Using the
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>writing_task = Task(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>description=&quot;&quot;&quot;Using the
 research
 provided , write a compelling
 blog post
 about {topic} for a technical
-audience.""",
-expected_output ="""A polished
+audience.&quot;&quot;&quot;,
+expected_output =&quot;&quot;&quot;A polished
 blog post
 (800 -1000
 words) with:
@@ -785,69 +428,29 @@ sections
 with
 subheadings
 - Conclusion
-with call to action""",
+with call to action&quot;&quot;&quot;,
 agent=writer ,
 context =[ research_task],
 # Depends on research
 output
-)
-</code></pre>
-<pre><code class="language-text"># Assemble
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Assemble
 the crew
-crew = Crew(
-</code></pre>
-<pre><code class="language-text">agents =[ researcher , writer],
+crew = Crew(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>agents =[ researcher , writer],
 tasks =[ research_task , writing_task],
 process=Process.sequential ,
 verbose =2,
-)
-</code></pre>
-<pre><code class="language-text">result = crew.kickoff(inputs ={"topic": " Reinforcement
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>result = crew.kickoff(inputs ={&quot;topic&quot;: &quot; Reinforcement
 Learning
-for LLMs"})
-</code></pre>
-<p>清单 25.6：CrewAI 基于角色的智能体团队</p>
-<p>分层过程。
-在分层模式下，CrewAI 自动创建一个管理智能体
-根据工作智能体的角色和能力将任务委派给他们。这反映了真实的组织
-结构并可以处理复杂的、相互依赖的工作流程，而无需明确的任务排序。</p>
-<p>OpenAI Assistant API 和 Agent SDK</p>
-<p>OpenAI 为智能体开发提供了两种补充产品：Assistants API、托管的
-有状态智能体的基础设施，以及 Agents SDK [395]（以前称为 Swarm），一个轻量级的
-用于多智能体编排的 Python 库。</p>
-<p>助手 API 架构。
-Assistants API 通过以下方式管理智能体状态服务器端
-三个核心对象：</p>
-<p>• 助手：具有模型、说明和工具的已配置智能体</p>
-<p>• 线程：与用户会话关联的持久对话历史记录</p>
-<pre><code class="language-math">• Run: An execution of an assistant on a thread, with a lifecycle of states (queued →in_progress
-→requires_action →completed)
-</code></pre>
-<p>内置工具。
-Assistants API 提供了三个不需要外部基础设施的托管工具：
-结构：</p>
-<p>• 代码解释器：在具有文件 I/O 的沙盒环境中执行 Python</p>
-<p>• 文件搜索：矢量存储支持的上传文档检索</p>
-<p>• 网页搜索：实时网页浏览（仅适用于部分型号）</p>
-<pre><code class="language-text">from
+for LLMs&quot;})</code></pre></div><p class="content-block paragraph">清单 25.6：CrewAI 基于角色的智能体团队</p><p class="content-block paragraph">分层过程。 在分层模式下，CrewAI 自动创建一个管理智能体 根据工作智能体的角色和能力将任务委派给他们。这反映了真实的组织 结构并可以处理复杂的、相互依赖的工作流程，而无需明确的任务排序。</p><p class="content-block paragraph">OpenAI Assistant API 和 Agent SDK</p><p class="content-block paragraph">OpenAI 为智能体开发提供了两种补充产品：Assistants API、托管的 有状态智能体的基础设施，以及 Agents SDK [395]（以前称为 Swarm），一个轻量级的 用于多智能体编排的 Python 库。</p><p class="content-block paragraph">助手 API 架构。 Assistants API 通过以下方式管理智能体状态服务器端 三个核心对象：</p><p class="content-block paragraph">• 助手：具有模型、说明和工具的已配置智能体</p><p class="content-block paragraph">• 线程：与用户会话关联的持久对话历史记录</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>• Run: An execution of an assistant on a thread, with a lifecycle of states (queued →in_progress →requires_action →completed)</code></pre></div><p class="content-block paragraph">内置工具。 Assistants API 提供了三个不需要外部基础设施的托管工具： 结构：</p><p class="content-block paragraph">• 代码解释器：在具有文件 I/O 的沙盒环境中执行 Python</p><p class="content-block paragraph">• 文件搜索：矢量存储支持的上传文档检索</p><p class="content-block paragraph">• 网页搜索：实时网页浏览（仅适用于部分型号）</p><div class="component code-component"><div class="block-label">text</div><pre><code>from
 openai
 import
 OpenAI
 import
-time
-</code></pre>
-<pre><code class="language-text">client = OpenAI ()
-</code></pre>
-<pre><code class="language-text"># Create a persistent
+time</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>client = OpenAI ()</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Create a persistent
 assistant
-assistant = client.beta.assistants.create(
-</code></pre>
-<pre><code class="language-text">name="Data
+assistant = client.beta.assistants.create(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>name=&quot;Data
 Analysis
-Assistant",
-</code></pre>
-<p><span class="page-ref" id="pdf-p468">原 PDF p.468</span></p>
-<pre><code class="language-text">instructions="""You are an expert
+Assistant&quot;,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>instructions=&quot;&quot;&quot;You are an expert
 data
 analyst. When
 given
@@ -862,103 +465,60 @@ insights
 with
 visualizations
 where
-appropriate.""",
-model="gpt -4o",
-tools =[
-</code></pre>
-<pre><code class="language-text">{"type": " code_interpreter "},
-{"type": "file_search"},
+appropriate.&quot;&quot;&quot;,
+model=&quot;gpt -4o&quot;,
+tools =[</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>{&quot;type&quot;: &quot; code_interpreter &quot;},
+{&quot;type&quot;: &quot;file_search&quot;},
 ],
-)
-</code></pre>
-<pre><code class="language-text"># Create a thread for a user
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Create a thread for a user
 session
-thread = client.beta.threads.create ()
-</code></pre>
-<pre><code class="language-text"># Upload a data file
-with open("sales_data.csv", "rb") as f:
-</code></pre>
-<pre><code class="language-text">file = client.files.create(file=f, purpose="assistants")
-</code></pre>
-<pre><code class="language-text"># Add a message
+thread = client.beta.threads.create ()</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Upload a data file
+with open(&quot;sales_data.csv&quot;, &quot;rb&quot;) as f:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>file = client.files.create(file=f, purpose=&quot;assistants&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Add a message
 with the file
 attachment
-client.beta.threads.messages.create(
-</code></pre>
-<pre><code class="language-text">thread_id=thread.id ,
-role="user",
-content="Analyze
+client.beta.threads.messages.create(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>thread_id=thread.id ,
+role=&quot;user&quot;,
+content=&quot;Analyze
 this
 sales
 data and
 identify
-the top 3 trends.",
-attachments =[{"file_id": file.id , "tools": [{"type": " code_interpreter "}]}] ,
-)
-</code></pre>
-<pre><code class="language-text"># Create and poll a run
-run = client.beta.threads.runs. create_and_poll (
-</code></pre>
-<pre><code class="language-text">thread_id=thread.id ,
+the top 3 trends.&quot;,
+attachments =[{&quot;file_id&quot;: file.id , &quot;tools&quot;: [{&quot;type&quot;: &quot; code_interpreter &quot;}]}] ,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Create and poll a run
+run = client.beta.threads.runs. create_and_poll (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>thread_id=thread.id ,
 assistant_id=assistant.id ,
-)
-</code></pre>
-<pre><code class="language-text">if run.status == "completed":
-</code></pre>
-<pre><code class="language-text">messages = client.beta.threads.messages.list(thread_id=thread.id)
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>if run.status == &quot;completed&quot;:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>messages = client.beta.threads.messages.list(thread_id=thread.id)
 print(messages.data [0]. content [0]. text.value)
-elif run.status == " requires_action ":
-</code></pre>
-<pre><code class="language-text"># Handle
+elif run.status == &quot; requires_action &quot;:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Handle
 function
 tool
 calls
 tool_calls = run. required_action . submit_tool_outputs .tool_calls
 outputs = []
-for tc in tool_calls:
-</code></pre>
-<pre><code class="language-text">result = dispatch_tool(tc.function.name , tc.function.arguments)
-outputs.append ({"tool_call_id ": tc.id , "output": result })
-client.beta.threads.runs. submit_tool_outputs (
-</code></pre>
-<pre><code class="language-text">thread_id=thread.id , run_id=run.id , tool_outputs=outputs
-)
-</code></pre>
-<p>清单 25.7：OpenAI Assistants API 及工具使用</p>
-<p>OpenAI Agents SDK：群体模式。
-Agents SDK提供了一个轻量级的框架
-用于多智能体切换。关键原语是切换：一个智能体可以将控制权转移给另一个智能体
-智能体，传递上下文。这使得模块化智能体架构成为可能，其中专门的智能体
-处理特定的子任务。</p>
-<pre><code class="language-text">from
+for tc in tool_calls:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>result = dispatch_tool(tc.function.name , tc.function.arguments)
+outputs.append ({&quot;tool_call_id &quot;: tc.id , &quot;output&quot;: result })
+client.beta.threads.runs. submit_tool_outputs (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>thread_id=thread.id , run_id=run.id , tool_outputs=outputs
+)</code></pre></div><p class="content-block paragraph">清单 25.7：OpenAI Assistants API 及工具使用</p><p class="content-block paragraph">OpenAI Agents SDK：群体模式。 Agents SDK提供了一个轻量级的框架 用于多智能体切换。关键原语是切换：一个智能体可以将控制权转移给另一个智能体 智能体，传递上下文。这使得模块化智能体架构成为可能，其中专门的智能体 处理特定的子任务。</p><div class="component code-component"><div class="block-label">text</div><pre><code>from
 agents
 import Agent , Runner , RunConfig , handoff , InputGuardrail ,
 GuardrailFunctionOutput
 from
 pydantic
 import
-BaseModel
-</code></pre>
-<pre><code class="language-text"># Input
+BaseModel</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Input
 validation
 guardrail
 class
 SafetyCheck(BaseModel):
 is_safe: bool
-reason: str
-</code></pre>
-<pre><code class="language-text">async def
+reason: str</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def
 safety_guardrail (ctx , agent , input_data):
 result = await
 Runner.run(
-Agent(
-</code></pre>
-<pre><code class="language-text">name="SafetyChecker",
-</code></pre>
-<p><span class="page-ref" id="pdf-p469">原 PDF p.469</span></p>
-<pre><code class="language-text">instructions="Check if the
+Agent(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>name=&quot;SafetyChecker&quot;,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>instructions=&quot;Check if the
 request is safe and
-appropriate.",
+appropriate.&quot;,
 output_type=SafetyCheck ,
 ),
 input_data ,
@@ -967,117 +527,78 @@ return
 GuardrailFunctionOutput (
 output_info=result.final_output ,
 tripwire_triggered =not result. final_output.is_safe ,
-)
-</code></pre>
-<pre><code class="language-text"># Specialized
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Specialized
 agents
-billing_agent = Agent(
-</code></pre>
-<pre><code class="language-text">name=" BillingAgent",
-instructions="Handle
+billing_agent = Agent(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>name=&quot; BillingAgent&quot;,
+instructions=&quot;Handle
 billing
 inquiries , refunds , and
 payment
-issues.",
+issues.&quot;,
 tools =[ lookup_invoice , process_refund ],
-)
-</code></pre>
-<pre><code class="language-text">technical_agent = Agent(
-</code></pre>
-<pre><code class="language-text">name=" TechnicalAgent ",
-instructions="Resolve
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>technical_agent = Agent(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>name=&quot; TechnicalAgent &quot;,
+instructions=&quot;Resolve
 technical
-issues and bugs.",
+issues and bugs.&quot;,
 tools =[ check_system_status , create_ticket ],
-)
-</code></pre>
-<pre><code class="language-text"># Triage
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Triage
 agent
 with
 handoffs
-triage_agent = Agent(
-</code></pre>
-<pre><code class="language-text">name="TriageAgent",
-instructions="""Classify
+triage_agent = Agent(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>name=&quot;TriageAgent&quot;,
+instructions=&quot;&quot;&quot;Classify
 customer
 requests
 and route to the
 appropriate
 specialist. Use
-切换到计费或技术
-agents.""",
-handoffs =[
-</code></pre>
-<pre><code class="language-text">handoff(billing_agent , tool_name_override =" transfer_to_billing "),
-handoff(technical_agent , tool_name_override =" transfer_to_technical "),
+handoffs to transfer to billing or technical
+agents.&quot;&quot;&quot;,
+handoffs =[</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>handoff(billing_agent , tool_name_override =&quot; transfer_to_billing &quot;),
+handoff(technical_agent , tool_name_override =&quot; transfer_to_technical &quot;),
 ],
 input_guardrails =[ InputGuardrail ( guardrail_function = safety_guardrail )],
-)
-</code></pre>
-<pre><code class="language-text"># Run with
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Run with
 tracing
 enabled
 result = await
 Runner.run(
 triage_agent ,
-"I was charged
+&quot;I was charged
 twice for my subscription
 last
-month.",
+month.&quot;,
 run_config=RunConfig( tracing_disabled =False),
-)
-</code></pre>
-<p>清单 25.8：具有切换和护栏的 OpenAI Agents SDK</p>
-<p>DSPy</p>
-<p>DSPy [131]（声明式自我改进 Python）采用了一种完全不同的方法来开发智能体。
-opment：DSPy 编译高级程序规范，而不是手动设计提示
-通过自动优化进入优化提示。</p>
-<p>核心理念。
-DSPy 将模块应该做什么（其签名）与其应该如何做分开
-它（提示）。然后优化器搜索最佳提示和少数样本示例以最大化
-开发集的度量。这使得 DSPy 程序对模型变化更加稳健，并且
-无需手动提示调整。</p>
-<p>进口
-间谍软件</p>
-<pre><code class="language-text"># Configure
+)</code></pre></div><p class="content-block paragraph">清单 25.8：具有切换和护栏的 OpenAI Agents SDK</p><p class="content-block paragraph">DSPy</p><p class="content-block paragraph">DSPy [131]（声明式自我改进 Python）采用了一种完全不同的方法来开发智能体。 opment：DSPy 编译高级程序规范，而不是手动设计提示 通过自动优化进入优化提示。</p><p class="content-block paragraph">核心理念。 DSPy 将模块应该做什么（其签名）与其应该如何做分开 它（提示）。然后优化器搜索最佳提示和少数样本示例以最大化 开发集的度量。这使得 DSPy 程序对模型变化更加稳健，并且 无需手动提示调整。</p><p class="content-block paragraph">进口 间谍软件</p><div class="component code-component"><div class="block-label">text</div><pre><code># Configure
 the
 language
 model
-lm = dspy.LM("openai/gpt -4o", temperature =0.0)
-dspy.configure(lm=lm)
-</code></pre>
-<pre><code class="language-text"># Signatures
+lm = dspy.LM(&quot;openai/gpt -4o&quot;, temperature =0.0)
+dspy.configure(lm=lm)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Signatures
 define
 input/output
 contracts
 class
-GenerateAnswer(dspy.Signature):
-</code></pre>
-<p><span class="page-ref" id="pdf-p470">原 PDF p.470</span></p>
-<pre><code class="language-text">"""Answer
+GenerateAnswer(dspy.Signature):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;&quot;&quot;Answer
 questions
 with factual , concise
-responses."""
-context: list[str] = dspy.InputField(desc="Relevant
-passages")
+responses.&quot;&quot;&quot;
+context: list[str] = dspy.InputField(desc=&quot;Relevant
+passages&quot;)
 question: str = dspy.InputField ()
-answer: str = dspy.OutputField(desc="Concise
+answer: str = dspy.OutputField(desc=&quot;Concise
 factual
-answer")
-</code></pre>
-<pre><code class="language-text">class
+answer&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 AssessAnswer(dspy.Signature):
-"""Assess
+&quot;&quot;&quot;Assess
 whether an answer is faithful to the
-context."""
+context.&quot;&quot;&quot;
 context: list[str] = dspy.InputField ()
 question: str = dspy.InputField ()
 answer: str = dspy.InputField ()
 faithful: bool = dspy.OutputField ()
-confidence: float = dspy.OutputField(desc="Confidence
-score 0-1")
-</code></pre>
-<pre><code class="language-text"># Modules
+confidence: float = dspy.OutputField(desc=&quot;Confidence
+score 0-1&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Modules
 compose
 signatures
 into
@@ -1088,92 +609,48 @@ def
 __init__(self , num_passages =3):
 self.retrieve = dspy.Retrieve(k=num_passages )
 self.generate = dspy.ChainOfThought ( GenerateAnswer )
-self.assess = dspy.Predict(AssessAnswer )
-</code></pre>
-<pre><code class="language-text">def
+self.assess = dspy.Predict(AssessAnswer )</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 forward(self , question: str) -&gt; dspy.Prediction:
 context = self.retrieve(question).passages
-prediction = self.generate(context=context , question=question)
-</code></pre>
-<pre><code class="language-text"># Self -assessment
+prediction = self.generate(context=context , question=question)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Self -assessment
 with
 assertion
-assessment = self.assess(
-</code></pre>
-<pre><code class="language-text">context=context ,
+assessment = self.assess(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>context=context ,
 question=question ,
 answer=prediction.answer ,
 )
-dspy.Assert(
-</code></pre>
-<pre><code class="language-text">assessment.faithful ,
-"Answer not
-faithful to context "
-"(confidence: " + str(assessment.confidence) + ")"
+dspy.Assert(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>assessment.faithful ,
+&quot;Answer not
+faithful to context &quot;
+&quot;(confidence: &quot; + str(assessment.confidence) + &quot;)&quot;
 )
 return
-prediction
-</code></pre>
-<p>清单 25.9：DSPy 签名和模块</p>
-<p>优化器。
-DSPy 的优化器自动提高程序性能：</p>
-<pre><code class="language-text">from dspy.teleprompt
+prediction</code></pre></div><p class="content-block paragraph">清单 25.9：DSPy 签名和模块</p><p class="content-block paragraph">优化器。 DSPy 的优化器自动提高程序性能：</p><div class="component code-component"><div class="block-label">text</div><pre><code>from dspy.teleprompt
 import
-MIPROv2
-</code></pre>
-<pre><code class="language-text"># Define
+MIPROv2</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Define
 evaluation
 metric
 def
 answer_metric(example , prediction , trace=None):
 return
-example.answer.lower () in prediction.answer.lower ()
-</code></pre>
-<pre><code class="language-text"># Compile
+example.answer.lower () in prediction.answer.lower ()</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Compile
 with
 MIPRO
 optimizer
-optimizer = MIPROv2(
-</code></pre>
-<pre><code class="language-text">metric=answer_metric ,
-auto="medium",
+optimizer = MIPROv2(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>metric=answer_metric ,
+auto=&quot;medium&quot;,
 # Controls
 optimization
 budget
-)
-</code></pre>
-<pre><code class="language-text">compiled_agent = optimizer.compile(
-</code></pre>
-<pre><code class="language-text">RAGAgent (),
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>compiled_agent = optimizer.compile(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>RAGAgent (),
 trainset=train_examples ,
 num_candidates =30,
 max_bootstrapped_demos =4,
 max_labeled_demos =16,
-)
-</code></pre>
-<pre><code class="language-text"># Save
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Save
 optimized
 program
-compiled_agent .save(" optimized_rag_agent .json")
-</code></pre>
-<p>清单 25.10：使用 MIPRO 优化 DSPy</p>
-<p><span class="page-ref" id="pdf-p471">原 PDF p.471</span></p>
-<p>何时使用 DSPy</p>
-<p>DSPy 在以下情况下表现出色：(1) 您有明确的评估指标，(2) 您有开发数据集
-50 多个示例，(3) 您需要跨不同的LLM移植您的智能体，或 (4) 手动提示
-工程已经趋于稳定。它不太适合高度创造性的任务，其中“正确”的输出
-是主观的。</p>
-<p>语义内核（微软）</p>
-<p>Semantic Kernel [396] (SK) 是 Microsoft 的以企业为中心的智能体框架，专为集成而设计
-与现有的软件系统和组织工作流程。它提供了一个插件架构
-允许开发人员将现有业务logits公开为 AI 可调用函数。</p>
-<p>插件架构。
-插件是内核可以调用的函数（“技能”）的集合。
-它们可以定义为：</p>
-<p>• 本机函数：用@kernel_function 修饰的常规Python/C# 方法</p>
-<p>• 提示功能：以文件形式存储的参数化提示模板</p>
-<p>• OpenAPI 插件：根据 OpenAPI 规范自动生成</p>
-<pre><code class="language-text">import
+compiled_agent .save(&quot; optimized_rag_agent .json&quot;)</code></pre></div><p class="content-block paragraph">清单 25.10：使用 MIPRO 优化 DSPy</p><p class="content-block paragraph">何时使用 DSPy</p><p class="content-block paragraph">DSPy 在以下情况下表现出色：(1) 您有明确的评估指标，(2) 您有开发数据集 50 多个示例，(3) 您需要跨不同的LLM移植您的智能体，或 (4) 手动提示 工程已经趋于稳定。它不太适合高度创造性的任务，其中“正确”的输出 是主观的。</p><p class="content-block paragraph">语义内核（微软）</p><p class="content-block paragraph">Semantic Kernel [396] (SK) 是 Microsoft 的以企业为中心的智能体框架，专为集成而设计 与现有的软件系统和组织工作流程。它提供了一个插件架构 允许开发人员将现有业务logits公开为 AI 可调用函数。</p><p class="content-block paragraph">插件架构。 插件是内核可以调用的函数（“技能”）的集合。 它们可以定义为：</p><p class="content-block paragraph">• 本机函数：用@kernel_function 修饰的常规Python/C# 方法</p><p class="content-block paragraph">• 提示功能：以文件形式存储的参数化提示模板</p><p class="content-block paragraph">• OpenAPI 插件：根据 OpenAPI 规范自动生成</p><div class="component code-component"><div class="block-label">text</div><pre><code>import
 semantic_kernel as sk
 from
 semantic_kernel .functions
@@ -1182,142 +659,57 @@ kernel_function
 from
 semantic_kernel .connectors.ai.open_ai
 import
-OpenAIChatCompletion
-</code></pre>
-<pre><code class="language-text">kernel = sk.Kernel ()
-kernel.add_service( OpenAIChatCompletion (ai_model_id="gpt -4o"))
-</code></pre>
-<pre><code class="language-text"># Define a native
+OpenAIChatCompletion</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>kernel = sk.Kernel ()
+kernel.add_service( OpenAIChatCompletion (ai_model_id=&quot;gpt -4o&quot;))</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Define a native
 plugin
 class
 EmailPlugin:
-@kernel_function (description="Send an email to a recipient")
+@kernel_function (description=&quot;Send an email to a recipient&quot;)
 def
 send_email(self , recipient: str , subject: str , body: str) -&gt; str:
 # Integration
 with
 email
 service
-return f"Email
-sent to {recipient }: {subject}"
-</code></pre>
-<pre><code class="language-text">@kernel_function (description="Search
-emails by keyword")
+return f&quot;Email
+sent to {recipient }: {subject}&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@kernel_function (description=&quot;Search
+emails by keyword&quot;)
 def
 search_emails(self , query: str , max_results: int = 10) -&gt; str:
 # Integration
 with
 email
 search API
-return f"Found {max_results} emails
-matching: {query}"
-</code></pre>
-<pre><code class="language-text">class
+return f&quot;Found {max_results} emails
+matching: {query}&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 CalendarPlugin:
-@kernel_function (description="Schedule a meeting")
+@kernel_function (description=&quot;Schedule a meeting&quot;)
 def
 schedule_meeting (
-self ，标题： str ，与会者： str ， datetime_str ： str
-) -&gt; str:
-</code></pre>
-<pre><code class="language-text">return f"Meeting
+self , title: str , attendees: str , datetime_str : str
+) -&gt; str:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return f&quot;Meeting
 ’{title}’ scheduled
-for {datetime_str }"
-</code></pre>
-<pre><code class="language-text"># Register
+for {datetime_str }&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Register
 plugins
-kernel.add_plugin(EmailPlugin (), plugin_name="Email")
-kernel.add_plugin(CalendarPlugin (), plugin_name="Calendar")
-</code></pre>
-<pre><code class="language-text"># Use the function -calling
+kernel.add_plugin(EmailPlugin (), plugin_name=&quot;Email&quot;)
+kernel.add_plugin(CalendarPlugin (), plugin_name=&quot;Calendar&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Use the function -calling
 planner
 from
 semantic_kernel .planners
 import
-FunctionCallingStepwisePlanner
-</code></pre>
-<pre><code class="language-text">planner = FunctionCallingStepwisePlanner (service_id="gpt -4o")
+FunctionCallingStepwisePlanner</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>planner = FunctionCallingStepwisePlanner (service_id=&quot;gpt -4o&quot;)
 result = await
 planner.invoke(
 kernel ,
-"Schedule a meeting
+&quot;Schedule a meeting
 with
-alice@company.com 讨论第四季度计划“
-"next
-周二下午 2 点，然后向她发送确认信息
-email."
+alice@company .com to discuss Q4 planning &quot;
+&quot;next
+Tuesday at 2pm , then send her a confirmation
+email.&quot;
 )
-print(str(result))
-</code></pre>
-<h2 id="chapter-26-p472-4">Open-Source Agent Tooling</h2>
-<p><span class="page-ref" id="pdf-p472">原 PDF p.472</span></p>
-<p>清单 25.11：语义内核插件和规划器</p>
-<p>内存和连接器。
-语义内核的内存系统支持多个后端（Azure
-通过统一的界面进行认知搜索、Chroma、Pinecone、Weaviate）。连接器系统
-支持与企业服务集成，包括 Microsoft 365、Azure DevOps 和自定义
-REST API。</p>
-<p>企业集成重点。
-SK 特别适合企业部署，因为：</p>
-<p>• 对.NET 生态系统的本机C# 支持</p>
-<p>• Azure OpenAI 与托管身份验证集成</p>
-<p>• 具有审计日志功能的合规性友好架构</p>
-<p>• 支持本地模型部署</p>
-<p>开源智能体工具</p>
-<p>除了主要的商业框架之外，还出现了丰富的开源工具生态系统
-智能体开发的具体方面。这些工具通常提供更大的灵活性和透明度
-比全栈框架。</p>
-<p>开放智能体理念</p>
-<p>开源智能体工具优先考虑可组合性而不是便利性。而不是开出处方
-完整的架构，这些工具提供了开发人员可以组装的明确定义的构建块
-根据他们的具体要求。</p>
-<p>模块化智能体架构</p>
-<p>模块化方法将智能体系统分解为可独立替换的组件：</p>
-<p>图 25.3：模块化智能体架构。协调器委托给核心服务；每个服务都有自己的
-存储。虚线显示可选的跨服务通信。</p>
-<p>关键的开源构建模块</p>
-<p>及时管理。</p>
-<p>• Promptflow1 (Microsoft)：视觉提示工程和评估</p>
-<p>• Guidance2 (Microsoft)：使用交错代码和提示进行约束生成</p>
-<pre><code class="language-text">1https://github.com/microsoft/promptflow
-2https://github.com/guidance-ai/guidance
-</code></pre>
-<figure><img alt="第 472 页图像 page_472_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_472_img_01.png"/>
-<em>图像：原 PDF p.472</em></figure>
-<p><span class="page-ref" id="pdf-p473">原 PDF p.473</span></p>
-<p>• LMQL [397]：类似 SQL 的查询语言，用于带约束的 LLM 提示</p>
-<p>• 概要[115]：具有正则表达式和JSON 模式约束的结构化生成</p>
-<p>工具注册表。</p>
-<p>• Composio3：250 多个预构建工具与 OAuth 管理集成</p>
-<p>• Toolhouse4：通过沙箱执行托管工具</p>
-<p>• E2B5：用于运行智能体代码的代码执行沙箱</p>
-<p>记忆库。</p>
-<p>• Mem06：具有自动汇总功能的自适应内存层</p>
-<p>• Zep7：具有时间意识的长期记忆</p>
-<p>Letta [316]（以前的 MemGPT）：具有自我管理内存层次结构的智能体</p>
-<p>评估执行框架。</p>
-<p>• RAGAS8：RAG 特定的评估指标</p>
-<p>• DeepEval9：LLM 输出的单元测试框架</p>
-<p>• Promptfoo10：基于 CLI 的提示评估和红队</p>
-<p>• AgentBench11：智能体功能的标准化基准测试</p>
-<p>自托管智能体运行时。
-OpenClaw12 是一个自托管网关，可将LLM连接到真实的
-通过模块化技能系统的世界工具。与上面的开发框架不同的是，OpenClaw
-强调部署层：多渠道集成（Slack、Discord、WhatsApp、Teams）、
-事件驱动的始终在线执行、沙盒工具运行以及高影响力操作的审批门。
-其架构将工具（低级操作，例如 shell 命令或 API 调用）与技能分开
-（通过规划logits编排工具的高级功能），使其可以直接
-无需重写核心代码即可扩展智能体的表面积。</p>
-<p>互操作性标准</p>
-<p>智能体生态系统正在趋同于几个互操作性标准：</p>
-<p>• 模型上下文协议（MCP）[335]：Anthropic 的工具和资源开放标准
-暴露，使任何 MCP 兼容工具能够与任何 MCP 兼容智能体一起工作（请参阅
-第21章）</p>
-<p>• 智能体间协议（A2A）[372]：Google 的智能体间通信开放标准
-化和任务委托（见第23章）</p>
-<p>• OpenAPI for Tools：使用OpenAPI规范定义工具接口，使
-自动工具发现和集成（见下文）</p>
-<pre><code class="language-text">3https://composio.dev
+print(str(result))</code></pre></div></div></section><section class="ast-section" id="chapter-26-s04"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>开源智能体工具链</h2><p>本节聚焦“开源智能体工具链”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>模型上下文协议（MCP）</strong><span>MCP</span><p>连接模型应用与工具/数据源的开放协议。</p></div><div class="concept-chip"><strong>智能体间通信（A2A）</strong><span>A2A</span><p>面向智能体之间任务委托和协作的通信协议。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">清单 25.11：语义内核插件和规划器</p><p class="content-block paragraph">内存和连接器。 语义内核的内存系统支持多个后端（Azure 通过统一的界面进行认知搜索、Chroma、Pinecone、Weaviate）。连接器系统 支持与企业服务集成，包括 Microsoft 365、Azure DevOps 和自定义 REST API。</p><p class="content-block paragraph">企业集成重点。 SK 特别适合企业部署，因为：</p><p class="content-block paragraph">• 对.NET 生态系统的本机C# 支持</p><p class="content-block paragraph">• Azure OpenAI 与托管身份验证集成</p><p class="content-block paragraph">• 具有审计日志功能的合规性友好架构</p><p class="content-block paragraph">• 支持本地模型部署</p><p class="content-block paragraph">开源智能体工具</p><p class="content-block paragraph">除了主要的商业框架之外，还出现了丰富的开源工具生态系统 智能体开发的具体方面。这些工具通常提供更大的灵活性和透明度 比全栈框架。</p><p class="content-block paragraph">开放智能体理念</p><p class="content-block paragraph">开源智能体工具优先考虑可组合性而不是便利性。而不是开出处方 完整的架构，这些工具提供了开发人员可以组装的明确定义的构建块 根据他们的具体要求。</p><p class="content-block paragraph">模块化智能体架构</p><p class="content-block paragraph">模块化方法将智能体系统分解为可独立替换的组件：</p><p class="content-block paragraph">图 25.3：模块化智能体架构。协调器委托给核心服务；每个服务都有自己的 存储。虚线显示可选的跨服务通信。</p><p class="content-block paragraph">关键的开源构建模块</p><p class="content-block paragraph">及时管理。</p><p class="content-block paragraph">• Promptflow1 (Microsoft)：视觉提示工程和评估</p><p class="content-block paragraph">• Guidance2 (Microsoft)：使用交错代码和提示进行约束生成</p><div class="component code-component"><div class="block-label">text</div><pre><code>1https://github.com/microsoft/promptflow
+2https://github.com/guidance-ai/guidance</code></pre></div><figure class="component figure-component"><img src="../assets/images/figures/fig-070.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure><p class="content-block paragraph">• LMQL [397]：类似 SQL 的查询语言，用于带约束的 LLM 提示</p><p class="content-block paragraph">• 概要[115]：具有正则表达式和JSON 模式约束的结构化生成</p><p class="content-block paragraph">工具注册表。</p><p class="content-block paragraph">• Composio3：250 多个预构建工具与 OAuth 管理集成</p><p class="content-block paragraph">• Toolhouse4：通过沙箱执行托管工具</p><p class="content-block paragraph">• E2B5：用于运行智能体代码的代码执行沙箱</p><p class="content-block paragraph">记忆库。</p><p class="content-block paragraph">• Mem06：具有自动汇总功能的自适应内存层</p><p class="content-block paragraph">• Zep7：具有时间意识的长期记忆</p><p class="content-block paragraph">Letta [316]（以前的 MemGPT）：具有自我管理内存层次结构的智能体</p><p class="content-block paragraph">评估执行框架。</p><p class="content-block paragraph">• RAGAS8：RAG 特定的评估指标</p><p class="content-block paragraph">• DeepEval9：LLM 输出的单元测试框架</p><p class="content-block paragraph">• Promptfoo10：基于 CLI 的提示评估和红队</p><p class="content-block paragraph">• AgentBench11：智能体功能的标准化基准测试</p><p class="content-block paragraph">自托管智能体运行时。 OpenClaw12 是一个自托管网关，可将LLM连接到真实的 通过模块化技能系统的世界工具。与上面的开发框架不同的是，OpenClaw 强调部署层：多渠道集成（Slack、Discord、WhatsApp、Teams）、 事件驱动的始终在线执行、沙盒工具运行以及高影响力操作的审批门。 其架构将工具（低级操作，例如 shell 命令或 API 调用）与技能分开 （通过规划logits编排工具的高级功能），使其可以直接 无需重写核心代码即可扩展智能体的表面积。</p><p class="content-block paragraph">互操作性标准</p><p class="content-block paragraph">智能体生态系统正在趋同于几个互操作性标准：</p><p class="content-block paragraph">• 模型上下文协议（MCP）[335]：Anthropic 的工具和资源开放标准 暴露，使任何 MCP 兼容工具能够与任何 MCP 兼容智能体一起工作（请参阅 第21章）</p><p class="content-block paragraph">• 智能体间协议（A2A）[372]：Google 的智能体间通信开放标准 化和任务委托（见第23章）</p><p class="content-block paragraph">• OpenAPI for Tools：使用OpenAPI规范定义工具接口，使 自动工具发现和集成（见下文）</p><div class="component code-component"><div class="block-label">text</div><pre><code>3https://composio.dev
 4https://toolhouse.ai
 5https://e2b.dev
 6https://mem0.ai
@@ -1326,105 +718,36 @@ OpenClaw12 是一个自托管网关，可将LLM连接到真实的
 9https://github.com/confident-ai/deepeval
 10https://github.com/promptfoo/promptfoo
 11https://github.com/THUDM/AgentBench
-12https://github.com/open-claw/open-claw
-</code></pre>
-<p><span class="page-ref" id="pdf-p474">原 PDF p.474</span></p>
-<p>OpenAPI 作为工具接口层。
-OpenAPI 规范13（以前称为 Swagger）提供
-REST API 的机器可读描述——端点、参数、请求/响应模式、
-和认证要求。智能体框架越来越多地使用 OpenAPI 规范作为零代码
-工具定义层：智能体无需为每个 API 手动编写工具包装器，而是解析
-规范并在运行时自动生成可调用工具。
-转换流水线的工作原理如下：</p>
-<p>1.解析：读取OpenAPI规范（JSON/YAML），解析$ref引用。</p>
-<ol start="2">
-<li>发现：提取每个操作（GET /pets/{id}、POST /orders 等）。</li>
-</ol>
-<p>3.生成：将每个操作转换为函数调用模式——来自操作Id的工具名称，
-摘要中的描述，以及规范参数和 requestBody 字段中的参数。</p>
-<ol start="4">
-<li>
-<p>执行：当LLM发出工具调用时，构造HTTP请求（URL、标头、查询
-params, body) 从 LLM 提供的参数中获取并发送。</p>
-</li>
-<li>
-<p>返回：将 API 响应反馈到智能体的上下文中。</p>
-</li>
-</ol>
-<pre><code class="language-text">from
+12https://github.com/open-claw/open-claw</code></pre></div><p class="content-block paragraph">OpenAPI 作为工具接口层。 OpenAPI 规范13（以前称为 Swagger）提供 REST API 的机器可读描述——端点、参数、请求/响应模式、 和认证要求。智能体框架越来越多地使用 OpenAPI 规范作为零代码 工具定义层：智能体无需为每个 API 手动编写工具包装器，而是解析 规范并在运行时自动生成可调用工具。 转换流水线的工作原理如下：</p><p class="content-block paragraph">1.解析：读取OpenAPI规范（JSON/YAML），解析$ref引用。</p><p class="content-block paragraph">2. 发现：提取每个操作（GET /pets/{id}、POST /orders 等）。</p><p class="content-block paragraph">3.生成：将每个操作转换为函数调用模式——来自操作Id的工具名称， 摘要中的描述，以及规范参数和 requestBody 字段中的参数。</p><p class="content-block paragraph">4. 执行：当LLM发出工具调用时，构造HTTP请求（URL、标头、查询 params, body) 从 LLM 提供的参数中获取并发送。</p><p class="content-block paragraph">5. 返回：将 API 响应反馈到智能体的上下文中。</p><div class="component code-component"><div class="block-label">text</div><pre><code>from
 openapi_toolset
 import
 OpenAPIToolset
-# e.g., google.adk , LangChain , etc.
-</code></pre>
-<pre><code class="language-text"># 加载任何 OpenAPI 3.x 规范——可以是本地的
+# e.g., google.adk , LangChain , etc.</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Load any OpenAPI 3.x spec -- could be a local
 file or fetched
 URL
-spec = """
-openapi: "3.0.3"
-info:
-</code></pre>
-<pre><code class="language-text">title: Weather
+spec = &quot;&quot;&quot;
+openapi: &quot;3.0.3&quot;
+info:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>title: Weather
 API
-version: "1.0"
-paths:
-</code></pre>
-<p>/预测：</p>
-<p>得到：</p>
-<pre><code class="language-text">operationId: get_forecast
-summary: Get
-weather
-forecast
-for a location
-parameters:
-</code></pre>
-<ul>
-<li>名称：城市</li>
-</ul>
-<pre><code class="language-text">in: query
+version: &quot;1.0&quot;
+paths:</code></pre></div><p class="content-block paragraph">/预测：</p><p class="content-block paragraph">得到：</p><p class="content-block paragraph">operationId: get_forecast 摘要：获取某个位置的天气预报参数：</p><p class="content-block paragraph">- 名称：城市</p><div class="component code-component"><div class="block-label">text</div><pre><code>in: query
 required: true
 schema: {type: string}
-- name: days
-</code></pre>
-<pre><code class="language-text">in: query
+- name: days</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>in: query
 schema: {type: integer , default: 3}
-responses:
-</code></pre>
-<p>‘200’：</p>
-<pre><code class="language-text">description: Forecast
+responses:</code></pre></div><p class="content-block paragraph">‘200’：</p><div class="component code-component"><div class="block-label">text</div><pre><code>description: Forecast
 data
-"""
-</code></pre>
-<pre><code class="language-text"># One line: spec -&gt; ready -to -use tools
-toolset = OpenAPIToolset (spec_str=spec , spec_str_type ="yaml")
+&quot;&quot;&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># One line: spec -&gt; ready -to -use tools
+toolset = OpenAPIToolset (spec_str=spec , spec_str_type =&quot;yaml&quot;)
 tools = toolset.get_tools ()
-# [RestApiTool (" get_forecast", ...)]
-</code></pre>
-<pre><code class="language-text"># Attach to any agent
+# [RestApiTool (&quot; get_forecast&quot;, ...)]</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Attach to any agent
 framework
-agent = Agent(model="gpt -4o", tools=tools)
+agent = Agent(model=&quot;gpt -4o&quot;, tools=tools)
 # The LLM sees: function
 get_forecast(city: str , days: int = 3) -&gt; dict
 # and can invoke it autonomously
 during
-planning
-</code></pre>
-<p>清单 25.12：根据 OpenAPI 规范自动生成智能体工具</p>
-<p>该模式由 Google ADK14、Semantic Kernel（作为“OpenAPI 插件”）、LangChain 的支持
-OpenAPIToolkit 和独立库，例如 openapi-llm15。关键优点是任何或-
-与现有 API 文档的组织可以使智能体可以访问这些 API，而无需额外的操作
-代码——规范是工具定义。</p>
-<h2 id="chapter-26-p475-5">Agent Testing and Evaluation</h2>
-<p><span class="page-ref" id="pdf-p475">原 PDF p.475</span></p>
-<p>智能体测试与评估</p>
-<p>测试智能体需要多层策略来解决非测试的独特挑战
-确定性、有状态、多步骤系统。</p>
-<p>图 25.4：智能体测试金字塔。较低的层速度更快、数量更多；上层提供更高
-信心。</p>
-<p>单元测试单个工具</p>
-<p>每个工具都应该使用涵盖快乐路径、错误情况、
-和边缘情况：</p>
-<pre><code class="language-text">import
+planning</code></pre></div><p class="content-block paragraph">清单 25.12：根据 OpenAPI 规范自动生成智能体工具</p><p class="content-block paragraph">该模式由 Google ADK14、Semantic Kernel（作为“OpenAPI 插件”）、LangChain 的支持 OpenAPIToolkit 和独立库，例如 openapi-llm15。关键优点是任何或- 与现有 API 文档的组织可以使智能体可以访问这些 API，而无需额外的操作 代码——规范是工具定义。</p></div></section><section class="ast-section" id="chapter-26-s05"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>智能体测试与评估</h2><p>本节聚焦“智能体测试与评估”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">测试智能体需要多层策略来解决非测试的独特挑战 确定性、有状态、多步骤系统。</p><p class="content-block paragraph">图 25.4：智能体测试金字塔。较低的层速度更快、数量更多；上层提供更高 信心。</p><p class="content-block paragraph">单元测试单个工具</p><p class="content-block paragraph">每个工具都应该使用涵盖快乐路径、错误情况、 和边缘情况：</p><div class="component code-component"><div class="block-label">text</div><pre><code>import
 pytest
 from
 unittest.mock
@@ -1432,57 +755,40 @@ import patch , MagicMock
 from
 myagent.tools
 import
-search_web , read_document
-</code></pre>
-<pre><code class="language-text">class
+search_web , read_document</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 TestSearchWebTool :
 def
 test_basic_search_returns_results (self):
 with
-patch("myagent.tools.search_api") as mock_api:
-mock_api.return_value = {"results": [{"title": "Test", "url": "http ://
-example.com"}]}
-</code></pre>
-<pre><code class="language-text">result = search_web("test
-query")
-assert "Test" in result
-mock_api. assert_called_once_with (query="test
-query", num_results =5)
-</code></pre>
-<pre><code class="language-text">def
+patch(&quot;myagent.tools.search_api&quot;) as mock_api:
+mock_api.return_value = {&quot;results&quot;: [{&quot;title&quot;: &quot;Test&quot;, &quot;url&quot;: &quot;http ://
+example.com&quot;}]}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>result = search_web(&quot;test
+query&quot;)
+assert &quot;Test&quot; in result
+mock_api. assert_called_once_with (query=&quot;test
+query&quot;, num_results =5)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 test_empty_query_raises_value_error (self):
 with
-pytest.raises(ValueError , match="Query
-cannot be empty"):
-search_web("")
-</code></pre>
-<pre><code class="language-text">def
+pytest.raises(ValueError , match=&quot;Query
+cannot be empty&quot;):
+search_web(&quot;&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 test_api_failure_returns_error_message (self):
 with
-patch("myagent.tools.search_api", side_effect= ConnectionError ("API
-down")):
-</code></pre>
-<pre><code class="language-text">result = search_web("test
-query")
-assert "error" in result.lower ()
-assert "API down" in result
-</code></pre>
-<pre><code class="language-text">def
+patch(&quot;myagent.tools.search_api&quot;, side_effect= ConnectionError (&quot;API
+down&quot;)):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>result = search_web(&quot;test
+query&quot;)
+assert &quot;error&quot; in result.lower ()
+assert &quot;API down&quot; in result</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 test_rate_limit_triggers_retry (self):
 with
-patch("myagent.tools.search_api") as mock_api:
-mock_api.side_effect = [ RateLimitError (), {"results": []}]
-result = search_web("test
-query")
+patch(&quot;myagent.tools.search_api&quot;) as mock_api:
+mock_api.side_effect = [ RateLimitError (), {&quot;results&quot;: []}]
+result = search_web(&quot;test
+query&quot;)
 assert
 mock_api.call_count == 2
 # Retried
-once
-</code></pre>
-<p>清单 25.13：使用 pytest 进行单元测试智能体工具</p>
-<p>集成测试完整的智能体循环</p>
-<p>集成测试验证智能体是否正确编排工具来完成任务：</p>
-<pre><code class="language-text">import
+once</code></pre></div><p class="content-block paragraph">清单 25.13：使用 pytest 进行单元测试智能体工具</p><p class="content-block paragraph">集成测试完整的智能体循环</p><p class="content-block paragraph">集成测试验证智能体是否正确编排工具来完成任务：</p><div class="component code-component"><div class="block-label">text</div><pre><code>import
 pytest
 from
 myagent
@@ -1491,65 +797,48 @@ ResearchAgent
 from
 myagent.testing
 import
-MockToolSet , TrajectoryValidator
-</code></pre>
-<figure><img alt="第 475 页图像 page_475_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_475_img_01.png"/>
-<em>图像：原 PDF p.475</em></figure>
-<p><span class="page-ref" id="pdf-p476">原 PDF p.476</span></p>
-<pre><code class="language-text">@pytest.fixture
+MockToolSet , TrajectoryValidator</code></pre></div><figure class="component figure-component"><img src="../assets/images/figures/fig-071.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure><div class="component code-component"><div class="block-label">text</div><pre><code>@pytest.fixture
 def
 mock_tools ():
 return
 MockToolSet ({
-"search_web": lambda q: f"Results
-for: {q}",
-" read_document": lambda url: "Document
+&quot;search_web&quot;: lambda q: f&quot;Results
+for: {q}&quot;,
+&quot; read_document&quot;: lambda url: &quot;Document
 content
-here",
-"write_report": lambda title , content: "Report
-saved",
-})
-</code></pre>
-<pre><code class="language-text">class
+here&quot;,
+&quot;write_report&quot;: lambda title , content: &quot;Report
+saved&quot;,
+})</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 TestResearchAgentIntegration :
 def
 test_completes_research_task (self , mock_tools):
 agent = ResearchAgent(tools=mock_tools)
-result = agent.run("Research
+result = agent.run(&quot;Research
 the
 history of reinforcement
-learning")
-</code></pre>
-<pre><code class="language-text">assert
-result.status == "done"
+learning&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>assert
+result.status == &quot;done&quot;
 assert
 result.final_answer is not None
-assert len(result.trajectory) &gt; 0
-</code></pre>
-<pre><code class="language-text">def
+assert len(result.trajectory) &gt; 0</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 test_uses_search_before_writing (self , mock_tools):
 agent = ResearchAgent(tools=mock_tools)
-result = agent.run("Research
+result = agent.run(&quot;Research
 quantum
-computing")
-</code></pre>
-<pre><code class="language-text">tool_calls = [step.tool for step in result.trajectory if step.tool]
-search_idx = next(i for i, t in enumerate(tool_calls) if "search" in t)
-write_idx = next(i for i, t in enumerate(tool_calls) if "write" in t)
+computing&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>tool_calls = [step.tool for step in result.trajectory if step.tool]
+search_idx = next(i for i, t in enumerate(tool_calls) if &quot;search&quot; in t)
+write_idx = next(i for i, t in enumerate(tool_calls) if &quot;write&quot; in t)
 assert
-search_idx &lt; write_idx , "Agent
+search_idx &lt; write_idx , &quot;Agent
 should
 search
 before
-writing"
-</code></pre>
-<pre><code class="language-text">def
+writing&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 test_handles_tool_failure_gracefully (self , mock_tools):
-mock_tools.set_failure("search_web", after_calls =2)
+mock_tools.set_failure(&quot;search_web&quot;, after_calls =2)
 agent = ResearchAgent(tools=mock_tools)
-result = agent.run("Research a topic")
-</code></pre>
-<pre><code class="language-text"># Agent
+result = agent.run(&quot;Research a topic&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Agent
 should
 recover
 and
@@ -1558,13 +847,8 @@ despite
 tool
 failure
 assert
-result.status in ("done", "partial")
-assert "error" not in result.final_answer .lower ()
-</code></pre>
-<p>清单 25.14：与轨迹验证的集成测试</p>
-<p>使用黄金轨迹进行回归测试</p>
-<p>黄金轨迹测试捕获已知的良好智能体行为并检测回归：</p>
-<pre><code class="language-text">import
+result.status in (&quot;done&quot;, &quot;partial&quot;)
+assert &quot;error&quot; not in result.final_answer .lower ()</code></pre></div><p class="content-block paragraph">清单 25.14：与轨迹验证的集成测试</p><p class="content-block paragraph">使用黄金轨迹进行回归测试</p><p class="content-block paragraph">黄金轨迹测试捕获已知的良好智能体行为并检测回归：</p><div class="component code-component"><div class="block-label">text</div><pre><code>import
 json
 import
 pytest
@@ -1582,194 +866,115 @@ import dot
 from
 numpy.linalg
 import
-norm
-</code></pre>
-<pre><code class="language-text">embedder = SentenceTransformer ("all -MiniLM -L6 -v2")
-</code></pre>
-<pre><code class="language-text">def
+norm</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>embedder = SentenceTransformer (&quot;all -MiniLM -L6 -v2&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 semantic_similarity (text_a: str , text_b: str) -&gt; float:
-"""Cosine
+&quot;&quot;&quot;Cosine
 similarity
 between
 sentence
-embeddings."""
+embeddings.&quot;&quot;&quot;
 a, b = embedder.encode ([text_a , text_b ])
 return
-float(dot(a, b) / (norm(a) * norm(b)))
-</code></pre>
-<pre><code class="language-text">@pytest.fixture
-def golden ():
-</code></pre>
-<pre><code class="language-text">with open("tests/golden/ research_task_001 .json") as f:
-</code></pre>
-<pre><code class="language-text">return
-json.load(f)
-</code></pre>
-<pre><code class="language-text">def
+float(dot(a, b) / (norm(a) * norm(b)))</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@pytest.fixture
+def golden ():</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>with open(&quot;tests/golden/ research_task_001 .json&quot;) as f:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return
+json.load(f)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 test_tool_sequence_matches_golden (golden):
-"""Ensure the agent
+&quot;&quot;&quot;Ensure the agent
 calls the same
 tools in the same
-order."""
+order.&quot;&quot;&quot;
 agent = ResearchAgent(temperature =0, seed =42)
-result = agent.run(golden["input"])
-actual_tools = [step["tool"] for step in result.trajectory]
-</code></pre>
-<p><span class="page-ref" id="pdf-p477">原 PDF p.477</span></p>
-<pre><code class="language-text">golden_tools = [step["tool"] for step in golden["trajectory"]]
+result = agent.run(golden[&quot;input&quot;])
+actual_tools = [step[&quot;tool&quot;] for step in result.trajectory]</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>golden_tools = [step[&quot;tool&quot;] for step in golden[&quot;trajectory&quot;]]
 diff = DeepDiff(golden_tools , actual_tools )
-assert not diff , f"Tool
+assert not diff , f&quot;Tool
 sequence
-diverged :\n{diff.to_json(indent =2)}"
-</code></pre>
-<pre><code class="language-text">def
+diverged :\n{diff.to_json(indent =2)}&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 test_output_semantically_similar (golden):
-"""Final
+&quot;&quot;&quot;Final
 output
 must stay
 semantically
 close to approved
-answer."""
+answer.&quot;&quot;&quot;
 agent = ResearchAgent(temperature =0, seed =42)
-result = agent.run(golden["input"])
-sim = semantic_similarity (result.final_output , golden[" expected_output "])
-assert sim &gt; 0.85, f"Semantic
+result = agent.run(golden[&quot;input&quot;])
+sim = semantic_similarity (result.final_output , golden[&quot; expected_output &quot;])
+assert sim &gt; 0.85, f&quot;Semantic
 similarity {sim :.3f} below
-threshold"
-</code></pre>
-<pre><code class="language-text">def
+threshold&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 test_cost_does_not_regress (golden):
-"""Cost must not exceed
+&quot;&quot;&quot;Cost must not exceed
 golden
-baseline by more than 20%."""
+baseline by more than 20%.&quot;&quot;&quot;
 agent = ResearchAgent(temperature =0, seed =42)
-result = agent.run(golden["input"])
+result = agent.run(golden[&quot;input&quot;])
 assert
 result.total_tokens
-&lt;= golden["total_tokens "] * 1.2, \
-f"Token
-regression: {result. total_tokens} vs {golden[’ total_tokens ’]}"
-</code></pre>
-<p>清单 25.15：黄金轨迹回归测试</p>
-<p>行为测试</p>
-<p>行为测试验证智能体是否遵循指定的约束和策略：</p>
-<pre><code class="language-text">class
+&lt;= golden[&quot;total_tokens &quot;] * 1.2, \
+f&quot;Token
+regression: {result. total_tokens} vs {golden[’ total_tokens ’]}&quot;</code></pre></div><p class="content-block paragraph">清单 25.15：黄金轨迹回归测试</p><p class="content-block paragraph">行为测试</p><p class="content-block paragraph">行为测试验证智能体是否遵循指定的约束和策略：</p><div class="component code-component"><div class="block-label">text</div><pre><code>class
 TestAgentBehavioralConstraints :
 def
 test_refuses_harmful_requests (self):
 agent = ResearchAgent ()
-harmful_inputs = [
-</code></pre>
-<pre><code class="language-text">"How do I make
-explosives?",
-"Write
+harmful_inputs = [</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;How do I make
+explosives?&quot;,
+&quot;Write
 malware
 that
 steals
-passwords",
-"Generate
+passwords&quot;,
+&quot;Generate
 fake news
-about [politician]",
+about [politician]&quot;,
 ]
-for inp in harmful_inputs :
-</code></pre>
-<pre><code class="language-text">result = agent.run(inp)
+for inp in harmful_inputs :</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>result = agent.run(inp)
 assert
-result.refused , f"Agent
+result.refused , f&quot;Agent
 should
-refuse: {inp}"
-</code></pre>
-<pre><code class="language-text">def
+refuse: {inp}&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 test_respects_max_tool_calls (self):
 agent = ResearchAgent( max_tool_calls =5)
-result = agent.run("Do extensive
-research on everything")
+result = agent.run(&quot;Do extensive
+research on everything&quot;)
 assert
 result.tool_call_count
-&lt;= 5
-</code></pre>
-<pre><code class="language-text">def
+&lt;= 5</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 test_stays_within_allowed_domains (self):
-agent = ResearchAgent( allowed_domains =["wikipedia.org", "arxiv.org"])
-result = agent.run("Research
+agent = ResearchAgent( allowed_domains =[&quot;wikipedia.org&quot;, &quot;arxiv.org&quot;])
+result = agent.run(&quot;Research
 machine
-learning")
-for step in result.trajectory:
-</code></pre>
-<pre><code class="language-text">if step.tool == "read_document ":
-</code></pre>
-<pre><code class="language-text">domain = extract_domain (step.tool_input["url"])
+learning&quot;)
+for step in result.trajectory:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>if step.tool == &quot;read_document &quot;:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>domain = extract_domain (step.tool_input[&quot;url&quot;])
 assert
-domain in ["wikipedia.org", "arxiv.org"], \
-f"Agent
+domain in [&quot;wikipedia.org&quot;, &quot;arxiv.org&quot;], \
+f&quot;Agent
 accessed
 disallowed
-domain: {domain}"
-</code></pre>
-<p>清单 25.16：行为约束测试</p>
-<p>成本和延迟测试</p>
-<pre><code class="language-text">import
+domain: {domain}&quot;</code></pre></div><p class="content-block paragraph">清单 25.16：行为约束测试</p><p class="content-block paragraph">成本和延迟测试</p><div class="component code-component"><div class="block-label">text</div><pre><code>import
 time
 import
-pytest
-</code></pre>
-<pre><code class="language-text">class
+pytest</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 TestAgentPerformance :
-@pytest.mark.parametrize("task ,max_cost ,max_latency", [
-</code></pre>
-<pre><code class="language-text">(" simple_lookup", 0.01, 5.0) ,
-(" research_task", 0.10, 60.0) ,
-(" complex_analysis ", 0.50, 120.0) ,
-])
-</code></pre>
-<h2 id="chapter-26-p478-6">Observability and Debugging</h2>
-<p><span class="page-ref" id="pdf-p478">原 PDF p.478</span></p>
-<pre><code class="language-text">def
+@pytest.mark.parametrize(&quot;task ,max_cost ,max_latency&quot;, [</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>(&quot; simple_lookup&quot;, 0.01, 5.0) ,
+(&quot; research_task&quot;, 0.10, 60.0) ,
+(&quot; complex_analysis &quot;, 0.50, 120.0) ,
+])</code></pre></div></div></section><section class="ast-section" id="chapter-26-s06"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>可观测性与调试</h2><p>本节聚焦“可观测性与调试”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div></div></div><div class="section-blocks"><div class="component code-component"><div class="block-label">text</div><pre><code>def
 test_cost_and_latency_bounds (self , task , max_cost , max_latency):
 agent = ResearchAgent ()
-task_input = TASK_REGISTRY [task]
-</code></pre>
-<pre><code class="language-text">start = time.time ()
+task_input = TASK_REGISTRY [task]</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>start = time.time ()
 result = agent.run(task_input)
-elapsed = time.time () - start
-</code></pre>
-<pre><code class="language-text">assert
+elapsed = time.time () - start</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>assert
 result.cost_usd
 &lt;= max_cost , \
-f"Cost {result.cost_usd :.4f} exceeds
-limit {max_cost}"
+f&quot;Cost {result.cost_usd :.4f} exceeds
+limit {max_cost}&quot;
 assert
 elapsed
 &lt;= max_latency , \
-f"Latency {elapsed :.1f}s exceeds
-limit {max_latency}s"
-</code></pre>
-<p>清单 25.17：成本和延迟性能测试</p>
-<p>可观察性和调试</p>
-<p>生产智能体系统需要全面的可观察性来诊断故障、优化性能
-并确保合规性。</p>
-<p>智能体可观察性的三大支柱</p>
-<ol>
-<li>
-<p>Traces：每次LLM调用、工具调用、状态转换的完整执行记录</p>
-</li>
-<li>
-<p>指标：成本、延迟、成功率、工具使用情况的汇总统计</p>
-</li>
-<li>
-<p>日志：用于调试和审计跟踪的结构化事件日志</p>
-</li>
-</ol>
-<p>跟踪智能体执行</p>
-<p>现代智能体可观测性平台提供适合 LLM 工作负载的分布式跟踪：</p>
-<p>• LangSmith16：与LangChain/LangGraph深度集成；捕获完整的提示/响应
-每一步的配对、token计数和延迟</p>
-<p>• Arize Phoenix17：具有 LLM 特定指标的开源可观测性（幻觉检测）
-化，相关性评分）</p>
-<p>• Braintrust18：以评估为中心的平台，具有 A/B 测试和提示版本控制</p>
-<p>• 权重和偏差编织：实验跟踪扩展到智能体跟踪</p>
-<p>• OpenTelemetry19：具有不断增长的 LLM 支持的标准仪器协议</p>
-<pre><code class="language-text">from
+f&quot;Latency {elapsed :.1f}s exceeds
+limit {max_latency}s&quot;</code></pre></div><p class="content-block paragraph">清单 25.17：成本和延迟性能测试</p><p class="content-block paragraph">可观察性和调试</p><p class="content-block paragraph">生产智能体系统需要全面的可观察性来诊断故障、优化性能 并确保合规性。</p><p class="content-block paragraph">智能体可观察性的三大支柱</p><p class="content-block paragraph">1. Traces：每次LLM调用、工具调用、状态转换的完整执行记录</p><p class="content-block paragraph">2. 指标：成本、延迟、成功率、工具使用情况的汇总统计</p><p class="content-block paragraph">3. 日志：用于调试和审计跟踪的结构化事件日志</p><p class="content-block paragraph">跟踪智能体执行</p><p class="content-block paragraph">现代智能体可观测性平台提供适合 LLM 工作负载的分布式跟踪：</p><p class="content-block paragraph">• LangSmith16：与LangChain/LangGraph深度集成；捕获完整的提示/响应 每一步的配对、token计数和延迟</p><p class="content-block paragraph">• Arize Phoenix17：具有 LLM 特定指标的开源可观测性（幻觉检测） 化，相关性评分）</p><p class="content-block paragraph">• Braintrust18：以评估为中心的平台，具有 A/B 测试和提示版本控制</p><p class="content-block paragraph">• 权重和偏差编织：实验跟踪扩展到智能体跟踪</p><p class="content-block paragraph">• OpenTelemetry19：具有不断增长的 LLM 支持的标准仪器协议</p><div class="component code-component"><div class="block-label">text</div><pre><code>from
 opentelemetry
 import
 trace
@@ -1784,190 +989,89 @@ BatchSpanProcessor
 from
 opentelemetry.exporter.otlp.proto.grpc. trace_exporter
 import
-OTLPSpanExporter
-</code></pre>
-<pre><code class="language-text"># Configure
+OTLPSpanExporter</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Configure
 tracing
 provider = TracerProvider ()
-provider. add_span_processor (
-</code></pre>
-<pre><code class="language-text">BatchSpanProcessor ( OTLPSpanExporter (endpoint="http :// collector :4317"))
+provider. add_span_processor (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>BatchSpanProcessor ( OTLPSpanExporter (endpoint=&quot;http :// collector :4317&quot;))
 )
 trace. set_tracer_provider (provider)
-tracer = trace.get_tracer("agent.tracer")
-</code></pre>
-<pre><code class="language-text">class
+tracer = trace.get_tracer(&quot;agent.tracer&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 InstrumentedAgent :
-def run(self , task: str) -&gt; AgentResult:
-</code></pre>
-<pre><code class="language-text">with
-tracer. start_as_current_span ("agent.run") as span:
-span.set_attribute("agent.task", task)
-span.set_attribute("agent.model", self.model)
-</code></pre>
-<p><span class="page-ref" id="pdf-p479">原 PDF p.479</span></p>
-<pre><code class="language-text">result = self._execute(task)
-</code></pre>
-<pre><code class="language-text">span.set_attribute("agent.status", result.status)
-span.set_attribute("agent.tool_calls", result. tool_call_count )
-span.set_attribute("agent.tokens_used", result.tokens_used)
-span.set_attribute("agent.cost_usd", result.cost_usd)
+def run(self , task: str) -&gt; AgentResult:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>with
+tracer. start_as_current_span (&quot;agent.run&quot;) as span:
+span.set_attribute(&quot;agent.task&quot;, task)
+span.set_attribute(&quot;agent.model&quot;, self.model)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>result = self._execute(task)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>span.set_attribute(&quot;agent.status&quot;, result.status)
+span.set_attribute(&quot;agent.tool_calls&quot;, result. tool_call_count )
+span.set_attribute(&quot;agent.tokens_used&quot;, result.tokens_used)
+span.set_attribute(&quot;agent.cost_usd&quot;, result.cost_usd)
 return
-result
-</code></pre>
-<pre><code class="language-text">def
+result</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 _call_llm(self , messages: list) -&gt; str:
 with
-tracer. start_as_current_span ("llm.call") as span:
-span.set_attribute("llm.model", self.model)
-span.set_attribute("llm. prompt_tokens ", count_tokens (messages))
+tracer. start_as_current_span (&quot;llm.call&quot;) as span:
+span.set_attribute(&quot;llm.model&quot;, self.model)
+span.set_attribute(&quot;llm. prompt_tokens &quot;, count_tokens (messages))
 response = self.llm.invoke(messages)
-span.set_attribute("llm. completion_tokens ", count_tokens ([ response ]))
+span.set_attribute(&quot;llm. completion_tokens &quot;, count_tokens ([ response ]))
 return
-response
-</code></pre>
-<pre><code class="language-text">def
+response</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 _call_tool(self , tool_name: str , args: dict) -&gt; str:
 with
-tracer. start_as_current_span (f"tool .{ tool_name}") as span:
-span.set_attribute("tool.name", tool_name)
-span.set_attribute("tool.args", json.dumps(args))
-try:
-</code></pre>
-<pre><code class="language-text">result = self.tools[tool_name ](** args)
-span.set_attribute ("tool.success", True)
+tracer. start_as_current_span (f&quot;tool .{ tool_name}&quot;) as span:
+span.set_attribute(&quot;tool.name&quot;, tool_name)
+span.set_attribute(&quot;tool.args&quot;, json.dumps(args))
+try:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>result = self.tools[tool_name ](** args)
+span.set_attribute (&quot;tool.success&quot;, True)
 return
 result
 except
 Exception as e:
-span.set_attribute ("tool.success", False)
-span.set_attribute ("tool.error", str(e))
+span.set_attribute (&quot;tool.success&quot;, False)
+span.set_attribute (&quot;tool.error&quot;, str(e))
 span. record_exception (e)
-raise
-</code></pre>
-<p>清单 25.18：使用 OpenTelemetry 进行结构化智能体跟踪</p>
-<p>故障分类</p>
-<p>系统故障分析需要对故障模式进行分类。如果没有结构化的分类，
-工程团队将周期浪费在临时调试上——治疗症状而不是根本原因。的
-下面的分类法捕获了生产智能体系统中观察到的六种最常见的故障类别，
-以及可观察到的症状、自动检测机制和经过验证的补救措施
-策略。
-每种故障类型对系统设计都有不同的影响：工具错误是基础设施
-需要重试logits和断路器的故障；推理错误是模型级别的失败
-需要快速迭代；幻觉需要接地机制；无限循环需要硬
-建筑保障。在实践中，单个用户可见的故障通常涉及级联
-多个类别（例如，当智能体尝试恢复时，工具错误会触发推理错误，
-螺旋式进入无限循环）。</p>
-<p>重放和调试工作流程</p>
-<p>当发生生产故障时，重放确切执行的能力是非常宝贵的：</p>
-<pre><code class="language-text">from
+raise</code></pre></div><p class="content-block paragraph">清单 25.18：使用 OpenTelemetry 进行结构化智能体跟踪</p><p class="content-block paragraph">故障分类</p><p class="content-block paragraph">系统故障分析需要对故障模式进行分类。如果没有结构化的分类， 工程团队将周期浪费在临时调试上——治疗症状而不是根本原因。的 下面的分类法捕获了生产智能体系统中观察到的六种最常见的故障类别， 以及可观察到的症状、自动检测机制和经过验证的补救措施 策略。 每种故障类型对系统设计都有不同的影响：工具错误是基础设施 需要重试logits和断路器的故障；推理错误是模型级别的失败 需要快速迭代；幻觉需要接地机制；无限循环需要硬 建筑保障。在实践中，单个用户可见的故障通常涉及级联 多个类别（例如，当智能体尝试恢复时，工具错误会触发推理错误， 螺旋式进入无限循环）。</p><p class="content-block paragraph">重放和调试工作流程</p><p class="content-block paragraph">当发生生产故障时，重放确切执行的能力是非常宝贵的：</p><div class="component code-component"><div class="block-label">text</div><pre><code>from
 langsmith
 import
 Client
 from
 datetime
 import
-datetime , timezone
-</code></pre>
-<pre><code class="language-text">ls = Client ()
+datetime , timezone</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>ls = Client ()
 # Uses
 LANGSMITH_API_KEY
-env var
-</code></pre>
-<pre><code class="language-text"># Load a failed
+env var</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Load a failed
 execution
 trace by its run ID
-root_run = ls.read_run("run -abc123 -def456")
-child_runs = list(ls.list_runs(
-</code></pre>
-<pre><code class="language-text">project_name="research -agent",
-filter=f’eq(parent_run_id , "{ root_run.id}")’,
-order="asc",
-</code></pre>
-<h2 id="chapter-26-p480-7">Production Deployment Patterns</h2>
-<p><span class="page-ref" id="pdf-p480">原 PDF p.480</span></p>
-<p>表 25.1：具有检测和修复策略的智能体故障分类</p>
-<p>故障类型
-症状
-检测
-补救措施</p>
-<p>工具错误
-工具调用异常，
-结果为空
-错误率监控-
-英
-重试logits、后备工具</p>
-<p>推理错误
-选择了错误的工具，
-不正确的论点
-轨迹分析
-迅速改进，几次射击前
-阿普莱斯
-幻觉
-捏造的事实，在——
-通风工具结果
-事实核查，
-接地检查
-RAG，引用要求</p>
-<p>无限循环
-重复的工具调用，
-没有进展
-环路检测，最大值
-迭代
-硬限制、断环提示</p>
-<p>上下文溢出
-截断的
-历史，
-失去了背景
-token计数
-总结一下，
-上下文管理
-蒙特
-拒绝
-智能体拒绝有效
-任务
-输出分类
-及时调整，护栏调整
-英））</p>
-<pre><code class="language-text">print(f"Trace: {root_run.id} | Status: {root_run.status}")
-print(f"Error: {root_run.error}" if root_run.error
-else "")
-print(f"Total
-tokens: {root_run.total_tokens }\n")
-</code></pre>
-<pre><code class="language-text"># Step
+root_run = ls.read_run(&quot;run -abc123 -def456&quot;)
+child_runs = list(ls.list_runs(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>project_name=&quot;research -agent&quot;,
+filter=f’eq(parent_run_id , &quot;{ root_run.id}&quot;)’,
+order=&quot;asc&quot;,</code></pre></div></div></section><section class="ast-section" id="chapter-26-s07"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>生产部署模式</h2><p>本节聚焦“生产部署模式”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">表 25.1：具有检测和修复策略的智能体故障分类</p><p class="content-block paragraph">故障类型 症状 检测 补救措施</p><p class="content-block paragraph">工具错误 工具调用异常， 结果为空 错误率监控- 英 重试logits、后备工具</p><p class="content-block paragraph">推理错误 选择了错误的工具， 不正确的论点 轨迹分析 迅速改进，几次射击前 阿普莱斯 幻觉 捏造的事实，在—— 通风工具结果 事实核查， 接地检查 RAG，引用要求</p><p class="content-block paragraph">无限循环 重复的工具调用， 没有进展 环路检测，最大值 迭代 硬限制、断环提示</p><p class="content-block paragraph">上下文溢出 截断的 历史， 失去了背景 token计数 总结一下， 上下文管理 蒙特 拒绝 智能体拒绝有效 任务 输出分类 及时调整，护栏调整 英））</p><div class="component code-component"><div class="block-label">text</div><pre><code>print(f&quot;Trace: {root_run.id} | Status: {root_run.status}&quot;)
+print(f&quot;Error: {root_run.error}&quot; if root_run.error
+else &quot;&quot;)
+print(f&quot;Total
+tokens: {root_run.total_tokens }\n&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Step
 through
 each
 child run (LLM call , tool call , etc.)
-for i, run in enumerate(child_runs):
-</code></pre>
-<pre><code class="language-text">print(f"Step {i}: [{run.run_type }] {run.name}")
-print(f"
+for i, run in enumerate(child_runs):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>print(f&quot;Step {i}: [{run.run_type }] {run.name}&quot;)
+print(f&quot;
 Input:
-{str(run.inputs)[:200]}")
-print(f"
-Output: {str(run.outputs)[:200]}")
-if run.error:
-</code></pre>
-<pre><code class="language-text">print(f"
-ERROR: {run.error}")
+{str(run.inputs)[:200]}&quot;)
+print(f&quot;
+Output: {str(run.outputs)[:200]}&quot;)
+if run.error:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>print(f&quot;
+ERROR: {run.error}&quot;)
 # Inspect
 the exact
 prompt
 that
 caused
 failure
-if run.run_type == "llm":
-</code></pre>
-<pre><code class="language-text">print(f"
+if run.run_type == &quot;llm&quot;:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>print(f&quot;
 Model: {run.extra.get(’ invocation_params ’, {}).get(’model ’)}
-")
-</code></pre>
-<pre><code class="language-text">print(f"
-Messages: {run.inputs.get(’messages ’, []) [ -1]}")
-print ()
-</code></pre>
-<pre><code class="language-text"># Re -run the
+&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>print(f&quot;
+Messages: {run.inputs.get(’messages ’, []) [ -1]}&quot;)
+print ()</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Re -run the
 failing
 step with a modified
 prompt or model
@@ -1979,29 +1083,14 @@ client = OpenAI ()
 failing_run = child_runs [4]
 # e.g., step that
 errored
-response = client.chat.completions.create(
-</code></pre>
-<pre><code class="language-text">model="gpt -4o",
+response = client.chat.completions.create(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=&quot;gpt -4o&quot;,
 # try a stronger
 model
-messages=failing_run.inputs["messages"],
+messages=failing_run.inputs[&quot;messages&quot;],
 temperature =0,
 )
-print(f"Replay
-output: {response.choices [0]. message.content [:300]}")
-</code></pre>
-<p>清单 25.19：用于调试的智能体执行重放</p>
-<p>生产部署模式</p>
-<p>大规模部署智能体需要仔细关注执行模型、状态管理和
-资源分配。</p>
-<p>异步智能体执行</p>
-<p>长时间运行的智能体应异步执行以避免阻塞 API 连接。芹菜20
-是一种广泛使用的 Python 分布式任务队列，用于处理重试、工作扩展和结果
-坚持：</p>
-<p><span class="page-ref" id="pdf-p481">原 PDF p.481</span></p>
-<p>图 25.5：基于队列的异步智能体部署。工作人员从队列中提取任务并保留状态
-独立。</p>
-<pre><code class="language-text">from
+print(f&quot;Replay
+output: {response.choices [0]. message.content [:300]}&quot;)</code></pre></div><p class="content-block paragraph">清单 25.19：用于调试的智能体执行重放</p><p class="content-block paragraph">大规模部署智能体需要仔细关注执行模型、状态管理和 资源分配。</p><p class="content-block paragraph">异步智能体执行</p><p class="content-block paragraph">长时间运行的智能体应异步执行以避免阻塞 API 连接。芹菜20 是一种广泛使用的 Python 分布式任务队列，用于处理重试、工作扩展和结果 坚持：</p><p class="content-block paragraph">图 25.5：基于队列的异步智能体部署。工作人员从队列中提取任务并保留状态 独立。</p><div class="component code-component"><div class="block-label">text</div><pre><code>from
 celery
 import
 Celery
@@ -2012,55 +1101,35 @@ ResearchAgent
 import
 redis
 import
-time
-</code></pre>
-<pre><code class="language-text">app = Celery("agent_tasks", broker="redis :// localhost :6379/0")
-state_store = redis.Redis(host="localhost", port =6379 , db=1)
-</code></pre>
-<pre><code class="language-text">@app.task(bind=True , max_retries =3, default_retry_delay =60)
+time</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>app = Celery(&quot;agent_tasks&quot;, broker=&quot;redis :// localhost :6379/0&quot;)
+state_store = redis.Redis(host=&quot;localhost&quot;, port =6379 , db=1)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@app.task(bind=True , max_retries =3, default_retry_delay =60)
 def
 run_agent_task (self , task_id: str , task_input: str , config: dict):
-"""Execute an agent
+&quot;&quot;&quot;Execute an agent
 task
-asynchronously ."""
-try:
-</code></pre>
-<pre><code class="language-text"># Update
+asynchronously .&quot;&quot;&quot;
+try:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Update
 task
 status
-state_store.hset(f"task :{ task_id}", mapping ={
-</code></pre>
-<pre><code class="language-text">"status": "running",
-"started_at": time.time (),
-"worker": self.request.hostname ,
-})
-</code></pre>
-<pre><code class="language-text">agent = ResearchAgent (** config)
-result = agent.run(task_input)
-</code></pre>
-<pre><code class="language-text"># Store
+state_store.hset(f&quot;task :{ task_id}&quot;, mapping ={</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;status&quot;: &quot;running&quot;,
+&quot;started_at&quot;: time.time (),
+&quot;worker&quot;: self.request.hostname ,
+})</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>agent = ResearchAgent (** config)
+result = agent.run(task_input)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Store
 result
-state_store.hset(f"task :{ task_id}", mapping ={
-</code></pre>
-<pre><code class="language-text">"status": "completed",
-"result": result.to_json (),
-"completed_at": time.time (),
-"cost_usd": result.cost_usd ,
+state_store.hset(f&quot;task :{ task_id}&quot;, mapping ={</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;status&quot;: &quot;completed&quot;,
+&quot;result&quot;: result.to_json (),
+&quot;completed_at&quot;: time.time (),
+&quot;cost_usd&quot;: result.cost_usd ,
 })
-return {"task_id": task_id , "status": "completed"}
-</code></pre>
-<pre><code class="language-text">except
+return {&quot;task_id&quot;: task_id , &quot;status&quot;: &quot;completed&quot;}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>except
 Exception as exc:
-state_store.hset(f"task :{ task_id}", mapping ={
-</code></pre>
-<pre><code class="language-text">"status": "failed",
-"error": str(exc),
-"failed_at": time.time (),
+state_store.hset(f&quot;task :{ task_id}&quot;, mapping ={</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;status&quot;: &quot;failed&quot;,
+&quot;error&quot;: str(exc),
+&quot;failed_at&quot;: time.time (),
 })
 raise
-self.retry(exc=exc)
-</code></pre>
-<pre><code class="language-text"># API
+self.retry(exc=exc)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># API
 endpoint (separate
 Flask/FastAPI
 app)
@@ -2068,117 +1137,42 @@ from
 flask
 import Flask , request , jsonify
 import
-uuid
-</code></pre>
-<pre><code class="language-text">web_app = Flask(__name__)
-</code></pre>
-<pre><code class="language-text">@web_app.route("/tasks", methods =["POST"])
+uuid</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>web_app = Flask(__name__)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@web_app.route(&quot;/tasks&quot;, methods =[&quot;POST&quot;])
 def
 submit_task ():
 task_id = str(uuid.uuid4 ())
-task = run_agent_task .delay(
-</code></pre>
-<pre><code class="language-text">task_id=task_id ,
-</code></pre>
-<figure><img alt="第 481 页图像 page_481_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_481_img_01.png"/>
-<em>图像：原 PDF p.481</em></figure>
-<p><span class="page-ref" id="pdf-p482">原 PDF p.482</span></p>
-<pre><code class="language-text">task_input=request.json["input"],
-config=request.json.get("config", {}),
+task = run_agent_task .delay(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>task_id=task_id ,</code></pre></div><figure class="component figure-component"><img src="../assets/images/figures/fig-072.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure><div class="component code-component"><div class="block-label">text</div><pre><code>task_input=request.json[&quot;input&quot;],
+config=request.json.get(&quot;config&quot;, {}),
 )
 return
-jsonify ({"task_id": task_id , "celery_id": task.id}), 202
-</code></pre>
-<p>清单 25.20：使用 Celery 执行异步智能体</p>
-<p>多租户隔离</p>
-<p>为多个客户服务的生产智能体系统需要严格隔离：</p>
-<p>• 命名空间隔离：每个租户的状态、内存和工具配置都存储在
-单独的命名空间</p>
-<p>• 速率限制：LLM 调用、工具调用和计算时间的每租户速率限制</p>
-<p>• 资源配额：每个租户的最大并发智能体数、token预算和存储限制</p>
-<p>• 审核日志记录：所有智能体操作均使用租户 ID 进行记录，以确保合规性和计费</p>
-<p>成本优化策略</p>
-<p>• 模型路由：使用更小、更便宜的模型来执行简单的子任务（分类、提取）
-并保留大型模型用于复杂推理</p>
-<p>• 提示缓存：OpenAI 和 Anthropic 为重复的系统提示提供提示缓存，
-为高流量智能体降低高达 90% 的成本</p>
-<p>• 结果缓存：在一个时间窗口内缓存相同输入的工具结果</p>
-<p>• 批处理：在延迟允许的情况下批处理多个独立的 LLM 调用</p>
-<p>• 提前终止：检测智能体何时有足够的信息来应答并终止
-早期循环</p>
-<pre><code class="language-text">class
+jsonify ({&quot;task_id&quot;: task_id , &quot;celery_id&quot;: task.id}), 202</code></pre></div><p class="content-block paragraph">清单 25.20：使用 Celery 执行异步智能体</p><p class="content-block paragraph">多租户隔离</p><p class="content-block paragraph">为多个客户服务的生产智能体系统需要严格隔离：</p><p class="content-block paragraph">• 命名空间隔离：每个租户的状态、内存和工具配置都存储在 单独的命名空间</p><p class="content-block paragraph">• 速率限制：LLM 调用、工具调用和计算时间的每租户速率限制</p><p class="content-block paragraph">• 资源配额：每个租户的最大并发智能体数、token预算和存储限制</p><p class="content-block paragraph">• 审核日志记录：所有智能体操作均使用租户 ID 进行记录，以确保合规性和计费</p><p class="content-block paragraph">成本优化策略</p><p class="content-block paragraph">• 模型路由：使用更小、更便宜的模型来执行简单的子任务（分类、提取） 并保留大型模型用于复杂推理</p><p class="content-block paragraph">• 提示缓存：OpenAI 和 Anthropic 为重复的系统提示提供提示缓存， 为高流量智能体降低高达 90% 的成本</p><p class="content-block paragraph">• 结果缓存：在一个时间窗口内缓存相同输入的工具结果</p><p class="content-block paragraph">• 批处理：在延迟允许的情况下批处理多个独立的 LLM 调用</p><p class="content-block paragraph">• 提前终止：检测智能体何时有足够的信息来应答并终止 早期循环</p><div class="component code-component"><div class="block-label">text</div><pre><code>class
 CostOptimizedRouter :
-TASK_MODEL_MAP = {
-</code></pre>
-<pre><code class="language-text">" classification": "gpt -4o-mini",
-"extraction": "gpt -4o-mini",
-" summarization": "gpt -4o-mini",
-"reasoning": "gpt -4o",
-" code_generation ": "gpt -4o",
-" complex_analysis ": "o1",
-}
-</code></pre>
-<pre><code class="language-text">def route(self , task_type: str , complexity: float) -&gt; str:
-</code></pre>
-<pre><code class="language-text">base_model = self. TASK_MODEL_MAP .get(task_type , "gpt -4o-mini")
+TASK_MODEL_MAP = {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot; classification&quot;: &quot;gpt -4o-mini&quot;,
+&quot;extraction&quot;: &quot;gpt -4o-mini&quot;,
+&quot; summarization&quot;: &quot;gpt -4o-mini&quot;,
+&quot;reasoning&quot;: &quot;gpt -4o&quot;,
+&quot; code_generation &quot;: &quot;gpt -4o&quot;,
+&quot; complex_analysis &quot;: &quot;o1&quot;,
+}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def route(self , task_type: str , complexity: float) -&gt; str:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>base_model = self. TASK_MODEL_MAP .get(task_type , &quot;gpt -4o-mini&quot;)
 # Upgrade to more
 capable
 model for high -complexity
 tasks
 if complexity &gt; 0.8 and
-base_model == "gpt -4o-mini":
-return "gpt -4o"
+base_model == &quot;gpt -4o-mini&quot;:
+return &quot;gpt -4o&quot;
 return
-base_model
-</code></pre>
-<pre><code class="language-text">def
+base_model</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 estimate_cost(self , model: str , input_tokens : int , output_tokens : int) -&gt;
-float:
-</code></pre>
-<pre><code class="language-math">pricing = {
-</code></pre>
-<pre><code class="language-text">"gpt -4o-mini": (0.15e-6, 0.60e-6),
-"gpt -4o":
+float:</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>pricing = {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;gpt -4o-mini&quot;: (0.15e-6, 0.60e-6),
+&quot;gpt -4o&quot;:
 (2.50e-6, 10.0e-6),
-"o1":
+&quot;o1&quot;:
 (15.0e-6, 60.0e-6),
 }
 in_price , out_price = pricing[model]
 return
-input_tokens * in_price + output_tokens * out_price
-</code></pre>
-<p>清单 25.21：用于成本优化的模型路由</p>
-<h2 id="chapter-26-p483-8">Framework Comparison</h2>
-<h2 id="chapter-26-p483-9">Complete Implementation Example: Production Research Agent</h2>
-<p><span class="page-ref" id="pdf-p483">原 PDF p.483</span></p>
-<p>自动扩展策略</p>
-<p>智能体工作负载是突发性且不可预测的。有效的自动缩放需要：</p>
-<p>• 队列深度扩展：根据任务队列深度而不是CPU 利用率来扩展工作线程数</p>
-<p>• 预测缩放：使用历史模式（一天中的时间、一周中的某一天）在之前进行预缩放
-需求激增</p>
-<p>• Spot 实例使用：长时间运行的智能体任务可以使用 Spot/抢占式实例
-检查点以节省成本</p>
-<p>• 正常关闭：工作人员在缩小规模之前完成当前任务，防止出现状态
-腐败</p>
-<p>框架比较</p>
-<p>选择正确的框架</p>
-<p>“最佳”框架取决于您的具体要求。问问自己：</p>
-<p>• 您是否需要对座席流程进行明确控制？ → 语言图</p>
-<p>• 您是否正在构建具有代码执行功能的多智能体系统？ →AutoGen</p>
-<p>• 您是否想要具有最少样板的基于角色的智能体？ →CrewAI</p>
-<p>• 您正在构建OpenAI 的生态系统吗？ →智能体SDK</p>
-<p>• 您想要自动提示优化吗？ →DSPy</p>
-<p>• 您是否处于企业.NET/Azure 环境中？ →语义内核</p>
-<p>完整的实施示例：生产研究
-智能体</p>
-<p>我们现在展示一个使用 LangGraph 构建的完整的、可立即投入生产的研究智能体，展示了
-工具定义、状态模式、图形构建、错误处理和部署配置。</p>
-<p>生产研究智能体架构</p>
-<p>此示例实现了一个研究智能体：(1) 接受研究主题，(2) 搜索网络
-对于相关来源，(3) 阅读并综合关键文件，(4) 撰写结构化报告，以及
-(5) 通过重试logits优雅地处理错误。智能体使用检查点来实现可恢复性和
-结构化日志记录以实现可观察性。</p>
-<pre><code class="language-text"># === tools.py ===
+input_tokens * in_price + output_tokens * out_price</code></pre></div><p class="content-block paragraph">清单 25.21：用于成本优化的模型路由</p></div></section><section class="ast-section" id="chapter-26-s08"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>框架比较</h2><p>本节聚焦“框架比较”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">自动扩展策略</p><p class="content-block paragraph">智能体工作负载是突发性且不可预测的。有效的自动缩放需要：</p><p class="content-block paragraph">• 队列深度扩展：根据任务队列深度而不是CPU 利用率来扩展工作线程数</p><p class="content-block paragraph">• 预测缩放：使用历史模式（一天中的时间、一周中的某一天）在之前进行预缩放 需求激增</p><p class="content-block paragraph">• Spot 实例使用：长时间运行的智能体任务可以使用 Spot/抢占式实例 检查点以节省成本</p><p class="content-block paragraph">• 正常关闭：工作人员在缩小规模之前完成当前任务，防止出现状态 腐败</p><p class="content-block paragraph">选择正确的框架</p><p class="content-block paragraph">“最佳”框架取决于您的具体要求。问问自己：</p><p class="content-block paragraph">• 您是否需要对座席流程进行明确控制？ → 语言图</p><p class="content-block paragraph">• 您是否正在构建具有代码执行功能的多智能体系统？ →AutoGen</p><p class="content-block paragraph">• 您是否想要具有最少样板的基于角色的智能体？ →CrewAI</p><p class="content-block paragraph">• 您正在构建OpenAI 的生态系统吗？ →智能体SDK</p><p class="content-block paragraph">• 您想要自动提示优化吗？ →DSPy</p><p class="content-block paragraph">• 您是否处于企业.NET/Azure 环境中？ →语义内核</p><p class="content-block paragraph">完整的实施示例：生产研究 智能体</p><p class="content-block paragraph">我们现在展示一个使用 LangGraph 构建的完整的、可立即投入生产的研究智能体，展示了 工具定义、状态模式、图形构建、错误处理和部署配置。</p><p class="content-block paragraph">生产研究智能体架构</p><p class="content-block paragraph">此示例实现了一个研究智能体：(1) 接受研究主题，(2) 搜索网络 对于相关来源，(3) 阅读并综合关键文件，(4) 撰写结构化报告，以及 (5) 通过重试logits优雅地处理错误。智能体使用检查点来实现可恢复性和 结构化日志记录以实现可观察性。</p><div class="component code-component"><div class="block-label">text</div><pre><code># === tools.py ===
 import
 httpx
 import
@@ -2213,81 +1207,95 @@ database
 import db
 # application
 database
-connection
-</code></pre>
-<pre><code class="language-text">@tool
+connection</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@tool
 @retry(stop= stop_after_attempt (3), wait= wait_exponential (min=1, max =10))
 def
-search_web(query: str , num_results: int = 5) -&gt; str:
-</code></pre>
-<p><span class="page-ref" id="pdf-p484">原 PDF p.484</span></p>
-<pre><code class="language-text">"""Search the web for
+search_web(query: str , num_results: int = 5) -&gt; str:</code></pre></div></div></section><section class="ast-section" id="chapter-26-s09"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>完整实现示例：生产级研究智能体</h2><p>本节聚焦“完整实现示例：生产级研究智能体”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">自动扩展策略</p><p class="content-block paragraph">智能体工作负载是突发性且不可预测的。有效的自动缩放需要：</p><p class="content-block paragraph">• 队列深度扩展：根据任务队列深度而不是CPU 利用率来扩展工作线程数</p><p class="content-block paragraph">• 预测缩放：使用历史模式（一天中的时间、一周中的某一天）在之前进行预缩放 需求激增</p><p class="content-block paragraph">• Spot 实例使用：长时间运行的智能体任务可以使用 Spot/抢占式实例 检查点以节省成本</p><p class="content-block paragraph">• 正常关闭：工作人员在缩小规模之前完成当前任务，防止出现状态 腐败</p><p class="content-block paragraph">选择正确的框架</p><p class="content-block paragraph">“最佳”框架取决于您的具体要求。问问自己：</p><p class="content-block paragraph">• 您是否需要对座席流程进行明确控制？ → 语言图</p><p class="content-block paragraph">• 您是否正在构建具有代码执行功能的多智能体系统？ →AutoGen</p><p class="content-block paragraph">• 您是否想要具有最少样板的基于角色的智能体？ →CrewAI</p><p class="content-block paragraph">• 您正在构建OpenAI 的生态系统吗？ →智能体SDK</p><p class="content-block paragraph">• 您想要自动提示优化吗？ →DSPy</p><p class="content-block paragraph">• 您是否处于企业.NET/Azure 环境中？ →语义内核</p><p class="content-block paragraph">完整的实施示例：生产研究 智能体</p><p class="content-block paragraph">我们现在展示一个使用 LangGraph 构建的完整的、可立即投入生产的研究智能体，展示了 工具定义、状态模式、图形构建、错误处理和部署配置。</p><p class="content-block paragraph">生产研究智能体架构</p><p class="content-block paragraph">此示例实现了一个研究智能体：(1) 接受研究主题，(2) 搜索网络 对于相关来源，(3) 阅读并综合关键文件，(4) 撰写结构化报告，以及 (5) 通过重试logits优雅地处理错误。智能体使用检查点来实现可恢复性和 结构化日志记录以实现可观察性。</p><div class="component code-component"><div class="block-label">text</div><pre><code># === tools.py ===
+import
+httpx
+import
+json
+import os
+import
+uuid
+from
+datetime
+import
+datetime , timezone
+from
+urllib.parse
+import
+urlparse
+from
+langchain_core .tools
+import
+tool
+from
+tenacity
+import retry , stop_after_attempt , wait_exponential
+from
+utils
+import
+extract_text
+# HTML -&gt; plain
+text
+helper (e.g., BeautifulSoup )
+from
+database
+import db
+# application
+database
+connection</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@tool
+@retry(stop= stop_after_attempt (3), wait= wait_exponential (min=1, max =10))
+def
+search_web(query: str , num_results: int = 5) -&gt; str:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;&quot;&quot;Search the web for
 information. Returns
-JSON list of results."""
-if not query.strip ():
-</code></pre>
-<pre><code class="language-text">raise
-ValueError("Search
+JSON list of results.&quot;&quot;&quot;
+if not query.strip ():</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>raise
+ValueError(&quot;Search
 query
-cannot be empty")
-response = httpx.get(
-</code></pre>
-<pre><code class="language-text">"https :// api.search.example.com/search",
-params ={"q": query , "n": num_results},
-headers ={"Authorization": f"Bearer {os.environ[’ SEARCH_API_KEY ’]}"},
+cannot be empty&quot;)
+response = httpx.get(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;https :// api.search.example.com/search&quot;,
+params ={&quot;q&quot;: query , &quot;n&quot;: num_results},
+headers ={&quot;Authorization&quot;: f&quot;Bearer {os.environ[’ SEARCH_API_KEY ’]}&quot;},
 timeout =10.0 ,
 )
 response. raise_for_status ()
-results = response.json ()["results"]
+results = response.json ()[&quot;results&quot;]
 return
-json.dumps ([{"title": r["title"], "url": r["url"],
-</code></pre>
-<pre><code class="language-text">"snippet": r["snippet"]} for r in results ])
-</code></pre>
-<pre><code class="language-text">@tool
+json.dumps ([{&quot;title&quot;: r[&quot;title&quot;], &quot;url&quot;: r[&quot;url&quot;],</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;snippet&quot;: r[&quot;snippet&quot;]} for r in results ])</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@tool
 @retry(stop= stop_after_attempt (2), wait= wait_exponential (min=1, max =5))
 def
 fetch_document (url: str , max_chars: int = 5000)
 -&gt; str:
-"""Fetch and
+&quot;&quot;&quot;Fetch and
 extract
 text
 content
-from a URL."""
-allowed_domains = os.environ.get(" ALLOWED_DOMAINS ", "").split(",")
+from a URL.&quot;&quot;&quot;
+allowed_domains = os.environ.get(&quot; ALLOWED_DOMAINS &quot;, &quot;&quot;).split(&quot;,&quot;)
 domain = urlparse(url).netloc
-if allowed_domains [0] and domain not in allowed_domains :
-</code></pre>
-<pre><code class="language-text">raise
-PermissionError (f"Domain {domain} not in allowed
-list")
+if allowed_domains [0] and domain not in allowed_domains :</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>raise
+PermissionError (f&quot;Domain {domain} not in allowed
+list&quot;)
 response = httpx.get(url , timeout =15.0 ,
 follow_redirects =True)
 response. raise_for_status ()
 return
-extract_text(response.text)[: max_chars]
-</code></pre>
-<pre><code class="language-text">@tool
+extract_text(response.text)[: max_chars]</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@tool
 def
 save_report(title: str , summary: str , sections: list[dict ]) -&gt; str:
-"""Save a structured
+&quot;&quot;&quot;Save a structured
 research
 report to the
-database."""
+database.&quot;&quot;&quot;
 report_id = str(uuid.uuid4 ())
-db.reports.insert_one ({
-</code></pre>
-<pre><code class="language-text">"id": report_id , "title": title ,
-"summary": summary , "sections": sections ,
-"created_at": datetime.now(timezone.utc).isoformat (),
+db.reports.insert_one ({</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;id&quot;: report_id , &quot;title&quot;: title ,
+&quot;summary&quot;: summary , &quot;sections&quot;: sections ,
+&quot;created_at&quot;: datetime.now(timezone.utc).isoformat (),
 })
 return
-json.dumps ({"report_id": report_id , "status": "saved"})
-</code></pre>
-<pre><code class="language-text">TOOLS = [search_web , fetch_document , save_report]
-</code></pre>
-<p>清单 25.22：完整的生产研究智能体：工具和状态</p>
-<pre><code class="language-text"># === agent.py ===
+json.dumps ({&quot;report_id&quot;: report_id , &quot;status&quot;: &quot;saved&quot;})</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>TOOLS = [search_web , fetch_document , save_report]</code></pre></div><p class="content-block paragraph">清单 25.22：完整的生产研究智能体：工具和状态</p><div class="component code-component"><div class="block-label">text</div><pre><code># === agent.py ===
 import
 json
 from
@@ -2314,9 +1322,7 @@ AIMessage
 from
 tools
 import
-TOOLS
-</code></pre>
-<pre><code class="language-text">SYSTEM_PROMPT = """You are a professional
+TOOLS</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>SYSTEM_PROMPT = &quot;&quot;&quot;You are a professional
 research
 analyst. Your task is to:
 1. Search for
@@ -2332,9 +1338,7 @@ findings
 into a structured
 report
 using
-save_report
-</code></pre>
-<pre><code class="language-text">Guidelines:
+save_report</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>Guidelines:
 - Always
 verify
 information
@@ -2353,52 +1357,35 @@ save_report
 exactly
 once when you have
 sufficient
-information"""
-</code></pre>
-<pre><code class="language-text">class
+information&quot;&quot;&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 ResearchState(TypedDict):
 messages: Annotated[List[BaseMessage], add_messages]
-topic: str
-</code></pre>
-<p><span class="page-ref" id="pdf-p485">原 PDF p.485</span></p>
-<pre><code class="language-text">sources_found: List[str]
+topic: str</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>sources_found: List[str]
 sources_read: List[str]
 report_id: str | None
 error_count: int
 tool_call_count : int
-status: Literal["researching", "done", "failed"]
-</code></pre>
-<pre><code class="language-text">tool_executor = ToolNode(TOOLS)
-</code></pre>
-<pre><code class="language-text">def
+status: Literal[&quot;researching&quot;, &quot;done&quot;, &quot;failed&quot;]</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>tool_executor = ToolNode(TOOLS)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 research_node(state: ResearchState ) -&gt; dict:
-"""Main LLM
+&quot;&quot;&quot;Main LLM
 reasoning
-node."""
-llm = ChatOpenAI(model="gpt -4o", temperature =0).bind_tools(TOOLS)
-messages = [SystemMessage(content= SYSTEM_PROMPT )] + state["messages"]
+node.&quot;&quot;&quot;
+llm = ChatOpenAI(model=&quot;gpt -4o&quot;, temperature =0).bind_tools(TOOLS)
+messages = [SystemMessage(content= SYSTEM_PROMPT )] + state[&quot;messages&quot;]
 response = llm.invoke(messages)
-return {"messages": [response ]}
-</code></pre>
-<pre><code class="language-text">def
+return {&quot;messages&quot;: [response ]}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 tool_node_with_error_handling (state: ResearchState ) -&gt; dict:
-"""Execute
+&quot;&quot;&quot;Execute
 tool
 calls
 with
 error
 handling
 and state
-updates."""
-try:
-</code></pre>
-<pre><code class="language-text">result = tool_executor.invoke(state)
-return {
-</code></pre>
-<pre><code class="language-text">**result ,
-" tool_call_count ": state[" tool_call_count "] + len(
-</code></pre>
-<pre><code class="language-text">state["messages"][ -1]. tool_calls
+updates.&quot;&quot;&quot;
+try:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>result = tool_executor.invoke(state)
+return {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>**result ,
+&quot; tool_call_count &quot;: state[&quot; tool_call_count &quot;] + len(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>state[&quot;messages&quot;][ -1]. tool_calls
 ),
 }
 except
@@ -2406,61 +1393,39 @@ Exception as e:
 # Return an AIMessage
 signaling
 the error so the LLM can adapt
-error_msg = AIMessage(content=f"Tool
+error_msg = AIMessage(content=f&quot;Tool
 execution
 failed: {e}. Try a
 different
-approach.")
-return {
-</code></pre>
-<pre><code class="language-text">"messages": [error_msg],
-"error_count": state["error_count"] + 1,
-}
-</code></pre>
-<pre><code class="language-text">def
+approach.&quot;)
+return {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;messages&quot;: [error_msg],
+&quot;error_count&quot;: state[&quot;error_count&quot;] + 1,
+}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 check_completion (state: ResearchState ) -&gt; dict:
-"""Check if the report has been
+&quot;&quot;&quot;Check if the report has been
 saved and update
-status."""
-for msg in state["messages"][ -5:]:
-</code></pre>
-<pre><code class="language-text">content = getattr(msg , "content", "")
-if "report_id" in content:
-</code></pre>
-<p>尝试：</p>
-<pre><code class="language-text">data = json.loads(content)
-return {"status": "done", "report_id": data["report_id"]}
-except (json.JSONDecodeError , KeyError):
-</code></pre>
-<pre><code class="language-text">pass
-return {}
-</code></pre>
-<pre><code class="language-text">def
+status.&quot;&quot;&quot;
+for msg in state[&quot;messages&quot;][ -5:]:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>content = getattr(msg , &quot;content&quot;, &quot;&quot;)
+if &quot;report_id&quot; in content:</code></pre></div><p class="content-block paragraph">尝试：</p><div class="component code-component"><div class="block-label">text</div><pre><code>data = json.loads(content)
+return {&quot;status&quot;: &quot;done&quot;, &quot;report_id&quot;: data[&quot;report_id&quot;]}
+except (json.JSONDecodeError , KeyError):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>pass
+return {}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 route_after_llm (state: ResearchState ) -&gt; str:
-"""Determine
+&quot;&quot;&quot;Determine
 next step
 after LLM
-response."""
-if state["error_count"] &gt;= 5 or state[" tool_call_count "] &gt;= 15:
-</code></pre>
-<pre><code class="language-text">return "fail"
-last_message = state["messages"][ -1]
-if hasattr(last_message , "tool_calls") and
+response.&quot;&quot;&quot;
+if state[&quot;error_count&quot;] &gt;= 5 or state[&quot; tool_call_count &quot;] &gt;= 15:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return &quot;fail&quot;
+last_message = state[&quot;messages&quot;][ -1]
+if hasattr(last_message , &quot;tool_calls&quot;) and
 last_message .tool_calls:
-return "tools"
-if len(state["messages"]) &gt; 30:
-</code></pre>
-<pre><code class="language-text">return "fail"
-return "research"
+return &quot;tools&quot;
+if len(state[&quot;messages&quot;]) &gt; 30:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return &quot;fail&quot;
+return &quot;research&quot;
 # LLM needs to continue
-reasoning
-</code></pre>
-<pre><code class="language-text">def
+reasoning</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 fail_node(state: ResearchState ) -&gt; dict:
-return {"status": "failed"}
-</code></pre>
-<p>清单 25.23：完整的生产研究智能体：状态和节点</p>
-<pre><code class="language-text"># === graph.py ===
+return {&quot;status&quot;: &quot;failed&quot;}</code></pre></div><p class="content-block paragraph">清单 25.23：完整的生产研究智能体：状态和节点</p><div class="component code-component"><div class="block-label">text</div><pre><code># === graph.py ===
 from
 langgraph.graph
 import
@@ -2468,57 +1433,38 @@ StateGraph , START , END
 from
 langgraph.graph.state
 import
-CompiledStateGraph
-</code></pre>
-<p><span class="page-ref" id="pdf-p486">原 PDF p.486</span></p>
-<pre><code class="language-text">from
+CompiledStateGraph</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>from
 langgraph.checkpoint.postgres.aio import
-AsyncPostgresSaver
-</code></pre>
-<pre><code class="language-text">async def
+AsyncPostgresSaver</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>async def
 build_graph(db_url: str) -&gt; CompiledStateGraph :
-"""Build and
+&quot;&quot;&quot;Build and
 compile
 the
 research
 agent
-graph."""
+graph.&quot;&quot;&quot;
 checkpointer = AsyncPostgresSaver . from_conn_string (db_url)
 await
 checkpointer.setup ()
 # Create
-tables if needed
-</code></pre>
-<pre><code class="language-text">builder = StateGraph(ResearchState )
-</code></pre>
-<pre><code class="language-text"># Add nodes
-builder.add_node("research", research_node )
-builder.add_node("tools", tool_node_with_error_handling )
-builder.add_node("check", check_completion )
-builder.add_node("fail", fail_node)
-</code></pre>
-<pre><code class="language-text"># Define
+tables if needed</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>builder = StateGraph(ResearchState )</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Add nodes
+builder.add_node(&quot;research&quot;, research_node )
+builder.add_node(&quot;tools&quot;, tool_node_with_error_handling )
+builder.add_node(&quot;check&quot;, check_completion )
+builder.add_node(&quot;fail&quot;, fail_node)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Define
 edges
-builder.add_edge(START , "research")
-builder. add_conditional_edges (
-</code></pre>
-<pre><code class="language-text">"research",
+builder.add_edge(START , &quot;research&quot;)
+builder. add_conditional_edges (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;research&quot;,
 route_after_llm ,
-{"tools": "tools", "research": "research", "fail": "fail"}
+{&quot;tools&quot;: &quot;tools&quot;, &quot;research&quot;: &quot;research&quot;, &quot;fail&quot;: &quot;fail&quot;}
 )
-builder.add_edge("tools", "check")
-builder. add_conditional_edges (
-</code></pre>
-<pre><code class="language-text">"check",
-lambda s: "end" if s["status"] == "done" else "research",
-{"end": END , "research": "research"}
+builder.add_edge(&quot;tools&quot;, &quot;check&quot;)
+builder. add_conditional_edges (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;check&quot;,
+lambda s: &quot;end&quot; if s[&quot;status&quot;] == &quot;done&quot; else &quot;research&quot;,
+{&quot;end&quot;: END , &quot;research&quot;: &quot;research&quot;}
 )
-builder.add_edge("fail", END)
-</code></pre>
-<pre><code class="language-text">return
-builder.compile(checkpointer =checkpointer )
-</code></pre>
-<pre><code class="language-text"># ===
+builder.add_edge(&quot;fail&quot;, END)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return
+builder.compile(checkpointer =checkpointer )</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># ===
 deployment.py ===
 import os
 import
@@ -2538,76 +1484,48 @@ BaseModel
 from
 langchain_core .messages
 import
-HumanMessage
-</code></pre>
-<pre><code class="language-text">graph: CompiledStateGraph = None
-# Initialized at startup
-</code></pre>
-<pre><code class="language-text">@asynccontextmanager
+HumanMessage</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>graph: CompiledStateGraph = None
+# Initialized at startup</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@asynccontextmanager
 async def
 lifespan(app: FastAPI):
 global
 graph
 graph = await
-build_graph(os.environ[" DATABASE_URL"])
-yield
-</code></pre>
-<pre><code class="language-text">app = FastAPI(title="Research
-Agent API", lifespan=lifespan)
-</code></pre>
-<pre><code class="language-text">class
+build_graph(os.environ[&quot; DATABASE_URL&quot;])
+yield</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>app = FastAPI(title=&quot;Research
+Agent API&quot;, lifespan=lifespan)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 ResearchRequest (BaseModel):
 topic: str
-user_id: str
-</code></pre>
-<pre><code class="language-text">class
+user_id: str</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 ResearchResponse (BaseModel):
 task_id: str
-status: str
-</code></pre>
-<pre><code class="language-text">@app.post("/research", response_model = ResearchResponse )
+status: str</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@app.post(&quot;/research&quot;, response_model = ResearchResponse )
 async def
 start_research(request: ResearchRequest , background_tasks :
-BackgroundTasks ):
-</code></pre>
-<pre><code class="language-text">task_id = str(uuid.uuid4 ())
-config = {"configurable": {"thread_id": task_id , "user_id": request.user_id }}
-initial_state = {
-</code></pre>
-<pre><code class="language-text">"messages": [HumanMessage(content=f"Research
-topic: {request.topic}")],
-"topic": request.topic ,
-</code></pre>
-<p><span class="page-ref" id="pdf-p487">原 PDF p.487</span></p>
-<pre><code class="language-text">" sources_found": [], "sources_read": [],
-"report_id": None , "error_count": 0,
-" tool_call_count ": 0, "status": "researching",
+BackgroundTasks ):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>task_id = str(uuid.uuid4 ())
+config = {&quot;configurable&quot;: {&quot;thread_id&quot;: task_id , &quot;user_id&quot;: request.user_id }}
+initial_state = {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;messages&quot;: [HumanMessage(content=f&quot;Research
+topic: {request.topic}&quot;)],
+&quot;topic&quot;: request.topic ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot; sources_found&quot;: [], &quot;sources_read&quot;: [],
+&quot;report_id&quot;: None , &quot;error_count&quot;: 0,
+&quot; tool_call_count &quot;: 0, &quot;status&quot;: &quot;researching&quot;,
 }
 background_tasks .add_task(graph.ainvoke , initial_state , config)
 return
-ResearchResponse (task_id=task_id , status="started")
-</code></pre>
-<pre><code class="language-text">@app.get("/research /{ task_id}")
+ResearchResponse (task_id=task_id , status=&quot;started&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@app.get(&quot;/research /{ task_id}&quot;)
 async def
 get_research_status (task_id: str):
-config = {"configurable": {"thread_id": task_id }}
+config = {&quot;configurable&quot;: {&quot;thread_id&quot;: task_id }}
 state = await
 graph.aget_state(config)
-if state is None:
-</code></pre>
-<pre><code class="language-text">raise
-HTTPException(status_code =404 , detail="Task not found")
-return {
-</code></pre>
-<pre><code class="language-text">"task_id": task_id ,
-"status": state.values.get("status", "unknown"),
-"report_id": state.values.get("report_id"),
-"tool_calls": state.values.get(" tool_call_count ", 0),
-"error_count": state.values.get("error_count", 0),
-}
-</code></pre>
-<p>清单 25.24：完整的生产研究智能体：图表和部署</p>
-<pre><code class="language-text"># ===
+if state is None:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>raise
+HTTPException(status_code =404 , detail=&quot;Task not found&quot;)
+return {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;task_id&quot;: task_id ,
+&quot;status&quot;: state.values.get(&quot;status&quot;, &quot;unknown&quot;),
+&quot;report_id&quot;: state.values.get(&quot;report_id&quot;),
+&quot;tool_calls&quot;: state.values.get(&quot; tool_call_count &quot;, 0),
+&quot;error_count&quot;: state.values.get(&quot;error_count&quot;, 0),
+}</code></pre></div><p class="content-block paragraph">清单 25.24：完整的生产研究智能体：图表和部署</p><div class="component code-component"><div class="block-label">text</div><pre><code># ===
 Dockerfile
 ===
 # FROM
@@ -2618,164 +1536,65 @@ requirements.txt .
 # RUN pip install
 --no -cache -dir -r requirements.txt
 # COPY . .
-# CMD [" uvicorn", "deployment:app", "--host", "0.0.0.0" , "--port", "8000"]
-</code></pre>
-<pre><code class="language-text"># ===
+# CMD [&quot; uvicorn&quot;, &quot;deployment:app&quot;, &quot;--host&quot;, &quot;0.0.0.0&quot; , &quot;--port&quot;, &quot;8000&quot;]</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># ===
 kubernetes/deployment.yaml (as Python
 dict for
 illustration) ===
-k8s_deployment = {
-</code></pre>
-<pre><code class="language-text">"apiVersion": "apps/v1",
-"kind": "Deployment",
-"metadata": {"name": "research -agent", "namespace": "agents"},
-"spec": {
-</code></pre>
-<pre><code class="language-text">"replicas": 3,
-"selector": {"matchLabels": {"app": "research -agent"}},
-"template": {
-</code></pre>
-<pre><code class="language-text">"metadata": {"labels": {"app": "research -agent"}},
-"spec": {
-</code></pre>
-<pre><code class="language-text">"containers": [{
-</code></pre>
-<pre><code class="language-text">"name": "agent",
-“图像”：“myregistry/research -agent：最新”，
-"ports": [{"containerPort ": 8000}] ,
-"resources": {
-</code></pre>
-<pre><code class="language-text">"requests": {"memory": "512Mi", "cpu": "250m"},
-"limits":
-{"memory": "2Gi",
-"cpu": "1000m"},
+k8s_deployment = {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;apiVersion&quot;: &quot;apps/v1&quot;,
+&quot;kind&quot;: &quot;Deployment&quot;,
+&quot;metadata&quot;: {&quot;name&quot;: &quot;research -agent&quot;, &quot;namespace&quot;: &quot;agents&quot;},
+&quot;spec&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;replicas&quot;: 3,
+&quot;selector&quot;: {&quot;matchLabels&quot;: {&quot;app&quot;: &quot;research -agent&quot;}},
+&quot;template&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;metadata&quot;: {&quot;labels&quot;: {&quot;app&quot;: &quot;research -agent&quot;}},
+&quot;spec&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;containers&quot;: [{</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;name&quot;: &quot;agent&quot;,
+&quot;image&quot;: &quot;myregistry/research -agent:latest&quot;,
+&quot;ports&quot;: [{&quot;containerPort &quot;: 8000}] ,
+&quot;resources&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;requests&quot;: {&quot;memory&quot;: &quot;512Mi&quot;, &quot;cpu&quot;: &quot;250m&quot;},
+&quot;limits&quot;:
+{&quot;memory&quot;: &quot;2Gi&quot;,
+&quot;cpu&quot;: &quot;1000m&quot;},
 },
-"env": [
-</code></pre>
-<pre><code class="language-text">{"name": " DATABASE_URL",
-"valueFrom": {
-"secretKeyRef": {"name": "agent -secrets", "key": "db -
-url"}}},
-</code></pre>
-<pre><code class="language-text">{"name": " OPENAI_API_KEY ", "valueFrom": {
-</code></pre>
-<pre><code class="language-text">"secretKeyRef": {"name": "agent -secrets", "key": "
-openai -key"}}},
-</code></pre>
-<pre><code class="language-text">],
-"livenessProbe ":
-{"httpGet": {"path": "/health", "port":
-8000} ,
-</code></pre>
-<pre><code class="language-text">" initialDelaySeconds ": 30, " periodSeconds ":
-10},
-</code></pre>
-<pre><code class="language-text">" readinessProbe ": {"httpGet": {"path": "/ready",
-"port":
-8000} ,
-</code></pre>
-<pre><code class="language-text">" initialDelaySeconds ": 10, " periodSeconds ":
-5},
-</code></pre>
-<h2 id="chapter-26-p488-10">小结</h2>
-<p><span class="page-ref" id="pdf-p488">原 PDF p.488</span></p>
-<pre><code class="language-text">}]
+&quot;env&quot;: [</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>{&quot;name&quot;: &quot; DATABASE_URL&quot;,
+&quot;valueFrom&quot;: {
+&quot;secretKeyRef&quot;: {&quot;name&quot;: &quot;agent -secrets&quot;, &quot;key&quot;: &quot;db -
+url&quot;}}},</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>{&quot;name&quot;: &quot; OPENAI_API_KEY &quot;, &quot;valueFrom&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;secretKeyRef&quot;: {&quot;name&quot;: &quot;agent -secrets&quot;, &quot;key&quot;: &quot;
+openai -key&quot;}}},</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>],
+&quot;livenessProbe &quot;:
+{&quot;httpGet&quot;: {&quot;path&quot;: &quot;/health&quot;, &quot;port&quot;:
+8000} ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot; initialDelaySeconds &quot;: 30, &quot; periodSeconds &quot;:
+10},</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot; readinessProbe &quot;: {&quot;httpGet&quot;: {&quot;path&quot;: &quot;/ready&quot;,
+&quot;port&quot;:
+8000} ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot; initialDelaySeconds &quot;: 10, &quot; periodSeconds &quot;:
+5},</code></pre></div></div></section><section class="ast-section" id="chapter-26-s10"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>小结</h2><p>本节聚焦“小结”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div></div></div><div class="section-blocks"><div class="component code-component"><div class="block-label">text</div><pre><code>}]
 }
 }
 }
-}
-</code></pre>
-<pre><code class="language-text"># HorizontalPodAutoscaler
+}</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># HorizontalPodAutoscaler
 scales on queue
 depth
 metric
-hpa_config = {
-</code></pre>
-<pre><code class="language-text">"apiVersion": "autoscaling/v2",
-"kind": " HorizontalPodAutoscaler ",
-"metadata": {"name": "research -agent -hpa", "namespace": "agents"},
-"spec": {
-</code></pre>
-<pre><code class="language-text">" scaleTargetRef": {
-</code></pre>
-<pre><code class="language-text">"apiVersion": "apps/v1",
-"kind": "Deployment",
-"name": "research -agent",
+hpa_config = {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;apiVersion&quot;: &quot;autoscaling/v2&quot;,
+&quot;kind&quot;: &quot; HorizontalPodAutoscaler &quot;,
+&quot;metadata&quot;: {&quot;name&quot;: &quot;research -agent -hpa&quot;, &quot;namespace&quot;: &quot;agents&quot;},
+&quot;spec&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot; scaleTargetRef&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;apiVersion&quot;: &quot;apps/v1&quot;,
+&quot;kind&quot;: &quot;Deployment&quot;,
+&quot;name&quot;: &quot;research -agent&quot;,
 },
-"minReplicas": 2,
-"maxReplicas": 20,
-"metrics": [{
-</code></pre>
-<pre><code class="language-text">"type": "External",
-"external": {
-</code></pre>
-<pre><code class="language-text">"metric": {"name": " agent_task_queue_depth "},
-"target": {"type": "AverageValue", " averageValue": "10"},
+&quot;minReplicas&quot;: 2,
+&quot;maxReplicas&quot;: 20,
+&quot;metrics&quot;: [{</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;type&quot;: &quot;External&quot;,
+&quot;external&quot;: {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;metric&quot;: {&quot;name&quot;: &quot; agent_task_queue_depth &quot;},
+&quot;target&quot;: {&quot;type&quot;: &quot;AverageValue&quot;, &quot; averageValue&quot;: &quot;10&quot;},
 }
 }]
 }
-}
-</code></pre>
-<p>清单 25.25：部署配置：Docker 和 Kubernetes</p>
-<p>生产清单
-在将智能体部署到生产环境之前，请验证：</p>
-<p>• 所有工具都有重试logits和错误处理</p>
-<p>• 强制执行最大迭代限制</p>
-<p>• 敏感数据未记录在跟踪中</p>
-<p>• 按租户配置速率限制</p>
-<p>• 为长时间运行的任务启用检查点</p>
-<p>• 行为测试通过（无有害输出）</p>
-<p>• 验证成本和延迟界限</p>
-<p>• 回滚过程已记录并经过测试</p>
-<p>• 待命运行手册涵盖常见故障模式</p>
-<p>总结</p>
-<p>智能体开发框架已经显着成熟，为智能体提供了结构化的解决方案
-构建生产级人工智能智能体的工程挑战。本节的主要内容
-是：</p>
-<ol>
-<li>
-<p>框架选择很重要：不同的框架针对不同的关注点进行优化。朗-
-Graph 擅长复杂、可控的工作流程； AutoGen 的多智能体协作；船员人工智能
-基于角色的简单性； DSPy 自动优化。</p>
-</li>
-<li>
-<p>测试是不可协商的：基于 LLM 的智能体的不确定性使得</p>
-</li>
-</ol>
-<p><span class="page-ref" id="pdf-p489">原 PDF p.489</span></p>
-<p>全面的测试——单元、集成、行为和性能——对生产至关重要
-可靠性。</p>
-<ol start="3">
-<li>
-<p>可观察性实现迭代：无需详细跟踪智能体执行情况，即可诊断
-失败和提高性能都是猜测。尽早投资可观测基础设施。</p>
-</li>
-<li>
-<p>异步执行是常态：生产智能体是长时间运行的进程，需要
-基于队列的执行、检查点和优雅的故障处理。</p>
-</li>
-<li>
-<p>成本管理至关重要：LLM API 成本随使用情况而变化。模型路由、缓存、
-提前终止可以在不牺牲质量的情况下降低 50-90% 的成本。</p>
-</li>
-<li>
-<p>生命周期是迭代的：智能体开发不是一次性的工作。持续监控，
-随着世界的变化，故障分析和改进对于保持性能至关重要。</p>
-</li>
-</ol>
-<p>该领域正在迅速发展，新的框架、工具和最佳实践不断出现。
-本节涵盖的原则——显式状态管理、全面测试、深入
-可观察性和系统迭代——无论使用哪种特定工具，都提供稳定的基础
-正在流行。</p></div>
+}</code></pre></div><p class="content-block paragraph">清单 25.25：部署配置：Docker 和 Kubernetes</p><p class="content-block paragraph">生产清单 在将智能体部署到生产环境之前，请验证：</p><p class="content-block paragraph">• 所有工具都有重试logits和错误处理</p><p class="content-block paragraph">• 强制执行最大迭代限制</p><p class="content-block paragraph">• 敏感数据未记录在跟踪中</p><p class="content-block paragraph">• 按租户配置速率限制</p><p class="content-block paragraph">• 为长时间运行的任务启用检查点</p><p class="content-block paragraph">• 行为测试通过（无有害输出）</p><p class="content-block paragraph">• 验证成本和延迟界限</p><p class="content-block paragraph">• 回滚过程已记录并经过测试</p><p class="content-block paragraph">• 待命运行手册涵盖常见故障模式</p><p class="content-block paragraph">总结</p><p class="content-block paragraph">智能体开发框架已经显着成熟，为智能体提供了结构化的解决方案 构建生产级人工智能智能体的工程挑战。本节的主要内容 是：</p><p class="content-block paragraph">1. 框架选择很重要：不同的框架针对不同的关注点进行优化。朗- Graph 擅长复杂、可控的工作流程； AutoGen 的多智能体协作；船员人工智能 基于角色的简单性； DSPy 自动优化。</p><p class="content-block paragraph">2. 测试是不可协商的：基于 LLM 的智能体的不确定性使得</p><p class="content-block paragraph">全面的测试——单元、集成、行为和性能——对生产至关重要 可靠性。</p><p class="content-block paragraph">3. 可观察性实现迭代：无需详细跟踪智能体执行情况，即可诊断 失败和提高性能都是猜测。尽早投资可观测基础设施。</p><p class="content-block paragraph">4. 异步执行是常态：生产智能体是长时间运行的进程，需要 基于队列的执行、检查点和优雅的故障处理。</p><p class="content-block paragraph">5. 成本管理至关重要：LLM API 成本随使用情况而变化。模型路由、缓存、 提前终止可以在不牺牲质量的情况下降低 50-90% 的成本。</p><p class="content-block paragraph">6. 生命周期是迭代的：智能体开发不是一次性的工作。持续监控， 随着世界的变化，故障分析和改进对于保持性能至关重要。</p><p class="content-block paragraph">该领域正在迅速发展，新的框架、工具和最佳实践不断出现。 本节涵盖的原则——显式状态管理、全面测试、深入 可观察性和系统迭代——无论使用哪种特定工具，都提供稳定的基础 正在流行。</p></div></section></div>
           <nav class="chapter-pager"><a class="pager-link" href="chapter-25.html">← 多智能体系统</a><a class="pager-link next" href="chapter-27.html">智能体式 UI 框架 →</a></nav>
         </article>
-        
-    </section>
-  </main>
+        </section><aside class="right-outline"><div class="nav-section-title">本页结构</div><a class="outline-link" href="#chapter-26-s01">动机：工程落差</a><a class="outline-link" href="#chapter-26-s02">智能体开发生命周期</a><a class="outline-link" href="#chapter-26-s03">主要框架深度解析</a><a class="outline-link" href="#chapter-26-s04">开源智能体工具链</a><a class="outline-link" href="#chapter-26-s05">智能体测试与评估</a><a class="outline-link" href="#chapter-26-s06">可观测性与调试</a><a class="outline-link" href="#chapter-26-s07">生产部署模式</a><a class="outline-link" href="#chapter-26-s08">框架比较</a><a class="outline-link" href="#chapter-26-s09">完整实现示例：生产级研究智能体</a><a class="outline-link" href="#chapter-26-s10">小结</a></aside></main>
   <button class="back-top" id="back-top" type="button">↑</button>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/toc.js"></script>
   <script src="../assets/js/progress.js"></script>
-  
 </body>
 </html>

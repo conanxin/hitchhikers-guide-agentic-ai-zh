@@ -4,174 +4,37 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DPO：直接偏好优化 | 智能体式 AI 漫游指南</title>
-  <meta name="description" content="不用显式奖励模型的偏好优化方法及其理论直觉。" />
+  <meta name="description" content="介绍不用显式奖励模型的偏好优化方法及其理论直觉。" />
   <meta property="og:title" content="DPO：直接偏好优化 | 智能体式 AI 漫游指南" />
-  <meta property="og:description" content="不用显式奖励模型的偏好优化方法及其理论直觉。" />
+  <meta property="og:description" content="介绍不用显式奖励模型的偏好优化方法及其理论直觉。" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="canonical" href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/article.css" />
   <link rel="stylesheet" href="../assets/css/responsive.css" />
-  
 </head>
 <body class="article-page">
   <div class="reading-progress" id="reading-progress"></div>
   <header class="topbar">
-    <a class="brand" href="../index.html" aria-label="智能体式 AI 漫游指南">
-      <span class="brand-mark">AI</span>
-      <span><strong>智能体式 AI 漫游指南</strong><small>从基础到系统的中文技术文档站</small></span>
-    </a>
-    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a>
-<a class="active" href="../chapters/index.html">章节</a>
-<a class="" href="../glossary.html">术语表</a>
-<a class="" href="../references.html">参考文献</a>
-<a class="" href="../search.html">搜索</a>
-<a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
+    <a class="brand" href="../index.html"><span class="brand-mark">AST</span><span><strong>智能体式 AI 漫游指南</strong><small>结构化知识文档系统</small></span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="打开导航" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a><a class="active" href="../chapters/index.html">章节</a><a class="" href="../glossary.html">术语表</a><a class="" href="../references.html">参考文献</a><a class="" href="../search.html">搜索</a><a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
   </header>
-  <main class="layout">
-    
-        <aside class="left-nav" id="left-nav">
-          <div class="nav-section-title">章节</div>
-          <a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a>
-<a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a>
-<a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a>
-<a class="chapter-link active" href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a>
-<a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a>
-<a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a>
-<a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a>
-<a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a>
-<a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a>
-<a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a>
-<a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a>
-<a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a>
-<a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a>
-<a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a>
-<a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a>
-<a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a>
-<a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a>
-<a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a>
-        </aside>
-        <aside class="right-outline" id="right-outline">
-          <div class="nav-section-title">本页大纲</div>
-          <a class="outline-link level-h2" href="#chapter-07-p145-1">Motivation</a>
-<a class="outline-link level-h2" href="#chapter-07-p145-2">Mathematical Derivation</a>
-<a class="outline-link level-h2" href="#chapter-07-p145-3">Gradient Analysis</a>
-<a class="outline-link level-h2" href="#chapter-07-p146-4">TRL Implementation</a>
-<a class="outline-link level-h2" href="#chapter-07-p147-5">How DPO Works: Full Mechanics</a>
-<a class="outline-link level-h2" href="#chapter-07-p150-6">DPO Variants and When Each Fails</a>
-<a class="outline-link level-h2" href="#chapter-07-p150-7">Selection Guide</a>
-<a class="outline-link level-h2" href="#chapter-07-p150-8">DPO Batch Size Configuration and Scaling</a>
-<a class="outline-link level-h2" href="#chapter-07-p152-9">DPO Extensions and Variants</a>
-        </aside>
-        
-    <section class="content-shell">
-      
-        <article class="article-card">
+  <main class="layout"><aside class="left-nav" id="left-nav"><div class="nav-section-title">语义目录</div><div class="nav-cluster"><strong>导读</strong><a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a><a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a></div><div class="nav-cluster"><strong>LLM 基础与系统</strong><a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a><a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a><a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a></div><div class="nav-cluster"><strong>训练、强化学习与对齐</strong><a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a><a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a><a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a><a class="chapter-link active" href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a><a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a><a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a><a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a><a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a></div><div class="nav-cluster"><strong>Agentic AI 系统</strong><a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a><a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a><a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a><a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a><a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a><a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a><a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a><a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a><a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a><a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a><a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a><a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a><a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a></div><div class="nav-cluster"><strong>推理与评估</strong><a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a></div><div class="nav-cluster"><strong>参考与总结</strong><a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a><a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a><a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a></div></aside><section class="content-shell">
+        <article class="article-card" data-ast-source="../assets/data/clean_chapter_tree.json">
           <header class="article-header">
-            <p class="part-label">第二部分：LLM 的强化学习方法</p>
+            <p class="part-label">训练、强化学习与对齐</p>
             <h1>DPO：直接偏好优化</h1>
-            <p>不用显式奖励模型的偏好优化方法及其理论直觉。</p>
-            <div class="article-meta"><span>原 PDF p.145-157</span><span>9 个页内条目</span></div>
+            <p>介绍不用显式奖励模型的偏好优化方法及其理论直觉。</p>
           </header>
-          <div class="article-body"><h2 id="chapter-07-p145-1">Motivation</h2>
-<h2 id="chapter-07-p145-2">Mathematical Derivation</h2>
-<h2 id="chapter-07-p145-3">Gradient Analysis</h2>
-<p><span class="page-ref" id="pdf-p145">原 PDF p.145</span></p>
-<p>DPO：直接偏好
-优化</p>
-<p>动机</p>
-<p>PPO需要内存中的4个模型（策略、参考、奖励模型、价值头），复杂的RL
-基础设施，而且是出了名的不稳定。 DPO[10]问：我们可以跳过RL直接学习吗
-从偏好？
-关键见解：RLHF目标下的最优策略（奖励最大化+KL惩罚）
-有一个封闭式解。我们可以得出隐式优化相同的监督损失
-客观。</p>
-<p>数学推导</p>
-<pre><code class="language-math">Step 1: RLHF objective: maxπ Ex,y∼π[r(x, y)] −βDKL[π∥πref]
-</code></pre>
-<p></p>
-<p>β</p>
-<p>Step 2: The optimal solution is: π∗(y|x) =
-Z(x)πref(y|x) exp
- r(x,y)</p>
-<p>Step 3: Rearrange to express reward in terms of policy: r(x, y) = β log π∗(y|x)</p>
-<pre><code class="language-text">πref(y|x) + β log Z(x)
+          <aside class="component key-concepts-panel"><span class="component-label">Key Concepts</span><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div></aside>
+          <div class="article-body"><section class="ast-section" id="chapter-07-s01"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>动机</h2><p>本节聚焦“动机”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">DPO：直接偏好 优化</p><p class="content-block paragraph">PPO需要内存中的4个模型（策略、参考、奖励模型、价值头），复杂的RL 基础设施，而且是出了名的不稳定。 DPO[10]问：我们可以跳过RL直接学习吗 从偏好？ 关键见解：RLHF目标下的最优策略（奖励最大化+KL惩罚） 有一个封闭式解。我们可以得出隐式优化相同的监督损失 客观。</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Step 1: RLHF objective: maxπ Ex,y∼π[r(x, y)] −βDKL[π∥πref]</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>公式内容已由 OCR 清洗；请结合上下文或图像 fallback 阅读。</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>Step 2: The optimal solution is: π∗(y|x) =</code></pre></div><p class="content-block paragraph">Z(x)πref(y|x) exp  r(x,y)</p><div class="component code-component"><div class="block-label">text</div><pre><code>Step 3: Rearrange to express reward in terms of policy: r(x, y) = β log π∗(y|x)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>πref(y|x) + β log Z(x)
 Step 4: Substitute into Bradley-Terry preference model P(yw ≻yl) = σ(r(yw) −r(yl)). The Z(x)
-cancels!
-</code></pre>
-<p></p>
-<pre><code class="language-math">
-log σ
-
-β log πθ(yw|x)
-</code></pre>
-<p>(6.1)</p>
-<p>LDPO(θ) = −E(x,yw,yl)</p>
-<pre><code class="language-math">πref(yw|x) −β log πθ(yl|x)
-</code></pre>
-<p>πref(yl|x)</p>
-<p>DPO 实际做什么</p>
-<pre><code class="language-math">Define the implicit reward as ˆr(x, y) = β log πθ(y|x)
-</code></pre>
-<p>πref(y|x)。
-DPO 最小化交叉熵损失，其中“标签”是：选择的应该具有更高的隐式
-奖励比拒绝。裕度由 β 控制：</p>
-<pre><code class="language-math">• 大β：需要大裕度→策略激进→风险遗忘
-</code></pre>
-<pre><code class="language-math">• 小β：小幅度就足够了→策略接近参考→保守
-</code></pre>
-<p>参考模型充当正则化器：策略必须通过以下方式“证明”任何偏离它的行为：
-显示偏好对齐。</p>
-<p>梯度分析</p>
-<p>DPO 梯度分解为：</p>
-<pre><code class="language-math">· [∇θ log πθ(yw|x) −∇θ log πθ(yl|x)]
-(6.2)
-</code></pre>
-<pre><code class="language-math">∇θL = −β ·
-σ(−ˆrw + ˆrl)
-|
-{z
-}
-weight: higher when model is wrong
-</code></pre>
-<h2 id="chapter-07-p146-4">TRL Implementation</h2>
-<p><span class="page-ref" id="pdf-p146">原 PDF p.146</span></p>
-<p>解释：梯度增加了选择的概率并减少了拒绝的概率。重量
-当模型当前更喜欢错误的答案时，它的学习重点是“令人困惑”
-对。</p>
-<p>具体 DPO 示例</p>
-<p>提示：“向 10 岁的孩子解释量子纠缠。”
-选择（yw）：“想象你有两枚魔法硬币。当你翻转一枚硬币时，它是正面，另一枚则正面朝上。
-无论相隔多远，一瞬间就变成了尾巴！”</p>
-<pre><code class="language-math">log πθ(yw|x) = −15.3, log πref(yw|x) = −16.1
-Rejected (yl): “Quantum entanglement is a phenomenon where two particles become correlated
-以至于一个粒子的量子态无法独立描述。”
-</code></pre>
-<p>log πθ(yl|x) = −12.8，log πref(yl|x) = −12.5
-隐性奖励： ˆrw = 0.1 × ((−15.3) −(−16.1)) = 0.08, ˆrl = 0.1 × ((−12.8) −(−12.5)) = −0.03
-损失输入： σ(0.08 −(−0.03)) = σ(0.11) = 0.527
-损失：−log(0.527) = 0.64 — 模型几乎不喜欢所选择的。梯度会大力推动。
-训练后：选择的概率增加，拒绝的概率减少，直到边际稳定在附近
-1/(2β)。</p>
-<p>TRL实施</p>
-<p>下面显示了使用 Hugging Face TRL 的最小工作示例。</p>
-<pre><code class="language-text">from trl import
+cancels!</code></pre></div><p class="content-block paragraph"></p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code> log σ  β log πθ(yw|x)</code></pre></div><p class="content-block paragraph">(6.1)</p><p class="content-block paragraph">LDPO(θ) = −E(x,yw,yl)</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>πref(yw|x) −β log πθ(yl|x)</code></pre></div><p class="content-block paragraph">πref(yl|x)</p><p class="content-block paragraph">DPO 实际做什么</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Define the implicit reward as ˆr(x, y) = β log πθ(y|x)</code></pre></div><p class="content-block paragraph">πref(y|x)。 DPO 最小化交叉熵损失，其中“标签”是：选择的应该具有更高的隐式 奖励比拒绝。裕度由 β 控制：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>• Large β: need large margin →policy moves aggressively →risk forgetting</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>• Small β: small margin suffices →policy stays close to reference →conservative</code></pre></div><p class="content-block paragraph">参考模型充当正则化器：策略必须通过以下方式“证明”任何偏离它的行为： 显示偏好对齐。</p><p class="content-block paragraph">DPO 梯度分解为：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>· [∇θ log πθ(yw|x) −∇θ log πθ(yl|x)] (6.2)</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>∇θL = −β · σ(−ˆrw + ˆrl) | {z } weight: higher when model is wrong</code></pre></div></div></section><section class="ast-section" id="chapter-07-s02"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>数学推导</h2><p>本节聚焦“数学推导”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">DPO：直接偏好 优化</p><p class="content-block paragraph">PPO需要内存中的4个模型（策略、参考、奖励模型、价值头），复杂的RL 基础设施，而且是出了名的不稳定。 DPO[10]问：我们可以跳过RL直接学习吗 从偏好？ 关键见解：RLHF目标下的最优策略（奖励最大化+KL惩罚） 有一个封闭式解。我们可以得出隐式优化相同的监督损失 客观。</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Step 1: RLHF objective: maxπ Ex,y∼π[r(x, y)] −βDKL[π∥πref]</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>公式内容已由 OCR 清洗；请结合上下文或图像 fallback 阅读。</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>Step 2: The optimal solution is: π∗(y|x) =</code></pre></div><p class="content-block paragraph">Z(x)πref(y|x) exp  r(x,y)</p><div class="component code-component"><div class="block-label">text</div><pre><code>Step 3: Rearrange to express reward in terms of policy: r(x, y) = β log π∗(y|x)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>πref(y|x) + β log Z(x)
+Step 4: Substitute into Bradley-Terry preference model P(yw ≻yl) = σ(r(yw) −r(yl)). The Z(x)
+cancels!</code></pre></div><p class="content-block paragraph"></p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code> log σ  β log πθ(yw|x)</code></pre></div><p class="content-block paragraph">(6.1)</p><p class="content-block paragraph">LDPO(θ) = −E(x,yw,yl)</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>πref(yw|x) −β log πθ(yl|x)</code></pre></div><p class="content-block paragraph">πref(yl|x)</p><p class="content-block paragraph">DPO 实际做什么</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Define the implicit reward as ˆr(x, y) = β log πθ(y|x)</code></pre></div><p class="content-block paragraph">πref(y|x)。 DPO 最小化交叉熵损失，其中“标签”是：选择的应该具有更高的隐式 奖励比拒绝。裕度由 β 控制：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>• Large β: need large margin →policy moves aggressively →risk forgetting</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>• Small β: small margin suffices →policy stays close to reference →conservative</code></pre></div><p class="content-block paragraph">参考模型充当正则化器：策略必须通过以下方式“证明”任何偏离它的行为： 显示偏好对齐。</p><p class="content-block paragraph">DPO 梯度分解为：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>· [∇θ log πθ(yw|x) −∇θ log πθ(yl|x)] (6.2)</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>∇θL = −β · σ(−ˆrw + ˆrl) | {z } weight: higher when model is wrong</code></pre></div></div></section><section class="ast-section" id="chapter-07-s03"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>梯度分析</h2><p>本节聚焦“梯度分析”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">DPO：直接偏好 优化</p><p class="content-block paragraph">PPO需要内存中的4个模型（策略、参考、奖励模型、价值头），复杂的RL 基础设施，而且是出了名的不稳定。 DPO[10]问：我们可以跳过RL直接学习吗 从偏好？ 关键见解：RLHF目标下的最优策略（奖励最大化+KL惩罚） 有一个封闭式解。我们可以得出隐式优化相同的监督损失 客观。</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Step 1: RLHF objective: maxπ Ex,y∼π[r(x, y)] −βDKL[π∥πref]</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>公式内容已由 OCR 清洗；请结合上下文或图像 fallback 阅读。</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>Step 2: The optimal solution is: π∗(y|x) =</code></pre></div><p class="content-block paragraph">Z(x)πref(y|x) exp  r(x,y)</p><div class="component code-component"><div class="block-label">text</div><pre><code>Step 3: Rearrange to express reward in terms of policy: r(x, y) = β log π∗(y|x)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>πref(y|x) + β log Z(x)
+Step 4: Substitute into Bradley-Terry preference model P(yw ≻yl) = σ(r(yw) −r(yl)). The Z(x)
+cancels!</code></pre></div><p class="content-block paragraph"></p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code> log σ  β log πθ(yw|x)</code></pre></div><p class="content-block paragraph">(6.1)</p><p class="content-block paragraph">LDPO(θ) = −E(x,yw,yl)</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>πref(yw|x) −β log πθ(yl|x)</code></pre></div><p class="content-block paragraph">πref(yl|x)</p><p class="content-block paragraph">DPO 实际做什么</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Define the implicit reward as ˆr(x, y) = β log πθ(y|x)</code></pre></div><p class="content-block paragraph">πref(y|x)。 DPO 最小化交叉熵损失，其中“标签”是：选择的应该具有更高的隐式 奖励比拒绝。裕度由 β 控制：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>• Large β: need large margin →policy moves aggressively →risk forgetting</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>• Small β: small margin suffices →policy stays close to reference →conservative</code></pre></div><p class="content-block paragraph">参考模型充当正则化器：策略必须通过以下方式“证明”任何偏离它的行为： 显示偏好对齐。</p><p class="content-block paragraph">DPO 梯度分解为：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>· [∇θ log πθ(yw|x) −∇θ log πθ(yl|x)] (6.2)</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>∇θL = −β · σ(−ˆrw + ˆrl) | {z } weight: higher when model is wrong</code></pre></div></div></section><section class="ast-section" id="chapter-07-s04"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>TRL 实现</h2><p>本节聚焦“TRL 实现”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">解释：梯度增加了选择的概率并减少了拒绝的概率。重量 当模型当前更喜欢错误的答案时，它的学习重点是“令人困惑” 对。</p><p class="content-block paragraph">具体 DPO 示例</p><p class="content-block paragraph">提示：“向 10 岁的孩子解释量子纠缠。” 选择（yw）：“想象你有两枚魔法硬币。当你翻转一枚硬币时，它是正面，另一枚则正面朝上。 无论相隔多远，一瞬间就变成了尾巴！”</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>log πθ(yw|x) = −15.3, log πref(yw|x) = −16.1 Rejected (yl): “Quantum entanglement is a phenomenon where two particles become correlated such that the quantum state of one particle cannot be described independently.”</code></pre></div><p class="content-block paragraph">log πθ(yl|x) = −12.8，log πref(yl|x) = −12.5 隐性奖励： ˆrw = 0.1 × ((−15.3) −(−16.1)) = 0.08, ˆrl = 0.1 × ((−12.8) −(−12.5)) = −0.03 损失输入： σ(0.08 −(−0.03)) = σ(0.11) = 0.527 损失：−log(0.527) = 0.64 — 模型几乎不喜欢所选择的。梯度会大力推动。 训练后：选择的概率增加，拒绝的概率减少，直到边际稳定在附近 1/(2β)。</p><p class="content-block paragraph">TRL实施</p><p class="content-block paragraph">下面显示了使用 Hugging Face TRL 的最小工作示例。</p><div class="component code-component"><div class="block-label">text</div><pre><code>from trl import
 DPOConfig , DPOTrainer
 from
 transformers
@@ -183,32 +46,18 @@ LoraConfig
 from
 datasets
 import
-load_dataset
-</code></pre>
-<pre><code class="language-text">model = AutoModelForCausalLM . from_pretrained ("meta -llama/Llama -3.1 -8B-Instruct",
-</code></pre>
-<pre><code class="language-text">torch_dtype=torch.bfloat16 , attn_implementation =" flash_attention_2 ")
-tokenizer = AutoTokenizer. from_pretrained ("meta -llama/Llama -3.1 -8B-Instruct")
-</code></pre>
-<pre><code class="language-text"># Dataset
-format: {" prompt ": str , "chosen ": str , "rejected ": str}
-dataset = load_dataset("argilla/ultrafeedback -binarized -preferences")
-</code></pre>
-<pre><code class="language-text">lora_config = LoraConfig(r=64, lora_alpha =16, lora_dropout =0.05 ,
-</code></pre>
-<pre><code class="language-text">target_modules =["q_proj","k_proj","v_proj","o_proj","gate_proj","up_proj","
-down_proj"])
-</code></pre>
-<pre><code class="language-text">dpo_config = DPOConfig(
-</code></pre>
-<pre><code class="language-text">output_dir="./ dpo_output",
+load_dataset</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model = AutoModelForCausalLM . from_pretrained (&quot;meta -llama/Llama -3.1 -8B-Instruct&quot;,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>torch_dtype=torch.bfloat16 , attn_implementation =&quot; flash_attention_2 &quot;)
+tokenizer = AutoTokenizer. from_pretrained (&quot;meta -llama/Llama -3.1 -8B-Instruct&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Dataset
+format: {&quot; prompt &quot;: str , &quot;chosen &quot;: str , &quot;rejected &quot;: str}
+dataset = load_dataset(&quot;argilla/ultrafeedback -binarized -preferences&quot;)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>lora_config = LoraConfig(r=64, lora_alpha =16, lora_dropout =0.05 ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>target_modules =[&quot;q_proj&quot;,&quot;k_proj&quot;,&quot;v_proj&quot;,&quot;o_proj&quot;,&quot;gate_proj&quot;,&quot;up_proj&quot;,&quot;
+down_proj&quot;])</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>dpo_config = DPOConfig(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>output_dir=&quot;./ dpo_output&quot;,
 beta =0.1,
 # KL regularization
 strength
 learning_rate =5e-7,
 # Very low LR for
 stability
-loss_type="sigmoid",
+loss_type=&quot;sigmoid&quot;,
 # Standard
 DPO loss
 max_length =2048 ,
@@ -231,545 +80,113 @@ overfits
 fast - 1 epoch!
 warmup_ratio =0.1,
 logging_steps =10,
-eval_strategy="steps",
+eval_strategy=&quot;steps&quot;,
 eval_steps =200,
-save_strategy="steps",
+save_strategy=&quot;steps&quot;,
 save_steps =500,
-)
-</code></pre>
-<pre><code class="language-text">trainer = DPOTrainer(
-</code></pre>
-<pre><code class="language-text">model=model ,
-</code></pre>
-<h2 id="chapter-07-p147-5">How DPO Works: Full Mechanics</h2>
-<p><span class="page-ref" id="pdf-p147">原 PDF p.147</span></p>
-<pre><code class="language-text">ref_model=None ,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>trainer = DPOTrainer(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=model ,</code></pre></div></div></section><section class="ast-section" id="chapter-07-s05"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>DPO 工作机制：完整细节</h2><p>本节聚焦“DPO 工作机制：完整细节”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div></div></div><div class="section-blocks"><div class="component code-component"><div class="block-label">text</div><pre><code>ref_model=None ,
 # With LoRA , ref = base
 model (no copy
 needed !)
 args=dpo_config ,
-train_dataset=dataset["train"],
-eval_dataset=dataset["test"],
+train_dataset=dataset[&quot;train&quot;],
+eval_dataset=dataset[&quot;test&quot;],
 tokenizer=tokenizer ,
 peft_config=lora_config ,
 )
 trainer.train ()
-# Key metrics to monitor: train/rewards/chosen , train/rewards/rejected , train/
-</code></pre>
-<pre><code class="language-text">rewards/margins
-</code></pre>
-<p>DPO 的工作原理：完整机制</p>
-<p>本节提供了 DPO 的完整计算细节——token级别发生的情况
-训练期间。</p>
-<p>序列级对数概率</p>
-<p>DPO 中的关键量是给定的整个序列 y = (y1, y2, ..., yT ) 的对数概率
-提示 x。这被计算为每个标记对数概率的总和：</p>
-<p>时间
-X</p>
-<p>对数 πθ(y|x) =</p>
-<p>t=1
-log πθ(yt | x, y&lt;t)
-(6.3)</p>
-<p>每项 log πθ(yt|x, y&lt;t) 是实际标记 yt 在位置 t 处的 log-softmax 输出
-序列。这与标准语言建模中使用的交叉熵损失相同 - 但这里
-我们求和而不是平均。
-关键细节：梯度流过 yw 和 yl 中的每个标记位置。有
-没有中间标记的屏蔽——每个标记都对序列级对数概率做出贡献。</p>
-<p>DPO 损失分解</p>
-<p>从损失开始：</p>
-<pre><code class="language-math">LDPO(θ) = −E(x,yw,yl)∼D[log σ(β · hθ(x, yw, yl))]
-(6.4)
-</code></pre>
-<p>其中“隐性奖励幅度”hθ 为：</p>
-<p>−
-log πθ(yl|x)</p>
-<p>(6.5)</p>
-<pre><code class="language-math">hθ(x, yw, yl) =
-log πθ(yw|x)
-</code></pre>
-<pre><code class="language-text">πref(yw|x)
+# Key metrics to monitor: train/rewards/chosen , train/rewards/rejected , train/</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>rewards/margins</code></pre></div><p class="content-block paragraph">DPO 的工作原理：完整机制</p><p class="content-block paragraph">本节提供了 DPO 的完整计算细节——token级别发生的情况 训练期间。</p><p class="content-block paragraph">序列级对数概率</p><div class="component code-component"><div class="block-label">text</div><pre><code>DPO 中的关键量是给定的整个序列 y = (y1, y2, ..., yT ) 的对数概率</code></pre></div><p class="content-block paragraph">提示 x。这被计算为每个标记对数概率的总和：</p><p class="content-block paragraph">时间 X</p><p class="content-block paragraph">对数 πθ(y|x) =</p><div class="component code-component"><div class="block-label">text</div><pre><code>t=1</code></pre></div><p class="content-block paragraph">log πθ(yt | x, y&lt;t) (6.3)</p><p class="content-block paragraph">每项 log πθ(yt|x, y&lt;t) 是实际标记 yt 在位置 t 处的 log-softmax 输出 序列。这与标准语言建模中使用的交叉熵损失相同 - 但这里 我们求和而不是平均。 关键细节：梯度流过 yw 和 yl 中的每个标记位置。有 没有中间标记的屏蔽——每个标记都对序列级对数概率做出贡献。</p><p class="content-block paragraph">DPO 损失分解</p><p class="content-block paragraph">从损失开始：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>LDPO(θ) = −E(x,yw,yl)∼D[log σ(β · hθ(x, yw, yl))] (6.4)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>where the “implicit reward margin” hθ is:</code></pre></div><p class="content-block paragraph">− log πθ(yl|x)</p><p class="content-block paragraph">(6.5)</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>hθ(x, yw, yl) = log πθ(yw|x)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>πref(yw|x)
 |
 {z
 }
-chosen reward proxy
-</code></pre>
-<pre><code class="language-text">πref(yl|x)
+chosen reward proxy</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>πref(yl|x)
 |
 {z
 }
-rejected reward proxy
-</code></pre>
-<p>扩展到token级别的术语：</p>
-<p>|yw|
-X</p>
-<p>|yl|
-X</p>
-<p>(6.6)</p>
-<p>hθ =</p>
-<pre><code class="language-math">h
-log πθ(yt
-w|x, y&lt;t
-w ) −log πref(yt
-w|x, y&lt;t
-w )
-i
-−
-</code></pre>
-<pre><code class="language-math">h
-log πθ(yt
-l|x, y&lt;t
-l ) −log πref(yt
-l|x, y&lt;t
-l )
-i
-</code></pre>
-<pre><code class="language-math">t=1
-</code></pre>
-<pre><code class="language-math">t=1
-</code></pre>
-<p>前向传球：一步一步</p>
-<p>对于一个训练示例 (x, yw, yl)：</p>
-<ol>
-<li>
-<p>连接：形成两个序列：[x; yw] 和 [x;基]。在批次内填充到相同的长度。</p>
-</li>
-<li>
-<p>前向传递（策略 πθ）：通过模型运行两个序列。收集 logits 在每个
-响应位置。</p>
-</li>
-</ol>
-<p><span class="page-ref" id="pdf-p148">原 PDF p.148</span></p>
-<ol start="3">
-<li>
-<p>提取对数概率：在响应中的每个位置 t 处，取 log softmax(logitst)[yt] —
-实际token的对数概率。</p>
-</li>
-<li>
-<p>token求和：</p>
-</li>
-</ol>
-<p>logp_选择=
-X</p>
-<pre><code class="language-math">t∈response positions
-log πθ(yt
-w|x, y&lt;t
-w )
-(6.7)
-</code></pre>
-<p>日志p_拒绝=
-X</p>
-<pre><code class="language-math">t∈response positions
-log πθ(yt
-l|x, y&lt;t
-l )
-(6.8)
-</code></pre>
-<ol start="5">
-<li>减去参考（预先计算或来自第二次前向传递）：</li>
-</ol>
-<p>ratio_w = logp_chosen -ref_logp_chosen
-(6.9)</p>
-<p>ratio_l = logp_rejected -ref_logp_rejected
-(6.10)</p>
-<pre><code class="language-math">6. Compute loss: L = −log σ(β · (ratio_w −ratio_l))
-</code></pre>
-<pre><code class="language-math">7. Backward pass: Gradients flow back through steps 5 →4 →3 →2 to update θ.
-</code></pre>
-<p>token级梯度分析</p>
-<p>每个token都有梯度吗？是的。相对于位置 t 处 logits 的梯度
-选择的序列是：</p>
-<p>∂L</p>
-<pre><code class="language-math">·β · ∂log πθ(yt
-w|·)
-</code></pre>
-<p>∂logits(w)
-t
-(6.11)</p>
-<pre><code class="language-text">∂logits(w)
+rejected reward proxy</code></pre></div><p class="content-block paragraph">扩展到token级别的术语：</p><p class="content-block paragraph">|yw| X</p><p class="content-block paragraph">|yl| X</p><p class="content-block paragraph">(6.6)</p><p class="content-block paragraph">hθ =</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>h log πθ(yt w|x, y&lt;t w ) −log πref(yt w|x, y&lt;t w ) i −</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>h log πθ(yt l|x, y&lt;t l ) −log πref(yt l|x, y&lt;t l ) i</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>t=1</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>t=1</code></pre></div><p class="content-block paragraph">前向传球：一步一步</p><p class="content-block paragraph">对于一个训练示例 (x, yw, yl)：</p><p class="content-block paragraph">1. 连接：形成两个序列：[x; yw] 和 [x;基]。在批次内填充到相同的长度。</p><p class="content-block paragraph">2. 前向传递（策略 πθ）：通过模型运行两个序列。收集 logits 在每个 响应位置。</p><p class="content-block paragraph">3. 提取对数概率：在响应中的每个位置 t 处，取 log softmax(logitst)[yt] — 实际token的对数概率。</p><p class="content-block paragraph">4. token求和：</p><p class="content-block paragraph">logp_选择= X</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>t∈response positions log πθ(yt w|x, y&lt;t w ) (6.7)</code></pre></div><p class="content-block paragraph">日志p_拒绝= X</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>t∈response positions log πθ(yt l|x, y&lt;t l ) (6.8)</code></pre></div><p class="content-block paragraph">5. 减去参考（预先计算或来自第二次前向传递）：</p><div class="component code-component"><div class="block-label">text</div><pre><code>ratio_w = logp_chosen -ref_logp_chosen</code></pre></div><p class="content-block paragraph">(6.9)</p><div class="component code-component"><div class="block-label">text</div><pre><code>ratio_l = logp_rejected -ref_logp_rejected</code></pre></div><p class="content-block paragraph">(6.10)</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>6. Compute loss: L = −log σ(β · (ratio_w −ratio_l))</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>7. Backward pass: Gradients flow back through steps 5 →4 →3 →2 to update θ.</code></pre></div><p class="content-block paragraph">token级梯度分析</p><p class="content-block paragraph">每个token都有梯度吗？是的。相对于位置 t 处 logits 的梯度 选择的序列是：</p><p class="content-block paragraph">∂L</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>·β · ∂log πθ(yt w|·)</code></pre></div><p class="content-block paragraph">∂logits(w) t (6.11)</p><div class="component code-component"><div class="block-label">text</div><pre><code>∂logits(w)
 t
 = −σ(−β · hθ)
 |
 {z
 }
-scaling factor
-</code></pre>
-<pre><code class="language-math">Key insight: The scaling factor σ(−β · hθ) is shared across all tokens in both sequences. It
-acts as an adaptive learning rate:
-</code></pre>
-<p>• 当 hθ 很小时（模型无法区分选择和拒绝）：缩放 ≈0.5 — 强
-梯度，积极学习。</p>
-<p>• 当 hθ 很大时（模型已经优先选择）：缩放 ≈0 — 梯度可以忽略不计，不要
-过度拟合。</p>
-<p>对所选token的影响：概率增加（对数概率推高）。</p>
-<p>对拒绝token的影响：概率降低（对数概率下推）。</p>
-<p>相对于参考：只有与 πref 的差异才重要。如果模型已经分配高
-所选响应的概率（与参考匹配），梯度很小。</p>
-<p>每个token与序列级别：长度标准化</p>
-<p>一个微妙的问题：较长的序列自然具有较低的对数概率（更多的项求和，每个
-≤0）。如果|yw| ≫|yl|，损失可能会偏向于更短的响应。
-解决方案：</p>
-<pre><code class="language-math">• Length-normalized DPO: Replace log πθ(y|x) with
-1
-|y|
-P
-t log πθ(yt|·). Used in some imple-
-mentations (SimPO adopts this).
-</code></pre>
-<p>• 标准DPO：使用原始总和（无标准化）。这隐含地惩罚了冗长的内容——
-模型必须为所选响应中的每个标记分配高概率。</p>
-<p>• 实际影响：在基准测试测试中，长度归一化 DPO 减少了长度游戏，但可以
-损害遵循指令的质量。标准（非标准化）在生产中更为常见。</p>
-<p>标签遮蔽：什么得到梯度</p>
-<p><span class="page-ref" id="pdf-p149">原 PDF p.149</span></p>
-<p>哪些token在 DPO 中获得梯度</p>
-<p>• 提示标记(x)：无梯度。仅根据响应位置计算损失。
-提示标记提供上下文，但它们的 logits 对 log π(y|x) 没有贡献。</p>
-<p>• 选择的响应标记(yw)：所有标记都获得梯度。每个yt
-w 有助于
-总和。梯度提高了它们的概率。</p>
-<p>• 拒绝的响应token(yl)：所有token均获得梯度。每个yt
-我为
-总和。梯度降低了它们的概率。</p>
-<p>• 填充标记：无渐变。用注意力面具掩盖。</p>
-<p>伪代码：DPO 训练步骤</p>
-<p>DPO 前向 + 后向（PyTorch 风格）</p>
-<pre><code class="language-text">def
+scaling factor</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Key insight: The scaling factor σ(−β · hθ) is shared across all tokens in both sequences. It acts as an adaptive learning rate:</code></pre></div><p class="content-block paragraph">• 当 hθ 很小时（模型无法区分选择和拒绝）：缩放 ≈0.5 — 强 梯度，积极学习。</p><p class="content-block paragraph">• 当 hθ 很大时（模型已经优先选择）：缩放 ≈0 — 梯度可以忽略不计，不要 过度拟合。</p><p class="content-block paragraph">对所选token的影响：概率增加（对数概率推高）。</p><p class="content-block paragraph">对拒绝token的影响：概率降低（对数概率下推）。</p><p class="content-block paragraph">相对于参考：只有与 πref 的差异才重要。如果模型已经分配高 所选响应的概率（与参考匹配），梯度很小。</p><p class="content-block paragraph">每个token与序列级别：长度标准化</p><p class="content-block paragraph">一个微妙的问题：较长的序列自然具有较低的对数概率（更多的项求和，每个 ≤0）。如果|yw| ≫|yl|，损失可能会偏向于更短的响应。 解决方案：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>• Length-normalized DPO: Replace log πθ(y|x) with 1 |y| P t log πθ(yt|·). Used in some imple- mentations (SimPO adopts this).</code></pre></div><p class="content-block paragraph">• 标准DPO：使用原始总和（无标准化）。这隐含地惩罚了冗长的内容—— 模型必须为所选响应中的每个标记分配高概率。</p><p class="content-block paragraph">• 实际影响：在基准测试测试中，长度归一化 DPO 减少了长度游戏，但可以 损害遵循指令的质量。标准（非标准化）在生产中更为常见。</p><p class="content-block paragraph">标签遮蔽：什么得到梯度</p><p class="content-block paragraph">哪些token在 DPO 中获得梯度</p><p class="content-block paragraph">• 提示标记(x)：无梯度。仅根据响应位置计算损失。 提示标记提供上下文，但它们的 logits 对 log π(y|x) 没有贡献。</p><p class="content-block paragraph">• 选择的响应标记(yw)：所有标记都获得梯度。每个yt w 有助于 总和。梯度提高了它们的概率。</p><p class="content-block paragraph">• 拒绝的响应token(yl)：所有token均获得梯度。每个yt 我为 总和。梯度降低了它们的概率。</p><p class="content-block paragraph">• 填充标记：无渐变。用注意力面具掩盖。</p><p class="content-block paragraph">伪代码：DPO 训练步骤</p><p class="content-block paragraph">DPO 前向 + 后向（PyTorch 风格）</p><div class="component code-component"><div class="block-label">text</div><pre><code>def
 dpo_loss(model , ref_model , batch , beta =0.1):
-"""One DPO
+&quot;&quot;&quot;One DPO
 training
-step."""
+step.&quot;&quot;&quot;
 # batch
 contains: input_ids_chosen , input_ids_rejected ,
 #
 labels_chosen , labels_rejected (prompt
 masked to
--100)
-</code></pre>
-<pre><code class="language-text"># 1. Forward
+-100)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># 1. Forward
 pass: get per -token log -probs
-logps_chosen = get_sequence_logprob (model , batch["chosen"])
-logps_rejected = get_sequence_logprob (model , batch["rejected"])
-</code></pre>
-<pre><code class="language-text"># 2. Reference log -probs (pre -computed or computed
+logps_chosen = get_sequence_logprob (model , batch[&quot;chosen&quot;])
+logps_rejected = get_sequence_logprob (model , batch[&quot;rejected&quot;])</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># 2. Reference log -probs (pre -computed or computed
 here)
 with
 torch.no_grad ():
-ref_logps_chosen = get_sequence_logprob (ref_model , batch["chosen"])
-ref_logps_rejected = get_sequence_logprob (ref_model , batch["rejected"])
-</code></pre>
-<pre><code class="language-text"># 3. Compute
+ref_logps_chosen = get_sequence_logprob (ref_model , batch[&quot;chosen&quot;])
+ref_logps_rejected = get_sequence_logprob (ref_model , batch[&quot;rejected&quot;])</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># 3. Compute
 implicit
 reward
 margins
 chosen_rewards = beta * (logps_chosen - ref_logps_chosen )
-rejected_rewards = beta * (logps_rejected - ref_logps_rejected )
-</code></pre>
-<pre><code class="language-text"># 4. DPO loss = -log(sigmoid( chosen_reward - rejected_reward ))
+rejected_rewards = beta * (logps_rejected - ref_logps_rejected )</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># 4. DPO loss = -log(sigmoid( chosen_reward - rejected_reward ))
 loss = -F.logsigmoid(chosen_rewards - rejected_rewards ).mean ()
 return
-loss
-</code></pre>
-<pre><code class="language-text">def
+loss</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 get_sequence_logprob (model , sequences):
-"""Sum of log -probs
+&quot;&quot;&quot;Sum of log -probs
 over
 response
 tokens
-only."""
-outputs = model(sequences["input_ids"], attention_mask =sequences["mask"])
+only.&quot;&quot;&quot;
+outputs = model(sequences[&quot;input_ids&quot;], attention_mask =sequences[&quot;mask&quot;])
 logits = outputs.logits [:, :-1, :]
 # Shift for next -token
-prediction
-</code></pre>
-<pre><code class="language-text"># Gather log -prob of actual
+prediction</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Gather log -prob of actual
 tokens
-labels = sequences["labels"][:, 1:]
+labels = sequences[&quot;labels&quot;][:, 1:]
 # Shifted
 labels
 log_probs = F.log_softmax(logits , dim=-1)
-token_logps = log_probs.gather (-1, labels.unsqueeze (-1)).squeeze (-1)
-</code></pre>
-<pre><code class="language-text"># Mask: only sum over
+token_logps = log_probs.gather (-1, labels.unsqueeze (-1)).squeeze (-1)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Mask: only sum over
 response
 tokens (labels !=
 -100)
 mask = (labels !=
 -100).float ()
 return (token_logps * mask).sum(dim=-1)
-# Shape: [batch_size]
-</code></pre>
-<p>常见陷阱</p>
-<p>DPO 实施陷阱</p>
-<p>• 忘记屏蔽提示：如果提示标记包含在对数概率总和中，则
-模型针对即时似然进行优化（无用），而有效 β 是错误的。</p>
-<pre><code class="language-math">• Using mean instead of sum:
-1
-T
-P
-t log π vs. P
-t log π — these give different implicit
-length penalties. Must be consistent between πθ and πref.
-</code></pre>
-<h2 id="chapter-07-p150-6">DPO Variants and When Each Fails</h2>
-<h2 id="chapter-07-p150-7">Selection Guide</h2>
-<h2 id="chapter-07-p150-8">DPO Batch Size Configuration and Scaling</h2>
-<p><span class="page-ref" id="pdf-p150">原 PDF p.150</span></p>
-<pre><code class="language-math">• Stale reference model: If πref is too far from πθ (e.g., base model vs. fine-tuned), the
-KL term dominates and gradients vanish. Solution: use the SFT checkpoint (not base) as
-reference.
-</code></pre>
-<pre><code class="language-math">• β太大：放大对数概率差异→S形饱和→零梯度。开始
-with β = 0.1, tune in [0.05, 0.5].
-</code></pre>
-<p>• β 太小：理论上允许更多的参考自由度（较弱的 KL 约束），但是
-梯度 ∝β · σ(−βh) 变得微乎其微 → 损失景观平坦 → 极其
-缓慢收敛。该模型有“许可”移动很远，但几乎没有收到任何信号
-告诉它要移动到哪里。</p>
-<p>DPO 变体以及每种变体失败的情况</p>
-<p>当 DPO 失败时
-1. 分布转移：旧模型的偏好数据。当前政策生成不同的文本
-→损失正在优化不相关的例子。
-2. 没有探索：无法发现数据集中没有的行为。陷入局部最优。
-3、参考崩溃：参考太强，政策就动不了。如果太弱，则无法正则化。
-4. 数据质量：噪声标签毒害训练。与对许多样本进行平均的 PPO 不同，
-DPO 会记住各个对。
-5. 偏好数据多样性：确保选择/拒绝的配对涵盖全部质量范围
-差异（不仅仅是好与坏）。方法不同而不仅仅是质量不同的结对教学内容更丰富
-政策区别。</p>
-<p>β选型指南</p>
-<p>β
-政权
-何时使用</p>
-<p>非常具有攻击性
-仅当数据非常干净且您需要时
-大的分配转移
-好斗的
-良好的数据，希望有明显的改进
-快速傅里叶变换
-标准型
-默认起点。良好的质量平衡
-与稳定性
-保守派
-噪声数据或模型已经接近期望值
-行为
-非常保守
-安全微调，不得破坏
-能力</p>
-<p>DPO 批量大小配置和扩展</p>
-<p>与基于单序列token预测进行操作的标准 SFT 不同，DPO 利用成对的
-将首选序列与非首选序列进行比较的损失。这从根本上改变了
-内存利用率和优化稳定性。</p>
-<p>全局批量大小目标</p>
-<p>跨 DPO 实施的经验证据确定了最佳的全局批量大小范围：</p>
-<p>Bglobal ∈[32, 128]
-(6.12)</p>
-<p>• Bglobal &lt; 32：隐式奖励估计中的严重梯度噪声→策略破坏性振荡
-协调目标之间（有用性与安全性）。</p>
-<p><span class="page-ref" id="pdf-p151">原 PDF p.151</span></p>
-<p>• Bglobal &gt; 128：收敛速度的收益递减；高通信开销
-跨分布式计算。</p>
-<p>数学分解</p>
-<pre><code class="language-math">Because DPO loads two model copies simultaneously (active policy πθ + frozen reference πref),
-每个序列的内存加倍。全局批量大小分解为：
-</code></pre>
-<p>Bglobal = Bmicro × NGPU × Kaccum
-(6.13)</p>
-<p>• Bmicro：每个设备的微批量大小（每个前向传递的偏好对）。</p>
-<p>• NGPU：并行数据处理设备的数量。</p>
-<p>• Kaccum：权重更新之前的梯度累积步骤。</p>
-<p>配对乘数：单个 DPO 数据实例包含提示 (x)、选择 (yw) 和
-被拒绝（yl）。每个微批次的实际张量负载：</p>
-<p>T 序列 = 2 × Bmicro
-(6.14)</p>
-<p>对于上下文长度为 4096–8192 个标记的 80GB GPU 上 &gt;7B 参数的模型，物理
-limit 严格限制为 Bmicro ε[1, 2]。</p>
-<p>分布式扩展配置</p>
-<p>表 6.1：DPO 训练的分布式扩展配置文件（Bglobal = 64 目标）。</p>
-<p>配置
-单GPU
-8-GPU 节点</p>
-<p>环球
-博微
-2（4 个序列）
-2（4 个序列）
-NGPU
-卡库姆
-32步
-4步
-吞吐量
-顺序/慢速
-高并行吞吐量</p>
-<p>VRAM 优化：预计算参考对数概率</p>
-<p>DPO 损失：</p>
-<pre><code class="language-math">
-log σ
-
-β log πθ(yw|x)
-</code></pre>
-<p>(6.15)</p>
-<p>LDPO(θ) = −E(x,yw,yl)</p>
-<pre><code class="language-math">πref(yw|x) −β log πθ(yl|x)
-</code></pre>
-<p>πref(yl|x)</p>
-<p>由于 πref 在整个训练过程中是完全静态的，因此可以预先计算其输出：</p>
-<p>参考模型驱逐策略</p>
-<ol>
-<li>
-<p>在训练开始之前，仅使用 πref 对数据集 D 执行前向传递。</p>
-</li>
-<li>
-<p>将标量 log πref(yw|x) 和 log πref(yl|x) 缓存到磁盘。</p>
-</li>
-<li>
-<p>从 GPU 内存中完全清除 πref。</p>
-</li>
-</ol>
-<p>结果：可用GPU 内存加倍→可以将Bmicro从1-2增加到4-8，最大化
-硬件利用率和训练吞吐量。
-实现：在 TRL 中，在 DPOConfig 中设置 precompute_ref_log_probs=True。对于 70B 型号，
-这可以在整个集群中节省约 140GB 的 GPU 内存。</p>
-<h2 id="chapter-07-p152-9">DPO Extensions and Variants</h2>
-<p><span class="page-ref" id="pdf-p152">原 PDF p.152</span></p>
-<p>DPO 扩展和变体</p>
-<p>直接偏好优化 (DPO) 将 RLHF 重新表述为监督学习问题：
-导出奖励函数和最优策略之间的封闭形式映射。标准
-DPO 损失为：</p>
-<p>
-,</p>
-<pre><code class="language-math">
-log σ
-
-β log πθ(yw|q)
-</code></pre>
-<p>LDPO(θ) = −E(q,yw,yl)</p>
-<pre><code class="language-math">πref(yw|q) −β log πθ(yl|q)
-</code></pre>
-<p>πref(yl|q)</p>
-<p>其中 yw 是首选（获胜）响应，yl 是不首选（失败）响应，β 控制
-KL惩罚的强度。以下小节涵盖了最重要的扩展和
-变体。</p>
-<p>f-DPO – 广义 f-散度 DPO</p>
-<p>超越逆向KL</p>
-<p>标准 DPO 使用反向 KL 散度作为策略和参考之间的正则化器。反向
-KL 是模式寻求的：它更喜欢将概率质量集中在一些高奖励响应上。
-前向 KL 是模式覆盖的：它扩展概率质量以覆盖所有可能的响应。 f-
-DPO [177] 推广到任何 f 散度，允许从业者权衡这些行为。</p>
-<p>f-DPO 损失用 f-散度生成器的导数代替对数比：</p>
-<p>
--f′
-πθ(yl|q)</p>
-<p>
-,</p>
-<p>Lf-DPO = -E
-
-f′
-πθ(yw|q)</p>
-<p>πref(yw|q)</p>
-<p>πref(yl|q)</p>
-<p>其中 f′ 是 f 散度生成函数的导数。</p>
-<p>TRL 中的 f 散度选项</p>
-<p>•verse_kl：f′(u) = log u。标准 DPO。模式寻求。</p>
-<p>•forward_kl：f′(u) = −1/u。模式覆盖。更好的多样性。</p>
-<p>• js_divergence：f′(u) = log(2u/(u + 1))。平衡的模式搜索/覆盖。</p>
-<p>• alpha_divergence：f′(u) = uα−1。在正向和反向 KL 之间进行插值。</p>
-<p>TRL 中的 f-DPO</p>
-<pre><code class="language-text">from trl import
-DPOConfig , DPOTrainer
-</code></pre>
-<pre><code class="language-text"># Jensen -Shannon
+# Shape: [batch_size]</code></pre></div><p class="content-block paragraph">常见陷阱</p><p class="content-block paragraph">DPO 实施陷阱</p><p class="content-block paragraph">• 忘记屏蔽提示：如果提示标记包含在对数概率总和中，则 模型针对即时似然进行优化（无用），而有效 β 是错误的。</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>• Using mean instead of sum: 1 T P t log π vs. P t log π — these give different implicit length penalties. Must be consistent between πθ and πref.</code></pre></div></div></section><section class="ast-section" id="chapter-07-s06"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>DPO 变体及其失效场景</h2><p>本节聚焦“DPO 变体及其失效场景”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div></div></div><div class="section-blocks"><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>• Stale reference model: If πref is too far from πθ (e.g., base model vs. fine-tuned), the KL term dominates and gradients vanish. Solution: use the SFT checkpoint (not base) as reference.</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>• β too large: Magnifies log-prob differences →sigmoid saturates →zero gradients. Start with β = 0.1, tune in [0.05, 0.5].</code></pre></div><p class="content-block paragraph">• β 太小：理论上允许更多的参考自由度（较弱的 KL 约束），但是 梯度 ∝β · σ(−βh) 变得微乎其微 → 损失景观平坦 → 极其 缓慢收敛。该模型有“许可”移动很远，但几乎没有收到任何信号 告诉它要移动到哪里。</p><p class="content-block paragraph">DPO 变体以及每种变体失败的情况</p><p class="content-block paragraph">当 DPO 失败时 1. 分布转移：旧模型的偏好数据。当前政策生成不同的文本 →损失正在优化不相关的例子。 2. 没有探索：无法发现数据集中没有的行为。陷入局部最优。 3、参考崩溃：参考太强，政策就动不了。如果太弱，则无法正则化。 4. 数据质量：噪声标签毒害训练。与对许多样本进行平均的 PPO 不同， DPO 会记住各个对。 5. 偏好数据多样性：确保选择/拒绝的配对涵盖全部质量范围 差异（不仅仅是好与坏）。方法不同而不仅仅是质量不同的结对教学内容更丰富 政策区别。</p><p class="content-block paragraph">β选型指南</p><p class="content-block paragraph">β 政权 何时使用</p><p class="content-block paragraph">非常具有攻击性 仅当数据非常干净且您需要时 大的分配转移</p><p class="content-block paragraph">好斗的 良好的数据，希望有明显的改进 快速傅里叶变换</p><p class="content-block paragraph">标准型 默认起点。良好的质量平衡 与稳定性</p><p class="content-block paragraph">保守派 噪声数据或模型已经接近期望值 行为</p><p class="content-block paragraph">非常保守 安全微调，不得破坏 能力</p><p class="content-block paragraph">DPO 批量大小配置和扩展</p><p class="content-block paragraph">与基于单序列token预测进行操作的标准 SFT 不同，DPO 利用成对的 将首选序列与非首选序列进行比较的损失。这从根本上改变了 内存利用率和优化稳定性。</p><p class="content-block paragraph">全局批量大小目标</p><p class="content-block paragraph">跨 DPO 实施的经验证据确定了最佳的全局批量大小范围：</p><p class="content-block paragraph">Bglobal ∈[32, 128] (6.12)</p><p class="content-block paragraph">• Bglobal &lt; 32：隐式奖励估计中的严重梯度噪声→策略破坏性振荡 协调目标之间（有用性与安全性）。</p></div></section><section class="ast-section" id="chapter-07-s07"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>选择指南</h2><p>本节聚焦“选择指南”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div></div></div><div class="section-blocks"><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>• Stale reference model: If πref is too far from πθ (e.g., base model vs. fine-tuned), the KL term dominates and gradients vanish. Solution: use the SFT checkpoint (not base) as reference.</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>• β too large: Magnifies log-prob differences →sigmoid saturates →zero gradients. Start with β = 0.1, tune in [0.05, 0.5].</code></pre></div><p class="content-block paragraph">• β 太小：理论上允许更多的参考自由度（较弱的 KL 约束），但是 梯度 ∝β · σ(−βh) 变得微乎其微 → 损失景观平坦 → 极其 缓慢收敛。该模型有“许可”移动很远，但几乎没有收到任何信号 告诉它要移动到哪里。</p><p class="content-block paragraph">DPO 变体以及每种变体失败的情况</p><p class="content-block paragraph">当 DPO 失败时 1. 分布转移：旧模型的偏好数据。当前政策生成不同的文本 →损失正在优化不相关的例子。 2. 没有探索：无法发现数据集中没有的行为。陷入局部最优。 3、参考崩溃：参考太强，政策就动不了。如果太弱，则无法正则化。 4. 数据质量：噪声标签毒害训练。与对许多样本进行平均的 PPO 不同， DPO 会记住各个对。 5. 偏好数据多样性：确保选择/拒绝的配对涵盖全部质量范围 差异（不仅仅是好与坏）。方法不同而不仅仅是质量不同的结对教学内容更丰富 政策区别。</p><p class="content-block paragraph">β选型指南</p><p class="content-block paragraph">β 政权 何时使用</p><p class="content-block paragraph">非常具有攻击性 仅当数据非常干净且您需要时 大的分配转移</p><p class="content-block paragraph">好斗的 良好的数据，希望有明显的改进 快速傅里叶变换</p><p class="content-block paragraph">标准型 默认起点。良好的质量平衡 与稳定性</p><p class="content-block paragraph">保守派 噪声数据或模型已经接近期望值 行为</p><p class="content-block paragraph">非常保守 安全微调，不得破坏 能力</p><p class="content-block paragraph">DPO 批量大小配置和扩展</p><p class="content-block paragraph">与基于单序列token预测进行操作的标准 SFT 不同，DPO 利用成对的 将首选序列与非首选序列进行比较的损失。这从根本上改变了 内存利用率和优化稳定性。</p><p class="content-block paragraph">全局批量大小目标</p><p class="content-block paragraph">跨 DPO 实施的经验证据确定了最佳的全局批量大小范围：</p><p class="content-block paragraph">Bglobal ∈[32, 128] (6.12)</p><p class="content-block paragraph">• Bglobal &lt; 32：隐式奖励估计中的严重梯度噪声→策略破坏性振荡 协调目标之间（有用性与安全性）。</p></div></section><section class="ast-section" id="chapter-07-s08"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>DPO 批大小配置与扩展</h2><p>本节聚焦“DPO 批大小配置与扩展”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div></div></div><div class="section-blocks"><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>• Stale reference model: If πref is too far from πθ (e.g., base model vs. fine-tuned), the KL term dominates and gradients vanish. Solution: use the SFT checkpoint (not base) as reference.</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>• β too large: Magnifies log-prob differences →sigmoid saturates →zero gradients. Start with β = 0.1, tune in [0.05, 0.5].</code></pre></div><p class="content-block paragraph">• β 太小：理论上允许更多的参考自由度（较弱的 KL 约束），但是 梯度 ∝β · σ(−βh) 变得微乎其微 → 损失景观平坦 → 极其 缓慢收敛。该模型有“许可”移动很远，但几乎没有收到任何信号 告诉它要移动到哪里。</p><p class="content-block paragraph">DPO 变体以及每种变体失败的情况</p><p class="content-block paragraph">当 DPO 失败时 1. 分布转移：旧模型的偏好数据。当前政策生成不同的文本 →损失正在优化不相关的例子。 2. 没有探索：无法发现数据集中没有的行为。陷入局部最优。 3、参考崩溃：参考太强，政策就动不了。如果太弱，则无法正则化。 4. 数据质量：噪声标签毒害训练。与对许多样本进行平均的 PPO 不同， DPO 会记住各个对。 5. 偏好数据多样性：确保选择/拒绝的配对涵盖全部质量范围 差异（不仅仅是好与坏）。方法不同而不仅仅是质量不同的结对教学内容更丰富 政策区别。</p><p class="content-block paragraph">β选型指南</p><p class="content-block paragraph">β 政权 何时使用</p><p class="content-block paragraph">非常具有攻击性 仅当数据非常干净且您需要时 大的分配转移</p><p class="content-block paragraph">好斗的 良好的数据，希望有明显的改进 快速傅里叶变换</p><p class="content-block paragraph">标准型 默认起点。良好的质量平衡 与稳定性</p><p class="content-block paragraph">保守派 噪声数据或模型已经接近期望值 行为</p><p class="content-block paragraph">非常保守 安全微调，不得破坏 能力</p><p class="content-block paragraph">DPO 批量大小配置和扩展</p><p class="content-block paragraph">与基于单序列token预测进行操作的标准 SFT 不同，DPO 利用成对的 将首选序列与非首选序列进行比较的损失。这从根本上改变了 内存利用率和优化稳定性。</p><p class="content-block paragraph">全局批量大小目标</p><p class="content-block paragraph">跨 DPO 实施的经验证据确定了最佳的全局批量大小范围：</p><p class="content-block paragraph">Bglobal ∈[32, 128] (6.12)</p><p class="content-block paragraph">• Bglobal &lt; 32：隐式奖励估计中的严重梯度噪声→策略破坏性振荡 协调目标之间（有用性与安全性）。</p><p class="content-block paragraph">• Bglobal &gt; 128：收敛速度的收益递减；高通信开销 跨分布式计算。</p><p class="content-block paragraph">数学分解</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Because DPO loads two model copies simultaneously (active policy πθ + frozen reference πref), per-sequence memory is doubled. The global batch size is decomposed as:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>Bglobal = Bmicro × NGPU × Kaccum</code></pre></div><p class="content-block paragraph">(6.13)</p><p class="content-block paragraph">• Bmicro：每个设备的微批量大小（每个前向传递的偏好对）。</p><p class="content-block paragraph">• NGPU：并行数据处理设备的数量。</p><p class="content-block paragraph">• Kaccum：权重更新之前的梯度累积步骤。</p><p class="content-block paragraph">配对乘数：单个 DPO 数据实例包含提示 (x)、选择 (yw) 和 被拒绝（yl）。每个微批次的实际张量负载：</p><p class="content-block paragraph">T 序列 = 2 × Bmicro (6.14)</p><p class="content-block paragraph">对于上下文长度为 4096–8192 个标记的 80GB GPU 上 &gt;7B 参数的模型，物理 limit 严格限制为 Bmicro ε[1, 2]。</p><p class="content-block paragraph">分布式扩展配置</p><div class="component code-component"><div class="block-label">text</div><pre><code>表 6.1：DPO 训练的分布式扩展配置文件（Bglobal = 64 目标）。</code></pre></div><p class="content-block paragraph">配置 单GPU 8-GPU 节点</p><p class="content-block paragraph">环球</p><p class="content-block paragraph">博微 2（4 个序列） 2（4 个序列） NGPU</p><p class="content-block paragraph">卡库姆 32步 4步 吞吐量 顺序/慢速 高并行吞吐量</p><p class="content-block paragraph">VRAM 优化：预计算参考对数概率</p><p class="content-block paragraph">DPO 损失：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code> log σ  β log πθ(yw|x)</code></pre></div><p class="content-block paragraph">(6.15)</p><p class="content-block paragraph">LDPO(θ) = −E(x,yw,yl)</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>πref(yw|x) −β log πθ(yl|x)</code></pre></div><p class="content-block paragraph">πref(yl|x)</p><p class="content-block paragraph">由于 πref 在整个训练过程中是完全静态的，因此可以预先计算其输出：</p><p class="content-block paragraph">参考模型驱逐策略</p><p class="content-block paragraph">1. 在训练开始之前，仅使用 πref 对数据集 D 执行前向传递。</p><p class="content-block paragraph">2. 将标量 log πref(yw|x) 和 log πref(yl|x) 缓存到磁盘。</p><p class="content-block paragraph">3. 从 GPU 内存中完全清除 πref。</p><p class="content-block paragraph">结果：可用GPU 内存加倍→可以将Bmicro从1-2增加到4-8，最大化 硬件利用率和训练吞吐量。</p><div class="component code-component"><div class="block-label">text</div><pre><code>实现：在 TRL 中，在 DPOConfig 中设置 precompute_ref_log_probs=True。对于 70B 型号，</code></pre></div><p class="content-block paragraph">这可以在整个集群中节省约 140GB 的 GPU 内存。</p></div></section><section class="ast-section" id="chapter-07-s09"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>DPO 扩展与变体</h2><p>本节聚焦“DPO 扩展与变体”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">DPO 扩展和变体</p><p class="content-block paragraph">直接偏好优化 (DPO) 将 RLHF 重新表述为监督学习问题： 导出奖励函数和最优策略之间的封闭形式映射。标准 DPO 损失为：</p><p class="content-block paragraph"> ,</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code> log σ  β log πθ(yw|q)</code></pre></div><p class="content-block paragraph">LDPO(θ) = −E(q,yw,yl)</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>πref(yw|q) −β log πθ(yl|q)</code></pre></div><p class="content-block paragraph">πref(yl|q)</p><p class="content-block paragraph">其中 yw 是首选（获胜）响应，yl 是不首选（失败）响应，β 控制 KL惩罚的强度。以下小节涵盖了最重要的扩展和 变体。</p><p class="content-block paragraph">f-DPO – 广义 f-散度 DPO</p><p class="content-block paragraph">超越逆向KL</p><p class="content-block paragraph">标准 DPO 使用反向 KL 散度作为策略和参考之间的正则化器。反向 KL 是模式寻求的：它更喜欢将概率质量集中在一些高奖励响应上。 前向 KL 是模式覆盖的：它扩展概率质量以覆盖所有可能的响应。 f- DPO [177] 推广到任何 f 散度，允许从业者权衡这些行为。</p><p class="content-block paragraph">f-DPO 损失用 f-散度生成器的导数代替对数比：</p><p class="content-block paragraph"> -f′ πθ(yl|q)</p><p class="content-block paragraph"> ,</p><div class="component code-component"><div class="block-label">text</div><pre><code>Lf-DPO = -E</code></pre></div><p class="content-block paragraph"> f′ πθ(yw|q)</p><p class="content-block paragraph">πref(yw|q)</p><p class="content-block paragraph">πref(yl|q)</p><p class="content-block paragraph">其中 f′ 是 f 散度生成函数的导数。</p><p class="content-block paragraph">TRL 中的 f 散度选项</p><p class="content-block paragraph">•verse_kl：f′(u) = log u。标准 DPO。模式寻求。</p><p class="content-block paragraph">•forward_kl：f′(u) = −1/u。模式覆盖。更好的多样性。</p><p class="content-block paragraph">• js_divergence：f′(u) = log(2u/(u + 1))。平衡的模式搜索/覆盖。</p><p class="content-block paragraph">• alpha_divergence：f′(u) = uα−1。在正向和反向 KL 之间进行插值。</p><p class="content-block paragraph">TRL 中的 f-DPO</p><div class="component code-component"><div class="block-label">text</div><pre><code>from trl import
+DPOConfig , DPOTrainer</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Jensen -Shannon
 divergence (balanced)
-config = DPOConfig(
-</code></pre>
-<pre><code class="language-text">f_divergence_type ="js_divergence ",
+config = DPOConfig(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>f_divergence_type =&quot;js_divergence &quot;,
 beta =0.1,
-)
-</code></pre>
-<pre><code class="language-text"># Alpha
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Alpha
 divergence (alpha =0:
 forward KL , alpha =1:
 reverse KL)
-config_alpha = DPOConfig(
-</code></pre>
-<pre><code class="language-text">f_divergence_type =" alpha_divergence ",
+config_alpha = DPOConfig(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>f_divergence_type =&quot; alpha_divergence &quot;,
 f_alpha_divergence_coef =0.5,
 # alpha
 parameter
 beta =0.1,
-)
-</code></pre>
-<pre><code class="language-text">trainer = DPOTrainer(
-</code></pre>
-<pre><code class="language-text">model=model ,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>trainer = DPOTrainer(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=model ,
 ref_model=ref_model ,
 args=config ,
 train_dataset=dataset ,
-)
-</code></pre>
-<p><span class="page-ref" id="pdf-p153">原 PDF p.153</span></p>
-<p>何时使用 f-DPO</p>
-<p>• 当您想要在多样性和质量之间取得平衡时，请使用JS 分歧。</p>
-<p>• 将forward KL 用于多样性至关重要的创造性任务。</p>
-<p>• 对于只有一个正确答案的任务，使用反向KL（标准DPO）。</p>
-<p>• 使用阿尔法散度来连续插值和调整权衡。</p>
-<p>强大的DPO</p>
-<p>偏好数据中的噪音标签</p>
-<p>人类偏好注释是嘈杂的。注释者意见不一致、犯错误，有时甚至会翻转
-首选/不首选标签。标准 DPO 将所有标签视为基本事实，这可能会导致
-模型对噪声过度拟合。稳健的 DPO [178] 分析地消除了已知条件下的损失偏差
-噪声模型。</p>
-<p>假设每个标签以概率 ϵ（噪声率）翻转。去偏损失为：</p>
-<p>Lrobust = (1 −ϵ) LDPO(yw, yl) −ϵ LDPO(yl, yw)</p>
-<p>1 −2ε
-,</p>
-<p>其中 LDPO(yw, yl) 是首选处理 yw 的标准 DPO 损失，LDPO(yl, yw) 是
-标签翻转的损失。此校正消除了标签噪声引入的偏差。</p>
-<p>稳健 DPO 的直觉
-该公式是一个线性组合，“减去”翻转标签的贡献。当
-ϵ = 0，它简化为标准 DPO。当 ϵ = 0.5 时，分母变为零 - 标签为
-纯粹的噪音和学习是不可能的。在实践中， ϵ ε[0.05, 0.2] 涵盖了大多数真实的注释噪声
-水平。</p>
-<p>TRL 中强大的 DPO</p>
-<pre><code class="language-text">from trl import
-DPOConfig , DPOTrainer
-</code></pre>
-<pre><code class="language-text">config = DPOConfig(
-</code></pre>
-<pre><code class="language-text">loss_type="robust",
+)</code></pre></div><p class="content-block paragraph">何时使用 f-DPO</p><p class="content-block paragraph">• 当您想要在多样性和质量之间取得平衡时，请使用JS 分歧。</p><p class="content-block paragraph">• 将forward KL 用于多样性至关重要的创造性任务。</p><p class="content-block paragraph">• 对于只有一个正确答案的任务，使用反向KL（标准DPO）。</p><p class="content-block paragraph">• 使用阿尔法散度来连续插值和调整权衡。</p><p class="content-block paragraph">强大的DPO</p><p class="content-block paragraph">偏好数据中的噪音标签</p><p class="content-block paragraph">人类偏好注释是嘈杂的。注释者意见不一致、犯错误，有时甚至会翻转 首选/不首选标签。标准 DPO 将所有标签视为基本事实，这可能会导致 模型对噪声过度拟合。稳健的 DPO [178] 分析地消除了已知条件下的损失偏差 噪声模型。</p><p class="content-block paragraph">假设每个标签以概率 ϵ（噪声率）翻转。去偏损失为：</p><div class="component code-component"><div class="block-label">text</div><pre><code>Lrobust = (1 −ϵ) LDPO(yw, yl) −ϵ LDPO(yl, yw)</code></pre></div><p class="content-block paragraph">1 −2ε ,</p><p class="content-block paragraph">其中 LDPO(yw, yl) 是首选处理 yw 的标准 DPO 损失，LDPO(yl, yw) 是 标签翻转的损失。此校正消除了标签噪声引入的偏差。</p><p class="content-block paragraph">稳健 DPO 的直觉 该公式是一个线性组合，“减去”翻转标签的贡献。当 ϵ = 0，它简化为标准 DPO。当 ϵ = 0.5 时，分母变为零 - 标签为 纯粹的噪音和学习是不可能的。在实践中， ϵ ε[0.05, 0.2] 涵盖了大多数真实的注释噪声 水平。</p><p class="content-block paragraph">TRL 中强大的 DPO</p><div class="component code-component"><div class="block-label">text</div><pre><code>from trl import
+DPOConfig , DPOTrainer</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>config = DPOConfig(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>loss_type=&quot;robust&quot;,
 label_smoothing =0.1,
 # corresponds to epsilon = 0.1
 beta =0.1,
-)
-</code></pre>
-<pre><code class="language-text">trainer = DPOTrainer(
-</code></pre>
-<pre><code class="language-text">model=model ,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>trainer = DPOTrainer(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=model ,
 ref_model=ref_model ,
 args=config ,
 train_dataset=dataset ,
-)
-</code></pre>
-<p>TR-DPO – 信任区域 DPO</p>
-<p>过时的参考模型问题
-标准 DPO 在整个训练过程中使用固定的参考模型 πref。随着策略 πθ 的改进，
-KL 惩罚 β log(πθ/πref) 增长，最终控制损失并防止进一步
-改善。 TR-DPO [179]定期更新参考模型以跟踪当前策略。</p>
-<p>TR-DPO 使用指数移动平均线 (EMA) 更新参考模型：</p>
-<pre><code class="language-math">π(t+1)
-ref
-←α · π(t)
-θ
-+ (1 −α) · π(t)
-ref,
-</code></pre>
-<p>其中α → (0, 1) 是混合系数。 此应用每个 Tsync 梯度步骤。</p>
-<p><span class="page-ref" id="pdf-p154">原 PDF p.154</span></p>
-<p>TRL 中的 TR-DPO</p>
-<pre><code class="language-text">from trl import
-DPOConfig , DPOTrainer
-</code></pre>
-<pre><code class="language-text">config = DPOConfig(
-</code></pre>
-<pre><code class="language-text">loss_type="sigmoid",
+)</code></pre></div><p class="content-block paragraph">TR-DPO – 信任区域 DPO</p><p class="content-block paragraph">过时的参考模型问题 标准 DPO 在整个训练过程中使用固定的参考模型 πref。随着策略 πθ 的改进， KL 惩罚 β log(πθ/πref) 增长，最终控制损失并防止进一步 改善。 TR-DPO [179]定期更新参考模型以跟踪当前策略。</p><p class="content-block paragraph">TR-DPO 使用指数移动平均线 (EMA) 更新参考模型：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>π(t+1) ref ←α · π(t) θ + (1 −α) · π(t) ref,</code></pre></div><p class="content-block paragraph">其中α → (0, 1) 是混合系数。 此应用每个 Tsync 梯度步骤。</p><p class="content-block paragraph">TRL 中的 TR-DPO</p><div class="component code-component"><div class="block-label">text</div><pre><code>from trl import
+DPOConfig , DPOTrainer</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>config = DPOConfig(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>loss_type=&quot;sigmoid&quot;,
 # standard
 DPO loss
 sync_ref_model =True ,
@@ -781,162 +198,37 @@ ref_model_sync_steps =512,
 # T_sync: sync
 every 512 steps
 beta =0.1,
-)
-</code></pre>
-<pre><code class="language-text">trainer = DPOTrainer(
-</code></pre>
-<pre><code class="language-text">model=model ,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>trainer = DPOTrainer(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=model ,
 ref_model=ref_model ,
 args=config ,
 train_dataset=dataset ,
-)
-</code></pre>
-<p>何时使用 TR-DPO</p>
-<p>• 长时间的训练运行使策略与初始参考相差甚远。</p>
-<p>• 当您观察到由于KL 罚球占主导地位而导致DPO 损失过早趋于稳定时。</p>
-<p>• 迭代DPO 流水线，从当前策略收集新的偏好数据。</p>
-<p>• 将α 设置为接近1 以实现快速参考更新；更新缓慢时接近 0。</p>
-<p>EXO – 精确优化</p>
-<p>DPO 的 KL 方向问题
-DPO 是通过求解反向 KL 约束下的最优策略而导出的。
-然而，
-由此产生的损失实际上优化了奖励空间中的前向 KL 目标，即
-方向错误。 EXO [180]通过使用反向 KL 概率匹配来纠正这个问题，即
-理论上正确的对齐目标。</p>
-<p>EXO 最小化模型分布与目标之间的反向 KL（奖励最优）
-分布：</p>
-<p>
-,</p>
-<p>
-log πθ(y|q)</p>
-<p>LEXO = Ey∼πθ</p>
-<p>p*(y|q)</p>
-<pre><code class="language-math">where p∗(y|q) ∝πref(y|q) exp(r(y, q)/β) is the optimal policy. In practice, EXO approximates this
-使用可用的首选项对：
-</code></pre>
-<p>。</p>
-<pre><code class="language-math">LEXO ≈−E
-
-log σ
-
-β log πref(yw|q)
-</code></pre>
-<pre><code class="language-math">πθ(yw|q) −β log πref(yl|q)
-</code></pre>
-<p>πθ(yl|q)</p>
-<pre><code class="language-math">请注意与 DPO 相比，πθ 和 πref 的角色互换。
-EXO in TRL
-</code></pre>
-<pre><code class="language-text">from trl import
-DPOConfig , DPOTrainer
-</code></pre>
-<pre><code class="language-text">config = DPOConfig(
-</code></pre>
-<pre><code class="language-text">loss_type="exo_pair",
+)</code></pre></div><p class="content-block paragraph">何时使用 TR-DPO</p><p class="content-block paragraph">• 长时间的训练运行使策略与初始参考相差甚远。</p><p class="content-block paragraph">• 当您观察到由于KL 罚球占主导地位而导致DPO 损失过早趋于稳定时。</p><p class="content-block paragraph">• 迭代DPO 流水线，从当前策略收集新的偏好数据。</p><p class="content-block paragraph">• 将α 设置为接近1 以实现快速参考更新；更新缓慢时接近 0。</p><p class="content-block paragraph">EXO – 精确优化</p><p class="content-block paragraph">DPO 的 KL 方向问题 DPO 是通过求解反向 KL 约束下的最优策略而导出的。 然而， 由此产生的损失实际上优化了奖励空间中的前向 KL 目标，即 方向错误。 EXO [180]通过使用反向 KL 概率匹配来纠正这个问题，即 理论上正确的对齐目标。</p><p class="content-block paragraph">EXO 最小化模型分布与目标之间的反向 KL（奖励最优） 分布：</p><p class="content-block paragraph"> ,</p><p class="content-block paragraph"> log πθ(y|q)</p><div class="component code-component"><div class="block-label">text</div><pre><code>LEXO = Ey∼πθ</code></pre></div><p class="content-block paragraph">p*(y|q)</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>where p∗(y|q) ∝πref(y|q) exp(r(y, q)/β) is the optimal policy. In practice, EXO approximates this using the available preference pairs:</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>LEXO ≈−E  log σ  β log πref(yw|q)</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>πθ(yw|q) −β log πref(yl|q)</code></pre></div><p class="content-block paragraph">πθ(yl|q)</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Note the swapped roles of πθ and πref compared to DPO. EXO in TRL</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>from trl import
+DPOConfig , DPOTrainer</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>config = DPOConfig(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>loss_type=&quot;exo_pair&quot;,
 beta =0.1,
-)
-</code></pre>
-<pre><code class="language-text">trainer = DPOTrainer(
-</code></pre>
-<pre><code class="language-text">model=model ,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>trainer = DPOTrainer(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=model ,
 ref_model=ref_model ,
-args=config ,
-</code></pre>
-<p><span class="page-ref" id="pdf-p155">原 PDF p.155</span></p>
-<pre><code class="language-text">train_dataset=dataset ,
-)
-</code></pre>
-<p>NCA——噪声对比对齐</p>
-<p>DPO 崩溃的可能性</p>
-<p>DPO 的一种已知故障模式是似然崩溃：模型学习降低概率
-失败的反应，但也降低了获胜反应的概率（因为损失
-只关心差异）。 NCA [181] 添加了绝对似然项来防止这种情况发生。</p>
-<p>NCA 将对齐重新定义为噪声对比估计。损失包含三项：</p>
-<p>LNCA = −log σ(rw) −1</p>
-<p>2 log σ(−rw) −1</p>
-<p>2 log σ(−rl),</p>
-<pre><code class="language-math">where ry = β log(πθ(y|q)/πref(y|q)) is the implicit reward. The first term encourages high reward
-for yw; the second and third terms penalise high reward for both yw and yl (preventing collapse).
-</code></pre>
-<p>TRL 中的 NCA</p>
-<pre><code class="language-text">from trl import
-DPOConfig , DPOTrainer
-</code></pre>
-<pre><code class="language-text">config = DPOConfig(
-</code></pre>
-<pre><code class="language-text">loss_type="nca_pair",
+args=config ,</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>train_dataset=dataset ,
+)</code></pre></div><p class="content-block paragraph">NCA——噪声对比对齐</p><p class="content-block paragraph">DPO 崩溃的可能性</p><p class="content-block paragraph">DPO 的一种已知故障模式是似然崩溃：模型学习降低概率 失败的反应，但也降低了获胜反应的概率（因为损失 只关心差异）。 NCA [181] 添加了绝对似然项来防止这种情况发生。</p><p class="content-block paragraph">NCA 将对齐重新定义为噪声对比估计。损失包含三项：</p><div class="component code-component"><div class="block-label">text</div><pre><code>LNCA = −log σ(rw) −1</code></pre></div><p class="content-block paragraph">2 log σ(−rw) −1</p><p class="content-block paragraph">2 log σ(−rl),</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>where ry = β log(πθ(y|q)/πref(y|q)) is the implicit reward. The first term encourages high reward for yw; the second and third terms penalise high reward for both yw and yl (preventing collapse).</code></pre></div><p class="content-block paragraph">TRL 中的 NCA</p><div class="component code-component"><div class="block-label">text</div><pre><code>from trl import
+DPOConfig , DPOTrainer</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>config = DPOConfig(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>loss_type=&quot;nca_pair&quot;,
 beta =0.01 ,
 # small
 beta: absolute
 likelihood
 term
 dominates
-)
-</code></pre>
-<pre><code class="language-text">trainer = DPOTrainer(
-</code></pre>
-<pre><code class="language-text">model=model ,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>trainer = DPOTrainer(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=model ,
 ref_model=ref_model ,
 args=config ,
 train_dataset=dataset ,
-)
-</code></pre>
-<p>何时使用 NCA</p>
-<p>• 当您观察到DPO 训练期间获胜响应概率下降时。</p>
-<p>• 对于绝对响应质量很重要的任务，而不仅仅是相对排名。</p>
-<p>• 使用较小的 β（例如 0.01）来赋予绝对似然项更大的权重。</p>
-<p>SLiC-HF – 序列似然校准</p>
-<p>铰链损失作为更简单的替代方案</p>
-<p>DPO 中的对数 sigmoid 损失很平滑，但当余量较大时收敛速度可能很慢。
-SLiC-HF [182] 使用铰链损耗，当裕度超过阈值且线性时，铰链损耗为零
-否则。这更简单、更快，而且具有惊人的竞争力。</p>
-<p>SLiC-HF 损耗为：</p>
-<p>
-,</p>
-<pre><code class="language-math">LSLiC = max
-
-0, δ −β log πθ(yw|q)
-</code></pre>
-<pre><code class="language-math">πref(yw|q) + β log πθ(yl|q)
-</code></pre>
-<p>πref(yl|q)</p>
-<p>其中 δ 是裕度阈值。当模型已经在获胜之间分配了 δ 的余量时
-失去响应，损失为零。</p>
-<p>SLiC-HF in TRL</p>
-<pre><code class="language-text">from trl import
-DPOConfig , DPOTrainer
-</code></pre>
-<pre><code class="language-text">config = DPOConfig(
-</code></pre>
-<p><span class="page-ref" id="pdf-p156">原 PDF p.156</span></p>
-<pre><code class="language-text">loss_type="hinge",
+)</code></pre></div><p class="content-block paragraph">何时使用 NCA</p><p class="content-block paragraph">• 当您观察到DPO 训练期间获胜响应概率下降时。</p><p class="content-block paragraph">• 对于绝对响应质量很重要的任务，而不仅仅是相对排名。</p><p class="content-block paragraph">• 使用较小的 β（例如 0.01）来赋予绝对似然项更大的权重。</p><p class="content-block paragraph">SLiC-HF – 序列似然校准</p><p class="content-block paragraph">铰链损失作为更简单的替代方案</p><p class="content-block paragraph">DPO 中的对数 sigmoid 损失很平滑，但当余量较大时收敛速度可能很慢。 SLiC-HF [182] 使用铰链损耗，当裕度超过阈值且线性时，铰链损耗为零 否则。这更简单、更快，而且具有惊人的竞争力。</p><p class="content-block paragraph">SLiC-HF 损耗为：</p><p class="content-block paragraph"> ,</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>LSLiC = max  0, δ −β log πθ(yw|q)</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>πref(yw|q) + β log πθ(yl|q)</code></pre></div><p class="content-block paragraph">πref(yl|q)</p><p class="content-block paragraph">其中 δ 是边际阈值。当模型已经在胜出响应和失败响应之间给出 δ 的边际时，损失为零。</p><p class="content-block paragraph">SLiC-HF in TRL</p><div class="component code-component"><div class="block-label">text</div><pre><code>from trl import
+DPOConfig , DPOTrainer</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>config = DPOConfig(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>loss_type=&quot;hinge&quot;,
 beta =0.1,
-)
-</code></pre>
-<pre><code class="language-text">trainer = DPOTrainer(
-</code></pre>
-<pre><code class="language-text">model=model ,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>trainer = DPOTrainer(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=model ,
 ref_model=ref_model ,
 args=config ,
 train_dataset=dataset ,
-)
-</code></pre>
-<p>迭代 RPO – 推理偏好优化</p>
-<p>DPO Forgets How to Generate</p>
-<p>标准 DPO 训练模型来区分获胜和失败的响应。但是
-对于推理任务，模型还需要生成正确的推理轨迹。一个模型
-可以区分但不能生成在推理时是没有用的。 RPO 添加了 NLL（负
-对数似然）获胜响应项，以确保模型学习生成它。</p>
-<p>RPO 损失结合了 DPO 和 SFT：</p>
-<p>LRPO = λ1LDPO(yw, yl) + λ2LNLL(yw),</p>
-<p>其中 LNLL(yw) = −log πθ(yw|q) 是获胜响应的标准语言建模损失。</p>
-<p>TRL 中的迭代 RPO</p>
-<pre><code class="language-text">from trl import
-DPOConfig , DPOTrainer
-</code></pre>
-<pre><code class="language-text">config = DPOConfig(
-</code></pre>
-<pre><code class="language-text">loss_type="sigmoid",
+)</code></pre></div><p class="content-block paragraph">迭代 RPO – 推理偏好优化</p><p class="content-block paragraph">DPO Forgets How to Generate</p><p class="content-block paragraph">标准 DPO 训练模型来区分获胜和失败的响应。但是 对于推理任务，模型还需要生成正确的推理轨迹。一个模型 可以区分但不能生成在推理时是没有用的。 RPO 添加了 NLL（负 对数似然）获胜响应项，以确保模型学习生成它。</p><p class="content-block paragraph">RPO 损失结合了 DPO 和 SFT：</p><div class="component code-component"><div class="block-label">text</div><pre><code>LRPO = λ1LDPO(yw, yl) + λ2LNLL(yw),</code></pre></div><p class="content-block paragraph">其中 LNLL(yw) = −log πθ(yw|q) 是获胜响应的标准语言建模损失。</p><p class="content-block paragraph">TRL 中的迭代 RPO</p><div class="component code-component"><div class="block-label">text</div><pre><code>from trl import
+DPOConfig , DPOTrainer</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>config = DPOConfig(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>loss_type=&quot;sigmoid&quot;,
 # Standard
 DPO loss
 rpo_alpha =1.0,
@@ -944,57 +236,12 @@ rpo_alpha =1.0,
 regularisation
 weight (RPO)
 beta =0.1,
-)
-</code></pre>
-<pre><code class="language-text">trainer = DPOTrainer(
-</code></pre>
-<pre><code class="language-text">model=model ,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>trainer = DPOTrainer(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=model ,
 ref_model=ref_model ,
 args=config ,
 train_dataset=dataset ,
-)
-</code></pre>
-<p>何时使用 RPO</p>
-<p>• 推理任务（数学、代码、logits），其中模型必须生成逐步解决方案。</p>
-<p>• 当DPO 训练导致模型失去流畅性或生成质量时。</p>
-<p>• 迭代流水线：生成部署、对其进行标记、使用 RPO 进行训练，然后重复。</p>
-<p>• NLL 项充当调节器，防止保单崩溃。</p>
-<p>SimPO – 简单的偏好优化</p>
-<p>无参考偏好学习</p>
-<p>DPO 需要一个参考模型来计算隐式奖励。这使得内存使用量加倍，并且
-增加了复杂性。 SimPO [183] 通过使用平均对数概率消除了参考模型
-将响应作为隐式奖励，并使用长度归一化项来防止模型
-更喜欢简短的回应。</p>
-<p>SimPO 将隐式奖励定义为：</p>
-<p><span class="page-ref" id="pdf-p157">原 PDF p.157</span></p>
-<p>rSimPO(y|q) = β</p>
-<p>|y| log πθ(y|q),</p>
-<p>and the loss as:</p>
-<p>LSimPO = −E
-
-log σ
- β</p>
-<pre><code class="language-math">|yw| log πθ(yw|q) −β
-</code></pre>
-<pre><code class="language-math">|yl| log πθ(yl|q) −γ
-
-,
-</code></pre>
-<p>其中 γ &gt; 0 是目标奖励裕度，确保获胜响应具有严格更高的奖励
-比失败的响应至少高出 γ。</p>
-<p>SimPO vs DPO vs ORPO</p>
-<p>• DPO：使用参考模型；基于比率的隐性奖励。</p>
-<p>• ORPO：无参考文献；在 SFT 损失中添加优势比项。</p>
-<p>• SimPO：无参考；长度归一化对数概率奖励+保证金。</p>
-<p>• SimPO 比DPO（无参考模型）更简单，并且比ORPO 更有原则性。</p>
-<p>• SimPO 中的长度归一化至关重要：没有它，模型更喜欢长响应。</p>
-<p>TRL 中的 SimPO</p>
-<pre><code class="language-text">from trl import
-DPOConfig , DPOTrainer
-</code></pre>
-<pre><code class="language-text">config = DPOConfig(
-</code></pre>
-<pre><code class="language-text">loss_type="simpo",
+)</code></pre></div><p class="content-block paragraph">何时使用 RPO</p><p class="content-block paragraph">• 推理任务（数学、代码、logits），其中模型必须生成逐步解决方案。</p><p class="content-block paragraph">• 当DPO 训练导致模型失去流畅性或生成质量时。</p><p class="content-block paragraph">• 迭代流水线：生成部署、对其进行标记、使用 RPO 进行训练，然后重复。</p><p class="content-block paragraph">• NLL 项充当调节器，防止保单崩溃。</p><p class="content-block paragraph">SimPO – 简单的偏好优化</p><p class="content-block paragraph">无参考偏好学习</p><p class="content-block paragraph">DPO requires a reference model to compute the implicit reward.这会使内存使用量加倍，并且 增加了复杂性。 SimPO [183] 通过使用平均对数概率消除了参考模型 将响应作为隐式奖励，并使用长度归一化项来防止模型 更喜欢简短的回应。</p><p class="content-block paragraph">SimPO 将隐式奖励定义为：</p><p class="content-block paragraph">rSimPO(y|q) = β</p><p class="content-block paragraph">|y| log πθ(y|q),</p><div class="component code-component"><div class="block-label">text</div><pre><code>and the loss as:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>LSimPO = −E</code></pre></div><p class="content-block paragraph"> log σ  β</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>|yw| log πθ(yw|q) −β</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>|yl| log πθ(yl|q) −γ  ,</code></pre></div><p class="content-block paragraph">其中 γ &gt; 0 是目标奖励裕度，确保获胜响应具有严格更高的奖励 比失败的响应至少高出 γ。</p><p class="content-block paragraph">SimPO vs DPO vs ORPO</p><p class="content-block paragraph">• DPO：使用参考模型；基于比率的隐性奖励。</p><p class="content-block paragraph">• ORPO：无参考文献；在 SFT 损失中添加优势比项。</p><p class="content-block paragraph">• SimPO：无参考；长度归一化对数概率奖励+保证金。</p><p class="content-block paragraph">• SimPO 比DPO（无参考模型）更简单，并且比ORPO 更有原则性。</p><p class="content-block paragraph">• SimPO 中的长度归一化至关重要：没有它，模型更喜欢长响应。</p><p class="content-block paragraph">TRL 中的 SimPO</p><div class="component code-component"><div class="block-label">text</div><pre><code>from trl import
+DPOConfig , DPOTrainer</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>config = DPOConfig(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>loss_type=&quot;simpo&quot;,
 simpo_gamma =0.5,
 # target
 reward
@@ -1006,26 +253,18 @@ normalisation
 coefficient
 # No ref_model
 needed!
-)
-</code></pre>
-<pre><code class="language-text">trainer = DPOTrainer(
-</code></pre>
-<pre><code class="language-text">model=model ,
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>trainer = DPOTrainer(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>model=model ,
 ref_model=None ,
 # SimPO is reference -free
 args=config ,
 train_dataset=dataset ,
-)
-</code></pre></div>
+)</code></pre></div></div></section></div>
           <nav class="chapter-pager"><a class="pager-link" href="chapter-06.html">← PPO：近端策略优化</a><a class="pager-link next" href="chapter-08.html">GRPO：组相对策略优化 →</a></nav>
         </article>
-        
-    </section>
-  </main>
+        </section><aside class="right-outline"><div class="nav-section-title">本页结构</div><a class="outline-link" href="#chapter-07-s01">动机</a><a class="outline-link" href="#chapter-07-s02">数学推导</a><a class="outline-link" href="#chapter-07-s03">梯度分析</a><a class="outline-link" href="#chapter-07-s04">TRL 实现</a><a class="outline-link" href="#chapter-07-s05">DPO 工作机制：完整细节</a><a class="outline-link" href="#chapter-07-s06">DPO 变体及其失效场景</a><a class="outline-link" href="#chapter-07-s07">选择指南</a><a class="outline-link" href="#chapter-07-s08">DPO 批大小配置与扩展</a><a class="outline-link" href="#chapter-07-s09">DPO 扩展与变体</a></aside></main>
   <button class="back-top" id="back-top" type="button">↑</button>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/toc.js"></script>
   <script src="../assets/js/progress.js"></script>
-  
 </body>
 </html>

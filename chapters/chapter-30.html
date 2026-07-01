@@ -4,296 +4,39 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>结论与未来方向 | 智能体式 AI 漫游指南</title>
-  <meta name="description" content="总结技术路线，并展望智能体式 AI 的开放问题。" />
+  <meta name="description" content="本章整理该主题的关键概念、方法、系统实践和工程注意事项。" />
   <meta property="og:title" content="结论与未来方向 | 智能体式 AI 漫游指南" />
-  <meta property="og:description" content="总结技术路线，并展望智能体式 AI 的开放问题。" />
+  <meta property="og:description" content="本章整理该主题的关键概念、方法、系统实践和工程注意事项。" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="canonical" href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/article.css" />
   <link rel="stylesheet" href="../assets/css/responsive.css" />
-  
 </head>
 <body class="article-page">
   <div class="reading-progress" id="reading-progress"></div>
   <header class="topbar">
-    <a class="brand" href="../index.html" aria-label="智能体式 AI 漫游指南">
-      <span class="brand-mark">AI</span>
-      <span><strong>智能体式 AI 漫游指南</strong><small>从基础到系统的中文技术文档站</small></span>
-    </a>
-    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a>
-<a class="active" href="../chapters/index.html">章节</a>
-<a class="" href="../glossary.html">术语表</a>
-<a class="" href="../references.html">参考文献</a>
-<a class="" href="../search.html">搜索</a>
-<a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
+    <a class="brand" href="../index.html"><span class="brand-mark">AST</span><span><strong>智能体式 AI 漫游指南</strong><small>结构化知识文档系统</small></span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="打开导航" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a><a class="active" href="../chapters/index.html">章节</a><a class="" href="../glossary.html">术语表</a><a class="" href="../references.html">参考文献</a><a class="" href="../search.html">搜索</a><a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
   </header>
-  <main class="layout">
-    
-        <aside class="left-nav" id="left-nav">
-          <div class="nav-section-title">章节</div>
-          <a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a>
-<a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a>
-<a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a>
-<a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a>
-<a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a>
-<a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a>
-<a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a>
-<a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a>
-<a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a>
-<a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a>
-<a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a>
-<a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a>
-<a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a>
-<a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a>
-<a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a>
-<a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a>
-<a class="chapter-link active" href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a>
-        </aside>
-        <aside class="right-outline" id="right-outline">
-          <div class="nav-section-title">本页大纲</div>
-          <a class="outline-link level-h2" href="#chapter-30-p573-1">小结</a>
-<a class="outline-link level-h2" href="#chapter-30-p574-2">The Road Ahead: Open Challenges</a>
-<a class="outline-link level-h2" href="#chapter-30-p576-3">延伸阅读</a>
-        </aside>
-        
-    <section class="content-shell">
-      
-        <article class="article-card">
+  <main class="layout"><aside class="left-nav" id="left-nav"><div class="nav-section-title">语义目录</div><div class="nav-cluster"><strong>导读</strong><a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a><a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a></div><div class="nav-cluster"><strong>LLM 基础与系统</strong><a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a><a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a><a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a></div><div class="nav-cluster"><strong>训练、强化学习与对齐</strong><a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a><a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a><a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a><a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a><a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a><a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a><a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a><a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a></div><div class="nav-cluster"><strong>Agentic AI 系统</strong><a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a><a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a><a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a><a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a><a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a><a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a><a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a><a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a><a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a><a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a><a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a><a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a><a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a></div><div class="nav-cluster"><strong>推理与评估</strong><a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a></div><div class="nav-cluster"><strong>参考与总结</strong><a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a><a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a><a class="chapter-link active" href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a></div></aside><section class="content-shell">
+        <article class="article-card" data-ast-source="../assets/data/clean_chapter_tree.json">
           <header class="article-header">
-            <p class="part-label">第六部分：测验与参考</p>
+            <p class="part-label">参考与总结</p>
             <h1>结论与未来方向</h1>
-            <p>总结技术路线，并展望智能体式 AI 的开放问题。</p>
-            <div class="article-meta"><span>原 PDF p.573-578</span><span>3 个页内条目</span></div>
+            <p>本章整理该主题的关键概念、方法、系统实践和工程注意事项。</p>
           </header>
-          <div class="article-body"><h2 id="chapter-30-p573-1">小结</h2>
-<p><span class="page-ref" id="pdf-p573">原 PDF p.573</span></p>
-<p>结论和未来方向</p>
-<p>总结</p>
-<p>本指南通过强化学习追踪了Transformer基础的完整弧线
-与自主智能体系统的构建保持一致。出现的关键主题
-所有章节：</p>
-<ol>
-<li>
-<p>对齐是一个系统问题。仅有良好的损失函数是不够的。生产
-RLHF 需要管理 4 个以上的模型，将计算分布在数百个 GPU 上，
-处理容错和监控奖励黑客——所有这些都是同时进行的。</p>
-</li>
-<li>
-<p>没有单一的最佳方法。 PPO 仍然是最高质量的黄金标准，但
-需要巨大的工程投资。 DPO 及其变体提供了令人信服的权衡
-适用于基础设施有限的团队。 GRPO 弥补了可验证奖励领域的差距。
-正确的选择取决于您的数据、计算预算和质量标准。</p>
-</li>
-<li>
-<p>推理源于奖励。 DeepSeek-R1证明了思维链、自我验证、
-回溯可以从简单的二元奖励信号和群体相关优化中产生——
-没有明确的推理论证。测试时计算扩展意味着更小的模型
-多思考就能匹配更大的模型。</p>
-</li>
-<li>
-<p>标准解锁生态系统。 MCP 将工具集成问题从 N × M 减少为
-N + M.A2A 使不同团队构建的智能体能够在不共享内部结构的情况下进行协作。
-这些协议对于智能体式 AI来说就像 HTTP 对于网络一样——支持基础设施
-一个开放的生态系统。</p>
-</li>
-<li>
-<p>智能体商是自然而然的下一步。一旦模型一致，前沿就从“如何
-单一回应好吗？” “模型能否自主解决多步骤问题？”这个
-需要新的训练范例（具有环境奖励的智能体强化学习）、新的基础设施
-（执行框架、工具协议、存储系统）和新的评估方法（轨迹级
-基准测试）。</p>
-</li>
-</ol>
-<p>6.评价驱动一切。没有严格的评估——来自奖励模型验证
-到智能体任务成功率，从污染检测到LLM作为法官校准——进展
-是不可测量的，回归是不可见的。您选择的基准测试塑造系统
-你建造。</p>
-<ol start="7">
-<li>简单性尺度。最可靠的生产智能体使用最简单的架构
-满足要求——在自治循环、单个智能体之前提示链接和路由
-在多智能体群之前。复杂性应该通过明确的需求来获得。</li>
-</ol>
-<h2 id="chapter-30-p574-2">The Road Ahead: Open Challenges</h2>
-<p><span class="page-ref" id="pdf-p574">原 PDF p.574</span></p>
-<p>未来之路：开放的挑战</p>
-<p>从互动中学习</p>
-<p>当前的 RLHF 流水线 [9] 将对齐视为一次性训练阶段。未来指向
-从部署中持续学习：从每次用户交互、工具中改进的智能体
-失败和环境观察——没有灾难性遗忘[204]或奖励漂移。钥匙
-开放问题：</p>
-<p>• 具有非固定奖励分配的在线学习。</p>
-<p>• 生产中的安全探索[404]（学习时避免有害行为）。</p>
-<p>• 在长智能体轨迹（数百次工具调用）上进行高效的信用分配。</p>
-<p>可扩展的监督</p>
-<p>随着智能体能力的增强，人为监督成为瓶颈。目前的方法
-（RLHF [9]，宪法人工智能 [129]）依赖于人类评估模型输出 - 但会发生什么
-当模型输出超出人类理解范围时？</p>
-<p>• 递归奖励建模[175]：使用人工智能帮助人类评估人工智能。</p>
-<p>• 辩论和放大[405]：两种模型争论；人类判断哪个论点是
-更引人注目。</p>
-<p>• 基于过程的监督[243]：奖励正确的推理步骤，而不仅仅是最终答案。</p>
-<p>• 机械可解释性[67]：了解模型内部正在做什么，而不仅仅是
-它输出什么。</p>
-<p>世界模型和规划</p>
-<p>当前的智能体是反应性的——他们一次观察并做出一步反应。未来的智能体商将需要
-支持前瞻规划的内部世界模型[172]：</p>
-<p>• 在执行行动之前预测其后果。</p>
-<p>• 对可能的动作序列进行树搜索（类似于 AlphaGo [19] 和 MuZero [171]，但对于
-开放式任务）。</p>
-<p>• 从交互痕迹中学习环境动态。</p>
-<p>多智能体生态系统</p>
-<p>A2A 协议 [372] 和多智能体框架暗示了未来数百个专门的
-智能体进行协作、谈判和委托——形成“智能体经济”[394]。开放挑战：</p>
-<p>• 不同委托人的智能体之间的信任和验证。</p>
-<p>• 竞争环境中的紧急合作与紧急欺骗[406]。</p>
-<p>• 资源分配的市场机制（计算、工具访问、优先级）。</p>
-<p>• 治理：当 10 个智能体链产生有害结果时，谁负责？ 【407】</p>
-<p><span class="page-ref" id="pdf-p575">原 PDF p.575</span></p>
-<p>智能体安全和信任</p>
-<p>自治智能体继承了它们所构建的 LLM 的每个安全漏洞，以及新的攻击
-由工具访问、多智能体委托和持久内存创建的表面（第 19-21 章）。
-未解决的关键问题：</p>
-<p>• 大规模提示注入[408]：当智能体使用不受信任的内容（网页、电子邮件、
-API 响应），间接提示注入变得系统化。今天不存在强有力的防御。</p>
-<p>• 混乱的智能体攻击：具有合法凭证的智能体可能会被欺骗而滥用
-它们代表嵌入数据流中的攻击者[335]。</p>
-<p>• 沙盒而不造成瘫痪：最小权限执行限制了智能体可以执行的操作，
-但过度限制的沙箱会否定智能体价值。找到正确的边界是一个开放的过程
-设计问题。</p>
-<p>• 审计和归因：当智能体链跨越多个组织时（通过A2A [372]），
-追踪谁授权了什么行动在架构上仍然没有解决。</p>
-<p>• 信任校准：智能体必须了解何时不信任——工具响应是否真实、
-其他智能体的索赔是否得到验证。</p>
-<p>超越基准测试的评估</p>
-<p>第 14 章表明，基准测试塑造了我们构建的系统，但当前的评估至关重要
-差距：</p>
-<p>• 实际部署指标：SWE-bench [266] 和 GAIA [362] 等基准测试
-衡量孤立的任务；生产智能体面临着模糊的目标、不断变化的要求，以及
-多轮恢复。</p>
-<p>• 奖励模型的有效性：RLHF 假设奖励模型捕捉了人类的偏好，但是
-奖励黑客行为[409]和分配转移大规模地破坏了这一假设。</p>
-<p>• 成本质量边界：两个智能体可能达到相同的准确度，但一个智能体的成本要高出 10 倍
-token。评估必须具有成本意识。</p>
-<p>• 分布转移下的安全性：在测试中安全的智能体可能在新颖的情况下表现不安全
-输入。对抗性评估[156]和智能体规模的红队仍然不成熟。</p>
-<p>效率和可达性</p>
-<p>使用 RLHF 训练 70B 模型的成本为 10K −−100K。运行自主智能体的成本为 1 −−50
-每个复杂的任务。为了使智能体式 AI产生广泛的影响：</p>
-<p>• 从大模型到小模型的智能体能力的提炼[142, 410]。</p>
-<p>• 更高效的强化学习算法（更少的样本，更低的方差）[168]。</p>
-<p>• 无需云往返即可运行的设备上智能体。</p>
-<p>• 与智能体任务的专有质量相匹配的开放权重模型[15]。</p>
-<h2 id="chapter-30-p576-3">延伸阅读</h2>
-<p><span class="page-ref" id="pdf-p576">原 PDF p.576</span></p>
-<p>进一步阅读</p>
-<p>基础论文</p>
-<p>• 注意力就是您所需要的[6] — Transformer架构。</p>
-<p>• RLHF / InstructGPT [9] — 首次大规模 RLHF 部署。</p>
-<p>• PPO [168]——最近策略优化。</p>
-<p>• DPO [10] — 直接偏好优化。</p>
-<p>• GRPO / DeepSeek-R1 [14, 15] - 组相关策略优化和紧急
-推理。</p>
-<p>• ReAct [127] — LLM 智能体的推理+行动框架。</p>
-<p>• Toolformer [332] — 教LLM使用工具。</p>
-<p>• RAG [128] — 检索增强生成。</p>
-<p>系统和扩展</p>
-<p>• Megatron-LM [207] — 张量和流水线并行性。</p>
-<p>• DeepSpeed ZeRO [213] — 内存高效的分布式训练。</p>
-<p>• vLLM [157] — PagedAttention 用于高效的LLM 服务。</p>
-<p>• FlashAttention [7] — IO 感知的精确注意力。</p>
-<p>智能体式 AI</p>
-<p>• 构建有效的智能体[342]——设计模式和原则。</p>
-<p>• Voyager [228] — Minecraft 中具有技能库的开放式智能体。</p>
-<p>• SWE-bench [266] — 自主软件工程的基准测试。</p>
-<p>• OSWorld [356] — 完整的计算机使用基准测试。</p>
-<p>• GAIA [362] — 现实世界任务的通用人工智能助手基准测试。</p>
-<p>• MemGPT [316] — 受操作系统启发的无界上下文内存管理。</p>
-<p>• 模型上下文协议[335]——工具集成的开放标准。</p>
-<p>• 智能体间协议[372]——智能体间通信标准。</p>
-<p>对齐和安全</p>
-<p>• 宪政人工智能[129]——自我监督协调。</p>
-<p>• 潜伏特工[406]——欺骗性的联盟问题。</p>
-<p>• 反思[224]——从言语自我反思中学习。</p>
-<p>• 间接提示注入[408] — LLM 集成应用程序的安全风险。</p>
-<p><span class="page-ref" id="pdf-p577">原 PDF p.577</span></p>
-<p>在线资源</p>
-<p>• Hugging Face TRL：https://github.com/huggingface/trl — 生产强化学习库。</p>
-<p>• LangGraph：https://github.com/langchain-ai/langgraph — 智能体工作流程图。</p>
-<p>• OpenAI Agents SDK：https://github.com/openai/openai-agents-python — 官方智能体
-框架。</p>
-<p>• DeepSpeed-Chat：https://github.com/microsoft/DeepSpeedExamples — 端到端 RLHF
-流水线。</p>
-<p>• DSPy：https://github.com/stanfordnlp/dspy — 声明式提示优化。</p>
-<p>• AutoGen：https://github.com/microsoft/autogen — 多智能体对话框架。</p>
-<p>“预测未来的最好方法就是构建未来。”</p>
-<p>— 艾伦·凯</p>
-<p><span class="page-ref" id="pdf-p578">原 PDF p.578</span></p>
-<p>参考书目</p>
-<p>[1] 迈克尔·伍德里奇、尼古拉斯·R·詹宁斯和大卫·金尼。盖亚方法论
-面向主体的分析与设计。自主智能体和多智能体系统，2000。</p>
-<p>[2] 法比奥·路易吉·贝利菲米恩、乔瓦尼·凯尔和多米尼克·格林伍德。 JADE：开发多种
-JADE 智能体系统，2007 年。</p>
-<p>[3] 智能物理智能体基础。 FIPA ACL 消息结构规范，2002 年。
-网址 http://www.fipa.org/specs/fipa00061/。</p>
-<p>[4] 蒂姆·伯纳斯·李、詹姆斯·亨德勒和奥拉·拉西拉。语义网。 《科学美国人》，
-2001年。</p>
-<p>[5] 阿维格多·加尔、阿特雷特·阿纳比-塔沃尔、阿尔贝托·特罗姆贝塔和达尼洛·蒙特西。一个框架
-用于建模和评估自动语义协调。在第 31 届会议记录中
-国际超大型数据库会议 (VLDB)，2005 年。URL https://link。
-springer.com/chapter/10.1007/11896548_42。</p>
-<p>[6] Ashish Vaswani、Noam Shazeer、Niki Parmar 等。您所需要的就是关注。进展中
-神经信息处理系统 (NeurIPS)，2017 年。URL https://arxiv.org/abs/
-1706.03762。</p>
-<p>[7] Tri Dao、Daniel Y. Fu、Stefano Ermon、Atri Rudra 和 Christopher Ré。 FlashAttention: 快
-以及具有 IO 感知能力的内存高效精确注意力。神经信息进展
-处理系统 (NeurIPS)，2022。URL https://arxiv.org/abs/2205.14135。</p>
-<p>[8] Edward J. Hu，Yelong Shen，Phillip Wallis，等。 LoRA：大型的低阶适应
-语言模型。 arXiv 预印本 arXiv:2106.09685, 2022。</p>
-<pre><code class="language-text">[9] Long Ouyang, Jeffrey Wu, Xu Jiang, et al. Training Language Models to Follow Instructions
+          <aside class="component key-concepts-panel"><span class="component-label">Key Concepts</span><div class="concept-chip"><strong>智能体式 AI</strong><span>Agentic AI</span><p>具备目标导向、工具使用、环境交互和多步执行能力的 AI 系统。</p></div><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div></aside>
+          <div class="article-body"><section class="ast-section" id="chapter-30-s01"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>小结</h2><p>本节聚焦“小结”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体式 AI</strong><span>Agentic AI</span><p>具备目标导向、工具使用、环境交互和多步执行能力的 AI 系统。</p></div><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">结论和未来方向</p><p class="content-block paragraph">总结</p><p class="content-block paragraph">本指南通过强化学习追踪了Transformer基础的完整弧线 与自主智能体系统的构建保持一致。出现的关键主题 所有章节：</p><p class="content-block paragraph">1. 对齐是一个系统问题。仅有良好的损失函数是不够的。生产 RLHF 需要管理 4 个以上的模型，将计算分布在数百个 GPU 上， 处理容错和监控奖励黑客——所有这些都是同时进行的。</p><p class="content-block paragraph">2. 没有单一的最佳方法。 PPO 仍然是最高质量的黄金标准，但 需要巨大的工程投资。 DPO 及其变体提供了令人信服的权衡 适用于基础设施有限的团队。 GRPO 弥补了可验证奖励领域的差距。 正确的选择取决于您的数据、计算预算和质量标准。</p><p class="content-block paragraph">3. 推理源于奖励。 DeepSeek-R1证明了思维链、自我验证、 回溯可以从简单的二元奖励信号和群体相关优化中产生—— 没有明确的推理论证。测试时计算扩展意味着更小的模型 多思考就能匹配更大的模型。</p><p class="content-block paragraph">4. 标准解锁生态系统。 MCP 将工具集成问题从 N × M 减少为 N + M.A2A 使不同团队构建的智能体能够在不共享内部结构的情况下进行协作。 这些协议对于智能体式 AI来说就像 HTTP 对于网络一样——支持基础设施 一个开放的生态系统。</p><p class="content-block paragraph">5. 智能体商是自然而然的下一步。一旦模型一致，前沿就从“如何 单一回应好吗？” “模型能否自主解决多步骤问题？”这个 需要新的训练范例（具有环境奖励的智能体强化学习）、新的基础设施 （执行框架、工具协议、存储系统）和新的评估方法（轨迹级 基准测试）。</p><p class="content-block paragraph">6.评价驱动一切。没有严格的评估——来自奖励模型验证 到智能体任务成功率，从污染检测到LLM作为法官校准——进展 是不可测量的，回归是不可见的。您选择的基准测试塑造系统 你建造。</p><p class="content-block paragraph">7. 简单性尺度。最可靠的生产智能体使用最简单的架构 满足要求——在自治循环、单个智能体之前提示链接和路由 在多智能体群之前。复杂性应该通过明确的需求来获得。</p></div></section><section class="ast-section" id="chapter-30-s02"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>未来道路：开放挑战</h2><p>本节聚焦“未来道路：开放挑战”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体式 AI</strong><span>Agentic AI</span><p>具备目标导向、工具使用、环境交互和多步执行能力的 AI 系统。</p></div><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">未来之路：开放的挑战</p><p class="content-block paragraph">从互动中学习</p><p class="content-block paragraph">当前的 RLHF 流水线 [9] 将对齐视为一次性训练阶段。未来指向 从部署中持续学习：从每次用户交互、工具中改进的智能体 失败和环境观察——没有灾难性遗忘[204]或奖励漂移。钥匙 开放问题：</p><p class="content-block paragraph">• 具有非固定奖励分配的在线学习。</p><p class="content-block paragraph">• 生产中的安全探索[404]（学习时避免有害行为）。</p><p class="content-block paragraph">• 在长智能体轨迹（数百次工具调用）上进行高效的信用分配。</p><p class="content-block paragraph">可扩展的监督</p><p class="content-block paragraph">随着智能体能力的增强，人为监督成为瓶颈。目前的方法 （RLHF [9]，宪法人工智能 [129]）依赖于人类评估模型输出 - 但会发生什么 当模型输出超出人类理解范围时？</p><p class="content-block paragraph">• 递归奖励建模[175]：使用人工智能帮助人类评估人工智能。</p><p class="content-block paragraph">• 辩论和放大[405]：两种模型争论；人类判断哪个论点是 更引人注目。</p><p class="content-block paragraph">• 基于过程的监督[243]：奖励正确的推理步骤，而不仅仅是最终答案。</p><p class="content-block paragraph">• 机械可解释性[67]：了解模型内部正在做什么，而不仅仅是 它输出什么。</p><p class="content-block paragraph">世界模型和规划</p><p class="content-block paragraph">当前的智能体是反应性的——他们一次观察并做出一步反应。未来的智能体商将需要 支持前瞻规划的内部世界模型[172]：</p><p class="content-block paragraph">• 在执行行动之前预测其后果。</p><p class="content-block paragraph">• 对可能的动作序列进行树搜索（类似于 AlphaGo [19] 和 MuZero [171]，但对于 开放式任务）。</p><p class="content-block paragraph">• 从交互痕迹中学习环境动态。</p><p class="content-block paragraph">多智能体生态系统</p><p class="content-block paragraph">A2A 协议 [372] 和多智能体框架暗示了未来数百个专门的 智能体进行协作、谈判和委托——形成“智能体经济”[394]。开放挑战：</p><p class="content-block paragraph">• 不同委托人的智能体之间的信任和验证。</p><p class="content-block paragraph">• 竞争环境中的紧急合作与紧急欺骗[406]。</p><p class="content-block paragraph">• 资源分配的市场机制（计算、工具访问、优先级）。</p><p class="content-block paragraph">• 治理：当 10 个智能体链产生有害结果时，谁负责？ 【407】</p><p class="content-block paragraph">智能体安全和信任</p><p class="content-block paragraph">自治智能体继承了它们所构建的 LLM 的每个安全漏洞，以及新的攻击 由工具访问、多智能体委托和持久内存创建的表面（第 19-21 章）。 未解决的关键问题：</p><p class="content-block paragraph">• 大规模提示注入[408]：当智能体使用不受信任的内容（网页、电子邮件、 API 响应），间接提示注入变得系统化。今天不存在强有力的防御。</p><p class="content-block paragraph">• 混乱的智能体攻击：具有合法凭证的智能体可能会被欺骗而滥用 它们代表嵌入数据流中的攻击者[335]。</p><p class="content-block paragraph">• 沙盒而不造成瘫痪：最小权限执行限制了智能体可以执行的操作， 但过度限制的沙箱会否定智能体价值。找到正确的边界是一个开放的过程 设计问题。</p><p class="content-block paragraph">• 审计和归因：当智能体链跨越多个组织时（通过A2A [372]）， 追踪谁授权了什么行动在架构上仍然没有解决。</p><p class="content-block paragraph">• 信任校准：智能体必须了解何时不信任——工具响应是否真实、 其他智能体的索赔是否得到验证。</p><p class="content-block paragraph">超越基准测试的评估</p><p class="content-block paragraph">第 14 章表明，基准测试塑造了我们构建的系统，但当前的评估至关重要 差距：</p><p class="content-block paragraph">• 实际部署指标：SWE-bench [266] 和 GAIA [362] 等基准测试 衡量孤立的任务；生产智能体面临着模糊的目标、不断变化的要求，以及 多轮恢复。</p><p class="content-block paragraph">• 奖励模型的有效性：RLHF 假设奖励模型捕捉了人类的偏好，但是 奖励黑客行为[409]和分配转移大规模地破坏了这一假设。</p><p class="content-block paragraph">• 成本质量边界：两个智能体可能达到相同的准确度，但一个智能体的成本要高出 10 倍 token。评估必须具有成本意识。</p><p class="content-block paragraph">• 分布转移下的安全性：在测试中安全的智能体可能在新颖的情况下表现不安全 输入。对抗性评估[156]和智能体规模的红队仍然不成熟。</p><p class="content-block paragraph">效率和可达性</p><p class="content-block paragraph">使用 RLHF 训练 70B 模型的成本为 10K −−100K。运行自主智能体的成本为 1 −−50 每个复杂的任务。为了使智能体式 AI产生广泛的影响：</p><p class="content-block paragraph">• 从大模型到小模型的智能体能力的提炼[142, 410]。</p><p class="content-block paragraph">• 更高效的强化学习算法（更少的样本，更低的方差）[168]。</p><p class="content-block paragraph">• 无需云往返即可运行的设备上智能体。</p><p class="content-block paragraph">• 与智能体任务的专有质量相匹配的开放权重模型[15]。</p></div></section><section class="ast-section" id="chapter-30-s03"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>延伸阅读</h2><p>本节聚焦“延伸阅读”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体式 AI</strong><span>Agentic AI</span><p>具备目标导向、工具使用、环境交互和多步执行能力的 AI 系统。</p></div><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">进一步阅读</p><p class="content-block paragraph">基础论文</p><p class="content-block paragraph">• 注意力就是您所需要的[6] — Transformer架构。</p><p class="content-block paragraph">• RLHF / InstructGPT [9] — 首次大规模 RLHF 部署。</p><p class="content-block paragraph">• PPO [168]——最近策略优化。</p><p class="content-block paragraph">• DPO [10] — 直接偏好优化。</p><p class="content-block paragraph">• GRPO / DeepSeek-R1 [14, 15] - 组相关策略优化和紧急 推理。</p><p class="content-block paragraph">• ReAct [127] — LLM 智能体的推理+行动框架。</p><p class="content-block paragraph">• Toolformer [332] — 教LLM使用工具。</p><p class="content-block paragraph">• RAG [128] — 检索增强生成。</p><p class="content-block paragraph">系统和扩展</p><p class="content-block paragraph">• Megatron-LM [207] — 张量和流水线并行性。</p><p class="content-block paragraph">• DeepSpeed ZeRO [213] — 内存高效的分布式训练。</p><p class="content-block paragraph">• vLLM [157] — PagedAttention 用于高效的LLM 服务。</p><p class="content-block paragraph">• FlashAttention [7] — IO 感知的精确注意力。</p><p class="content-block paragraph">智能体式 AI</p><p class="content-block paragraph">• 构建有效的智能体[342]——设计模式和原则。</p><p class="content-block paragraph">• Voyager [228] — Minecraft 中具有技能库的开放式智能体。</p><p class="content-block paragraph">• SWE-bench [266] — 自主软件工程的基准测试。</p><p class="content-block paragraph">• OSWorld [356] — 完整的计算机使用基准测试。</p><p class="content-block paragraph">• GAIA [362] — 现实世界任务的通用人工智能助手基准测试。</p><p class="content-block paragraph">• MemGPT [316] — 受操作系统启发的无界上下文内存管理。</p><p class="content-block paragraph">• 模型上下文协议[335]——工具集成的开放标准。</p><p class="content-block paragraph">• 智能体间协议[372]——智能体间通信标准。</p><p class="content-block paragraph">对齐和安全</p><p class="content-block paragraph">• 宪政人工智能[129]——自我监督协调。</p><p class="content-block paragraph">• 潜伏特工[406]——欺骗性的联盟问题。</p><p class="content-block paragraph">• 反思[224]——从言语自我反思中学习。</p><p class="content-block paragraph">• 间接提示注入[408] — LLM 集成应用程序的安全风险。</p><p class="content-block paragraph">在线资源</p><div class="component code-component"><div class="block-label">text</div><pre><code>• HuggingFace TRL：https://github.com/huggingface/trl — 生产强化学习库。</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>• LangGraph：https://github.com/langchain-ai/langgraph — 智能体工作流程图。</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>• OpenAI Agents SDK：https://github.com/openai/openai-agents-python — 官方智能体</code></pre></div><p class="content-block paragraph">框架。</p><div class="component code-component"><div class="block-label">text</div><pre><code>• DeepSpeed-Chat：https://github.com/microsoft/DeepSpeedExamples — 端到端 RLHF</code></pre></div><p class="content-block paragraph">流水线。</p><div class="component code-component"><div class="block-label">text</div><pre><code>• DSPy：https://github.com/stanfordnlp/dspy — 声明式提示优化。</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>• AutoGen：https://github.com/microsoft/autogen — 多智能体对话框架。</code></pre></div><p class="content-block paragraph">“预测未来的最好方法就是构建未来。”</p><p class="content-block paragraph">— 艾伦·凯</p><p class="content-block paragraph">参考书目</p><p class="content-block paragraph">[1] 迈克尔·伍德里奇、尼古拉斯·R·詹宁斯和大卫·金尼。盖亚方法论 面向主体的分析与设计。自主智能体和多智能体系统，2000。</p><p class="content-block paragraph">[2] 法比奥·路易吉·贝利菲米恩、乔瓦尼·凯尔和多米尼克·格林伍德。 JADE：开发多种 JADE 智能体系统，2007 年。</p><p class="content-block paragraph">[3] 智能物理智能体基础。 FIPA ACL 消息结构规范，2002 年。</p><div class="component code-component"><div class="block-label">text</div><pre><code>网址 http://www.fipa.org/specs/fipa00061/。</code></pre></div><p class="content-block paragraph">[4] 蒂姆·伯纳斯·李、詹姆斯·亨德勒和奥拉·拉西拉。语义网。 《科学美国人》， 2001年。</p><p class="content-block paragraph">[5] 阿维格多·加尔、阿特雷特·阿纳比-塔沃尔、阿尔贝托·特罗姆贝塔和达尼洛·蒙特西。一个框架 用于建模和评估自动语义协调。在第 31 届会议记录中</p><div class="component code-component"><div class="block-label">text</div><pre><code>国际超大型数据库会议 (VLDB)，2005 年。URL https://link。</code></pre></div><p class="content-block paragraph">springer.com/chapter/10.1007/11896548_42。</p><p class="content-block paragraph">[6] Ashish Vaswani、Noam Shazeer、Niki Parmar 等。您所需要的就是关注。进展中</p><div class="component code-component"><div class="block-label">text</div><pre><code>神经信息处理系统 (NeurIPS)，2017 年。URL https://arxiv.org/abs/</code></pre></div><p class="content-block paragraph">1706.03762。</p><div class="component code-component"><div class="block-label">text</div><pre><code>[7] Tri Dao、Daniel Y. Fu、Stefano Ermon、Atri Rudra 和 Christopher Ré。 FlashAttention: 快</code></pre></div><p class="content-block paragraph">以及具有 IO 感知能力的内存高效精确注意力。神经信息进展</p><div class="component code-component"><div class="block-label">text</div><pre><code>处理系统 (NeurIPS)，2022。URL https://arxiv.org/abs/2205.14135。</code></pre></div><p class="content-block paragraph">[8] Edward J. Hu，Yelong Shen，Phillip Wallis，等。 LoRA：大型的低阶适应</p><div class="component code-component"><div class="block-label">text</div><pre><code>语言模型。 arXiv 预印本 arXiv:2106.09685, 2022。</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>[9] Long Ouyang, Jeffrey Wu, Xu Jiang, et al. Training Language Models to Follow Instructions
 with Human Feedback. In Advances in Neural Information Processing Systems (NeurIPS),
-2022. URL https://arxiv.org/abs/2203.02155.
-</code></pre>
-<p>[10]拉斐尔·拉法洛夫、阿奇特·夏尔马、埃里克·米切尔、克里斯托弗·D·曼宁、斯特凡诺·埃尔蒙、
-和切尔西·芬恩。
-直接偏好优化：你的语言模型秘密是
-奖励模型。神经信息处理系统进展 (NeurIPS)，2023 年。URL
-https://arxiv.org/abs/2305.18290。</p>
-<p>[11] Kawin Ethayarajh、Winnie Xu、Niklas Muennighoff、Dan Jurafsky 和 ​​Douwe Kiela。韩国贸易组织：
-模型对齐作为前景理论优化。 arXiv 预印本 arXiv:2402.01306, 2024。
-网址 https://arxiv.org/abs/2402.01306。</p>
-<p>[12] Mohammad Gheshlaghi Azar、Mark Rowland、Bilal Piot 等。一般理论范式
-了解从人类反馈中学习。 arXiv 预印本 arXiv:2310.12036, 2024. URL
-https://arxiv.org/abs/2310.12036。</p>
-<p>[13] Jiwoo Hong、诺亚·李和詹姆斯·索恩。 ORPO：整体偏好优化
-没有参考模型。 arXiv 预印本 arXiv:2403.07691, 2024。URL https://arxiv.org/
-绝对/2403.07691。</p></div>
+2022. URL https://arxiv.org/abs/2203.02155.</code></pre></div><p class="content-block paragraph">[10]拉斐尔·拉法洛夫、阿奇特·夏尔马、埃里克·米切尔、克里斯托弗·D·曼宁、斯特凡诺·埃尔蒙、 和切尔西·芬恩。 直接偏好优化：你的语言模型秘密是 奖励模型。神经信息处理系统进展 (NeurIPS)，2023 年。URL</p><div class="component code-component"><div class="block-label">text</div><pre><code>https://arxiv.org/abs/2305.18290。</code></pre></div><p class="content-block paragraph">[11] Kawin Ethayarajh、Winnie Xu、Niklas Muennighoff、Dan Jurafsky 和 ​​Douwe Kiela。韩国贸易组织：</p><div class="component code-component"><div class="block-label">text</div><pre><code>模型对齐作为前景理论优化。 arXiv 预印本 arXiv:2402.01306, 2024。</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>网址 https://arxiv.org/abs/2402.01306。</code></pre></div><p class="content-block paragraph">[12] Mohammad Gheshlaghi Azar、Mark Rowland、Bilal Piot 等。一般理论范式</p><div class="component code-component"><div class="block-label">text</div><pre><code>了解从人类反馈中学习。 arXiv 预印本 arXiv:2310.12036, 2024. URL</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>https://arxiv.org/abs/2310.12036。</code></pre></div><p class="content-block paragraph">[13] Jiwoo Hong、诺亚·李和詹姆斯·索恩。 ORPO：整体偏好优化</p><div class="component code-component"><div class="block-label">text</div><pre><code>没有参考模型。 arXiv 预印本 arXiv:2403.07691, 2024。URL https://arxiv.org/</code></pre></div><p class="content-block paragraph">绝对/2403.07691。</p></div></section></div>
           <nav class="chapter-pager"><a class="pager-link" href="chapter-29.html">← 速查表</a><span></span></nav>
         </article>
-        
-    </section>
-  </main>
+        </section><aside class="right-outline"><div class="nav-section-title">本页结构</div><a class="outline-link" href="#chapter-30-s01">小结</a><a class="outline-link" href="#chapter-30-s02">未来道路：开放挑战</a><a class="outline-link" href="#chapter-30-s03">延伸阅读</a></aside></main>
   <button class="back-top" id="back-top" type="button">↑</button>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/toc.js"></script>
   <script src="../assets/js/progress.js"></script>
-  
 </body>
 </html>

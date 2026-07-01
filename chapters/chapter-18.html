@@ -4,725 +4,33 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>智能体记忆系统 | 智能体式 AI 漫游指南</title>
-  <meta name="description" content="短期/长期记忆、情景记忆、语义记忆和记忆训练。" />
+  <meta name="description" content="讨论短期、长期、语义、情景记忆及其训练方法。" />
   <meta property="og:title" content="智能体记忆系统 | 智能体式 AI 漫游指南" />
-  <meta property="og:description" content="短期/长期记忆、情景记忆、语义记忆和记忆训练。" />
+  <meta property="og:description" content="讨论短期、长期、语义、情景记忆及其训练方法。" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="canonical" href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/article.css" />
   <link rel="stylesheet" href="../assets/css/responsive.css" />
-  
 </head>
 <body class="article-page">
   <div class="reading-progress" id="reading-progress"></div>
   <header class="topbar">
-    <a class="brand" href="../index.html" aria-label="智能体式 AI 漫游指南">
-      <span class="brand-mark">AI</span>
-      <span><strong>智能体式 AI 漫游指南</strong><small>从基础到系统的中文技术文档站</small></span>
-    </a>
-    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a>
-<a class="active" href="../chapters/index.html">章节</a>
-<a class="" href="../glossary.html">术语表</a>
-<a class="" href="../references.html">参考文献</a>
-<a class="" href="../search.html">搜索</a>
-<a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
+    <a class="brand" href="../index.html"><span class="brand-mark">AST</span><span><strong>智能体式 AI 漫游指南</strong><small>结构化知识文档系统</small></span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="打开导航" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a><a class="active" href="../chapters/index.html">章节</a><a class="" href="../glossary.html">术语表</a><a class="" href="../references.html">参考文献</a><a class="" href="../search.html">搜索</a><a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
   </header>
-  <main class="layout">
-    
-        <aside class="left-nav" id="left-nav">
-          <div class="nav-section-title">章节</div>
-          <a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a>
-<a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a>
-<a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a>
-<a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a>
-<a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a>
-<a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a>
-<a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a>
-<a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a>
-<a class="chapter-link active" href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a>
-<a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a>
-<a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a>
-<a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a>
-<a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a>
-<a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a>
-<a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a>
-<a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a>
-<a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a>
-        </aside>
-        <aside class="right-outline" id="right-outline">
-          <div class="nav-section-title">本页大纲</div>
-          <a class="outline-link level-h2" href="#chapter-18-p320-1">Motivation: Why Agents Need Memory</a>
-<a class="outline-link level-h2" href="#chapter-18-p321-2">Taxonomy of Memory Types</a>
-<a class="outline-link level-h2" href="#chapter-18-p322-3">Memory Architectures</a>
-<a class="outline-link level-h2" href="#chapter-18-p324-4">Memory Operations</a>
-<a class="outline-link level-h2" href="#chapter-18-p327-5">Memory for Multi-Turn Conversations</a>
-<a class="outline-link level-h2" href="#chapter-18-p327-6">Memory for Multi-Agent Systems</a>
-<a class="outline-link level-h2" href="#chapter-18-p328-7">Training Memory Systems with Reinforcement Learning</a>
-<a class="outline-link level-h2" href="#chapter-18-p329-8">Comparison of Memory Approaches</a>
-<a class="outline-link level-h2" href="#chapter-18-p329-9">Evaluating Memory Systems</a>
-<a class="outline-link level-h2" href="#chapter-18-p331-10">Implementation Patterns</a>
-<a class="outline-link level-h2" href="#chapter-18-p340-11">Recent Advances in Agentic Memory</a>
-<a class="outline-link level-h2" href="#chapter-18-p341-12">小结</a>
-        </aside>
-        
-    <section class="content-shell">
-      
-        <article class="article-card">
+  <main class="layout"><aside class="left-nav" id="left-nav"><div class="nav-section-title">语义目录</div><div class="nav-cluster"><strong>导读</strong><a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a><a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a></div><div class="nav-cluster"><strong>LLM 基础与系统</strong><a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a><a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a><a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a></div><div class="nav-cluster"><strong>训练、强化学习与对齐</strong><a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a><a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a><a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a><a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a><a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a><a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a><a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a><a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a></div><div class="nav-cluster"><strong>Agentic AI 系统</strong><a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a><a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a><a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a><a class="chapter-link active" href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a><a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a><a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a><a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a><a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a><a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a><a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a><a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a><a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a><a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a></div><div class="nav-cluster"><strong>推理与评估</strong><a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a></div><div class="nav-cluster"><strong>参考与总结</strong><a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a><a class="chapter-link " href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a><a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a></div></aside><section class="content-shell">
+        <article class="article-card" data-ast-source="../assets/data/clean_chapter_tree.json">
           <header class="article-header">
-            <p class="part-label">第五部分：智能体式 AI</p>
+            <p class="part-label">Agentic AI 系统</p>
             <h1>智能体记忆系统</h1>
-            <p>短期/长期记忆、情景记忆、语义记忆和记忆训练。</p>
-            <div class="article-meta"><span>原 PDF p.320-342</span><span>12 个页内条目</span></div>
+            <p>讨论短期、长期、语义、情景记忆及其训练方法。</p>
           </header>
-          <div class="article-body"><h2 id="chapter-18-p320-1">Motivation: Why Agents Need Memory</h2>
-<p><span class="page-ref" id="pdf-p320">原 PDF p.320</span></p>
-<p>智能体记忆系统</p>
-<p>动机：为什么智能体需要记忆</p>
-<p>大型语言模型的核心是无状态函数逼近器：给定提示 x，它们
-产生连续 pθ(y | x) 上的分布。每个推理调用都从头开始。的
-上下文窗口（模型可以处理的标记的有限序列）是唯一的信息
-在生成时可用。对于简单的、独立的任务来说，这已经足够了。对于长期智能体
-任务是一个根本瓶颈。</p>
-<p>上下文窗口瓶颈
-让 L 表示最大上下文长度（例如，对于 GPT-4o，L = 128,000 个标记）。单个token
-编码大约 4 个字符；一本典型的书包含约 500,000 个单词约 670,000 个标记。甚至
-忽略成本，多天的自主智能体会积累观察结果、工具输出和推理
-无法适合任何固定窗口的痕迹。内存系统是对此的工程响应
-身体限制。</p>
-<p>当智能体缺乏持久内存时，会出现三种不同的故障模式：</p>
-<ol>
-<li>
-<p>灾难性的忘记上下文。一旦事件滚动出上下文窗口，它就会
-无法挽回地丢失了。智能体无法参考 10,000 个token前做出的决定。</p>
-</li>
-<li>
-<p>无法从经验中学习。如果没有情景存储，每个情景都是智能体的
-首先。成功的策略不能重复使用；错误不断重复。</p>
-</li>
-</ol>
-<p>3、缺乏个性化。用户偏好、领域事实和关系历史必须
-在每个会话中重新建立，降低用户体验和效率。</p>
-<p>记忆作为认知架构</p>
-<p>认知科学区分了生物制剂中的几种记忆系统 [305, 306]：
-记忆（信息的主动操作）、情景记忆（自传事件）、语义
-记忆（世界知识）和程序记忆（技能和习惯）。有效的智能体式 AI 系统
-从类似的区别中受益——不是因为我们正在模拟神经科学，而是因为这些
-类别反映了真正不同的访问模式、更新频率和检索机制。</p>
-<p>形式上，我们将智能体建模为元组 A = (πθ, M, R, W)，其中 πθ 是策略（LLM），M
-是内存存储，R : Q × M →D 是将查询映射到检索到的文档的检索函数，
-W : M × E →M 是一个写入函数，用新的经验 E 更新内存。在每一步 t
-智能体观察 ot，检索相关上下文 ct = R(ot, M)，并执行以下操作：</p>
-<pre><code class="language-math">at ∼πθ(· | [st; ct; ht]) ,
-</code></pre>
-<p>其中 st 是当前系统提示符，ct 是检索的内存，ht 是最近的上下文历史记录。
-行动后，智能体可以写入新信息：M←W(M,(ot,at,rt))。</p>
-<h2 id="chapter-18-p321-2">Taxonomy of Memory Types</h2>
-<p><span class="page-ref" id="pdf-p321">原 PDF p.321</span></p>
-<p>图 17.1：主体记忆系统的四向分类法，反映了认知科学的区别。每个
-内存类型具有不同的访问模式、更新频率和检索机制。</p>
-<p>内存类型分类</p>
-<p>工作记忆（短期）</p>
-<p>工作记忆是智能体的活动工作空间：当前正在处理的信息。在
-它对应的LLM智能体：</p>
-<p>• 便签本。在生成之前将中间推理步骤写入专用缓冲区
-最终答案（例如思想链[122]、草稿本[307]）。</p>
-<p>• 思想链缓冲区。推理标记 z1、z2、... 的序列。。。 ,之前生成的zk
-答案标记 a，建模为 p(a | x) = P
-z p(a | x, z) p(z | x)。</p>
-<p>• 对话上下文。最近的回合历史记录 [(u1, a1), .。。 , (ut, at)] 保留在上下文中
-窗口。</p>
-<p>工作记忆速度快（零检索延迟——它已经在上下文中）、易失性（当检索时丢失）
-上下文被清除），并且容量有限（以 L 为界）。</p>
-<p>情景记忆（基于经验）</p>
-<p>情景记忆存储按上下文和时间索引的特定过去事件。对于智能体商：</p>
-<p>• 过去的互动。先前对话、任务尝试和的完整或摘要记录
-他们的结果。</p>
-<p>• 成功的轨迹。可以通过几次镜头检索的高奖励动作序列
-未来类似任务的范例。</p>
-<p>• 失败案例。通过根本原因注释记录错误，使智能体能够避免
-重复错误。</p>
-<p>• 检索增强情景回忆。给定一个新任务 q，检索 k 个最相似的过去
-剧集 {ei}k
-i=1 并将它们包含在上下文中。</p>
-<p>情景记忆通常被实现为向量存储（第 17.3.1 节），嵌入超过
-情节摘要。</p>
-<figure><img alt="第 321 页图像 page_321_img_01.png" decoding="async" loading="lazy" src="../assets/images/figures/page_321_img_01.png"/>
-<em>图像：原 PDF p.321</em></figure>
-<h2 id="chapter-18-p322-3">Memory Architectures</h2>
-<p><span class="page-ref" id="pdf-p322">原 PDF p.322</span></p>
-<p>语义记忆（世界知识）</p>
-<p>语义记忆编码与特定事件分离的一般事实和概念：</p>
-<p>• 事实知识。实体、属性和关系（例如“巴黎是
-法国”）。</p>
-<p>• 领域概念。与智能体任务相关的定义、分类法和本体论
-域。</p>
-<p>• 知识图。结构化表示 G = (V, E) 其中节点 v ∈V 是实体
-边 e ∈E 是类型关系。</p>
-<p>与情景记忆不同，语义记忆与上下文无关：水在
-无论何时何地得知，100°C 都是正确的。</p>
-<p>程序记忆（技能）</p>
-<p>程序记忆编码如何做事——已经自动化的技能和行动模式：</p>
-<p>• 学习工具使用模式。为哪个任务调用哪个 API、如何格式化输入、如何
-处理错误。</p>
-<pre><code class="language-math">• Action sequences. Multi-step procedures (e.g. “to deploy code: run tests →build image →
-push →update manifest”).
-</code></pre>
-<p>• 政策作为记忆。模型权重 θ 本身编码程序知识；很好-
-调整成功的轨迹是程序性记忆巩固的一种形式。</p>
-<p>内存类型分类</p>
-<p>帮助软件开发的智能体使用：</p>
-<p>• 工作中：当前正在编辑的文件，刚刚收到的错误消息。</p>
-<p>• Episodic：“上周我通过添加一个在模块 X 中修复了类似的 NullPointerException
-第 42 行进行空检查。”</p>
-<p>• 语义：“Python 的 asyncio.gather 同时运行协程；异常传播
-除非 return_exceptions=True。”</p>
-<pre><code class="language-math">• 程序性：标准调试工作流程：重现→隔离→假设→测试
-→fix.
-</code></pre>
-<p>内存架构</p>
-<p>基于 RAG 的内存</p>
-<p>检索增强生成（RAG）[128]是外部记忆的主导范例
-LLM智能体。内存存储M是文档{di}N的集合
-我=1；检索将查询 q 映射到
-排序的子集。</p>
-<p>嵌入存储和矢量数据库。
-每个文档 di 都通过嵌入进行编码
-模型 ψ：vi = ψ(di) εRD。查询的编码方式类似：q = phi(q)。检索返回top-k
-按相似度排列的文档：</p>
-<p>X</p>
-<p>检索（q，M，k）=
-最大精量
-S⊆[N], |S|=k</p>
-<p>i∈S
-模拟（q，vi），</p>
-<p>其中 sim(·,·) 通常是余弦相似度。近似最近邻（ANN）指数（FAISS [275]，
-HNSW [276]、ScaNN [308]）使 N ∼107 易于处理。</p>
-<p><span class="page-ref" id="pdf-p323">原 PDF p.323</span></p>
-<p>检索策略。</p>
-<p>• 密集检索。查询和文档均由神经编码器编码（例如 DPR [274]，
-文本嵌入-3-大）。捕获语义相似性，但需要 GPU 推理。</p>
-<p>• 稀疏检索。 BM25 或 TF-IDF token重叠。快速、可解释、精确性强
-关键词匹配。</p>
-<p>• 混合检索。通过倒数秩融合 (RRF) 组合密集和稀疏分数：</p>
-<pre><code class="language-math">RRF(d, k) =
-X
-</code></pre>
-<p>k + 等级r(d),</p>
-<p>r ∈ 排序者</p>
-<p>其中 k = 60 是平滑常数。混合动力始终优于单独的动力[309]。</p>
-<p>重新排名。
-交叉编码器重新排序器 fψ(q, d) ∈[0, 1] 对每个检索到的文档进行联合评分
-查询，以 O(k) 次前向传递为代价提供更高的准确性。流水线是：检索
-k′ ≫k 个带有 ANN 的候选者，用交叉编码器重新排序，返回前 k 个。</p>
-<p>检索幻觉风险
-RAG 并不能消除幻觉——它可以引入幻觉。如果检索到的文档已过时，
-如果模型不正确或仅表面相关，则模型可能会自信地包含错误信息。
-始终包含出处元数据（来源、时间戳、置信度）并考虑可信度
-验证步骤。</p>
-<p>基于概括的记忆</p>
-<p>当逐字存储太昂贵或噪音太大时，摘要会先压缩信息
-存储。</p>
-<p>渐进式总结。
-在每个步骤 t，智能体都会维护一个运行摘要 St。
-新信息到达：</p>
-<p>St+1 = LLM(“总结：
-[St] + [et]”）。</p>
-<p>这使内存大小保持为 O(1)，但有丢失细节的风险。</p>
-<p>分层压缩。
-按 L0 ⊃L1 ⊃· · · ⊃LK 级别组织内存，其中 L0 是逐字记录的
-每个Li+1都是Li的总结。检索首先检查LK（最压缩、最快）和演练
-根据需要向下。这反映了 Forte [310] 的渐进式摘要技术。</p>
-<p>何时总结与逐字存储。</p>
-<p>• 逐字存储：精确的事实、代码片段、数值结果、用户引用。</p>
-<p>• 总结：叙述背景、推理链、冗余观察。</p>
-<p>• 丢弃：噪音、没有信息内容的失败工具调用。</p>
-<p>基于图形的内存</p>
-<p>知识图谱。
-知识图 G = (V, E, R) 将事实存储为三元组 (h, r, t)，其中
-h, t ∈V 是实体，r ∈R 是关系。智能体可以通过 SPARQL [311]、Cypher [312] 或
-自然语言到图形的翻译。</p>
-<p>实体关系提取。
-新的观察结果由提取模型 IE 进行解析：文本 →
-{(hi, ri, ti)} 并合并到 G 中。共指解析和实体链接确保一致性。</p>
-<h2 id="chapter-18-p324-4">Memory Operations</h2>
-<p><span class="page-ref" id="pdf-p324">原 PDF p.324</span></p>
-<p>图RAG。
-GraphRAG [290] 通过图遍历增强 RAG：给定查询，检索种子
-实体，然后通过 k-hop 邻域遍历扩展到不直接匹配的表面相关事实
-通过嵌入相似性。这对于多跳推理特别强大：</p>
-<pre><code class="language-math">GraphRetrieve(q, G, k) =
-[
-</code></pre>
-<p>v ∈ 种子(q)
-Nk(v, G),</p>
-<p>其中 Nk(v, G) 是 v 的 k 跳邻域。</p>
-<p>时态知识图。
-事实具有有效性区间：（h，r，t，[tstart，tend]）。颞叶
-KG [313] 支持诸如“谁是 2023 年 OpenAI 的首席执行官？”之类的查询。不混淆过去和
-目前的状态。</p>
-<p>键值存储网络</p>
-<pre><code class="language-text">Differentiable memory networks [314, 315] represent memory as a set of key-value pairs {(ki, vi)}M
+          <aside class="component key-concepts-panel"><span class="component-label">Key Concepts</span><div class="concept-chip"><strong>智能体式 AI</strong><span>Agentic AI</span><p>具备目标导向、工具使用、环境交互和多步执行能力的 AI 系统。</p></div><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>检索增强生成（RAG）</strong><span>Retrieval-Augmented Generation</span><p>先检索外部知识，再让模型基于上下文生成答案。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div></aside>
+          <div class="article-body"><section class="ast-section" id="chapter-18-s01"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>动机：为什么智能体需要记忆</h2><p>本节聚焦“动机：为什么智能体需要记忆”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体式 AI</strong><span>Agentic AI</span><p>具备目标导向、工具使用、环境交互和多步执行能力的 AI 系统。</p></div><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">大型语言模型的核心是无状态函数逼近器：给定提示 x，它们 产生连续 pθ(y | x) 上的分布。每个推理调用都从头开始。的 上下文窗口（模型可以处理的标记的有限序列）是唯一的信息 在生成时可用。对于简单的、独立的任务来说，这已经足够了。对于长期智能体 任务是一个根本瓶颈。</p><p class="content-block paragraph">上下文窗口瓶颈</p><div class="component code-component"><div class="block-label">text</div><pre><code>让 L 表示最大上下文长度（例如，对于 GPT-4o，L = 128,000 个标记）。单个token</code></pre></div><p class="content-block paragraph">编码大约 4 个字符；一本典型的书包含约 500,000 个单词约 670,000 个标记。甚至 忽略成本，多天的自主智能体会积累观察结果、工具输出和推理 无法适合任何固定窗口的痕迹。内存系统是对此的工程响应 身体限制。</p><p class="content-block paragraph">当智能体缺乏持久内存时，会出现三种不同的故障模式：</p><p class="content-block paragraph">1. 灾难性的忘记上下文。一旦事件滚动出上下文窗口，它就会 无法挽回地丢失了。智能体无法参考 10,000 个token前做出的决定。</p><p class="content-block paragraph">2. 无法从经验中学习。如果没有情景存储，每个情景都是智能体的 首先。成功的策略不能重复使用；错误不断重复。</p><p class="content-block paragraph">3、缺乏个性化。用户偏好、领域事实和关系历史必须 在每个会话中重新建立，降低用户体验和效率。</p><p class="content-block paragraph">记忆作为认知架构</p><p class="content-block paragraph">认知科学区分了生物制剂中的几种记忆系统 [305, 306]： 记忆（信息的主动操作）、情景记忆（自传事件）、语义 记忆（世界知识）和程序记忆（技能和习惯）。有效的智能体式 AI 系统 从类似的区别中受益——不是因为我们正在模拟神经科学，而是因为这些 类别反映了真正不同的访问模式、更新频率和检索机制。</p><div class="component code-component"><div class="block-label">text</div><pre><code>形式上，我们将智能体建模为元组 A = (πθ, M, R, W)，其中 πθ 是策略（LLM），M</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>是内存存储，R : Q × M →D 是将查询映射到检索到的文档的检索函数，</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>W : M × E →M 是一个写入函数，用新的经验 E 更新内存。在每一步 t</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>智能体观察 ot，检索相关上下文 ct = R(ot, M)，并执行以下操作：</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>at ∼πθ(· | [st; ct; ht]) ,</code></pre></div><p class="content-block paragraph">其中 st 是当前系统提示符，ct 是检索的内存，ht 是最近的上下文历史记录。 行动后，智能体可以写入新信息：M←W(M,(ot,at,rt))。</p></div></section><section class="ast-section" id="chapter-18-s02"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>记忆类型分类</h2><p>本节聚焦“记忆类型分类”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></div><div class="concept-chip"><strong>缓冲区</strong><span>Buffer</span><p>保存经验、轨迹或中间数据以供训练和分析的结构。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">图 17.1：主体记忆系统的四向分类法，反映了认知科学的区别。每个 内存类型具有不同的访问模式、更新频率和检索机制。</p><p class="content-block paragraph">内存类型分类</p><p class="content-block paragraph">工作记忆（短期）</p><p class="content-block paragraph">工作记忆是智能体的活动工作空间：当前正在处理的信息。在 它对应的LLM智能体：</p><p class="content-block paragraph">• 便签本。在生成之前将中间推理步骤写入专用缓冲区 最终答案（例如思想链[122]、草稿本[307]）。</p><p class="content-block paragraph">• 思想链缓冲区。推理标记 z1、z2、... 的序列。。。 ,之前生成的zk 答案标记 a，建模为 p(a | x) = P z p(a | x, z) p(z | x)。</p><p class="content-block paragraph">• 对话上下文。最近的回合历史记录 [(u1, a1), .。。 , (ut, at)] 保留在上下文中 窗口。</p><p class="content-block paragraph">工作记忆速度快（零检索延迟——它已经在上下文中）、易失性（当检索时丢失） 上下文被清除），并且容量有限（以 L 为界）。</p><p class="content-block paragraph">情景记忆（基于经验）</p><p class="content-block paragraph">情景记忆存储按上下文和时间索引的特定过去事件。对于智能体商：</p><p class="content-block paragraph">• 过去的互动。先前对话、任务尝试和的完整或摘要记录 他们的结果。</p><p class="content-block paragraph">• 成功的轨迹。可以通过几次镜头检索的高奖励动作序列 未来类似任务的范例。</p><p class="content-block paragraph">• 失败案例。通过根本原因注释记录错误，使智能体能够避免 重复错误。</p><p class="content-block paragraph">• 检索增强情景回忆。给定一个新任务 q，检索 k 个最相似的过去 剧集 {ei}k</p><div class="component code-component"><div class="block-label">text</div><pre><code>i=1 并将它们包含在上下文中。</code></pre></div><p class="content-block paragraph">情景记忆通常被实现为向量存储（第 17.3.1 节），嵌入超过 情节摘要。</p><figure class="component figure-component"><img src="../assets/images/figures/fig-048.png" alt="文档图示" loading="lazy" decoding="async" /><figcaption>图示：来自原文档的结构、表格或公式区域。</figcaption></figure></div></section><section class="ast-section" id="chapter-18-s03"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>记忆架构</h2><p>本节聚焦“记忆架构”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>检索增强生成（RAG）</strong><span>Retrieval-Augmented Generation</span><p>先检索外部知识，再让模型基于上下文生成答案。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">语义记忆（世界知识）</p><p class="content-block paragraph">语义记忆编码与特定事件分离的一般事实和概念：</p><p class="content-block paragraph">• 事实知识。实体、属性和关系（例如“巴黎是 法国”）。</p><p class="content-block paragraph">• 领域概念。与智能体任务相关的定义、分类法和本体论 域。</p><div class="component code-component"><div class="block-label">text</div><pre><code>• 知识图。结构化表示 G = (V, E) 其中节点 v ∈V 是实体</code></pre></div><p class="content-block paragraph">边 e ∈E 是类型关系。</p><p class="content-block paragraph">与情景记忆不同，语义记忆与上下文无关：水在 无论何时何地得知，100°C 都是正确的。</p><p class="content-block paragraph">程序记忆（技能）</p><p class="content-block paragraph">程序记忆编码如何做事——已经自动化的技能和行动模式：</p><p class="content-block paragraph">• 学习工具使用模式。为哪个任务调用哪个 API、如何格式化输入、如何 处理错误。</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>• Action sequences. Multi-step procedures (e.g. “to deploy code: run tests →build image → push →update manifest”).</code></pre></div><p class="content-block paragraph">• 政策作为记忆。模型权重 θ 本身编码程序知识；很好- 调整成功的轨迹是程序性记忆巩固的一种形式。</p><p class="content-block paragraph">内存类型分类</p><p class="content-block paragraph">帮助软件开发的智能体使用：</p><p class="content-block paragraph">• 工作中：当前正在编辑的文件，刚刚收到的错误消息。</p><p class="content-block paragraph">• Episodic：“上周我通过添加一个在模块 X 中修复了类似的 NullPointerException 第 42 行进行空检查。”</p><p class="content-block paragraph">• 语义：“Python 的 asyncio.gather 同时运行协程；异常传播</p><div class="component code-component"><div class="block-label">text</div><pre><code>除非 return_exceptions=True。”</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>• Procedural: the standard debugging workflow: reproduce →isolate →hypothesize →test →fix.</code></pre></div><p class="content-block paragraph">内存架构</p><p class="content-block paragraph">基于 RAG 的内存</p><p class="content-block paragraph">检索增强生成（RAG）[128]是外部记忆的主导范例 LLM智能体。内存存储M是文档{di}N的集合 我=1；检索将查询 q 映射到 排序的子集。</p><p class="content-block paragraph">嵌入存储和矢量数据库。 每个文档 di 都通过嵌入进行编码</p><div class="component code-component"><div class="block-label">text</div><pre><code>模型 ψ：vi = ψ(di) εRD。查询的编码方式类似：q = phi(q)。检索返回top-k</code></pre></div><p class="content-block paragraph">按相似度排列的文档：</p><p class="content-block paragraph">检索（q，M，k）= 最大精量 S⊆[N], |S|=k</p><p class="content-block paragraph">i∈S 模拟（q，vi），</p><p class="content-block paragraph">其中 sim(·,·) 通常是余弦相似度。近似最近邻（ANN）指数（FAISS [275]， HNSW [276]、ScaNN [308]）使 N ∼107 易于处理。</p><p class="content-block paragraph">检索策略。</p><p class="content-block paragraph">• 密集检索。查询和文档均由神经编码器编码（例如 DPR [274]， 文本嵌入-3-大）。捕获语义相似性，但需要 GPU 推理。</p><p class="content-block paragraph">• 稀疏检索。 BM25 或 TF-IDF token重叠。快速、可解释、精确性强 关键词匹配。</p><p class="content-block paragraph">• 混合检索。通过倒数秩融合 (RRF) 组合密集和稀疏分数：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>RRF(d, k) = X</code></pre></div><p class="content-block paragraph">k + 等级r(d),</p><p class="content-block paragraph">r ∈ 排序者</p><div class="component code-component"><div class="block-label">text</div><pre><code>其中 k = 60 是平滑常数。混合动力始终优于单独的动力[309]。</code></pre></div><p class="content-block paragraph">重新排名。 交叉编码器重新排序器 fψ(q, d) ∈[0, 1] 对每个检索到的文档进行联合评分 查询，以 O(k) 次前向传递为代价提供更高的准确性。流水线是：检索 k′ ≫k 个带有 ANN 的候选者，用交叉编码器重新排序，返回前 k 个。</p><p class="content-block paragraph">检索幻觉风险 RAG 并不能消除幻觉——它可以引入幻觉。如果检索到的文档已过时， 如果模型不正确或仅表面相关，则模型可能会自信地包含错误信息。 始终包含出处元数据（来源、时间戳、置信度）并考虑可信度 验证步骤。</p><p class="content-block paragraph">基于概括的记忆</p><p class="content-block paragraph">当逐字存储太昂贵或噪音太大时，摘要会先压缩信息 存储。</p><p class="content-block paragraph">渐进式总结。 在每个步骤 t，智能体都会维护一个运行摘要 St。 新信息到达：</p><p class="content-block paragraph">St+1 = LLM(“总结： [St] + [et]”）。</p><p class="content-block paragraph">这使内存大小保持为 O(1)，但有丢失细节的风险。</p><p class="content-block paragraph">分层压缩。 按 L0 ⊃L1 ⊃· · · ⊃LK 级别组织内存，其中 L0 是逐字记录的 每个Li+1都是Li的总结。检索首先检查LK（最压缩、最快）和演练 根据需要向下。这反映了 Forte [310] 的渐进式摘要技术。</p><p class="content-block paragraph">何时总结与逐字存储。</p><p class="content-block paragraph">• 逐字存储：精确的事实、代码片段、数值结果、用户引用。</p><p class="content-block paragraph">• 总结：叙述背景、推理链、冗余观察。</p><p class="content-block paragraph">• 丢弃：噪音、没有信息内容的失败工具调用。</p><p class="content-block paragraph">基于图形的内存</p><p class="content-block paragraph">知识图谱。</p><div class="component code-component"><div class="block-label">text</div><pre><code>知识图 G = (V, E, R) 将事实存储为三元组 (h, r, t)，其中</code></pre></div><p class="content-block paragraph">h, t ∈V 是实体，r ∈R 是关系。智能体可以通过 SPARQL [311]、Cypher [312] 或 自然语言到图形的翻译。</p><p class="content-block paragraph">实体关系提取。 新的观察结果由提取模型 IE 进行解析：文本 → {(hi, ri, ti)} 并合并到 G 中。共指解析和实体链接确保一致性。</p></div></section><section class="ast-section" id="chapter-18-s04"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>记忆操作</h2><p>本节聚焦“记忆操作”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">图RAG。 GraphRAG [290] 通过图遍历增强 RAG：给定查询，检索种子 实体，然后通过 k-hop 邻域遍历扩展到不直接匹配的表面相关事实 通过嵌入相似性。这对于多跳推理特别强大：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>GraphRetrieve(q, G, k) = [</code></pre></div><p class="content-block paragraph">v ∈ 种子(q) Nk(v, G),</p><p class="content-block paragraph">其中 Nk(v, G) 是 v 的 k 跳邻域。</p><p class="content-block paragraph">时态知识图。 事实具有有效性区间：（h，r，t，[tstart，tend]）。颞叶 KG [313] 支持诸如“谁是 2023 年 OpenAI 的首席执行官？”之类的查询。不混淆过去和 目前的状态。</p><p class="content-block paragraph">键值存储网络</p><div class="component code-component"><div class="block-label">text</div><pre><code>Differentiable memory networks [314, 315] represent memory as a set of key-value pairs {(ki, vi)}M
 i=1
-基于软注意力的检索：
-</code></pre>
-<p>！</p>
-<p>中号
-X</p>
-<p>q⊤ki
-√</p>
-<pre><code class="language-math">,
-c =
-</code></pre>
-<p>αi=softmax</p>
-<p>D</p>
-<p>我=1
-αivi。</p>
-<p>检索到的上下文 c 是查询的可微函数，支持端到端训练。现代
-Transformer注意力是这种机制的一个特例。对于智能体使用，内存插槽可以
-通过梯度下降或通过显式写入操作更新。</p>
-<p>MemGPT 和虚拟上下文管理</p>
-<p>MemGPT [316]引入了虚拟上下文抽象，类似于操作中的虚拟内存
-系统。内存按层组织：</p>
-<p>页入/页出策略。
-智能体决定将哪些内存提升到热上下文
-（页入）和逐出（页出）基于：</p>
-<p>• 新近度：最近访问过的项目更有可能被需要。</p>
-<p>• 相关性：与当前查询高度相似的项目。</p>
-<p>• 重要性：写入期间标记为高重要性的项目。</p>
-<p>自引导内存管理。
-在MemGPT中，LLM本身发布内存管理
-函数调用（memory_search、memory_insert、memory_delete）作为其操作空间的一部分。这个
-使内存管理成为一种学习行为而不是硬编码策略——一个自然的目标
-用于 RL 训练（第 17.7 节）。</p>
-<p>内存操作</p>
-<p>写作：牢记记忆</p>
-<p>并非所有观察结果都应该被存储。写决策是一个过滤问题：</p>
-<p>写入(e) = 1[重要性(e) &gt; τ] ,</p>
-<p>其中 τ 是阈值，重要性（e）可以是：</p>
-<p>• 惊喜：−log pθ(e | context)——意外事件提供更多信息。</p>
-<p>• 奖励信号：与高|rt| 相关的事件（正面或负面）值得记住。</p>
-<p>• LLM 自我评估：提示模型按 1-10 等级对重要性进行评级。</p>
-<p><span class="page-ref" id="pdf-p325">原 PDF p.325</span></p>
-<p>矛盾检测。
-在编写新事实 fnew 之前，检查是否与现有事实发生冲突
-内存：
-冲突(fnew, M) = ∃f ∈M : 矛盾(fnew, f)。</p>
-<p>矛盾检测可以通过 NLI 模型或通过提示 LLM 来实现。关于冲突，
-智能体必须决定：覆盖、保留时间戳或标记以供人工审核。</p>
-<p>内存格式和粒度。
-除了存储什么之外，如何存储也非常重要。内存
-条目范围从原子事实到详细的记录，具有明显的权衡：</p>
-<p>表 17.1：内存粒度权衡。</p>
-<p>格式
-优点
-缺点</p>
-<p>失去上下文；提取错误；脆性为 nu-
-先进信息</p>
-<p>原子事实
-“用户更喜欢 Python。”
-精准检索；可组合；
-简单的重复数据删除和反
-措辞检测</p>
-<p>写入成本较高；需要架构设计</p>
-<p>结构化笔记
-（A-MEM [317]）
-丰富的元数据（标签、链接）；
-支持图的遍历；巴尔-
-精度和上下文</p>
-<p>总结有损；很难部分更新</p>
-<p>剧集摘要
-（MemGPT [316]）
-保持叙述的连贯性；
-袖珍的;适合多转</p>
-<p>逐字记录
-无损；无提取错误；
-支持精确报价
-存储空间大；嘈杂的检索；扫描费用昂贵</p>
-<p>在实践中，生产系统经常结合粒度[318]：提取原子事实以获得精确的结果
-回忆、维护叙述背景的摘要事件以及冷存档逐字记录
-存储以实现可审计性。生成智能体架构[319]将观察结果存储为原子
-具有自然语言描述、重要性分数和时间戳的“记忆对象”
-精确检索和时间推理。</p>
-<p>设计指南。</p>
-<p>• 将粒度与查询类型相匹配。如果用户询问事实问题（“我的 API 密钥是什么？”），
-原子事实获胜。如果他们提出上下文问题（“为什么我们决定使用 Redis？”），情节
-需要总结。</p>
-<p>• 存储在您能负担得起的最细粒度上，然后在顶部构建较粗略的视图。这很容易
-总结原子事实；从有损摘要中恢复原子是不可能的。</p>
-<p>• 包括出处。每个记忆条目都应该链接回其来源（对话轮，
-文档、工具输出），以便智能体可以验证并且用户可以审核。</p>
-<p>阅读/检索</p>
-<p>查询表述。
-检索查询 q 不必是原始观察。更好的策略：</p>
-<p>• HyDE（假设文档嵌入）[286]：生成假设答案，
-嵌入它，并使用该嵌入作为查询。</p>
-<p>• 查询扩展：生成查询的多个释义并取检索到的并集
-结果。</p>
-<p>• 后退提示：在检索之前将特定查询抽象为更一般的问题。</p>
-<p><span class="page-ref" id="pdf-p326">原 PDF p.326</span></p>
-<p>时间衰退和新近度偏差。
-较旧的记忆可能不太相关。时间加权
-分数：！</p>
-<p>-t -td</p>
-<p>,</p>
-<pre><code class="language-math">score(d, q, t) = λ · sim(q, vd) + (1 −λ) · exp
-</code></pre>
-<p>τ衰变</p>
-<p>其中 td 是内存的创建时间，τdecay 控制衰减率。生成智能体
-论文[319]使用了类似的新近度加权检索。</p>
-<p>更新：冲突解决和整合</p>
-<p>内存整合合并相关内存以减少冗余并呈现更高级别
-图案：
-M′ = 合并(M) = 聚类(M) ∪汇总(聚类(M))。</p>
-<p>遗忘机制。
-生物记忆会忘记；人工记忆也应该如此。策略：</p>
-<p>• LRU 逐出：超出容量时删除最近最少使用的条目。</p>
-<p>• 重要性加权遗忘：p(forget | d) ∝exp(−importance(d))。</p>
-<p>• 间隔重复：重复访问的内存保留时间更长，遵循指数
-整体遗忘曲线[320]。</p>
-<p>反思：元认知操作</p>
-<p>反射 [224, 319] 是一个高阶内存操作：智能体读取自己的内存并
-产生见解：
-反射(M) →{i1, i2, .。 .} ⊂语义，</p>
-<p>其中每个见解 ij 都是从多个情景记忆中得出的更高层次的抽象。</p>
-<p>实践反思（反思）</p>
-<p>在三次尝试解决编码问题失败后，智能体反映：</p>
-<ol>
-<li>
-<p>从情景记忆中检索三个失败情景。</p>
-</li>
-<li>
-<p>产生洞察力：“我总是忘记处理输入列表的边缘情况
-空的。”</p>
-</li>
-<li>
-<p>将这种见解存储在语义记忆中。</p>
-</li>
-<li>
-<p>在下一次尝试时，检索洞察并显式检查是否有空输入。</p>
-</li>
-</ol>
-<p>这就是反射[224]的核心机制：通过自我反射进行言语强化学习。</p>
-<p>反思在哪里？
-反射从情景记忆中读取，但写入语义
-记忆。由此产生的见解是与上下文无关的概括（“始终检查空的
-输入”），而不是特定于情节的记录——因此它们属于语义记忆 Msemantic。然而，
-在反思过程本身中，中间推理（检索片段+综合提示
-+生成的洞察力）占用工作内存（上下文窗口）。简而言之：</p>
-<p>• 输入：情景记忆（特定的过去事件）</p>
-<p>• 计算：工作记忆（上下文中的主动推理）</p>
-<p>• 输出：语义记忆（持久的、概括性的洞察力）</p>
-<p>这反映了生物记忆的巩固，情景经历逐渐转变
-在睡眠和反思期间转化为语义知识。</p>
-<h2 id="chapter-18-p327-5">Memory for Multi-Turn Conversations</h2>
-<h2 id="chapter-18-p327-6">Memory for Multi-Agent Systems</h2>
-<p><span class="page-ref" id="pdf-p327">原 PDF p.327</span></p>
-<p>多轮对话记忆</p>
-<p>用户建模和偏好跟踪</p>
-<p>持久用户模型U存储：</p>
-<p>• 明确的偏好：明确表达的喜欢/不喜欢、沟通方式偏好。</p>
-<p>• 隐式偏好：从行为推理（例如，用户总是要求使用 Python 编写代码，更喜欢
-简洁的答案）。</p>
-<p>• 专业水平：从词汇和问题复杂性推理出的领域知识。</p>
-<p>• 目标和背景：正在进行的项目、当前任务、组织角色。</p>
-<p>每次交互后用户模型都会更新：</p>
-<pre><code class="language-math">Ut+1 = Update(Ut, (ut, at, feedbackt)).
-</code></pre>
-<p>会话连续性</p>
-<p>没有记忆，每次谈话都会变得冷淡。使用会话内存：</p>
-<ol>
-<li>
-<p>在会话开始时，检索用户模型 U 和最近的会话摘要。</p>
-</li>
-<li>
-<p>注入个性化系统提示：“您正在帮助 Alice，一位高级 ML 工程师，致力于
-分布式训练项目。上一次会议您帮助调试了梯度同步问题。”</p>
-</li>
-<li>
-<p>在会议结束时，总结会议并更新 U.</p>
-</li>
-</ol>
-<p>通过记忆进行个性化</p>
-<p>个性化提高了效率（更少的澄清问题）和质量（校准的响应）
-用户的专业知识）。关键技术：</p>
-<p>• 自适应详细程度：根据用户的历史参与情况调整响应长度。</p>
-<p>• 领域启动：从语义记忆中添加相关领域上下文。</p>
-<p>• 主动回忆：在没有被询问的情况下显示相关的过去互动（“你问过
-上个月这个话题；这就是我们当时发现的”）。</p>
-<p>隐私和内存</p>
-<p>持久的用户记忆引发了严重的隐私问题。智能体必须： (1) 获得明确的
-在存储个人信息之前征得同意，(2) 提供检查和删除存储的机制
-存储器，(3) 在多用户部署中实施访问控制，以及 (4) 遵守数据保留
-法规（GDPR、CCPA）。内存系统的设计应该默认隐私。</p>
-<p>多智能体系统的内存</p>
-<p>当多个智能体协作完成一项共享任务时，内存就成为一种协调机制，而不是
-只是一个个人知识库。分解任务的规划智能体必须传达子目标
-执行智能体；批评智能体必须访问与其评估的智能体相同的上下文；一项研究
-智能体团队必须避免重复工作。如果没有共享内存，智能体必须进行通信
-一切都通过直接消息进行，造成带宽瓶颈并在以下情况下丢失信息：
-对话脱离上下文。共享内存通过提供持久的、可查询的解决方案来解决这个问题
-所有智能体都可以读取和写入的基底——转变隐式协调（“我希望
-其他智能体记得”）进入明确状态（“答案在黑板上”）。</p>
-<h2 id="chapter-18-p328-7">Training Memory Systems with Reinforcement Learning</h2>
-<p><span class="page-ref" id="pdf-p328">原 PDF p.328</span></p>
-<p>共享内存池</p>
-<p>在多智能体系统中，智能体可以与私有存储共享公共内存存储 Mshared
-米：
-contexti(t) = R(Mi, qi) ∪R(Mshared, qi)。</p>
-<p>共享内存可实现隐式协调：智能体 A 写入结果；智能体 B 检索它而无需
-明确的沟通。</p>
-<p>黑板架构</p>
-<p>黑板模式[321]是一种经典的多智能体协调机制：
-每个智能体都从黑板上读取数据并向黑板上写入数据。控制器监控黑板并
-当满足先决条件时激活智能体。这将智能体解耦：他们通过
-共享状态而不是直接消息传递。</p>
-<p>共享知识中的共识和冲突</p>
-<p>当多个智能体写入共享内存时，就会出现冲突。解决策略：</p>
-<p>• 最后写入获胜：简单但丢失信息。</p>
-<p>• 版本化内存：维护所有写入的历史记录；智能体商可以查询任意版本。</p>
-<p>• 投票/共识：要求k-of-n 智能体在提交事实之前达成一致。</p>
-<p>• 置信度加权合并：fmerged = P
-我的无线网络是我的信心智能体。</p>
-<p>• 指定权限：将内存区域的所有权分配给特定智能体。</p>
-<p>开放问题：分布式内存一致性</p>
-<p>多Agent系统如何在并发写入、网络等情况下保持内存一致性
-分区和敌对智能体？经典分布式系统解决方案（Paxos、Raft）适用
-但价格昂贵。对于许多人来说，具有有限陈旧性的近似一致性可能就足够了
-智能体任务——但正确的权衡是一个开放的研究问题。</p>
-<p>通过强化学习训练记忆系统</p>
-<p>内存操作的奖励信号</p>
-<p>内存操作（读、写、更新、反射）可以被视为 RL 框架中的操作。的
-挑战在于设计奖励信号来激励有用的记忆行为：</p>
-<p>• 任务奖励传播。如果记忆检索得出正确答案，请记入
-检索动作。稀疏但明确。</p>
-<p>• 检索精度奖励。 rretrieve = 相关性（dretrieved，任务），由学习到的估计
-相关性模型。</p>
-<p>• 记忆效率奖励。惩罚不必要的写入：rwrite = −λ·1[write]，鼓励
-选择性存储。</p>
-<p>• 一致性奖励。奖励内部一致（无矛盾）的记忆状态。</p>
-<p>第 t 步内存操作 mt 的综合奖励：</p>
-<pre><code class="language-math">rmem
-t
-= rtask
-t
-+ α · rretrieve
-t
-+ β · rwrite
-t
-+ γ · rconsistency
-t
-.
-</code></pre>
-<h2 id="chapter-18-p329-8">Comparison of Memory Approaches</h2>
-<h2 id="chapter-18-p329-9">Evaluating Memory Systems</h2>
-<p><span class="page-ref" id="pdf-p329">原 PDF p.329</span></p>
-<p>学习要记住什么</p>
-<p>记住什么问题是一个元学习挑战：智能体必须学习写入策略
-πwrite(e) 最大化未来任务性能。这很困难，因为：</p>
-<ol>
-<li>
-<p>记忆的价值只有在未来才会显现（延迟奖励）。</p>
-</li>
-<li>
-<p>未来可能查询的空间在写入时是未知的。</p>
-</li>
-<li>
-<p>记忆相互作用：存储e的值取决于M中的其他内容。</p>
-</li>
-</ol>
-<p>方法：</p>
-<p>• 事后重新标记[322]。在成功的一集之后，追溯性地标记那些记忆
-被检索为“重要”并训练写入策略来存储类似的项目。</p>
-<p>• 元强化学习[323]。跨任务分配训练写入策略；该策略学习存储
-跨任务概括的信息。</p>
-<p>• 好奇心驱动的存储[324]。存储令人惊讶的观察结果（高预测误差），
-因为这些可能会提供信息。</p>
-<p>内存增强策略优化</p>
-<p>联合优化策略及其记忆系统的想法可以追溯到可微记忆
-网络[325]，并由 REALM [304] 扩展到检索增强的LLM。完整政策
-记忆增强智能体的梯度目标：</p>
-<h1></h1>
-<p>” T
-X</p>
-<p>−λ·Lmem(φ),</p>
-<pre><code class="language-math">L(θ, ϕ) = Eτ∼πθ
-</code></pre>
-<p>时间=0
-γtrt</p>
-<p>其中 θ 是 LLM 参数， phi 是记忆系统参数（例如检索模型权重），
-Lmem 是内存复杂度的正则化项。</p>
-<p>关键见解：记忆是一种习得的归纳偏差</p>
-<p>通过强化学习训练记忆操作，智能体可以开发特定于任务的记忆策略。
-编码智能体学习存储 API 签名；研究智能体学习存储引文链；一个
-客户服务智能体学习存储用户投诉模式。记忆系统变成了
-学习了适合智能体领域的归纳偏差。</p>
-<p>内存方法的比较</p>
-<p>表 17.2：跨关键维度的智能体内存架构比较。</p>
-<p>建筑
-容量
-检索
-更新成本
-可训练
-最适合</p>
-<p>上下文中（工作）
-O(L) token
-0毫秒
-免费
-通过微调
-任务短，推理活跃
-浓密的碎布 [128]
-O(107) 文档
-10–50 毫秒
-O(1) 嵌入
-仅编码器
-语义搜索、质量保证
-稀疏（BM25）[273]
-O(108) 文档
-1–5 毫秒
-O(|d|) 指数
-否
-关键词搜索，法律/医疗
-混合 RAG [309]
-O(107) 文档
-15–60 毫秒
-O(1) 嵌入
-仅编码器
-通用检索
-总结
-无限
-0 毫秒（ctx 内）
-O(|e|) LLM 通话
-通过微调
-长篇大论、长篇大论
-知识图谱[313]
-O(109) 三元组
-5–100 毫秒
-O(1) 插入
-嵌入层
-结构化事实，多跳
-KV内存网[315]
-O(M) 个槽位
-O(M) 注意力
-梯度步长
-完全
-端到端可微任务
-MemGPT 分层 [316]
-无限
-0–100 毫秒
-混合
-通过RL
-长视智能体、助理
-图 RAG [290]
-O(107) 个节点
-20–200 毫秒
-O(1) 插入
-仅编码器
-复杂推理、社区</p>
-<p>评估内存系统</p>
-<p>评估智能体记忆具有挑战性，因为记忆操作的质量只能被揭示
-间接地——通过长期的下游任务绩效。一个记忆系统可以实现
-如果检索到不相关的上下文或压倒了LLM的知识，对存储事实的完美回忆仍然可能失败
-上下文窗口。</p>
-<p><span class="page-ref" id="pdf-p330">原 PDF p.330</span></p>
-<p>评估维度</p>
-<p>LongMemEval [326] 确定了长期记忆系统必须展示的五个核心功能：</p>
-<p>1.信息提取。系统能否识别并存储对话中的显着事实
-轮流？通过事实回忆来衡量：可以从事实中恢复多少比例的真实事实
-记忆？</p>
-<p>2.多会话推理。系统能否综合分散在多个领域的信息？
-过去的会议？例如，“根据我们上周和昨天的谈话，
-项目范围？”</p>
-<p>3.时间推理。系统能否正确回答与时间相关的查询？例如，“什么
-我有说过重组之前这是我的首要任务吗？”需要区分时间状态。</p>
-<p>4.知识更新。当事实发生变化（用户移动城市、偏好发生变化）时，记忆会发生变化吗？
-在保留历史的同时反映最新状态？</p>
-<ol start="5">
-<li>弃权。当系统没有相关记忆时，它是否正确地说“我不知道”
-而不是产生一种看似合理但捏造的回忆的幻觉？</li>
-</ol>
-<p>基准测试测试</p>
-<p>表 17.3：评估智能体记忆系统的基准测试。</p>
-<p>基准测试测试
-场地
-规模
-焦点</p>
-<p>长内存评估 [326]
-ICLR 2025
-500 个问题，规模
-能干的历史
-五种记忆能力；多会话
-聊天
-乐科莫 [327]
-欧洲管理国家实验室 2024
-多会话
-直径-
-洛格斯
-单跳，
-暂时的，
-多跳，
-通过对话进行开放域质量检查
-InfiniteBench [328]
-2024年ACL
-10万+
-token
-反-
-文本
-长上下文回忆，而不是记忆——
-具体但测试限制</p>
-<p>指标</p>
-<p>内存级别指标。</p>
-<p>• 记忆回忆：# 可从记忆中检索的真实事实</p>
-<h1>全部真实事实。衡量存储的完整性。</h1>
-<p>• 内存精度：top-k 检索中的# 相关项目
-k。测量检索中的噪声。</p>
-<p>• 延迟：从查询到检索上下文的时间（p50 和p95）。</p>
-<p>• token效率：每个查询注入上下文的token总数。越低越好——没必要
-上下文会降低 LLM 的准确性并增加成本。</p>
-<p>下游指标。</p>
-<p>• 答案准确性：以记忆为条件的最终答案的正确性（EM、F1 或
-LLM作为法官）。</p>
-<p>• 忠实性：回答是否准确地反映了记忆中包含的内容，而不是捏造的？</p>
-<p>• 个性化质量：用户满意度，通过偏好评级或 A/B 测试来衡量
-记忆增强系统和无记忆系统之间。</p>
-<p>• 矛盾率：系统产生与之前不一致的响应的频率
-陈述的事实。</p>
-<h2 id="chapter-18-p331-10">Implementation Patterns</h2>
-<p><span class="page-ref" id="pdf-p331">原 PDF p.331</span></p>
-<p>运营指标。</p>
-<p>• 写入选择性：触发存储器写入的匝数分数。太高→噪音；太低
-→ 差距。</p>
-<p>• 过时性：尽管存在更新，但检索过时事实的频率。</p>
-<p>• 存储增长率：每个交互小时存储的token。无限制的增长是不可持续的。</p>
-<p>评估差距</p>
-<p>大多数记忆论文都会在短期基准测试（10-50 个会话）上进行评估。真实生产智能体运行
-长达数月的数千次会议。长期评估——记忆漂移、矛盾
-积累和存储膨胀成为主要的故障模式——仍然是一个开放的挑战。
-从业者应通过对运营的纵向监控来补充基准测试分数
-指标。</p>
-<p>实施模式</p>
-<p>带嵌入的向量存储内存</p>
-<p>最常见的内存模式将条目存储为嵌入向量与元数据（次-
-标记、重要性分数、标签）。检索结合了余弦相似性和时间衰减，所以最近
-重要的记忆首先浮现。重复检测和 LRU 驱逐使存储保持有界。</p>
-<pre><code class="language-text">import
+with soft attention-based retrieval:</code></pre></div><p class="content-block paragraph">中号 X</p><p class="content-block paragraph">q⊤ki √</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>, c =</code></pre></div><p class="content-block paragraph">αi=softmax</p><p class="content-block paragraph">我=1 αivi。</p><p class="content-block paragraph">检索到的上下文 c 是查询的可微函数，支持端到端训练。现代 Transformer注意力是这种机制的一个特例。对于智能体使用，内存插槽可以 通过梯度下降或通过显式写入操作更新。</p><p class="content-block paragraph">MemGPT 和虚拟上下文管理</p><p class="content-block paragraph">MemGPT [316]引入了虚拟上下文抽象，类似于操作中的虚拟内存 系统。内存按层组织：</p><p class="content-block paragraph">页入/页出策略。 智能体决定将哪些内存提升到热上下文 （页入）和逐出（页出）基于：</p><p class="content-block paragraph">• 新近度：最近访问过的项目更有可能被需要。</p><p class="content-block paragraph">• 相关性：与当前查询高度相似的项目。</p><p class="content-block paragraph">• 重要性：写入期间标记为高重要性的项目。</p><p class="content-block paragraph">自引导内存管理。 在MemGPT中，LLM本身发布内存管理 函数调用（memory_search、memory_insert、memory_delete）作为其操作空间的一部分。这个 使内存管理成为一种学习行为而不是硬编码策略——一个自然的目标 用于 RL 训练（第 17.7 节）。</p><p class="content-block paragraph">内存操作</p><p class="content-block paragraph">写作：牢记记忆</p><p class="content-block paragraph">并非所有观察结果都应该被存储。写决策是一个过滤问题：</p><p class="content-block paragraph">写入(e) = 1[重要性(e) &gt; τ] ,</p><p class="content-block paragraph">其中 τ 是阈值，重要性（e）可以是：</p><p class="content-block paragraph">• 惊喜：−log pθ(e | context)——意外事件提供更多信息。</p><p class="content-block paragraph">• 奖励信号：与高|rt| 相关的事件（正面或负面）值得记住。</p><p class="content-block paragraph">• LLM 自我评估：提示模型按 1-10 等级对重要性进行评级。</p><p class="content-block paragraph">矛盾检测。 在编写新事实 fnew 之前，检查是否与现有事实发生冲突 内存：</p><div class="component code-component"><div class="block-label">text</div><pre><code>冲突(fnew, M) = ∃f ∈M : 矛盾(fnew, f)。</code></pre></div><p class="content-block paragraph">矛盾检测可以通过 NLI 模型或通过提示 LLM 来实现。关于冲突， 智能体必须决定：覆盖、保留时间戳或标记以供人工审核。</p><p class="content-block paragraph">内存格式和粒度。 除了存储什么之外，如何存储也非常重要。内存 条目范围从原子事实到详细的记录，具有明显的权衡：</p><p class="content-block paragraph">表 17.1：内存粒度权衡。</p><p class="content-block paragraph">格式 优点 缺点</p><p class="content-block paragraph">失去上下文；提取错误；脆性为 nu- 先进信息</p><p class="content-block paragraph">原子事实 “用户更喜欢 Python。” 精准检索；可组合； 简单的重复数据删除和反 措辞检测</p><p class="content-block paragraph">写入成本较高；需要架构设计</p><p class="content-block paragraph">结构化笔记 （A-MEM [317]） 丰富的元数据（标签、链接）； 支持图的遍历；巴尔- 精度和上下文</p><p class="content-block paragraph">总结有损；很难部分更新</p><p class="content-block paragraph">剧集摘要 （MemGPT [316]） 保持叙述的连贯性； 袖珍的;适合多转</p><p class="content-block paragraph">逐字记录 无损；无提取错误； 支持精确报价 存储空间大；嘈杂的检索；扫描费用昂贵</p><p class="content-block paragraph">在实践中，生产系统经常结合粒度[318]：提取原子事实以获得精确的结果 回忆、维护叙述背景的摘要事件以及冷存档逐字记录 存储以实现可审计性。生成智能体架构[319]将观察结果存储为原子 具有自然语言描述、重要性分数和时间戳的“记忆对象” 精确检索和时间推理。</p><p class="content-block paragraph">设计指南。</p><p class="content-block paragraph">• 将粒度与查询类型相匹配。如果用户询问事实问题（“我的 API 密钥是什么？”）， 原子事实获胜。如果他们提出上下文问题（“为什么我们决定使用 Redis？”），情节 需要总结。</p><p class="content-block paragraph">• 存储在您能负担得起的最细粒度上，然后在顶部构建较粗略的视图。这很容易 总结原子事实；从有损摘要中恢复原子是不可能的。</p><p class="content-block paragraph">• 包括出处。每个记忆条目都应该链接回其来源（对话轮， 文档、工具输出），以便智能体可以验证并且用户可以审核。</p><p class="content-block paragraph">阅读/检索</p><p class="content-block paragraph">查询表述。 检索查询 q 不必是原始观察。更好的策略：</p><p class="content-block paragraph">• HyDE（假设文档嵌入）[286]：生成假设答案， 嵌入它，并使用该嵌入作为查询。</p><p class="content-block paragraph">• 查询扩展：生成查询的多个释义并取检索到的并集 结果。</p><p class="content-block paragraph">• 后退提示：在检索之前将特定查询抽象为更一般的问题。</p><p class="content-block paragraph">时间衰退和新近度偏差。 较旧的记忆可能不太相关。时间加权 分数：！</p><p class="content-block paragraph">-t -td</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>score(d, q, t) = λ · sim(q, vd) + (1 −λ) · exp</code></pre></div><p class="content-block paragraph">τ衰变</p><p class="content-block paragraph">其中 td 是内存的创建时间，τdecay 控制衰减率。生成智能体 论文[319]使用了类似的新近度加权检索。</p><p class="content-block paragraph">更新：冲突解决和整合</p><p class="content-block paragraph">内存整合合并相关内存以减少冗余并呈现更高级别 图案： M′ = 合并(M) = 聚类(M) ∪汇总(聚类(M))。</p><p class="content-block paragraph">遗忘机制。 生物记忆会忘记；人工记忆也应该如此。策略：</p><p class="content-block paragraph">• LRU 逐出：超出容量时删除最近最少使用的条目。</p><p class="content-block paragraph">• 重要性加权遗忘：p(forget | d) ∝exp(−importance(d))。</p><p class="content-block paragraph">• 间隔重复：重复访问的内存保留时间更长，遵循指数 整体遗忘曲线[320]。</p><p class="content-block paragraph">反思：元认知操作</p><p class="content-block paragraph">反射 [224, 319] 是一个高阶内存操作：智能体读取自己的内存并 产生见解： 反射(M) →{i1, i2, .。 .} ⊂语义，</p><p class="content-block paragraph">其中每个见解 ij 都是从多个情景记忆中得出的更高层次的抽象。</p><p class="content-block paragraph">实践反思（反思）</p><p class="content-block paragraph">在三次尝试解决编码问题失败后，智能体反映：</p><p class="content-block paragraph">1. 从情景记忆中检索三个失败情景。</p><p class="content-block paragraph">2. 产生洞察力：“我总是忘记处理输入列表的边缘情况 空的。”</p><p class="content-block paragraph">3. 将这种见解存储在语义记忆中。</p><p class="content-block paragraph">4. 在下一次尝试时，检索洞察并显式检查是否有空输入。</p><p class="content-block paragraph">这就是反射[224]的核心机制：通过自我反射进行言语强化学习。</p><p class="content-block paragraph">反思在哪里？ 反射从情景记忆中读取，但写入语义 记忆。由此产生的见解是与上下文无关的概括（“始终检查空的 输入”），而不是特定于情节的记录——因此它们属于语义记忆 Msemantic。然而， 在反思过程本身中，中间推理（检索片段+综合提示 +生成的洞察力）占用工作内存（上下文窗口）。简而言之：</p><p class="content-block paragraph">• 输入：情景记忆（特定的过去事件）</p><p class="content-block paragraph">• 计算：工作记忆（上下文中的主动推理）</p><p class="content-block paragraph">• 输出：语义记忆（持久的、概括性的洞察力）</p><p class="content-block paragraph">这反映了生物记忆的巩固，情景经历逐渐转变 在睡眠和反思期间转化为语义知识。</p></div></section><section class="ast-section" id="chapter-18-s05"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>多轮对话记忆</h2><p>本节聚焦“多轮对话记忆”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">用户建模和偏好跟踪</p><p class="content-block paragraph">持久用户模型U存储：</p><p class="content-block paragraph">• 明确的偏好：明确表达的喜欢/不喜欢、沟通方式偏好。</p><p class="content-block paragraph">• 隐式偏好：从行为推理（例如，用户总是要求使用 Python 编写代码，更喜欢 简洁的答案）。</p><p class="content-block paragraph">• 专业水平：从词汇和问题复杂性推理出的领域知识。</p><p class="content-block paragraph">• 目标和背景：正在进行的项目、当前任务、组织角色。</p><p class="content-block paragraph">每次交互后用户模型都会更新：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Ut+1 = Update(Ut, (ut, at, feedbackt)).</code></pre></div><p class="content-block paragraph">会话连续性</p><p class="content-block paragraph">没有记忆，每次谈话都会变得冷淡。使用会话内存：</p><p class="content-block paragraph">1. 在会话开始时，检索用户模型 U 和最近的会话摘要。</p><p class="content-block paragraph">2. 注入个性化系统提示：“您正在帮助 Alice，一位高级 ML 工程师，致力于 分布式训练项目。上一次会议您帮助调试了梯度同步问题。”</p><p class="content-block paragraph">3. 在会议结束时，总结会议并更新 U.</p><p class="content-block paragraph">通过记忆进行个性化</p><p class="content-block paragraph">个性化提高了效率（更少的澄清问题）和质量（校准的响应） 用户的专业知识）。关键技术：</p><p class="content-block paragraph">• 自适应详细程度：根据用户的历史参与情况调整响应长度。</p><p class="content-block paragraph">• 领域启动：从语义记忆中添加相关领域上下文。</p><p class="content-block paragraph">• 主动回忆：在没有被询问的情况下显示相关的过去互动（“你问过 上个月这个话题；这就是我们当时发现的”）。</p><p class="content-block paragraph">隐私和内存</p><p class="content-block paragraph">持久的用户记忆引发了严重的隐私问题。智能体必须： (1) 获得明确的 在存储个人信息之前征得同意，(2) 提供检查和删除存储的机制 存储器，(3) 在多用户部署中实施访问控制，以及 (4) 遵守数据保留 法规（GDPR、CCPA）。内存系统的设计应该默认隐私。</p><p class="content-block paragraph">多智能体系统的内存</p><p class="content-block paragraph">当多个智能体协作完成一项共享任务时，内存就成为一种协调机制，而不是 只是一个个人知识库。分解任务的规划智能体必须传达子目标 执行智能体；批评智能体必须访问与其评估的智能体相同的上下文；一项研究 智能体团队必须避免重复工作。如果没有共享内存，智能体必须进行通信 一切都通过直接消息进行，造成带宽瓶颈并在以下情况下丢失信息： 对话脱离上下文。共享内存通过提供持久的、可查询的解决方案来解决这个问题 所有智能体都可以读取和写入的基底——转变隐式协调（“我希望 其他智能体记得”）进入明确状态（“答案在黑板上”）。</p></div></section><section class="ast-section" id="chapter-18-s06"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>多智能体系统记忆</h2><p>本节聚焦“多智能体系统记忆”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">用户建模和偏好跟踪</p><p class="content-block paragraph">持久用户模型U存储：</p><p class="content-block paragraph">• 明确的偏好：明确表达的喜欢/不喜欢、沟通方式偏好。</p><p class="content-block paragraph">• 隐式偏好：从行为推理（例如，用户总是要求使用 Python 编写代码，更喜欢 简洁的答案）。</p><p class="content-block paragraph">• 专业水平：从词汇和问题复杂性推理出的领域知识。</p><p class="content-block paragraph">• 目标和背景：正在进行的项目、当前任务、组织角色。</p><p class="content-block paragraph">每次交互后用户模型都会更新：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Ut+1 = Update(Ut, (ut, at, feedbackt)).</code></pre></div><p class="content-block paragraph">会话连续性</p><p class="content-block paragraph">没有记忆，每次谈话都会变得冷淡。使用会话内存：</p><p class="content-block paragraph">1. 在会话开始时，检索用户模型 U 和最近的会话摘要。</p><p class="content-block paragraph">2. 注入个性化系统提示：“您正在帮助 Alice，一位高级 ML 工程师，致力于 分布式训练项目。上一次会议您帮助调试了梯度同步问题。”</p><p class="content-block paragraph">3. 在会议结束时，总结会议并更新 U.</p><p class="content-block paragraph">通过记忆进行个性化</p><p class="content-block paragraph">个性化提高了效率（更少的澄清问题）和质量（校准的响应） 用户的专业知识）。关键技术：</p><p class="content-block paragraph">• 自适应详细程度：根据用户的历史参与情况调整响应长度。</p><p class="content-block paragraph">• 领域启动：从语义记忆中添加相关领域上下文。</p><p class="content-block paragraph">• 主动回忆：在没有被询问的情况下显示相关的过去互动（“你问过 上个月这个话题；这就是我们当时发现的”）。</p><p class="content-block paragraph">隐私和内存</p><p class="content-block paragraph">持久的用户记忆引发了严重的隐私问题。智能体必须： (1) 获得明确的 在存储个人信息之前征得同意，(2) 提供检查和删除存储的机制 存储器，(3) 在多用户部署中实施访问控制，以及 (4) 遵守数据保留 法规（GDPR、CCPA）。内存系统的设计应该默认隐私。</p><p class="content-block paragraph">多智能体系统的内存</p><p class="content-block paragraph">当多个智能体协作完成一项共享任务时，内存就成为一种协调机制，而不是 只是一个个人知识库。分解任务的规划智能体必须传达子目标 执行智能体；批评智能体必须访问与其评估的智能体相同的上下文；一项研究 智能体团队必须避免重复工作。如果没有共享内存，智能体必须进行通信 一切都通过直接消息进行，造成带宽瓶颈并在以下情况下丢失信息： 对话脱离上下文。共享内存通过提供持久的、可查询的解决方案来解决这个问题 所有智能体都可以读取和写入的基底——转变隐式协调（“我希望 其他智能体记得”）进入明确状态（“答案在黑板上”）。</p></div></section><section class="ast-section" id="chapter-18-s07"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>用强化学习训练记忆系统</h2><p>本节聚焦“用强化学习训练记忆系统”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">共享内存池</p><p class="content-block paragraph">在多智能体系统中，智能体可以与私有存储共享公共内存存储 Mshared 米： contexti(t) = R(Mi, qi) ∪R(Mshared, qi)。</p><p class="content-block paragraph">共享内存可实现隐式协调：智能体 A 写入结果；智能体 B 检索它而无需 明确的沟通。</p><p class="content-block paragraph">黑板架构</p><p class="content-block paragraph">黑板模式[321]是一种经典的多智能体协调机制： 每个智能体都从黑板上读取数据并向黑板上写入数据。控制器监控黑板并 当满足先决条件时激活智能体。这将智能体解耦：他们通过 共享状态而不是直接消息传递。</p><p class="content-block paragraph">共享知识中的共识和冲突</p><p class="content-block paragraph">当多个智能体写入共享内存时，就会出现冲突。解决策略：</p><p class="content-block paragraph">• 最后写入获胜：简单但丢失信息。</p><p class="content-block paragraph">• 版本化内存：维护所有写入的历史记录；智能体商可以查询任意版本。</p><p class="content-block paragraph">• 投票/共识：要求k-of-n 智能体在提交事实之前达成一致。</p><div class="component code-component"><div class="block-label">text</div><pre><code>• 置信度加权合并：fmerged = P</code></pre></div><p class="content-block paragraph">我的无线网络是我的信心智能体。</p><p class="content-block paragraph">• 指定权限：将内存区域的所有权分配给特定智能体。</p><p class="content-block paragraph">开放问题：分布式内存一致性</p><p class="content-block paragraph">多Agent系统如何在并发写入、网络等情况下保持内存一致性 分区和敌对智能体？经典分布式系统解决方案（Paxos、Raft）适用 但价格昂贵。对于许多人来说，具有有限陈旧性的近似一致性可能就足够了 智能体任务——但正确的权衡是一个开放的研究问题。</p><p class="content-block paragraph">通过强化学习训练记忆系统</p><p class="content-block paragraph">内存操作的奖励信号</p><p class="content-block paragraph">内存操作（读、写、更新、反射）可以被视为 RL 框架中的操作。的 挑战在于设计奖励信号来激励有用的记忆行为：</p><p class="content-block paragraph">• 任务奖励传播。如果记忆检索得出正确答案，请记入 检索动作。稀疏但明确。</p><div class="component code-component"><div class="block-label">text</div><pre><code>• 检索精度奖励。 rretrieve = 相关性（dretrieved，任务），由学习到的估计</code></pre></div><p class="content-block paragraph">相关性模型。</p><div class="component code-component"><div class="block-label">text</div><pre><code>• 记忆效率奖励。惩罚不必要的写入：rwrite = −λ·1[write]，鼓励</code></pre></div><p class="content-block paragraph">选择性存储。</p><p class="content-block paragraph">• 一致性奖励。奖励内部一致（无矛盾）的记忆状态。</p><p class="content-block paragraph">第 t 步内存操作 mt 的综合奖励：</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>rmem t = rtask t + α · rretrieve t + β · rwrite t + γ · rconsistency t .</code></pre></div></div></section><section class="ast-section" id="chapter-18-s08"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>记忆方法比较</h2><p>本节聚焦“记忆方法比较”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">学习要记住什么</p><p class="content-block paragraph">记住什么问题是一个元学习挑战：智能体必须学习写入策略 πwrite(e) 最大化未来任务性能。这很困难，因为：</p><p class="content-block paragraph">1. 记忆的价值只有在未来才会显现（延迟奖励）。</p><p class="content-block paragraph">2. 未来可能查询的空间在写入时是未知的。</p><p class="content-block paragraph">3. 记忆相互作用：存储e的值取决于M中的其他内容。</p><p class="content-block paragraph">方法：</p><p class="content-block paragraph">• 事后重新标记[322]。在成功的一集之后，追溯性地标记那些记忆 被检索为“重要”并训练写入策略来存储类似的项目。</p><p class="content-block paragraph">• 元强化学习[323]。跨任务分配训练写入策略；该策略学习存储 跨任务概括的信息。</p><p class="content-block paragraph">• 好奇心驱动的存储[324]。存储令人惊讶的观察结果（高预测误差）， 因为这些可能会提供信息。</p><p class="content-block paragraph">内存增强策略优化</p><p class="content-block paragraph">联合优化策略及其记忆系统的想法可以追溯到可微记忆 网络[325]，并由 REALM [304] 扩展到检索增强的LLM。完整政策 记忆增强智能体的梯度目标：</p><p class="content-block paragraph">” T X</p><p class="content-block paragraph">−λ·Lmem(φ),</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>L(θ, ϕ) = Eτ∼πθ</code></pre></div><p class="content-block paragraph">时间=0 γtrt</p><p class="content-block paragraph">其中 θ 是 LLM 参数， phi 是记忆系统参数（例如检索模型权重）， Lmem 是内存复杂度的正则化项。</p><p class="content-block paragraph">关键见解：记忆是一种习得的归纳偏差</p><p class="content-block paragraph">通过强化学习训练记忆操作，智能体可以开发特定于任务的记忆策略。 编码智能体学习存储 API 签名；研究智能体学习存储引文链；一个 客户服务智能体学习存储用户投诉模式。记忆系统变成了 学习了适合智能体领域的归纳偏差。</p><p class="content-block paragraph">内存方法的比较</p><p class="content-block paragraph">表 17.2：跨关键维度的智能体内存架构比较。</p><p class="content-block paragraph">建筑 容量 检索 更新成本 可训练 最适合</p><p class="content-block paragraph">上下文中（工作） O(L) token 0毫秒 免费 通过微调 任务短，推理活跃 浓密的碎布 [128] O(107) 文档 10–50 毫秒 O(1) 嵌入 仅编码器 语义搜索、质量保证 稀疏（BM25）[273] O(108) 文档 1–5 毫秒 O(|d|) 指数 否 关键词搜索，法律/医疗 混合 RAG [309] O(107) 文档 15–60 毫秒 O(1) 嵌入 仅编码器 通用检索 总结 无限 0 毫秒（ctx 内） O(|e|) LLM 通话 通过微调 长篇大论、长篇大论 知识图谱[313] O(109) 三元组 5–100 毫秒 O(1) 插入 嵌入层 结构化事实，多跳 KV内存网[315] O(M) 个槽位 O(M) 注意力 梯度步长 完全 端到端可微任务 MemGPT 分层 [316] 无限 0–100 毫秒 混合 通过RL 长视智能体、助理 图 RAG [290] O(107) 个节点 20–200 毫秒 O(1) 插入 仅编码器 复杂推理、社区</p><p class="content-block paragraph">评估内存系统</p><p class="content-block paragraph">评估智能体记忆具有挑战性，因为记忆操作的质量只能被揭示 间接地——通过长期的下游任务绩效。一个记忆系统可以实现 如果检索到不相关的上下文或压倒了LLM的知识，对存储事实的完美回忆仍然可能失败 上下文窗口。</p></div></section><section class="ast-section" id="chapter-18-s09"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>记忆系统评估</h2><p>本节聚焦“记忆系统评估”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">学习要记住什么</p><p class="content-block paragraph">记住什么问题是一个元学习挑战：智能体必须学习写入策略 πwrite(e) 最大化未来任务性能。这很困难，因为：</p><p class="content-block paragraph">1. 记忆的价值只有在未来才会显现（延迟奖励）。</p><p class="content-block paragraph">2. 未来可能查询的空间在写入时是未知的。</p><p class="content-block paragraph">3. 记忆相互作用：存储e的值取决于M中的其他内容。</p><p class="content-block paragraph">方法：</p><p class="content-block paragraph">• 事后重新标记[322]。在成功的一集之后，追溯性地标记那些记忆 被检索为“重要”并训练写入策略来存储类似的项目。</p><p class="content-block paragraph">• 元强化学习[323]。跨任务分配训练写入策略；该策略学习存储 跨任务概括的信息。</p><p class="content-block paragraph">• 好奇心驱动的存储[324]。存储令人惊讶的观察结果（高预测误差）， 因为这些可能会提供信息。</p><p class="content-block paragraph">内存增强策略优化</p><p class="content-block paragraph">联合优化策略及其记忆系统的想法可以追溯到可微记忆 网络[325]，并由 REALM [304] 扩展到检索增强的LLM。完整政策 记忆增强智能体的梯度目标：</p><p class="content-block paragraph">” T X</p><p class="content-block paragraph">−λ·Lmem(φ),</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>L(θ, ϕ) = Eτ∼πθ</code></pre></div><p class="content-block paragraph">时间=0 γtrt</p><p class="content-block paragraph">其中 θ 是 LLM 参数， phi 是记忆系统参数（例如检索模型权重）， Lmem 是内存复杂度的正则化项。</p><p class="content-block paragraph">关键见解：记忆是一种习得的归纳偏差</p><p class="content-block paragraph">通过强化学习训练记忆操作，智能体可以开发特定于任务的记忆策略。 编码智能体学习存储 API 签名；研究智能体学习存储引文链；一个 客户服务智能体学习存储用户投诉模式。记忆系统变成了 学习了适合智能体领域的归纳偏差。</p><p class="content-block paragraph">内存方法的比较</p><p class="content-block paragraph">表 17.2：跨关键维度的智能体内存架构比较。</p><p class="content-block paragraph">建筑 容量 检索 更新成本 可训练 最适合</p><p class="content-block paragraph">上下文中（工作） O(L) token 0毫秒 免费 通过微调 任务短，推理活跃 浓密的碎布 [128] O(107) 文档 10–50 毫秒 O(1) 嵌入 仅编码器 语义搜索、质量保证 稀疏（BM25）[273] O(108) 文档 1–5 毫秒 O(|d|) 指数 否 关键词搜索，法律/医疗 混合 RAG [309] O(107) 文档 15–60 毫秒 O(1) 嵌入 仅编码器 通用检索 总结 无限 0 毫秒（ctx 内） O(|e|) LLM 通话 通过微调 长篇大论、长篇大论 知识图谱[313] O(109) 三元组 5–100 毫秒 O(1) 插入 嵌入层 结构化事实，多跳 KV内存网[315] O(M) 个槽位 O(M) 注意力 梯度步长 完全 端到端可微任务 MemGPT 分层 [316] 无限 0–100 毫秒 混合 通过RL 长视智能体、助理 图 RAG [290] O(107) 个节点 20–200 毫秒 O(1) 插入 仅编码器 复杂推理、社区</p><p class="content-block paragraph">评估内存系统</p><p class="content-block paragraph">评估智能体记忆具有挑战性，因为记忆操作的质量只能被揭示 间接地——通过长期的下游任务绩效。一个记忆系统可以实现 如果检索到不相关的上下文或压倒了LLM的知识，对存储事实的完美回忆仍然可能失败 上下文窗口。</p><p class="content-block paragraph">评估维度</p><p class="content-block paragraph">LongMemEval [326] 确定了长期记忆系统必须展示的五个核心功能：</p><p class="content-block paragraph">1.信息提取。系统能否识别并存储对话中的显着事实 轮流？通过事实回忆来衡量：可以从事实中恢复多少比例的真实事实 记忆？</p><p class="content-block paragraph">2.多会话推理。系统能否综合分散在多个领域的信息？ 过去的会议？例如，“根据我们上周和昨天的谈话， 项目范围？”</p><p class="content-block paragraph">3.时间推理。系统能否正确回答与时间相关的查询？例如，“什么 我有说过重组之前这是我的首要任务吗？”需要区分时间状态。</p><p class="content-block paragraph">4.知识更新。当事实发生变化（用户移动城市、偏好发生变化）时，记忆会发生变化吗？ 在保留历史的同时反映最新状态？</p><p class="content-block paragraph">5. 弃权。当系统没有相关记忆时，它是否正确地说“我不知道” 而不是产生一种看似合理但捏造的回忆的幻觉？</p><p class="content-block paragraph">基准测试测试</p><p class="content-block paragraph">表 17.3：评估智能体记忆系统的基准测试。</p><p class="content-block paragraph">基准测试测试 场地 规模 焦点</p><p class="content-block paragraph">长内存评估 [326] ICLR 2025 500 个问题，规模 能干的历史 五种记忆能力；多会话 聊天 乐科莫 [327] 欧洲管理国家实验室 2024 多会话 直径- 洛格斯 单跳， 暂时的， 多跳， 通过对话进行开放域质量检查 InfiniteBench [328] 2024年ACL 10万+ token 反- 文本 长上下文回忆，而不是记忆—— 具体但测试限制</p><p class="content-block paragraph">指标</p><p class="content-block paragraph">内存级别指标。</p><p class="content-block paragraph">• 记忆回忆：# 可从记忆中检索的真实事实</p><div class="component code-component"><div class="block-label">text</div><pre><code># 全部真实事实。衡量存储的完整性。</code></pre></div><p class="content-block paragraph">• 内存精度：top-k 检索中的# 相关项目 k。测量检索中的噪声。</p><p class="content-block paragraph">• 延迟：从查询到检索上下文的时间（p50 和p95）。</p><p class="content-block paragraph">• token效率：每个查询注入上下文的token总数。越低越好——没必要 上下文会降低 LLM 的准确性并增加成本。</p><p class="content-block paragraph">下游指标。</p><p class="content-block paragraph">• 答案准确性：以记忆为条件的最终答案的正确性（EM、F1 或 LLM作为法官）。</p><p class="content-block paragraph">• 忠实性：回答是否准确地反映了记忆中包含的内容，而不是捏造的？</p><p class="content-block paragraph">• 个性化质量：用户满意度，通过偏好评级或 A/B 测试来衡量 记忆增强系统和无记忆系统之间。</p><p class="content-block paragraph">• 矛盾率：系统产生与之前不一致的响应的频率 陈述的事实。</p></div></section><section class="ast-section" id="chapter-18-s10"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>实现模式</h2><p>本节聚焦“实现模式”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">运营指标。</p><p class="content-block paragraph">• 写入选择性：触发存储器写入的匝数分数。太高→噪音；太低 → 差距。</p><p class="content-block paragraph">• 过时性：尽管存在更新，但检索过时事实的频率。</p><p class="content-block paragraph">• 存储增长率：每个交互小时存储的token。无限制的增长是不可持续的。</p><p class="content-block paragraph">评估差距</p><p class="content-block paragraph">大多数记忆论文都会在短期基准测试（10-50 个会话）上进行评估。真实生产智能体运行 长达数月的数千次会议。长期评估——记忆漂移、矛盾 积累和存储膨胀成为主要的故障模式——仍然是一个开放的挑战。 从业者应通过对运营的纵向监控来补充基准测试分数 指标。</p><p class="content-block paragraph">实施模式</p><p class="content-block paragraph">带嵌入的向量存储内存</p><p class="content-block paragraph">最常见的内存模式将条目存储为嵌入向量与元数据（次- 标记、重要性分数、标签）。检索结合了余弦相似性和时间衰减，所以最近 重要的记忆首先浮现。重复检测和 LRU 驱逐使存储保持有界。</p><div class="component code-component"><div class="block-label">text</div><pre><code>import
 numpy as np
 from
 dataclasses
@@ -737,16 +45,14 @@ typing
 import
 Optional
 import
-json
-</code></pre>
-<pre><code class="language-text">@dataclass
+json</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>@dataclass
 class
 MemoryEntry:
-"""A single
+&quot;&quot;&quot;A single
 memory
 entry
 with
-metadata."""
+metadata.&quot;&quot;&quot;
 content: str
 embedding: np.ndarray
 timestamp: datetime = field( default_factory =datetime.now)
@@ -754,11 +60,9 @@ importance: float = 0.5
 access_count: int = 0
 last_accessed: Optional[datetime] = None
 tags: list[str] = field( default_factory =list)
-source: str = "agent"
-</code></pre>
-<pre><code class="language-text">class
+source: str = &quot;agent&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 VectorMemoryStore :
-"""
+&quot;&quot;&quot;
 Hybrid
 dense+sparse
 memory
@@ -771,9 +75,7 @@ importance -weighted
 retrieval
 and LRU
 eviction.
-"""
-</code></pre>
-<pre><code class="language-text">def
+&quot;&quot;&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 __init__(
 self ,
 embed_fn ,
@@ -782,97 +84,59 @@ max_entries: int = 10_000 ,
 decay_rate: float = 0.01,
 # per hour
 recency_weight : float = 0.3,
-):
-</code></pre>
-<pre><code class="language-text">self.embed_fn = embed_fn
+):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>self.embed_fn = embed_fn
 self.max_entries = max_entries
 self.decay_rate = decay_rate
 self.recency_weight = recency_weight
-self.entries: list[MemoryEntry] = []
-</code></pre>
-<pre><code class="language-text"># -- Write
---------------------------------------------------------------
-</code></pre>
-<p><span class="page-ref" id="pdf-p332">原 PDF p.332</span></p>
-<p>定义写入（</p>
-<pre><code class="language-text">self ,
+self.entries: list[MemoryEntry] = []</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Write
+--------------------------------------------------------------</code></pre></div><p class="content-block paragraph">定义写入（</p><div class="component code-component"><div class="block-label">text</div><pre><code>self ,
 content: str ,
 importance: float = 0.5,
 tags: list[str] | None = None ,
 check_duplicates : bool = True ,
-) -&gt; MemoryEntry:
-</code></pre>
-<pre><code class="language-text">“”“提交新内存，如果满则驱逐。”“”
+) -&gt; MemoryEntry:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;&quot;&quot;Commit a new memory , evicting if at capacity.&quot;&quot;&quot;
 if check_duplicates
 and self. _is_duplicate (content):
 return
 None
 # Skip near -duplicate
-entries
-</code></pre>
-<pre><code class="language-text">embedding = self.embed_fn(content)
-entry = MemoryEntry(
-</code></pre>
-<pre><code class="language-text">content=content ,
+entries</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>embedding = self.embed_fn(content)
+entry = MemoryEntry(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>content=content ,
 embedding=embedding ,
 importance=importance ,
 tags=tags or [],
-)
-</code></pre>
-<pre><code class="language-text">if len(self.entries) &gt;= self.max_entries:
-</code></pre>
-<pre><code class="language-text">self._evict ()
-</code></pre>
-<pre><code class="language-text">self.entries.append(entry)
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>if len(self.entries) &gt;= self.max_entries:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>self._evict ()</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>self.entries.append(entry)
 return
-entry
-</code></pre>
-<pre><code class="language-text">def
+entry</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 _is_duplicate(self , content: str , threshold: float = 0.95)
 -&gt; bool:
-"""Check if a near -duplicate
+&quot;&quot;&quot;Check if a near -duplicate
 already
-exists."""
-if not self.entries:
-</code></pre>
-<pre><code class="language-text">return
+exists.&quot;&quot;&quot;
+if not self.entries:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return
 False
 emb = self.embed_fn(content)
 sims = self. _cosine_similarities (emb)
 return
-float(np.max(sims)) &gt; threshold
-</code></pre>
-<pre><code class="language-text">def _evict(self):
-</code></pre>
-<pre><code class="language-text">"""Remove the least
+float(np.max(sims)) &gt; threshold</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def _evict(self):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;&quot;&quot;Remove the least
 important + least
 recent
-entry."""
+entry.&quot;&quot;&quot;
 now = datetime.now()
 scores = []
-for e in self.entries:
-</code></pre>
-<pre><code class="language-text">age_hours = (now - e.timestamp). total_seconds () / 3600
+for e in self.entries:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>age_hours = (now - e.timestamp). total_seconds () / 3600
 recency = np.exp(-self.decay_rate * age_hours)
-score = e.importance * (1 - self. recency_weight ) \
-</code></pre>
-<pre><code class="language-text">+ recency * self. recency_weight
+score = e.importance * (1 - self. recency_weight ) \</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>+ recency * self. recency_weight
 scores.append(score)
 worst_idx = int(np.argmin(scores))
-self.entries.pop(worst_idx)
-</code></pre>
-<pre><code class="language-text"># -- Retrieve
------------------------------------------------------------
-</code></pre>
-<pre><code class="language-text">def
+self.entries.pop(worst_idx)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Retrieve
+-----------------------------------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 retrieve(
 self ,
 query: str ,
 k: int = 5,
 recency_boost: bool = True ,
-) -&gt; list[MemoryEntry ]:
-</code></pre>
-<pre><code class="language-text">"""
+) -&gt; list[MemoryEntry ]:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;&quot;&quot;
 Hybrid
 retrieval: dense
 similarity + temporal
@@ -880,69 +144,34 @@ recency.
 Returns top -k entries
 sorted by combined
 score.
-"""
-if not self.entries:
-</code></pre>
-<p>返回 []</p>
-<pre><code class="language-text">q_emb = self.embed_fn(query)
-dense_scores = self. _cosine_similarities (q_emb)
-</code></pre>
-<pre><code class="language-text">now = datetime.now()
-combined = []
-</code></pre>
-<p><span class="page-ref" id="pdf-p333">原 PDF p.333</span></p>
-<pre><code class="language-text">for i, (entry , d_score) in enumerate(
-</code></pre>
-<pre><code class="language-text">zip(self.entries , dense_scores )
-):
-</code></pre>
-<pre><code class="language-text">if recency_boost:
-</code></pre>
-<pre><code class="language-text">age_h = (now - entry.timestamp). total_seconds () / 3600
+&quot;&quot;&quot;
+if not self.entries:</code></pre></div><p class="content-block paragraph">返回 []</p><div class="component code-component"><div class="block-label">text</div><pre><code>q_emb = self.embed_fn(query)
+dense_scores = self. _cosine_similarities (q_emb)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>now = datetime.now()
+combined = []</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>for i, (entry , d_score) in enumerate(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>zip(self.entries , dense_scores )
+):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>if recency_boost:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>age_h = (now - entry.timestamp). total_seconds () / 3600
 recency = np.exp(-self.decay_rate * age_h)
-score = (1 - self. recency_weight ) * d_score \
-</code></pre>
-<pre><code class="language-text">+ self.recency_weight * recency
-else:
-</code></pre>
-<pre><code class="language-text">score = d_score
-combined.append ((score , i))
-</code></pre>
-<pre><code class="language-text">combined.sort(reverse=True)
-top_k = [self.entries[i] for _, i in combined [:k]]
-</code></pre>
-<pre><code class="language-text"># Update
-access
-metadata
-for entry in top_k:
-</code></pre>
-<pre><code class="language-text">entry.access_count += 1
-entry.last_accessed = now
-</code></pre>
-<p>返回
-前k个</p>
-<pre><code class="language-text">def
+score = (1 - self. recency_weight ) * d_score \</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>+ self.recency_weight * recency
+else:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>score = d_score
+combined.append ((score , i))</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>combined.sort(reverse=True)
+top_k = [self.entries[i] for _, i in combined [:k]]</code></pre></div><p class="content-block paragraph"># 更新 top_k 中条目的访问元数据：</p><div class="component code-component"><div class="block-label">text</div><pre><code>entry.access_count += 1
+entry.last_accessed = now</code></pre></div><p class="content-block paragraph">返回 前k个</p><div class="component code-component"><div class="block-label">text</div><pre><code>def
 _cosine_similarities (self , query_emb: np.ndarray) -&gt; np.ndarray:
-"""Vectorized
+&quot;&quot;&quot;Vectorized
 cosine
 similarity
 against
 all stored
-embeddings."""
+embeddings.&quot;&quot;&quot;
 matrix = np.stack ([e.embedding
 for e in self.entries ])
 norms = np.linalg.norm(matrix , axis=1, keepdims=True)
 matrix_norm = matrix / (norms + 1e-8)
 q_norm = query_emb / (np.linalg.norm(query_emb) + 1e-8)
 return
-matrix_norm @ q_norm
-</code></pre>
-<pre><code class="language-text"># -- Reflect
-------------------------------------------------------------
-</code></pre>
-<pre><code class="language-text">def
+matrix_norm @ q_norm</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Reflect
+------------------------------------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 reflect(self , llm_fn , k: int = 10) -&gt; list[str]:
-"""
+&quot;&quot;&quot;
 Meta -cognitive
 reflection: retrieve
 recent
@@ -951,105 +180,68 @@ synthesize
 higher -level
 insights , and store
 them back.
-"""
-if len(self.entries) &lt; 3:
-</code></pre>
-<p>返回 []</p>
-<pre><code class="language-text"># Retrieve
+&quot;&quot;&quot;
+if len(self.entries) &lt; 3:</code></pre></div><p class="content-block paragraph">返回 []</p><div class="component code-component"><div class="block-label">text</div><pre><code># Retrieve
 recent high -importance
 memories
-recent = sorted(
-</code></pre>
-<pre><code class="language-text">self.entries , key=lambda e: e.timestamp , reverse=True
+recent = sorted(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>self.entries , key=lambda e: e.timestamp , reverse=True
 )[:k]
-context = "\n".join(f"- {e.content}" for e in recent)
-</code></pre>
-<pre><code class="language-text"># Ask LLM to generate
+context = &quot;\n&quot;.join(f&quot;- {e.content}&quot; for e in recent)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Ask LLM to generate
 insights
-prompt = (
-</code></pre>
-<pre><code class="language-text">"Given
+prompt = (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;Given
 these
 recent
-memories , extract 2-3 high -level "
-"insights or patterns :\n" + context
+memories , extract 2-3 high -level &quot;
+&quot;insights or patterns :\n&quot; + context
 )
-raw_insights = llm_fn(prompt)
-</code></pre>
-<pre><code class="language-text"># Store
+raw_insights = llm_fn(prompt)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Store
 each
 insight as a high -importance
 memory
 insights = []
-for line in raw_insights.strip ().split("\n"):
-</code></pre>
-<pre><code class="language-text">line = line.strip ().lstrip(" -*").strip ()
-if len(line) &gt; 20:
-</code></pre>
-<p>自我写（</p>
-<pre><code class="language-text">f"[INSIGHT] {line}",
+for line in raw_insights.strip ().split(&quot;\n&quot;):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>line = line.strip ().lstrip(&quot; -*&quot;).strip ()
+if len(line) &gt; 20:</code></pre></div><p class="content-block paragraph">自我写（</p><div class="component code-component"><div class="block-label">text</div><pre><code>f&quot;[INSIGHT] {line}&quot;,
 importance =0.9 ,
 check_duplicates =True ,
 )
 insights.append(line)
 return
-insights
-</code></pre>
-<p><span class="page-ref" id="pdf-p334">原 PDF p.334</span></p>
-<pre><code class="language-text">def
+insights</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 get_stats(self) -&gt; dict:
-"""Return
+&quot;&quot;&quot;Return
 memory
 statistics
 for
-monitoring."""
-return {
-</code></pre>
-<pre><code class="language-text">"total_entries": len(self.entries),
-" avg_importance": float(
-</code></pre>
-<pre><code class="language-text">np.mean ([e.importance
+monitoring.&quot;&quot;&quot;
+return {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;total_entries&quot;: len(self.entries),
+&quot; avg_importance&quot;: float(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>np.mean ([e.importance
 for e in self.entries ])
 ) if self.entries
 else 0.0,
-"oldest_entry": min(
-</code></pre>
-<pre><code class="language-text">(e.timestamp
+&quot;oldest_entry&quot;: min(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>(e.timestamp
 for e in self.entries), default=None
 ),
-}
-</code></pre>
-<p>清单 17.1：具有嵌入、重要性评分和混合检索的向量存储内存。</p>
-<p>分层内存管理器</p>
-<p>受 MemGPT [316] 的启发，该模式将内存组织为三层：热（上下文中的、即时的）
-访问）、暖（矢量存储、快速检索）和冷（归档、无限容量）。条目有
-根据访问频率和重要性自动提升或降级——类似于CPU
-缓存层次结构。</p>
-<pre><code class="language-text">from enum
+}</code></pre></div><p class="content-block paragraph">清单 17.1：具有嵌入、重要性评分和混合检索的向量存储内存。</p><p class="content-block paragraph">分层内存管理器</p><p class="content-block paragraph">受 MemGPT [316] 的启发，该模式将内存组织为三层：热（上下文中的、即时的） 访问）、暖（矢量存储、快速检索）和冷（归档、无限容量）。条目有 根据访问频率和重要性自动提升或降级——类似于CPU 缓存层次结构。</p><div class="component code-component"><div class="block-label">text</div><pre><code>from enum
 import
 Enum
 from
 collections
 import
-OrderedDict
-</code></pre>
-<pre><code class="language-text">class
+OrderedDict</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 MemoryTier(Enum):
 HOT
-= "hot"
+= &quot;hot&quot;
 # In -context: immediate
 access
-WARM = "warm"
+WARM = &quot;warm&quot;
 # Vector
 store: fast
 retrieval
-COLD = "cold"
+COLD = &quot;cold&quot;
 # Archival: slow but
-unlimited
-</code></pre>
-<pre><code class="language-text">class
+unlimited</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 HierarchicalMemoryManager :
-"""
+&quot;&quot;&quot;
 Three -tier
 memory
 manager
@@ -1059,9 +251,7 @@ store;
 cold is append -only
 archival
 storage.
-"""
-</code></pre>
-<pre><code class="language-text">def
+&quot;&quot;&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 __init__(
 self ,
 vector_store: VectorMemoryStore ,
@@ -1073,56 +263,39 @@ llm_summarize_fn =None ,
 # callable
 for
 summarization
-):
-</code></pre>
-<pre><code class="language-text">self.vector_store = vector_store
+):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>self.vector_store = vector_store
 self.hot_capacity = hot_capacity
 self.warm_capacity = warm_capacity
-self.summarize = llm_summarize_fn
-</code></pre>
-<pre><code class="language-text"># Hot tier: ordered
+self.summarize = llm_summarize_fn</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Hot tier: ordered
 dict for LRU
 semantics
 self.hot: OrderedDict[str , MemoryEntry] = OrderedDict ()
 # Cold tier: append -only list (would be a DB in production)
-self.cold: list[MemoryEntry] = []
-</code></pre>
-<pre><code class="language-text"># -- Page -in: promote
+self.cold: list[MemoryEntry] = []</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Page -in: promote
 warm -&gt; hot
----------------------------------------
-</code></pre>
-<pre><code class="language-text">def
+---------------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 page_in(self , query: str , k: int = 3) -&gt; list[MemoryEntry ]:
-"""
+&quot;&quot;&quot;
 Retrieve
 from warm
 store and
 promote to hot tier.
 Evicts least -recently -used hot
 entries if needed.
-"""
+&quot;&quot;&quot;
 candidates = self.vector_store.retrieve(query , k=k)
 promoted = []
-for entry in candidates:
-</code></pre>
-<pre><code class="language-text">key = entry.content [:64]
+for entry in candidates:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>key = entry.content [:64]
 # use prefix as key
-if key not in self.hot:
-</code></pre>
-<p><span class="page-ref" id="pdf-p335">原 PDF p.335</span></p>
-<pre><code class="language-text">if len(self.hot) &gt;= self.hot_capacity :
-</code></pre>
-<pre><code class="language-text">self._evict_hot ()
+if key not in self.hot:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>if len(self.hot) &gt;= self.hot_capacity :</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>self._evict_hot ()
 self.hot[key] = entry
 self.hot.move_to_end(key)
 promoted.append(entry)
 return
-promoted
-</code></pre>
-<pre><code class="language-text">def
+promoted</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 _evict_hot(self):
-"""Evict LRU entry
-from hot tier back to warm."""
+&quot;&quot;&quot;Evict LRU entry
+from hot tier back to warm.&quot;&quot;&quot;
 # OrderedDict: first
 item is LRU
 key , entry = self.hot.popitem(last=False)
@@ -1132,49 +305,28 @@ store (already there , just
 update
 access)
 # In a real system , we’d update the warm
-store ’s metadata
-</code></pre>
-<pre><code class="language-text"># -- Write
+store ’s metadata</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Write
 with tier
 assignment
-------------------------------------------
-</code></pre>
-<p>定义写入（</p>
-<pre><code class="language-text">self ,
+------------------------------------------</code></pre></div><p class="content-block paragraph">定义写入（</p><div class="component code-component"><div class="block-label">text</div><pre><code>self ,
 content: str ,
 importance: float = 0.5,
 tier: MemoryTier = MemoryTier.WARM ,
-) -&gt; MemoryEntry:
-</code></pre>
-<pre><code class="language-text">"""Write to the
+) -&gt; MemoryEntry:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;&quot;&quot;Write to the
 appropriate
-tier."""
-if tier == MemoryTier.HOT:
-</code></pre>
-<pre><code class="language-text">entry = MemoryEntry(
-</code></pre>
-<pre><code class="language-text">content=content ,
+tier.&quot;&quot;&quot;
+if tier == MemoryTier.HOT:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>entry = MemoryEntry(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>content=content ,
 embedding=self.vector_store.embed_fn(content),
 importance=importance ,
 )
 key = content [:64]
-if len(self.hot) &gt;= self.hot_capacity :
-</code></pre>
-<pre><code class="language-text">self._evict_hot ()
+if len(self.hot) &gt;= self.hot_capacity :</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>self._evict_hot ()
 self.hot[key] = entry
 return
-entry
-</code></pre>
-<pre><code class="language-text">elif tier == MemoryTier.WARM:
-</code></pre>
-<pre><code class="language-text">return
-self.vector_store .write(content , importance=importance)
-</code></pre>
-<pre><code class="language-text">else:
+entry</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>elif tier == MemoryTier.WARM:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return
+self.vector_store .write(content , importance=importance)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>else:
 # COLD
-entry = MemoryEntry(
-</code></pre>
-<pre><code class="language-text">content=content ,
+entry = MemoryEntry(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>content=content ,
 embedding=np.array ([]) ,
 # no embedding
 for cold
@@ -1182,16 +334,12 @@ importance=importance ,
 )
 self.cold.append(entry)
 return
-entry
-</code></pre>
-<pre><code class="language-text"># -- Summarize
+entry</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Summarize
 and
 compress
----------------------------------------------
-</code></pre>
-<pre><code class="language-text">def
+---------------------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 compress_hot_to_warm (self) -&gt; Optional[str]:
-"""
+&quot;&quot;&quot;
 Summarize
 hot tier
 contents
@@ -1202,119 +350,63 @@ when hot tier is full and new
 important
 content
 arrives.
-"""
-if not self.hot or not self.summarize:
-</code></pre>
-<p>返回
-无</p>
-<pre><code class="language-text">hot_contents = "\n".join(
-</code></pre>
-<pre><code class="language-text">f"- {e.content}" for e in self.hot.values ()
+&quot;&quot;&quot;
+if not self.hot or not self.summarize:</code></pre></div><p class="content-block paragraph">返回 无</p><div class="component code-component"><div class="block-label">text</div><pre><code>hot_contents = &quot;\n&quot;.join(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>f&quot;- {e.content}&quot; for e in self.hot.values ()
 )
-summary = self.summarize(
-</code></pre>
-<pre><code class="language-text">f"Summarize
+summary = self.summarize(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>f&quot;Summarize
 these
 memory
 entries
-concisely :\n{ hot_contents}"
+concisely :\n{ hot_contents}&quot;
 )
 self.vector_store.write(summary , importance =0.7)
 return
-summary
-</code></pre>
-<p><span class="page-ref" id="pdf-p336">原 PDF p.336</span></p>
-<pre><code class="language-text"># -- Unified
+summary</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Unified
 retrieval
---------------------------------------------------
-</code></pre>
-<pre><code class="language-text">def
+--------------------------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 retrieve(self , query: str , k: int = 5) -&gt; list[MemoryEntry ]:
-"""
+&quot;&quot;&quot;
 Retrieve
 from all tiers , prioritizing
 hot.
 Returns up to k entries
 sorted by relevance.
-"""
-results = []
-</code></pre>
-<pre><code class="language-text"># 1. Check hot tier (exact + semantic)
+&quot;&quot;&quot;
+results = []</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># 1. Check hot tier (exact + semantic)
 q_emb = self.vector_store.embed_fn(query)
-for entry in self.hot.values ():
-</code></pre>
-<pre><code class="language-text">if entry.embedding.size &gt; 0:
-</code></pre>
-<p>模拟 = 浮动（</p>
-<pre><code class="language-text">np.dot(q_emb , entry.embedding)
+for entry in self.hot.values ():</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>if entry.embedding.size &gt; 0:</code></pre></div><p class="content-block paragraph">模拟 = 浮动（</p><div class="component code-component"><div class="block-label">text</div><pre><code>np.dot(q_emb , entry.embedding)
 / (np.linalg.norm(q_emb) * np.linalg.norm(entry.embedding) + 1
-e-8)
-</code></pre>
-<pre><code class="language-text">)
-if sim &gt; 0.7:
-</code></pre>
-<pre><code class="language-text">results.append ((sim + 1.0, entry))
-# +1 hot bonus
-</code></pre>
-<pre><code class="language-text"># 2. Retrieve
+e-8)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>)
+if sim &gt; 0.7:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>results.append ((sim + 1.0, entry))
+# +1 hot bonus</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># 2. Retrieve
 from warm
 store
 warm_results = self.vector_store .retrieve(query , k=k)
-for entry in warm_results:
-</code></pre>
-<pre><code class="language-text">results.append ((0.5 , entry))
-</code></pre>
-<pre><code class="language-text"># 3. Deduplicate
+for entry in warm_results:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>results.append ((0.5 , entry))</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># 3. Deduplicate
 and sort
 seen = set()
 final = []
-for score , entry in sorted(results , reverse=True):
-</code></pre>
-<pre><code class="language-text">key = entry.content [:64]
-if key not in seen:
-</code></pre>
-<pre><code class="language-text">seen.add(key)
+for score , entry in sorted(results , reverse=True):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>key = entry.content [:64]
+if key not in seen:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>seen.add(key)
 final.append(entry)
-if len(final) &gt;= k:
-</code></pre>
-<p>打破</p>
-<p>返回
-决赛</p>
-<pre><code class="language-text">def
+if len(final) &gt;= k:</code></pre></div><p class="content-block paragraph">打破</p><p class="content-block paragraph">返回 决赛</p><div class="component code-component"><div class="block-label">text</div><pre><code>def
 get_hot_context (self) -&gt; str:
-"""Return hot tier as a formatted
+&quot;&quot;&quot;Return hot tier as a formatted
 context
-string."""
-if not self.hot:
-</code></pre>
-<pre><code class="language-text">return ""
-lines = ["[Memory
-Context]"]
+string.&quot;&quot;&quot;
+if not self.hot:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return &quot;&quot;
+lines = [&quot;[Memory
+Context]&quot;]
 for entry in list(self.hot.values ())[ -10:]:
 # last 10
-lines.append(f"
-* {entry.content}")
-return "\n".join(lines)
-</code></pre>
-<p>清单 17.2：通过自动升级实现热/温/冷层的分层内存管理器
-和降职。</p>
-<p>内存增强智能体循环</p>
-<p>这种模式由 MemGPT [316] 引入并在 CoALA 框架 [329] 中正式化，将
-通过读取-行动-反映-写入循环将记忆系统引入智能体的推理循环中：在响应之前，
-智能体检索相关记忆；响应后，它决定存储什么。特殊token
-在LLM输出触发内存操作中，使模型能够对其自身进行自我控制
-坚持。</p>
-<pre><code class="language-text">import re
+lines.append(f&quot;
+* {entry.content}&quot;)
+return &quot;\n&quot;.join(lines)</code></pre></div><p class="content-block paragraph">清单 17.2：通过自动升级实现热/温/冷层的分层内存管理器 和降职。</p><p class="content-block paragraph">内存增强智能体循环</p><p class="content-block paragraph">这种模式由 MemGPT [316] 引入并在 CoALA 框架 [329] 中正式化，将 通过读取-行动-反映-写入循环将记忆系统引入智能体的推理循环中：在响应之前， 智能体检索相关记忆；响应后，它决定存储什么。特殊token 在LLM输出触发内存操作中，使模型能够对其自身进行自我控制 坚持。</p><div class="component code-component"><div class="block-label">text</div><pre><code>import re
 from
 typing
-import Any
-</code></pre>
-<pre><code class="language-text">class
+import Any</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>class
 MemoryAugmentedAgent :
-"""
-</code></pre>
-<p><span class="page-ref" id="pdf-p337">原 PDF p.337</span></p>
-<pre><code class="language-text">An LLM agent
+&quot;&quot;&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>An LLM agent
 with a full read -act -reflect -write
 memory
 cycle.
@@ -1322,9 +414,7 @@ Implements
 the MemGPT -style self -directed
 memory
 management.
-"""
-</code></pre>
-<pre><code class="language-text">SYSTEM_PROMPT = """You are a memory -augmented AI assistant.
+&quot;&quot;&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>SYSTEM_PROMPT = &quot;&quot;&quot;You are a memory -augmented AI assistant.
 You have
 access to persistent
 memory
@@ -1344,18 +434,14 @@ information
 - synthesize
 insights
 from
-memory
-</code></pre>
-<pre><code class="language-text">Always
+memory</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>Always
 think
 step by step. Use memory to avoid
 repeating
 mistakes
 and to personalize
 your
-responses."""
-</code></pre>
-<pre><code class="language-text">def
+responses.&quot;&quot;&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 __init__(
 self ,
 llm_fn ,
@@ -1364,22 +450,14 @@ llm_fn ,
 memory_manager : HierarchicalMemoryManager ,
 importance_threshold : float = 0.6,
 max_memory_tokens : int = 1500 ,
-):
-</code></pre>
-<pre><code class="language-text">self.llm = llm_fn
+):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>self.llm = llm_fn
 self.memory = memory_manager
 self. importance_threshold = importance_threshold
 self. max_memory_tokens = max_memory_tokens
-self. conversation_history : list[dict] = []
-</code></pre>
-<pre><code class="language-text"># -- Main
+self. conversation_history : list[dict] = []</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Main
 agent
 step
-----------------------------------------------------
-</code></pre>
-<pre><code class="language-text">def step(self , user_message: str) -&gt; str:
-</code></pre>
-<pre><code class="language-text">"""
+----------------------------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def step(self , user_message: str) -&gt; str:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;&quot;&quot;
 Full
 agent
 step:
@@ -1402,181 +480,109 @@ and
 consolidate
 6. Return
 response to user
-"""
-</code></pre>
-<pre><code class="language-text"># Step 1: Retrieve
+&quot;&quot;&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Step 1: Retrieve
 relevant
 memories
 memories = self.memory.retrieve(user_message , k=5)
-memory_context = self. _format_memories (memories)
-</code></pre>
-<pre><code class="language-text"># Step 2: Construct
+memory_context = self. _format_memories (memories)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Step 2: Construct
 augmented
 prompt
-messages = self. _build_messages (user_message , memory_context )
-</code></pre>
-<pre><code class="language-text"># Step 3: Generate
+messages = self. _build_messages (user_message , memory_context )</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Step 3: Generate
 response
-raw_response = self.llm(messages)
-</code></pre>
-<pre><code class="language-text"># Step 4: Execute
+raw_response = self.llm(messages)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Step 4: Execute
 any memory
 commands in the
 response
-clean_response , memory_ops = self. _parse_memory_commands (
-</code></pre>
-<pre><code class="language-text">raw_response
+clean_response , memory_ops = self. _parse_memory_commands (</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>raw_response
 )
-self. _execute_memory_ops (memory_ops , user_message , clean_response )
-</code></pre>
-<pre><code class="language-text"># Step 5: Auto -write
+self. _execute_memory_ops (memory_ops , user_message , clean_response )</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Step 5: Auto -write
 important
 information
-self._auto_write(user_message , clean_response )
-</code></pre>
-<pre><code class="language-text"># Step 6: Update
+self._auto_write(user_message , clean_response )</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># Step 6: Update
 conversation
 history
-self. conversation_history .append(
-</code></pre>
-<pre><code class="language-text">{"role": "user", "content": user_message}
+self. conversation_history .append(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: user_message}
 )
-self. conversation_history .append(
-</code></pre>
-<pre><code class="language-text">{"role": "assistant", "content": clean_response }
-)
-</code></pre>
-<p><span class="page-ref" id="pdf-p338">原 PDF p.338</span></p>
-<pre><code class="language-text">return
-clean_response
-</code></pre>
-<pre><code class="language-text"># -- Memory
+self. conversation_history .append(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>{&quot;role&quot;: &quot;assistant&quot;, &quot;content&quot;: clean_response }
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return
+clean_response</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Memory
 retrieval
 and
 formatting
------------------------------------
-</code></pre>
-<pre><code class="language-text">def
+-----------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 _format_memories (self , memories: list[MemoryEntry ]) -&gt; str:
 if not
 memories:
-return ""
-lines = ["Relevant
-memories:"]
-for i, m in enumerate(memories , 1):
-</code></pre>
-<pre><code class="language-text">age = (datetime.now() - m.timestamp).days
-lines.append(
-</code></pre>
-<pre><code class="language-text">f"
-[{i}] (importance ={m.importance :.1f}, "
-f"{age}d ago) {m.content}"
+return &quot;&quot;
+lines = [&quot;Relevant
+memories:&quot;]
+for i, m in enumerate(memories , 1):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>age = (datetime.now() - m.timestamp).days
+lines.append(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>f&quot;
+[{i}] (importance ={m.importance :.1f}, &quot;
+f&quot;{age}d ago) {m.content}&quot;
 )
-return "\n".join(lines)
-</code></pre>
-<pre><code class="language-text">def
+return &quot;\n&quot;.join(lines)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 _build_messages (
 self , user_message: str , memory_context : str
-) -&gt; list[dict ]:
-</code></pre>
-<pre><code class="language-text">system = self.SYSTEM_PROMPT
-if memory_context :
-</code></pre>
-<pre><code class="language-text">system += f"\n\n{memory_context }"
-system += f"\n\n{self.memory. get_hot_context ()}"
-</code></pre>
-<pre><code class="language-text">messages = [{"role": "system", "content": system }]
+) -&gt; list[dict ]:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>system = self.SYSTEM_PROMPT
+if memory_context :</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>system += f&quot;\n\n{memory_context }&quot;
+system += f&quot;\n\n{self.memory. get_hot_context ()}&quot;</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>messages = [{&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: system }]
 # Include
 recent
 conversation
 history (last 6 turns)
 messages.extend(self. conversation_history [ -6:])
-messages.append ({"role": "user", "content": user_message })
+messages.append ({&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: user_message })
 return
-messages
-</code></pre>
-<pre><code class="language-text"># -- Memory
+messages</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Memory
 command
 parsing
----------------------------------------------
-</code></pre>
-<pre><code class="language-text">def
+---------------------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 _parse_memory_commands (
 self , response: str
-) -&gt; tuple[str , list[dict ]]:
-</code></pre>
-<pre><code class="language-text">"""Extract
+) -&gt; tuple[str , list[dict ]]:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;&quot;&quot;Extract
 and remove
 memory
 commands
 from
-response."""
+response.&quot;&quot;&quot;
 ops = []
-patterns = {
-</code></pre>
-<pre><code class="language-text">"search":
-r"\[ MEMORY_SEARCH :\s*(.+?) \]",
-"write":
-r"\[ MEMORY_WRITE :\s*(.+?) \]",
-"reflect": r"\[ MEMORY_REFLECT \]",
+patterns = {</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;search&quot;:
+r&quot;\[ MEMORY_SEARCH :\s*(.+?) \]&quot;,
+&quot;write&quot;:
+r&quot;\[ MEMORY_WRITE :\s*(.+?) \]&quot;,
+&quot;reflect&quot;: r&quot;\[ MEMORY_REFLECT \]&quot;,
 }
 clean = response
-for op_type , pattern in patterns.items ():
-</code></pre>
-<pre><code class="language-text">for match in re.finditer(pattern , response , re.DOTALL):
-</code></pre>
-<pre><code class="language-text">content = match.group (1) if op_type != "reflect" else None
-ops.append ({"type": op_type , "content": content })
-clean = clean.replace(match.group (0), "").strip ()
-return clean , ops
-</code></pre>
-<pre><code class="language-text">def
+for op_type , pattern in patterns.items ():</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>for match in re.finditer(pattern , response , re.DOTALL):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>content = match.group (1) if op_type != &quot;reflect&quot; else None
+ops.append ({&quot;type&quot;: op_type , &quot;content&quot;: content })
+clean = clean.replace(match.group (0), &quot;&quot;).strip ()
+return clean , ops</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 _execute_memory_ops (
 self ,
 ops: list[dict],
 user_msg: str ,
 response: str ,
-):
-</code></pre>
-<pre><code class="language-text">"""Execute
+):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;&quot;&quot;Execute
 memory
 commands
-issued by the LLM."""
-for op in ops:
-</code></pre>
-<pre><code class="language-text">if op["type"] == "search":
-</code></pre>
-<pre><code class="language-text">results = self.memory.retrieve(op["content"], k=3)
+issued by the LLM.&quot;&quot;&quot;
+for op in ops:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>if op[&quot;type&quot;] == &quot;search&quot;:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>results = self.memory.retrieve(op[&quot;content&quot;], k=3)
 # Page
 results
 into hot tier for
 immediate
 use
-self.memory.page_in(op["content"], k=3)
-</code></pre>
-<pre><code class="language-text">elif op["type"] == "write":
-</code></pre>
-<pre><code class="language-text">self.memory.write(
-</code></pre>
-<p><span class="page-ref" id="pdf-p339">原 PDF p.339</span></p>
-<pre><code class="language-text">op["content"],
+self.memory.page_in(op[&quot;content&quot;], k=3)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>elif op[&quot;type&quot;] == &quot;write&quot;:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>self.memory.write(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>op[&quot;content&quot;],
 importance =0.8 ,
 # explicitly
 written = important
 tier=MemoryTier.WARM ,
-)
-</code></pre>
-<pre><code class="language-text">elif op["type"] == "reflect":
-</code></pre>
-<pre><code class="language-text">self._reflect ()
-</code></pre>
-<pre><code class="language-text"># -- Auto -write
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>elif op[&quot;type&quot;] == &quot;reflect&quot;:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>self._reflect ()</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Auto -write
 heuristic
------------------------------------------------
-</code></pre>
-<pre><code class="language-text">def
+-----------------------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 _auto_write(self , user_msg: str , response: str):
-"""
+&quot;&quot;&quot;
 Automatically
 store
 important
@@ -1589,33 +595,25 @@ heuristic: write if response
 contains facts ,
 decisions , or user
 preferences.
-"""
-importance_keywords = [
-</code></pre>
-<pre><code class="language-text">“记住”、“重要”、“注意”、“你喜欢”、
-"your name is", "decided to", "the answer is",
-"key
-insight", "learned
-that",
+&quot;&quot;&quot;
+importance_keywords = [</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>&quot;remember&quot;, &quot;important&quot;, &quot;note that&quot;, &quot;you prefer&quot;,
+&quot;your name is&quot;, &quot;decided to&quot;, &quot;the answer is&quot;,
+&quot;key
+insight&quot;, &quot;learned
+that&quot;,
 ]
-combined = (user_msg + " " + response).lower ()
+combined = (user_msg + &quot; &quot; + response).lower ()
 if any(kw in combined
 for kw in
 importance_keywords ):
-summary = f"User: {user_msg [:100]} | Agent: {response [:200]}"
-self.memory.write(
-</code></pre>
-<pre><code class="language-text">summary ,
+summary = f&quot;User: {user_msg [:100]} | Agent: {response [:200]}&quot;
+self.memory.write(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>summary ,
 importance=self.importance_threshold ,
 tier=MemoryTier.WARM ,
-)
-</code></pre>
-<pre><code class="language-text"># -- Reflection
---------------------------------------------------------
-</code></pre>
-<pre><code class="language-text">def
+)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code># -- Reflection
+--------------------------------------------------------</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>def
 _reflect(self):
-"""
+&quot;&quot;&quot;
 Meta -cognitive
 reflection: synthesize
 insights
@@ -1627,31 +625,23 @@ insights
 back into
 semantic
 memory.
-"""
-recent = self.memory.retrieve("recent
+&quot;&quot;&quot;
+recent = self.memory.retrieve(&quot;recent
 important
-events", k=10)
-if len(recent) &lt; 3:
-</code></pre>
-<pre><code class="language-text">return
-# Not enough to reflect on
-</code></pre>
-<pre><code class="language-text">recent_text = "\n".join(f"- {m.content}" for m in recent)
-insight_prompt = [
-</code></pre>
-<pre><code class="language-text">{"role": "system", "content": "You
+events&quot;, k=10)
+if len(recent) &lt; 3:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>return
+# Not enough to reflect on</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>recent_text = &quot;\n&quot;.join(f&quot;- {m.content}&quot; for m in recent)
+insight_prompt = [</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>{&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;You
 extract high -level
-insights."},
-{"role": "user", "content":
-</code></pre>
-<pre><code class="language-text">f"Based on these
+insights.&quot;},
+{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>f&quot;Based on these
 memories , what are 2-3 key
-insights ?\n"
-f"{recent_text }\ nRespond
+insights ?\n&quot;
+f&quot;{recent_text }\ nRespond
 with
 bullet
 points
-only."},
+only.&quot;},
 ]
 insights = self.llm( insight_prompt )
 # Store
@@ -1659,142 +649,17 @@ each
 insight as a high -importance
 semantic
 memory
-for line in insights.split("\n"):
-</code></pre>
-<pre><code class="language-text">line = line.strip ().lstrip("*-").strip ()
-if len(line) &gt; 20:
-</code></pre>
-<pre><code class="language-text">self.memory.write(
-</code></pre>
-<pre><code class="language-text">f"[INSIGHT] {line}",
+for line in insights.split(&quot;\n&quot;):</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>line = line.strip ().lstrip(&quot;*-&quot;).strip ()
+if len(line) &gt; 20:</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>self.memory.write(</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>f&quot;[INSIGHT] {line}&quot;,
 importance =0.9 ,
 tier=MemoryTier.WARM ,
-)
-</code></pre>
-<p>清单 17.3：具有读-执行-反射-写周期的完整内存增强智能体循环。</p>
-<p>读取-执行-反思-写入循环</p>
-<p>记忆增强智能体循环实现了四个阶段的认知循环：</p>
-<p>1.阅读：行动前，检索相关记忆以告知应对措施。</p>
-<h2 id="chapter-18-p340-11">Recent Advances in Agentic Memory</h2>
-<p><span class="page-ref" id="pdf-p340">原 PDF p.340</span></p>
-<ol start="2">
-<li>行动：根据检索到的上下文生成响应。</li>
-</ol>
-<p>3.反思：定期从积累的记忆中综合更高层次的见解。</p>
-<p>4.写入：选择性地将重要的新信息提交到持久存储。</p>
-<p>这个循环反映了军事战略和行动中的观察-导向-决定-行动（OODA）循环。
-认知心理学中的编码-存储-检索模型。关键的见解是记忆不是
-被动存储但主动认知的参与者。</p>
-<p>主体记忆的最新进展</p>
-<p>上述记忆系统建立了基本模式。近期几部作品
-进一步突破界限：</p>
-<p>CoALA：语言智能体的认知架构</p>
-<p>苏默斯等人。 [329]提出语言智能体认知架构（CoALA），一个统一的
-该框架使用认知科学和
-token人工智能。 CoALA 将语言智能体分解为：</p>
-<p>• 模块化记忆：工作记忆（上下文窗口）、情景记忆（过去的经历）
-riences）、语义记忆（世界知识）和程序记忆（动作模式）——
-反映了第 17.2 节中的分类法。</p>
-<p>• 结构化动作空间：内部动作（推理、检索、记忆写入）和外部动作
-动作（工具使用、环境交互）。</p>
-<p>• 决策循环：具有明确检索和写入步骤的广义感知-计划-行动循环。</p>
-<p>CoALA 的贡献与其说是一个新系统，不如说是一种设计语言：它提供了一种系统化的方法
-分析现有智能体并识别缺失的功能，使其成为有用的参考架构
-对于从业者来说。</p>
-<p>Mem0：生产规模内存层</p>
-<p>Mem0 [318] 解决了研究内存系统和生产部署之间的差距。钥匙
-想法：</p>
-<p>• 自动提取：而不是依赖LLM 显式发出内存写入
-命令，Mem0 自动从对话轮流中提取显着事实并进行巩固
-将它们放入持久存储中。</p>
-<p>• 基于图形的内存：除了平面向量存储之外，Mem0 还维护一个关系图
-提取实体和事实，实现多跳内存查询（“用户说了些什么？
-项目 Y 背景下的主题 X？”）。</p>
-<p>• 内存压缩：自动合并冗余或被取代的事实，保留
-内存存储紧凑且最新。</p>
-<p>在 LOCOMO 基准测试上，Mem0 比 OpenAI 基准测试提高了 26%
-内存，与全上下文相比，p95 延迟降低了 91%，token成本降低了 90% 以上
-接近。</p>
-<p>睡眠时间计算：离线内存处理</p>
-<p>林等人。 [330]引入睡眠时间计算，这是智能体处理和整合的范例
-用户交互之间的内存，而不仅仅是查询时的内存。类比是生物睡眠，
-在此期间，大脑巩固记忆并预先计算有用的关联。</p>
-<h2 id="chapter-18-p341-12">小结</h2>
-<p><span class="page-ref" id="pdf-p341">原 PDF p.341</span></p>
-<p>它是如何运作的。
-在空闲期间（“睡眠”），智能体：</p>
-<ol>
-<li>
-<p>在给定当前上下文的情况下预测未来可能出现的查询。</p>
-</li>
-<li>
-<p>预先计算推理链、摘要和结构化表示。</p>
-</li>
-<li>
-<p>存储这些预先计算的工件，以便测试时推理可以检索和重用它们。</p>
-</li>
-</ol>
-<p>结果。
-睡眠时间计算减少了实现同等精度所需的测试时间计算
-在推理基准测试上提高了 ∼5 倍。当在关于相同的多个相关查询中摊销时
-上下文中，每次查询的平均成本下降了 2.5 倍。当用户查询时，该方法最有效
-可预测的——即，当上下文强烈限制将提出什么问题时。</p>
-<p>内存整合作为离线强化学习</p>
-<p>睡眠时间计算可以被视为离线策略改进：在空闲时间，智能体
-使用已经收集的数据（过去的交互）改进其内存表示（策略）
-系统蒸发散），没有新的环境交互。这连接到离线 RL 方法（第 8 章）
-智能体从静态轨迹数据集中学习。</p>
-<p>A-MEM：Zettelkasten 启发的智能体记忆</p>
-<p>A-MEM [317] 引入了一种借鉴 Zettelkasten 方法的记忆系统——一种笔记法
-基于紧密互连的原子笔记的系统——实现动态、自组织记忆
-对于LLM智能体。</p>
-<p>关键设计原则。</p>
-<p>• 结构化笔记。每个内存条目不是原始文本块，而是包含多个的注释
-结构化属性：上下文描述、关键字、标签以及相关的显式链接
-笔记。与单独嵌入相似性相比，此元数据可以实现更丰富的检索。</p>
-<p>• 动态链接。当添加新内存时，系统会分析现有内存以
-识别语义上有意义的连接并建立双向链接。结果是
-知识网络而不是平面列表。</p>
-<p>• 记忆进化。至关重要的是，添加新注释可以触发对现有注释的更新 -
-随着智能体理解的加深，完善其上下文表征和属性。
-这使得记忆成为一种随着时间的推移而改进的活的结构，而不是静态的档案。</p>
-<p>• 智能体驱动的组织。与固定模式内存系统不同，A-MEM 让 LLM
-自身决定如何组织、链接和更新记忆——形成组织结构
-适应任务域。</p>
-<p>结果。
-在多会话推理任务的六种基础模型中，A-MEM 始终如一
-优于平面向量存储、基于摘要的内存和图形数据库方法，
-指出记忆的组织方式与存储的内容同样重要。</p>
-<p>总结</p>
-<p>智能体记忆系统是有能力的人工智能智能体的基本组成部分，解决了基本问题
-有限上下文窗口的心理限制。我们调查过：</p>
-<p>• 反映认知科学的四向分类法（工作、情景、语义、程序）
-并反映了不同的工程要求。</p>
-<p>• 五个架构系列：基于 RAG、基于摘要、基于图形、键值
-网络和分层虚拟上下文（MemGPT）。</p>
-<p><span class="page-ref" id="pdf-p342">原 PDF p.342</span></p>
-<p>• 四个核心操作：写入（具有重要性评分和矛盾检测）、读取
-/retrieve（具有时间衰减和查询扩展），更新（具有冲突解决和
-整合），并反思（元认知洞察生成）。</p>
-<p>• 多轮和多智能体扩展：用户建模、会话连续性、共享内存
-池和黑板架构。</p>
-<p>• 记忆系统的强化学习训练：记忆操作的奖励信号，学习该做什么
-记住，以及记忆增强策略优化。</p>
-<p>该领域正在迅速发展。主要的开放挑战包括：(1) 内存接地——确保
-检索到的记忆被忠实地融入，而不是被忽视或产生幻觉； (2)可扩展性
-一致性——在大型多智能体系统中维护一致的共享内存； (3) 隐私-
-保留内存——在不损害用户数据的情况下实现个性化。作为上下文窗口
-随着增长，上下文记忆和外部记忆之间的界限将会发生变化，但基本需求
-选择性的、结构化的、可检索的信息存储将继续存在。</p></div>
+)</code></pre></div><p class="content-block paragraph">清单 17.3：具有读-执行-反射-写周期的完整内存增强智能体循环。</p><p class="content-block paragraph">读取-执行-反思-写入循环</p><p class="content-block paragraph">记忆增强智能体循环实现了四个阶段的认知循环：</p><p class="content-block paragraph">1.阅读：行动前，检索相关记忆以告知应对措施。</p></div></section><section class="ast-section" id="chapter-18-s11"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>智能体记忆的最新进展</h2><p>本节聚焦“智能体记忆的最新进展”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">2. 行动：根据检索到的上下文生成响应。</p><p class="content-block paragraph">3.反思：定期从积累的记忆中综合更高层次的见解。</p><p class="content-block paragraph">4.写入：选择性地将重要的新信息提交到持久存储。</p><p class="content-block paragraph">这个循环反映了军事战略和行动中的观察-导向-决定-行动（OODA）循环。 认知心理学中的编码-存储-检索模型。关键的见解是记忆不是 被动存储但主动认知的参与者。</p><p class="content-block paragraph">主体记忆的最新进展</p><p class="content-block paragraph">上述记忆系统建立了基本模式。近期几部作品 进一步突破界限：</p><p class="content-block paragraph">CoALA：语言智能体的认知架构</p><p class="content-block paragraph">苏默斯等人。 [329]提出语言智能体认知架构（CoALA），一个统一的 该框架使用认知科学和 token人工智能。 CoALA 将语言智能体分解为：</p><p class="content-block paragraph">• 模块化记忆：工作记忆（上下文窗口）、情景记忆（过去的经历） riences）、语义记忆（世界知识）和程序记忆（动作模式）—— 反映了第 17.2 节中的分类法。</p><p class="content-block paragraph">• 结构化动作空间：内部动作（推理、检索、记忆写入）和外部动作 动作（工具使用、环境交互）。</p><p class="content-block paragraph">• 决策循环：具有明确检索和写入步骤的广义感知-计划-行动循环。</p><p class="content-block paragraph">CoALA 的贡献与其说是一个新系统，不如说是一种设计语言：它提供了一种系统化的方法 分析现有智能体并识别缺失的功能，使其成为有用的参考架构 对于从业者来说。</p><p class="content-block paragraph">Mem0：生产规模内存层</p><p class="content-block paragraph">Mem0 [318] 解决了研究内存系统和生产部署之间的差距。钥匙 想法：</p><p class="content-block paragraph">• 自动提取：而不是依赖LLM 显式发出内存写入 命令，Mem0 自动从对话轮流中提取显着事实并进行巩固 将它们放入持久存储中。</p><p class="content-block paragraph">• 基于图形的内存：除了平面向量存储之外，Mem0 还维护一个关系图 提取实体和事实，实现多跳内存查询（“用户说了些什么？ 项目 Y 背景下的主题 X？”）。</p><p class="content-block paragraph">• 内存压缩：自动合并冗余或被取代的事实，保留 内存存储紧凑且最新。</p><p class="content-block paragraph">在 LOCOMO 基准测试上，Mem0 比 OpenAI 基准测试提高了 26% 内存，与全上下文相比，p95 延迟降低了 91%，token成本降低了 90% 以上 接近。</p><p class="content-block paragraph">睡眠时间计算：离线内存处理</p><p class="content-block paragraph">林等人。 [330]引入睡眠时间计算，这是智能体处理和整合的范例 用户交互之间的内存，而不仅仅是查询时的内存。类比是生物睡眠， 在此期间，大脑巩固记忆并预先计算有用的关联。</p></div></section><section class="ast-section" id="chapter-18-s12"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>小结</h2><p>本节聚焦“小结”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></div><div class="concept-chip"><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">它是如何运作的。 在空闲期间（“睡眠”），智能体：</p><p class="content-block paragraph">1. 在给定当前上下文的情况下预测未来可能出现的查询。</p><p class="content-block paragraph">2. 预先计算推理链、摘要和结构化表示。</p><p class="content-block paragraph">3. 存储这些预先计算的工件，以便测试时推理可以检索和重用它们。</p><p class="content-block paragraph">结果。 睡眠时间计算减少了实现同等精度所需的测试时间计算 在推理基准测试上提高了 ∼5 倍。当在关于相同的多个相关查询中摊销时 上下文中，每次查询的平均成本下降了 2.5 倍。当用户查询时，该方法最有效 可预测的——即，当上下文强烈限制将提出什么问题时。</p><p class="content-block paragraph">内存整合作为离线强化学习</p><p class="content-block paragraph">睡眠时间计算可以被视为离线策略改进：在空闲时间，智能体 使用已经收集的数据（过去的交互）改进其内存表示（策略） 系统蒸发散），没有新的环境交互。这连接到离线 RL 方法（第 8 章） 智能体从静态轨迹数据集中学习。</p><p class="content-block paragraph">A-MEM：Zettelkasten 启发的智能体记忆</p><p class="content-block paragraph">A-MEM [317] 引入了一种借鉴 Zettelkasten 方法的记忆系统——一种笔记法 基于紧密互连的原子笔记的系统——实现动态、自组织记忆 对于LLM智能体。</p><p class="content-block paragraph">关键设计原则。</p><p class="content-block paragraph">• 结构化笔记。每个内存条目不是原始文本块，而是包含多个的注释 结构化属性：上下文描述、关键字、标签以及相关的显式链接 笔记。与单独嵌入相似性相比，此元数据可以实现更丰富的检索。</p><p class="content-block paragraph">• 动态链接。当添加新内存时，系统会分析现有内存以 识别语义上有意义的连接并建立双向链接。结果是 知识网络而不是平面列表。</p><p class="content-block paragraph">• 记忆进化。至关重要的是，添加新注释可以触发对现有注释的更新 - 随着智能体理解的加深，完善其上下文表征和属性。 这使得记忆成为一种随着时间的推移而改进的活的结构，而不是静态的档案。</p><p class="content-block paragraph">• 智能体驱动的组织。与固定模式内存系统不同，A-MEM 让 LLM 自身决定如何组织、链接和更新记忆——形成组织结构 适应任务域。</p><p class="content-block paragraph">结果。 在多会话推理任务的六种基础模型中，A-MEM 始终如一 优于平面向量存储、基于摘要的内存和图形数据库方法， 指出记忆的组织方式与存储的内容同样重要。</p><p class="content-block paragraph">总结</p><p class="content-block paragraph">智能体记忆系统是有能力的人工智能智能体的基本组成部分，解决了基本问题 有限上下文窗口的心理限制。我们调查过：</p><p class="content-block paragraph">• 反映认知科学的四向分类法（工作、情景、语义、程序） 并反映了不同的工程要求。</p><p class="content-block paragraph">• 五个架构系列：基于 RAG、基于摘要、基于图形、键值 网络和分层虚拟上下文（MemGPT）。</p><p class="content-block paragraph">• 四个核心操作：写入（具有重要性评分和矛盾检测）、读取 /retrieve（具有时间衰减和查询扩展），更新（具有冲突解决和 整合），并反思（元认知洞察生成）。</p><p class="content-block paragraph">• 多轮和多智能体扩展：用户建模、会话连续性、共享内存 池和黑板架构。</p><p class="content-block paragraph">• 记忆系统的强化学习训练：记忆操作的奖励信号，学习该做什么 记住，以及记忆增强策略优化。</p><p class="content-block paragraph">该领域正在迅速发展。主要的开放挑战包括：(1) 内存接地——确保 检索到的记忆被忠实地融入，而不是被忽视或产生幻觉； (2)可扩展性 一致性——在大型多智能体系统中维护一致的共享内存； (3) 隐私- 保留内存——在不损害用户数据的情况下实现个性化。作为上下文窗口 随着增长，上下文记忆和外部记忆之间的界限将会发生变化，但基本需求 选择性的、结构化的、可检索的信息存储将继续存在。</p></div></section></div>
           <nav class="chapter-pager"><a class="pager-link" href="chapter-17.html">← 检索增强生成（RAG）</a><a class="pager-link next" href="chapter-19.html">智能体执行框架：上下文管理与编排 →</a></nav>
         </article>
-        
-    </section>
-  </main>
+        </section><aside class="right-outline"><div class="nav-section-title">本页结构</div><a class="outline-link" href="#chapter-18-s01">动机：为什么智能体需要记忆</a><a class="outline-link" href="#chapter-18-s02">记忆类型分类</a><a class="outline-link" href="#chapter-18-s03">记忆架构</a><a class="outline-link" href="#chapter-18-s04">记忆操作</a><a class="outline-link" href="#chapter-18-s05">多轮对话记忆</a><a class="outline-link" href="#chapter-18-s06">多智能体系统记忆</a><a class="outline-link" href="#chapter-18-s07">用强化学习训练记忆系统</a><a class="outline-link" href="#chapter-18-s08">记忆方法比较</a><a class="outline-link" href="#chapter-18-s09">记忆系统评估</a><a class="outline-link" href="#chapter-18-s10">实现模式</a><a class="outline-link" href="#chapter-18-s11">智能体记忆的最新进展</a><a class="outline-link" href="#chapter-18-s12">小结</a></aside></main>
   <button class="back-top" id="back-top" type="button">↑</button>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/toc.js"></script>
   <script src="../assets/js/progress.js"></script>
-  
 </body>
 </html>

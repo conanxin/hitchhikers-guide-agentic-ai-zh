@@ -4,360 +4,71 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>速查表 | 智能体式 AI 漫游指南</title>
-  <meta name="description" content="公式、超参数、协议、故障模式和方法选择的快速索引。" />
+  <meta name="description" content="本章整理该主题的关键概念、方法、系统实践和工程注意事项。" />
   <meta property="og:title" content="速查表 | 智能体式 AI 漫游指南" />
-  <meta property="og:description" content="公式、超参数、协议、故障模式和方法选择的快速索引。" />
+  <meta property="og:description" content="本章整理该主题的关键概念、方法、系统实践和工程注意事项。" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="canonical" href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/" />
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/article.css" />
   <link rel="stylesheet" href="../assets/css/responsive.css" />
-  
 </head>
 <body class="article-page">
   <div class="reading-progress" id="reading-progress"></div>
   <header class="topbar">
-    <a class="brand" href="../index.html" aria-label="智能体式 AI 漫游指南">
-      <span class="brand-mark">AI</span>
-      <span><strong>智能体式 AI 漫游指南</strong><small>从基础到系统的中文技术文档站</small></span>
-    </a>
-    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a>
-<a class="active" href="../chapters/index.html">章节</a>
-<a class="" href="../glossary.html">术语表</a>
-<a class="" href="../references.html">参考文献</a>
-<a class="" href="../search.html">搜索</a>
-<a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
+    <a class="brand" href="../index.html"><span class="brand-mark">AST</span><span><strong>智能体式 AI 漫游指南</strong><small>结构化知识文档系统</small></span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="打开导航" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a><a class="active" href="../chapters/index.html">章节</a><a class="" href="../glossary.html">术语表</a><a class="" href="../references.html">参考文献</a><a class="" href="../search.html">搜索</a><a class="" href="https://arxiv.org/pdf/2606.24937v1" target="_blank" rel="noopener">原 PDF</a></nav>
   </header>
-  <main class="layout">
-    
-        <aside class="left-nav" id="left-nav">
-          <div class="nav-section-title">章节</div>
-          <a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a>
-<a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a>
-<a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a>
-<a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a>
-<a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a>
-<a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a>
-<a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a>
-<a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a>
-<a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a>
-<a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a>
-<a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a>
-<a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a>
-<a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a>
-<a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a>
-<a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a>
-<a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a>
-<a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a>
-<a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a>
-<a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a>
-<a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a>
-<a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a>
-<a class="chapter-link active" href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a>
-<a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a>
-        </aside>
-        <aside class="right-outline" id="right-outline">
-          <div class="nav-section-title">本页大纲</div>
-          <a class="outline-link level-h2" href="#chapter-29-p565-1">Core RL &amp; Alignment Equations</a>
-<a class="outline-link level-h2" href="#chapter-29-p565-2">Transformer &amp; Architecture Formulas</a>
-<a class="outline-link level-h2" href="#chapter-29-p566-3">Decoding Methods</a>
-<a class="outline-link level-h2" href="#chapter-29-p566-4">Systems &amp; Parallelism</a>
-<a class="outline-link level-h2" href="#chapter-29-p566-5">GPU Hardware Specs</a>
-<a class="outline-link level-h2" href="#chapter-29-p567-6">Hyperparameter Ranges</a>
-<a class="outline-link level-h2" href="#chapter-29-p567-7">TRL API Quick Reference</a>
-<a class="outline-link level-h2" href="#chapter-29-p567-8">RAG Pipeline Formulas</a>
-<a class="outline-link level-h2" href="#chapter-29-p568-9">Agentic Design Patterns</a>
-<a class="outline-link level-h2" href="#chapter-29-p568-10">Agent Communication Protocols</a>
-<a class="outline-link level-h2" href="#chapter-29-p568-11">Context Window Budget</a>
-<a class="outline-link level-h2" href="#chapter-29-p568-12">Common Failure Modes &amp; Fixes</a>
-<a class="outline-link level-h2" href="#chapter-29-p569-13">Method Selection Decision Tree</a>
-<a class="outline-link level-h2" href="#chapter-29-p569-14">Evaluation Metrics</a>
-<a class="outline-link level-h2" href="#chapter-29-p569-15">Reasoning &amp; Test-Time Scaling</a>
-<a class="outline-link level-h2" href="#chapter-29-p570-16">Memory System Types</a>
-<a class="outline-link level-h2" href="#chapter-29-p570-17">MCP Quick Reference</a>
-<a class="outline-link level-h2" href="#chapter-29-p570-18">A2A Protocol Quick Reference</a>
-        </aside>
-        
-    <section class="content-shell">
-      
-        <article class="article-card">
+  <main class="layout"><aside class="left-nav" id="left-nav"><div class="nav-section-title">语义目录</div><div class="nav-cluster"><strong>导读</strong><a class="chapter-link " href="../chapters/chapter-01.html"><span class="chapter-num">01</span><span>导读与前置说明</span></a><a class="chapter-link " href="../chapters/chapter-09.html"><span class="chapter-num">09</span><span>偏好优化变体</span></a></div><div class="nav-cluster"><strong>LLM 基础与系统</strong><a class="chapter-link " href="../chapters/chapter-02.html"><span class="chapter-num">02</span><span>LLM 架构和优化方法</span></a><a class="chapter-link " href="../chapters/chapter-03.html"><span class="chapter-num">03</span><span>LLM 的系统基础</span></a><a class="chapter-link " href="../chapters/chapter-12.html"><span class="chapter-num">12</span><span>大规模系统架构与基础设施</span></a></div><div class="nav-cluster"><strong>训练、强化学习与对齐</strong><a class="chapter-link " href="../chapters/chapter-04.html"><span class="chapter-num">04</span><span>强化学习简介</span></a><a class="chapter-link " href="../chapters/chapter-05.html"><span class="chapter-num">05</span><span>语言模型的强化学习基础</span></a><a class="chapter-link " href="../chapters/chapter-06.html"><span class="chapter-num">06</span><span>PPO：近端策略优化</span></a><a class="chapter-link " href="../chapters/chapter-07.html"><span class="chapter-num">07</span><span>DPO：直接偏好优化</span></a><a class="chapter-link " href="../chapters/chapter-08.html"><span class="chapter-num">08</span><span>GRPO：组相对策略优化</span></a><a class="chapter-link " href="../chapters/chapter-10.html"><span class="chapter-num">10</span><span>奖励模型训练</span></a><a class="chapter-link " href="../chapters/chapter-11.html"><span class="chapter-num">11</span><span>SFT 最佳实践与技术</span></a><a class="chapter-link " href="../chapters/chapter-14.html"><span class="chapter-num">14</span><span>大型推理模型的强化学习</span></a></div><div class="nav-cluster"><strong>Agentic AI 系统</strong><a class="chapter-link " href="../chapters/chapter-13.html"><span class="chapter-num">13</span><span>LLM 智能体训练</span></a><a class="chapter-link " href="../chapters/chapter-16.html"><span class="chapter-num">16</span><span>智能体式 AI 简介</span></a><a class="chapter-link " href="../chapters/chapter-17.html"><span class="chapter-num">17</span><span>检索增强生成（RAG）</span></a><a class="chapter-link " href="../chapters/chapter-18.html"><span class="chapter-num">18</span><span>智能体记忆系统</span></a><a class="chapter-link " href="../chapters/chapter-19.html"><span class="chapter-num">19</span><span>智能体执行框架：上下文管理与编排</span></a><a class="chapter-link " href="../chapters/chapter-20.html"><span class="chapter-num">20</span><span>智能体设计模式</span></a><a class="chapter-link " href="../chapters/chapter-21.html"><span class="chapter-num">21</span><span>智能体环境与基准</span></a><a class="chapter-link " href="../chapters/chapter-22.html"><span class="chapter-num">22</span><span>模型上下文协议（MCP）</span></a><a class="chapter-link " href="../chapters/chapter-23.html"><span class="chapter-num">23</span><span>智能体技能</span></a><a class="chapter-link " href="../chapters/chapter-24.html"><span class="chapter-num">24</span><span>智能体间通信（A2A）</span></a><a class="chapter-link " href="../chapters/chapter-25.html"><span class="chapter-num">25</span><span>多智能体系统</span></a><a class="chapter-link " href="../chapters/chapter-26.html"><span class="chapter-num">26</span><span>智能体开发框架</span></a><a class="chapter-link " href="../chapters/chapter-27.html"><span class="chapter-num">27</span><span>智能体式 UI 框架</span></a></div><div class="nav-cluster"><strong>推理与评估</strong><a class="chapter-link " href="../chapters/chapter-15.html"><span class="chapter-num">15</span><span>LLM 评估</span></a></div><div class="nav-cluster"><strong>参考与总结</strong><a class="chapter-link " href="../chapters/chapter-28.html"><span class="chapter-num">28</span><span>测验题与详解</span></a><a class="chapter-link active" href="../chapters/chapter-29.html"><span class="chapter-num">29</span><span>速查表</span></a><a class="chapter-link " href="../chapters/chapter-30.html"><span class="chapter-num">30</span><span>结论与未来方向</span></a></div></aside><section class="content-shell">
+        <article class="article-card" data-ast-source="../assets/data/clean_chapter_tree.json">
           <header class="article-header">
-            <p class="part-label">第六部分：测验与参考</p>
+            <p class="part-label">参考与总结</p>
             <h1>速查表</h1>
-            <p>公式、超参数、协议、故障模式和方法选择的快速索引。</p>
-            <div class="article-meta"><span>原 PDF p.565-572</span><span>18 个页内条目</span></div>
+            <p>本章整理该主题的关键概念、方法、系统实践和工程注意事项。</p>
           </header>
-          <div class="article-body"><h2 id="chapter-29-p565-1">Core RL &amp; Alignment Equations</h2>
-<h2 id="chapter-29-p565-2">Transformer &amp; Architecture Formulas</h2>
-<p><span class="page-ref" id="pdf-p565">原 PDF p.565</span></p>
-<p>快速参考</p>
-<p>本章整合了关键方程、架构规范、API 参考和故障模式
-用于在开发和调试期间快速查找的诊断。</p>
-<p>核心强化学习和对齐方程</p>
-<pre><code class="language-math">PPO Clip:
-L = E[min(rt ˆAt, clip(rt, 1±ϵ) ˆAt)],
-rt = πθ(at|st)/πold(at|st)
-(28.1)
-</code></pre>
-<pre><code class="language-math">DPO:
-L = −E[log σ(β log πθ(yw|x)
-</code></pre>
-<pre><code class="language-math">πref(yw|x) −β log πθ(yl|x)
-</code></pre>
-<p>πref(yl|x))]
-(28.2)</p>
-<p>集团采购办公室：
-^Ai = (ri −μG)/σG,
-然后PPO剪辑更新（没有评论家）
-(28.3)</p>
-<pre><code class="language-text">KTO:
+          <aside class="component key-concepts-panel"><span class="component-label">Key Concepts</span><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>自注意力</strong><span>Self-Attention</span><p>序列内部各位置之间相互关注的注意力机制。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></div></aside>
+          <div class="article-body"><section class="ast-section" id="chapter-29-s01"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>核心 RL 与对齐公式</h2><p>本节聚焦“核心 RL 与对齐公式”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>自注意力</strong><span>Self-Attention</span><p>序列内部各位置之间相互关注的注意力机制。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">快速参考</p><p class="content-block paragraph">本章整合了关键方程、架构规范、API 参考和故障模式 用于在开发和调试期间快速查找的诊断。</p><p class="content-block paragraph">核心强化学习和对齐方程</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>PPO Clip: L = E[min(rt ˆAt, clip(rt, 1±ϵ) ˆAt)], rt = πθ(at|st)/πold(at|st) (28.1)</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>DPO: L = −E[log σ(β log πθ(yw|x)</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>πref(yw|x) −β log πθ(yl|x)</code></pre></div><p class="content-block paragraph">πref(yl|x))] (28.2)</p><p class="content-block paragraph">集团采购办公室：</p><div class="component code-component"><div class="block-label">text</div><pre><code>^Ai = (ri −μG)/σG,</code></pre></div><p class="content-block paragraph">然后PPO剪辑更新（没有评论家） (28.3)</p><div class="component code-component"><div class="block-label">text</div><pre><code>KTO:
 L = λw(1 −v(yw)) + λl · v(yl),
 v = σ(β log(πθ/πref) −z)
-(28.4)
-</code></pre>
-<pre><code class="language-text">IPO:
+(28.4)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>IPO:
 L = E[(log(πθ(yw)/πref(yw)) −log(πθ(yl)/πref(yl)) −1/(2β))2]
-(28.5)
-</code></pre>
-<p>奥尔波：
-L = LSFT(yw) −λ log σ(log(赔率(yw)/赔率(yl)))
-(28.6)</p>
-<pre><code class="language-text">GAE:
+(28.5)</code></pre></div><p class="content-block paragraph">奥尔波：</p><div class="component code-component"><div class="block-label">text</div><pre><code>L = LSFT(yw) −λ log σ(log(赔率(yw)/赔率(yl)))</code></pre></div><p class="content-block paragraph">(28.6)</p><div class="component code-component"><div class="block-label">text</div><pre><code>GAE:
 ˆAt = PT−t
 l=0 (γλ)lδt+l,
 δt = rt + γV (st+1) −V (st)
-(28.7)
-</code></pre>
-<pre><code class="language-text">KL Penalty:
+(28.7)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>KL Penalty:
 Rtotal = rϕ(x, y) −βDKL[πθ(y|x)∥πref(y|x)]
-(28.8)
-</code></pre>
-<p>RM（布拉德利-特里）：
-L = −E[log σ(rψ(x, yw) −rψ(x, yl))]
-(28.9)</p>
-<pre><code class="language-math">Best-of-N:
-y∗= arg
-max
-yi∼πθ(·|x), i=1..N rϕ(x, yi)
-(28.10)
-</code></pre>
-<p>Transformer和架构公式</p>
-<p>自注意力：
-Attn(Q, K, V ) = softmax(QK⊤/
-p</p>
-<p>dk)·V
-(28.11)</p>
-<pre><code class="language-math">Multi-Head:
-MHA(X) = Concat(head1, . . . , headh)W O,
-headi = Attn(XW Q
-i , XW K
-i , XW V
-i )
-(28.12)
-</code></pre>
-<p>绳索：
-f(xm, m) = xmeimθj,
-θj = 10000−2j/d
-(28.13)</p>
-<pre><code class="language-math">LoRA:
-W ′ = W0 + (α/r) · BA,
-B ∈Rd×r, A ∈Rr×k
-(28.14)
-</code></pre>
-<pre><code class="language-math">KD (soft targets):
-LKD = (1−α)LCE(y, ˆy) + α T 2 · KL(pteacher
-T
-∥pstudent
-T
-)
-(28.15)
-</code></pre>
-<p>FFN（SwiGLU）：
-FFN(x) = (Swish(xW1) ⊙xW3)W2
-(28.16)</p>
-<h2 id="chapter-29-p566-3">Decoding Methods</h2>
-<h2 id="chapter-29-p566-4">Systems &amp; Parallelism</h2>
-<h2 id="chapter-29-p566-5">GPU Hardware Specs</h2>
-<p><span class="page-ref" id="pdf-p566">原 PDF p.566</span></p>
-<p>解码方法</p>
-<p>方法
-公式/规则
-关键参数</p>
-<p>贪婪
-yt = arg maxv P(v|y&lt;t)
-—
-集束搜索
-保留top-B部分序列
-通过联合概率
-B = 4–8</p>
-<p>温度
-P ′(v) = softmax(logitv/T)
-T ∈[0.1, 1.5]
-前k
-将除 top-k 之外的所有 logits 归零，
-重新规范化
-k = 40–100</p>
-<p>Top-p（核）
-保留
-最小的
-设置
-V′</p>
-<pre><code class="language-text">s.t. P
+(28.8)</code></pre></div><p class="content-block paragraph">RM（布拉德利-特里）：</p><div class="component code-component"><div class="block-label">text</div><pre><code>L = −E[log σ(rψ(x, yw) −rψ(x, yl))]</code></pre></div><p class="content-block paragraph">(28.9)</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Best-of-N: y∗= arg max yi∼πθ(·|x), i=1..N rϕ(x, yi) (28.10)</code></pre></div><p class="content-block paragraph">Transformer和架构公式</p><p class="content-block paragraph">自注意力： Attn(Q, K, V ) = softmax(QK⊤/ p</p><p class="content-block paragraph">dk)·V (28.11)</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Multi-Head: MHA(X) = Concat(head1, . . . , headh)W O, headi = Attn(XW Q i , XW K i , XW V i ) (28.12)</code></pre></div><p class="content-block paragraph">绳索： f(xm, m) = xmeimθj, θj = 10000−2j/d (28.13)</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>LoRA: W ′ = W0 + (α/r) · BA, B ∈Rd×r, A ∈Rr×k (28.14)</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>KD (soft targets): LKD = (1−α)LCE(y, ˆy) + α T 2 · KL(pteacher T ∥pstudent T ) (28.15)</code></pre></div><p class="content-block paragraph">FFN（SwiGLU）： FFN(x) = (Swish(xW1) ⊙xW3)W2 (28.16)</p></div></section><section class="ast-section" id="chapter-29-s02"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>Transformer 与架构公式</h2><p>本节聚焦“Transformer 与架构公式”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>自注意力</strong><span>Self-Attention</span><p>序列内部各位置之间相互关注的注意力机制。</p></div><div class="concept-chip"><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">快速参考</p><p class="content-block paragraph">本章整合了关键方程、架构规范、API 参考和故障模式 用于在开发和调试期间快速查找的诊断。</p><p class="content-block paragraph">核心强化学习和对齐方程</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>PPO Clip: L = E[min(rt ˆAt, clip(rt, 1±ϵ) ˆAt)], rt = πθ(at|st)/πold(at|st) (28.1)</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>DPO: L = −E[log σ(β log πθ(yw|x)</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>πref(yw|x) −β log πθ(yl|x)</code></pre></div><p class="content-block paragraph">πref(yl|x))] (28.2)</p><p class="content-block paragraph">集团采购办公室：</p><div class="component code-component"><div class="block-label">text</div><pre><code>^Ai = (ri −μG)/σG,</code></pre></div><p class="content-block paragraph">然后PPO剪辑更新（没有评论家） (28.3)</p><div class="component code-component"><div class="block-label">text</div><pre><code>KTO:
+L = λw(1 −v(yw)) + λl · v(yl),
+v = σ(β log(πθ/πref) −z)
+(28.4)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>IPO:
+L = E[(log(πθ(yw)/πref(yw)) −log(πθ(yl)/πref(yl)) −1/(2β))2]
+(28.5)</code></pre></div><p class="content-block paragraph">奥尔波：</p><div class="component code-component"><div class="block-label">text</div><pre><code>L = LSFT(yw) −λ log σ(log(赔率(yw)/赔率(yl)))</code></pre></div><p class="content-block paragraph">(28.6)</p><div class="component code-component"><div class="block-label">text</div><pre><code>GAE:
+ˆAt = PT−t
+l=0 (γλ)lδt+l,
+δt = rt + γV (st+1) −V (st)
+(28.7)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>KL Penalty:
+Rtotal = rϕ(x, y) −βDKL[πθ(y|x)∥πref(y|x)]
+(28.8)</code></pre></div><p class="content-block paragraph">RM（布拉德利-特里）：</p><div class="component code-component"><div class="block-label">text</div><pre><code>L = −E[log σ(rψ(x, yw) −rψ(x, yl))]</code></pre></div><p class="content-block paragraph">(28.9)</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Best-of-N: y∗= arg max yi∼πθ(·|x), i=1..N rϕ(x, yi) (28.10)</code></pre></div><p class="content-block paragraph">Transformer和架构公式</p><p class="content-block paragraph">自注意力： Attn(Q, K, V ) = softmax(QK⊤/ p</p><p class="content-block paragraph">dk)·V (28.11)</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Multi-Head: MHA(X) = Concat(head1, . . . , headh)W O, headi = Attn(XW Q i , XW K i , XW V i ) (28.12)</code></pre></div><p class="content-block paragraph">绳索： f(xm, m) = xmeimθj, θj = 10000−2j/d (28.13)</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>LoRA: W ′ = W0 + (α/r) · BA, B ∈Rd×r, A ∈Rr×k (28.14)</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>KD (soft targets): LKD = (1−α)LCE(y, ˆy) + α T 2 · KL(pteacher T ∥pstudent T ) (28.15)</code></pre></div><p class="content-block paragraph">FFN（SwiGLU）： FFN(x) = (Swish(xW1) ⊙xW3)W2 (28.16)</p></div></section><section class="ast-section" id="chapter-29-s03"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>解码方法</h2><p>本节聚焦“解码方法”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">方法 公式/规则 关键参数</p><p class="content-block paragraph">贪婪</p><div class="component code-component"><div class="block-label">text</div><pre><code>yt = arg maxv P(v|y&lt;t)</code></pre></div><p class="content-block paragraph">— 集束搜索 保留top-B部分序列 通过联合概率</p><div class="component code-component"><div class="block-label">text</div><pre><code>B = 4–8</code></pre></div><p class="content-block paragraph">温度 P ′(v) = softmax(logitv/T) T ∈[0.1, 1.5] 前k 将除 top-k 之外的所有 logits 归零， 重新规范化</p><div class="component code-component"><div class="block-label">text</div><pre><code>k = 40–100</code></pre></div><p class="content-block paragraph">Top-p（核） 保留 最小的 设置 V′</p><div class="component code-component"><div class="block-label">text</div><pre><code>s.t. P
 v∈V ′ P(v) ≥p
-p = 0.9–0.95
-</code></pre>
-<pre><code class="language-text">Min-p
+p = 0.9–0.95</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>Min-p
 Keep tokens with P(v)
 ≥
 pmin · P(vmax)
-pmin = 0.05–0.1
-</code></pre>
-<pre><code class="language-math">Repetition penalty
-logitv
-←
-logitv/θ if v ap-
-peared before
-θ = 1.1–1.3
-</code></pre>
-<p>系统与并行性</p>
-<p>公式
-值（70B、BF16）
-描述</p>
-<p>型号记忆
-2P字节
-140 GB（仅重量）
-亚当优化器
-2P × 4 字节（m + v）
-280GB
-完整的训练足迹
-～8P字节
-560 GB（权重+选项+等级）
-FSDP内存/GPU
-8P/NGPU
-70 GB，带 8 个 GPU
-生成算术强度
-2P/2P = 1 FLOP/字节
-严重受记忆束缚
-token率（生成）
-HBM_BW /(2P)
-∼14 tok/s（A100，批次=1）
-TP AllReduce /层
-2 × 2 · T−1</p>
-<p>时间
-· bsd 字节
-∼188 MB (70B, TP=8)
-PP气泡分数
-(P−1)/(P+M−1)
-P=阶段，M=微批次
-微量元素单位
-观察到的toks
-×
-6P
-/
-峰值FLOPS
-目标：&gt; 40%</p>
-<p>GPU 硬件规格</p>
-<p>图形处理器
-内存
-体重 (HBM)
-BF16 万亿次浮点运算
-NVLink
-注释</p>
-<p>A100-80GB
-80 GB HBM2e
-2.0TB/秒
-600GB/秒
-主力，广泛使用
-H100-80GB
-80GB HBM3
-3.35TB/秒
-900GB/秒
-当前一代，FP8 支持
-H200-141GB
-141 GB HBM3e
-4.8TB/秒
-900GB/秒
-大上下文/更少 GPU
-B200
-192 GB HBM3e
-8.0TB/秒
-1800GB/秒
-下一代（2025）</p>
-<h2 id="chapter-29-p567-6">Hyperparameter Ranges</h2>
-<h2 id="chapter-29-p567-7">TRL API Quick Reference</h2>
-<h2 id="chapter-29-p567-8">RAG Pipeline Formulas</h2>
-<p><span class="page-ref" id="pdf-p567">原 PDF p.567</span></p>
-<p>超参数范围</p>
-<p>参数
-典型范围
-默认
-注释</p>
-<p>β (DPO/KTO)
-0.05–0.5
-更高=更保守
-ϵ（PPO 剪辑）
-0.1–0.3
-更高=更积极的更新
-γ（GAE 折扣）
-0.99–1.0
-使用 1.0 执行情景任务
-λ (GAE)
-0.9–0.99
-越低=偏差越大，方差越小
-KL 系数 (βKL)
-0.01–0.2
-自动适应目标 KL ≈5–8
-LR (RLHF)
-1e-7 – 5e-6
-5e-7
-远低于训练前
-LR (SFT)
-1e-5 – 5e-5
-2e-5
-标准微调范围
-LoRA等级r
-8–128
-16–64
-r 越高 = 容量越大，
-记忆
-LoRA α α
-r – 2r
-2r
-比例因子； α/r 为有效
-规模
-温度（发生）
-0.6–1.0
-较低 = 候选人多样性较低
-代数 K
-4–64
-4–16
-对于 GRPO/在线 DPO/Best-of-N
-毕业剪辑规范
-0.5–2.0
-防止梯度爆炸</p>
-<p>TRL API 快速参考</p>
-<p>训练师
-方法
-关键配置
-数据格式</p>
-<p>SFT训练器
-监督金融时报
-包装，
-最大序列长度
-提示+完成</p>
-<p>提示（在线生成）</p>
-<pre><code class="language-text">RewardTrainer
+pmin = 0.05–0.1</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Repetition penalty logitv ← logitv/θ if v ap- peared before θ = 1.1–1.3</code></pre></div><p class="content-block paragraph">系统与并行性</p><p class="content-block paragraph">公式 值（70B、BF16） 描述</p><p class="content-block paragraph">型号记忆 2P字节 140 GB（仅重量） 亚当优化器 2P × 4 字节（m + v） 280GB 完整的训练足迹 ～8P字节 560 GB（权重+选项+等级） FSDP内存/GPU 8P/NGPU 70 GB，带 8 个 GPU 生成算术强度 2P/2P = 1 FLOP/字节 严重受记忆束缚 token率（生成） HBM_BW /(2P) ∼14 tok/s（A100，批次=1） TP AllReduce /层 2 × 2 · T−1</p><p class="content-block paragraph">时间 · bsd 字节</p><div class="component code-component"><div class="block-label">text</div><pre><code>∼188 MB (70B, TP=8)</code></pre></div><p class="content-block paragraph">PP气泡分数 (P−1)/(P+M−1)</p><div class="component code-component"><div class="block-label">text</div><pre><code>P=阶段，M=微批次</code></pre></div><p class="content-block paragraph">微量元素单位 观察到的toks × 6P / 峰值FLOPS 目标：&gt; 40%</p><p class="content-block paragraph">图形处理器 内存 体重 (HBM) BF16 万亿次浮点运算 NVLink 注释</p><p class="content-block paragraph">A100-80GB 80 GB HBM2e 2.0TB/秒</p><p class="content-block paragraph">600GB/秒 主力，广泛使用 H100-80GB 80GB HBM3 3.35TB/秒</p><p class="content-block paragraph">900GB/秒 当前一代，FP8 支持 H200-141GB 141 GB HBM3e 4.8TB/秒</p><p class="content-block paragraph">900GB/秒 大上下文/更少 GPU B200 192 GB HBM3e 8.0TB/秒</p><p class="content-block paragraph">1800GB/秒 下一代（2025）</p></div></section><section class="ast-section" id="chapter-29-s04"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>系统与并行</h2><p>本节聚焦“系统与并行”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">方法 公式/规则 关键参数</p><p class="content-block paragraph">贪婪</p><div class="component code-component"><div class="block-label">text</div><pre><code>yt = arg maxv P(v|y&lt;t)</code></pre></div><p class="content-block paragraph">— 集束搜索 保留top-B部分序列 通过联合概率</p><div class="component code-component"><div class="block-label">text</div><pre><code>B = 4–8</code></pre></div><p class="content-block paragraph">温度 P ′(v) = softmax(logitv/T) T ∈[0.1, 1.5] 前k 将除 top-k 之外的所有 logits 归零， 重新规范化</p><div class="component code-component"><div class="block-label">text</div><pre><code>k = 40–100</code></pre></div><p class="content-block paragraph">Top-p（核） 保留 最小的 设置 V′</p><div class="component code-component"><div class="block-label">text</div><pre><code>s.t. P
+v∈V ′ P(v) ≥p
+p = 0.9–0.95</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>Min-p
+Keep tokens with P(v)
+≥
+pmin · P(vmax)
+pmin = 0.05–0.1</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Repetition penalty logitv ← logitv/θ if v ap- peared before θ = 1.1–1.3</code></pre></div><p class="content-block paragraph">系统与并行性</p><p class="content-block paragraph">公式 值（70B、BF16） 描述</p><p class="content-block paragraph">型号记忆 2P字节 140 GB（仅重量） 亚当优化器 2P × 4 字节（m + v） 280GB 完整的训练足迹 ～8P字节 560 GB（权重+选项+等级） FSDP内存/GPU 8P/NGPU 70 GB，带 8 个 GPU 生成算术强度 2P/2P = 1 FLOP/字节 严重受记忆束缚 token率（生成） HBM_BW /(2P) ∼14 tok/s（A100，批次=1） TP AllReduce /层 2 × 2 · T−1</p><p class="content-block paragraph">时间 · bsd 字节</p><div class="component code-component"><div class="block-label">text</div><pre><code>∼188 MB (70B, TP=8)</code></pre></div><p class="content-block paragraph">PP气泡分数 (P−1)/(P+M−1)</p><div class="component code-component"><div class="block-label">text</div><pre><code>P=阶段，M=微批次</code></pre></div><p class="content-block paragraph">微量元素单位 观察到的toks × 6P / 峰值FLOPS 目标：&gt; 40%</p><p class="content-block paragraph">图形处理器 内存 体重 (HBM) BF16 万亿次浮点运算 NVLink 注释</p><p class="content-block paragraph">A100-80GB 80 GB HBM2e 2.0TB/秒</p><p class="content-block paragraph">600GB/秒 主力，广泛使用 H100-80GB 80GB HBM3 3.35TB/秒</p><p class="content-block paragraph">900GB/秒 当前一代，FP8 支持 H200-141GB 141 GB HBM3e 4.8TB/秒</p><p class="content-block paragraph">900GB/秒 大上下文/更少 GPU B200 192 GB HBM3e 8.0TB/秒</p><p class="content-block paragraph">1800GB/秒 下一代（2025）</p></div></section><section class="ast-section" id="chapter-29-s05"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>GPU 硬件规格</h2><p>本节聚焦“GPU 硬件规格”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">方法 公式/规则 关键参数</p><p class="content-block paragraph">贪婪</p><div class="component code-component"><div class="block-label">text</div><pre><code>yt = arg maxv P(v|y&lt;t)</code></pre></div><p class="content-block paragraph">— 集束搜索 保留top-B部分序列 通过联合概率</p><div class="component code-component"><div class="block-label">text</div><pre><code>B = 4–8</code></pre></div><p class="content-block paragraph">温度 P ′(v) = softmax(logitv/T) T ∈[0.1, 1.5] 前k 将除 top-k 之外的所有 logits 归零， 重新规范化</p><div class="component code-component"><div class="block-label">text</div><pre><code>k = 40–100</code></pre></div><p class="content-block paragraph">Top-p（核） 保留 最小的 设置 V′</p><div class="component code-component"><div class="block-label">text</div><pre><code>s.t. P
+v∈V ′ P(v) ≥p
+p = 0.9–0.95</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>Min-p
+Keep tokens with P(v)
+≥
+pmin · P(vmax)
+pmin = 0.05–0.1</code></pre></div><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Repetition penalty logitv ← logitv/θ if v ap- peared before θ = 1.1–1.3</code></pre></div><p class="content-block paragraph">系统与并行性</p><p class="content-block paragraph">公式 值（70B、BF16） 描述</p><p class="content-block paragraph">型号记忆 2P字节 140 GB（仅重量） 亚当优化器 2P × 4 字节（m + v） 280GB 完整的训练足迹 ～8P字节 560 GB（权重+选项+等级） FSDP内存/GPU 8P/NGPU 70 GB，带 8 个 GPU 生成算术强度 2P/2P = 1 FLOP/字节 严重受记忆束缚 token率（生成） HBM_BW /(2P) ∼14 tok/s（A100，批次=1） TP AllReduce /层 2 × 2 · T−1</p><p class="content-block paragraph">时间 · bsd 字节</p><div class="component code-component"><div class="block-label">text</div><pre><code>∼188 MB (70B, TP=8)</code></pre></div><p class="content-block paragraph">PP气泡分数 (P−1)/(P+M−1)</p><div class="component code-component"><div class="block-label">text</div><pre><code>P=阶段，M=微批次</code></pre></div><p class="content-block paragraph">微量元素单位 观察到的toks × 6P / 峰值FLOPS 目标：&gt; 40%</p><p class="content-block paragraph">图形处理器 内存 体重 (HBM) BF16 万亿次浮点运算 NVLink 注释</p><p class="content-block paragraph">A100-80GB 80 GB HBM2e 2.0TB/秒</p><p class="content-block paragraph">600GB/秒 主力，广泛使用 H100-80GB 80GB HBM3 3.35TB/秒</p><p class="content-block paragraph">900GB/秒 当前一代，FP8 支持 H200-141GB 141 GB HBM3e 4.8TB/秒</p><p class="content-block paragraph">900GB/秒 大上下文/更少 GPU B200 192 GB HBM3e 8.0TB/秒</p><p class="content-block paragraph">1800GB/秒 下一代（2025）</p></div></section><section class="ast-section" id="chapter-29-s06"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>超参数范围</h2><p>本节聚焦“超参数范围”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div><div class="concept-chip"><strong>组相对策略优化（GRPO）</strong><span>GRPO</span><p>基于同一提示多条响应的组内相对优势进行优化的方法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">参数 典型范围 默认 注释</p><p class="content-block paragraph">β (DPO/KTO) 0.05–0.5</p><p class="content-block paragraph">更高=更保守 ϵ（PPO 剪辑） 0.1–0.3</p><p class="content-block paragraph">更高=更积极的更新 γ（GAE 折扣） 0.99–1.0</p><p class="content-block paragraph">使用 1.0 执行情景任务 λ (GAE) 0.9–0.99</p><p class="content-block paragraph">越低=偏差越大，方差越小 KL 系数 (βKL) 0.01–0.2</p><p class="content-block paragraph">自动适应目标 KL ≈5–8 LR (RLHF) 1e-7 – 5e-6 5e-7 远低于训练前 LR (SFT) 1e-5 – 5e-5 2e-5 标准微调范围 LoRA等级r 8–128 16–64 r 越高 = 容量越大， 记忆 LoRA α α r – 2r 2r 比例因子； α/r 为有效 规模 温度（发生） 0.6–1.0</p><p class="content-block paragraph">较低 = 候选人多样性较低 代数 K 4–64 4–16 对于 GRPO/在线 DPO/Best-of-N 毕业剪辑规范 0.5–2.0</p><p class="content-block paragraph">防止梯度爆炸</p><p class="content-block paragraph">TRL API 快速参考</p><p class="content-block paragraph">训练师 方法 关键配置 数据格式</p><p class="content-block paragraph">SFT训练器 监督金融时报 包装， 最大序列长度 提示+完成</p><p class="content-block paragraph">提示（在线生成）</p><div class="component code-component"><div class="block-label">text</div><pre><code>RewardTrainer
 Reward model
 center_rewards_coefficient
 prompt + chosen + rejected
@@ -365,523 +76,71 @@ PPOTrainer
 PPO
 init_kl_coef,
 target_kl,
-cliprange
-</code></pre>
-<p>DPO训练师
-数据保护官/首次公开募股
-贝塔,
-loss_type=“sigmoid”/“ipo”
-提示+选择+拒绝</p>
-<pre><code class="language-text">GRPOTrainer
+cliprange</code></pre></div><p class="content-block paragraph">DPO训练师 数据保护官/首次公开募股 贝塔,</p><div class="component code-component"><div class="block-label">text</div><pre><code>loss_type=“sigmoid”/“ipo”</code></pre></div><p class="content-block paragraph">提示+选择+拒绝</p><div class="component code-component"><div class="block-label">text</div><pre><code>GRPOTrainer
 GRPO
 num_generations,
 beta, use_vllm
-prompts + reward_fn
-</code></pre>
-<pre><code class="language-text">OnlineDPOTrainer
+prompts + reward_fn</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>OnlineDPOTrainer
 Online DPO
 num_generations,
 reward_model_path
-prompts (online gen)
-</code></pre>
-<pre><code class="language-text">KTOTrainer
+prompts (online gen)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>KTOTrainer
 KTO
 desirable_weight,
 undesirable_weight
-prompt + completion + label
-</code></pre>
-<p>ORPO训练师
-奥尔普
-贝塔
-提示+选择+拒绝
-N 次最佳（手动）
-N 中最佳
-n_样本
-提示（推理）</p>
-<p>RAG 流水线公式</p>
-<pre><code class="language-math">Cosine similarity:
-sim(q, d) =
-q · d
-∥q∥· ∥d∥
-(28.17)
-</code></pre>
-<p>检索：
-Dk = top-kd∈C sim(嵌入(q), 嵌入(d))
-(28.18)</p>
-<pre><code class="language-text">RAG generation:
+prompt + completion + label</code></pre></div><p class="content-block paragraph">ORPO训练师 奥尔普 贝塔 提示+选择+拒绝 N 次最佳（手动） N 中最佳 n_样本 提示（推理）</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Cosine similarity: sim(q, d) = q · d ∥q∥· ∥d∥ (28.17)</code></pre></div><p class="content-block paragraph">检索：</p><div class="component code-component"><div class="block-label">text</div><pre><code>Dk = top-kd∈C sim(嵌入(q), 嵌入(d))</code></pre></div><p class="content-block paragraph">(28.18)</p><div class="component code-component"><div class="block-label">text</div><pre><code>RAG generation:
 P(y|q) = PLLM(y | q, Dk)
-(28.19)
-</code></pre>
-<p>分块重叠：
-步长 = chunk_size - 重叠
-(28.20)</p>
-<p>重新排序（跨编码）：
-分数(q, d) = MLP(BERT([q; d]))
-(28.21)</p>
-<h2 id="chapter-29-p568-9">Agentic Design Patterns</h2>
-<h2 id="chapter-29-p568-10">Agent Communication Protocols</h2>
-<h2 id="chapter-29-p568-11">Context Window Budget</h2>
-<h2 id="chapter-29-p568-12">Common Failure Modes &amp; Fixes</h2>
-<p><span class="page-ref" id="pdf-p568">原 PDF p.568</span></p>
-<p>智能体设计模式</p>
-<p>图案
-结构
-最适合</p>
-<pre><code class="language-math">ReAct
-Think →Act →Observe →
-loop
-General tool-use agents
-</code></pre>
-<p>计划与执行
-计划→执行步骤→重新
-虎钳
-长期、结构化的任务</p>
-<p>主管
-路由器→专业智能体商
-多领域、清晰的子任务边界
-群（切换）
-智能体转移控制权+控制权
-文本
-客户服务、升级流程</p>
-<p>分层的
-委托智能体树
-复杂分解
-人在回路
-智能体→审批门→
-继续
-高风险、不可逆转的行动</p>
-<p>智能体通信协议</p>
-<p>协议
-适用范围
-交通
-关键概念</p>
-<p>MCP
-工具集成
-标准输入/HTTP+SSE
-服务器公开工具；客户发现
-&amp; 来电
-A2A
-智能体对智能体
-HTTP + JSON-RPC
-任务
-与
-生命周期
-（已提交→正在处理→已完成）
-OpenAI函数调用
-工具使用
-API负载
-tools[] 数组中的 JSON 模式</p>
-<p>上下文窗口预算</p>
-<p>C≥
-S
-|{z}
-系统
-+
-中号
-|{z}
-内存/RAG
-+
-时间
-|{z}
-工具定义
-+
-H
-|{z}
-历史
-+
-右
-|{z}
-保留输出
-(28.22)</p>
-<p>128K 上下文的经验法则：</p>
-<p>• 系统提示：1–4K token（固定）</p>
-<p>• 工具定义：2–8K（使用 # 个工具进行缩放）</p>
-<p>• RAG 上下文：4–16K（top-k 块）</p>
-<p>• 历史：无限增长→总结/截断</p>
-<p>• 保留输出：2–8K</p>
-<p>常见故障模式和修复</p>
-<p>症状
-可能的原因
-修复</p>
-<p>奖励上升，质量下降
-奖励黑客行为
-RM 系综，长度惩罚，增加 β
-吉隆坡爆炸 (&gt;15)
-LR 太高或模式崩溃
-减少LR、检查点回滚
-熵崩塌
-过早收敛
-增加熵系数，提高温度
-训练损失 NaN
-梯度爆炸
-减少LR，增加grad Clip，检查数据
-5K 步后没有任何改善
-错误提示分布
-金发姑娘过滤器（20–80% 通过率）
-基准测试回归
-调整税
-减少 RL 预算、使用 LoRA、混合 SFT 数据
-长度单调增加
-RM 中的长度利用
-长度惩罚，通过长度控制重新训练 RM
-生成期间 OOM
-KV 缓存溢出
-减少batch，增加TP，PagedAttention
-智能体永远循环
-无最大迭代保护
-设置max_iterations，添加循环检测
-工具调用解析失败
-输出格式不一致
-少量样本，受限解码
-RAG 返回不相关的文档
-嵌入/分块不佳
-重新排序、混合搜索、更小的块
-多智能体死锁
-循环依赖
-DAG 执行，每个智能体超时</p>
-<h2 id="chapter-29-p569-13">Method Selection Decision Tree</h2>
-<h2 id="chapter-29-p569-14">Evaluation Metrics</h2>
-<h2 id="chapter-29-p569-15">Reasoning &amp; Test-Time Scaling</h2>
-<p><span class="page-ref" id="pdf-p569">原 PDF p.569</span></p>
-<p>方法选择决策树</p>
-<ol>
-<li>有配对偏好（选择+拒绝）吗？</li>
-</ol>
-<p>• 嘈杂的标签→IPO</p>
-<p>• 内存受限，尚未完成 SFT →ORPO</p>
-<p>• 干净的数据，有限的计算→DPO</p>
-<p>• DPO 停滞不前，需要探索→在线 DPO</p>
-<ol start="2">
-<li>
-<p>只有二元反馈（赞成/反对）？ →韩国旅游局</p>
-</li>
-<li>
-<p>有可验证的奖励（数学/代码）吗？ →GRPO</p>
-</li>
-<li>
-<p>需要最高的质量，需要任何费用吗？ →PPO</p>
-</li>
-</ol>
-<p>5.想要免训练的提升？ →N 次最佳</p>
-<p>评估指标</p>
-<p>公制
-范围
-它衡量什么</p>
-<p>困惑
-[1, 无穷大)
-模特的惊喜；更低=更好的语言模型-
-埃林
-胜率（与基线相比）
-[0, 1]
-法官/人类偏好的输出比例
-蓝线
-[0, 1]
-n-gram 与参考重叠（注重精度）
-胭脂-L
-[0, 1]
-带参考的最长公共子序列
-通过@k
-[0, 1]
-k 个代码样本通过测试的概率 ≥1
-MMLU/GPQA
-[0, 1]
-知识/推理的多项选择准确性
-基准测试
-人类评估
-[0, 1]
-生成代码的功能正确性
-忠诚（RAG）
-[0, 1]
-检索到的上下文支持的声明比例
-上下文相关性
-[0, 1]
-检索到的与查询相关的内容的比例
-答案相关性
-[0, 1]
-答案解决问题的程度</p>
-<p>推理和测试时间缩放</p>
-<p>方法
-计算成本
-机制</p>
-<p>思想链 (CoT)
-1.5–3× token
-提示中“一步步思考”
-自我一致性
-N×代
-N 个 CoT 路径样本，多数投票决定最终结果
-回答
-思想树 (ToT)
-B×D×一代
-推理树上的 BFS/DFS；评估分支
-N 中最佳
-N×代
-样本N，用RM评分，选择最高的
-集束搜索（推理）
-B×一代
-维护top-B部分推理链
-预算强制
-变量
-为更难的动态问题分配更多的token
-伊利地
-验证（ORM/PRM）
-N×生成+评分
-生成 N 个解决方案，按结果/过程排名
-RM</p>
-<h2 id="chapter-29-p570-16">Memory System Types</h2>
-<h2 id="chapter-29-p570-17">MCP Quick Reference</h2>
-<h2 id="chapter-29-p570-18">A2A Protocol Quick Reference</h2>
-<p><span class="page-ref" id="pdf-p570">原 PDF p.570</span></p>
-<p>内存系统类型</p>
-<p>类型
-存储
-使用案例</p>
-<p>工作记忆
-上下文窗口
-当前对话，即时工具结果
-情景记忆
-矢量商店
-过去的互动、用户偏好、会话历史-
-保守党
-语义记忆
-知识图谱/嵌入-
-丁斯
-事实、概念、领域知识</p>
-<p>程序记忆
-技能库/代码
-指导程序、学习的工作流程</p>
-<p>MCP 快速参考</p>
-<p>原始的
-方向
-副作用？
-目的</p>
-<p>工具
-客户端→服务器
-是的
-执行操作（创建、
-修改，
-删除）
-资源
-客户端→服务器
-否（只读）
-读取数据（文件、数据库记录、con-
-无花果）
-提示
-客户端→服务器
-否
-常见的可重复使用的模板
-任务
-取样
-服务器→客户端
-否
-服务器请求LLM生成
-来自客户</p>
-<p>传输：stdio（本地子进程）或 HTTP+SSE（远程、可流式传输）。</p>
-<p>发现：客户端在连接初始化时调用工具/列表、资源/列表、提示/列表。</p>
-<pre><code class="language-text">工具注释：readOnlyHint、destroyerHint、idempotencyHint、openWorldHint。
-</code></pre>
-<p>A2A 协议快速参考</p>
-<p>概念
-描述</p>
-<p>智能体卡
-JSON 位于 /.wellknown/agent.json — 名称、技能、支持
-内容类型
-任务
-工作单元：id、状态、工件。生命周期：已提交 →
-工作→完成/失败
-留言
-任务内的通信单元（角色：用户/智能体，部分：文本/-
-文件/数据）
-神器
-智能体生成的输出（结构化数据、文件、生成的
-内容）
-推送通知
-基于Webhook
-更新
-为了
-长期运行的
-任务
-（通过
-任务/推送通知/设置）</p>
-<p>关键端点：tasks/send（创建/更新）、tasks/get（轮询状态）、tasks/sendSubscribe
-（SSE 流）。</p>
-<h2 id="chapter-29-p571-19">Agent Framework Comparison</h2>
-<h2 id="chapter-29-p571-20">Agentic RL Formulas</h2>
-<h2 id="chapter-29-p571-21">Agent Security Checklist</h2>
-<p><span class="page-ref" id="pdf-p571">原 PDF p.571</span></p>
-<p>Agent框架比较</p>
-<p>框架
-编排
-多Agent
-最适合</p>
-<p>郎图
-显式状态图
-条件路由
-制作：坚持、HITL、精细
-控制
-OpenAI 智能体 SDK
-声明式交接
-基于切换
-简单：护栏、追踪、快速
-开始
-AutoGen (AG2)
-对话驱动
-群聊
-原型制作：
-代码执行，重新
-搜索
-船员人工智能
-基于角色的团队
-顺序/并行
-低代码：
-快速演示，
-简单
-流水线
-谷歌ADK
-会议+活动
-A2A 原生
-企业：
-工件管理，多
-莫代尔</p>
-<p>智能体 RL 公式</p>
-<pre><code class="language-math">Trajectory GRPO:
-ˆAi = (R(τi) −µG)/σG,
-R(τi) =
-X
-</code></pre>
-<p>t
-r(τi)
-t
-(28.23)</p>
-<p>智能体奖励：
-R = w1R任务 + w2效率 + w3R安全，
-Reff = max(0, 1 −steps/Nmax)
-(28.24)</p>
-<p>掩蔽：
-L =
-X</p>
-<p>t∈智能体token
-min(rt ˆAt, 剪辑(rt) ˆAt)
-（掩码环境输出）
-(28.25)</p>
-<p>n−c
-k
-</p>
-<p>通过@k：
-1 −</p>
-<p>n
-k
-,
-n = 样本总数，c = 正确
-(28.26)</p>
-<p>智能体安全检查表</p>
-<p>威胁
-图层
-缓解措施</p>
-<p>即时注射（直接）
-输入
-输入验证、指令层次结构、分隔符
-即时注射（间接）
-刀具输出
-将工具输出视为不可信；不要跟随-
-检索到的文档中的指令
-工具误用
-执行
-最低权限权限；破坏性提示
-大门；沙箱
-数据泄露
-输出
-输出滤波；将工具访问限制为允许的
-域
-过度自主
-建筑
-最大迭代次数；成本预算；人类的认可
-盖茨
-困惑的副手
-多智能体
-验证任务来源；基于能力的访问控制</p>
-<h2 id="chapter-29-p572-22">Agent Evaluation Metrics</h2>
-<h2 id="chapter-29-p572-23">Key Agentic Benchmarks</h2>
-<p><span class="page-ref" id="pdf-p572">原 PDF p.572</span></p>
-<p>智能体评估指标</p>
-<p>公制
-公式/定义
-目标</p>
-<p>任务成功率 (TSR)
-正确完成次数/总数
-任务</p>
-<blockquote>
-<p>85%（生产）</p>
-</blockquote>
-<p>完成步骤
-每次成功的平均智能体操作 -
-完整的任务
-更低=更高效</p>
-<p>每项任务的成本
-token总数×价格/token
-取决于预算
-延迟 (TTFC)
-从请求到首次使用的时间-
-满输出
-&lt; 5 秒互动</p>
-<p>工具调用精度
-正确的工具选择/总计
-来电</p>
-<blockquote>
-<p>90%</p>
-</blockquote>
-<p>回收率
-重试成功/初始失败-
-乌雷斯</p>
-<blockquote>
-<p>60%</p>
-</blockquote>
-<p>人为升级率
-需要人力的任务/总计
-任务
-&lt; 15%</p>
-<p>主要智能体基准测试</p>
-<p>基准测试测试
-域名
-公制
-索塔 (2025)</p>
-<p>SWE-bench 已验证
-软件工程
-已解决问题%
-～70%
-网络竞技场
-网页浏览
-任务成功率
-～40%
-操作系统世界
-桌面
-电脑
-使用
-任务成功率
-～25%</p>
-<p>盖亚
-通用AI助理
-精确匹配acc-
-活泼的
-∼75% (L1)</p>
-<p>Tau 台
-工具使用可靠性
-通过率（5次试验）
-～65%
-人类评估/MBPP
-代码生成
-通过@1</p>
-<blockquote>
-<p>95%</p>
-</blockquote></div>
+(28.19)</code></pre></div><p class="content-block paragraph">分块重叠： 步长 = chunk_size - 重叠 (28.20)</p><p class="content-block paragraph">重新排序（跨编码）： 分数(q, d) = MLP(BERT([q; d])) (28.21)</p></div></section><section class="ast-section" id="chapter-29-s07"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>TRL API 速查</h2><p>本节聚焦“TRL API 速查”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div><div class="concept-chip"><strong>组相对策略优化（GRPO）</strong><span>GRPO</span><p>基于同一提示多条响应的组内相对优势进行优化的方法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">参数 典型范围 默认 注释</p><p class="content-block paragraph">β (DPO/KTO) 0.05–0.5</p><p class="content-block paragraph">更高=更保守 ϵ（PPO 剪辑） 0.1–0.3</p><p class="content-block paragraph">更高=更积极的更新 γ（GAE 折扣） 0.99–1.0</p><p class="content-block paragraph">使用 1.0 执行情景任务 λ (GAE) 0.9–0.99</p><p class="content-block paragraph">越低=偏差越大，方差越小 KL 系数 (βKL) 0.01–0.2</p><p class="content-block paragraph">自动适应目标 KL ≈5–8 LR (RLHF) 1e-7 – 5e-6 5e-7 远低于训练前 LR (SFT) 1e-5 – 5e-5 2e-5 标准微调范围 LoRA等级r 8–128 16–64 r 越高 = 容量越大， 记忆 LoRA α α r – 2r 2r 比例因子； α/r 为有效 规模 温度（发生） 0.6–1.0</p><p class="content-block paragraph">较低 = 候选人多样性较低 代数 K 4–64 4–16 对于 GRPO/在线 DPO/Best-of-N 毕业剪辑规范 0.5–2.0</p><p class="content-block paragraph">防止梯度爆炸</p><p class="content-block paragraph">TRL API 快速参考</p><p class="content-block paragraph">训练师 方法 关键配置 数据格式</p><p class="content-block paragraph">SFT训练器 监督金融时报 包装， 最大序列长度 提示+完成</p><p class="content-block paragraph">提示（在线生成）</p><div class="component code-component"><div class="block-label">text</div><pre><code>RewardTrainer
+Reward model
+center_rewards_coefficient
+prompt + chosen + rejected
+PPOTrainer
+PPO
+init_kl_coef,
+target_kl,
+cliprange</code></pre></div><p class="content-block paragraph">DPO训练师 数据保护官/首次公开募股 贝塔,</p><div class="component code-component"><div class="block-label">text</div><pre><code>loss_type=“sigmoid”/“ipo”</code></pre></div><p class="content-block paragraph">提示+选择+拒绝</p><div class="component code-component"><div class="block-label">text</div><pre><code>GRPOTrainer
+GRPO
+num_generations,
+beta, use_vllm
+prompts + reward_fn</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>OnlineDPOTrainer
+Online DPO
+num_generations,
+reward_model_path
+prompts (online gen)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>KTOTrainer
+KTO
+desirable_weight,
+undesirable_weight
+prompt + completion + label</code></pre></div><p class="content-block paragraph">ORPO训练师 奥尔普 贝塔 提示+选择+拒绝 N 次最佳（手动） N 中最佳 n_样本 提示（推理）</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Cosine similarity: sim(q, d) = q · d ∥q∥· ∥d∥ (28.17)</code></pre></div><p class="content-block paragraph">检索：</p><div class="component code-component"><div class="block-label">text</div><pre><code>Dk = top-kd∈C sim(嵌入(q), 嵌入(d))</code></pre></div><p class="content-block paragraph">(28.18)</p><div class="component code-component"><div class="block-label">text</div><pre><code>RAG generation:
+P(y|q) = PLLM(y | q, Dk)
+(28.19)</code></pre></div><p class="content-block paragraph">分块重叠： 步长 = chunk_size - 重叠 (28.20)</p><p class="content-block paragraph">重新排序（跨编码）： 分数(q, d) = MLP(BERT([q; d])) (28.21)</p></div></section><section class="ast-section" id="chapter-29-s08"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>RAG 流水线公式</h2><p>本节聚焦“RAG 流水线公式”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div><div class="concept-chip"><strong>组相对策略优化（GRPO）</strong><span>GRPO</span><p>基于同一提示多条响应的组内相对优势进行优化的方法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">参数 典型范围 默认 注释</p><p class="content-block paragraph">β (DPO/KTO) 0.05–0.5</p><p class="content-block paragraph">更高=更保守 ϵ（PPO 剪辑） 0.1–0.3</p><p class="content-block paragraph">更高=更积极的更新 γ（GAE 折扣） 0.99–1.0</p><p class="content-block paragraph">使用 1.0 执行情景任务 λ (GAE) 0.9–0.99</p><p class="content-block paragraph">越低=偏差越大，方差越小 KL 系数 (βKL) 0.01–0.2</p><p class="content-block paragraph">自动适应目标 KL ≈5–8 LR (RLHF) 1e-7 – 5e-6 5e-7 远低于训练前 LR (SFT) 1e-5 – 5e-5 2e-5 标准微调范围 LoRA等级r 8–128 16–64 r 越高 = 容量越大， 记忆 LoRA α α r – 2r 2r 比例因子； α/r 为有效 规模 温度（发生） 0.6–1.0</p><p class="content-block paragraph">较低 = 候选人多样性较低 代数 K 4–64 4–16 对于 GRPO/在线 DPO/Best-of-N 毕业剪辑规范 0.5–2.0</p><p class="content-block paragraph">防止梯度爆炸</p><p class="content-block paragraph">TRL API 快速参考</p><p class="content-block paragraph">训练师 方法 关键配置 数据格式</p><p class="content-block paragraph">SFT训练器 监督金融时报 包装， 最大序列长度 提示+完成</p><p class="content-block paragraph">提示（在线生成）</p><div class="component code-component"><div class="block-label">text</div><pre><code>RewardTrainer
+Reward model
+center_rewards_coefficient
+prompt + chosen + rejected
+PPOTrainer
+PPO
+init_kl_coef,
+target_kl,
+cliprange</code></pre></div><p class="content-block paragraph">DPO训练师 数据保护官/首次公开募股 贝塔,</p><div class="component code-component"><div class="block-label">text</div><pre><code>loss_type=“sigmoid”/“ipo”</code></pre></div><p class="content-block paragraph">提示+选择+拒绝</p><div class="component code-component"><div class="block-label">text</div><pre><code>GRPOTrainer
+GRPO
+num_generations,
+beta, use_vllm
+prompts + reward_fn</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>OnlineDPOTrainer
+Online DPO
+num_generations,
+reward_model_path
+prompts (online gen)</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>KTOTrainer
+KTO
+desirable_weight,
+undesirable_weight
+prompt + completion + label</code></pre></div><p class="content-block paragraph">ORPO训练师 奥尔普 贝塔 提示+选择+拒绝 N 次最佳（手动） N 中最佳 n_样本 提示（推理）</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Cosine similarity: sim(q, d) = q · d ∥q∥· ∥d∥ (28.17)</code></pre></div><p class="content-block paragraph">检索：</p><div class="component code-component"><div class="block-label">text</div><pre><code>Dk = top-kd∈C sim(嵌入(q), 嵌入(d))</code></pre></div><p class="content-block paragraph">(28.18)</p><div class="component code-component"><div class="block-label">text</div><pre><code>RAG generation:
+P(y|q) = PLLM(y | q, Dk)
+(28.19)</code></pre></div><p class="content-block paragraph">分块重叠： 步长 = chunk_size - 重叠 (28.20)</p><p class="content-block paragraph">重新排序（跨编码）： 分数(q, d) = MLP(BERT([q; d])) (28.21)</p></div></section><section class="ast-section" id="chapter-29-s09"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>智能体式设计模式</h2><p>本节聚焦“智能体式设计模式”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>模型上下文协议（MCP）</strong><span>MCP</span><p>连接模型应用与工具/数据源的开放协议。</p></div><div class="concept-chip"><strong>智能体间通信（A2A）</strong><span>A2A</span><p>面向智能体之间任务委托和协作的通信协议。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">智能体设计模式</p><p class="content-block paragraph">图案 结构 最适合</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>ReAct Think →Act →Observe → loop General tool-use agents</code></pre></div><p class="content-block paragraph">计划与执行 计划→执行步骤→重新 虎钳 长期、结构化的任务</p><p class="content-block paragraph">主管 路由器→专业智能体商 多领域、清晰的子任务边界 群（切换） 智能体转移控制权+控制权 文本 客户服务、升级流程</p><p class="content-block paragraph">分层的 委托智能体树 复杂分解 人在回路 智能体→审批门→ 继续 高风险、不可逆转的行动</p><p class="content-block paragraph">协议 适用范围 交通 关键概念</p><p class="content-block paragraph">MCP 工具集成 标准输入/HTTP+SSE 服务器公开工具；客户发现 &amp; 来电 A2A 智能体对智能体 HTTP + JSON-RPC 任务 与 生命周期 （已提交→正在处理→已完成） OpenAI函数调用 工具使用 API负载 tools[] 数组中的 JSON 模式</p><p class="content-block paragraph">C≥ S |{z} 系统 + 中号 |{z} 内存/RAG + 时间 |{z} 工具定义 + H |{z} 历史 + 右 |{z} 保留输出 (28.22)</p><p class="content-block paragraph">128K 上下文的经验法则：</p><p class="content-block paragraph">• 系统提示：1–4K token（固定）</p><p class="content-block paragraph">• 工具定义：2–8K（使用 # 个工具进行缩放）</p><p class="content-block paragraph">• RAG 上下文：4–16K（top-k 块）</p><p class="content-block paragraph">• 历史：无限增长→总结/截断</p><p class="content-block paragraph">• 保留输出：2–8K</p><p class="content-block paragraph">常见故障模式和修复</p><p class="content-block paragraph">症状 可能的原因 修复</p><p class="content-block paragraph">奖励上升，质量下降 奖励黑客行为 RM 系综，长度惩罚，增加 β 吉隆坡爆炸 (&gt;15) LR 太高或模式崩溃 减少LR、检查点回滚 熵崩塌 过早收敛 增加熵系数，提高温度 训练损失 NaN 梯度爆炸 减少LR，增加grad Clip，检查数据 5K 步后没有任何改善 错误提示分布 金发姑娘过滤器（20–80% 通过率） 基准测试回归 调整税 减少 RL 预算、使用 LoRA、混合 SFT 数据 长度单调增加 RM 中的长度利用 长度惩罚，通过长度控制重新训练 RM 生成期间 OOM KV 缓存溢出 减少batch，增加TP，PagedAttention 智能体永远循环 无最大迭代保护 设置max_iterations，添加循环检测 工具调用解析失败 输出格式不一致 少量样本，受限解码 RAG 返回不相关的文档 嵌入/分块不佳 重新排序、混合搜索、更小的块 多智能体死锁 循环依赖 DAG 执行，每个智能体超时</p></div></section><section class="ast-section" id="chapter-29-s10"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>智能体通信协议</h2><p>本节聚焦“智能体通信协议”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>模型上下文协议（MCP）</strong><span>MCP</span><p>连接模型应用与工具/数据源的开放协议。</p></div><div class="concept-chip"><strong>智能体间通信（A2A）</strong><span>A2A</span><p>面向智能体之间任务委托和协作的通信协议。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">智能体设计模式</p><p class="content-block paragraph">图案 结构 最适合</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>ReAct Think →Act →Observe → loop General tool-use agents</code></pre></div><p class="content-block paragraph">计划与执行 计划→执行步骤→重新 虎钳 长期、结构化的任务</p><p class="content-block paragraph">主管 路由器→专业智能体商 多领域、清晰的子任务边界 群（切换） 智能体转移控制权+控制权 文本 客户服务、升级流程</p><p class="content-block paragraph">分层的 委托智能体树 复杂分解 人在回路 智能体→审批门→ 继续 高风险、不可逆转的行动</p><p class="content-block paragraph">协议 适用范围 交通 关键概念</p><p class="content-block paragraph">MCP 工具集成 标准输入/HTTP+SSE 服务器公开工具；客户发现 &amp; 来电 A2A 智能体对智能体 HTTP + JSON-RPC 任务 与 生命周期 （已提交→正在处理→已完成） OpenAI函数调用 工具使用 API负载 tools[] 数组中的 JSON 模式</p><p class="content-block paragraph">C≥ S |{z} 系统 + 中号 |{z} 内存/RAG + 时间 |{z} 工具定义 + H |{z} 历史 + 右 |{z} 保留输出 (28.22)</p><p class="content-block paragraph">128K 上下文的经验法则：</p><p class="content-block paragraph">• 系统提示：1–4K token（固定）</p><p class="content-block paragraph">• 工具定义：2–8K（使用 # 个工具进行缩放）</p><p class="content-block paragraph">• RAG 上下文：4–16K（top-k 块）</p><p class="content-block paragraph">• 历史：无限增长→总结/截断</p><p class="content-block paragraph">• 保留输出：2–8K</p><p class="content-block paragraph">常见故障模式和修复</p><p class="content-block paragraph">症状 可能的原因 修复</p><p class="content-block paragraph">奖励上升，质量下降 奖励黑客行为 RM 系综，长度惩罚，增加 β 吉隆坡爆炸 (&gt;15) LR 太高或模式崩溃 减少LR、检查点回滚 熵崩塌 过早收敛 增加熵系数，提高温度 训练损失 NaN 梯度爆炸 减少LR，增加grad Clip，检查数据 5K 步后没有任何改善 错误提示分布 金发姑娘过滤器（20–80% 通过率） 基准测试回归 调整税 减少 RL 预算、使用 LoRA、混合 SFT 数据 长度单调增加 RM 中的长度利用 长度惩罚，通过长度控制重新训练 RM 生成期间 OOM KV 缓存溢出 减少batch，增加TP，PagedAttention 智能体永远循环 无最大迭代保护 设置max_iterations，添加循环检测 工具调用解析失败 输出格式不一致 少量样本，受限解码 RAG 返回不相关的文档 嵌入/分块不佳 重新排序、混合搜索、更小的块 多智能体死锁 循环依赖 DAG 执行，每个智能体超时</p></div></section><section class="ast-section" id="chapter-29-s11"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>上下文窗口预算</h2><p>本节聚焦“上下文窗口预算”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>模型上下文协议（MCP）</strong><span>MCP</span><p>连接模型应用与工具/数据源的开放协议。</p></div><div class="concept-chip"><strong>智能体间通信（A2A）</strong><span>A2A</span><p>面向智能体之间任务委托和协作的通信协议。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">智能体设计模式</p><p class="content-block paragraph">图案 结构 最适合</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>ReAct Think →Act →Observe → loop General tool-use agents</code></pre></div><p class="content-block paragraph">计划与执行 计划→执行步骤→重新 虎钳 长期、结构化的任务</p><p class="content-block paragraph">主管 路由器→专业智能体商 多领域、清晰的子任务边界 群（切换） 智能体转移控制权+控制权 文本 客户服务、升级流程</p><p class="content-block paragraph">分层的 委托智能体树 复杂分解 人在回路 智能体→审批门→ 继续 高风险、不可逆转的行动</p><p class="content-block paragraph">协议 适用范围 交通 关键概念</p><p class="content-block paragraph">MCP 工具集成 标准输入/HTTP+SSE 服务器公开工具；客户发现 &amp; 来电 A2A 智能体对智能体 HTTP + JSON-RPC 任务 与 生命周期 （已提交→正在处理→已完成） OpenAI函数调用 工具使用 API负载 tools[] 数组中的 JSON 模式</p><p class="content-block paragraph">C≥ S |{z} 系统 + 中号 |{z} 内存/RAG + 时间 |{z} 工具定义 + H |{z} 历史 + 右 |{z} 保留输出 (28.22)</p><p class="content-block paragraph">128K 上下文的经验法则：</p><p class="content-block paragraph">• 系统提示：1–4K token（固定）</p><p class="content-block paragraph">• 工具定义：2–8K（使用 # 个工具进行缩放）</p><p class="content-block paragraph">• RAG 上下文：4–16K（top-k 块）</p><p class="content-block paragraph">• 历史：无限增长→总结/截断</p><p class="content-block paragraph">• 保留输出：2–8K</p><p class="content-block paragraph">常见故障模式和修复</p><p class="content-block paragraph">症状 可能的原因 修复</p><p class="content-block paragraph">奖励上升，质量下降 奖励黑客行为 RM 系综，长度惩罚，增加 β 吉隆坡爆炸 (&gt;15) LR 太高或模式崩溃 减少LR、检查点回滚 熵崩塌 过早收敛 增加熵系数，提高温度 训练损失 NaN 梯度爆炸 减少LR，增加grad Clip，检查数据 5K 步后没有任何改善 错误提示分布 金发姑娘过滤器（20–80% 通过率） 基准测试回归 调整税 减少 RL 预算、使用 LoRA、混合 SFT 数据 长度单调增加 RM 中的长度利用 长度惩罚，通过长度控制重新训练 RM 生成期间 OOM KV 缓存溢出 减少batch，增加TP，PagedAttention 智能体永远循环 无最大迭代保护 设置max_iterations，添加循环检测 工具调用解析失败 输出格式不一致 少量样本，受限解码 RAG 返回不相关的文档 嵌入/分块不佳 重新排序、混合搜索、更小的块 多智能体死锁 循环依赖 DAG 执行，每个智能体超时</p></div></section><section class="ast-section" id="chapter-29-s12"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>常见失效模式与修复</h2><p>本节聚焦“常见失效模式与修复”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></div><div class="concept-chip"><strong>模型上下文协议（MCP）</strong><span>MCP</span><p>连接模型应用与工具/数据源的开放协议。</p></div><div class="concept-chip"><strong>智能体间通信（A2A）</strong><span>A2A</span><p>面向智能体之间任务委托和协作的通信协议。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">智能体设计模式</p><p class="content-block paragraph">图案 结构 最适合</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>ReAct Think →Act →Observe → loop General tool-use agents</code></pre></div><p class="content-block paragraph">计划与执行 计划→执行步骤→重新 虎钳 长期、结构化的任务</p><p class="content-block paragraph">主管 路由器→专业智能体商 多领域、清晰的子任务边界 群（切换） 智能体转移控制权+控制权 文本 客户服务、升级流程</p><p class="content-block paragraph">分层的 委托智能体树 复杂分解 人在回路 智能体→审批门→ 继续 高风险、不可逆转的行动</p><p class="content-block paragraph">协议 适用范围 交通 关键概念</p><p class="content-block paragraph">MCP 工具集成 标准输入/HTTP+SSE 服务器公开工具；客户发现 &amp; 来电 A2A 智能体对智能体 HTTP + JSON-RPC 任务 与 生命周期 （已提交→正在处理→已完成） OpenAI函数调用 工具使用 API负载 tools[] 数组中的 JSON 模式</p><p class="content-block paragraph">C≥ S |{z} 系统 + 中号 |{z} 内存/RAG + 时间 |{z} 工具定义 + H |{z} 历史 + 右 |{z} 保留输出 (28.22)</p><p class="content-block paragraph">128K 上下文的经验法则：</p><p class="content-block paragraph">• 系统提示：1–4K token（固定）</p><p class="content-block paragraph">• 工具定义：2–8K（使用 # 个工具进行缩放）</p><p class="content-block paragraph">• RAG 上下文：4–16K（top-k 块）</p><p class="content-block paragraph">• 历史：无限增长→总结/截断</p><p class="content-block paragraph">• 保留输出：2–8K</p><p class="content-block paragraph">常见故障模式和修复</p><p class="content-block paragraph">症状 可能的原因 修复</p><p class="content-block paragraph">奖励上升，质量下降 奖励黑客行为 RM 系综，长度惩罚，增加 β 吉隆坡爆炸 (&gt;15) LR 太高或模式崩溃 减少LR、检查点回滚 熵崩塌 过早收敛 增加熵系数，提高温度 训练损失 NaN 梯度爆炸 减少LR，增加grad Clip，检查数据 5K 步后没有任何改善 错误提示分布 金发姑娘过滤器（20–80% 通过率） 基准测试回归 调整税 减少 RL 预算、使用 LoRA、混合 SFT 数据 长度单调增加 RM 中的长度利用 长度惩罚，通过长度控制重新训练 RM 生成期间 OOM KV 缓存溢出 减少batch，增加TP，PagedAttention 智能体永远循环 无最大迭代保护 设置max_iterations，添加循环检测 工具调用解析失败 输出格式不一致 少量样本，受限解码 RAG 返回不相关的文档 嵌入/分块不佳 重新排序、混合搜索、更小的块 多智能体死锁 循环依赖 DAG 执行，每个智能体超时</p></div></section><section class="ast-section" id="chapter-29-s13"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>方法选择决策树</h2><p>本节聚焦“方法选择决策树”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div><div class="concept-chip"><strong>组相对策略优化（GRPO）</strong><span>GRPO</span><p>基于同一提示多条响应的组内相对优势进行优化的方法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">1. 有配对偏好（选择+拒绝）吗？</p><p class="content-block paragraph">• 嘈杂的标签→IPO</p><p class="content-block paragraph">• 内存受限，尚未完成 SFT →ORPO</p><p class="content-block paragraph">• 干净的数据，有限的计算→DPO</p><p class="content-block paragraph">• DPO 停滞不前，需要探索→在线 DPO</p><p class="content-block paragraph">2. 只有二元反馈（赞成/反对）？ →韩国旅游局</p><p class="content-block paragraph">3. 有可验证的奖励（数学/代码）吗？ →GRPO</p><p class="content-block paragraph">4. 需要最高的质量，需要任何费用吗？ →PPO</p><p class="content-block paragraph">5.想要免训练的提升？ →N 次最佳</p><p class="content-block paragraph">公制 范围 它衡量什么</p><p class="content-block paragraph">困惑 [1, 无穷大) 模特的惊喜；更低=更好的语言模型- 埃林 胜率（与基线相比） [0, 1] 法官/人类偏好的输出比例 蓝线 [0, 1] n-gram 与参考重叠（注重精度） 胭脂-L [0, 1] 带参考的最长公共子序列 通过@k [0, 1] k 个代码样本通过测试的概率 ≥1 MMLU/GPQA [0, 1] 知识/推理的多项选择准确性 基准测试 人类评估 [0, 1] 生成代码的功能正确性 忠诚（RAG） [0, 1] 检索到的上下文支持的声明比例 上下文相关性 [0, 1] 检索到的与查询相关的内容的比例 答案相关性 [0, 1] 答案解决问题的程度</p><p class="content-block paragraph">推理和测试时间缩放</p><p class="content-block paragraph">方法 计算成本 机制</p><p class="content-block paragraph">思想链 (CoT) 1.5–3× token 提示中“一步步思考” 自我一致性 N×代 N 个 CoT 路径样本，多数投票决定最终结果 回答 思想树 (ToT) B×D×一代 推理树上的 BFS/DFS；评估分支 N 中最佳 N×代 样本N，用RM评分，选择最高的 集束搜索（推理） B×一代 维护top-B部分推理链 预算强制 变量 为更难的动态问题分配更多的token 伊利地 验证（ORM/PRM） N×生成+评分 生成 N 个解决方案，按结果/过程排名 RM</p></div></section><section class="ast-section" id="chapter-29-s14"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>评估指标</h2><p>本节聚焦“评估指标”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div><div class="concept-chip"><strong>组相对策略优化（GRPO）</strong><span>GRPO</span><p>基于同一提示多条响应的组内相对优势进行优化的方法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">1. 有配对偏好（选择+拒绝）吗？</p><p class="content-block paragraph">• 嘈杂的标签→IPO</p><p class="content-block paragraph">• 内存受限，尚未完成 SFT →ORPO</p><p class="content-block paragraph">• 干净的数据，有限的计算→DPO</p><p class="content-block paragraph">• DPO 停滞不前，需要探索→在线 DPO</p><p class="content-block paragraph">2. 只有二元反馈（赞成/反对）？ →韩国旅游局</p><p class="content-block paragraph">3. 有可验证的奖励（数学/代码）吗？ →GRPO</p><p class="content-block paragraph">4. 需要最高的质量，需要任何费用吗？ →PPO</p><p class="content-block paragraph">5.想要免训练的提升？ →N 次最佳</p><p class="content-block paragraph">公制 范围 它衡量什么</p><p class="content-block paragraph">困惑 [1, 无穷大) 模特的惊喜；更低=更好的语言模型- 埃林 胜率（与基线相比） [0, 1] 法官/人类偏好的输出比例 蓝线 [0, 1] n-gram 与参考重叠（注重精度） 胭脂-L [0, 1] 带参考的最长公共子序列 通过@k [0, 1] k 个代码样本通过测试的概率 ≥1 MMLU/GPQA [0, 1] 知识/推理的多项选择准确性 基准测试 人类评估 [0, 1] 生成代码的功能正确性 忠诚（RAG） [0, 1] 检索到的上下文支持的声明比例 上下文相关性 [0, 1] 检索到的与查询相关的内容的比例 答案相关性 [0, 1] 答案解决问题的程度</p><p class="content-block paragraph">推理和测试时间缩放</p><p class="content-block paragraph">方法 计算成本 机制</p><p class="content-block paragraph">思想链 (CoT) 1.5–3× token 提示中“一步步思考” 自我一致性 N×代 N 个 CoT 路径样本，多数投票决定最终结果 回答 思想树 (ToT) B×D×一代 推理树上的 BFS/DFS；评估分支 N 中最佳 N×代 样本N，用RM评分，选择最高的 集束搜索（推理） B×一代 维护top-B部分推理链 预算强制 变量 为更难的动态问题分配更多的token 伊利地 验证（ORM/PRM） N×生成+评分 生成 N 个解决方案，按结果/过程排名 RM</p></div></section><section class="ast-section" id="chapter-29-s15"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>推理与测试时扩展</h2><p>本节聚焦“推理与测试时扩展”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></div><div class="concept-chip"><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></div><div class="concept-chip"><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></div><div class="concept-chip"><strong>组相对策略优化（GRPO）</strong><span>GRPO</span><p>基于同一提示多条响应的组内相对优势进行优化的方法。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">1. 有配对偏好（选择+拒绝）吗？</p><p class="content-block paragraph">• 嘈杂的标签→IPO</p><p class="content-block paragraph">• 内存受限，尚未完成 SFT →ORPO</p><p class="content-block paragraph">• 干净的数据，有限的计算→DPO</p><p class="content-block paragraph">• DPO 停滞不前，需要探索→在线 DPO</p><p class="content-block paragraph">2. 只有二元反馈（赞成/反对）？ →韩国旅游局</p><p class="content-block paragraph">3. 有可验证的奖励（数学/代码）吗？ →GRPO</p><p class="content-block paragraph">4. 需要最高的质量，需要任何费用吗？ →PPO</p><p class="content-block paragraph">5.想要免训练的提升？ →N 次最佳</p><p class="content-block paragraph">公制 范围 它衡量什么</p><p class="content-block paragraph">困惑 [1, 无穷大) 模特的惊喜；更低=更好的语言模型- 埃林 胜率（与基线相比） [0, 1] 法官/人类偏好的输出比例 蓝线 [0, 1] n-gram 与参考重叠（注重精度） 胭脂-L [0, 1] 带参考的最长公共子序列 通过@k [0, 1] k 个代码样本通过测试的概率 ≥1 MMLU/GPQA [0, 1] 知识/推理的多项选择准确性 基准测试 人类评估 [0, 1] 生成代码的功能正确性 忠诚（RAG） [0, 1] 检索到的上下文支持的声明比例 上下文相关性 [0, 1] 检索到的与查询相关的内容的比例 答案相关性 [0, 1] 答案解决问题的程度</p><p class="content-block paragraph">推理和测试时间缩放</p><p class="content-block paragraph">方法 计算成本 机制</p><p class="content-block paragraph">思想链 (CoT) 1.5–3× token 提示中“一步步思考” 自我一致性 N×代 N 个 CoT 路径样本，多数投票决定最终结果 回答 思想树 (ToT) B×D×一代 推理树上的 BFS/DFS；评估分支 N 中最佳 N×代 样本N，用RM评分，选择最高的 集束搜索（推理） B×一代 维护top-B部分推理链 预算强制 变量 为更难的动态问题分配更多的token 伊利地 验证（ORM/PRM） N×生成+评分 生成 N 个解决方案，按结果/过程排名 RM</p></div></section><section class="ast-section" id="chapter-29-s16"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>记忆系统类型</h2><p>本节聚焦“记忆系统类型”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>模型上下文协议（MCP）</strong><span>MCP</span><p>连接模型应用与工具/数据源的开放协议。</p></div><div class="concept-chip"><strong>智能体间通信（A2A）</strong><span>A2A</span><p>面向智能体之间任务委托和协作的通信协议。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">内存系统类型</p><p class="content-block paragraph">类型 存储 使用案例</p><p class="content-block paragraph">工作记忆 上下文窗口 当前对话，即时工具结果 情景记忆 矢量商店 过去的互动、用户偏好、会话历史- 保守党 语义记忆 知识图谱/嵌入- 丁斯 事实、概念、领域知识</p><p class="content-block paragraph">程序记忆 技能库/代码 指导程序、学习的工作流程</p><p class="content-block paragraph">MCP 快速参考</p><p class="content-block paragraph">原始的 方向 副作用？ 目的</p><p class="content-block paragraph">工具 客户端→服务器 是的 执行操作（创建、 修改， 删除） 资源 客户端→服务器 否（只读） 读取数据（文件、数据库记录、con- 无花果） 提示 客户端→服务器 否 常见的可重复使用的模板 任务 取样 服务器→客户端 否 服务器请求LLM生成 来自客户</p><p class="content-block paragraph">传输：stdio（本地子进程）或 HTTP+SSE（远程、可流式传输）。</p><p class="content-block paragraph">发现：客户端在连接初始化时调用工具/列表、资源/列表、提示/列表。</p><p class="content-block paragraph">工具注释：readOnlyHint、destroyerHint、idempotencyHint、openWorldHint。</p><p class="content-block paragraph">A2A 协议快速参考</p><p class="content-block paragraph">概念 描述</p><p class="content-block paragraph">智能体卡 JSON 位于 /.wellknown/agent.json — 名称、技能、支持 内容类型 任务 工作单元：id、状态、工件。生命周期：已提交 → 工作→完成/失败 留言 任务内的通信单元（角色：用户/智能体，部分：文本/- 文件/数据） 神器 智能体生成的输出（结构化数据、文件、生成的 内容） 推送通知 基于Webhook 更新 为了 长期运行的 任务 （通过 任务/推送通知/设置）</p><p class="content-block paragraph">关键端点：tasks/send（创建/更新）、tasks/get（轮询状态）、tasks/sendSubscribe （SSE 流）。</p></div></section><section class="ast-section" id="chapter-29-s17"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>MCP 速查</h2><p>本节聚焦“MCP 速查”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>模型上下文协议（MCP）</strong><span>MCP</span><p>连接模型应用与工具/数据源的开放协议。</p></div><div class="concept-chip"><strong>智能体间通信（A2A）</strong><span>A2A</span><p>面向智能体之间任务委托和协作的通信协议。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">内存系统类型</p><p class="content-block paragraph">类型 存储 使用案例</p><p class="content-block paragraph">工作记忆 上下文窗口 当前对话，即时工具结果 情景记忆 矢量商店 过去的互动、用户偏好、会话历史- 保守党 语义记忆 知识图谱/嵌入- 丁斯 事实、概念、领域知识</p><p class="content-block paragraph">程序记忆 技能库/代码 指导程序、学习的工作流程</p><p class="content-block paragraph">MCP 快速参考</p><p class="content-block paragraph">原始的 方向 副作用？ 目的</p><p class="content-block paragraph">工具 客户端→服务器 是的 执行操作（创建、 修改， 删除） 资源 客户端→服务器 否（只读） 读取数据（文件、数据库记录、con- 无花果） 提示 客户端→服务器 否 常见的可重复使用的模板 任务 取样 服务器→客户端 否 服务器请求LLM生成 来自客户</p><p class="content-block paragraph">传输：stdio（本地子进程）或 HTTP+SSE（远程、可流式传输）。</p><p class="content-block paragraph">发现：客户端在连接初始化时调用工具/列表、资源/列表、提示/列表。</p><p class="content-block paragraph">工具注释：readOnlyHint、destroyerHint、idempotencyHint、openWorldHint。</p><p class="content-block paragraph">A2A 协议快速参考</p><p class="content-block paragraph">概念 描述</p><p class="content-block paragraph">智能体卡 JSON 位于 /.wellknown/agent.json — 名称、技能、支持 内容类型 任务 工作单元：id、状态、工件。生命周期：已提交 → 工作→完成/失败 留言 任务内的通信单元（角色：用户/智能体，部分：文本/- 文件/数据） 神器 智能体生成的输出（结构化数据、文件、生成的 内容） 推送通知 基于Webhook 更新 为了 长期运行的 任务 （通过 任务/推送通知/设置）</p><p class="content-block paragraph">关键端点：tasks/send（创建/更新）、tasks/get（轮询状态）、tasks/sendSubscribe （SSE 流）。</p></div></section><section class="ast-section" id="chapter-29-s18"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>A2A 协议速查</h2><p>本节聚焦“A2A 协议速查”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>模型上下文协议（MCP）</strong><span>MCP</span><p>连接模型应用与工具/数据源的开放协议。</p></div><div class="concept-chip"><strong>智能体间通信（A2A）</strong><span>A2A</span><p>面向智能体之间任务委托和协作的通信协议。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">内存系统类型</p><p class="content-block paragraph">类型 存储 使用案例</p><p class="content-block paragraph">工作记忆 上下文窗口 当前对话，即时工具结果 情景记忆 矢量商店 过去的互动、用户偏好、会话历史- 保守党 语义记忆 知识图谱/嵌入- 丁斯 事实、概念、领域知识</p><p class="content-block paragraph">程序记忆 技能库/代码 指导程序、学习的工作流程</p><p class="content-block paragraph">MCP 快速参考</p><p class="content-block paragraph">原始的 方向 副作用？ 目的</p><p class="content-block paragraph">工具 客户端→服务器 是的 执行操作（创建、 修改， 删除） 资源 客户端→服务器 否（只读） 读取数据（文件、数据库记录、con- 无花果） 提示 客户端→服务器 否 常见的可重复使用的模板 任务 取样 服务器→客户端 否 服务器请求LLM生成 来自客户</p><p class="content-block paragraph">传输：stdio（本地子进程）或 HTTP+SSE（远程、可流式传输）。</p><p class="content-block paragraph">发现：客户端在连接初始化时调用工具/列表、资源/列表、提示/列表。</p><p class="content-block paragraph">工具注释：readOnlyHint、destroyerHint、idempotencyHint、openWorldHint。</p><p class="content-block paragraph">A2A 协议快速参考</p><p class="content-block paragraph">概念 描述</p><p class="content-block paragraph">智能体卡 JSON 位于 /.wellknown/agent.json — 名称、技能、支持 内容类型 任务 工作单元：id、状态、工件。生命周期：已提交 → 工作→完成/失败 留言 任务内的通信单元（角色：用户/智能体，部分：文本/- 文件/数据） 神器 智能体生成的输出（结构化数据、文件、生成的 内容） 推送通知 基于Webhook 更新 为了 长期运行的 任务 （通过 任务/推送通知/设置）</p><p class="content-block paragraph">关键端点：tasks/send（创建/更新）、tasks/get（轮询状态）、tasks/sendSubscribe （SSE 流）。</p></div></section><section class="ast-section" id="chapter-29-s19"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>智能体框架比较</h2><p>本节聚焦“智能体框架比较”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></div><div class="concept-chip"><strong>组相对策略优化（GRPO）</strong><span>GRPO</span><p>基于同一提示多条响应的组内相对优势进行优化的方法。</p></div><div class="concept-chip"><strong>智能体间通信（A2A）</strong><span>A2A</span><p>面向智能体之间任务委托和协作的通信协议。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">Agent框架比较</p><p class="content-block paragraph">框架 编排 多Agent 最适合</p><p class="content-block paragraph">郎图 显式状态图 条件路由 制作：坚持、HITL、精细 控制 OpenAI 智能体 SDK 声明式交接 基于切换 简单：护栏、追踪、快速 开始 AutoGen (AG2) 对话驱动 群聊 原型制作： 代码执行，重新 搜索 船员人工智能 基于角色的团队 顺序/并行 低代码： 快速演示， 简单 流水线 谷歌ADK 会议+活动 A2A 原生 企业： 工件管理，多 莫代尔</p><p class="content-block paragraph">智能体 RL 公式</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Trajectory GRPO: ˆAi = (R(τi) −µG)/σG, R(τi) = X</code></pre></div><p class="content-block paragraph">t r(τi) t (28.23)</p><p class="content-block paragraph">智能体奖励：</p><div class="component code-component"><div class="block-label">text</div><pre><code>R = w1R任务 + w2效率 + w3R安全，</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>Reff = max(0, 1 −steps/Nmax)</code></pre></div><p class="content-block paragraph">(28.24)</p><p class="content-block paragraph">掩蔽：</p><div class="component code-component"><div class="block-label">text</div><pre><code>L =</code></pre></div><p class="content-block paragraph">t∈智能体token min(rt ˆAt, 剪辑(rt) ˆAt) （掩码环境输出） (28.25)</p><p class="content-block paragraph">n−c k </p><p class="content-block paragraph">通过@k： 1 −</p><p class="content-block paragraph">n k ,</p><div class="component code-component"><div class="block-label">text</div><pre><code>n = 样本总数，c = 正确</code></pre></div><p class="content-block paragraph">(28.26)</p><p class="content-block paragraph">智能体安全检查表</p><p class="content-block paragraph">威胁 图层 缓解措施</p><p class="content-block paragraph">即时注射（直接） 输入 输入验证、指令层次结构、分隔符 即时注射（间接） 刀具输出 将工具输出视为不可信；不要跟随- 检索到的文档中的指令 工具误用 执行 最低权限权限；破坏性提示 大门；沙箱 数据泄露 输出 输出滤波；将工具访问限制为允许的 域 过度自主 建筑 最大迭代次数；成本预算；人类的认可 盖茨 困惑的副手 多智能体 验证任务来源；基于能力的访问控制</p></div></section><section class="ast-section" id="chapter-29-s20"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>Agentic RL 公式</h2><p>本节聚焦“Agentic RL 公式”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></div><div class="concept-chip"><strong>组相对策略优化（GRPO）</strong><span>GRPO</span><p>基于同一提示多条响应的组内相对优势进行优化的方法。</p></div><div class="concept-chip"><strong>智能体间通信（A2A）</strong><span>A2A</span><p>面向智能体之间任务委托和协作的通信协议。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">Agent框架比较</p><p class="content-block paragraph">框架 编排 多Agent 最适合</p><p class="content-block paragraph">郎图 显式状态图 条件路由 制作：坚持、HITL、精细 控制 OpenAI 智能体 SDK 声明式交接 基于切换 简单：护栏、追踪、快速 开始 AutoGen (AG2) 对话驱动 群聊 原型制作： 代码执行，重新 搜索 船员人工智能 基于角色的团队 顺序/并行 低代码： 快速演示， 简单 流水线 谷歌ADK 会议+活动 A2A 原生 企业： 工件管理，多 莫代尔</p><p class="content-block paragraph">智能体 RL 公式</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Trajectory GRPO: ˆAi = (R(τi) −µG)/σG, R(τi) = X</code></pre></div><p class="content-block paragraph">t r(τi) t (28.23)</p><p class="content-block paragraph">智能体奖励：</p><div class="component code-component"><div class="block-label">text</div><pre><code>R = w1R任务 + w2效率 + w3R安全，</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>Reff = max(0, 1 −steps/Nmax)</code></pre></div><p class="content-block paragraph">(28.24)</p><p class="content-block paragraph">掩蔽：</p><div class="component code-component"><div class="block-label">text</div><pre><code>L =</code></pre></div><p class="content-block paragraph">t∈智能体token min(rt ˆAt, 剪辑(rt) ˆAt) （掩码环境输出） (28.25)</p><p class="content-block paragraph">n−c k </p><p class="content-block paragraph">通过@k： 1 −</p><p class="content-block paragraph">n k ,</p><div class="component code-component"><div class="block-label">text</div><pre><code>n = 样本总数，c = 正确</code></pre></div><p class="content-block paragraph">(28.26)</p><p class="content-block paragraph">智能体安全检查表</p><p class="content-block paragraph">威胁 图层 缓解措施</p><p class="content-block paragraph">即时注射（直接） 输入 输入验证、指令层次结构、分隔符 即时注射（间接） 刀具输出 将工具输出视为不可信；不要跟随- 检索到的文档中的指令 工具误用 执行 最低权限权限；破坏性提示 大门；沙箱 数据泄露 输出 输出滤波；将工具访问限制为允许的 域 过度自主 建筑 最大迭代次数；成本预算；人类的认可 盖茨 困惑的副手 多智能体 验证任务来源；基于能力的访问控制</p></div></section><section class="ast-section" id="chapter-29-s21"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>智能体安全检查清单</h2><p>本节聚焦“智能体安全检查清单”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div><div class="concept-chip"><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></div><div class="concept-chip"><strong>组相对策略优化（GRPO）</strong><span>GRPO</span><p>基于同一提示多条响应的组内相对优势进行优化的方法。</p></div><div class="concept-chip"><strong>智能体间通信（A2A）</strong><span>A2A</span><p>面向智能体之间任务委托和协作的通信协议。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">Agent框架比较</p><p class="content-block paragraph">框架 编排 多Agent 最适合</p><p class="content-block paragraph">郎图 显式状态图 条件路由 制作：坚持、HITL、精细 控制 OpenAI 智能体 SDK 声明式交接 基于切换 简单：护栏、追踪、快速 开始 AutoGen (AG2) 对话驱动 群聊 原型制作： 代码执行，重新 搜索 船员人工智能 基于角色的团队 顺序/并行 低代码： 快速演示， 简单 流水线 谷歌ADK 会议+活动 A2A 原生 企业： 工件管理，多 莫代尔</p><p class="content-block paragraph">智能体 RL 公式</p><div class="component formula-component" data-fallback="latex"><div class="block-label">公式</div><pre class="formula"><code>Trajectory GRPO: ˆAi = (R(τi) −µG)/σG, R(τi) = X</code></pre></div><p class="content-block paragraph">t r(τi) t (28.23)</p><p class="content-block paragraph">智能体奖励：</p><div class="component code-component"><div class="block-label">text</div><pre><code>R = w1R任务 + w2效率 + w3R安全，</code></pre></div><div class="component code-component"><div class="block-label">text</div><pre><code>Reff = max(0, 1 −steps/Nmax)</code></pre></div><p class="content-block paragraph">(28.24)</p><p class="content-block paragraph">掩蔽：</p><div class="component code-component"><div class="block-label">text</div><pre><code>L =</code></pre></div><p class="content-block paragraph">t∈智能体token min(rt ˆAt, 剪辑(rt) ˆAt) （掩码环境输出） (28.25)</p><p class="content-block paragraph">n−c k </p><p class="content-block paragraph">通过@k： 1 −</p><p class="content-block paragraph">n k ,</p><div class="component code-component"><div class="block-label">text</div><pre><code>n = 样本总数，c = 正确</code></pre></div><p class="content-block paragraph">(28.26)</p><p class="content-block paragraph">智能体安全检查表</p><p class="content-block paragraph">威胁 图层 缓解措施</p><p class="content-block paragraph">即时注射（直接） 输入 输入验证、指令层次结构、分隔符 即时注射（间接） 刀具输出 将工具输出视为不可信；不要跟随- 检索到的文档中的指令 工具误用 执行 最低权限权限；破坏性提示 大门；沙箱 数据泄露 输出 输出滤波；将工具访问限制为允许的 域 过度自主 建筑 最大迭代次数；成本预算；人类的认可 盖茨 困惑的副手 多智能体 验证任务来源；基于能力的访问控制</p></div></section><section class="ast-section" id="chapter-29-s22"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>智能体评估指标</h2><p>本节聚焦“智能体评估指标”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">公制 公式/定义 目标</p><p class="content-block paragraph">任务成功率 (TSR) 正确完成次数/总数 任务 &gt; 85%（生产）</p><p class="content-block paragraph">完成步骤 每次成功的平均智能体操作 - 完整的任务 更低=更高效</p><p class="content-block paragraph">每项任务的成本 token总数×价格/token 取决于预算 延迟 (TTFC) 从请求到首次使用的时间- 满输出 &lt; 5 秒互动</p><p class="content-block paragraph">工具调用精度 正确的工具选择/总计 来电 &gt; 90%</p><p class="content-block paragraph">回收率 重试成功/初始失败- 乌雷斯 &gt; 60%</p><p class="content-block paragraph">人为升级率 需要人力的任务/总计 任务 &lt; 15%</p><p class="content-block paragraph">主要智能体基准测试</p><p class="content-block paragraph">基准测试测试 域名 公制 索塔 (2025)</p><p class="content-block paragraph">SWE-bench 已验证 软件工程 已解决问题% ～70% 网络竞技场 网页浏览 任务成功率 ～40% 操作系统世界 桌面 电脑 使用 任务成功率 ～25%</p><p class="content-block paragraph">盖亚 通用AI助理 精确匹配acc- 活泼的 ∼75% (L1)</p><p class="content-block paragraph">Tau 台 工具使用可靠性 通过率（5次试验） ～65% 人类评估/MBPP 代码生成 通过@1 &gt; 95%</p></div></section><section class="ast-section" id="chapter-29-s23"><div class="component section-overview"><div><span class="component-label">Section Overview</span><h2>关键智能体基准</h2><p>本节聚焦“关键智能体基准”的定义、机制与工程含义。</p></div><div class="mini-concepts"><div class="concept-chip"><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></div><div class="concept-chip"><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></div></div></div><div class="section-blocks"><p class="content-block paragraph">公制 公式/定义 目标</p><p class="content-block paragraph">任务成功率 (TSR) 正确完成次数/总数 任务 &gt; 85%（生产）</p><p class="content-block paragraph">完成步骤 每次成功的平均智能体操作 - 完整的任务 更低=更高效</p><p class="content-block paragraph">每项任务的成本 token总数×价格/token 取决于预算 延迟 (TTFC) 从请求到首次使用的时间- 满输出 &lt; 5 秒互动</p><p class="content-block paragraph">工具调用精度 正确的工具选择/总计 来电 &gt; 90%</p><p class="content-block paragraph">回收率 重试成功/初始失败- 乌雷斯 &gt; 60%</p><p class="content-block paragraph">人为升级率 需要人力的任务/总计 任务 &lt; 15%</p><p class="content-block paragraph">主要智能体基准测试</p><p class="content-block paragraph">基准测试测试 域名 公制 索塔 (2025)</p><p class="content-block paragraph">SWE-bench 已验证 软件工程 已解决问题% ～70% 网络竞技场 网页浏览 任务成功率 ～40% 操作系统世界 桌面 电脑 使用 任务成功率 ～25%</p><p class="content-block paragraph">盖亚 通用AI助理 精确匹配acc- 活泼的 ∼75% (L1)</p><p class="content-block paragraph">Tau 台 工具使用可靠性 通过率（5次试验） ～65% 人类评估/MBPP 代码生成 通过@1 &gt; 95%</p></div></section></div>
           <nav class="chapter-pager"><a class="pager-link" href="chapter-28.html">← 测验题与详解</a><a class="pager-link next" href="chapter-30.html">结论与未来方向 →</a></nav>
         </article>
-        
-    </section>
-  </main>
+        </section><aside class="right-outline"><div class="nav-section-title">本页结构</div><a class="outline-link" href="#chapter-29-s01">核心 RL 与对齐公式</a><a class="outline-link" href="#chapter-29-s02">Transformer 与架构公式</a><a class="outline-link" href="#chapter-29-s03">解码方法</a><a class="outline-link" href="#chapter-29-s04">系统与并行</a><a class="outline-link" href="#chapter-29-s05">GPU 硬件规格</a><a class="outline-link" href="#chapter-29-s06">超参数范围</a><a class="outline-link" href="#chapter-29-s07">TRL API 速查</a><a class="outline-link" href="#chapter-29-s08">RAG 流水线公式</a><a class="outline-link" href="#chapter-29-s09">智能体式设计模式</a><a class="outline-link" href="#chapter-29-s10">智能体通信协议</a><a class="outline-link" href="#chapter-29-s11">上下文窗口预算</a><a class="outline-link" href="#chapter-29-s12">常见失效模式与修复</a><a class="outline-link" href="#chapter-29-s13">方法选择决策树</a><a class="outline-link" href="#chapter-29-s14">评估指标</a><a class="outline-link" href="#chapter-29-s15">推理与测试时扩展</a><a class="outline-link" href="#chapter-29-s16">记忆系统类型</a><a class="outline-link" href="#chapter-29-s17">MCP 速查</a><a class="outline-link" href="#chapter-29-s18">A2A 协议速查</a><a class="outline-link" href="#chapter-29-s19">智能体框架比较</a><a class="outline-link" href="#chapter-29-s20">Agentic RL 公式</a><a class="outline-link" href="#chapter-29-s21">智能体安全检查清单</a><a class="outline-link" href="#chapter-29-s22">智能体评估指标</a><a class="outline-link" href="#chapter-29-s23">关键智能体基准</a></aside></main>
   <button class="back-top" id="back-top" type="button">↑</button>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/toc.js"></script>
   <script src="../assets/js/progress.js"></script>
-  
 </body>
 </html>
