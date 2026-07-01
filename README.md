@@ -16,14 +16,24 @@
 - V4 Chinese Learning Edition Preview:
   https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/v4/
 
+- V4.1 Expanded Chinese Learning Edition Preview:
+  https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/v4/
+
 ## Current Release Tags
 
 - `v3.0.0`: Stable structured documentation site
 - `v4.0.0-preview`: Chinese rewritten learning edition preview
+- `v4.1.0-expanded-preview`: Expanded Chinese learning edition preview
 
 ## V4 Preview Scope
 
 V4 is a rewritten Chinese learning edition based on the original PDF. It prioritizes clarity, continuity, and learning experience over line-by-line fidelity. It remains published under `/v4/`, while the V3 stable documentation site remains at the root path.
+
+## V4.1 Expanded Edition
+
+V4.1 keeps the V4 learning-site structure but expands the chapter content coverage using the original PDF, V3 structured AST, `source_text.md`, and `document.zh.md`. It is still a Chinese rewritten learning edition rather than a line-by-line translation.
+
+V4.1 adds fuller chapters for LLM foundations, GPU/system serving, SFT/RLHF, PPO, DPO, GRPO, reward modeling, agent training, RAG, memory, tool use, evaluation, safety, and deployment. The `/v4/` preview path points to the latest expanded preview while the root path remains V3 stable.
 
 ## V3 Architecture
 
@@ -63,9 +73,17 @@ python scripts/audit_site.py
 
 `scripts/build_site.py` 会从清洗后的结构源重新生成静态站点。`scripts/audit_site.py` 会检查页面、链接、乱码、页码 DOM、英文残留、公式 fallback、搜索索引和移动端 CSS 等关键质量门禁。
 
+For the V4.1 expanded preview source:
+
+```bash
+python scripts/build_v4_expanded.py
+python scripts/audit_v4_expanded.py
+```
+
 ## Documentation
 
 - V3 architecture: `docs/v3_architecture.md`
 - V3 final release: `docs/final_release_v3.md`
 - V3 rebuild report: `docs/v3_site_rebuild_report.md`
 - V4 preview release: `docs/v4_preview_release.md`
+- V4.1 expanded release: `docs/v4_1_expanded_release.md`
