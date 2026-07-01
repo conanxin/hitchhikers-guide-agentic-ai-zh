@@ -12,7 +12,8 @@ from bs4 import BeautifulSoup
 REPO = Path(__file__).resolve().parents[1]
 ROOT = REPO.parent
 SITE = REPO / "site-v4"
-REPORT = ROOT / "report" / "v4_1_expanded_audit_report.md"
+REPORT = ROOT / "report" / "v4_1_public_cleanup_audit_report.md"
+PUBLIC_SCAN_ROOTS = [SITE, REPO / "v4", REPO / "README.md", REPO / "docs", REPO / "scripts" / "build_v4_expanded.py"]
 
 REQUIRED = [
     "index.html",
@@ -32,7 +33,6 @@ REQUIRED = [
     "assets/js/search.js",
     "assets/data/search-index.json",
     "assets/data/v4_lessons.json",
-    "assets/data/v4_expansion_metrics.json",
 ]
 
 FOCUS_CHAPTERS = {
@@ -127,6 +127,34 @@ TEMP_PATTERNS = [
     "TODO",
     "FIXME",
     "临时提示",
+]
+
+PUBLIC_FORBIDDEN_PATTERNS = [
+    "??????",
+    "????",
+    "????",
+    "?? chapter",
+    "V4.1 ?",
+    "V4 ?",
+    "V3 ??",
+    "PDF ????",
+    "????",
+    "?????",
+    "?????????",
+    "????",
+    "????",
+    "????",
+    "?? PDF ?",
+    "?????",
+    "????",
+    "????",
+    "????",
+    "????",
+    "stable " + "candidate",
+    "expanded " + "edition",
+    "pre" + "view",
+    "??",
+    "??",
 ]
 
 GARBLED_PATTERN = re.compile(r"\ufffd|���|锟斤拷|□|鈻|閿|绗�|椤�|闁|铮|�")
@@ -245,6 +273,32 @@ def temp_text_files() -> list[str]:
     return hits
 
 
+def public_forbidden_hits() -> list[dict]:
+    hits = []
+    for root in PUBLIC_SCAN_ROOTS:
+        if root.is_file():
+            paths = [root]
+        elif root.exists():
+            paths = [
+                path
+                for path in root.rglob("*")
+                if path.suffix.lower() in {".html", ".js", ".json", ".md", ".py"}
+            ]
+        else:
+            paths = []
+        for path in paths:
+            text = read_text(path)
+            lower = text.lower()
+            for pattern in PUBLIC_FORBIDDEN_PATTERNS:
+                if pattern.lower() in lower:
+                    try:
+                        rel = str(path.relative_to(REPO))
+                    except ValueError:
+                        rel = str(path)
+                    hits.append({"file": rel, "pattern": pattern})
+    return hits[:120]
+
+
 def broken_links() -> list[str]:
     broken = []
     ids_by_file: dict[Path, set[str]] = {}
@@ -305,6 +359,7 @@ def run_audit() -> dict:
         "temp_text": temp_text_files(),
         "english_residuals": english_residuals(),
         "heading_english": heading_english_issues(),
+        "public_forbidden": public_forbidden_hits(),
         "broken_links": broken_links(),
         "search": search,
         "mobile_css": mobile_css_ok(),
@@ -313,7 +368,7 @@ def run_audit() -> dict:
     }
     failed = (
         missing
-        or result["lesson_schema"] != "v4_1_expanded_lessons"
+        or result["lesson_schema"] != "chinese_learning_lessons"
         or result["lesson_count"] != 14
         or result["chapter_pages"] != 14
         or result["search_index_count"] < 14
@@ -322,6 +377,7 @@ def run_audit() -> dict:
         or result["page_pollution"]
         or result["temp_text"]
         or result["heading_english"]
+        or result["public_forbidden"]
         or result["broken_links"]
         or search["missing"]
         or not result["mobile_css"]
@@ -338,7 +394,7 @@ def write_report(result: dict) -> None:
         f"| {row['chapter']} | {row['chars']} | {row['threshold']} | {row['status']} |"
         for row in result["chapter_lengths"]
     )
-    report = f"""# V4.1 Expanded Edition Audit Report
+    report = f"""# V4.1 Public Cleanup Audit Report
 
 ## STATUS
 
@@ -369,6 +425,7 @@ def write_report(result: dict) -> None:
 - Page-number pollution: {len(result['page_pollution'])}
 - English heading residuals: {len(result['heading_english'])}
 - Large English paragraphs: {len(result['english_residuals'])}
+- Public cleanup forbidden phrases: {len(result['public_forbidden'])}
 - Broken links: {len(result['broken_links'])}
 - Search terms missing: {', '.join(result['search']['missing']) if result['search']['missing'] else 'None'}
 
@@ -391,6 +448,9 @@ def write_report(result: dict) -> None:
 
 ### English Residual Samples
 {json.dumps(result['english_residuals'], ensure_ascii=False, indent=2)}
+
+### Public Cleanup Forbidden Phrases
+{json.dumps(result['public_forbidden'], ensure_ascii=False, indent=2)}
 
 ### Broken Links
 {json.dumps(result['broken_links'], ensure_ascii=False, indent=2)}

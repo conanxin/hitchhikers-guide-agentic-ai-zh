@@ -66,7 +66,7 @@ LESSON_BLUEPRINTS = [
         "formula": "本章没有必须掌握的数学公式。可以先把智能体理解为一个不断更新状态并选择动作的闭环系统。",
         "summary": ["智能体式 AI 是模型能力和系统能力的结合。", "学习路线应先打牢 LLM 与强化学习基础，再进入智能体协议和部署。"],
         "questions": ["一个普通聊天机器人和一个智能体的边界在哪里？", "如果工具调用失败，智能体需要哪些恢复机制？"],
-        "reading": ["原 PDF 中 Agentic AI 简介相关章节", "V3 clean AST 中 chapter-16 的语义结构"],
+        "reading": ["Agentic AI 入门材料", "智能体系统设计资料"],
     },
     {
         "slug": "chapter-02",
@@ -364,7 +364,7 @@ LESSON_BLUEPRINTS = [
         "sections": [
             ("一条主线", "智能体式 AI 可以沿着一条主线学习：LLM 基础提供生成能力，SFT/RLHF 塑造行为，PPO/DPO/GRPO 提供偏好优化方法，RAG/记忆/工具把模型接入世界，评估和部署保证系统可靠。"),
             ("如何继续深入", "如果你偏算法，深入优化目标、奖励建模和推理模型训练；如果你偏工程，深入 GPU 服务化、RAG、协议和可观测性；如果你偏产品，关注评估、安全和人机协作体验。"),
-            ("用问题复习", "V4 将原文的测验与速查表压缩为学习问题。建议读完每章后先回答思考题，再回到 V3 或原 PDF 查看更完整细节。"),
+            ("用问题复习", "建议读完每章后先回答思考题，再回到参考资料核对细节。把问题作为复习入口，比机械记忆术语更有效。"),
         ],
         "table": ("学习路线", ["阶段", "目标", "对应章节"], [
             ["入门", "知道智能体式 AI 是什么", "第 1 章"],
@@ -374,9 +374,9 @@ LESSON_BLUEPRINTS = [
             ["复盘", "形成路线图", "第 14 章"],
         ]),
         "formula": "最终可以记住一个概念公式：智能体能力 = 模型能力 × 工具/记忆/环境 × 评估与安全约束。",
-        "summary": ["V4 是学习版，不是逐字翻译版。", "真正掌握需要在算法、系统和产品三个视角之间来回切换。"],
+        "summary": ["这是一份面向学习者的中文教材。", "真正掌握需要在算法、系统和产品三个视角之间来回切换。"],
         "questions": ["你的目标更偏算法、工程还是产品？对应应先补哪三章？", "如果要做一个研究智能体，最小可行系统需要哪些模块？"],
-        "reading": ["原 PDF 测验题与速查表", "V3 结构化文档站"],
+        "reading": ["原论文测验题与速查表", "结构化文档站"],
     },
 ]
 
@@ -599,7 +599,7 @@ def build_chapters(lessons: list[dict]) -> None:
             f'<section class="lesson-block"><h2>{esc(section["title"])}</h2><p>{esc(section["body"])}</p></section>'
             for section in lesson["sections"]
         )
-        source_badges = "".join(f"<span>{esc(title)}</span>" for title in lesson["source_titles"])
+        source_badges = f"<span>{esc(lesson['stage'])}</span><span>第 {lesson['number']:02d} 章</span>"
         topics = "".join(f"<li>{esc(topic)}</li>" for topic in lesson["source_topics"][:8])
         body = f"""
         <article class="lesson-article">
@@ -609,13 +609,13 @@ def build_chapters(lessons: list[dict]) -> None:
             <p>{esc(lesson["subtitle"])}</p>
             <div class="source-badges">{source_badges}</div>
           </header>
-          <section class="lesson-block intro"><h2>本章导读</h2><p>本章把原材料中的相关内容重新组织为学习版讲解，重点追求清晰、连贯和可复习。原始细节可回到 V3 结构化文档或 arXiv PDF 查阅。</p></section>
+          <section class="lesson-block intro"><h2>本章导读</h2><p>本章说明这一主题在全书知识路径中的位置，并把关键概念、方法直觉和工程注意点串成可复习的学习单元。</p></section>
           <section class="lesson-block"><h2>学习目标</h2><ul class="check-list">{"".join(f"<li>{esc(item)}</li>" for item in lesson["objectives"])}</ul></section>
           <section class="lesson-block"><h2>核心概念</h2><ul class="concept-list">{concept_chips(lesson["concepts"])}</ul></section>
           {section_html}
           {render_table(lesson["table"])}
           <section class="lesson-block formula-note"><h2>公式解释</h2><p>{esc(lesson["formula"])}</p><p class="muted">需要逐式核对时，请参考原 PDF：<a href="{PDF_URL}">{PDF_URL}</a></p></section>
-          <section class="lesson-block"><h2>来自原文的主题线索</h2><ul class="topic-list">{topics}</ul></section>
+          <section class="lesson-block"><h2>相关主题</h2><ul class="topic-list">{topics}</ul></section>
           <section class="lesson-block"><h2>小结</h2><ul>{"".join(f"<li>{esc(item)}</li>" for item in lesson["summary"])}</ul></section>
           <section class="lesson-block"><h2>思考题</h2><ol>{"".join(f"<li>{esc(item)}</li>" for item in lesson["questions"])}</ol></section>
           <section class="lesson-block"><h2>延伸阅读</h2><ul>{"".join(f"<li>{esc(item)}</li>" for item in lesson["reading"])}</ul></section>
@@ -636,7 +636,7 @@ def build_roadmap(lessons: list[dict]) -> None:
             blocks += f'<a href="chapters/{item["id"]}.html"><span>{item["number"]:02d}</span><strong>{esc(item["title"])}</strong><p>{esc(item["subtitle"])}</p></a>'
         blocks += "</section>"
     body = f'<article class="plain"><h1>学习路线图</h1><p class="lead">建议按“入门 → 模型 → 训练 → 系统 → 工程落地”的顺序阅读。已有基础的读者可以直接跳到对应阶段。</p><div class="roadmap-full">{blocks}</div></article>'
-    write(SITE / "roadmap.html", shell("学习路线图", "V4 中文重编版学习路线图。", body, active="roadmap"))
+    write(SITE / "roadmap.html", shell("学习路线图", "中文教材学习路线图。", body, active="roadmap"))
 
 
 def build_concepts(lessons: list[dict]) -> None:
@@ -651,49 +651,41 @@ def build_concepts(lessons: list[dict]) -> None:
         links = " ".join(f'<a href="{ref["url"]}">{esc(ref["title"])}</a>' for ref in item["lessons"][:4])
         cards += f'<article class="concept-card"><h2>{esc(item["label"])}</h2><p class="term">{esc(item["term"])}</p><p>{esc(item["note"])}</p><div>{links}</div></article>'
     body = f'<article class="plain wide"><h1>核心概念索引</h1><p class="lead">按学习版章节自动汇总的概念入口。</p><div class="concept-grid">{cards}</div></article>'
-    write(SITE / "concepts.html", shell("核心概念索引", "V4 核心概念索引。", body, active="concepts"))
+    write(SITE / "concepts.html", shell("核心概念索引", "中文教材核心概念索引。", body, active="concepts"))
 
 
 def build_glossary() -> None:
     rows = "".join(f"<tr><td>{esc(zh)}</td><td><code>{esc(en)}</code></td><td>{esc(note)}</td></tr>" for zh, en, note in GLOSSARY)
     body = f'<article class="plain"><h1>术语表</h1><p class="lead">首次出现尽量采用“中文名（English / abbreviation）”，后续保留常用缩写。</p><div class="table-wrap"><table><thead><tr><th>中文</th><th>English / abbreviation</th><th>说明</th></tr></thead><tbody>{rows}</tbody></table></div></article>'
-    write(SITE / "glossary.html", shell("术语表", "V4 术语表。", body, active="glossary"))
+    write(SITE / "glossary.html", shell("术语表", "中文教材术语表。", body, active="glossary"))
 
 
 def build_references(inventory: dict) -> None:
     body = f"""
     <article class="plain">
       <h1>参考资料</h1>
-      <p class="lead">V4 是学习版，保留原始来源入口，便于需要逐式核对和深入阅读的读者回到原文。</p>
+      <p class="lead">这里列出公开阅读入口，便于需要逐式核对和深入阅读的读者回到原论文。</p>
       <ul class="reference-list">
         <li><a href="{PDF_URL}">原始 arXiv PDF</a></li>
-        <li><a href="{ONLINE_STABLE}">V3 结构化中文文档站</a></li>
-        <li><a href="assets/data/v4_lessons.json">V4 lesson data</a></li>
-      </ul>
-      <h2>构建时读取的本地来源</h2>
-      <ul>
-        <li>PDF bytes: {inventory["pdf_bytes"]}</li>
-        <li>source_text.md characters: {inventory["source_text_chars"]}</li>
-        <li>document.zh.md characters: {inventory["translated_md_chars"]}</li>
-        <li>V3 AST chapters: {inventory["v3_chapters"]}</li>
+        <li><a href="{ONLINE_STABLE}">结构化中文文档站</a></li>
+        <li><a href="assets/data/v4_lessons.json">课程章节数据</a></li>
       </ul>
     </article>
     """
-    write(SITE / "references.html", shell("参考资料", "V4 参考资料。", body, active="references"))
+    write(SITE / "references.html", shell("参考资料", "中文教材参考资料。", body, active="references"))
 
 
 def build_about(inventory: dict) -> None:
     body = f"""
     <article class="plain">
-      <h1>关于 V4 中文重编版</h1>
-      <p class="lead">本页面说明 V4 的定位：它基于原 PDF、提取原文、中文译文和 V3 clean AST，但不是逐字翻译版。</p>
-      <section><h2>为什么不是逐字翻译</h2><p>逐字保留 PDF 提取文本会把提取残段、页码、公式损坏和表格错位一起带进网页。V4 选择把内容重新编成学习版，优先保证概念清晰、阅读连贯和复习方便。</p></section>
-      <section><h2>如何处理公式和表格</h2><p>公式无法可靠恢复时，V4 使用中文解释和原 PDF 链接；表格无法可靠恢复时，重新整理为教学表格，而不是保留错位表格。</p></section>
-      <section><h2>来源读取</h2><p>构建脚本读取了 PDF、source_text.md、document.zh.md 与 clean_chapter_tree.json。V4 页面由重编后的 lesson data 生成。</p></section>
-      <section><h2>稳定版</h2><p>稳定逐章结构化版本仍保留在 v3.0.0 与线上主站：<a href="{ONLINE_STABLE}">{ONLINE_STABLE}</a>。</p></section>
+      <h1>关于本站</h1>
+      <p class="lead">本站是面向学习者的 Agentic AI 中文教材，重点放在概念理解、方法脉络和工程实践。</p>
+      <section><h2>阅读定位</h2><p>正文不追求逐字复刻论文，而是把关键主题整理成更适合系统学习的章节。遇到复杂公式时，页面优先给出机制解释和使用场景，读者可以通过参考资料回到原论文核对细节。</p></section>
+      <section><h2>如何使用</h2><p>建议先按学习路线图建立整体框架，再进入具体章节。每章包含导读、学习目标、核心概念、正文讲解、公式说明、小结和思考题，适合自学、复盘和团队内部讨论。</p></section>
+      <section><h2>稳定版本</h2><p>逐章结构化中文文档仍保留在主站：<a href="{ONLINE_STABLE}">{ONLINE_STABLE}</a>。</p></section>
     </article>
     """
-    write(SITE / "about.html", shell("关于", "说明 V4 是中文重编学习版。", body, active="about"))
+    write(SITE / "about.html", shell("关于", "说明中文教材的阅读定位。", body, active="about"))
 
 
 def build_search(lessons: list[dict]) -> None:
@@ -714,14 +706,14 @@ def build_search(lessons: list[dict]) -> None:
     body = """
     <article class="plain search-page">
       <h1>搜索</h1>
-      <p class="lead">搜索 V4 中文重编版课程内容、术语和章节标题。</p>
+      <p class="lead">搜索课程内容、术语和章节标题。</p>
       <div class="search-box"><input id="search-input" type="search" placeholder="输入关键词，例如 RAG、奖励模型、工具调用..." autofocus /><button id="search-button">搜索</button></div>
       <div id="search-status" class="muted"></div>
       <div id="search-results" class="search-results"></div>
     </article>
-    <script src="assets/js/search.js?v=4.1.0-expanded-clean"></script>
+    <script src="assets/js/search.js?v=4.1.0-public-clean"></script>
     """
-    write(SITE / "search.html", shell("搜索", "V4 搜索页。", body, active="search"))
+    write(SITE / "search.html", shell("搜索", "中文教材搜索页。", body, active="search"))
 
 
 def write_assets() -> None:
@@ -732,14 +724,14 @@ def write_assets() -> None:
 (()=>{const topnav=document.getElementById("topnav"),menu=document.getElementById("menu-button"),bar=document.getElementById("progress"),top=document.getElementById("to-top");menu?.addEventListener("click",()=>{const open=topnav.classList.toggle("open");menu.setAttribute("aria-expanded",String(open))});const tick=()=>{const h=document.documentElement;const max=h.scrollHeight-h.clientHeight;const pct=max>0?h.scrollTop/max*100:0;if(bar)bar.style.width=pct+"%";if(top)top.classList.toggle("visible",h.scrollTop>500)};document.addEventListener("scroll",tick,{passive:true});top?.addEventListener("click",()=>scrollTo({top:0,behavior:"smooth"}));tick()})();
 """
     search_js = r"""
-(()=>{const input=document.getElementById("search-input"),button=document.getElementById("search-button"),results=document.getElementById("search-results"),status=document.getElementById("search-status");let index=[];const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));function snip(text,q){const clean=String(text||"").replace(/\s+/g," ");const i=clean.toLowerCase().indexOf(q.toLowerCase());const s=Math.max(0,i<0?0:i-48);return clean.slice(s,s+150)+(clean.length>s+150?"...":"")}function run(){const q=input.value.trim();results.innerHTML="";if(!q){status.textContent="请输入关键词。";return}const terms=q.toLowerCase().split(/\s+/).filter(Boolean);const found=index.map(item=>{const hay=`${item.title} ${item.stage} ${item.summary} ${item.text} ${(item.concepts||[]).join(" ")}`.toLowerCase();return{item,score:terms.reduce((n,t)=>n+(hay.includes(t)?1:0),0)}}).filter(x=>x.score>0).sort((a,b)=>b.score-a.score).slice(0,20);status.textContent=`找到 ${found.length} 条结果。`;results.innerHTML=found.map(({item})=>`<a class="search-result" href="${item.url}"><strong>${esc(item.title)}</strong><span>${esc(item.stage)}</span><p>${esc(snip(item.text,q))}</p></a>`).join("")}fetch("assets/data/search-index.json?v=4.1.0-expanded-clean",{cache:"no-store"}).then(r=>r.json()).then(data=>{index=data;const q=new URLSearchParams(location.search).get("q");if(q){input.value=q;run()}else status.textContent=`索引已加载，共 ${index.length} 章。`}).catch(()=>{status.textContent="搜索索引加载失败。"});button?.addEventListener("click",run);input?.addEventListener("keydown",e=>{if(e.key==="Enter")run()})})();
+(()=>{const input=document.getElementById("search-input"),button=document.getElementById("search-button"),results=document.getElementById("search-results"),status=document.getElementById("search-status");let index=[];const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));function snip(text,q){const clean=String(text||"").replace(/\s+/g," ");const i=clean.toLowerCase().indexOf(q.toLowerCase());const s=Math.max(0,i<0?0:i-48);return clean.slice(s,s+150)+(clean.length>s+150?"...":"")}function run(){const q=input.value.trim();results.innerHTML="";if(!q){status.textContent="请输入关键词。";return}const terms=q.toLowerCase().split(/\s+/).filter(Boolean);const found=index.map(item=>{const hay=`${item.title} ${item.stage} ${item.summary} ${item.text} ${(item.concepts||[]).join(" ")}`.toLowerCase();return{item,score:terms.reduce((n,t)=>n+(hay.includes(t)?1:0),0)}}).filter(x=>x.score>0).sort((a,b)=>b.score-a.score).slice(0,20);status.textContent=`找到 ${found.length} 条结果。`;results.innerHTML=found.map(({item})=>`<a class="search-result" href="${item.url}"><strong>${esc(item.title)}</strong><span>${esc(item.stage)}</span><p>${esc(snip(item.text,q))}</p></a>`).join("")}fetch("assets/data/search-index.json?v=4.1.0-public-clean",{cache:"no-store"}).then(r=>r.json()).then(data=>{index=data;const q=new URLSearchParams(location.search).get("q");if(q){input.value=q;run()}else status.textContent=`索引已加载，共 ${index.length} 章。`}).catch(()=>{status.textContent="搜索索引加载失败。"});button?.addEventListener("click",run);input?.addEventListener("keydown",e=>{if(e.key==="Enter")run()})})();
 """
     write(SITE / "assets" / "css" / "main.css", css)
     write(SITE / "assets" / "js" / "main.js", main_js)
     write(SITE / "assets" / "js" / "search.js", search_js)
 
 
-EDITION = "V4.1 Expanded Edition"
+EDITION = "正式中文教材版"
 EXPANSION_TARGETS = {
     "chapter-01": 3000,
     "chapter-02": 6500,
@@ -779,9 +771,9 @@ EXPANSION_GUIDES = {
         "priority": "中",
         "omitted": ["Agentic AI 与聊天机器人的边界", "模型能力与系统能力的分工", "全书学习路线"],
         "supplement": [
-            ("为什么需要扩展版", [
-                "V4.1 Expanded Edition 的目标不是把原 PDF 逐页搬回来，而是在保留 V4 清晰路线的基础上补回关键知识密度。原书覆盖模型、强化学习、系统工程、智能体协议、环境、评估和 UI 框架，简短版适合入门，但不足以支撑系统学习。",
-                "因此本版每章都加入更完整的机制解释、方法对比、实践提示和常见误区。读者可以先按 V4.1 学习路径建立全局理解，再回到 V3 结构化文档或原 PDF 做细节核对。"
+            ("为什么需要系统学习版", [
+                "智能体式 AI 横跨模型、强化学习、系统工程、工具协议、环境、评估和安全治理。只看单个算法容易失去全局，只看系统案例又容易忽略训练方法的约束。",
+                "因此本教材按学习路径组织知识：先建立 LLM 与系统基础，再理解反馈如何塑造模型行为，最后进入 RAG、记忆、工具、智能体训练、评估和部署。"
             ]),
             ("从模型到智能体系统", [
                 "智能体式 AI 的核心变化，是把语言模型从“回答器”推进到“执行器”。模型仍然负责理解、生成和推理，但系统还必须提供工具、记忆、环境反馈、权限控制、失败恢复和评估闭环。",
@@ -1058,7 +1050,7 @@ EXPANSION_GUIDES = {
         "supplement": [
             ("把三条线合在一起", [
                 "全书可以压缩为三条主线：模型线解释 LLM 如何生成和推理；训练线解释 SFT、RLHF、PPO、DPO、GRPO 和奖励模型如何塑造行为；系统线解释 RAG、记忆、工具、环境、评估和部署如何把模型变成可用智能体。",
-                "V4.1 的扩写版适合按路线学习，也适合按角色跳读：算法读者重点看第 4-10 章，系统读者重点看第 3、11-13 章，产品和评估读者重点看第 1、12、13 章。"
+                "本教材适合按路线学习，也适合按角色跳读：算法读者重点看第 4-10 章，系统读者重点看第 3、11-13 章，产品和评估读者重点看第 1、12、13 章。"
             ]),
             ("下一步怎么学", [
                 "如果要深入算法，建议从 policy gradient、KL 正则、偏好建模和 verifiable reward 开始；如果要做工程落地，建议实现一个小型 RAG + tool calling 智能体，并建立轨迹日志和评估集。",
@@ -1408,7 +1400,7 @@ EXTRA_EXPANDED_SECTIONS["chapter-08"].extend([
 
 EXTRA_EXPANDED_SECTIONS["chapter-06"].extend([
     ("PPO 章节的实践复盘", [
-        "真正执行一次 PPO 实验时，建议把每轮训练都记录成可复盘事件：本轮使用哪些提示，策略版本是什么，奖励模型版本是什么，平均奖励、平均长度、平均 KL、胜率和失败样本分别如何变化。这样当模型突然退化时，可以回到具体数据和配置，而不是只面对一条下降曲线。",
+        "真正执行一次 PPO 实验时，建议把每次训练都记录成可复盘事件：这一轮使用哪些提示，策略版本是什么，奖励模型版本是什么，平均奖励、平均长度、平均 KL、胜率和失败样本分别如何变化。这样当模型突然退化时，可以回到具体数据和配置，而不是只面对一条下降曲线。",
         "另外，PPO 的收益通常不是线性的。早期可能很快提升，因为模型学会基本偏好；中期会变慢，因为容易样本已经学完；后期可能因为奖励过优化而退化。合适的停止点往往来自人工评估、回归测试和线上风险，而不是训练损失。"
     ]),
 ])
@@ -1473,7 +1465,7 @@ EXTRA_EXPANDED_SECTIONS["chapter-07"].extend([
 EXTRA_EXPANDED_SECTIONS["chapter-07"].extend([
     ("DPO 数据集如何分层", [
         "一个实用的 DPO 数据集可以按任务和失败类型分层。任务层面包括知识问答、数学推理、代码修改、摘要、长文档问答、多轮对话和工具调用。失败类型层面包括事实错误、遗漏约束、推理跳步、格式不符、输出过长、拒答不当、安全边界错误和工具参数错误。分层的意义是让训练后评估能定位改进来自哪里，也能发现某些能力是否退化。",
-        "如果所有偏好样本都混在一起，模型可能只学习最高频的浅层模式。例如数据里大量 chosen 都更长，模型会倾向扩写；大量 rejected 都语气生硬，模型会倾向礼貌套话；大量安全样本都以拒答为佳，模型会提高拒答率。分层采样和分层报告可以降低这些偏差，让 DPO 更接近真实对齐。",
+        "如果所有偏好样本都混在一起，模型可能只学习最高频的浅层模式。例如数据里大量 chosen 都更长，模型会倾向拉长回答；大量 rejected 都语气生硬，模型会倾向礼貌套话；大量安全样本都以拒答为佳，模型会提高拒答率。分层采样和分层报告可以降低这些偏差，让 DPO 更接近真实对齐。",
         "评估时也要按层看结果。总胜率提升可能掩盖代码任务下降，平均长度正常可能掩盖长文档任务过短，安全拒答提升可能掩盖有用性下降。DPO 适合快速迭代，但每轮迭代都应留下清楚的数据版本、模型版本和分层指标，方便后续回滚和比较。"
     ]),
 ])
@@ -1585,7 +1577,7 @@ EXTRA_EXPANDED_SECTIONS["chapter-01"].extend([
 
 EXTRA_EXPANDED_SECTIONS["chapter-01"].extend([
     ("收束句", [
-        "这也是本版扩写的阅读目标。"
+        "这也是本教材的阅读目标。"
     ]),
 ])
 
@@ -1596,8 +1588,30 @@ EXTRA_EXPANDED_SECTIONS["chapter-01"].extend([
 ])
 
 EXTRA_EXPANDED_SECTIONS["chapter-05"].extend([
-    ("最后一句", [
+    ("对齐项目的复盘问题", [
         "先把反馈讲清楚，再讨论训练技巧。一个可复盘的对齐项目，应能回答：样本从哪里来，为什么 chosen 更好，rejected 代表哪类失败，哪些指标决定是否上线，线上失败如何回流。只有反馈链路可追踪，SFT、奖励模型和偏好优化才会变成可持续迭代的系统，而不是一次性实验。缺少这条链路，模型改进就很难解释，也很难长期维护。最终要把每次训练都变成可复盘的工程记录，便于审计。"
+    ]),
+    ("从 SFT 过渡到偏好优化", [
+        "SFT 解决的是“模型是否知道该如何回答”，偏好优化解决的是“多个可行回答里哪个更符合人类目标”。这两个阶段的边界不能混淆：若 SFT 数据本身覆盖不足，偏好优化会被迫修补基础能力缺口；若偏好数据只奖励表面风格，模型会学会迎合格式而不是提升任务质量。",
+        "因此实践中通常先用 SFT 建立稳定行为，再用偏好数据调节回答取舍。评估时也要分开看：基础能力是否保持，偏好目标是否改善，安全边界是否变化，输出成本是否可接受。只有这些问题都能回答，对齐训练才算进入可管理状态，也才便于后续复盘、持续改进和稳定迭代。"
+    ]),
+])
+
+EXTRA_EXPANDED_SECTIONS["chapter-08"].extend([
+    ("GRPO 的样本设计", [
+        "GRPO 的关键不是把同一问题多生成几次这么简单，而是要让候选之间真的形成可比较差异。若候选都很差，组内相对优势只是在差答案之间排序；若候选过于相似，奖励差异会被噪声主导；若题目分布太窄，模型容易学到格式偏好而不是任务能力。",
+        "实践中可以把题目按难度、领域和验证方式分层，再为每层控制候选数量、采样温度和奖励规则。这样做的目标是让组内比较既有区分度，又不会把训练信号集中到少数模板化答案上。"
+    ]),
+])
+
+EXTRA_EXPANDED_SECTIONS.setdefault("chapter-11", []).extend([
+    ("智能体训练的可观测性", [
+        "智能体训练必须记录完整轨迹，而不仅是最后是否成功。一次任务通常包含目标理解、计划生成、工具选择、工具返回、状态更新、反思修正和最终回答。若只看最终成功率，就无法判断失败来自检索错误、工具参数错误、计划过早收敛，还是模型没有正确使用环境反馈。",
+        "更稳妥的做法是把每一步拆成可检查事件：输入是什么，模型选择了什么动作，环境返回了什么证据，下一步状态如何变化，奖励或评价来自哪里。这样才能把训练样本、奖励设计和错误分析连接起来。对多步任务而言，轨迹质量往往比单步答案更重要。"
+    ]),
+    ("从轨迹到训练样本", [
+        "高质量轨迹并不等于可以直接训练。还需要判断哪些步骤是真正有价值的决策，哪些步骤只是工具返回或格式填充。把所有 token 都同等看待，会稀释关键动作的信号；只保留最终答案，又会丢失中间决策的可解释性。",
+        "教材式理解可以把轨迹拆成三层：任务状态、可执行动作和反馈证据。训练数据应尽量保留这三层之间的因果关系，让模型学会为什么选择某个工具、为什么修正计划，以及何时停止继续探索。"
     ]),
 ])
 
@@ -1680,12 +1694,9 @@ def source_rewrite_body(title: str, source_id: str) -> str:
         focus = "它属于发布前后的质量控制。评估不仅要看平均分，还要覆盖真实任务、失败样本、安全边界、成本延迟和上线后的反馈回流。"
         practice = "具体到这一主题，应把指标拆成能力、可靠性、安全、成本和可运维性，并保留失败样本，使下一轮训练或系统改造有可追踪依据。"
     else:
-        focus = "它是本章主线的补充线索，用来连接原书中的定义、方法或工程注意点。阅读时可以先抓住它解决的问题，再回到本章上下文判断它与训练、推理或智能体系统的关系。"
+        focus = "它是理解当前章节的重要补充线索，用来连接相关定义、方法和工程注意点。阅读时可以先抓住它解决的问题，再判断它与训练、推理或智能体系统的关系。"
         practice = "具体到这一主题，建议先判断它属于模型、训练、系统还是评估环节，再看它改变的是能力、成本、稳定性还是安全边界。"
-    return (
-        f"“{topic}”来自原书 {source_id} 的相关内容。V4.1 将其重写为教材式说明，避免直接带入 PDF 抽取噪声、断裂表格或残缺公式。"
-        f"{focus}{practice}"
-    )
+    return f"围绕“{topic}”，可以先判断它在知识体系中的位置。{focus}{practice}"
 
 
 def selected_source_sections(ast_by_id: dict[str, dict], source_ids: list[str], needed_chars: int) -> list[dict]:
@@ -1695,13 +1706,13 @@ def selected_source_sections(ast_by_id: dict[str, dict], source_ids: list[str], 
     for source_id in source_ids:
         chapter = ast_by_id[source_id]
         for sec in chapter.get("sections", []):
-            title = clean_title(sec.get("title", "原书主题"))
+            title = clean_title(sec.get("title", "专题"))
             if not title or title in used or re.fullmatch(r"[\d.]+", title):
                 continue
             used.add(title)
             body = source_rewrite_body(title, source_id)
             sections.append({
-                "title": f"原书主题重编：{title}",
+                "title": f"进阶专题：{title}",
                 "body": body,
                 "source": source_id,
             })
@@ -1827,10 +1838,10 @@ def build_chapters(lessons: list[dict]) -> None:
             <p>{esc(lesson["subtitle"])}</p>
             <div class="source-badges">{source_badges}</div>
           </header>
-          <section class="lesson-block intro"><h2>本章导读</h2><p>本章是 V4.1 扩写版内容：在 V4 预览版清晰学习路径的基础上，补入更多来自原 PDF、V3 clean AST 与完整中文译文的知识点，并清理文本提取噪声、损坏公式和页码干扰。</p></section>
+          <section class="lesson-block intro"><h2>本章导读</h2><p>本章围绕“{esc(lesson["title"])}”展开，先给出学习目标和核心概念，再进入机制解释、方法对比、实践提示和复习问题。阅读时建议先抓住问题背景，再理解关键方法，最后回到系统落地场景中检查取舍。</p></section>
           <section class="lesson-block"><h2>学习目标</h2><ul class="check-list">{"".join(f"<li>{esc(item)}</li>" for item in lesson["objectives"])}</ul></section>
           <section class="lesson-block"><h2>核心概念</h2><ul class="concept-list">{concept_html}</ul></section>
-          <section class="lesson-block"><h2>本章补充覆盖</h2><ul class="topic-list">{coverage}</ul></section>
+          <section class="lesson-block"><h2>学习要点补充</h2><ul class="topic-list">{coverage}</ul></section>
           {section_html}
           {render_table(lesson["table"])}
           <section class="lesson-block formula-note"><h2>公式 / 算法解释</h2><p>{esc(lesson["formula"])}</p><p class="muted">需要逐式核对时，请参考原 PDF：<a href="{PDF_URL}">{PDF_URL}</a></p></section>
@@ -1862,14 +1873,14 @@ def build_home(lessons: list[dict]) -> None:
       <div>
         <p class="chapter-number">{EDITION}</p>
         <h1>智能体式 AI 中文重编版</h1>
-        <p class="hero-lead">相比 V4 preview，本版增加了更多原书内容覆盖，把简短学习版扩展为更完整的中文重编教材。它仍然不是逐字翻译，而是围绕学习路径、机制理解和工程实践重新组织。</p>
+        <p class="hero-lead">一份面向学习者的 Agentic AI 中文在线教材。它按学习路径组织 LLM 基础、系统工程、强化学习、偏好优化、RAG、工具使用、智能体训练、评估、安全与部署。</p>
         <form class="hero-search" action="search.html"><input type="search" name="q" placeholder="搜索：RoPE、KV Cache、PPO、ReAct、PagedAttention..." /><button>搜索</button></form>
-        <p><a class="button" href="chapters/chapter-01.html">开始阅读 V4.1</a> <a class="button" href="{PDF_URL}">原 PDF</a></p>
+        <p><a class="button" href="chapters/chapter-01.html">开始阅读</a> <a class="button" href="{PDF_URL}">原论文</a></p>
       </div>
       <aside class="reader-panel">
         <h2>全书内容覆盖</h2>
-        <p>V4.1 按 14 个学习章节覆盖 LLM 基础、系统服务化、强化学习、偏好优化、奖励模型、智能体训练、RAG、记忆、工具、安全和部署。</p>
-        <ul><li>重点章节扩写到 5000+ 中文字符。</li><li>搜索索引重建，覆盖新增术语。</li><li>保留 V3 根站点，V4.1 继续位于 /v4/。</li></ul>
+        <p>全书按 14 个学习章节覆盖 LLM 基础、系统服务化、强化学习、偏好优化、奖励模型、智能体训练、RAG、记忆、工具、安全和部署。</p>
+        <ul><li>章节按学习顺序组织，适合连续阅读。</li><li>关键概念提供术语索引和搜索入口。</li><li>算法、系统和产品视角互相连接。</li></ul>
       </aside>
     </section>
     <section class="band">
@@ -1877,7 +1888,7 @@ def build_home(lessons: list[dict]) -> None:
       <ol class="roadmap-mini">{roadmap}</ol>
     </section>
     <section class="band">
-      <div class="section-head"><h2>扩写覆盖说明</h2><a href="concepts.html">核心概念索引</a></div>
+      <div class="section-head"><h2>内容地图</h2><a href="concepts.html">核心概念索引</a></div>
       <div class="lesson-grid">{coverage}</div>
     </section>
     <section class="band">
@@ -1885,7 +1896,7 @@ def build_home(lessons: list[dict]) -> None:
       <div class="lesson-grid">{cards}</div>
     </section>
     """
-    write(SITE / "index.html", shell("智能体式 AI 中文重编版", "V4.1 Expanded Edition：扩写后的中文重编学习版。", body, active="home"))
+    write(SITE / "index.html", shell("智能体式 AI 中文重编版", "面向学习者的 Agentic AI 中文在线教材。", body, active="home"))
 
 
 def build_search(lessons: list[dict]) -> None:
@@ -1906,7 +1917,7 @@ def build_search(lessons: list[dict]) -> None:
     body = """
     <article class="plain search-page">
       <h1>搜索</h1>
-      <p class="lead">搜索 V4.1 Expanded Edition 的课程内容、术语和章节标题。</p>
+      <p class="lead">搜索课程内容、术语和章节标题。</p>
       <div class="search-box"><input id="search-input" type="search" placeholder="输入关键词，例如 RoPE、KV Cache、PPO、ReAct..." autofocus /><button id="search-button">搜索</button></div>
       <div id="search-status" class="muted"></div>
       <div id="search-results" class="search-results"></div>
@@ -1926,37 +1937,59 @@ def build_glossary() -> None:
 def build_about(inventory: dict) -> None:
     body = f"""
     <article class="plain">
-      <h1>关于 V4.1 Expanded Edition</h1>
-      <p class="lead">V4.1 基于原 PDF、提取原文、中文译文和 V3 clean AST，对 V4 preview 进行内容扩写。它不是逐字翻译版，而是更完整的中文重编教材版。</p>
-      <section><h2>扩写原则</h2><p>优先覆盖原书重要知识点，同时保持章节结构、学习路径和网页阅读体验。公式无法可靠恢复时使用简化公式和中文解释；表格无法可靠恢复时重做为教学表格。</p></section>
-      <section><h2>与 V3 的关系</h2><p>V3 更接近原文结构，适合查找完整来源；V4.1 更像中文教材，适合系统学习。稳定根站仍为 V3，V4.1 继续发布在 /v4/。</p></section>
-      <section><h2>来源读取</h2><p>构建脚本读取 PDF、source_text.md、document.zh.md 与 clean_chapter_tree.json。V4.1 页面由扩写后的 lesson data 生成。</p></section>
-      <section><h2>稳定版</h2><p>稳定逐章结构化版本仍保留在 v3.0.0 与线上主站：<a href="{ONLINE_STABLE}">{ONLINE_STABLE}</a>。</p></section>
+      <h1>关于中文重编教材版</h1>
+      <p class="lead">这是一份面向学习者的中文在线教材，目标是把 Agentic AI 的模型基础、训练方法和系统工程讲清楚。</p>
+      <section><h2>学习定位</h2><p>教材按学习路径组织内容，优先保证概念清晰、章节连贯和复习方便。读者可以按章节顺序学习，也可以围绕算法、系统或产品评估三条路线跳读。</p></section>
+      <section><h2>公式和表格</h2><p>复杂公式以机制解释为主，必要时提供简化关系；表格以教学对比为主，帮助读者快速把握方法差异、适用条件和工程取舍。</p></section>
+      <section><h2>在线版本</h2><p>本教材发布在 <a href="./">/v4/</a> 路径，根路径保留结构化文档版本：<a href="{ONLINE_STABLE}">{ONLINE_STABLE}</a>。</p></section>
     </article>
     """
-    write(SITE / "about.html", shell("关于", "说明 V4.1 是中文重编扩写版。", body, active="about"))
+    write(SITE / "about.html", shell("关于", "中文重编教材版说明。", body, active="about"))
 
 
 def build_references(inventory: dict) -> None:
     body = f"""
     <article class="plain">
       <h1>参考资料</h1>
-      <p class="lead">V4.1 是扩写学习版，保留原始来源入口，便于逐式核对和深入阅读。</p>
+      <p class="lead">这里收录原论文、结构化文档版本和进一步学习入口，便于需要核对细节的读者继续阅读。</p>
       <ul class="reference-list">
         <li><a href="{PDF_URL}">原始 arXiv PDF</a></li>
-        <li><a href="{ONLINE_STABLE}">V3 结构化中文文档站</a></li>
-        <li><a href="assets/data/v4_lessons.json">V4.1 lesson data</a></li>
-      </ul>
-      <h2>构建时读取的本地来源</h2>
-      <ul>
-        <li>PDF bytes: {inventory["pdf_bytes"]}</li>
-        <li>source_text.md characters: {inventory["source_text_chars"]}</li>
-        <li>document.zh.md characters: {inventory["translated_md_chars"]}</li>
-        <li>V3 AST chapters: {inventory["v3_chapters"]}</li>
+        <li><a href="{ONLINE_STABLE}">结构化中文文档站</a></li>
+        <li><a href="glossary.html">术语表</a></li>
+        <li><a href="roadmap.html">学习路线图</a></li>
       </ul>
     </article>
     """
-    write(SITE / "references.html", shell("参考资料", "V4.1 参考资料。", body, active="references"))
+    write(SITE / "references.html", shell("参考资料", "Agentic AI 中文教材参考资料。", body, active="references"))
+
+
+def public_lessons_payload(lessons: list[dict]) -> dict:
+    public_lessons = []
+    for lesson in lessons:
+        public_lessons.append({
+            "number": lesson["number"],
+            "id": lesson["id"],
+            "title": lesson["title"],
+            "subtitle": lesson["subtitle"],
+            "stage": lesson["stage"],
+            "objectives": lesson["objectives"],
+            "concepts": lesson["concepts"],
+            "sections": [{"title": section["title"], "body": section["body"]} for section in lesson["sections"]],
+            "table": lesson["table"],
+            "formula": lesson["formula"],
+            "summary": lesson["summary"],
+            "questions": lesson["questions"],
+            "reading": lesson["reading"],
+            "keywords": lesson["keywords"],
+            "char_count": lesson["char_count"],
+            "coverage_topics": lesson.get("omitted_topics", []),
+        })
+    return {
+        "schema": "chinese_learning_lessons",
+        "title": TITLE,
+        "edition": EDITION,
+        "lessons": public_lessons,
+    }
 
 
 def write_expansion_metadata(lessons: list[dict], inventory: dict) -> None:
@@ -1978,7 +2011,6 @@ def write_expansion_metadata(lessons: list[dict], inventory: dict) -> None:
         ],
         "source_inventory": inventory,
     }
-    write(SITE / "assets" / "data" / "v4_expansion_metrics.json", json.dumps(payload, ensure_ascii=False, indent=2))
     rows = []
     for lesson in lessons:
         rows.append(
@@ -1992,7 +2024,7 @@ def write_expansion_metadata(lessons: list[dict], inventory: dict) -> None:
                 priority=lesson["priority"],
             )
         )
-    report = "# V4 Content Gap Analysis\n\n| V4 当前章节标题 | V4 当前大致字数 | 对应原书 / V3 章节来源 | 原书中被遗漏的重要主题 | 应补充的小节 | 是否涉及公式、表格、图、算法、案例 | 扩写优先级 |\n|---|---:|---|---|---|---|---|\n" + "\n".join(rows) + "\n"
+    report = "# V4 Content Coverage Analysis\n\n| 章节标题 | 当前字数 | 参考范围 | 覆盖主题 | 主要小节 | 内容类型 | 优先级 |\n|---|---:|---|---|---|---|---|\n" + "\n".join(rows) + "\n"
     report_path = ROOT / "report" / "v4_content_gap_analysis.md"
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(report, encoding="utf-8", newline="\n")
@@ -2004,7 +2036,7 @@ def build_all() -> None:
     SITE.mkdir(parents=True)
     ast, inventory = load_sources()
     lessons = build_lessons(ast, inventory)
-    write(SITE / "assets" / "data" / "v4_lessons.json", json.dumps({"schema": "v4_1_expanded_lessons", "title": TITLE, "edition": EDITION, "lessons": lessons, "source_inventory": inventory}, ensure_ascii=False, indent=2))
+    write(SITE / "assets" / "data" / "v4_lessons.json", json.dumps(public_lessons_payload(lessons), ensure_ascii=False, indent=2))
     build_home(lessons)
     build_chapters(lessons)
     build_roadmap(lessons)
