@@ -1,0 +1,2237 @@
+{
+  "schema": "v4_learning_lessons",
+  "title": "智能体式 AI 中文重编版",
+  "lessons": [
+    {
+      "number": 1,
+      "id": "chapter-01",
+      "title": "导读：什么是智能体式 AI",
+      "subtitle": "从聊天模型走向能执行任务的系统",
+      "stage": "入门",
+      "sources": [
+        "chapter-01",
+        "chapter-16"
+      ],
+      "source_titles": [
+        "导读与前置说明",
+        "智能体式 AI 简介"
+      ],
+      "source_topics": [
+        "本章概览"
+      ],
+      "objectives": [
+        "区分聊天模型、工作流和智能体",
+        "理解智能体式 AI 的基本循环",
+        "建立后续学习的全局地图"
+      ],
+      "concepts": [
+        {
+          "label": "智能体式 AI",
+          "term": "Agentic AI",
+          "note": "具备目标导向、工具使用、环境交互和多步执行能力的 AI 系统。"
+        },
+        {
+          "label": "智能体",
+          "term": "Agent",
+          "note": "能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。"
+        },
+        {
+          "label": "Transformer",
+          "term": "Transformer",
+          "note": "以自注意力为核心的序列建模架构。"
+        },
+        {
+          "label": "注意力",
+          "term": "Attention",
+          "note": "根据查询、键和值计算上下文加权表示的机制。"
+        },
+        {
+          "label": "自注意力",
+          "term": "Self-Attention",
+          "note": "序列内部各位置之间相互关注的注意力机制。"
+        },
+        {
+          "label": "强化学习",
+          "term": "Reinforcement Learning",
+          "note": "通过奖励信号优化策略的学习范式。"
+        },
+        {
+          "label": "奖励模型",
+          "term": "Reward Model",
+          "note": "把候选输出映射为偏好或质量分数的模型。"
+        },
+        {
+          "label": "策略",
+          "term": "Policy",
+          "note": "在状态下选择动作或生成 token 的概率分布。"
+        }
+      ],
+      "sections": [
+        {
+          "title": "为什么需要重编版",
+          "body": "原 PDF 覆盖了模型架构、强化学习、系统工程和智能体协议，信息量很大。V4 不再逐页翻译，而是把这些材料重新编成学习路径：先理解 LLM，再理解训练方法，最后进入智能体系统。"
+        },
+        {
+          "title": "智能体式 AI 的核心循环",
+          "body": "智能体式 AI（Agentic AI）不是只回答一句话的模型，而是围绕目标反复经历“观察、思考、行动、反馈”的循环。工具调用、记忆、检索、环境交互和评估共同决定它能否稳定完成任务。"
+        },
+        {
+          "title": "从模型到系统",
+          "body": "LLM 提供语言理解和生成能力；强化学习和偏好优化塑造行为；RAG、记忆和工具让模型接触外部世界；评估、安全和部署则决定系统能不能被可靠使用。"
+        }
+      ],
+      "table": {
+        "title": "三类 AI 形态",
+        "headers": [
+          "形态",
+          "主要能力",
+          "局限"
+        ],
+        "rows": [
+          [
+            "聊天模型",
+            "根据上下文生成回答",
+            "通常不主动规划和执行多步任务"
+          ],
+          [
+            "工作流",
+            "按固定流程调用模型和工具",
+            "灵活性依赖预先写好的流程"
+          ],
+          [
+            "智能体",
+            "能根据目标选择步骤、工具和记忆",
+            "更需要评估、权限控制和失败恢复"
+          ]
+        ]
+      },
+      "formula": "本章没有必须掌握的数学公式。可以先把智能体理解为一个不断更新状态并选择动作的闭环系统。",
+      "summary": [
+        "智能体式 AI 是模型能力和系统能力的结合。",
+        "学习路线应先打牢 LLM 与强化学习基础，再进入智能体协议和部署。"
+      ],
+      "questions": [
+        "一个普通聊天机器人和一个智能体的边界在哪里？",
+        "如果工具调用失败，智能体需要哪些恢复机制？"
+      ],
+      "reading": [
+        "原 PDF 中 Agentic AI 简介相关章节",
+        "V3 clean AST 中 chapter-16 的语义结构"
+      ],
+      "keywords": [
+        "AI",
+        "本章概览",
+        "LLM",
+        "智能体式",
+        "RAG",
+        "本节聚焦",
+        "的定义",
+        "机制与工程含义",
+        "Transformer",
+        "强化学习",
+        "API",
+        "单轮聊天机器人"
+      ],
+      "source_inventory": {
+        "source_text_chars": 1633887,
+        "translated_md_chars": 789391,
+        "pdf_bytes": 9255598,
+        "v3_chapters": 30,
+        "term_counts": {
+          "Agentic AI": 580,
+          "Transformer": 155,
+          "PPO": 360,
+          "DPO": 592,
+          "GRPO": 549,
+          "RAG": 395,
+          "MCP": 402,
+          "A2A": 178,
+          "RLHF": 242,
+          "RoPE": 35
+        }
+      }
+    },
+    {
+      "number": 2,
+      "id": "chapter-02",
+      "title": "LLM 基础：Token、Transformer 与推理",
+      "subtitle": "理解大语言模型如何把文本变成下一个 token",
+      "stage": "模型基础",
+      "sources": [
+        "chapter-02"
+      ],
+      "source_titles": [
+        "LLM 架构和优化方法"
+      ],
+      "source_topics": [
+        "LLM 如何工作：直观概览",
+        "分词 / 分词 / 分词 / 标记化",
+        "Transformer 架构",
+        "预测头：Transformer 输出什么",
+        "LLM 训练的优化理论",
+        "FlashAttention：算法与硬件感知"
+      ],
+      "objectives": [
+        "理解 token 与分词",
+        "掌握 Transformer 的基本数据流",
+        "理解推理阶段为什么会逐 token 生成"
+      ],
+      "concepts": [
+        {
+          "label": "智能体",
+          "term": "Agent",
+          "note": "能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。"
+        },
+        {
+          "label": "标记 / token",
+          "term": "Token",
+          "note": "语言模型处理文本的基本离散单位。"
+        },
+        {
+          "label": "分词 / 标记化",
+          "term": "Tokenization",
+          "note": "把文本转换成 token 序列的过程。"
+        },
+        {
+          "label": "字节对编码（BPE）",
+          "term": "Byte Pair Encoding",
+          "note": "常见子词分词方法，通过合并高频片段构造词表。"
+        },
+        {
+          "label": "Transformer",
+          "term": "Transformer",
+          "note": "以自注意力为核心的序列建模架构。"
+        },
+        {
+          "label": "注意力",
+          "term": "Attention",
+          "note": "根据查询、键和值计算上下文加权表示的机制。"
+        },
+        {
+          "label": "自注意力",
+          "term": "Self-Attention",
+          "note": "序列内部各位置之间相互关注的注意力机制。"
+        },
+        {
+          "label": "强化学习",
+          "term": "Reinforcement Learning",
+          "note": "通过奖励信号优化策略的学习范式。"
+        }
+      ],
+      "sections": [
+        {
+          "title": "从文本到 token",
+          "body": "大型语言模型（Large Language Model / LLM）不能直接处理自然语言字符串，它先通过分词（Tokenization）把文本转成 token 序列。BPE 等子词方法在词表大小、未知词处理和压缩效率之间折中。"
+        },
+        {
+          "title": "Transformer 的主干",
+          "body": "Transformer 通过注意力（Attention）在上下文位置之间传递信息。每一层都会更新 token 表示，最后由语言模型头把隐藏状态映射为词表上的概率分布。"
+        },
+        {
+          "title": "推理为什么慢",
+          "body": "自回归生成一次只产生一个 token。新 token 会追加到上下文里，再触发下一轮前向计算。KV cache、批处理和高效注意力实现都是为了降低这个过程的重复成本。"
+        }
+      ],
+      "table": {
+        "title": "LLM 基础组件",
+        "headers": [
+          "组件",
+          "作用",
+          "学习提示"
+        ],
+        "rows": [
+          [
+            "Tokenizer",
+            "把文本切成 token",
+            "关注词表、特殊 token 和中英文混合文本"
+          ],
+          [
+            "Embedding",
+            "把 token 映射为向量",
+            "理解向量空间中的相似性"
+          ],
+          [
+            "Attention",
+            "聚合上下文信息",
+            "理解查询、键和值的关系"
+          ],
+          [
+            "LM Head",
+            "输出词表概率",
+            "连接隐藏状态与下一个 token"
+          ]
+        ]
+      },
+      "formula": "注意力可以口头理解为：当前 token 先向所有上下文 token 提问，再按相关性加权汇总信息。V4 不保留 OCR 破碎公式，只保留这个可读解释。",
+      "summary": [
+        "LLM 的最小主线是 token → embedding → Transformer → LM head。",
+        "推理优化要围绕自回归生成和 KV cache 展开。"
+      ],
+      "questions": [
+        "为什么中文文档里的 token 不一定等于一个汉字？",
+        "KV cache 主要节省了哪部分重复计算？"
+      ],
+      "reading": [
+        "Transformer 架构",
+        "FlashAttention 与解码方法"
+      ],
+      "keywords": [
+        "LLM",
+        "Transformer",
+        "本节聚焦",
+        "的定义",
+        "机制与工程含义",
+        "B",
+        "token",
+        "方法",
+        "FlashAttention",
+        "GB",
+        "logits",
+        "分词"
+      ],
+      "source_inventory": {
+        "source_text_chars": 1633887,
+        "translated_md_chars": 789391,
+        "pdf_bytes": 9255598,
+        "v3_chapters": 30,
+        "term_counts": {
+          "Agentic AI": 580,
+          "Transformer": 155,
+          "PPO": 360,
+          "DPO": 592,
+          "GRPO": 549,
+          "RAG": 395,
+          "MCP": 402,
+          "A2A": 178,
+          "RLHF": 242,
+          "RoPE": 35
+        }
+      }
+    },
+    {
+      "number": 3,
+      "id": "chapter-03",
+      "title": "LLM 系统基础：GPU、显存、并行与服务化",
+      "subtitle": "从模型算法走向可运行的基础设施",
+      "stage": "系统基础",
+      "sources": [
+        "chapter-03",
+        "chapter-12"
+      ],
+      "source_titles": [
+        "LLM 的系统基础",
+        "大规模系统架构与基础设施"
+      ],
+      "source_topics": [
+        "GPU 架构：从芯片到 LLM 训练",
+        "vLLM：PagedAttention 与高吞吐推理",
+        "四模型显存挑战",
+        "并行策略详解",
+        "生成瓶颈：定量分析",
+        "解耦架构：生产设计",
+        "权重同步策略",
+        "显存优化技术"
+      ],
+      "objectives": [
+        "理解显存为何是 LLM 系统瓶颈",
+        "区分数据并行、张量并行和流水线并行",
+        "理解服务化中的吞吐、延迟和批处理"
+      ],
+      "concepts": [
+        {
+          "label": "标记 / token",
+          "term": "Token",
+          "note": "语言模型处理文本的基本离散单位。"
+        },
+        {
+          "label": "Transformer",
+          "term": "Transformer",
+          "note": "以自注意力为核心的序列建模架构。"
+        },
+        {
+          "label": "注意力",
+          "term": "Attention",
+          "note": "根据查询、键和值计算上下文加权表示的机制。"
+        },
+        {
+          "label": "策略",
+          "term": "Policy",
+          "note": "在状态下选择动作或生成 token 的概率分布。"
+        },
+        {
+          "label": "缓冲区",
+          "term": "Buffer",
+          "note": "保存经验、轨迹或中间数据以供训练和分析的结构。"
+        },
+        {
+          "label": "推理",
+          "term": "Inference",
+          "note": "模型在部署或测试时生成输出的过程。"
+        },
+        {
+          "label": "近端策略优化（PPO）",
+          "term": "PPO",
+          "note": "通过裁剪目标限制策略更新幅度的强化学习算法。"
+        },
+        {
+          "label": "旋转位置嵌入（RoPE）",
+          "term": "RoPE",
+          "note": "通过旋转变换注入相对位置信息的位置编码方法。"
+        }
+      ],
+      "sections": [
+        {
+          "title": "显存是第一约束",
+          "body": "大模型部署时，参数、激活、优化器状态、KV cache 都会占用显存。训练时还要保存梯度和优化器状态；推理时则重点关注权重加载、KV cache 与并发请求。"
+        },
+        {
+          "title": "并行策略怎么选",
+          "body": "数据并行适合扩展 batch；张量并行把单层矩阵计算切到多卡；流水线并行把模型层切段。真实系统通常会组合这些方法，再用 ZeRO/FSDP 降低冗余显存。"
+        },
+        {
+          "title": "服务化关注什么",
+          "body": "服务化不只是把模型放到 API 后面。调度器、动态批处理、KV cache 管理、限流、监控和故障恢复共同决定用户体验与成本。"
+        }
+      ],
+      "table": {
+        "title": "常见并行方式",
+        "headers": [
+          "方式",
+          "解决什么问题",
+          "代价"
+        ],
+        "rows": [
+          [
+            "数据并行",
+            "提高训练吞吐",
+            "需要同步梯度"
+          ],
+          [
+            "张量并行",
+            "单层计算放不下一张卡",
+            "跨卡通信频繁"
+          ],
+          [
+            "流水线并行",
+            "模型层数或参数过大",
+            "有气泡开销和调度复杂度"
+          ],
+          [
+            "ZeRO/FSDP",
+            "减少状态冗余",
+            "实现和检查点更复杂"
+          ]
+        ]
+      },
+      "formula": "系统估算常用“显存预算 = 权重 + KV cache + 激活/中间状态 + 框架开销”。V4 用预算框架替代 OCR 破碎公式，便于实际部署时套用。",
+      "summary": [
+        "训练和推理的瓶颈不同，不能用同一套直觉处理。",
+        "LLM 服务化是调度、显存和网络的综合工程。"
+      ],
+      "questions": [
+        "为什么 batch 变大可能提高吞吐但增加单请求延迟？",
+        "什么时候张量并行比数据并行更必要？"
+      ],
+      "reading": [
+        "vLLM 与 PagedAttention",
+        "大规模系统架构与基础设施"
+      ],
+      "keywords": [
+        "GPU",
+        "GB",
+        "B",
+        "RLHF",
+        "本节聚焦",
+        "的定义",
+        "机制与工程含义",
+        "A100",
+        "H100",
+        "BF16",
+        "FSDP",
+        "LLM"
+      ],
+      "source_inventory": {
+        "source_text_chars": 1633887,
+        "translated_md_chars": 789391,
+        "pdf_bytes": 9255598,
+        "v3_chapters": 30,
+        "term_counts": {
+          "Agentic AI": 580,
+          "Transformer": 155,
+          "PPO": 360,
+          "DPO": 592,
+          "GRPO": 549,
+          "RAG": 395,
+          "MCP": 402,
+          "A2A": 178,
+          "RLHF": 242,
+          "RoPE": 35
+        }
+      }
+    },
+    {
+      "number": 4,
+      "id": "chapter-04",
+      "title": "强化学习基础",
+      "subtitle": "用状态、动作和奖励描述学习问题",
+      "stage": "训练基础",
+      "sources": [
+        "chapter-04"
+      ],
+      "source_titles": [
+        "强化学习简介"
+      ],
+      "source_topics": [
+        "马尔可夫决策过程（MDP）",
+        "核心概念与定义",
+        "强化学习方法分类",
+        "时序差分（TD）学习",
+        "Q 学习",
+        "策略梯度方法：REINFORCE"
+      ],
+      "objectives": [
+        "理解 MDP、策略和价值函数",
+        "区分在线策略与离线策略",
+        "理解奖励设计为什么困难"
+      ],
+      "concepts": [
+        {
+          "label": "智能体",
+          "term": "Agent",
+          "note": "能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。"
+        },
+        {
+          "label": "标记 / token",
+          "term": "Token",
+          "note": "语言模型处理文本的基本离散单位。"
+        },
+        {
+          "label": "强化学习",
+          "term": "Reinforcement Learning",
+          "note": "通过奖励信号优化策略的学习范式。"
+        },
+        {
+          "label": "奖励模型",
+          "term": "Reward Model",
+          "note": "把候选输出映射为偏好或质量分数的模型。"
+        },
+        {
+          "label": "策略",
+          "term": "Policy",
+          "note": "在状态下选择动作或生成 token 的概率分布。"
+        },
+        {
+          "label": "轨迹",
+          "term": "Trajectory",
+          "note": "智能体与环境交互形成的状态、动作、观察和奖励序列。"
+        },
+        {
+          "label": "缓冲区",
+          "term": "Buffer",
+          "note": "保存经验、轨迹或中间数据以供训练和分析的结构。"
+        },
+        {
+          "label": "近端策略优化（PPO）",
+          "term": "PPO",
+          "note": "通过裁剪目标限制策略更新幅度的强化学习算法。"
+        }
+      ],
+      "sections": [
+        {
+          "title": "MDP 是统一语言",
+          "body": "马尔可夫决策过程（Markov Decision Process / MDP）把问题拆成状态、动作、转移、奖励和折扣。它为后续把语言模型输出看作动作序列提供了统一语言。"
+        },
+        {
+          "title": "策略与价值",
+          "body": "策略决定在状态下选择什么动作；价值函数估计状态或动作的长期收益。强化学习的核心就是在探索和利用之间寻找更好的策略。"
+        },
+        {
+          "title": "奖励不是答案",
+          "body": "奖励信号会塑造模型行为，但它也可能被钻空子。智能体系统尤其需要把结果奖励、过程奖励、规则奖励和人工偏好结合起来。"
+        }
+      ],
+      "table": {
+        "title": "强化学习核心对象",
+        "headers": [
+          "对象",
+          "含义",
+          "在 LLM 中的对应"
+        ],
+        "rows": [
+          [
+            "状态",
+            "当前可见信息",
+            "prompt、上下文、工具结果"
+          ],
+          [
+            "动作",
+            "可选择行为",
+            "生成 token、调用工具、结束任务"
+          ],
+          [
+            "奖励",
+            "反馈信号",
+            "偏好分数、任务成功、规则验证"
+          ],
+          [
+            "策略",
+            "动作分布",
+            "当前语言模型"
+          ]
+        ]
+      },
+      "formula": "回报可以理解为“当前奖励加上未来奖励的折扣和”。公式细节可回到原 PDF，但学习时先掌握长期收益的直觉更重要。",
+      "summary": [
+        "强化学习让模型从反馈中优化行为。",
+        "奖励设计决定了系统最终会追求什么。"
+      ],
+      "questions": [
+        "为什么短期高奖励可能导致长期效果变差？",
+        "LLM 的一个 token 能否看作一个动作？"
+      ],
+      "reading": [
+        "MDP、策略梯度、Actor-Critic、GAE"
+      ],
+      "keywords": [
+        "s",
+        "a",
+        "Q",
+        "LLM",
+        "本节聚焦",
+        "的定义",
+        "机制与工程含义",
+        "V",
+        "学习",
+        "RL",
+        "P",
+        "模型"
+      ],
+      "source_inventory": {
+        "source_text_chars": 1633887,
+        "translated_md_chars": 789391,
+        "pdf_bytes": 9255598,
+        "v3_chapters": 30,
+        "term_counts": {
+          "Agentic AI": 580,
+          "Transformer": 155,
+          "PPO": 360,
+          "DPO": 592,
+          "GRPO": 549,
+          "RAG": 395,
+          "MCP": 402,
+          "A2A": 178,
+          "RLHF": 242,
+          "RoPE": 35
+        }
+      }
+    },
+    {
+      "number": 5,
+      "id": "chapter-05",
+      "title": "从 SFT 到 RLHF",
+      "subtitle": "让模型先会答，再学会答得更好",
+      "stage": "对齐基础",
+      "sources": [
+        "chapter-05",
+        "chapter-11"
+      ],
+      "source_titles": [
+        "语言模型的强化学习基础",
+        "SFT 最佳实践与技术"
+      ],
+      "source_topics": [
+        "LLM 强化学习的两种范式",
+        "作为 MDP 的文本生成",
+        "RLHF 流水线",
+        "本部分路线图",
+        "提升效率的序列打包",
+        "聊天模板与格式化",
+        "仅补全部分掩码",
+        "多任务 SFT 的数据混合策略",
+        "SFT 何时有害：灾难性遗忘与对齐税",
+        "与 RL 的关系：SFT 质量决定 RL 上限"
+      ],
+      "objectives": [
+        "理解 SFT 的作用",
+        "理解 RLHF 的基本流水线",
+        "知道 SFT 数据质量如何影响后续 RL"
+      ],
+      "concepts": [
+        {
+          "label": "智能体",
+          "term": "Agent",
+          "note": "能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。"
+        },
+        {
+          "label": "标记 / token",
+          "term": "Token",
+          "note": "语言模型处理文本的基本离散单位。"
+        },
+        {
+          "label": "强化学习",
+          "term": "Reinforcement Learning",
+          "note": "通过奖励信号优化策略的学习范式。"
+        },
+        {
+          "label": "监督微调（SFT）",
+          "term": "Supervised Fine-Tuning",
+          "note": "用示范数据让模型学习期望响应格式和行为。"
+        },
+        {
+          "label": "奖励模型",
+          "term": "Reward Model",
+          "note": "把候选输出映射为偏好或质量分数的模型。"
+        },
+        {
+          "label": "策略",
+          "term": "Policy",
+          "note": "在状态下选择动作或生成 token 的概率分布。"
+        },
+        {
+          "label": "推理",
+          "term": "Inference",
+          "note": "模型在部署或测试时生成输出的过程。"
+        },
+        {
+          "label": "近端策略优化（PPO）",
+          "term": "PPO",
+          "note": "通过裁剪目标限制策略更新幅度的强化学习算法。"
+        }
+      ],
+      "sections": [
+        {
+          "title": "SFT 解决起点问题",
+          "body": "监督微调（Supervised Fine-Tuning / SFT）用高质量示范回答教模型遵循指令、组织格式和覆盖常见任务。它不是终点，但会决定后续偏好优化的天花板。"
+        },
+        {
+          "title": "RLHF 解决偏好问题",
+          "body": "人类反馈强化学习（RLHF）通常包括采样候选、收集偏好、训练奖励模型、再用强化学习优化策略。它把“哪种回答更好”变成可训练信号。"
+        },
+        {
+          "title": "数据格式很关键",
+          "body": "聊天模板、completion-only mask、序列打包和多任务混合都会影响训练稳定性。V4 把这些工程细节放在学习路径中，而不是散落在 PDF 长页里。"
+        }
+      ],
+      "table": {
+        "title": "SFT 与 RLHF",
+        "headers": [
+          "阶段",
+          "输入",
+          "输出"
+        ],
+        "rows": [
+          [
+            "SFT",
+            "示范问答",
+            "会遵循指令的初始模型"
+          ],
+          [
+            "偏好收集",
+            "同一 prompt 的多候选回答",
+            "胜负偏好对"
+          ],
+          [
+            "奖励建模",
+            "偏好对",
+            "给回答打分的奖励模型"
+          ],
+          [
+            "策略优化",
+            "奖励信号",
+            "更符合偏好的模型"
+          ]
+        ]
+      },
+      "formula": "偏好优化的关键不是背公式，而是理解：模型会被鼓励提高胜出回答的概率，同时控制偏离参考模型的幅度。",
+      "summary": [
+        "SFT 提供行为起点，RLHF 进一步塑造偏好。",
+        "数据质量、模板和 mask 会显著影响训练结果。"
+      ],
+      "questions": [
+        "为什么低质量 SFT 会限制 RLHF 上限？",
+        "偏好对比单个分数更容易收集吗？为什么？"
+      ],
+      "reading": [
+        "SFT 最佳实践",
+        "语言模型的强化学习基础"
+      ],
+      "keywords": [
+        "SFT",
+        "LLM",
+        "RL",
+        "token",
+        "RLHF",
+        "本节聚焦",
+        "的定义",
+        "机制与工程含义",
+        "st",
+        "奖励",
+        "K",
+        "at"
+      ],
+      "source_inventory": {
+        "source_text_chars": 1633887,
+        "translated_md_chars": 789391,
+        "pdf_bytes": 9255598,
+        "v3_chapters": 30,
+        "term_counts": {
+          "Agentic AI": 580,
+          "Transformer": 155,
+          "PPO": 360,
+          "DPO": 592,
+          "GRPO": 549,
+          "RAG": 395,
+          "MCP": 402,
+          "A2A": 178,
+          "RLHF": 242,
+          "RoPE": 35
+        }
+      }
+    },
+    {
+      "number": 6,
+      "id": "chapter-06",
+      "title": "PPO：近端策略优化",
+      "subtitle": "在不让策略大幅漂移的前提下学习偏好",
+      "stage": "偏好优化",
+      "sources": [
+        "chapter-06"
+      ],
+      "source_titles": [
+        "PPO：近端策略优化"
+      ],
+      "source_topics": [
+        "动机与历史",
+        "裁剪目标函数",
+        "完整 PPO 损失",
+        "PPO 梯度与更新规则推导",
+        "Rollout 缓冲区与采样轨迹",
+        "用于 RLHF 的 PPO 完整循环"
+      ],
+      "objectives": [
+        "理解 PPO 为什么要限制更新幅度",
+        "理解 rollout、优势估计和 KL 控制",
+        "知道 PPO 在 RLHF 中的完整循环"
+      ],
+      "concepts": [
+        {
+          "label": "智能体",
+          "term": "Agent",
+          "note": "能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。"
+        },
+        {
+          "label": "标记 / token",
+          "term": "Token",
+          "note": "语言模型处理文本的基本离散单位。"
+        },
+        {
+          "label": "Transformer",
+          "term": "Transformer",
+          "note": "以自注意力为核心的序列建模架构。"
+        },
+        {
+          "label": "强化学习",
+          "term": "Reinforcement Learning",
+          "note": "通过奖励信号优化策略的学习范式。"
+        },
+        {
+          "label": "奖励模型",
+          "term": "Reward Model",
+          "note": "把候选输出映射为偏好或质量分数的模型。"
+        },
+        {
+          "label": "策略",
+          "term": "Policy",
+          "note": "在状态下选择动作或生成 token 的概率分布。"
+        },
+        {
+          "label": "轨迹",
+          "term": "Trajectory",
+          "note": "智能体与环境交互形成的状态、动作、观察和奖励序列。"
+        },
+        {
+          "label": "缓冲区",
+          "term": "Buffer",
+          "note": "保存经验、轨迹或中间数据以供训练和分析的结构。"
+        }
+      ],
+      "sections": [
+        {
+          "title": "PPO 的核心直觉",
+          "body": "近端策略优化（Proximal Policy Optimization / PPO）希望新策略比旧策略更好，但不能一步走太远。裁剪目标函数就是为了避免策略更新突然失控。"
+        },
+        {
+          "title": "RLHF 中的 PPO",
+          "body": "在语言模型里，rollout 是模型生成的回答序列。奖励模型给出分数，优势估计告诉模型哪些 token 或片段值得增加概率，KL 惩罚则防止模型偏离参考模型太多。"
+        },
+        {
+          "title": "为什么实现复杂",
+          "body": "PPO 需要维护参考模型、奖励模型、价值模型和当前策略，还要处理采样、归一化、batch、KL 系数和分布式训练，因此系统复杂度高。"
+        }
+      ],
+      "table": {
+        "title": "PPO 训练循环",
+        "headers": [
+          "步骤",
+          "说明"
+        ],
+        "rows": [
+          [
+            "采样",
+            "用当前策略生成回答"
+          ],
+          [
+            "评分",
+            "奖励模型或规则给出反馈"
+          ],
+          [
+            "估计优势",
+            "判断哪些动作比预期更好"
+          ],
+          [
+            "裁剪更新",
+            "限制新旧策略概率比"
+          ],
+          [
+            "监控 KL",
+            "避免模型偏离参考行为"
+          ]
+        ]
+      },
+      "formula": "PPO 公式可理解为：如果新策略相对旧策略的变化超出安全范围，就裁剪收益，迫使更新保持近端。V4 保留直觉，不展示 OCR 不可靠公式。",
+      "summary": [
+        "PPO 强大但系统成本高。",
+        "KL 控制和优势估计是理解 PPO 的两个入口。"
+      ],
+      "questions": [
+        "为什么 PPO 需要参考模型？",
+        "如果 KL 惩罚过强，会发生什么？"
+      ],
+      "reading": [
+        "PPO 损失、rollout buffer、TRL 实现"
+      ],
+      "keywords": [
+        "PPO",
+        "本节聚焦",
+        "的定义",
+        "机制与工程含义",
+        "KL",
+        "A",
+        "r",
+        "TRL",
+        "步骤",
+        "更新",
+        "RLHF",
+        "完整循环"
+      ],
+      "source_inventory": {
+        "source_text_chars": 1633887,
+        "translated_md_chars": 789391,
+        "pdf_bytes": 9255598,
+        "v3_chapters": 30,
+        "term_counts": {
+          "Agentic AI": 580,
+          "Transformer": 155,
+          "PPO": 360,
+          "DPO": 592,
+          "GRPO": 549,
+          "RAG": 395,
+          "MCP": 402,
+          "A2A": 178,
+          "RLHF": 242,
+          "RoPE": 35
+        }
+      }
+    },
+    {
+      "number": 7,
+      "id": "chapter-07",
+      "title": "DPO：直接偏好优化",
+      "subtitle": "不用显式奖励模型的偏好学习路径",
+      "stage": "偏好优化",
+      "sources": [
+        "chapter-07"
+      ],
+      "source_titles": [
+        "DPO：直接偏好优化"
+      ],
+      "source_topics": [
+        "动机",
+        "数学推导",
+        "梯度分析",
+        "TRL 实现",
+        "DPO 工作机制：完整细节",
+        "DPO 变体及其失效场景"
+      ],
+      "objectives": [
+        "理解 DPO 与 PPO/RLHF 的区别",
+        "掌握偏好对如何直接优化模型",
+        "知道 DPO 的适用边界"
+      ],
+      "concepts": [
+        {
+          "label": "标记 / token",
+          "term": "Token",
+          "note": "语言模型处理文本的基本离散单位。"
+        },
+        {
+          "label": "Transformer",
+          "term": "Transformer",
+          "note": "以自注意力为核心的序列建模架构。"
+        },
+        {
+          "label": "注意力",
+          "term": "Attention",
+          "note": "根据查询、键和值计算上下文加权表示的机制。"
+        },
+        {
+          "label": "奖励模型",
+          "term": "Reward Model",
+          "note": "把候选输出映射为偏好或质量分数的模型。"
+        },
+        {
+          "label": "策略",
+          "term": "Policy",
+          "note": "在状态下选择动作或生成 token 的概率分布。"
+        },
+        {
+          "label": "轨迹",
+          "term": "Trajectory",
+          "note": "智能体与环境交互形成的状态、动作、观察和奖励序列。"
+        },
+        {
+          "label": "推理",
+          "term": "Inference",
+          "note": "模型在部署或测试时生成输出的过程。"
+        },
+        {
+          "label": "近端策略优化（PPO）",
+          "term": "PPO",
+          "note": "通过裁剪目标限制策略更新幅度的强化学习算法。"
+        }
+      ],
+      "sections": [
+        {
+          "title": "DPO 想简化什么",
+          "body": "直接偏好优化（Direct Preference Optimization / DPO）把偏好学习改写成监督式目标，避免显式训练奖励模型和运行复杂 PPO 循环。"
+        },
+        {
+          "title": "偏好对是核心数据",
+          "body": "DPO 需要同一输入下的胜出回答和失败回答。训练目标会提高胜出回答相对失败回答的概率，同时通过参考模型约束更新幅度。"
+        },
+        {
+          "title": "什么时候会失效",
+          "body": "如果偏好数据噪声大、胜负差异不清晰，或任务需要在线探索，DPO 可能不如更复杂的强化学习方法。"
+        }
+      ],
+      "table": {
+        "title": "DPO 与 PPO 对比",
+        "headers": [
+          "维度",
+          "DPO",
+          "PPO"
+        ],
+        "rows": [
+          [
+            "奖励模型",
+            "通常不需要显式奖励模型",
+            "通常需要奖励模型"
+          ],
+          [
+            "训练复杂度",
+            "较低，接近监督学习",
+            "较高，需要 rollout 和价值估计"
+          ],
+          [
+            "探索能力",
+            "主要依赖离线偏好数据",
+            "更适合在线采样和探索"
+          ]
+        ]
+      },
+      "formula": "DPO 的核心是比较胜出回答与失败回答的相对 log 概率。学习时先记住“拉开偏好差距，同时不要偏离参考模型”。",
+      "summary": [
+        "DPO 是偏好优化的简化路径。",
+        "它依赖高质量偏好对，不是所有任务的万能替代。"
+      ],
+      "questions": [
+        "为什么 DPO 可以不显式训练奖励模型？",
+        "偏好对中两个回答过于接近会带来什么问题？"
+      ],
+      "reading": [
+        "DPO 推导、梯度分析、DPO 变体"
+      ],
+      "keywords": [
+        "DPO",
+        "x",
+        "KL",
+        "本节聚焦",
+        "的定义",
+        "机制与工程含义",
+        "y",
+        "yl",
+        "yw",
+        "PPO",
+        "RL",
+        "ref"
+      ],
+      "source_inventory": {
+        "source_text_chars": 1633887,
+        "translated_md_chars": 789391,
+        "pdf_bytes": 9255598,
+        "v3_chapters": 30,
+        "term_counts": {
+          "Agentic AI": 580,
+          "Transformer": 155,
+          "PPO": 360,
+          "DPO": 592,
+          "GRPO": 549,
+          "RAG": 395,
+          "MCP": 402,
+          "A2A": 178,
+          "RLHF": 242,
+          "RoPE": 35
+        }
+      }
+    },
+    {
+      "number": 8,
+      "id": "chapter-08",
+      "title": "GRPO 与新型偏好优化方法",
+      "subtitle": "用组内比较降低价值模型依赖",
+      "stage": "偏好优化",
+      "sources": [
+        "chapter-08"
+      ],
+      "source_titles": [
+        "GRPO：组相对策略优化"
+      ],
+      "source_topics": [
+        "动机",
+        "算法",
+        "TRL 实现",
+        "组大小分析",
+        "GRPO 变体与扩展"
+      ],
+      "objectives": [
+        "理解 GRPO 的组内相对思想",
+        "知道它为何适合推理模型训练",
+        "比较 PPO、DPO 和 GRPO 的取舍"
+      ],
+      "concepts": [
+        {
+          "label": "智能体",
+          "term": "Agent",
+          "note": "能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。"
+        },
+        {
+          "label": "标记 / token",
+          "term": "Token",
+          "note": "语言模型处理文本的基本离散单位。"
+        },
+        {
+          "label": "Transformer",
+          "term": "Transformer",
+          "note": "以自注意力为核心的序列建模架构。"
+        },
+        {
+          "label": "注意力",
+          "term": "Attention",
+          "note": "根据查询、键和值计算上下文加权表示的机制。"
+        },
+        {
+          "label": "强化学习",
+          "term": "Reinforcement Learning",
+          "note": "通过奖励信号优化策略的学习范式。"
+        },
+        {
+          "label": "奖励模型",
+          "term": "Reward Model",
+          "note": "把候选输出映射为偏好或质量分数的模型。"
+        },
+        {
+          "label": "策略",
+          "term": "Policy",
+          "note": "在状态下选择动作或生成 token 的概率分布。"
+        },
+        {
+          "label": "轨迹",
+          "term": "Trajectory",
+          "note": "智能体与环境交互形成的状态、动作、观察和奖励序列。"
+        }
+      ],
+      "sections": [
+        {
+          "title": "组相对的想法",
+          "body": "组相对策略优化（Group Relative Policy Optimization / GRPO）会为同一 prompt 采样一组回答，再用组内相对表现估计优势。这样可以减少对单独价值模型的依赖。"
+        },
+        {
+          "title": "为什么适合推理",
+          "body": "推理任务常常可以通过规则、验证器或最终答案判断正确性。同一题目的多条思路可以相互比较，形成更稳定的训练信号。"
+        },
+        {
+          "title": "工程取舍",
+          "body": "GRPO 仍然需要采样多个候选，因此推理成本不低。它的关键在于奖励设计、组大小、采样温度和结果验证。"
+        }
+      ],
+      "table": {
+        "title": "三种偏好优化直觉",
+        "headers": [
+          "方法",
+          "核心数据",
+          "适合场景"
+        ],
+        "rows": [
+          [
+            "PPO",
+            "在线 rollout + 奖励",
+            "需要探索和复杂反馈"
+          ],
+          [
+            "DPO",
+            "离线胜负偏好对",
+            "偏好数据明确、希望训练简单"
+          ],
+          [
+            "GRPO",
+            "同题多候选组内比较",
+            "推理、数学、代码等可验证任务"
+          ]
+        ]
+      },
+      "formula": "GRPO 的重点不是单个回答的绝对分数，而是同组回答相对均值的优势。V4 用这个解释替代易损坏的公式抄录。",
+      "summary": [
+        "GRPO 通过组内比较获得训练信号。",
+        "它适合可验证推理，但采样和奖励设计仍然关键。"
+      ],
+      "questions": [
+        "为什么同一 prompt 下多采样可以帮助训练？",
+        "组大小过小或过大会分别带来什么问题？"
+      ],
+      "reading": [
+        "GRPO 算法、组大小分析、推理模型训练"
+      ],
+      "keywords": [
+        "GRPO",
+        "G",
+        "本节聚焦",
+        "的定义",
+        "机制与工程含义",
+        "PPO",
+        "TRL",
+        "rj",
+        "Ai",
+        "算法",
+        "V",
+        "s"
+      ],
+      "source_inventory": {
+        "source_text_chars": 1633887,
+        "translated_md_chars": 789391,
+        "pdf_bytes": 9255598,
+        "v3_chapters": 30,
+        "term_counts": {
+          "Agentic AI": 580,
+          "Transformer": 155,
+          "PPO": 360,
+          "DPO": 592,
+          "GRPO": 549,
+          "RAG": 395,
+          "MCP": 402,
+          "A2A": 178,
+          "RLHF": 242,
+          "RoPE": 35
+        }
+      }
+    },
+    {
+      "number": 9,
+      "id": "chapter-09",
+      "title": "KTO、IPO、ORPO 等偏好优化变体",
+      "subtitle": "理解偏好优化家族的设计空间",
+      "stage": "偏好优化",
+      "sources": [
+        "chapter-09"
+      ],
+      "source_titles": [
+        "偏好优化变体"
+      ],
+      "source_topics": [
+        "在线 DPO",
+        "KTO：Kahneman-Tversky 优化",
+        "IPO：身份偏好优化",
+        "ORPO：赔率比偏好优化",
+        "Best-of-N 采样（拒绝采样）",
+        "总结：选择对齐方法"
+      ],
+      "objectives": [
+        "认识常见 DPO 变体",
+        "理解不同目标函数背后的假设",
+        "形成方法选择直觉"
+      ],
+      "concepts": [
+        {
+          "label": "标记 / token",
+          "term": "Token",
+          "note": "语言模型处理文本的基本离散单位。"
+        },
+        {
+          "label": "Transformer",
+          "term": "Transformer",
+          "note": "以自注意力为核心的序列建模架构。"
+        },
+        {
+          "label": "强化学习",
+          "term": "Reinforcement Learning",
+          "note": "通过奖励信号优化策略的学习范式。"
+        },
+        {
+          "label": "奖励模型",
+          "term": "Reward Model",
+          "note": "把候选输出映射为偏好或质量分数的模型。"
+        },
+        {
+          "label": "策略",
+          "term": "Policy",
+          "note": "在状态下选择动作或生成 token 的概率分布。"
+        },
+        {
+          "label": "推理",
+          "term": "Inference",
+          "note": "模型在部署或测试时生成输出的过程。"
+        },
+        {
+          "label": "近端策略优化（PPO）",
+          "term": "PPO",
+          "note": "通过裁剪目标限制策略更新幅度的强化学习算法。"
+        },
+        {
+          "label": "直接偏好优化（DPO）",
+          "term": "DPO",
+          "note": "从偏好对直接优化策略，不显式训练奖励模型的方法。"
+        }
+      ],
+      "sections": [
+        {
+          "title": "为什么会有很多变体",
+          "body": "偏好数据并不总是成对、干净、平衡。KTO、IPO、ORPO 等方法尝试在数据形态、稳定性和实现复杂度之间做不同折中。"
+        },
+        {
+          "title": "从目标函数看差异",
+          "body": "有的方法强调胜负间隔，有的方法把偏好变成 odds ratio，有的方法处理单样本好坏反馈。学习时不必先背公式，应先理解每种方法假设了什么数据。"
+        },
+        {
+          "title": "方法选择",
+          "body": "如果有清晰偏好对，DPO 是简单基线；如果只有正负反馈，可考虑 KTO 类方法；如果要更强在线探索，则回到 PPO/GRPO 或任务特定 RL。"
+        }
+      ],
+      "table": {
+        "title": "偏好优化变体",
+        "headers": [
+          "方法",
+          "直觉",
+          "注意点"
+        ],
+        "rows": [
+          [
+            "KTO",
+            "更接近人类对收益/损失的不对称偏好",
+            "适合单样本正负反馈"
+          ],
+          [
+            "IPO",
+            "控制偏好差距的稳定化目标",
+            "需要理解 margin 设定"
+          ],
+          [
+            "ORPO",
+            "把 odds ratio 融入训练目标",
+            "实现简洁但需验证任务适配性"
+          ]
+        ]
+      },
+      "formula": "这些方法的公式细节不同，但共同目标是：让模型更偏向高质量回答，同时避免过拟合噪声偏好。",
+      "summary": [
+        "偏好优化变体反映了数据条件的差异。",
+        "先判断数据形态，再选择训练目标。"
+      ],
+      "questions": [
+        "如果只有“好/坏”标签而没有成对比较，DPO 是否仍然合适？",
+        "为什么 margin 过大可能让训练变得困难？"
+      ],
+      "reading": [
+        "Online DPO、KTO、IPO、ORPO、Best-of-N"
+      ],
+      "keywords": [
+        "DPO",
+        "ORPO",
+        "本节聚焦",
+        "的定义",
+        "机制与工程含义",
+        "IPO",
+        "SFT",
+        "在线",
+        "KTO",
+        "Best-of-N",
+        "动机",
+        "损失"
+      ],
+      "source_inventory": {
+        "source_text_chars": 1633887,
+        "translated_md_chars": 789391,
+        "pdf_bytes": 9255598,
+        "v3_chapters": 30,
+        "term_counts": {
+          "Agentic AI": 580,
+          "Transformer": 155,
+          "PPO": 360,
+          "DPO": 592,
+          "GRPO": 549,
+          "RAG": 395,
+          "MCP": 402,
+          "A2A": 178,
+          "RLHF": 242,
+          "RoPE": 35
+        }
+      }
+    },
+    {
+      "number": 10,
+      "id": "chapter-10",
+      "title": "奖励模型与数据构造",
+      "subtitle": "把“好回答”变成可训练信号",
+      "stage": "数据与奖励",
+      "sources": [
+        "chapter-10"
+      ],
+      "source_titles": [
+        "奖励模型训练"
+      ],
+      "source_topics": [
+        "Bradley-Terry 模型完整推导",
+        "奖励模型架构",
+        "奖励模型训练技巧",
+        "过程奖励模型与结果奖励模型",
+        "面向 RLVR 的规则奖励",
+        "多目标奖励：组合策略"
+      ],
+      "objectives": [
+        "理解奖励模型的角色",
+        "区分结果奖励和过程奖励",
+        "掌握数据构造的常见风险"
+      ],
+      "concepts": [
+        {
+          "label": "智能体",
+          "term": "Agent",
+          "note": "能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。"
+        },
+        {
+          "label": "标记 / token",
+          "term": "Token",
+          "note": "语言模型处理文本的基本离散单位。"
+        },
+        {
+          "label": "Transformer",
+          "term": "Transformer",
+          "note": "以自注意力为核心的序列建模架构。"
+        },
+        {
+          "label": "强化学习",
+          "term": "Reinforcement Learning",
+          "note": "通过奖励信号优化策略的学习范式。"
+        },
+        {
+          "label": "奖励模型",
+          "term": "Reward Model",
+          "note": "把候选输出映射为偏好或质量分数的模型。"
+        },
+        {
+          "label": "策略",
+          "term": "Policy",
+          "note": "在状态下选择动作或生成 token 的概率分布。"
+        },
+        {
+          "label": "推理",
+          "term": "Inference",
+          "note": "模型在部署或测试时生成输出的过程。"
+        },
+        {
+          "label": "直接偏好优化（DPO）",
+          "term": "DPO",
+          "note": "从偏好对直接优化策略，不显式训练奖励模型的方法。"
+        }
+      ],
+      "sections": [
+        {
+          "title": "奖励模型是什么",
+          "body": "奖励模型（Reward Model）把输入和候选回答映射为质量分数。它让偏好判断可以规模化，但也会继承标注偏差和数据覆盖问题。"
+        },
+        {
+          "title": "结果奖励与过程奖励",
+          "body": "结果奖励只看最终答案，适合可验证任务；过程奖励会评价中间步骤，适合长链推理和工具调用，但标注成本更高。"
+        },
+        {
+          "title": "数据构造比模型更重要",
+          "body": "偏好数据要覆盖真实任务、困难负例、边界条件和安全场景。只用容易样本训练，模型可能在生产环境中表现脆弱。"
+        }
+      ],
+      "table": {
+        "title": "奖励信号类型",
+        "headers": [
+          "类型",
+          "优点",
+          "风险"
+        ],
+        "rows": [
+          [
+            "人工偏好",
+            "贴近用户感受",
+            "成本高且有主观差异"
+          ],
+          [
+            "规则奖励",
+            "可扩展、可复现",
+            "容易遗漏语义质量"
+          ],
+          [
+            "过程奖励",
+            "能指导中间步骤",
+            "标注复杂"
+          ],
+          [
+            "结果奖励",
+            "简单直接",
+            "对长任务反馈稀疏"
+          ]
+        ]
+      },
+      "formula": "Bradley-Terry 模型可理解为：两个回答的奖励分差越大，前者被偏好的概率越高。V4 保留这个解释，不强行展示易错公式。",
+      "summary": [
+        "奖励模型把偏好转化为训练信号。",
+        "奖励设计与数据覆盖决定训练方向。"
+      ],
+      "questions": [
+        "奖励模型被模型“钻空子”是什么意思？",
+        "什么任务更适合过程奖励？"
+      ],
+      "reading": [
+        "Bradley-Terry、奖励模型架构、RLVR 规则奖励"
+      ],
+      "keywords": [
+        "LLM",
+        "Bradley-Terry",
+        "本节聚焦",
+        "的定义",
+        "机制与工程含义",
+        "q",
+        "y1",
+        "PRM",
+        "y2",
+        "RLVR",
+        "模型",
+        "其中"
+      ],
+      "source_inventory": {
+        "source_text_chars": 1633887,
+        "translated_md_chars": 789391,
+        "pdf_bytes": 9255598,
+        "v3_chapters": 30,
+        "term_counts": {
+          "Agentic AI": 580,
+          "Transformer": 155,
+          "PPO": 360,
+          "DPO": 592,
+          "GRPO": 549,
+          "RAG": 395,
+          "MCP": 402,
+          "A2A": 178,
+          "RLHF": 242,
+          "RoPE": 35
+        }
+      }
+    },
+    {
+      "number": 11,
+      "id": "chapter-11",
+      "title": "智能体训练",
+      "subtitle": "从单次回答优化到多步任务优化",
+      "stage": "智能体训练",
+      "sources": [
+        "chapter-13",
+        "chapter-21"
+      ],
+      "source_titles": [
+        "LLM 智能体训练",
+        "智能体环境与基准"
+      ],
+      "source_topics": [
+        "动机：从聊天机器人到自主智能体",
+        "LLM 智能体的轨迹缓冲区",
+        "运行范式",
+        "范式比较",
+        "Agentic RL 的主要技术",
+        "用例：面向生产力副驾驶的 Agentic RL",
+        "动机：为什么智能体需要环境",
+        "环境设计原则",
+        "智能体式环境类型",
+        "OpenEnv：标准化智能体环境接口"
+      ],
+      "objectives": [
+        "理解轨迹缓冲区",
+        "理解智能体环境和 benchmark",
+        "掌握训练智能体的主要难点"
+      ],
+      "concepts": [
+        {
+          "label": "智能体",
+          "term": "Agent",
+          "note": "能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。"
+        },
+        {
+          "label": "标记 / token",
+          "term": "Token",
+          "note": "语言模型处理文本的基本离散单位。"
+        },
+        {
+          "label": "注意力",
+          "term": "Attention",
+          "note": "根据查询、键和值计算上下文加权表示的机制。"
+        },
+        {
+          "label": "强化学习",
+          "term": "Reinforcement Learning",
+          "note": "通过奖励信号优化策略的学习范式。"
+        },
+        {
+          "label": "奖励模型",
+          "term": "Reward Model",
+          "note": "把候选输出映射为偏好或质量分数的模型。"
+        },
+        {
+          "label": "策略",
+          "term": "Policy",
+          "note": "在状态下选择动作或生成 token 的概率分布。"
+        },
+        {
+          "label": "轨迹",
+          "term": "Trajectory",
+          "note": "智能体与环境交互形成的状态、动作、观察和奖励序列。"
+        },
+        {
+          "label": "缓冲区",
+          "term": "Buffer",
+          "note": "保存经验、轨迹或中间数据以供训练和分析的结构。"
+        }
+      ],
+      "sections": [
+        {
+          "title": "智能体训练不同在哪里",
+          "body": "智能体训练面对的是多步轨迹（Trajectory），其中包含观察、计划、工具调用、环境反馈和最终结果。训练目标不再只是单条回答是否好，而是整条任务路径是否有效。"
+        },
+        {
+          "title": "环境很重要",
+          "body": "智能体需要在环境中试错。环境可以是浏览器、代码仓库、数据库、游戏、网页应用或模拟任务。好的环境要能记录状态、验证结果并控制安全边界。"
+        },
+        {
+          "title": "轨迹数据如何使用",
+          "body": "成功轨迹可以用于 SFT，失败轨迹可以用于反思和偏好数据，工具调用日志可以训练模型更好地选择工具和恢复错误。"
+        }
+      ],
+      "table": {
+        "title": "智能体训练数据",
+        "headers": [
+          "数据",
+          "用途"
+        ],
+        "rows": [
+          [
+            "成功轨迹",
+            "模仿学习、SFT、技能抽取"
+          ],
+          [
+            "失败轨迹",
+            "错误恢复、偏好对、反思训练"
+          ],
+          [
+            "工具调用日志",
+            "训练工具选择与参数生成"
+          ],
+          [
+            "环境奖励",
+            "强化学习或规则优化"
+          ]
+        ]
+      },
+      "formula": "智能体轨迹可以写成观察、动作、反馈的序列。V4 用序列结构解释替代破碎数学排版：关键是保留每一步为什么发生以及结果如何反馈。",
+      "summary": [
+        "智能体训练关注整条任务轨迹。",
+        "环境、日志和评估器比单纯回答数据更重要。"
+      ],
+      "questions": [
+        "为什么成功答案本身不足以训练智能体？",
+        "一个好的智能体环境应记录哪些信息？"
+      ],
+      "reading": [
+        "Agentic RL、智能体环境、OpenEnv"
+      ],
+      "keywords": [
+        "LLM",
+        "API",
+        "本节聚焦",
+        "的定义",
+        "机制与工程含义",
+        "RL",
+        "智能体",
+        "例如",
+        "Gymnasium",
+        "环境",
+        "GRPO",
+        "JSON"
+      ],
+      "source_inventory": {
+        "source_text_chars": 1633887,
+        "translated_md_chars": 789391,
+        "pdf_bytes": 9255598,
+        "v3_chapters": 30,
+        "term_counts": {
+          "Agentic AI": 580,
+          "Transformer": 155,
+          "PPO": 360,
+          "DPO": 592,
+          "GRPO": 549,
+          "RAG": 395,
+          "MCP": 402,
+          "A2A": 178,
+          "RLHF": 242,
+          "RoPE": 35
+        }
+      }
+    },
+    {
+      "number": 12,
+      "id": "chapter-12",
+      "title": "RAG、记忆与工具使用",
+      "subtitle": "让模型连接外部知识和真实任务",
+      "stage": "智能体系统",
+      "sources": [
+        "chapter-17",
+        "chapter-18",
+        "chapter-19",
+        "chapter-20",
+        "chapter-22",
+        "chapter-23",
+        "chapter-24",
+        "chapter-25",
+        "chapter-26",
+        "chapter-27"
+      ],
+      "source_titles": [
+        "检索增强生成（RAG）",
+        "智能体记忆系统",
+        "智能体执行框架：上下文管理与编排",
+        "智能体设计模式",
+        "模型上下文协议（MCP）",
+        "智能体技能",
+        "智能体间通信（A2A）",
+        "多智能体系统",
+        "智能体开发框架",
+        "智能体式 UI 框架"
+      ],
+      "source_topics": [
+        "动机与问题陈述",
+        "RAG 核心架构",
+        "检索方法",
+        "切块策略",
+        "高级 RAG 模式",
+        "高效 RAG 解码：REFRAG",
+        "动机：为什么智能体需要记忆",
+        "记忆类型分类",
+        "记忆架构",
+        "记忆操作"
+      ],
+      "objectives": [
+        "理解 RAG 的基本流水线",
+        "区分记忆、工具和协议",
+        "掌握多智能体协作的系统边界"
+      ],
+      "concepts": [
+        {
+          "label": "智能体",
+          "term": "Agent",
+          "note": "能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。"
+        },
+        {
+          "label": "标记 / token",
+          "term": "Token",
+          "note": "语言模型处理文本的基本离散单位。"
+        },
+        {
+          "label": "Transformer",
+          "term": "Transformer",
+          "note": "以自注意力为核心的序列建模架构。"
+        },
+        {
+          "label": "注意力",
+          "term": "Attention",
+          "note": "根据查询、键和值计算上下文加权表示的机制。"
+        },
+        {
+          "label": "强化学习",
+          "term": "Reinforcement Learning",
+          "note": "通过奖励信号优化策略的学习范式。"
+        },
+        {
+          "label": "检索增强生成（RAG）",
+          "term": "Retrieval-Augmented Generation",
+          "note": "先检索外部知识，再让模型基于上下文生成答案。"
+        },
+        {
+          "label": "策略",
+          "term": "Policy",
+          "note": "在状态下选择动作或生成 token 的概率分布。"
+        },
+        {
+          "label": "轨迹",
+          "term": "Trajectory",
+          "note": "智能体与环境交互形成的状态、动作、观察和奖励序列。"
+        }
+      ],
+      "sections": [
+        {
+          "title": "RAG 解决知识边界",
+          "body": "检索增强生成（Retrieval-Augmented Generation / RAG）让模型先检索外部知识，再基于检索结果回答。它能缓解知识过期和上下文不足，但也引入检索质量、切块和引用可信度问题。"
+        },
+        {
+          "title": "记忆解决连续性",
+          "body": "短期记忆维持当前任务状态，长期记忆保存用户偏好和历史经验，语义记忆组织可检索知识。记忆系统必须考虑隐私、更新、遗忘和冲突处理。"
+        },
+        {
+          "title": "工具和协议解决行动能力",
+          "body": "工具调用让模型能查数据库、运行代码或操作系统。MCP、A2A 等协议把工具发现、权限、消息格式和智能体协作标准化。"
+        }
+      ],
+      "table": {
+        "title": "智能体系统能力层",
+        "headers": [
+          "层次",
+          "代表技术",
+          "主要问题"
+        ],
+        "rows": [
+          [
+            "知识",
+            "RAG、向量检索、重排序",
+            "检索是否相关、来源是否可信"
+          ],
+          [
+            "记忆",
+            "短期/长期/语义记忆",
+            "何时写入、何时遗忘"
+          ],
+          [
+            "工具",
+            "函数调用、MCP",
+            "权限、参数、失败恢复"
+          ],
+          [
+            "协作",
+            "A2A、多智能体编排",
+            "任务拆分、冲突和责任边界"
+          ]
+        ]
+      },
+      "formula": "RAG 的工程公式可以理解为：答案质量 = 检索召回 × 上下文组织 × 生成可靠性。任何一环薄弱都会影响最终输出。",
+      "summary": [
+        "RAG、记忆和工具共同扩展模型能力边界。",
+        "协议化能降低系统集成和权限管理复杂度。"
+      ],
+      "questions": [
+        "RAG 为什么不能自动保证答案正确？",
+        "MCP 与 A2A 分别解决什么问题？"
+      ],
+      "reading": [
+        "RAG、智能体记忆、MCP、A2A、多智能体系统"
+      ],
+      "keywords": [
+        "本节聚焦",
+        "的定义",
+        "机制与工程含义",
+        "LLM",
+        "MCP",
+        "RAG",
+        "token",
+        "UI",
+        "智能体",
+        "API",
+        "A2A",
+        "例如"
+      ],
+      "source_inventory": {
+        "source_text_chars": 1633887,
+        "translated_md_chars": 789391,
+        "pdf_bytes": 9255598,
+        "v3_chapters": 30,
+        "term_counts": {
+          "Agentic AI": 580,
+          "Transformer": 155,
+          "PPO": 360,
+          "DPO": 592,
+          "GRPO": 549,
+          "RAG": 395,
+          "MCP": 402,
+          "A2A": 178,
+          "RLHF": 242,
+          "RoPE": 35
+        }
+      }
+    },
+    {
+      "number": 13,
+      "id": "chapter-13",
+      "title": "评估、安全与部署",
+      "subtitle": "从演示系统走向可运行产品",
+      "stage": "工程落地",
+      "sources": [
+        "chapter-15",
+        "chapter-26"
+      ],
+      "source_titles": [
+        "LLM 评估",
+        "智能体开发框架"
+      ],
+      "source_topics": [
+        "评估方案设计",
+        "评估数据收集",
+        "评估用合成数据生成",
+        "排序任务指标",
+        "生成任务指标",
+        "智能体任务指标",
+        "动机：工程落差",
+        "智能体开发生命周期",
+        "主要框架深度解析",
+        "开源智能体工具链"
+      ],
+      "objectives": [
+        "理解 LLM 与智能体评估指标",
+        "掌握安全和权限边界",
+        "建立部署、监控与回归测试意识"
+      ],
+      "concepts": [
+        {
+          "label": "智能体式 AI",
+          "term": "Agentic AI",
+          "note": "具备目标导向、工具使用、环境交互和多步执行能力的 AI 系统。"
+        },
+        {
+          "label": "智能体",
+          "term": "Agent",
+          "note": "能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。"
+        },
+        {
+          "label": "标记 / token",
+          "term": "Token",
+          "note": "语言模型处理文本的基本离散单位。"
+        },
+        {
+          "label": "注意力",
+          "term": "Attention",
+          "note": "根据查询、键和值计算上下文加权表示的机制。"
+        },
+        {
+          "label": "奖励模型",
+          "term": "Reward Model",
+          "note": "把候选输出映射为偏好或质量分数的模型。"
+        },
+        {
+          "label": "策略",
+          "term": "Policy",
+          "note": "在状态下选择动作或生成 token 的概率分布。"
+        },
+        {
+          "label": "轨迹",
+          "term": "Trajectory",
+          "note": "智能体与环境交互形成的状态、动作、观察和奖励序列。"
+        },
+        {
+          "label": "推理",
+          "term": "Inference",
+          "note": "模型在部署或测试时生成输出的过程。"
+        }
+      ],
+      "sections": [
+        {
+          "title": "评估要贴近任务",
+          "body": "LLM 评估不能只看通用榜单。生成质量、排序、工具调用、任务完成率、成本、延迟和安全性都可能是关键指标。"
+        },
+        {
+          "title": "安全不是最后加的",
+          "body": "智能体能使用工具和访问数据，因此必须设计权限、审计、速率限制、敏感信息处理和人工接管机制。"
+        },
+        {
+          "title": "部署后仍要学习",
+          "body": "生产系统需要日志、监控、回归测试、灰度发布和成本控制。智能体尤其要关注工具失败、循环调用、越权请求和不可解释决策。"
+        }
+      ],
+      "table": {
+        "title": "上线前检查",
+        "headers": [
+          "维度",
+          "检查问题"
+        ],
+        "rows": [
+          [
+            "质量",
+            "关键任务是否通过离线与在线评估"
+          ],
+          [
+            "安全",
+            "是否有权限控制、审计和敏感信息策略"
+          ],
+          [
+            "成本",
+            "token、检索、工具和 GPU 成本是否可控"
+          ],
+          [
+            "稳定性",
+            "失败重试、超时和降级路径是否明确"
+          ]
+        ]
+      },
+      "formula": "部署评估可以用“收益 - 成本 - 风险”的框架。V4 不追求单一公式，而是强调多指标权衡。",
+      "summary": [
+        "评估应覆盖质量、成本、延迟和安全。",
+        "智能体部署必须把权限和失败恢复当作核心设计。"
+      ],
+      "questions": [
+        "一个智能体 benchmark 为什么可能无法代表真实生产任务？",
+        "哪些工具调用需要人工确认？"
+      ],
+      "reading": [
+        "LLM 评估、Agent Testing、Observability、Production Deployment"
+      ],
+      "keywords": [
+        "LLM",
+        "本节聚焦",
+        "的定义",
+        "机制与工程含义",
+        "例如",
+        "测试",
+        "非常高",
+        "G-Eval",
+        "中等",
+        "任务",
+        "s",
+        "API"
+      ],
+      "source_inventory": {
+        "source_text_chars": 1633887,
+        "translated_md_chars": 789391,
+        "pdf_bytes": 9255598,
+        "v3_chapters": 30,
+        "term_counts": {
+          "Agentic AI": 580,
+          "Transformer": 155,
+          "PPO": 360,
+          "DPO": 592,
+          "GRPO": 549,
+          "RAG": 395,
+          "MCP": 402,
+          "A2A": 178,
+          "RLHF": 242,
+          "RoPE": 35
+        }
+      }
+    },
+    {
+      "number": 14,
+      "id": "chapter-14",
+      "title": "总结与学习路线",
+      "subtitle": "把模型、训练和系统连成一张图",
+      "stage": "复盘",
+      "sources": [
+        "chapter-14",
+        "chapter-28",
+        "chapter-29",
+        "chapter-30"
+      ],
+      "source_titles": [
+        "大型推理模型的强化学习",
+        "测验题与详解",
+        "速查表",
+        "结论与未来方向"
+      ],
+      "source_topics": [
+        "动机与背景",
+        "测试时扩展方法",
+        "DeepSeek-R1",
+        "OpenAI o1/o3 系列",
+        "QwQ 与 Qwen 推理模型",
+        "关键方法与数学基础",
+        "基础问题",
+        "核心算法问题",
+        "系统设计问题",
+        "实践与调试问题"
+      ],
+      "objectives": [
+        "形成全书知识地图",
+        "知道下一步如何深入",
+        "用问题驱动复习"
+      ],
+      "concepts": [
+        {
+          "label": "智能体",
+          "term": "Agent",
+          "note": "能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。"
+        },
+        {
+          "label": "标记 / token",
+          "term": "Token",
+          "note": "语言模型处理文本的基本离散单位。"
+        },
+        {
+          "label": "注意力",
+          "term": "Attention",
+          "note": "根据查询、键和值计算上下文加权表示的机制。"
+        },
+        {
+          "label": "强化学习",
+          "term": "Reinforcement Learning",
+          "note": "通过奖励信号优化策略的学习范式。"
+        },
+        {
+          "label": "奖励模型",
+          "term": "Reward Model",
+          "note": "把候选输出映射为偏好或质量分数的模型。"
+        },
+        {
+          "label": "策略",
+          "term": "Policy",
+          "note": "在状态下选择动作或生成 token 的概率分布。"
+        },
+        {
+          "label": "轨迹",
+          "term": "Trajectory",
+          "note": "智能体与环境交互形成的状态、动作、观察和奖励序列。"
+        },
+        {
+          "label": "推理",
+          "term": "Inference",
+          "note": "模型在部署或测试时生成输出的过程。"
+        }
+      ],
+      "sections": [
+        {
+          "title": "一条主线",
+          "body": "智能体式 AI 可以沿着一条主线学习：LLM 基础提供生成能力，SFT/RLHF 塑造行为，PPO/DPO/GRPO 提供偏好优化方法，RAG/记忆/工具把模型接入世界，评估和部署保证系统可靠。"
+        },
+        {
+          "title": "如何继续深入",
+          "body": "如果你偏算法，深入优化目标、奖励建模和推理模型训练；如果你偏工程，深入 GPU 服务化、RAG、协议和可观测性；如果你偏产品，关注评估、安全和人机协作体验。"
+        },
+        {
+          "title": "用问题复习",
+          "body": "V4 将原文的测验与速查表压缩为学习问题。建议读完每章后先回答思考题，再回到 V3 或原 PDF 查看更完整细节。"
+        }
+      ],
+      "table": {
+        "title": "学习路线",
+        "headers": [
+          "阶段",
+          "目标",
+          "对应章节"
+        ],
+        "rows": [
+          [
+            "入门",
+            "知道智能体式 AI 是什么",
+            "第 1 章"
+          ],
+          [
+            "模型",
+            "理解 LLM 与系统基础",
+            "第 2-3 章"
+          ],
+          [
+            "训练",
+            "掌握 RLHF 与偏好优化",
+            "第 4-10 章"
+          ],
+          [
+            "系统",
+            "构建智能体应用",
+            "第 11-13 章"
+          ],
+          [
+            "复盘",
+            "形成路线图",
+            "第 14 章"
+          ]
+        ]
+      },
+      "formula": "最终可以记住一个概念公式：智能体能力 = 模型能力 × 工具/记忆/环境 × 评估与安全约束。",
+      "summary": [
+        "V4 是学习版，不是逐字翻译版。",
+        "真正掌握需要在算法、系统和产品三个视角之间来回切换。"
+      ],
+      "questions": [
+        "你的目标更偏算法、工程还是产品？对应应先补哪三章？",
+        "如果要做一个研究智能体，最小可行系统需要哪些模块？"
+      ],
+      "reading": [
+        "原 PDF 测验题与速查表",
+        "V3 结构化文档站"
+      ],
+      "keywords": [
+        "B",
+        "本节聚焦",
+        "的定义",
+        "机制与工程含义",
+        "token",
+        "LLM",
+        "复习",
+        "DPO",
+        "答案",
+        "GRPO",
+        "RL",
+        "r"
+      ],
+      "source_inventory": {
+        "source_text_chars": 1633887,
+        "translated_md_chars": 789391,
+        "pdf_bytes": 9255598,
+        "v3_chapters": 30,
+        "term_counts": {
+          "Agentic AI": 580,
+          "Transformer": 155,
+          "PPO": 360,
+          "DPO": 592,
+          "GRPO": 549,
+          "RAG": 395,
+          "MCP": 402,
+          "A2A": 178,
+          "RLHF": 242,
+          "RoPE": 35
+        }
+      }
+    }
+  ],
+  "source_inventory": {
+    "source_text_chars": 1633887,
+    "translated_md_chars": 789391,
+    "pdf_bytes": 9255598,
+    "v3_chapters": 30,
+    "term_counts": {
+      "Agentic AI": 580,
+      "Transformer": 155,
+      "PPO": 360,
+      "DPO": 592,
+      "GRPO": 549,
+      "RAG": 395,
+      "MCP": 402,
+      "A2A": 178,
+      "RLHF": 242,
+      "RoPE": 35
+    }
+  }
+}

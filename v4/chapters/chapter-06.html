@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PPO：近端策略优化 | 智能体式 AI 中文重编版</title>
+  <meta name="description" content="在不让策略大幅漂移的前提下学习偏好" />
+  <meta property="og:title" content="PPO：近端策略优化 | 智能体式 AI 中文重编版" />
+  <meta property="og:description" content="在不让策略大幅漂移的前提下学习偏好" />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+<body class="lesson-page">
+  <div class="progress" id="progress"></div>
+  <header class="topbar">
+    <a class="brand" href="../index.html"><strong>智能体式 AI 中文重编版</strong><span>面向学习者的 Agentic AI 在线教材</span></a>
+    <button class="menu-button" id="menu-button" type="button" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a><a class="active" href="../roadmap.html">路线图</a><a class="" href="../concepts.html">核心概念</a><a class="" href="../glossary.html">术语表</a><a class="" href="../references.html">参考资料</a><a class="" href="../search.html">搜索</a><a class="" href="../about.html">说明</a></nav>
+  </header>
+  <main class="page-grid"><aside class="side-nav" id="side-nav"><div class="side-title">课程章节</div><a class="chapter-link " href="../chapters/chapter-01.html"><span>01</span>导读：什么是智能体式 AI</a><a class="chapter-link " href="../chapters/chapter-02.html"><span>02</span>LLM 基础：Token、Transformer 与推理</a><a class="chapter-link " href="../chapters/chapter-03.html"><span>03</span>LLM 系统基础：GPU、显存、并行与服务化</a><a class="chapter-link " href="../chapters/chapter-04.html"><span>04</span>强化学习基础</a><a class="chapter-link " href="../chapters/chapter-05.html"><span>05</span>从 SFT 到 RLHF</a><a class="chapter-link active" href="../chapters/chapter-06.html"><span>06</span>PPO：近端策略优化</a><a class="chapter-link " href="../chapters/chapter-07.html"><span>07</span>DPO：直接偏好优化</a><a class="chapter-link " href="../chapters/chapter-08.html"><span>08</span>GRPO 与新型偏好优化方法</a><a class="chapter-link " href="../chapters/chapter-09.html"><span>09</span>KTO、IPO、ORPO 等偏好优化变体</a><a class="chapter-link " href="../chapters/chapter-10.html"><span>10</span>奖励模型与数据构造</a><a class="chapter-link " href="../chapters/chapter-11.html"><span>11</span>智能体训练</a><a class="chapter-link " href="../chapters/chapter-12.html"><span>12</span>RAG、记忆与工具使用</a><a class="chapter-link " href="../chapters/chapter-13.html"><span>13</span>评估、安全与部署</a><a class="chapter-link " href="../chapters/chapter-14.html"><span>14</span>总结与学习路线</a></aside><div class="main-content">
+        <article class="lesson-article">
+          <header class="lesson-header">
+            <p class="chapter-number">第 06 章 · 偏好优化</p>
+            <h1>PPO：近端策略优化</h1>
+            <p>在不让策略大幅漂移的前提下学习偏好</p>
+            <div class="source-badges"><span>PPO：近端策略优化</span></div>
+          </header>
+          <section class="lesson-block intro"><h2>本章导读</h2><p>本章把原材料中的相关内容重新组织为学习版讲解，重点追求清晰、连贯和可复习。原始细节可回到 V3 结构化文档或 arXiv PDF 查阅。</p></section>
+          <section class="lesson-block"><h2>学习目标</h2><ul class="check-list"><li>理解 PPO 为什么要限制更新幅度</li><li>理解 rollout、优势估计和 KL 控制</li><li>知道 PPO 在 RLHF 中的完整循环</li></ul></section>
+          <section class="lesson-block"><h2>核心概念</h2><ul class="concept-list"><li><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></li><li><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></li><li><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></li><li><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></li><li><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></li><li><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></li><li><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></li><li><strong>缓冲区</strong><span>Buffer</span><p>保存经验、轨迹或中间数据以供训练和分析的结构。</p></li></ul></section>
+          <section class="lesson-block"><h2>PPO 的核心直觉</h2><p>近端策略优化（Proximal Policy Optimization / PPO）希望新策略比旧策略更好，但不能一步走太远。裁剪目标函数就是为了避免策略更新突然失控。</p></section><section class="lesson-block"><h2>RLHF 中的 PPO</h2><p>在语言模型里，rollout 是模型生成的回答序列。奖励模型给出分数，优势估计告诉模型哪些 token 或片段值得增加概率，KL 惩罚则防止模型偏离参考模型太多。</p></section><section class="lesson-block"><h2>为什么实现复杂</h2><p>PPO 需要维护参考模型、奖励模型、价值模型和当前策略，还要处理采样、归一化、batch、KL 系数和分布式训练，因此系统复杂度高。</p></section>
+          <section class="lesson-block"><h2>关键图表 / 表格：PPO 训练循环</h2><div class="table-wrap"><table><thead><tr><th>步骤</th><th>说明</th></tr></thead><tbody><tr><td>采样</td><td>用当前策略生成回答</td></tr><tr><td>评分</td><td>奖励模型或规则给出反馈</td></tr><tr><td>估计优势</td><td>判断哪些动作比预期更好</td></tr><tr><td>裁剪更新</td><td>限制新旧策略概率比</td></tr><tr><td>监控 KL</td><td>避免模型偏离参考行为</td></tr></tbody></table></div></section>
+          <section class="lesson-block formula-note"><h2>公式解释</h2><p>PPO 公式可理解为：如果新策略相对旧策略的变化超出安全范围，就裁剪收益，迫使更新保持近端。V4 保留直觉，不展示 OCR 不可靠公式。</p><p class="muted">需要逐式核对时，请参考原 PDF：<a href="https://arxiv.org/pdf/2606.24937v1">https://arxiv.org/pdf/2606.24937v1</a></p></section>
+          <section class="lesson-block"><h2>来自原文的主题线索</h2><ul class="topic-list"><li>动机与历史</li><li>裁剪目标函数</li><li>完整 PPO 损失</li><li>PPO 梯度与更新规则推导</li><li>Rollout 缓冲区与采样轨迹</li><li>用于 RLHF 的 PPO 完整循环</li></ul></section>
+          <section class="lesson-block"><h2>小结</h2><ul><li>PPO 强大但系统成本高。</li><li>KL 控制和优势估计是理解 PPO 的两个入口。</li></ul></section>
+          <section class="lesson-block"><h2>思考题</h2><ol><li>为什么 PPO 需要参考模型？</li><li>如果 KL 惩罚过强，会发生什么？</li></ol></section>
+          <section class="lesson-block"><h2>延伸阅读</h2><ul><li>PPO 损失、rollout buffer、TRL 实现</li></ul></section>
+          <nav class="pager"><a href="chapter-05.html">上一章：从 SFT 到 RLHF</a><a class="next" href="chapter-07.html">下一章：DPO：直接偏好优化</a></nav>
+        </article>
+        </div></main>
+  <button class="to-top" id="to-top" type="button">返回顶部</button>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

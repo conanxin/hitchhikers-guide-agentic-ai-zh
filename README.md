@@ -8,6 +8,11 @@
 - 原始 PDF / arXiv: https://arxiv.org/pdf/2606.24937v1
 - 发布方式: GitHub Pages + GitHub Actions
 
+## Versions
+
+- V3 stable documentation site: root path `/`
+- V4 Chinese learning edition preview: `/v4/`
+
 ## V3 Architecture
 
 V3 的核心是 `assets/data/clean_chapter_tree.json`。它是 canonical content AST，也就是站点唯一可信的结构化内容源。

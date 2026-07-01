@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>术语表 | 智能体式 AI 中文重编版</title>
+  <meta name="description" content="V4 术语表。" />
+  <meta property="og:title" content="术语表 | 智能体式 AI 中文重编版" />
+  <meta property="og:description" content="V4 术语表。" />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body class="site-page">
+  <div class="progress" id="progress"></div>
+  <header class="topbar">
+    <a class="brand" href="index.html"><strong>智能体式 AI 中文重编版</strong><span>面向学习者的 Agentic AI 在线教材</span></a>
+    <button class="menu-button" id="menu-button" type="button" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="index.html">首页</a><a class="" href="roadmap.html">路线图</a><a class="" href="concepts.html">核心概念</a><a class="active" href="glossary.html">术语表</a><a class="" href="references.html">参考资料</a><a class="" href="search.html">搜索</a><a class="" href="about.html">说明</a></nav>
+  </header>
+  <main class="page-grid"><div class="main-content"><article class="plain"><h1>术语表</h1><p class="lead">首次出现尽量采用“中文名（English / abbreviation）”，后续保留常用缩写。</p><div class="table-wrap"><table><thead><tr><th>中文</th><th>English / abbreviation</th><th>说明</th></tr></thead><tbody><tr><td>智能体式 AI</td><td><code>Agentic AI</code></td><td>能够设定目标、使用工具、记忆上下文并与环境多步交互的 AI 系统。</td></tr><tr><td>智能体</td><td><code>Agent</code></td><td>能观察状态、选择行动、调用工具并根据反馈调整行为的系统单元。</td></tr><tr><td>大型语言模型</td><td><code>Large Language Model / LLM</code></td><td>以大规模文本训练得到的序列生成模型，是智能体系统的语言与推理底座。</td></tr><tr><td>标记</td><td><code>Token</code></td><td>模型处理文本的基本离散单元，可以是字、子词、符号或字节片段。</td></tr><tr><td>分词</td><td><code>Tokenization</code></td><td>把文本切分并映射成 token 序列的过程。</td></tr><tr><td>Transformer</td><td><code>Transformer</code></td><td>以注意力机制为核心的序列建模架构。</td></tr><tr><td>注意力</td><td><code>Attention</code></td><td>根据查询、键和值计算上下文加权表示的机制。</td></tr><tr><td>旋转位置嵌入</td><td><code>Rotary Position Embedding / RoPE</code></td><td>通过旋转变换向注意力表示注入相对位置信息的方法。</td></tr><tr><td>监督微调</td><td><code>Supervised Fine-Tuning / SFT</code></td><td>用示范数据让模型学习回答格式、任务风格和基础指令遵循能力。</td></tr><tr><td>人类反馈强化学习</td><td><code>Reinforcement Learning from Human Feedback / RLHF</code></td><td>用偏好数据和奖励信号优化模型行为的训练流程。</td></tr><tr><td>近端策略优化</td><td><code>Proximal Policy Optimization / PPO</code></td><td>通过裁剪目标限制策略更新幅度的强化学习算法。</td></tr><tr><td>直接偏好优化</td><td><code>Direct Preference Optimization / DPO</code></td><td>不显式训练奖励模型，直接用偏好对优化策略的方法。</td></tr><tr><td>组相对策略优化</td><td><code>Group Relative Policy Optimization / GRPO</code></td><td>在同一提示的一组候选回答内做相对优势估计的偏好优化方法。</td></tr><tr><td>检索增强生成</td><td><code>Retrieval-Augmented Generation / RAG</code></td><td>先检索外部知识，再把检索结果作为上下文交给模型生成答案。</td></tr><tr><td>模型上下文协议</td><td><code>Model Context Protocol / MCP</code></td><td>连接模型应用与工具、数据源和上下文服务的开放协议。</td></tr><tr><td>智能体间通信</td><td><code>Agent-to-Agent / A2A</code></td><td>智能体之间交换任务、状态、结果和能力描述的通信机制。</td></tr><tr><td>奖励模型</td><td><code>Reward Model</code></td><td>把候选输出映射成偏好或质量分数的模型。</td></tr><tr><td>轨迹</td><td><code>Trajectory</code></td><td>智能体与环境交互产生的观察、动作、工具调用和反馈序列。</td></tr></tbody></table></div></article></div></main>
+  <button class="to-top" id="to-top" type="button">返回顶部</button>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
