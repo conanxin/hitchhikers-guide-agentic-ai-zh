@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>智能体式 AI 中文重编版 | 智能体式 AI 中文重编版</title>
-  <meta name="description" content="中文重编版 Agentic AI 在线教材首页。" />
+  <meta name="description" content="V4.1 Expanded Edition：扩写后的中文重编学习版。" />
   <meta property="og:title" content="智能体式 AI 中文重编版 | 智能体式 AI 中文重编版" />
-  <meta property="og:description" content="中文重编版 Agentic AI 在线教材首页。" />
+  <meta property="og:description" content="V4.1 Expanded Edition：扩写后的中文重编学习版。" />
   <meta property="og:type" content="website" />
   <link rel="stylesheet" href="assets/css/main.css" />
 </head>
@@ -20,22 +20,25 @@
   <main class="page-grid"><div class="main-content">
     <section class="hero">
       <div>
+        <p class="chapter-number">V4.1 Expanded Edition</p>
         <h1>智能体式 AI 中文重编版</h1>
-        <p class="hero-lead">这不是逐字 PDF 翻译版，而是基于原论文、中文译文、V3 clean AST 和术语体系重新编排的中文在线教材。目标是把 Agentic AI 的模型基础、训练方法和系统工程讲清楚。</p>
-        <form class="hero-search" action="search.html" method="get"><input name="q" type="search" placeholder="搜索：PPO、RAG、MCP、智能体训练..." /><button>搜索</button></form>
+        <p class="hero-lead">相比 V4 preview，本版增加了更多原书内容覆盖，把简短学习版扩展为更完整的中文重编教材。它仍然不是逐字翻译，而是围绕学习路径、机制理解和工程实践重新组织。</p>
+        <form class="hero-search" action="search.html"><input type="search" name="q" placeholder="搜索：RoPE、KV Cache、PPO、ReAct、PagedAttention..." /><button>搜索</button></form>
+        <p><a class="button" href="chapters/chapter-01.html">开始阅读 V4.1</a> <a class="button" href="https://arxiv.org/pdf/2606.24937v1">原 PDF</a></p>
       </div>
       <aside class="reader-panel">
-        <h2>适合谁阅读</h2>
-        <ul>
-          <li>想系统理解智能体式 AI 的工程师</li>
-          <li>正在学习 LLM 对齐、偏好优化和 RAG 的读者</li>
-          <li>需要把模型能力落成产品系统的开发者</li>
-        </ul>
+        <h2>全书内容覆盖</h2>
+        <p>V4.1 按 14 个学习章节覆盖 LLM 基础、系统服务化、强化学习、偏好优化、奖励模型、智能体训练、RAG、记忆、工具、安全和部署。</p>
+        <ul><li>重点章节扩写到 5000+ 中文字符。</li><li>搜索索引重建，覆盖新增术语。</li><li>保留 V3 根站点，V4.1 继续位于 /v4/。</li></ul>
       </aside>
     </section>
     <section class="band">
       <div class="section-head"><h2>学习路径</h2><a href="roadmap.html">查看完整路线图</a></div>
       <ol class="roadmap-mini"><li><span>01</span><strong>导读：什么是智能体式 AI</strong><p>从聊天模型走向能执行任务的系统</p></li><li><span>02</span><strong>LLM 基础：Token、Transformer 与推理</strong><p>理解大语言模型如何把文本变成下一个 token</p></li><li><span>03</span><strong>LLM 系统基础：GPU、显存、并行与服务化</strong><p>从模型算法走向可运行的基础设施</p></li><li><span>04</span><strong>强化学习基础</strong><p>用状态、动作和奖励描述学习问题</p></li><li><span>05</span><strong>从 SFT 到 RLHF</strong><p>让模型先会答，再学会答得更好</p></li><li><span>06</span><strong>PPO：近端策略优化</strong><p>在不让策略大幅漂移的前提下学习偏好</p></li><li><span>07</span><strong>DPO：直接偏好优化</strong><p>不用显式奖励模型的偏好学习路径</p></li><li><span>08</span><strong>GRPO 与新型偏好优化方法</strong><p>用组内比较降低价值模型依赖</p></li><li><span>09</span><strong>KTO、IPO、ORPO 等偏好优化变体</strong><p>理解偏好优化家族的设计空间</p></li><li><span>10</span><strong>奖励模型与数据构造</strong><p>把“好回答”变成可训练信号</p></li><li><span>11</span><strong>智能体训练</strong><p>从单次回答优化到多步任务优化</p></li><li><span>12</span><strong>RAG、记忆与工具使用</strong><p>让模型连接外部知识和真实任务</p></li><li><span>13</span><strong>评估、安全与部署</strong><p>从演示系统走向可运行产品</p></li><li><span>14</span><strong>总结与学习路线</strong><p>把模型、训练和系统连成一张图</p></li></ol>
+    </section>
+    <section class="band">
+      <div class="section-head"><h2>扩写覆盖说明</h2><a href="concepts.html">核心概念索引</a></div>
+      <div class="lesson-grid"><li><strong>导读：什么是智能体式 AI</strong><span>1702 中文字符</span><p>Agentic AI 与聊天机器人的边界、模型能力与系统能力的分工、全书学习路线</p></li><li><strong>LLM 基础：Token、Transformer 与推理</strong><span>4793 中文字符</span><p>字符/单词/token 的取舍、BPE 与词表、embedding、Q/K/V 与 multi-head attention</p></li><li><strong>LLM 系统基础：GPU、显存、并行与服务化</strong><span>4202 中文字符</span><p>GPU/SM/CUDA/Tensor Core、HBM、NVLink/PCIe、batch 与 sequence length</p></li><li><strong>强化学习基础</strong><span>2708 中文字符</span><p>MDP、policy/reward/value/advantage、trajectory/rollout、on-policy/off-policy</p></li><li><strong>从 SFT 到 RLHF</strong><span>4151 中文字符</span><p>SFT、RLHF pipeline、reward model、chosen/rejected</p></li><li><strong>PPO：近端策略优化</strong><span>4295 中文字符</span><p>clipping、advantage、KL、rollout buffer</p></li><li><strong>DPO：直接偏好优化</strong><span>4222 中文字符</span><p>DPO 推导直觉、implicit reward、chosen/rejected logprob、beta</p></li><li><strong>GRPO 与新型偏好优化方法</strong><span>4230 中文字符</span><p>group sampling、relative advantage、verifiable reward、reasoning models</p></li><li><strong>KTO、IPO、ORPO 等偏好优化变体</strong><span>1769 中文字符</span><p>Online vs Offline DPO、KTO 非配对反馈、IPO 有界偏好、ORPO 合并 SFT</p></li><li><strong>奖励模型与数据构造</strong><span>2227 中文字符</span><p>reward model、pairwise ranking、chosen/rejected、reward hacking</p></li><li><strong>智能体训练</strong><span>4139 中文字符</span><p>Agent vs Chatbot、trajectory buffer、action/observation/state/memory、tool use</p></li><li><strong>RAG、记忆与工具使用</strong><span>5451 中文字符</span><p>RAG 流程、embedding retrieval、chunking、reranking</p></li><li><strong>评估、安全与部署</strong><span>3525 中文字符</span><p>LLM eval、agent eval、benchmark 局限、human eval</p></li><li><strong>总结与学习路线</strong><span>2617 中文字符</span><p>全书复盘、学习路线、后续方向</p></li></div>
     </section>
     <section class="band">
       <div class="section-head"><h2>章节卡片</h2><a href="concepts.html">核心概念索引</a></div>
