@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>关于 | 智能体式 AI 中文重编版</title>
+  <meta name="description" content="说明 V4 是中文重编学习版。" />
+  <meta property="og:title" content="关于 | 智能体式 AI 中文重编版" />
+  <meta property="og:description" content="说明 V4 是中文重编学习版。" />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body class="site-page">
+  <div class="progress" id="progress"></div>
+  <header class="topbar">
+    <a class="brand" href="index.html"><strong>智能体式 AI 中文重编版</strong><span>面向学习者的 Agentic AI 在线教材</span></a>
+    <button class="menu-button" id="menu-button" type="button" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="index.html">首页</a><a class="" href="roadmap.html">路线图</a><a class="" href="concepts.html">核心概念</a><a class="" href="glossary.html">术语表</a><a class="" href="references.html">参考资料</a><a class="" href="search.html">搜索</a><a class="active" href="about.html">说明</a></nav>
+  </header>
+  <main class="page-grid"><div class="main-content">
+    <article class="plain">
+      <h1>关于 V4 中文重编版</h1>
+      <p class="lead">本页面说明 V4 的定位：它基于原 PDF、提取原文、中文译文和 V3 clean AST，但不是逐字翻译版。</p>
+      <section><h2>为什么不是逐字翻译</h2><p>逐字保留 PDF 提取文本会把 OCR 残段、页码、公式损坏和表格错位一起带进网页。V4 选择把内容重新编成学习版，优先保证概念清晰、阅读连贯和复习方便。</p></section>
+      <section><h2>如何处理公式和表格</h2><p>公式无法可靠恢复时，V4 使用中文解释和原 PDF 链接；表格无法可靠恢复时，重新整理为教学表格，而不是保留破碎 OCR 表格。</p></section>
+      <section><h2>来源读取</h2><p>构建脚本读取了 PDF、source_text.md、document.zh.md 与 clean_chapter_tree.json。V4 页面由重编后的 lesson data 生成。</p></section>
+      <section><h2>稳定版</h2><p>稳定逐章结构化版本仍保留在 v3.0.0 与线上主站：<a href="https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/">https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/</a>。</p></section>
+    </article>
+    </div></main>
+  <button class="to-top" id="to-top" type="button">返回顶部</button>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

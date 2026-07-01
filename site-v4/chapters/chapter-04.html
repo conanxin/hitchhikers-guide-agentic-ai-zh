@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>强化学习基础 | 智能体式 AI 中文重编版</title>
+  <meta name="description" content="用状态、动作和奖励描述学习问题" />
+  <meta property="og:title" content="强化学习基础 | 智能体式 AI 中文重编版" />
+  <meta property="og:description" content="用状态、动作和奖励描述学习问题" />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+<body class="lesson-page">
+  <div class="progress" id="progress"></div>
+  <header class="topbar">
+    <a class="brand" href="../index.html"><strong>智能体式 AI 中文重编版</strong><span>面向学习者的 Agentic AI 在线教材</span></a>
+    <button class="menu-button" id="menu-button" type="button" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a><a class="active" href="../roadmap.html">路线图</a><a class="" href="../concepts.html">核心概念</a><a class="" href="../glossary.html">术语表</a><a class="" href="../references.html">参考资料</a><a class="" href="../search.html">搜索</a><a class="" href="../about.html">说明</a></nav>
+  </header>
+  <main class="page-grid"><aside class="side-nav" id="side-nav"><div class="side-title">课程章节</div><a class="chapter-link " href="../chapters/chapter-01.html"><span>01</span>导读：什么是智能体式 AI</a><a class="chapter-link " href="../chapters/chapter-02.html"><span>02</span>LLM 基础：Token、Transformer 与推理</a><a class="chapter-link " href="../chapters/chapter-03.html"><span>03</span>LLM 系统基础：GPU、显存、并行与服务化</a><a class="chapter-link active" href="../chapters/chapter-04.html"><span>04</span>强化学习基础</a><a class="chapter-link " href="../chapters/chapter-05.html"><span>05</span>从 SFT 到 RLHF</a><a class="chapter-link " href="../chapters/chapter-06.html"><span>06</span>PPO：近端策略优化</a><a class="chapter-link " href="../chapters/chapter-07.html"><span>07</span>DPO：直接偏好优化</a><a class="chapter-link " href="../chapters/chapter-08.html"><span>08</span>GRPO 与新型偏好优化方法</a><a class="chapter-link " href="../chapters/chapter-09.html"><span>09</span>KTO、IPO、ORPO 等偏好优化变体</a><a class="chapter-link " href="../chapters/chapter-10.html"><span>10</span>奖励模型与数据构造</a><a class="chapter-link " href="../chapters/chapter-11.html"><span>11</span>智能体训练</a><a class="chapter-link " href="../chapters/chapter-12.html"><span>12</span>RAG、记忆与工具使用</a><a class="chapter-link " href="../chapters/chapter-13.html"><span>13</span>评估、安全与部署</a><a class="chapter-link " href="../chapters/chapter-14.html"><span>14</span>总结与学习路线</a></aside><div class="main-content">
+        <article class="lesson-article">
+          <header class="lesson-header">
+            <p class="chapter-number">第 04 章 · 训练基础</p>
+            <h1>强化学习基础</h1>
+            <p>用状态、动作和奖励描述学习问题</p>
+            <div class="source-badges"><span>强化学习简介</span></div>
+          </header>
+          <section class="lesson-block intro"><h2>本章导读</h2><p>本章把原材料中的相关内容重新组织为学习版讲解，重点追求清晰、连贯和可复习。原始细节可回到 V3 结构化文档或 arXiv PDF 查阅。</p></section>
+          <section class="lesson-block"><h2>学习目标</h2><ul class="check-list"><li>理解 MDP、策略和价值函数</li><li>区分在线策略与离线策略</li><li>理解奖励设计为什么困难</li></ul></section>
+          <section class="lesson-block"><h2>核心概念</h2><ul class="concept-list"><li><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></li><li><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></li><li><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></li><li><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></li><li><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></li><li><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></li><li><strong>缓冲区</strong><span>Buffer</span><p>保存经验、轨迹或中间数据以供训练和分析的结构。</p></li><li><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></li></ul></section>
+          <section class="lesson-block"><h2>MDP 是统一语言</h2><p>马尔可夫决策过程（Markov Decision Process / MDP）把问题拆成状态、动作、转移、奖励和折扣。它为后续把语言模型输出看作动作序列提供了统一语言。</p></section><section class="lesson-block"><h2>策略与价值</h2><p>策略决定在状态下选择什么动作；价值函数估计状态或动作的长期收益。强化学习的核心就是在探索和利用之间寻找更好的策略。</p></section><section class="lesson-block"><h2>奖励不是答案</h2><p>奖励信号会塑造模型行为，但它也可能被钻空子。智能体系统尤其需要把结果奖励、过程奖励、规则奖励和人工偏好结合起来。</p></section>
+          <section class="lesson-block"><h2>关键图表 / 表格：强化学习核心对象</h2><div class="table-wrap"><table><thead><tr><th>对象</th><th>含义</th><th>在 LLM 中的对应</th></tr></thead><tbody><tr><td>状态</td><td>当前可见信息</td><td>prompt、上下文、工具结果</td></tr><tr><td>动作</td><td>可选择行为</td><td>生成 token、调用工具、结束任务</td></tr><tr><td>奖励</td><td>反馈信号</td><td>偏好分数、任务成功、规则验证</td></tr><tr><td>策略</td><td>动作分布</td><td>当前语言模型</td></tr></tbody></table></div></section>
+          <section class="lesson-block formula-note"><h2>公式解释</h2><p>回报可以理解为“当前奖励加上未来奖励的折扣和”。公式细节可回到原 PDF，但学习时先掌握长期收益的直觉更重要。</p><p class="muted">需要逐式核对时，请参考原 PDF：<a href="https://arxiv.org/pdf/2606.24937v1">https://arxiv.org/pdf/2606.24937v1</a></p></section>
+          <section class="lesson-block"><h2>来自原文的主题线索</h2><ul class="topic-list"><li>马尔可夫决策过程（MDP）</li><li>核心概念与定义</li><li>强化学习方法分类</li><li>时序差分（TD）学习</li><li>Q 学习</li><li>策略梯度方法：REINFORCE</li></ul></section>
+          <section class="lesson-block"><h2>小结</h2><ul><li>强化学习让模型从反馈中优化行为。</li><li>奖励设计决定了系统最终会追求什么。</li></ul></section>
+          <section class="lesson-block"><h2>思考题</h2><ol><li>为什么短期高奖励可能导致长期效果变差？</li><li>LLM 的一个 token 能否看作一个动作？</li></ol></section>
+          <section class="lesson-block"><h2>延伸阅读</h2><ul><li>MDP、策略梯度、Actor-Critic、GAE</li></ul></section>
+          <nav class="pager"><a href="chapter-03.html">上一章：LLM 系统基础：GPU、显存、并行与服务化</a><a class="next" href="chapter-05.html">下一章：从 SFT 到 RLHF</a></nav>
+        </article>
+        </div></main>
+  <button class="to-top" id="to-top" type="button">返回顶部</button>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

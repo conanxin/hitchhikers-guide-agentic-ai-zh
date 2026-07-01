@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>导读：什么是智能体式 AI | 智能体式 AI 中文重编版</title>
+  <meta name="description" content="从聊天模型走向能执行任务的系统" />
+  <meta property="og:title" content="导读：什么是智能体式 AI | 智能体式 AI 中文重编版" />
+  <meta property="og:description" content="从聊天模型走向能执行任务的系统" />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+<body class="lesson-page">
+  <div class="progress" id="progress"></div>
+  <header class="topbar">
+    <a class="brand" href="../index.html"><strong>智能体式 AI 中文重编版</strong><span>面向学习者的 Agentic AI 在线教材</span></a>
+    <button class="menu-button" id="menu-button" type="button" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a><a class="active" href="../roadmap.html">路线图</a><a class="" href="../concepts.html">核心概念</a><a class="" href="../glossary.html">术语表</a><a class="" href="../references.html">参考资料</a><a class="" href="../search.html">搜索</a><a class="" href="../about.html">说明</a></nav>
+  </header>
+  <main class="page-grid"><aside class="side-nav" id="side-nav"><div class="side-title">课程章节</div><a class="chapter-link active" href="../chapters/chapter-01.html"><span>01</span>导读：什么是智能体式 AI</a><a class="chapter-link " href="../chapters/chapter-02.html"><span>02</span>LLM 基础：Token、Transformer 与推理</a><a class="chapter-link " href="../chapters/chapter-03.html"><span>03</span>LLM 系统基础：GPU、显存、并行与服务化</a><a class="chapter-link " href="../chapters/chapter-04.html"><span>04</span>强化学习基础</a><a class="chapter-link " href="../chapters/chapter-05.html"><span>05</span>从 SFT 到 RLHF</a><a class="chapter-link " href="../chapters/chapter-06.html"><span>06</span>PPO：近端策略优化</a><a class="chapter-link " href="../chapters/chapter-07.html"><span>07</span>DPO：直接偏好优化</a><a class="chapter-link " href="../chapters/chapter-08.html"><span>08</span>GRPO 与新型偏好优化方法</a><a class="chapter-link " href="../chapters/chapter-09.html"><span>09</span>KTO、IPO、ORPO 等偏好优化变体</a><a class="chapter-link " href="../chapters/chapter-10.html"><span>10</span>奖励模型与数据构造</a><a class="chapter-link " href="../chapters/chapter-11.html"><span>11</span>智能体训练</a><a class="chapter-link " href="../chapters/chapter-12.html"><span>12</span>RAG、记忆与工具使用</a><a class="chapter-link " href="../chapters/chapter-13.html"><span>13</span>评估、安全与部署</a><a class="chapter-link " href="../chapters/chapter-14.html"><span>14</span>总结与学习路线</a></aside><div class="main-content">
+        <article class="lesson-article">
+          <header class="lesson-header">
+            <p class="chapter-number">第 01 章 · 入门</p>
+            <h1>导读：什么是智能体式 AI</h1>
+            <p>从聊天模型走向能执行任务的系统</p>
+            <div class="source-badges"><span>导读与前置说明</span><span>智能体式 AI 简介</span></div>
+          </header>
+          <section class="lesson-block intro"><h2>本章导读</h2><p>本章把原材料中的相关内容重新组织为学习版讲解，重点追求清晰、连贯和可复习。原始细节可回到 V3 结构化文档或 arXiv PDF 查阅。</p></section>
+          <section class="lesson-block"><h2>学习目标</h2><ul class="check-list"><li>区分聊天模型、工作流和智能体</li><li>理解智能体式 AI 的基本循环</li><li>建立后续学习的全局地图</li></ul></section>
+          <section class="lesson-block"><h2>核心概念</h2><ul class="concept-list"><li><strong>智能体式 AI</strong><span>Agentic AI</span><p>具备目标导向、工具使用、环境交互和多步执行能力的 AI 系统。</p></li><li><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></li><li><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></li><li><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></li><li><strong>自注意力</strong><span>Self-Attention</span><p>序列内部各位置之间相互关注的注意力机制。</p></li><li><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></li><li><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></li><li><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></li></ul></section>
+          <section class="lesson-block"><h2>为什么需要重编版</h2><p>原 PDF 覆盖了模型架构、强化学习、系统工程和智能体协议，信息量很大。V4 不再逐页翻译，而是把这些材料重新编成学习路径：先理解 LLM，再理解训练方法，最后进入智能体系统。</p></section><section class="lesson-block"><h2>智能体式 AI 的核心循环</h2><p>智能体式 AI（Agentic AI）不是只回答一句话的模型，而是围绕目标反复经历“观察、思考、行动、反馈”的循环。工具调用、记忆、检索、环境交互和评估共同决定它能否稳定完成任务。</p></section><section class="lesson-block"><h2>从模型到系统</h2><p>LLM 提供语言理解和生成能力；强化学习和偏好优化塑造行为；RAG、记忆和工具让模型接触外部世界；评估、安全和部署则决定系统能不能被可靠使用。</p></section>
+          <section class="lesson-block"><h2>关键图表 / 表格：三类 AI 形态</h2><div class="table-wrap"><table><thead><tr><th>形态</th><th>主要能力</th><th>局限</th></tr></thead><tbody><tr><td>聊天模型</td><td>根据上下文生成回答</td><td>通常不主动规划和执行多步任务</td></tr><tr><td>工作流</td><td>按固定流程调用模型和工具</td><td>灵活性依赖预先写好的流程</td></tr><tr><td>智能体</td><td>能根据目标选择步骤、工具和记忆</td><td>更需要评估、权限控制和失败恢复</td></tr></tbody></table></div></section>
+          <section class="lesson-block formula-note"><h2>公式解释</h2><p>本章没有必须掌握的数学公式。可以先把智能体理解为一个不断更新状态并选择动作的闭环系统。</p><p class="muted">需要逐式核对时，请参考原 PDF：<a href="https://arxiv.org/pdf/2606.24937v1">https://arxiv.org/pdf/2606.24937v1</a></p></section>
+          <section class="lesson-block"><h2>来自原文的主题线索</h2><ul class="topic-list"><li>本章概览</li></ul></section>
+          <section class="lesson-block"><h2>小结</h2><ul><li>智能体式 AI 是模型能力和系统能力的结合。</li><li>学习路线应先打牢 LLM 与强化学习基础，再进入智能体协议和部署。</li></ul></section>
+          <section class="lesson-block"><h2>思考题</h2><ol><li>一个普通聊天机器人和一个智能体的边界在哪里？</li><li>如果工具调用失败，智能体需要哪些恢复机制？</li></ol></section>
+          <section class="lesson-block"><h2>延伸阅读</h2><ul><li>原 PDF 中 Agentic AI 简介相关章节</li><li>V3 clean AST 中 chapter-16 的语义结构</li></ul></section>
+          <nav class="pager"><span></span><a class="next" href="chapter-02.html">下一章：LLM 基础：Token、Transformer 与推理</a></nav>
+        </article>
+        </div></main>
+  <button class="to-top" id="to-top" type="button">返回顶部</button>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

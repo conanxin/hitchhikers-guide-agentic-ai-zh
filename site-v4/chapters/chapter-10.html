@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>奖励模型与数据构造 | 智能体式 AI 中文重编版</title>
+  <meta name="description" content="把“好回答”变成可训练信号" />
+  <meta property="og:title" content="奖励模型与数据构造 | 智能体式 AI 中文重编版" />
+  <meta property="og:description" content="把“好回答”变成可训练信号" />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+<body class="lesson-page">
+  <div class="progress" id="progress"></div>
+  <header class="topbar">
+    <a class="brand" href="../index.html"><strong>智能体式 AI 中文重编版</strong><span>面向学习者的 Agentic AI 在线教材</span></a>
+    <button class="menu-button" id="menu-button" type="button" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a><a class="active" href="../roadmap.html">路线图</a><a class="" href="../concepts.html">核心概念</a><a class="" href="../glossary.html">术语表</a><a class="" href="../references.html">参考资料</a><a class="" href="../search.html">搜索</a><a class="" href="../about.html">说明</a></nav>
+  </header>
+  <main class="page-grid"><aside class="side-nav" id="side-nav"><div class="side-title">课程章节</div><a class="chapter-link " href="../chapters/chapter-01.html"><span>01</span>导读：什么是智能体式 AI</a><a class="chapter-link " href="../chapters/chapter-02.html"><span>02</span>LLM 基础：Token、Transformer 与推理</a><a class="chapter-link " href="../chapters/chapter-03.html"><span>03</span>LLM 系统基础：GPU、显存、并行与服务化</a><a class="chapter-link " href="../chapters/chapter-04.html"><span>04</span>强化学习基础</a><a class="chapter-link " href="../chapters/chapter-05.html"><span>05</span>从 SFT 到 RLHF</a><a class="chapter-link " href="../chapters/chapter-06.html"><span>06</span>PPO：近端策略优化</a><a class="chapter-link " href="../chapters/chapter-07.html"><span>07</span>DPO：直接偏好优化</a><a class="chapter-link " href="../chapters/chapter-08.html"><span>08</span>GRPO 与新型偏好优化方法</a><a class="chapter-link " href="../chapters/chapter-09.html"><span>09</span>KTO、IPO、ORPO 等偏好优化变体</a><a class="chapter-link active" href="../chapters/chapter-10.html"><span>10</span>奖励模型与数据构造</a><a class="chapter-link " href="../chapters/chapter-11.html"><span>11</span>智能体训练</a><a class="chapter-link " href="../chapters/chapter-12.html"><span>12</span>RAG、记忆与工具使用</a><a class="chapter-link " href="../chapters/chapter-13.html"><span>13</span>评估、安全与部署</a><a class="chapter-link " href="../chapters/chapter-14.html"><span>14</span>总结与学习路线</a></aside><div class="main-content">
+        <article class="lesson-article">
+          <header class="lesson-header">
+            <p class="chapter-number">第 10 章 · 数据与奖励</p>
+            <h1>奖励模型与数据构造</h1>
+            <p>把“好回答”变成可训练信号</p>
+            <div class="source-badges"><span>奖励模型训练</span></div>
+          </header>
+          <section class="lesson-block intro"><h2>本章导读</h2><p>本章把原材料中的相关内容重新组织为学习版讲解，重点追求清晰、连贯和可复习。原始细节可回到 V3 结构化文档或 arXiv PDF 查阅。</p></section>
+          <section class="lesson-block"><h2>学习目标</h2><ul class="check-list"><li>理解奖励模型的角色</li><li>区分结果奖励和过程奖励</li><li>掌握数据构造的常见风险</li></ul></section>
+          <section class="lesson-block"><h2>核心概念</h2><ul class="concept-list"><li><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></li><li><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></li><li><strong>Transformer</strong><span>Transformer</span><p>以自注意力为核心的序列建模架构。</p></li><li><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></li><li><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></li><li><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></li><li><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></li><li><strong>直接偏好优化（DPO）</strong><span>DPO</span><p>从偏好对直接优化策略，不显式训练奖励模型的方法。</p></li></ul></section>
+          <section class="lesson-block"><h2>奖励模型是什么</h2><p>奖励模型（Reward Model）把输入和候选回答映射为质量分数。它让偏好判断可以规模化，但也会继承标注偏差和数据覆盖问题。</p></section><section class="lesson-block"><h2>结果奖励与过程奖励</h2><p>结果奖励只看最终答案，适合可验证任务；过程奖励会评价中间步骤，适合长链推理和工具调用，但标注成本更高。</p></section><section class="lesson-block"><h2>数据构造比模型更重要</h2><p>偏好数据要覆盖真实任务、困难负例、边界条件和安全场景。只用容易样本训练，模型可能在生产环境中表现脆弱。</p></section>
+          <section class="lesson-block"><h2>关键图表 / 表格：奖励信号类型</h2><div class="table-wrap"><table><thead><tr><th>类型</th><th>优点</th><th>风险</th></tr></thead><tbody><tr><td>人工偏好</td><td>贴近用户感受</td><td>成本高且有主观差异</td></tr><tr><td>规则奖励</td><td>可扩展、可复现</td><td>容易遗漏语义质量</td></tr><tr><td>过程奖励</td><td>能指导中间步骤</td><td>标注复杂</td></tr><tr><td>结果奖励</td><td>简单直接</td><td>对长任务反馈稀疏</td></tr></tbody></table></div></section>
+          <section class="lesson-block formula-note"><h2>公式解释</h2><p>Bradley-Terry 模型可理解为：两个回答的奖励分差越大，前者被偏好的概率越高。V4 保留这个解释，不强行展示易错公式。</p><p class="muted">需要逐式核对时，请参考原 PDF：<a href="https://arxiv.org/pdf/2606.24937v1">https://arxiv.org/pdf/2606.24937v1</a></p></section>
+          <section class="lesson-block"><h2>来自原文的主题线索</h2><ul class="topic-list"><li>Bradley-Terry 模型完整推导</li><li>奖励模型架构</li><li>奖励模型训练技巧</li><li>过程奖励模型与结果奖励模型</li><li>面向 RLVR 的规则奖励</li><li>多目标奖励：组合策略</li></ul></section>
+          <section class="lesson-block"><h2>小结</h2><ul><li>奖励模型把偏好转化为训练信号。</li><li>奖励设计与数据覆盖决定训练方向。</li></ul></section>
+          <section class="lesson-block"><h2>思考题</h2><ol><li>奖励模型被模型“钻空子”是什么意思？</li><li>什么任务更适合过程奖励？</li></ol></section>
+          <section class="lesson-block"><h2>延伸阅读</h2><ul><li>Bradley-Terry、奖励模型架构、RLVR 规则奖励</li></ul></section>
+          <nav class="pager"><a href="chapter-09.html">上一章：KTO、IPO、ORPO 等偏好优化变体</a><a class="next" href="chapter-11.html">下一章：智能体训练</a></nav>
+        </article>
+        </div></main>
+  <button class="to-top" id="to-top" type="button">返回顶部</button>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

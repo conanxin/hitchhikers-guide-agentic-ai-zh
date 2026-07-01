@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>从 SFT 到 RLHF | 智能体式 AI 中文重编版</title>
+  <meta name="description" content="让模型先会答，再学会答得更好" />
+  <meta property="og:title" content="从 SFT 到 RLHF | 智能体式 AI 中文重编版" />
+  <meta property="og:description" content="让模型先会答，再学会答得更好" />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+<body class="lesson-page">
+  <div class="progress" id="progress"></div>
+  <header class="topbar">
+    <a class="brand" href="../index.html"><strong>智能体式 AI 中文重编版</strong><span>面向学习者的 Agentic AI 在线教材</span></a>
+    <button class="menu-button" id="menu-button" type="button" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a><a class="active" href="../roadmap.html">路线图</a><a class="" href="../concepts.html">核心概念</a><a class="" href="../glossary.html">术语表</a><a class="" href="../references.html">参考资料</a><a class="" href="../search.html">搜索</a><a class="" href="../about.html">说明</a></nav>
+  </header>
+  <main class="page-grid"><aside class="side-nav" id="side-nav"><div class="side-title">课程章节</div><a class="chapter-link " href="../chapters/chapter-01.html"><span>01</span>导读：什么是智能体式 AI</a><a class="chapter-link " href="../chapters/chapter-02.html"><span>02</span>LLM 基础：Token、Transformer 与推理</a><a class="chapter-link " href="../chapters/chapter-03.html"><span>03</span>LLM 系统基础：GPU、显存、并行与服务化</a><a class="chapter-link " href="../chapters/chapter-04.html"><span>04</span>强化学习基础</a><a class="chapter-link active" href="../chapters/chapter-05.html"><span>05</span>从 SFT 到 RLHF</a><a class="chapter-link " href="../chapters/chapter-06.html"><span>06</span>PPO：近端策略优化</a><a class="chapter-link " href="../chapters/chapter-07.html"><span>07</span>DPO：直接偏好优化</a><a class="chapter-link " href="../chapters/chapter-08.html"><span>08</span>GRPO 与新型偏好优化方法</a><a class="chapter-link " href="../chapters/chapter-09.html"><span>09</span>KTO、IPO、ORPO 等偏好优化变体</a><a class="chapter-link " href="../chapters/chapter-10.html"><span>10</span>奖励模型与数据构造</a><a class="chapter-link " href="../chapters/chapter-11.html"><span>11</span>智能体训练</a><a class="chapter-link " href="../chapters/chapter-12.html"><span>12</span>RAG、记忆与工具使用</a><a class="chapter-link " href="../chapters/chapter-13.html"><span>13</span>评估、安全与部署</a><a class="chapter-link " href="../chapters/chapter-14.html"><span>14</span>总结与学习路线</a></aside><div class="main-content">
+        <article class="lesson-article">
+          <header class="lesson-header">
+            <p class="chapter-number">第 05 章 · 对齐基础</p>
+            <h1>从 SFT 到 RLHF</h1>
+            <p>让模型先会答，再学会答得更好</p>
+            <div class="source-badges"><span>语言模型的强化学习基础</span><span>SFT 最佳实践与技术</span></div>
+          </header>
+          <section class="lesson-block intro"><h2>本章导读</h2><p>本章把原材料中的相关内容重新组织为学习版讲解，重点追求清晰、连贯和可复习。原始细节可回到 V3 结构化文档或 arXiv PDF 查阅。</p></section>
+          <section class="lesson-block"><h2>学习目标</h2><ul class="check-list"><li>理解 SFT 的作用</li><li>理解 RLHF 的基本流水线</li><li>知道 SFT 数据质量如何影响后续 RL</li></ul></section>
+          <section class="lesson-block"><h2>核心概念</h2><ul class="concept-list"><li><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></li><li><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></li><li><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></li><li><strong>监督微调（SFT）</strong><span>Supervised Fine-Tuning</span><p>用示范数据让模型学习期望响应格式和行为。</p></li><li><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></li><li><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></li><li><strong>推理</strong><span>Inference</span><p>模型在部署或测试时生成输出的过程。</p></li><li><strong>近端策略优化（PPO）</strong><span>PPO</span><p>通过裁剪目标限制策略更新幅度的强化学习算法。</p></li></ul></section>
+          <section class="lesson-block"><h2>SFT 解决起点问题</h2><p>监督微调（Supervised Fine-Tuning / SFT）用高质量示范回答教模型遵循指令、组织格式和覆盖常见任务。它不是终点，但会决定后续偏好优化的天花板。</p></section><section class="lesson-block"><h2>RLHF 解决偏好问题</h2><p>人类反馈强化学习（RLHF）通常包括采样候选、收集偏好、训练奖励模型、再用强化学习优化策略。它把“哪种回答更好”变成可训练信号。</p></section><section class="lesson-block"><h2>数据格式很关键</h2><p>聊天模板、completion-only mask、序列打包和多任务混合都会影响训练稳定性。V4 把这些工程细节放在学习路径中，而不是散落在 PDF 长页里。</p></section>
+          <section class="lesson-block"><h2>关键图表 / 表格：SFT 与 RLHF</h2><div class="table-wrap"><table><thead><tr><th>阶段</th><th>输入</th><th>输出</th></tr></thead><tbody><tr><td>SFT</td><td>示范问答</td><td>会遵循指令的初始模型</td></tr><tr><td>偏好收集</td><td>同一 prompt 的多候选回答</td><td>胜负偏好对</td></tr><tr><td>奖励建模</td><td>偏好对</td><td>给回答打分的奖励模型</td></tr><tr><td>策略优化</td><td>奖励信号</td><td>更符合偏好的模型</td></tr></tbody></table></div></section>
+          <section class="lesson-block formula-note"><h2>公式解释</h2><p>偏好优化的关键不是背公式，而是理解：模型会被鼓励提高胜出回答的概率，同时控制偏离参考模型的幅度。</p><p class="muted">需要逐式核对时，请参考原 PDF：<a href="https://arxiv.org/pdf/2606.24937v1">https://arxiv.org/pdf/2606.24937v1</a></p></section>
+          <section class="lesson-block"><h2>来自原文的主题线索</h2><ul class="topic-list"><li>LLM 强化学习的两种范式</li><li>作为 MDP 的文本生成</li><li>RLHF 流水线</li><li>本部分路线图</li><li>提升效率的序列打包</li><li>聊天模板与格式化</li><li>仅补全部分掩码</li><li>多任务 SFT 的数据混合策略</li></ul></section>
+          <section class="lesson-block"><h2>小结</h2><ul><li>SFT 提供行为起点，RLHF 进一步塑造偏好。</li><li>数据质量、模板和 mask 会显著影响训练结果。</li></ul></section>
+          <section class="lesson-block"><h2>思考题</h2><ol><li>为什么低质量 SFT 会限制 RLHF 上限？</li><li>偏好对比单个分数更容易收集吗？为什么？</li></ol></section>
+          <section class="lesson-block"><h2>延伸阅读</h2><ul><li>SFT 最佳实践</li><li>语言模型的强化学习基础</li></ul></section>
+          <nav class="pager"><a href="chapter-04.html">上一章：强化学习基础</a><a class="next" href="chapter-06.html">下一章：PPO：近端策略优化</a></nav>
+        </article>
+        </div></main>
+  <button class="to-top" id="to-top" type="button">返回顶部</button>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

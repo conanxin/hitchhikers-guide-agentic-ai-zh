@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>智能体训练 | 智能体式 AI 中文重编版</title>
+  <meta name="description" content="从单次回答优化到多步任务优化" />
+  <meta property="og:title" content="智能体训练 | 智能体式 AI 中文重编版" />
+  <meta property="og:description" content="从单次回答优化到多步任务优化" />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+<body class="lesson-page">
+  <div class="progress" id="progress"></div>
+  <header class="topbar">
+    <a class="brand" href="../index.html"><strong>智能体式 AI 中文重编版</strong><span>面向学习者的 Agentic AI 在线教材</span></a>
+    <button class="menu-button" id="menu-button" type="button" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="topnav" id="topnav"><a class="" href="../index.html">首页</a><a class="active" href="../roadmap.html">路线图</a><a class="" href="../concepts.html">核心概念</a><a class="" href="../glossary.html">术语表</a><a class="" href="../references.html">参考资料</a><a class="" href="../search.html">搜索</a><a class="" href="../about.html">说明</a></nav>
+  </header>
+  <main class="page-grid"><aside class="side-nav" id="side-nav"><div class="side-title">课程章节</div><a class="chapter-link " href="../chapters/chapter-01.html"><span>01</span>导读：什么是智能体式 AI</a><a class="chapter-link " href="../chapters/chapter-02.html"><span>02</span>LLM 基础：Token、Transformer 与推理</a><a class="chapter-link " href="../chapters/chapter-03.html"><span>03</span>LLM 系统基础：GPU、显存、并行与服务化</a><a class="chapter-link " href="../chapters/chapter-04.html"><span>04</span>强化学习基础</a><a class="chapter-link " href="../chapters/chapter-05.html"><span>05</span>从 SFT 到 RLHF</a><a class="chapter-link " href="../chapters/chapter-06.html"><span>06</span>PPO：近端策略优化</a><a class="chapter-link " href="../chapters/chapter-07.html"><span>07</span>DPO：直接偏好优化</a><a class="chapter-link " href="../chapters/chapter-08.html"><span>08</span>GRPO 与新型偏好优化方法</a><a class="chapter-link " href="../chapters/chapter-09.html"><span>09</span>KTO、IPO、ORPO 等偏好优化变体</a><a class="chapter-link " href="../chapters/chapter-10.html"><span>10</span>奖励模型与数据构造</a><a class="chapter-link active" href="../chapters/chapter-11.html"><span>11</span>智能体训练</a><a class="chapter-link " href="../chapters/chapter-12.html"><span>12</span>RAG、记忆与工具使用</a><a class="chapter-link " href="../chapters/chapter-13.html"><span>13</span>评估、安全与部署</a><a class="chapter-link " href="../chapters/chapter-14.html"><span>14</span>总结与学习路线</a></aside><div class="main-content">
+        <article class="lesson-article">
+          <header class="lesson-header">
+            <p class="chapter-number">第 11 章 · 智能体训练</p>
+            <h1>智能体训练</h1>
+            <p>从单次回答优化到多步任务优化</p>
+            <div class="source-badges"><span>LLM 智能体训练</span><span>智能体环境与基准</span></div>
+          </header>
+          <section class="lesson-block intro"><h2>本章导读</h2><p>本章把原材料中的相关内容重新组织为学习版讲解，重点追求清晰、连贯和可复习。原始细节可回到 V3 结构化文档或 arXiv PDF 查阅。</p></section>
+          <section class="lesson-block"><h2>学习目标</h2><ul class="check-list"><li>理解轨迹缓冲区</li><li>理解智能体环境和 benchmark</li><li>掌握训练智能体的主要难点</li></ul></section>
+          <section class="lesson-block"><h2>核心概念</h2><ul class="concept-list"><li><strong>智能体</strong><span>Agent</span><p>能够感知状态、规划行动、调用工具并迭代完成任务的系统单元。</p></li><li><strong>标记 / token</strong><span>Token</span><p>语言模型处理文本的基本离散单位。</p></li><li><strong>注意力</strong><span>Attention</span><p>根据查询、键和值计算上下文加权表示的机制。</p></li><li><strong>强化学习</strong><span>Reinforcement Learning</span><p>通过奖励信号优化策略的学习范式。</p></li><li><strong>奖励模型</strong><span>Reward Model</span><p>把候选输出映射为偏好或质量分数的模型。</p></li><li><strong>策略</strong><span>Policy</span><p>在状态下选择动作或生成 token 的概率分布。</p></li><li><strong>轨迹</strong><span>Trajectory</span><p>智能体与环境交互形成的状态、动作、观察和奖励序列。</p></li><li><strong>缓冲区</strong><span>Buffer</span><p>保存经验、轨迹或中间数据以供训练和分析的结构。</p></li></ul></section>
+          <section class="lesson-block"><h2>智能体训练不同在哪里</h2><p>智能体训练面对的是多步轨迹（Trajectory），其中包含观察、计划、工具调用、环境反馈和最终结果。训练目标不再只是单条回答是否好，而是整条任务路径是否有效。</p></section><section class="lesson-block"><h2>环境很重要</h2><p>智能体需要在环境中试错。环境可以是浏览器、代码仓库、数据库、游戏、网页应用或模拟任务。好的环境要能记录状态、验证结果并控制安全边界。</p></section><section class="lesson-block"><h2>轨迹数据如何使用</h2><p>成功轨迹可以用于 SFT，失败轨迹可以用于反思和偏好数据，工具调用日志可以训练模型更好地选择工具和恢复错误。</p></section>
+          <section class="lesson-block"><h2>关键图表 / 表格：智能体训练数据</h2><div class="table-wrap"><table><thead><tr><th>数据</th><th>用途</th></tr></thead><tbody><tr><td>成功轨迹</td><td>模仿学习、SFT、技能抽取</td></tr><tr><td>失败轨迹</td><td>错误恢复、偏好对、反思训练</td></tr><tr><td>工具调用日志</td><td>训练工具选择与参数生成</td></tr><tr><td>环境奖励</td><td>强化学习或规则优化</td></tr></tbody></table></div></section>
+          <section class="lesson-block formula-note"><h2>公式解释</h2><p>智能体轨迹可以写成观察、动作、反馈的序列。V4 用序列结构解释替代破碎数学排版：关键是保留每一步为什么发生以及结果如何反馈。</p><p class="muted">需要逐式核对时，请参考原 PDF：<a href="https://arxiv.org/pdf/2606.24937v1">https://arxiv.org/pdf/2606.24937v1</a></p></section>
+          <section class="lesson-block"><h2>来自原文的主题线索</h2><ul class="topic-list"><li>动机：从聊天机器人到自主智能体</li><li>LLM 智能体的轨迹缓冲区</li><li>运行范式</li><li>范式比较</li><li>Agentic RL 的主要技术</li><li>用例：面向生产力副驾驶的 Agentic RL</li><li>动机：为什么智能体需要环境</li><li>环境设计原则</li></ul></section>
+          <section class="lesson-block"><h2>小结</h2><ul><li>智能体训练关注整条任务轨迹。</li><li>环境、日志和评估器比单纯回答数据更重要。</li></ul></section>
+          <section class="lesson-block"><h2>思考题</h2><ol><li>为什么成功答案本身不足以训练智能体？</li><li>一个好的智能体环境应记录哪些信息？</li></ol></section>
+          <section class="lesson-block"><h2>延伸阅读</h2><ul><li>Agentic RL、智能体环境、OpenEnv</li></ul></section>
+          <nav class="pager"><a href="chapter-10.html">上一章：奖励模型与数据构造</a><a class="next" href="chapter-12.html">下一章：RAG、记忆与工具使用</a></nav>
+        </article>
+        </div></main>
+  <button class="to-top" id="to-top" type="button">返回顶部</button>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
