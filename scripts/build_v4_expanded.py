@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import html
 import json
@@ -719,7 +719,7 @@ def build_search(lessons: list[dict]) -> None:
       <div id="search-status" class="muted"></div>
       <div id="search-results" class="search-results"></div>
     </article>
-    <script src="assets/js/search.js"></script>
+    <script src="assets/js/search.js?v=4.1.0-expanded-clean"></script>
     """
     write(SITE / "search.html", shell("搜索", "V4 搜索页。", body, active="search"))
 
@@ -732,7 +732,7 @@ def write_assets() -> None:
 (()=>{const topnav=document.getElementById("topnav"),menu=document.getElementById("menu-button"),bar=document.getElementById("progress"),top=document.getElementById("to-top");menu?.addEventListener("click",()=>{const open=topnav.classList.toggle("open");menu.setAttribute("aria-expanded",String(open))});const tick=()=>{const h=document.documentElement;const max=h.scrollHeight-h.clientHeight;const pct=max>0?h.scrollTop/max*100:0;if(bar)bar.style.width=pct+"%";if(top)top.classList.toggle("visible",h.scrollTop>500)};document.addEventListener("scroll",tick,{passive:true});top?.addEventListener("click",()=>scrollTo({top:0,behavior:"smooth"}));tick()})();
 """
     search_js = r"""
-(()=>{const input=document.getElementById("search-input"),button=document.getElementById("search-button"),results=document.getElementById("search-results"),status=document.getElementById("search-status");let index=[];const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));function snip(text,q){const clean=String(text||"").replace(/\s+/g," ");const i=clean.toLowerCase().indexOf(q.toLowerCase());const s=Math.max(0,i<0?0:i-48);return clean.slice(s,s+150)+(clean.length>s+150?"...":"")}function run(){const q=input.value.trim();results.innerHTML="";if(!q){status.textContent="请输入关键词。";return}const terms=q.toLowerCase().split(/\s+/).filter(Boolean);const found=index.map(item=>{const hay=`${item.title} ${item.stage} ${item.summary} ${item.text} ${(item.concepts||[]).join(" ")}`.toLowerCase();return{item,score:terms.reduce((n,t)=>n+(hay.includes(t)?1:0),0)}}).filter(x=>x.score>0).sort((a,b)=>b.score-a.score).slice(0,20);status.textContent=`找到 ${found.length} 条结果。`;results.innerHTML=found.map(({item})=>`<a class="search-result" href="${item.url}"><strong>${esc(item.title)}</strong><span>${esc(item.stage)}</span><p>${esc(snip(item.text,q))}</p></a>`).join("")}fetch("assets/data/search-index.json").then(r=>r.json()).then(data=>{index=data;const q=new URLSearchParams(location.search).get("q");if(q){input.value=q;run()}else status.textContent=`索引已加载，共 ${index.length} 章。`}).catch(()=>{status.textContent="搜索索引加载失败。"});button?.addEventListener("click",run);input?.addEventListener("keydown",e=>{if(e.key==="Enter")run()})})();
+(()=>{const input=document.getElementById("search-input"),button=document.getElementById("search-button"),results=document.getElementById("search-results"),status=document.getElementById("search-status");let index=[];const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));function snip(text,q){const clean=String(text||"").replace(/\s+/g," ");const i=clean.toLowerCase().indexOf(q.toLowerCase());const s=Math.max(0,i<0?0:i-48);return clean.slice(s,s+150)+(clean.length>s+150?"...":"")}function run(){const q=input.value.trim();results.innerHTML="";if(!q){status.textContent="请输入关键词。";return}const terms=q.toLowerCase().split(/\s+/).filter(Boolean);const found=index.map(item=>{const hay=`${item.title} ${item.stage} ${item.summary} ${item.text} ${(item.concepts||[]).join(" ")}`.toLowerCase();return{item,score:terms.reduce((n,t)=>n+(hay.includes(t)?1:0),0)}}).filter(x=>x.score>0).sort((a,b)=>b.score-a.score).slice(0,20);status.textContent=`找到 ${found.length} 条结果。`;results.innerHTML=found.map(({item})=>`<a class="search-result" href="${item.url}"><strong>${esc(item.title)}</strong><span>${esc(item.stage)}</span><p>${esc(snip(item.text,q))}</p></a>`).join("")}fetch("assets/data/search-index.json?v=4.1.0-expanded-clean",{cache:"no-store"}).then(r=>r.json()).then(data=>{index=data;const q=new URLSearchParams(location.search).get("q");if(q){input.value=q;run()}else status.textContent=`索引已加载，共 ${index.length} 章。`}).catch(()=>{status.textContent="搜索索引加载失败。"});button?.addEventListener("click",run);input?.addEventListener("keydown",e=>{if(e.key==="Enter")run()})})();
 """
     write(SITE / "assets" / "css" / "main.css", css)
     write(SITE / "assets" / "js" / "main.js", main_js)
@@ -1886,7 +1886,7 @@ def build_search(lessons: list[dict]) -> None:
       <div id="search-status" class="muted"></div>
       <div id="search-results" class="search-results"></div>
     </article>
-    <script src="assets/js/search.js"></script>
+    <script src="assets/js/search.js?v=4.1.0-expanded-clean"></script>
     """
     write(SITE / "search.html", shell("搜索", "V4.1 搜索页。", body, active="search"))
 
@@ -1995,3 +1995,4 @@ def build_all() -> None:
 
 if __name__ == "__main__":
     build_all()
+
