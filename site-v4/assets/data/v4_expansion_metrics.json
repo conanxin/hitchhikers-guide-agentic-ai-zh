@@ -6,7 +6,7 @@
       "id": "chapter-01",
       "title": "导读：什么是智能体式 AI",
       "old_length": 973,
-      "new_length": 1749,
+      "new_length": 1658,
       "target_chars": 3000,
       "priority": "中",
       "sources": [
@@ -23,7 +23,7 @@
       "id": "chapter-02",
       "title": "LLM 基础：Token、Transformer 与推理",
       "old_length": 1327,
-      "new_length": 4242,
+      "new_length": 4998,
       "target_chars": 6500,
       "priority": "高",
       "sources": [
@@ -45,7 +45,7 @@
       "id": "chapter-03",
       "title": "LLM 系统基础：GPU、显存、并行与服务化",
       "old_length": 1333,
-      "new_length": 4013,
+      "new_length": 4259,
       "target_chars": 5600,
       "priority": "高",
       "sources": [
@@ -69,7 +69,7 @@
       "id": "chapter-04",
       "title": "强化学习基础",
       "old_length": 917,
-      "new_length": 2907,
+      "new_length": 2977,
       "target_chars": 3800,
       "priority": "中",
       "sources": [
@@ -87,7 +87,7 @@
       "id": "chapter-05",
       "title": "从 SFT 到 RLHF",
       "old_length": 921,
-      "new_length": 4213,
+      "new_length": 4155,
       "target_chars": 5400,
       "priority": "高",
       "sources": [
@@ -108,7 +108,7 @@
       "id": "chapter-06",
       "title": "PPO：近端策略优化",
       "old_length": 886,
-      "new_length": 4218,
+      "new_length": 4236,
       "target_chars": 5600,
       "priority": "高",
       "sources": [
@@ -147,7 +147,7 @@
       "id": "chapter-08",
       "title": "GRPO 与新型偏好优化方法",
       "old_length": 868,
-      "new_length": 4258,
+      "new_length": 4251,
       "target_chars": 5200,
       "priority": "高",
       "sources": [
@@ -166,7 +166,7 @@
       "id": "chapter-09",
       "title": "KTO、IPO、ORPO 等偏好优化变体",
       "old_length": 1486,
-      "new_length": 2000,
+      "new_length": 1903,
       "target_chars": 4300,
       "priority": "高",
       "sources": [
@@ -185,7 +185,7 @@
       "id": "chapter-10",
       "title": "奖励模型与数据构造",
       "old_length": 910,
-      "new_length": 2057,
+      "new_length": 2397,
       "target_chars": 3800,
       "priority": "中",
       "sources": [
@@ -204,7 +204,7 @@
       "id": "chapter-11",
       "title": "智能体训练",
       "old_length": 974,
-      "new_length": 4915,
+      "new_length": 4648,
       "target_chars": 6800,
       "priority": "高",
       "sources": [
@@ -230,7 +230,7 @@
       "id": "chapter-12",
       "title": "RAG、记忆与工具使用",
       "old_length": 1003,
-      "new_length": 4522,
+      "new_length": 5599,
       "target_chars": 6400,
       "priority": "高",
       "sources": [
@@ -262,7 +262,7 @@
       "id": "chapter-13",
       "title": "评估、安全与部署",
       "old_length": 910,
-      "new_length": 3565,
+      "new_length": 4075,
       "target_chars": 4600,
       "priority": "高",
       "sources": [
@@ -287,7 +287,7 @@
       "id": "chapter-14",
       "title": "总结与学习路线",
       "old_length": 920,
-      "new_length": 2177,
+      "new_length": 2744,
       "target_chars": 3200,
       "priority": "中",
       "sources": [
