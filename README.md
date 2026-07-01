@@ -10,8 +10,20 @@
 
 ## Versions
 
-- V3 stable documentation site: root path `/`
-- V4 Chinese learning edition preview: `/v4/`
+- V3 Stable Documentation Site:
+  https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/
+
+- V4 Chinese Learning Edition Preview:
+  https://conanxin.github.io/hitchhikers-guide-agentic-ai-zh/v4/
+
+## Current Release Tags
+
+- `v3.0.0`: Stable structured documentation site
+- `v4.0.0-preview`: Chinese rewritten learning edition preview
+
+## V4 Preview Scope
+
+V4 is a rewritten Chinese learning edition based on the original PDF. It prioritizes clarity, continuity, and learning experience over line-by-line fidelity. It remains published under `/v4/`, while the V3 stable documentation site remains at the root path.
 
 ## V3 Architecture
 
@@ -39,6 +51,7 @@ Then open:
 
 ```text
 http://127.0.0.1:8080/
+http://127.0.0.1:8080/v4/
 ```
 
 ## Build And Audit
@@ -55,3 +68,4 @@ python scripts/audit_site.py
 - V3 architecture: `docs/v3_architecture.md`
 - V3 final release: `docs/final_release_v3.md`
 - V3 rebuild report: `docs/v3_site_rebuild_report.md`
+- V4 preview release: `docs/v4_preview_release.md`
