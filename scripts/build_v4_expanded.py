@@ -153,7 +153,7 @@ LESSON_BLUEPRINTS = [
         "stage": "对齐基础",
         "objectives": ["理解 SFT 的作用", "理解 RLHF 的基本流水线", "知道 SFT 数据质量如何影响后续 RL"],
         "sections": [
-            ("SFT 解决起点问题", "监督微调（Supervised Fine-Tuning / SFT）用高质量示范回答教模型遵循指令、组织格式和覆盖常见任务。它不是终点，但会决定后续偏好优化的天花板。"),
+            ("SFT 提供对齐起点", "监督微调（Supervised Fine-Tuning / SFT）用高质量示范回答教模型遵循指令、组织格式和覆盖常见任务。它不是终点，但会决定后续偏好优化的天花板。"),
             ("RLHF 解决偏好问题", "人类反馈强化学习（RLHF）通常包括采样候选、收集偏好、训练奖励模型、再用强化学习优化策略。它把“哪种回答更好”变成可训练信号。"),
             ("数据格式很关键", "聊天模板、completion-only mask、序列打包和多任务混合都会影响训练稳定性。V4 把这些工程细节放在学习路径中，而不是散落在 PDF 长页里。"),
         ],
@@ -200,7 +200,7 @@ LESSON_BLUEPRINTS = [
         "stage": "偏好优化",
         "objectives": ["理解 DPO 与 PPO/RLHF 的区别", "掌握偏好对如何直接优化模型", "知道 DPO 的适用边界"],
         "sections": [
-            ("DPO 想简化什么", "直接偏好优化（Direct Preference Optimization / DPO）把偏好学习改写成监督式目标，避免显式训练奖励模型和运行复杂 PPO 循环。"),
+            ("DPO 的简化目标", "直接偏好优化（Direct Preference Optimization / DPO）把偏好学习改写成监督式目标，避免显式训练奖励模型和运行复杂 PPO 循环。"),
             ("偏好对是核心数据", "DPO 需要同一输入下的胜出回答和失败回答。训练目标会提高胜出回答相对失败回答的概率，同时通过参考模型约束更新幅度。"),
             ("什么时候会失效", "如果偏好数据噪声大、胜负差异不清晰，或任务需要在线探索，DPO 可能不如更复杂的强化学习方法。"),
         ],
@@ -270,7 +270,7 @@ LESSON_BLUEPRINTS = [
         "stage": "数据与奖励",
         "objectives": ["理解奖励模型的角色", "区分结果奖励和过程奖励", "掌握数据构造的常见风险"],
         "sections": [
-            ("奖励模型是什么", "奖励模型（Reward Model）把输入和候选回答映射为质量分数。它让偏好判断可以规模化，但也会继承标注偏差和数据覆盖问题。"),
+            ("奖励模型的角色", "奖励模型（Reward Model）把输入和候选回答映射为质量分数。它让偏好判断可以规模化，但也会继承标注偏差和数据覆盖问题。"),
             ("结果奖励与过程奖励", "结果奖励只看最终答案，适合可验证任务；过程奖励会评价中间步骤，适合长链推理和工具调用，但标注成本更高。"),
             ("数据构造比模型更重要", "偏好数据要覆盖真实任务、困难负例、边界条件和安全场景。只用容易样本训练，模型可能在生产环境中表现脆弱。"),
         ],
@@ -878,7 +878,7 @@ EXPANSION_GUIDES = {
         "priority": "高",
         "omitted": ["SFT", "RLHF pipeline", "reward model", "chosen/rejected", "KL", "数据模板", "训练稳定性"],
         "supplement": [
-            ("SFT 解决起点问题", [
+            ("SFT 的训练边界和模板细节", [
                 "监督微调（SFT）让基础模型学会遵循指令、使用对话格式、输出安全且有帮助的回答。它通常使用人工示范、合成示范或专家轨迹。SFT 的质量决定后续对齐训练的上限：如果模型连任务格式都不稳定，RLHF 很难只靠奖励把行为纠正回来。",
                 "SFT 不是简单堆数据。聊天模板、system/user/assistant 边界、completion-only loss、特殊 token、拒答样式和工具调用格式都会影响模型学到的行为。"
             ]),
@@ -914,11 +914,11 @@ EXPANSION_GUIDES = {
         "priority": "高",
         "omitted": ["DPO 推导直觉", "implicit reward", "chosen/rejected logprob", "beta", "PPO vs DPO", "数据边界"],
         "supplement": [
-            ("DPO 想简化什么", [
+            ("DPO 的损失直觉", [
                 "DPO 的动机是绕过显式奖励模型和复杂 PPO 循环。它利用 RLHF 目标在 KL 正则下的最优策略形式，把偏好学习改写成一个监督式损失：提高 chosen 相对 rejected 的概率，同时保留参考模型约束。",
                 "DPO 仍然需要高质量偏好对。每条样本通常包含 prompt、chosen response 和 rejected response。训练时比较当前模型与参考模型在两条回答上的 log probability 差异，鼓励当前模型更偏向 chosen。"
             ]),
-            ("DPO 与 PPO 的差别", [
+            ("DPO 与 PPO 的工程取舍", [
                 "PPO 可以在线采样并利用奖励模型反馈，探索能力更强，但系统复杂；DPO 更像离线偏好优化，流程简洁、显存压力小、实现更接近 SFT。它适合偏好对清晰、任务分布稳定的场景。",
                 "DPO 的 beta 控制偏离参考模型的幅度。beta 太小可能更新弱，beta 太大可能过度拟合偏好数据。偏好对如果噪声大、差异太小或来自旧模型分布，DPO 的收益会下降。"
             ]),
@@ -968,7 +968,7 @@ EXPANSION_GUIDES = {
         "priority": "中",
         "omitted": ["reward model", "pairwise ranking", "chosen/rejected", "reward hacking", "judge model", "AI feedback"],
         "supplement": [
-            ("奖励模型是什么", [
+            ("奖励模型的排序目标", [
                 "奖励模型把 prompt 和候选回答映射为质量分数，是人类偏好和强化学习目标之间的桥梁。典型做法是在预训练 LLM 上加一个标量头，输入 prompt-response 序列，输出一个 reward。",
                 "Pairwise ranking 常用 Bradley-Terry 形式：如果 chosen 的奖励高于 rejected，那么 chosen 被偏好的概率更高。训练目标不是让奖励有绝对单位，而是让排序与偏好一致。"
             ]),
@@ -1536,7 +1536,7 @@ EXTRA_EXPANDED_SECTIONS["chapter-05"].extend([
 
 EXTRA_EXPANDED_SECTIONS["chapter-08"].extend([
     ("本章收束", [
-        "GRPO 的关键词是同题多候选、组内相对优势和可验证反馈。理解这三点，就能把它放回偏好优化谱系中。"
+        "GRPO 的关键词是同题多候选、组内相对优势和可验证反馈。理解这三点，就能把它放回偏好优化谱系中：PPO 强调在线策略更新，DPO 强调从偏好对直接学习，GRPO 则强调在同一问题的一组候选中寻找相对更好的行为。真正落地时，先判断任务是否可验证，再判断系统是否承担得起多候选生成和奖励计算成本，并把失败轨迹作为下一轮奖励设计的依据。"
     ]),
 ])
 
@@ -1548,7 +1548,7 @@ EXTRA_EXPANDED_SECTIONS["chapter-01"].extend([
 ])
 
 EXTRA_EXPANDED_SECTIONS["chapter-05"].extend([
-    ("实践提示", [
+    ("对齐数据地图", [
         "实践中可以先把 SFT 数据、偏好数据、奖励模型样本和线上反馈放进同一张数据地图。只要能追踪每个样本从哪里来、代表什么任务、被谁评价、进入哪次训练，就能显著降低后续 PPO、DPO 或 GRPO 的排障成本。"
     ]),
 ])
@@ -1573,7 +1573,7 @@ EXTRA_EXPANDED_SECTIONS["chapter-01"].extend([
 
 EXTRA_EXPANDED_SECTIONS["chapter-05"].extend([
     ("补充说明", [
-        "这也是对齐训练的基本底线。"
+        "这也是对齐训练的基本底线：先定义反馈，再设计数据，再选择算法。若反馈标准含糊，SFT 会模仿不稳定示范，奖励模型会学习标注噪声，PPO、DPO 或 GRPO 又会把这些噪声进一步放大。把反馈写清楚，等于为后续所有训练阶段建立可审计的共同语言。"
     ]),
 ])
 
@@ -1591,13 +1591,13 @@ EXTRA_EXPANDED_SECTIONS["chapter-01"].extend([
 
 EXTRA_EXPANDED_SECTIONS["chapter-01"].extend([
     ("补充收束", [
-        "请持续回看。"
+        "后续阅读中如果遇到新的算法名，可以先把它放回四个位置：它是在改进模型表示、改进训练目标、改进系统执行，还是改进评估与治理。只要位置判断清楚，复杂术语就不会互相混淆。"
     ]),
 ])
 
 EXTRA_EXPANDED_SECTIONS["chapter-05"].extend([
     ("最后一句", [
-        "先把反馈讲清楚。"
+        "先把反馈讲清楚，再讨论训练技巧。一个可复盘的对齐项目，应能回答：样本从哪里来，为什么 chosen 更好，rejected 代表哪类失败，哪些指标决定是否上线，线上失败如何回流。只有反馈链路可追踪，SFT、奖励模型和偏好优化才会变成可持续迭代的系统，而不是一次性实验。缺少这条链路，模型改进就很难解释，也很难长期维护。最终要把每次训练都变成可复盘的工程记录，便于审计。"
     ]),
 ])
 
@@ -1654,12 +1654,37 @@ def is_useful_paragraph(text: str) -> bool:
 
 def source_rewrite_body(title: str, source_id: str) -> str:
     topic = clean_title(title)
+    lower = topic.lower()
+    if any(k in lower for k in ["token", "分词", "bpe", "词表", "embedding"]):
+        focus = "它关系到文本如何被拆成模型可计算的离散单元，也会影响长上下文成本、罕见词处理和多语言表现。学习时应把词表、embedding 和上下文长度放在同一条链路里理解。"
+        practice = "具体到这一主题，可以追问三个问题：token 边界是否改变了任务表达，词表选择是否影响训练/推理成本，以及同一段文本在不同 tokenizer 下会不会触发不同的失败模式。"
+    elif any(k in lower for k in ["attention", "transformer", "rope", "kv", "flashattention"]):
+        focus = "它补充了 Transformer 推理路径中的关键机制。重点不是记住每个符号，而是看清注意力、位置编码、KV cache 和显存访问如何共同决定推理质量与速度。"
+        practice = "具体到这一主题，可以把它放进一次解码过程里检查：当前 token 如何读取历史上下文，哪些张量需要缓存，哪些计算受显存带宽限制，哪些优化会改变吞吐而不改变模型语义。"
+    elif any(k in lower for k in ["gpu", "cuda", "hbm", "nvlink", "parallel", "并行", "serving", "pagedattention"]):
+        focus = "它属于 LLM 系统工程层面的约束。训练和推理算法最终都要落到显存、带宽、并行通信、批处理和服务延迟上，因此这些细节会反过来影响方法选择。"
+        practice = "具体到这一主题，应同时看容量、带宽、通信和调度：模型能否放下、KV cache 能否维持、批处理是否提高吞吐、跨卡通信是否抵消并行收益。"
+    elif any(k in lower for k in ["mdp", "policy", "reward", "value", "advantage", "强化学习", "rl"]):
+        focus = "它帮助把语言模型训练改写成状态、动作、奖励和策略更新问题。阅读时应关注反馈从哪里来、目标如何定义、以及策略更新为什么需要约束。"
+        practice = "具体到这一主题，可以先确定状态和动作的粒度，再判断奖励是结果级、过程级还是偏好级；最后检查更新是否会破坏参考模型已经具备的语言能力。"
+    elif any(k in lower for k in ["sft", "rlhf", "preference", "dpo", "ppo", "grpo", "kto", "ipo", "orpo", "偏好"]):
+        focus = "它连接了监督微调、偏好数据和策略优化。核心问题是如何把 chosen/rejected、奖励分数或规则反馈转化为稳定训练信号，同时避免过度优化和数据偏差。"
+        practice = "具体到这一主题，应检查数据从哪里来、偏好是否可信、参考模型是否合适、训练指标是否和真实任务一致。没有这些约束，算法名称本身无法保证对齐质量。"
+    elif any(k in lower for k in ["agent", "trajectory", "buffer", "tool", "memory", "react", "star", "智能体"]):
+        focus = "它把模型能力放进智能体闭环中讨论。应重点观察目标、状态、动作、工具结果、记忆和轨迹缓冲区如何组成可训练、可评估的执行系统。"
+        practice = "具体到这一主题，可以把一次任务拆成轨迹：观察来自哪里、行动如何被记录、工具结果如何进入记忆、失败样本如何回流到训练或评估。"
+    elif any(k in lower for k in ["rag", "retrieval", "检索", "记忆", "context", "chunk"]):
+        focus = "它说明模型如何借助外部知识工作。关键取舍包括切分粒度、检索召回、重排、上下文预算、长期记忆和生成阶段的证据约束。"
+        practice = "具体到这一主题，需要区分知识缺失、检索失败和生成幻觉：三类问题的修复手段不同，分别对应资料覆盖、召回/排序和答案约束。"
+    elif any(k in lower for k in ["eval", "benchmark", "safety", "deploy", "评估", "安全", "部署"]):
+        focus = "它属于发布前后的质量控制。评估不仅要看平均分，还要覆盖真实任务、失败样本、安全边界、成本延迟和上线后的反馈回流。"
+        practice = "具体到这一主题，应把指标拆成能力、可靠性、安全、成本和可运维性，并保留失败样本，使下一轮训练或系统改造有可追踪依据。"
+    else:
+        focus = "它是本章主线的补充线索，用来连接原书中的定义、方法或工程注意点。阅读时可以先抓住它解决的问题，再回到本章上下文判断它与训练、推理或智能体系统的关系。"
+        practice = "具体到这一主题，建议先判断它属于模型、训练、系统还是评估环节，再看它改变的是能力、成本、稳定性还是安全边界。"
     return (
-        f"原书在“{topic}”中提供了更细的背景、定义或方法线索。V4.1 不直接渲染 PDF 提取段落，"
-        f"而是把这一部分整理为可学习的中文说明：先说明它解决什么问题，再解释核心机制，最后放回工程或训练流程中理解。"
-        f"这样既保留原书覆盖范围，也避免把表格断行、公式碎片或抽取噪声带入正文。"
-        f"阅读时可以把这一小节当作本章主线的补充：它提示哪些概念需要和前后章节连接，哪些细节在实现时容易被忽略，"
-        f"以及哪些术语应回到原 PDF 或 V3 AST 中核对更完整的上下文。"
+        f"“{topic}”来自原书 {source_id} 的相关内容。V4.1 将其重写为教材式说明，避免直接带入 PDF 抽取噪声、断裂表格或残缺公式。"
+        f"{focus}{practice}"
     )
 
 

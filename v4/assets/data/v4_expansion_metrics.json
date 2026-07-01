@@ -5,8 +5,8 @@
     {
       "id": "chapter-01",
       "title": "导读：什么是智能体式 AI",
-      "old_length": 973,
-      "new_length": 1658,
+      "old_length": 2707,
+      "new_length": 1702,
       "target_chars": 3000,
       "priority": "中",
       "sources": [
@@ -22,8 +22,8 @@
     {
       "id": "chapter-02",
       "title": "LLM 基础：Token、Transformer 与推理",
-      "old_length": 1327,
-      "new_length": 4998,
+      "old_length": 5857,
+      "new_length": 4793,
       "target_chars": 6500,
       "priority": "高",
       "sources": [
@@ -44,8 +44,8 @@
     {
       "id": "chapter-03",
       "title": "LLM 系统基础：GPU、显存、并行与服务化",
-      "old_length": 1333,
-      "new_length": 4259,
+      "old_length": 5367,
+      "new_length": 4202,
       "target_chars": 5600,
       "priority": "高",
       "sources": [
@@ -68,8 +68,8 @@
     {
       "id": "chapter-04",
       "title": "强化学习基础",
-      "old_length": 917,
-      "new_length": 2977,
+      "old_length": 3673,
+      "new_length": 2708,
       "target_chars": 3800,
       "priority": "中",
       "sources": [
@@ -86,8 +86,8 @@
     {
       "id": "chapter-05",
       "title": "从 SFT 到 RLHF",
-      "old_length": 921,
-      "new_length": 4155,
+      "old_length": 5152,
+      "new_length": 4151,
       "target_chars": 5400,
       "priority": "高",
       "sources": [
@@ -107,8 +107,8 @@
     {
       "id": "chapter-06",
       "title": "PPO：近端策略优化",
-      "old_length": 886,
-      "new_length": 4236,
+      "old_length": 5239,
+      "new_length": 4295,
       "target_chars": 5600,
       "priority": "高",
       "sources": [
@@ -127,8 +127,8 @@
     {
       "id": "chapter-07",
       "title": "DPO：直接偏好优化",
-      "old_length": 863,
-      "new_length": 4220,
+      "old_length": 5164,
+      "new_length": 4222,
       "target_chars": 5200,
       "priority": "高",
       "sources": [
@@ -146,8 +146,8 @@
     {
       "id": "chapter-08",
       "title": "GRPO 与新型偏好优化方法",
-      "old_length": 868,
-      "new_length": 4251,
+      "old_length": 5163,
+      "new_length": 4230,
       "target_chars": 5200,
       "priority": "高",
       "sources": [
@@ -165,8 +165,8 @@
     {
       "id": "chapter-09",
       "title": "KTO、IPO、ORPO 等偏好优化变体",
-      "old_length": 1486,
-      "new_length": 1903,
+      "old_length": 3121,
+      "new_length": 1769,
       "target_chars": 4300,
       "priority": "高",
       "sources": [
@@ -184,8 +184,8 @@
     {
       "id": "chapter-10",
       "title": "奖励模型与数据构造",
-      "old_length": 910,
-      "new_length": 2397,
+      "old_length": 3190,
+      "new_length": 2227,
       "target_chars": 3800,
       "priority": "中",
       "sources": [
@@ -203,8 +203,8 @@
     {
       "id": "chapter-11",
       "title": "智能体训练",
-      "old_length": 974,
-      "new_length": 4648,
+      "old_length": 5193,
+      "new_length": 4139,
       "target_chars": 6800,
       "priority": "高",
       "sources": [
@@ -229,8 +229,8 @@
     {
       "id": "chapter-12",
       "title": "RAG、记忆与工具使用",
-      "old_length": 1003,
-      "new_length": 5599,
+      "old_length": 6529,
+      "new_length": 5451,
       "target_chars": 6400,
       "priority": "高",
       "sources": [
@@ -261,8 +261,8 @@
     {
       "id": "chapter-13",
       "title": "评估、安全与部署",
-      "old_length": 910,
-      "new_length": 4075,
+      "old_length": 4517,
+      "new_length": 3525,
       "target_chars": 4600,
       "priority": "高",
       "sources": [
@@ -286,8 +286,8 @@
     {
       "id": "chapter-14",
       "title": "总结与学习路线",
-      "old_length": 920,
-      "new_length": 2744,
+      "old_length": 3606,
+      "new_length": 2617,
       "target_chars": 3200,
       "priority": "中",
       "sources": [
