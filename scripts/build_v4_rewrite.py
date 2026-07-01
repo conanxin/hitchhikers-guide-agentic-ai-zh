@@ -74,22 +74,26 @@ LESSON_BLUEPRINTS = [
         "subtitle": "理解大语言模型如何把文本变成下一个 token",
         "sources": ["chapter-02"],
         "stage": "模型基础",
-        "objectives": ["理解 token 与分词", "掌握 Transformer 的基本数据流", "理解推理阶段为什么会逐 token 生成"],
+        "objectives": ["理解 token、分词与标记化的关系", "掌握 Transformer 的基本数据流", "理解 RoPE、KV cache 与 FlashAttention 在推理中的作用"],
         "sections": [
-            ("从文本到 token", "大型语言模型（Large Language Model / LLM）不能直接处理自然语言字符串，它先通过分词（Tokenization）把文本转成 token 序列。BPE 等子词方法在词表大小、未知词处理和压缩效率之间折中。"),
-            ("Transformer 的主干", "Transformer 通过注意力（Attention）在上下文位置之间传递信息。每一层都会更新 token 表示，最后由语言模型头把隐藏状态映射为词表上的概率分布。"),
-            ("推理为什么慢", "自回归生成一次只产生一个 token。新 token 会追加到上下文里，再触发下一轮前向计算。KV cache、批处理和高效注意力实现都是为了降低这个过程的重复成本。"),
+            ("分词与标记化", "大型语言模型（Large Language Model / LLM）不能直接处理自然语言字符串，它会先通过分词 / 标记化（Tokenization）把文本转换成 token 序列。一个 token 可能是一个汉字、一个词的一部分、一个空格加单词片段，也可能是特殊控制符。字节对编码（Byte Pair Encoding / BPE）这类子词方法，会在词表规模、未知词覆盖和压缩效率之间折中。"),
+            ("Transformer 的信息流", "Transformer 先把 token 映射为向量，再通过多层注意力（Attention）和前馈网络反复更新表示。注意力可以理解为：当前位置提出查询（Query），上下文位置提供键（Key）和值（Value），模型根据相关性加权汇总信息，最后由语言模型头（LM Head）给出下一个 token 的概率分布。"),
+            ("RoPE 如何表达位置", "旋转位置嵌入（Rotary Position Embedding / RoPE）不是把“第几个位置”作为普通特征拼进去，而是在注意力计算前对查询和键做位置相关的旋转。这样模型在比较两个 token 时，会自然感知相对距离。学习时先把 RoPE 理解为“让注意力知道相对位置的旋转操作”，完整推导可回到原 PDF 核对。"),
+            ("推理为什么慢", "自回归生成一次只产生一个 token。新 token 会追加到上下文里，再触发下一轮前向计算。KV cache 会保存历史 token 的 Key/Value，避免每一步都重新计算整段上下文；批处理和调度器则把多个请求合并，提高 GPU 利用率。"),
+            ("FlashAttention 为什么快", "FlashAttention 的核心不是改变注意力结果，而是改变计算和访存方式。它把注意力矩阵分块放入更快的片上存储中计算，减少对 HBM 的读写，并用数值稳定的在线 softmax 避免保存完整注意力矩阵。因此它通常能在长上下文场景显著降低显存占用和延迟。"),
         ],
         "table": ("LLM 基础组件", ["组件", "作用", "学习提示"], [
-            ["Tokenizer", "把文本切成 token", "关注词表、特殊 token 和中英文混合文本"],
-            ["Embedding", "把 token 映射为向量", "理解向量空间中的相似性"],
-            ["Attention", "聚合上下文信息", "理解查询、键和值的关系"],
-            ["LM Head", "输出词表概率", "连接隐藏状态与下一个 token"],
+            ["Tokenizer / 分词器", "把文本切成 token，并处理特殊控制符", "关注词表、特殊 token 和中英文混合文本"],
+            ["Embedding / 嵌入层", "把 token 映射为向量", "理解向量空间中的相似性"],
+            ["Attention / 注意力", "聚合上下文信息", "理解 Query、Key、Value 的关系"],
+            ["RoPE / 旋转位置嵌入", "把相对位置信息注入注意力", "把它看成位置相关的向量旋转即可"],
+            ["FlashAttention", "减少注意力计算的 HBM 读写", "它是精确注意力的高效实现，不是近似算法"],
+            ["LM Head / 语言模型头", "输出词表概率", "连接隐藏状态与下一个 token"],
         ]),
-        "formula": "注意力可以口头理解为：当前 token 先向所有上下文 token 提问，再按相关性加权汇总信息。V4 不保留 OCR 破碎公式，只保留这个可读解释。",
-        "summary": ["LLM 的最小主线是 token → embedding → Transformer → LM head。", "推理优化要围绕自回归生成和 KV cache 展开。"],
-        "questions": ["为什么中文文档里的 token 不一定等于一个汉字？", "KV cache 主要节省了哪部分重复计算？"],
-        "reading": ["Transformer 架构", "FlashAttention 与解码方法"],
+        "formula": "注意力的简化形式可以写作 softmax(QK^T / sqrt(d))V：Q 和 K 决定相关性，V 提供要汇总的信息。RoPE 可以理解为先按位置旋转 Q 与 K，再做同样的注意力计算；完整数学推导请参考原 PDF。",
+        "summary": ["LLM 的最小主线是 token → embedding → Transformer → LM head。", "RoPE 解决位置信息，KV cache 减少重复计算，FlashAttention 减少显存读写。"],
+        "questions": ["为什么中文文档里的 token 不一定等于一个汉字？", "KV cache 主要节省了哪部分重复计算？", "FlashAttention 为什么能在不近似结果的情况下更快？"],
+        "reading": ["Transformer 架构", "RoPE 位置编码", "FlashAttention 与解码方法"],
     },
     {
         "slug": "chapter-03",
@@ -97,22 +101,26 @@ LESSON_BLUEPRINTS = [
         "subtitle": "从模型算法走向可运行的基础设施",
         "sources": ["chapter-03", "chapter-12"],
         "stage": "系统基础",
-        "objectives": ["理解显存为何是 LLM 系统瓶颈", "区分数据并行、张量并行和流水线并行", "理解服务化中的吞吐、延迟和批处理"],
+        "objectives": ["理解 GPU、HBM、SM、CUDA 与 NVLink 的分工", "理解显存为何是 LLM 系统瓶颈", "区分并行训练和服务化推理的核心取舍"],
         "sections": [
-            ("显存是第一约束", "大模型部署时，参数、激活、优化器状态、KV cache 都会占用显存。训练时还要保存梯度和优化器状态；推理时则重点关注权重加载、KV cache 与并发请求。"),
-            ("并行策略怎么选", "数据并行适合扩展 batch；张量并行把单层矩阵计算切到多卡；流水线并行把模型层切段。真实系统通常会组合这些方法，再用 ZeRO/FSDP 降低冗余显存。"),
-            ("服务化关注什么", "服务化不只是把模型放到 API 后面。调度器、动态批处理、KV cache 管理、限流、监控和故障恢复共同决定用户体验与成本。"),
+            ("GPU 是并行计算机器", "GPU 由大量流式多处理器（Streaming Multiprocessor / SM）组成，适合执行矩阵乘法、注意力和归一化等高度并行计算。CUDA 是开发和调度 GPU 计算的编程体系，Tensor Core 则专门加速低精度矩阵运算。"),
+            ("HBM 与互联决定上限", "高带宽显存（High Bandwidth Memory / HBM）提供模型权重、激活和 KV cache 的主要存储空间。NVLink 或 PCIe 决定多卡之间交换数据的速度：张量并行和流水线并行越依赖跨卡通信，互联瓶颈越明显。"),
+            ("显存是第一约束", "大模型部署时，参数、激活、优化器状态、KV cache 都会占用显存。训练时还要保存梯度和优化器状态；推理时重点关注权重加载、KV cache 与并发请求。上下文越长、并发越高，KV cache 越容易成为主要压力。"),
+            ("并行策略怎么选", "数据并行适合扩展 batch；张量并行把单层矩阵计算切到多卡；流水线并行把模型层切段。真实系统通常会组合这些方法，再用 ZeRO/FSDP 降低冗余显存。选择并行方式时，要同时看显存、通信、吞吐和工程复杂度。"),
+            ("服务化关注什么", "服务化不只是把模型放到 API 后面。调度器、动态批处理、KV cache 管理、限流、监控和故障恢复共同决定用户体验与成本。vLLM 的 PagedAttention 把 KV cache 像分页内存一样管理，能减少碎片并提升高并发吞吐。"),
         ],
-        "table": ("常见并行方式", ["方式", "解决什么问题", "代价"], [
-            ["数据并行", "提高训练吞吐", "需要同步梯度"],
-            ["张量并行", "单层计算放不下一张卡", "跨卡通信频繁"],
-            ["流水线并行", "模型层数或参数过大", "有气泡开销和调度复杂度"],
-            ["ZeRO/FSDP", "减少状态冗余", "实现和检查点更复杂"],
+        "table": ("LLM 系统硬件与运行时要点", ["对象", "主要作用", "容易成为瓶颈的地方"], [
+            ["GPU / SM", "执行大规模并行矩阵计算和注意力计算", "kernel 调度、算子融合和低利用率会浪费算力"],
+            ["Tensor Core", "加速 FP16、BF16、FP8 等低精度矩阵乘法", "精度格式、对齐和算子支持会影响实际吞吐"],
+            ["HBM", "存放权重、激活、KV cache 和运行时缓冲", "容量不足会限制模型大小、上下文长度和并发数"],
+            ["NVLink / PCIe", "负责多 GPU 之间通信", "张量并行、流水线并行和权重同步会放大互联压力"],
+            ["CUDA / Runtime", "把模型算子调度到 GPU 上执行", "kernel 启动开销、内存拷贝和同步点会造成延迟"],
+            ["vLLM / PagedAttention", "管理 KV cache 并提高推理吞吐", "需要配合请求调度、批处理和显存预算使用"],
         ]),
-        "formula": "系统估算常用“显存预算 = 权重 + KV cache + 激活/中间状态 + 框架开销”。V4 用预算框架替代 OCR 破碎公式，便于实际部署时套用。",
-        "summary": ["训练和推理的瓶颈不同，不能用同一套直觉处理。", "LLM 服务化是调度、显存和网络的综合工程。"],
-        "questions": ["为什么 batch 变大可能提高吞吐但增加单请求延迟？", "什么时候张量并行比数据并行更必要？"],
-        "reading": ["vLLM 与 PagedAttention", "大规模系统架构与基础设施"],
+        "formula": "推理显存可以用“权重显存 + KV cache + 临时缓冲 + 框架开销”估算。KV cache 近似随 batch size、上下文长度、层数、头数和每个元素字节数线性增长，因此长上下文和高并发会迅速推高显存需求。",
+        "summary": ["训练和推理的瓶颈不同，不能用同一套直觉处理。", "LLM 服务化是 GPU 算力、HBM 容量、互联带宽和调度策略的综合工程。"],
+        "questions": ["为什么 batch 变大可能提高吞吐但增加单请求延迟？", "什么时候张量并行比数据并行更必要？", "为什么长上下文服务经常先撞到 KV cache 显存瓶颈？"],
+        "reading": ["vLLM 与 PagedAttention", "GPU/HBM/NVLink 架构基础", "大规模系统架构与基础设施"],
     },
     {
         "slug": "chapter-04",
@@ -179,7 +187,7 @@ LESSON_BLUEPRINTS = [
             ["裁剪更新", "限制新旧策略概率比"],
             ["监控 KL", "避免模型偏离参考行为"],
         ]),
-        "formula": "PPO 公式可理解为：如果新策略相对旧策略的变化超出安全范围，就裁剪收益，迫使更新保持近端。V4 保留直觉，不展示 OCR 不可靠公式。",
+        "formula": "PPO 公式可理解为：如果新策略相对旧策略的变化超出安全范围，就裁剪收益，迫使更新保持近端。先掌握这个更新约束，再回到原 PDF 核对完整目标函数。",
         "summary": ["PPO 强大但系统成本高。", "KL 控制和优势估计是理解 PPO 的两个入口。"],
         "questions": ["为什么 PPO 需要参考模型？", "如果 KL 惩罚过强，会发生什么？"],
         "reading": ["PPO 损失、rollout buffer、TRL 实现"],
@@ -236,18 +244,22 @@ LESSON_BLUEPRINTS = [
         "stage": "偏好优化",
         "objectives": ["认识常见 DPO 变体", "理解不同目标函数背后的假设", "形成方法选择直觉"],
         "sections": [
-            ("为什么会有很多变体", "偏好数据并不总是成对、干净、平衡。KTO、IPO、ORPO 等方法尝试在数据形态、稳定性和实现复杂度之间做不同折中。"),
-            ("从目标函数看差异", "有的方法强调胜负间隔，有的方法把偏好变成 odds ratio，有的方法处理单样本好坏反馈。学习时不必先背公式，应先理解每种方法假设了什么数据。"),
-            ("方法选择", "如果有清晰偏好对，DPO 是简单基线；如果只有正负反馈，可考虑 KTO 类方法；如果要更强在线探索，则回到 PPO/GRPO 或任务特定 RL。"),
+            ("为什么会有很多变体", "偏好数据并不总是成对、干净、平衡。KTO、IPO、ORPO、Best-of-N 和 Online DPO 等方法，都是围绕“数据长什么样、目标函数多稳定、训练成本多高”这三个问题做取舍。"),
+            ("KTO：从好坏反馈学习", "KTO（Kahneman-Tversky Optimization）更适合只有单条样本正负反馈的场景。它借鉴人类对收益和损失不对称敏感的直觉，让模型增加好回答概率、降低坏回答概率，而不强依赖同一提示下的成对比较。"),
+            ("IPO 与 ORPO：让目标更稳定", "IPO 关注偏好差距的稳定控制，避免把胜负差距无限拉大；ORPO 则把偏好项并入常规语言模型训练目标，减少单独对齐阶段的复杂度。学习时可以先理解它们想解决的工程问题，再回到论文公式。"),
+            ("Best-of-N 与在线方法", "Best-of-N 不是训练目标，而是一种推理或数据构造策略：对同一提示采样多个候选，再用奖励模型或规则挑选最好的。在线 DPO 和相关方法会把新采样结果继续纳入训练，探索能力更强，但成本和安全控制也更重要。"),
+            ("方法选择", "如果有清晰偏好对，DPO 是简单基线；如果只有正负反馈，可考虑 KTO 类方法；如果希望训练流程简洁，可以评估 ORPO；如果要更强在线探索，则回到 PPO、GRPO 或任务特定强化学习。"),
         ],
-        "table": ("偏好优化变体", ["方法", "直觉", "注意点"], [
-            ["KTO", "更接近人类对收益/损失的不对称偏好", "适合单样本正负反馈"],
-            ["IPO", "控制偏好差距的稳定化目标", "需要理解 margin 设定"],
-            ["ORPO", "把 odds ratio 融入训练目标", "实现简洁但需验证任务适配性"],
+        "table": ("偏好优化方法对比", ["方法", "核心思想", "需要的数据", "优点", "局限", "适用场景"], [
+            ["KTO", "按好/坏反馈调整模型偏好，并体现收益/损失不对称", "单样本正负标签或可判定好坏的输出", "不强依赖成对偏好，数据收集更灵活", "对标签质量敏感，目标直觉需要结合任务校准", "只有点赞/点踩、通过/失败等反馈的场景"],
+            ["IPO", "控制偏好差距，避免目标把胜负间隔推得过大", "成对偏好数据", "训练更稳，能缓解过度自信", "需要理解并设置合适的间隔尺度", "偏好对质量较好但希望稳定训练的离线对齐"],
+            ["ORPO", "把 odds ratio 偏好项并入常规语言模型训练", "正样本与负样本，通常来自偏好对", "流程简洁，减少单独奖励模型或复杂 RL 环节", "任务适配性需要实验验证", "希望低复杂度完成 SFT 与偏好对齐的项目"],
+            ["Best-of-N", "同一提示生成多个候选，再选择得分最高者", "奖励模型、规则评估器或人工选择信号", "实现直观，可用于推理增强或构造训练数据", "推理成本随 N 增加，奖励模型偏差会被放大", "高价值任务、离线数据蒸馏、拒绝采样"],
+            ["Online DPO", "用当前模型持续采样并更新偏好数据", "在线候选、偏好标注或自动评估信号", "比纯离线方法更能适应新分布", "成本高，需要安全边界和数据回放策略", "任务分布持续变化、需要探索的对齐训练"],
         ]),
-        "formula": "这些方法的公式细节不同，但共同目标是：让模型更偏向高质量回答，同时避免过拟合噪声偏好。",
-        "summary": ["偏好优化变体反映了数据条件的差异。", "先判断数据形态，再选择训练目标。"],
-        "questions": ["如果只有“好/坏”标签而没有成对比较，DPO 是否仍然合适？", "为什么 margin 过大可能让训练变得困难？"],
+        "formula": "这些方法的公式细节不同，但共同目标是：提高高质量回答的相对概率，同时限制噪声偏好和过度更新。方法选择时应先判断数据形态、反馈成本和训练稳定性，再选择目标函数。",
+        "summary": ["偏好优化变体反映了数据条件和工程成本的差异。", "先判断数据形态，再选择训练目标，不要只按方法名套用。"],
+        "questions": ["如果只有“好/坏”标签而没有成对比较，DPO 是否仍然合适？", "为什么 margin 过大可能让训练变得困难？", "Best-of-N 为什么可能放大奖励模型偏差？"],
         "reading": ["Online DPO、KTO、IPO、ORPO、Best-of-N"],
     },
     {
@@ -291,7 +303,7 @@ LESSON_BLUEPRINTS = [
             ["工具调用日志", "训练工具选择与参数生成"],
             ["环境奖励", "强化学习或规则优化"],
         ]),
-        "formula": "智能体轨迹可以写成观察、动作、反馈的序列。V4 用序列结构解释替代破碎数学排版：关键是保留每一步为什么发生以及结果如何反馈。",
+        "formula": "智能体轨迹可以写成观察、动作、反馈的序列。关键是保留每一步为什么发生、调用了什么工具、环境返回了什么结果，以及这些结果如何影响下一步决策。",
         "summary": ["智能体训练关注整条任务轨迹。", "环境、日志和评估器比单纯回答数据更重要。"],
         "questions": ["为什么成功答案本身不足以训练智能体？", "一个好的智能体环境应记录哪些信息？"],
         "reading": ["Agentic RL、智能体环境、OpenEnv"],
@@ -675,8 +687,8 @@ def build_about(inventory: dict) -> None:
     <article class="plain">
       <h1>关于 V4 中文重编版</h1>
       <p class="lead">本页面说明 V4 的定位：它基于原 PDF、提取原文、中文译文和 V3 clean AST，但不是逐字翻译版。</p>
-      <section><h2>为什么不是逐字翻译</h2><p>逐字保留 PDF 提取文本会把 OCR 残段、页码、公式损坏和表格错位一起带进网页。V4 选择把内容重新编成学习版，优先保证概念清晰、阅读连贯和复习方便。</p></section>
-      <section><h2>如何处理公式和表格</h2><p>公式无法可靠恢复时，V4 使用中文解释和原 PDF 链接；表格无法可靠恢复时，重新整理为教学表格，而不是保留破碎 OCR 表格。</p></section>
+      <section><h2>为什么不是逐字翻译</h2><p>逐字保留 PDF 提取文本会把提取残段、页码、公式损坏和表格错位一起带进网页。V4 选择把内容重新编成学习版，优先保证概念清晰、阅读连贯和复习方便。</p></section>
+      <section><h2>如何处理公式和表格</h2><p>公式无法可靠恢复时，V4 使用中文解释和原 PDF 链接；表格无法可靠恢复时，重新整理为教学表格，而不是保留错位表格。</p></section>
       <section><h2>来源读取</h2><p>构建脚本读取了 PDF、source_text.md、document.zh.md 与 clean_chapter_tree.json。V4 页面由重编后的 lesson data 生成。</p></section>
       <section><h2>稳定版</h2><p>稳定逐章结构化版本仍保留在 v3.0.0 与线上主站：<a href="{ONLINE_STABLE}">{ONLINE_STABLE}</a>。</p></section>
     </article>
@@ -714,7 +726,7 @@ def build_search(lessons: list[dict]) -> None:
 
 def write_assets() -> None:
     css = r"""
-:root{--bg:#f6f7f5;--paper:#fff;--ink:#17212b;--muted:#617080;--line:#dfe6e3;--soft:#eef5f4;--accent:#0b7f86;--accent2:#4d5fd7;--warm:#f8f2e8;--shadow:0 18px 45px rgba(37,52,64,.08);--max:920px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter","Source Han Sans SC","Microsoft YaHei",Arial,sans-serif;line-height:1.78;letter-spacing:0}.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:80}a{color:var(--accent);text-underline-offset:.22em}.topbar{position:sticky;top:0;z-index:70;display:flex;align-items:center;gap:24px;min-height:66px;padding:0 28px;border-bottom:1px solid var(--line);background:rgba(246,247,245,.94);backdrop-filter:blur(14px)}.brand{text-decoration:none;color:var(--ink);min-width:310px}.brand strong{display:block;font-size:17px;line-height:1.1}.brand span{display:block;color:var(--muted);font-size:12px}.topnav{display:flex;gap:4px;margin-left:auto}.topnav a{padding:8px 10px;border-radius:6px;color:#30404b;text-decoration:none;font-size:14px}.topnav a.active,.topnav a:hover{background:var(--soft);color:var(--accent)}.menu-button{display:none;width:38px;height:38px;border:1px solid var(--line);border-radius:6px;background:#fff}.menu-button span{display:block;width:18px;height:2px;margin:4px auto;background:var(--ink)}.page-grid{display:block}.main-content{width:min(100%,1180px);margin:0 auto;padding:34px 24px 80px}.hero{min-height:calc(100vh - 110px);display:grid;grid-template-columns:minmax(0,1.35fr) 360px;gap:42px;align-items:center}.hero h1{max-width:760px;margin:0;font-family:Georgia,"Times New Roman","Songti SC",serif;font-size:clamp(42px,7vw,76px);line-height:1.06}.hero-lead{max-width:760px;color:#3f505f;font-size:18px}.hero-search,.search-box{display:flex;gap:8px;max-width:680px;margin-top:24px}input[type=search]{width:100%;min-height:44px;padding:10px 13px;border:1px solid var(--line);border-radius:7px;background:#fff;font:inherit}button,.button{min-height:42px;padding:9px 15px;border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--ink);font:inherit;cursor:pointer}button:hover,.button:hover{border-color:var(--accent);color:var(--accent)}.reader-panel,.plain,.lesson-article{background:var(--paper);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow)}.reader-panel{padding:24px}.reader-panel h2{margin-top:0}.band{margin-top:38px}.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.section-head h2,.plain h1,.lesson-header h1{font-family:Georgia,"Times New Roman","Songti SC",serif}.roadmap-mini{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;list-style:none;margin:0;padding:0}.roadmap-mini li,.lesson-card,.roadmap-stage a,.concept-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:16px;text-decoration:none;color:var(--ink)}.roadmap-mini span,.lesson-card span,.roadmap-stage span{display:inline-flex;color:var(--accent);font-weight:800;font-size:13px}.roadmap-mini strong,.lesson-card h3{display:block;margin:6px 0;line-height:1.35}.roadmap-mini p,.lesson-card p{margin:0;color:var(--muted);font-size:14px}.lesson-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.lesson-card:hover,.roadmap-stage a:hover,.concept-card:hover{border-color:rgba(11,127,134,.42);box-shadow:0 10px 28px rgba(37,52,64,.07)}.lesson-card em{display:inline-flex;margin-top:12px;color:var(--accent2);font-size:12px;font-style:normal}.plain{max-width:var(--max);margin:0 auto;padding:clamp(24px,5vw,46px)}.plain.wide{max-width:1100px}.lead{color:#455766;font-size:17px}.roadmap-full{display:grid;gap:22px}.roadmap-stage{padding:18px;border-left:4px solid var(--accent);background:#fff;border-radius:8px}.roadmap-stage h2{margin-top:0}.roadmap-stage a{display:block;margin-top:10px}.concept-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.concept-card h2{margin:0}.concept-card .term{color:var(--accent2);font-size:13px}.table-wrap{max-width:100%;overflow:auto}table{width:100%;border-collapse:collapse;font-size:14px}th,td{border:1px solid var(--line);padding:10px 12px;vertical-align:top}th{background:var(--soft);text-align:left}.lesson-page .page-grid{display:grid;grid-template-columns:280px minmax(0,1fr)}.side-nav{position:sticky;top:66px;height:calc(100vh - 66px);overflow:auto;padding:20px 14px;border-right:1px solid var(--line);background:rgba(255,255,255,.62)}.side-title{color:var(--muted);font-weight:800;font-size:12px;margin:0 8px 10px}.chapter-link{display:flex;gap:9px;padding:8px;border-left:2px solid transparent;color:#334550;text-decoration:none;font-size:13px;line-height:1.36}.chapter-link span{min-width:24px;color:var(--muted);font-weight:800}.chapter-link.active,.chapter-link:hover{background:var(--soft);border-left-color:var(--accent);color:var(--accent)}.lesson-page .main-content{max-width:980px;margin:0 auto}.lesson-article{overflow:hidden}.lesson-header{padding:44px clamp(24px,6vw,62px) 28px;background:linear-gradient(135deg,#eff8f8,#fff 62%);border-bottom:1px solid var(--line)}.chapter-number{margin:0 0 10px;color:var(--accent);font-size:13px;font-weight:800}.lesson-header h1{margin:0;font-size:clamp(30px,5vw,48px);line-height:1.14}.lesson-header>p:not(.chapter-number){color:#465866}.source-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.source-badges span{display:inline-flex;padding:4px 8px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--muted);font-size:12px}.lesson-block{padding:26px clamp(24px,6vw,62px);border-bottom:1px solid var(--line)}.lesson-block h2{margin:0 0 12px;font-size:24px;line-height:1.25}.intro{background:var(--warm)}.check-list li{margin:6px 0}.concept-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;list-style:none;margin:0;padding:0}.concept-list li{padding:12px;border:1px solid #dcd9fb;border-radius:8px;background:#fbfaff}.concept-list strong{display:block;color:var(--accent2)}.concept-list span{display:block;color:var(--muted);font-size:12px}.concept-list p{margin:4px 0 0;font-size:13px}.formula-note{background:#f8fbfb}.topic-list{columns:2}.pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:22px clamp(24px,6vw,62px)}.pager a{display:block;padding:14px;border:1px solid var(--line);border-radius:8px;background:var(--soft);text-decoration:none;color:var(--ink)}.pager .next{text-align:right}.search-results{display:grid;gap:12px;margin-top:22px}.search-result{display:block;padding:16px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);text-decoration:none}.search-result span{display:block;color:var(--muted);font-size:13px}.muted{color:var(--muted)}.reference-list li{margin:10px 0}.to-top{position:fixed;right:22px;bottom:22px;opacity:0;pointer-events:none;transition:opacity .18s ease}.to-top.visible{opacity:1;pointer-events:auto}@media (max-width:980px){.topbar{min-height:64px;padding:10px 14px;flex-wrap:wrap}.brand{min-width:0;flex:1}.brand span{display:none}.menu-button{display:block}.topnav{display:none;width:100%;flex-direction:column;margin:0}.topnav.open{display:flex}.hero{min-height:auto;grid-template-columns:1fr}.reader-panel{order:-1}.lesson-grid{grid-template-columns:1fr}.roadmap-mini{grid-template-columns:1fr}.concept-grid{grid-template-columns:1fr}.lesson-page .page-grid{display:block}.side-nav{display:none}.main-content{padding:20px 12px 64px}.concept-list{grid-template-columns:1fr}.pager{grid-template-columns:1fr}.hero-search,.search-box{flex-direction:column}.topic-list{columns:1}}@media print{.topbar,.side-nav,.progress,.to-top,.pager{display:none}.lesson-page .page-grid{display:block}.main-content{padding:0}.lesson-article,.plain{box-shadow:none;border:0}}
+:root{--bg:#f6f7f5;--paper:#fff;--ink:#17212b;--muted:#617080;--line:#dfe6e3;--soft:#eef5f4;--accent:#0b7f86;--accent2:#4d5fd7;--warm:#f8f2e8;--shadow:0 18px 45px rgba(37,52,64,.08);--max:920px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter","Source Han Sans SC","Microsoft YaHei",Arial,sans-serif;line-height:1.78;letter-spacing:0}.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:80}a{color:var(--accent);text-underline-offset:.22em}code{padding:.12em .32em;border:1px solid var(--line);border-radius:5px;background:#f7faf9;font-size:.92em;word-break:break-word}pre{max-width:100%;overflow:auto;padding:14px;border:1px solid var(--line);border-radius:8px;background:#f7faf9}.topbar{position:sticky;top:0;z-index:70;display:flex;align-items:center;gap:24px;min-height:66px;padding:0 28px;border-bottom:1px solid var(--line);background:rgba(246,247,245,.94);backdrop-filter:blur(14px)}.brand{text-decoration:none;color:var(--ink);min-width:310px}.brand strong{display:block;font-size:17px;line-height:1.1}.brand span{display:block;color:var(--muted);font-size:12px}.topnav{display:flex;gap:4px;margin-left:auto}.topnav a{padding:8px 10px;border-radius:6px;color:#30404b;text-decoration:none;font-size:14px}.topnav a.active,.topnav a:hover{background:var(--soft);color:var(--accent)}.menu-button{display:none;width:38px;height:38px;border:1px solid var(--line);border-radius:6px;background:#fff}.menu-button span{display:block;width:18px;height:2px;margin:4px auto;background:var(--ink)}.page-grid{display:block}.main-content{width:min(100%,1180px);margin:0 auto;padding:34px 24px 80px}.hero{min-height:calc(100vh - 110px);display:grid;grid-template-columns:minmax(0,1.35fr) 360px;gap:42px;align-items:center}.hero h1{max-width:760px;margin:0;font-family:Georgia,"Times New Roman","Songti SC",serif;font-size:clamp(42px,7vw,76px);line-height:1.06}.hero-lead{max-width:760px;color:#3f505f;font-size:18px}.hero-search,.search-box{display:flex;gap:8px;max-width:680px;margin-top:24px}input[type=search]{width:100%;min-height:44px;padding:10px 13px;border:1px solid var(--line);border-radius:7px;background:#fff;font:inherit}button,.button{min-height:42px;padding:9px 15px;border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--ink);font:inherit;cursor:pointer}button:hover,.button:hover{border-color:var(--accent);color:var(--accent)}.reader-panel,.plain,.lesson-article{background:var(--paper);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow)}.reader-panel{padding:24px}.reader-panel h2{margin-top:0}.band{margin-top:38px}.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.section-head h2,.plain h1,.lesson-header h1{font-family:Georgia,"Times New Roman","Songti SC",serif}.roadmap-mini{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;list-style:none;margin:0;padding:0}.roadmap-mini li,.lesson-card,.roadmap-stage a,.concept-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:16px;text-decoration:none;color:var(--ink)}.roadmap-mini span,.lesson-card span,.roadmap-stage span{display:inline-flex;color:var(--accent);font-weight:800;font-size:13px}.roadmap-mini strong,.lesson-card h3{display:block;margin:6px 0;line-height:1.35}.roadmap-mini p,.lesson-card p{margin:0;color:var(--muted);font-size:14px}.lesson-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.lesson-card:hover,.roadmap-stage a:hover,.concept-card:hover{border-color:rgba(11,127,134,.42);box-shadow:0 10px 28px rgba(37,52,64,.07)}.lesson-card em{display:inline-flex;margin-top:12px;color:var(--accent2);font-size:12px;font-style:normal}.plain{max-width:var(--max);margin:0 auto;padding:clamp(24px,5vw,46px)}.plain.wide{max-width:1100px}.lead{color:#455766;font-size:17px}.roadmap-full{display:grid;gap:22px}.roadmap-stage{padding:18px;border-left:4px solid var(--accent);background:#fff;border-radius:8px}.roadmap-stage h2{margin-top:0}.roadmap-stage a{display:block;margin-top:10px}.concept-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.concept-card h2{margin:0}.concept-card .term{color:var(--accent2);font-size:13px}.table-wrap{max-width:100%;overflow:auto}.table-wrap table{min-width:720px}table{width:100%;border-collapse:collapse;font-size:14px}th,td{border:1px solid var(--line);padding:10px 12px;vertical-align:top}th{background:var(--soft);text-align:left}.lesson-page .page-grid{display:grid;grid-template-columns:280px minmax(0,1fr)}.side-nav{position:sticky;top:66px;height:calc(100vh - 66px);overflow:auto;padding:20px 14px;border-right:1px solid var(--line);background:rgba(255,255,255,.62)}.side-title{color:var(--muted);font-weight:800;font-size:12px;margin:0 8px 10px}.chapter-link{display:flex;gap:9px;padding:8px;border-left:2px solid transparent;color:#334550;text-decoration:none;font-size:13px;line-height:1.36}.chapter-link span{min-width:24px;color:var(--muted);font-weight:800}.chapter-link.active,.chapter-link:hover{background:var(--soft);border-left-color:var(--accent);color:var(--accent)}.lesson-page .main-content{max-width:980px;margin:0 auto}.lesson-article{overflow:hidden}.lesson-header{padding:44px clamp(24px,6vw,62px) 28px;background:linear-gradient(135deg,#eff8f8,#fff 62%);border-bottom:1px solid var(--line)}.chapter-number{margin:0 0 10px;color:var(--accent);font-size:13px;font-weight:800}.lesson-header h1{margin:0;font-size:clamp(30px,5vw,48px);line-height:1.14}.lesson-header>p:not(.chapter-number){color:#465866}.source-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.source-badges span{display:inline-flex;padding:4px 8px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--muted);font-size:12px}.lesson-block{padding:26px clamp(24px,6vw,62px);border-bottom:1px solid var(--line)}.lesson-block h2{margin:0 0 12px;font-size:24px;line-height:1.25}.intro{background:var(--warm)}.check-list li{margin:6px 0}.concept-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;list-style:none;margin:0;padding:0}.concept-list li{padding:12px;border:1px solid #dcd9fb;border-radius:8px;background:#fbfaff}.concept-list strong{display:block;color:var(--accent2)}.concept-list span{display:block;color:var(--muted);font-size:12px}.concept-list p{margin:4px 0 0;font-size:13px}.formula-note{background:#f8fbfb}.topic-list{columns:2}.pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:22px clamp(24px,6vw,62px)}.pager a{display:block;padding:14px;border:1px solid var(--line);border-radius:8px;background:var(--soft);text-decoration:none;color:var(--ink)}.pager .next{text-align:right}.search-results{display:grid;gap:12px;margin-top:22px}.search-result{display:block;padding:16px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);text-decoration:none}.search-result span{display:block;color:var(--muted);font-size:13px}.muted{color:var(--muted)}.reference-list li{margin:10px 0}.to-top{position:fixed;right:22px;bottom:22px;opacity:0;pointer-events:none;transition:opacity .18s ease}.to-top.visible{opacity:1;pointer-events:auto}@media (max-width:980px){.topbar{min-height:64px;padding:10px 14px;flex-wrap:wrap}.brand{min-width:0;flex:1}.brand span{display:none}.menu-button{display:block}.topnav{display:none;width:100%;flex-direction:column;margin:0}.topnav.open{display:flex}.hero{min-height:auto;grid-template-columns:1fr}.reader-panel{order:-1}.lesson-grid{grid-template-columns:1fr}.roadmap-mini{grid-template-columns:1fr}.concept-grid{grid-template-columns:1fr}.lesson-page .page-grid{display:block}.side-nav{display:none}.main-content{padding:20px 12px 64px}.concept-list{grid-template-columns:1fr}.pager{grid-template-columns:1fr}.hero-search,.search-box{flex-direction:column}.topic-list{columns:1}}@media print{.topbar,.side-nav,.progress,.to-top,.pager{display:none}.lesson-page .page-grid{display:block}.main-content{padding:0}.lesson-article,.plain{box-shadow:none;border:0}}
 """
     main_js = r"""
 (()=>{const topnav=document.getElementById("topnav"),menu=document.getElementById("menu-button"),bar=document.getElementById("progress"),top=document.getElementById("to-top");menu?.addEventListener("click",()=>{const open=topnav.classList.toggle("open");menu.setAttribute("aria-expanded",String(open))});const tick=()=>{const h=document.documentElement;const max=h.scrollHeight-h.clientHeight;const pct=max>0?h.scrollTop/max*100:0;if(bar)bar.style.width=pct+"%";if(top)top.classList.toggle("visible",h.scrollTop>500)};document.addEventListener("scroll",tick,{passive:true});top?.addEventListener("click",()=>scrollTo({top:0,behavior:"smooth"}));tick()})();
