@@ -259,8 +259,9 @@ def broken_links() -> list[str]:
             if not href or href.startswith(("http://", "https://", "mailto:", "tel:", "data:")):
                 continue
             clean, frag = urldefrag(href)
-            target = (path.parent / clean).resolve() if clean else path.resolve()
-            if clean and not target.exists():
+            clean_path = clean.split("?", 1)[0]
+            target = (path.parent / clean_path).resolve() if clean_path else path.resolve()
+            if clean_path and not target.exists():
                 broken.append(f"{path.relative_to(SITE)} -> {href}")
             elif frag and frag not in ids_by_file.get(target, set()):
                 broken.append(f"{path.relative_to(SITE)} -> missing #{frag}")
